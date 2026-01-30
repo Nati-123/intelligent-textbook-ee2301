@@ -5,7 +5,7 @@ This unit introduces different numerical representations used in computing and d
 
 ---
 
-## 🔵 Topics Covered
+##  Topics Covered
 
 - Decimal, Binary, Octal, and Hexadecimal number systems  
 - Base conversions (manual + shortcut methods)  
@@ -20,7 +20,7 @@ This unit introduces different numerical representations used in computing and d
 
 ---
 
-## 🔢 1. Positional Number Systems
+## 1. Positional Number Systems
 
 A positional system expresses a number as:
 
@@ -42,7 +42,7 @@ $$
 
 ---
 
-## 🔢 2. Base Conversions
+##  2. Base Conversions
 
 ### A. Decimal → Binary
 
