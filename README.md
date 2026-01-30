@@ -1,10 +1,12 @@
-# Intelligent Textbook for EE 2301 — Digital System Design
-<p align="left">
+# Intelligent Textbook for EE Students — Digital System Design
+
+<p align="center">
   <img src="https://img.shields.io/github/repo-size/Nati-123/intelligent-textbook-ee2301?color=blue" alt="Repo Size">
-  <img src="https://img.shields.io/github/last-commit/Nati-123/intelligent-textbook-ee2301" alt="Last Commit">
-  <img src="https://img.shields.io/badge/Project-EE%20Student%20Project-purple" alt="EE Student Project">
-  <img src="https://img.shields.io/badge/Made%20With-Markdown-yellow" alt="Markdown">
+  <img src="https://img.shields.io/github/last-commit/Nati-123/intelligent-textbook-ee2301?color=brightgreen" alt="Last Commit">
+  <img src="https://img.shields.io/badge/Project-EE%20Student%20Project-purple" alt="Project Type">
+  <img src="https://img.shields.io/badge/Made%20With-Markdown-yellow" alt="Made With">
 </p>
+
 
 
 
