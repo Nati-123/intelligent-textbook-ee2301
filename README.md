@@ -2,9 +2,10 @@
 <p align="left">
   <img src="https://img.shields.io/github/repo-size/Nati-123/intelligent-textbook-ee2301?color=blue" alt="Repo Size">
   <img src="https://img.shields.io/github/last-commit/Nati-123/intelligent-textbook-ee2301" alt="Last Commit">
-  <img src="https://img.shields.io/badge/Project-EE%202301%20Digital%20System%20Design-purple" alt="EE2301 Project">
+  <img src="https://img.shields.io/badge/Project-EE%20Student%20Project-purple" alt="EE Student Project">
   <img src="https://img.shields.io/badge/Made%20With-Markdown-yellow" alt="Markdown">
 </p>
+
 
 
 ##  Table of Contents
