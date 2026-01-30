@@ -1,4 +1,4 @@
-#Intelligent Textbook for EE 2301 — Digital System Design
+#Intelligent Textbook for EE Student — Digital System Design
 
 ## Table of Contents
 
@@ -39,7 +39,7 @@ This project supports students who want clearer explanations than those found in
 
  Goals & Objectives
 
-Develop high-quality original learning materials for EE 2301
+Develop high-quality original learning materials for EE Students
 
 Use Claude Code to generate structured, consistent, and copyright-safe content
 
@@ -51,7 +51,7 @@ Improve learning accessibility for future EE students
 
 Scope of the Textbook (Units Included)
 
-This project covers the core units of EE 2301:
+This project covers the core units of Digital system design:
 
 Unit 1 — Number Systems
 
