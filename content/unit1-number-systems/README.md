@@ -1,10 +1,49 @@
 # Unit 1 — Number Systems
-This folder contains original explanations, examples, and practice problems for:
-- Number systems (binary, octal, decimal, hex)
-- Conversions between number systems
-- Binary arithmetic
-- Negative number representations (sign/magnitude, 1's complement, 2's complement)
-- Binary codes (BCD, Gray code, ASCII, parity)
-More content will be added soon.
+
+Number systems form the foundation of digital system design.  
+This unit introduces different numerical representations used in computing and digital electronics.
+
+---
+
+## 📘 Topics Covered
+- Decimal, Binary, Octal, and Hexadecimal number systems  
+- Base conversions (manual + shortcut methods)  
+- Positional notation  
+- Binary arithmetic  
+- Signed number systems  
+  - Signed magnitude  
+  - 1’s complement  
+  - 2’s complement  
+- Overflow detection  
+- Applications in digital hardware
+
+---
+
+## 🔢 1. Positional Number Systems
+
+A positional system expresses a number as:
+
+\[
+N = \sum_{i=0}^{k} d_i \cdot \text{base}^i
+\]
+
+Example (decimal):  
+\[
+472 = 4 \cdot 10^2 + 7 \cdot 10^1 + 2 \cdot 10^0
+\]
+
+Example (binary):  
+\[
+1011_2 = 1\cdot2^3 + 0\cdot2^2 + 1\cdot2^1 + 1\cdot2^0 = 11_{10}
+\]
+
+---
+
+## 🔄 2. Base Conversions
+
+### **A. Decimal → Binary**
+Repeated division by 2  
+
+Example: convert 19₁₀  
 
 
