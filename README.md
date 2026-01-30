@@ -65,6 +65,15 @@ This project covers the core units of Digital System Design:
 
 ## Folder Structure
 
+
+content/  
+- [unit1-number-systems](content/unit1-number-systems/)  
+- [unit2-boolean-algebra](content/unit2-boolean-algebra/)  
+- [unit3-applications-boolean-algebra](content/unit3-applications-boolean-algebra/)  
+- [unit4-minterm-maxterm-expansions](content/unit4-minterm-maxterm-expansions/)  
+- [unit5-karnaugh-maps](content/unit5-karnaugh-maps/)  
+
+
 content/
 │── unit1-number-systems/
 │── unit2-boolean-algebra/
