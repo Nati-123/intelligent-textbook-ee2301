@@ -33,7 +33,7 @@ Department of Electrical & Computer Engineering
 
 This project aims to create an AI-assisted intelligent interactive textbook for the course:
 
-**EE 2301: Introduction to Digital System Design**
+**Introduction to Digital System Design**
 
 The goal is to build a modern, accessible textbook that uses AI tools (Claude Code) to provide:
 
