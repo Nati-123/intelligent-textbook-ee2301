@@ -50,7 +50,7 @@ Repeated division by 2.
 
 **Example: Convert 19₁₀**
 
-| Step | Number | ÷2 | Remainder |
+| step | Number | ÷2 | Remainder |
 |------|--------|----|-----------|
 | 1 | 19 | 9 | 1 |
 | 2 | 9 | 4 | 1 |
