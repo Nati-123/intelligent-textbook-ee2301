@@ -12,7 +12,7 @@ This unit introduces different numerical representations used in computing and d
 - Positional notation  
 - Binary arithmetic  
 - Signed number systems 
-  - Signed magnitude  
+  - Signed magnitude 
   - 1’s complement  
   - 2’s complement  
 - Overflow detection  
