@@ -1,97 +1,182 @@
-<h1 align="center">Intelligent Textbook for EE Students — Digital System Design</h1>
+# Intelligent Textbook: Digital System Design (EE 2301)
 
-<p align="center">
-  <img src="https://img.shields.io/github/repo-size/Nati-123/intelligent-textbook-ee2301?color=blue" alt="Repo Size">
-  <img src="https://img.shields.io/badge/last%20commit-today-brightgreen" alt="Last Commit">
-  <img src="https://img.shields.io/badge/Project-EE%20Student%20Project-purple" alt="Project Type">
-  <img src="https://img.shields.io/badge/Made%20With-MkDocs-blue" alt="Made With">
-</p>
-
----
-
-Senior Design Project • University of Minnesota – Twin Cities
-Department of Electrical & Computer Engineering
+[![MkDocs](https://img.shields.io/badge/Made%20with-MkDocs-526CFE?logo=materialformkdocs)](https://www.mkdocs.org/)
+[![Material for MkDocs](https://img.shields.io/badge/Material%20for%20MkDocs-526CFE?logo=materialformkdocs)](https://squidfunk.github.io/mkdocs-material/)
+[![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-DA7857?logo=anthropic)](https://claude.ai/code)
+[![GitHub](https://img.shields.io/badge/GitHub-Nati--123%2Fintelligent--textbook--ee2301-blue?logo=github)](https://github.com/Nati-123/intelligent-textbook-ee2301)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ---
 
-## Project Overview
-
-This project aims to create an AI-assisted intelligent interactive textbook for the course:
-
-**Introduction to Digital System Design**
-
-The goal is to build a modern, accessible textbook that uses AI tools (Claude Code) to provide:
-
-- Original, student-friendly explanations
-- Step-by-step derivations of key concepts
-- Worked examples with solutions
-- Visual learning aids (logic diagrams, truth tables, K-maps, etc.)
-- Auto-generated practice problems
-- Instant interactive solutions
-- Adaptive learning features powered by Claude Code
+**Senior Design Project | University of Minnesota - Twin Cities | Department of Electrical & Computer Engineering**
 
 ---
 
-## Quick Start
+## Overview
 
-```bash
-# Install MkDocs and dependencies
-pip install mkdocs mkdocs-material pymdown-extensions
+This is an AI-assisted intelligent interactive textbook for **EE 2301: Introduction to Digital System Design**. Built using MkDocs with the Material theme, this textbook provides modern, accessible learning materials for sophomore and junior-level Electrical and Computer Engineering students.
 
-# Serve locally
-mkdocs serve
+The textbook leverages Claude Code to generate structured, consistent, and copyright-safe educational content including:
 
-# Build static site
-mkdocs build
-```
+- Original, student-friendly explanations of digital logic concepts
+- Step-by-step derivations and worked examples
+- Visual learning aids (logic diagrams, truth tables, K-maps)
+- MathJax-powered mathematical notation
+- Structured content aligned with Bloom's Taxonomy learning outcomes
 
----
+Whether you're a student seeking clearer explanations than traditional textbooks or an educator looking for supplementary course materials, this intelligent textbook provides comprehensive coverage of digital system design fundamentals.
 
-## Project Structure
+## Site Status and Metrics
 
-```
-intelligent-textbook-ee2301/
-├── docs/
-│   ├── index.md
-│   ├── javascripts/
-│   │   └── mathjax.js
-│   ├── unit1-number-systems/
-│   │   └── index.md
-│   ├── unit2-boolean-algebra/
-│   │   └── index.md
-│   ├── unit3-applications-boolean-algebra/
-│   │   └── index.md
-│   ├── unit4-minterm-maxterm-expansions/
-│   │   └── index.md
-│   └── unit5-karnaugh-maps/
-│       └── index.md
-├── mkdocs.yml
-└── README.md
-```
+| Metric | Count |
+|--------|-------|
+| Units | 5 |
+| Markdown Files | 7 |
+| Total Words | ~1,844 |
+| Topics Covered | 25+ |
+| Learning Outcomes | 18 |
 
----
+**Completion Status:** Content development phase - Units 1-5 complete, Units 6-7 planned
 
 ## Units Covered
 
-- **Unit 1 — Number Systems**
-- **Unit 2 — Boolean Algebra**
-- **Unit 3 — Applications of Boolean Algebra**
-- **Unit 4 — Minterm & Maxterm Expansions (SOP/POS)**
-- **Unit 5 — Karnaugh Maps**
+| Unit | Topic | Description |
+|------|-------|-------------|
+| 1 | Number Systems | Decimal, binary, octal, hexadecimal, signed representations |
+| 2 | Boolean Algebra | Logic operators, identities, DeMorgan's theorems |
+| 3 | Applications of Boolean Algebra | Truth tables, adders, subtractors |
+| 4 | Minterm & Maxterm Expansions | SOP/POS canonical forms, don't care conditions |
+| 5 | Karnaugh Maps | K-map simplification, prime implicants |
 
----
+### Planned Additions
 
-## Planned Additions
-
-- Unit 6: Quine–McCluskey Method
+- Unit 6: Quine-McCluskey Method
 - Unit 7: Multi-Level Gate Circuits (NAND/NOR)
-- Auto-generated quizzes
-- Interactive circuit visualizations
+- Interactive circuit visualizations (MicroSims)
+- Auto-generated quizzes with instant feedback
 - Practice exam generator
-- Step-by-step logic minimization animations (Claude Code)
 
----
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Nati-123/intelligent-textbook-ee2301.git
+cd intelligent-textbook-ee2301
+```
+
+### Install Dependencies
+
+This project uses MkDocs with the Material theme:
+
+```bash
+pip install mkdocs mkdocs-material pymdown-extensions
+```
+
+### Build and Serve Locally
+
+Serve locally for development (with live reload):
+
+```bash
+mkdocs serve
+```
+
+Open your browser to `http://localhost:8000`
+
+Build the static site:
+
+```bash
+mkdocs build
+```
+
+### Deploy to GitHub Pages
+
+```bash
+mkdocs gh-deploy
+```
+
+This will build the site and push it to the `gh-pages` branch.
+
+## Repository Structure
+
+```
+intelligent-textbook-ee2301/
+├── docs/                              # MkDocs documentation source
+│   ├── index.md                       # Homepage
+│   ├── course-description.md          # Course info and learning outcomes
+│   ├── javascripts/
+│   │   └── mathjax.js                 # MathJax configuration
+│   ├── unit1-number-systems/
+│   │   └── index.md                   # Number systems content
+│   ├── unit2-boolean-algebra/
+│   │   └── index.md                   # Boolean algebra content
+│   ├── unit3-applications-boolean-algebra/
+│   │   └── index.md                   # Boolean applications content
+│   ├── unit4-minterm-maxterm-expansions/
+│   │   └── index.md                   # SOP/POS forms content
+│   └── unit5-karnaugh-maps/
+│       └── index.md                   # K-map content
+├── mkdocs.yml                         # MkDocs configuration
+└── README.md                          # This file
+```
+
+## Target Audience
+
+This textbook is designed for:
+
+- Sophomore and junior-level Electrical Engineering students
+- Computer Engineering students
+- Students pursuing minors in electronics or embedded systems
+- Anyone seeking foundational knowledge in digital logic design
+
+### Prerequisites
+
+- Basic algebra and mathematical reasoning
+- Introduction to programming (any language)
+- Familiarity with basic circuit concepts (recommended but not required)
+
+## Reporting Issues
+
+Found a bug, typo, or have a suggestion for improvement? Please report it:
+
+[GitHub Issues](https://github.com/Nati-123/intelligent-textbook-ee2301/issues)
+
+When reporting issues, please include:
+
+- Description of the problem or suggestion
+- Location in the textbook (unit, section)
+- Expected vs actual content (for errors)
+- Screenshots (if applicable)
 
 ## License
 
-This project is for educational purposes.
+This work is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+**You are free to:**
+
+- Share — copy and redistribute the material
+- Adapt — remix, transform, and build upon the material
+
+**Under the following terms:**
+
+- **Attribution** — Give appropriate credit with a link to the original
+- **NonCommercial** — No commercial use without permission
+- **ShareAlike** — Distribute contributions under the same license
+
+## Acknowledgements
+
+This project is built on the shoulders of giants in the open source community:
+
+- **[MkDocs](https://www.mkdocs.org/)** - Static site generator optimized for project documentation
+- **[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)** - Beautiful, responsive theme
+- **[MathJax](https://www.mathjax.org/)** - Beautiful math rendering in any browser
+- **[Claude AI](https://claude.ai)** by Anthropic - AI-assisted content generation
+- **[GitHub Pages](https://pages.github.com/)** - Free hosting for open source projects
+
+Special thanks to the University of Minnesota Department of Electrical & Computer Engineering and the educators who contribute to making educational resources accessible and interactive.
+
+## Contact
+
+**Project Repository:** [github.com/Nati-123/intelligent-textbook-ee2301](https://github.com/Nati-123/intelligent-textbook-ee2301)
+
+Questions, suggestions, or collaboration opportunities? Feel free to open an issue on GitHub.
