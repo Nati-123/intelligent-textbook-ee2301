@@ -25,7 +25,7 @@ This unit introduces different numerical representations used in computing and d
 A positional system expresses a number as:
 
 $$
-N = \sum_{i=0}^{k} d_i \cdot \text{base}^i
+          N = \sum_{i=0}^{k} d_i \cdot \text{base}^i
 $$
 
 ### Example (decimal):
