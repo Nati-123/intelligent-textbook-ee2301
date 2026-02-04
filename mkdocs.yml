@@ -29,6 +29,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Course Description: course-description.md
   - Unit 1 - Number Systems: unit1-number-systems/index.md
   - Unit 2 - Boolean Algebra: unit2-boolean-algebra/index.md
   - Unit 3 - Applications of Boolean Algebra: unit3-applications-boolean-algebra/index.md
