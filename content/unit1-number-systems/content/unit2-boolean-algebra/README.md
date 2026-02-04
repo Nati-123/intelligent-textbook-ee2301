@@ -153,4 +153,4 @@ Boolean expressions can be directly implemented using logic gates:
 - XOR → sum of modulo-2  
 - XNOR → equality detector  
 
-More circuit diagrams will be added later.
+
