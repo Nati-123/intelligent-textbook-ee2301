@@ -1,31 +1,16 @@
-
-
 <h1 align="center">Intelligent Textbook for EE Students — Digital System Design</h1>
 
 <p align="center">
   <img src="https://img.shields.io/github/repo-size/Nati-123/intelligent-textbook-ee2301?color=blue" alt="Repo Size">
   <img src="https://img.shields.io/badge/last%20commit-today-brightgreen" alt="Last Commit">
   <img src="https://img.shields.io/badge/Project-EE%20Student%20Project-purple" alt="Project Type">
-  <img src="https://img.shields.io/badge/Made%20With-Markdown-yellow" alt="Made With">
+  <img src="https://img.shields.io/badge/Made%20With-MkDocs-blue" alt="Made With">
 </p>
-
-
-
-
-
-
-##  Table of Contents
-1. [Project Overview](#project-overview)
-2. [Introduction to Digital System Design](#introduction-to-digital-system-design)
-3. [Goals & Objectives](#goals--objectives)
-4. [Scope of the Textbook – Units Included](#scope-of-the-textbook--units-included)
-5. [Folder Structure](#folder-structure)
-6. [Planned Additions](#planned-additions)
 
 ---
 
-Senior Design Project • University of Minnesota – Twin Cities  
-Department of Electrical & Computer Engineering  
+Senior Design Project • University of Minnesota – Twin Cities
+Department of Electrical & Computer Engineering
 
 ---
 
@@ -37,58 +22,64 @@ This project aims to create an AI-assisted intelligent interactive textbook for 
 
 The goal is to build a modern, accessible textbook that uses AI tools (Claude Code) to provide:
 
-- Original, student-friendly explanations  
-- Step-by-step derivations of key concepts  
-- Worked examples with solutions  
-- Visual learning aids (logic diagrams, truth tables, K-maps, etc.)  
-- Auto-generated practice problems  
-- Instant interactive solutions  
-- Adaptive learning features powered by Claude Code  
-
-This project supports students who want clearer explanations than traditional textbooks and provides practice material aligned with UMN course outcomes.
+- Original, student-friendly explanations
+- Step-by-step derivations of key concepts
+- Worked examples with solutions
+- Visual learning aids (logic diagrams, truth tables, K-maps, etc.)
+- Auto-generated practice problems
+- Instant interactive solutions
+- Adaptive learning features powered by Claude Code
 
 ---
 
-## Introduction to Digital System Design
+## Quick Start
 
-The goal is to build a textbook that improves clarity and accessibility for future EE students while maintaining academic accuracy and alignment with course outcomes.
+```bash
+# Install MkDocs and dependencies
+pip install mkdocs mkdocs-material pymdown-extensions
+
+# Serve locally
+mkdocs serve
+
+# Build static site
+mkdocs build
+```
 
 ---
 
-## Goals & Objectives
+## Project Structure
 
-1. Develop high-quality original learning materials for EE 2301.  
-2. Use Claude Code to generate structured, consistent, and copyright-safe content.  
-3. Provide interactive examples and auto-graded problem sets.  
-4. Build a searchable, online-friendly textbook hosted on GitHub.  
-5. Improve learning accessibility for future EE students.  
+```
+intelligent-textbook-ee2301/
+├── docs/
+│   ├── index.md
+│   ├── javascripts/
+│   │   └── mathjax.js
+│   ├── unit1-number-systems/
+│   │   └── index.md
+│   ├── unit2-boolean-algebra/
+│   │   └── index.md
+│   ├── unit3-applications-boolean-algebra/
+│   │   └── index.md
+│   ├── unit4-minterm-maxterm-expansions/
+│   │   └── index.md
+│   └── unit5-karnaugh-maps/
+│       └── index.md
+├── mkdocs.yml
+└── README.md
+```
 
 ---
 
-## Scope of the Textbook – Units Included
+## Units Covered
 
-This project covers the core units of Digital System Design:
-
-- **Unit 1 — Number Systems**  
-- **Unit 2 — Boolean Algebra**  
-- **Unit 3 — Applications of Boolean Algebra**  
-- **Unit 4 — Minterm & Maxterm Expansions (SOP/POS)**  
+- **Unit 1 — Number Systems**
+- **Unit 2 — Boolean Algebra**
+- **Unit 3 — Applications of Boolean Algebra**
+- **Unit 4 — Minterm & Maxterm Expansions (SOP/POS)**
 - **Unit 5 — Karnaugh Maps**
 
 ---
-
-## Folder Structure
-
-
-content/  
-- [unit1-number-systems](content/unit1-number-systems/)  
-- [unit2-boolean-algebra](content/unit2-boolean-algebra/)  
-- [unit3-applications-boolean-algebra](content/unit3-applications-boolean-algebra/)  
-- [unit4-minterm-maxterm-expansions](content/unit4-minterm-maxterm-expansions/)  
-- [unit5-karnaugh-maps](content/unit5-karnaugh-maps/)  
-
-
-
 
 ## Planned Additions
 
@@ -98,3 +89,9 @@ content/
 - Interactive circuit visualizations
 - Practice exam generator
 - Step-by-step logic minimization animations (Claude Code)
+
+---
+
+## License
+
+This project is for educational purposes.

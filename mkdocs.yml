@@ -1,0 +1,36 @@
+site_name: Intelligent Textbook - Digital System Design
+site_description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
+site_author: University of Minnesota - Twin Cities
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - tables
+  - admonition
+  - pymdownx.details
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Unit 1 - Number Systems: unit1-number-systems/index.md
+  - Unit 2 - Boolean Algebra: unit2-boolean-algebra/index.md
+  - Unit 3 - Applications of Boolean Algebra: unit3-applications-boolean-algebra/index.md
+  - Unit 4 - Minterm & Maxterm Expansions: unit4-minterm-maxterm-expansions/index.md
+  - Unit 5 - Karnaugh Maps: unit5-karnaugh-maps/index.md
