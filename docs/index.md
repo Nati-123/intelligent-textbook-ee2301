@@ -29,6 +29,10 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
     <span class="stat-label">MicroSims</span>
   </div>
   <div class="stat">
+    <span class="stat-number">200</span>
+    <span class="stat-label">Problems</span>
+  </div>
+  <div class="stat">
     <span class="stat-number">108</span>
     <span class="stat-label">Quiz Questions</span>
   </div>
@@ -176,6 +180,7 @@ Flip-Flops, Counters, Shift Registers, FSMs
     - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
     - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
     - :material-play-box: **Interactive Simulations** — 55 p5.js MicroSims you can run in your browser
+    - :material-pencil: **Practice Problems** — 200 end-of-unit problems with detailed solutions
     - :material-checkbox-marked: **Self-Assessment** — 108 quiz questions with detailed explanations
     - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
     - :material-link-variant: **Curated References** — Wikipedia, textbooks, and online resources
