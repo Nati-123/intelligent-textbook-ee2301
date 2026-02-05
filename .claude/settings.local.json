@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python analyze-graph.py:*)",
+      "Bash(python3:*)",
+      "Bash(echo:*)",
+      "Bash(git rm:*)",
+      "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 add .gitignore)",
+      "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 commit -m \"$\\(cat <<''EOF''\nAdd .gitignore to exclude .venv, site, and Python cache files\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 push)",
+      "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 commit -m \"$\\(cat <<''EOF''\nAdd additional entries to .gitignore\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
