@@ -5,53 +5,97 @@
 
 ---
 
-## Project Overview
+## Welcome
 
-This project aims to create an AI-assisted intelligent interactive textbook for the course:
-
-**Introduction to Digital System Design**
-
-The goal is to build a modern, accessible textbook that uses AI tools (Claude Code) to provide:
-
-- Original, student-friendly explanations
-- Step-by-step derivations of key concepts
-- Worked examples with solutions
-- Visual learning aids (logic diagrams, truth tables, K-maps, etc.)
-- Auto-generated practice problems
-- Instant interactive solutions
-- Adaptive learning features powered by Claude Code
-
-This project supports students who want clearer explanations than traditional textbooks and provides practice material aligned with UMN course outcomes.
+This is an AI-assisted intelligent interactive textbook for **EE 2301: Introduction to Digital System Design**. Built using MkDocs Material and Claude Code, this textbook provides modern, accessible learning materials for sophomore and junior-level Electrical and Computer Engineering students.
 
 ---
 
-## Goals & Objectives
+## What's Inside
 
-1. Develop high-quality original learning materials for EE 2301.
-2. Use Claude Code to generate structured, consistent, and copyright-safe content.
-3. Provide interactive examples and auto-graded problem sets.
-4. Build a searchable, online-friendly textbook hosted on GitHub.
-5. Improve learning accessibility for future EE students.
+| Resource | Count | Description |
+|----------|-------|-------------|
+| Units | 6 | Comprehensive course chapters |
+| Concepts | 225 | Organized in a learning graph |
+| Glossary Terms | 225 | ISO 11179 compliant definitions |
+| FAQ Questions | 72 | Common questions answered |
+| Quiz Questions | 60 | 10 per unit with explanations |
+| References | 60 | Curated sources per unit |
+| MicroSims | 5 | Interactive p5.js simulations |
+| Equations | 821 | LaTeX mathematical expressions |
+| Total Words | 51,775 | ~218 equivalent pages |
 
 ---
 
 ## Units Covered
 
-This textbook covers the core units of Digital System Design:
+| Unit | Topic | Key Concepts |
+|------|-------|--------------|
+| 1 | [Number Systems](unit1-number-systems/index.md) | Binary, octal, hexadecimal, two's complement |
+| 2 | [Boolean Algebra](unit2-boolean-algebra/index.md) | Logic gates, theorems, DeMorgan's laws |
+| 3 | [Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md) | Adders, subtractors, comparators, decoders |
+| 4 | [Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md) | Canonical forms, SOP/POS, cofactors |
+| 5 | [Karnaugh Maps](unit5-karnaugh-maps/index.md) | K-map simplification, prime implicants |
+| 6 | [Quine-McCluskey Method](unit6-quine-mccluskey/index.md) | Algorithmic minimization, PI charts |
 
-- **[Unit 1 — Number Systems](unit1-number-systems/index.md)**
-- **[Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md)**
-- **[Unit 3 — Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md)**
-- **[Unit 4 — Minterm & Maxterm Expansions (SOP/POS)](unit4-minterm-maxterm-expansions/index.md)**
-- **[Unit 5 — Karnaugh Maps](unit5-karnaugh-maps/index.md)**
+Each unit includes content, worked examples, a quiz, and annotated references.
 
 ---
 
-## Planned Additions
+## Learning Resources
 
-- Unit 6: Quine–McCluskey Method
-- Unit 7: Multi-Level Gate Circuits (NAND/NOR)
-- Auto-generated quizzes
-- Interactive circuit visualizations
-- Practice exam generator
-- Step-by-step logic minimization animations (Claude Code)
+- **[Glossary](glossary.md)** — 225 terms with definitions and examples
+- **[FAQ](faq.md)** — 72 frequently asked questions across 6 categories
+- **[MicroSims](sims/index.md)** — 5 interactive simulations for hands-on learning
+- **[Concept List](learning-graph/concept-list.md)** — Complete learning graph
+- **[Book Metrics](learning-graph/book-metrics.md)** — Detailed statistics
+
+---
+
+## Features
+
+This intelligent textbook provides:
+
+- **Original explanations** — Student-friendly content generated with Claude Code
+- **Step-by-step examples** — Detailed derivations and worked problems
+- **Visual learning aids** — Logic diagrams, truth tables, K-maps
+- **Interactive MicroSims** — p5.js simulations you can run in your browser
+- **Self-assessment quizzes** — 10 questions per unit with detailed explanations
+- **Comprehensive glossary** — ISO 11179 compliant terminology
+- **Curated references** — Wikipedia, textbooks, and online resources
+
+---
+
+## Target Audience
+
+This textbook is designed for:
+
+- Sophomore and junior-level Electrical Engineering students
+- Computer Engineering students
+- Students pursuing minors in electronics or embedded systems
+- Anyone seeking foundational knowledge in digital logic design
+
+**Prerequisites:** Basic algebra, introduction to programming (any language)
+
+---
+
+## About This Project
+
+This project demonstrates how AI can augment educational content creation while maintaining pedagogical quality. All content follows Bloom's Taxonomy (2001) for learning outcomes and is structured around a 225-concept learning graph with explicit dependencies.
+
+**Built with:**
+
+- [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) — Documentation framework
+- [Claude Code](https://claude.ai/code) — AI-assisted content generation
+- [p5.js](https://p5js.org/) — Interactive simulations
+- [MathJax](https://www.mathjax.org/) — Mathematical notation
+
+---
+
+## Getting Started
+
+New to digital logic? Start with [Unit 1 — Number Systems](unit1-number-systems/index.md).
+
+Already familiar with binary? Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md).
+
+Looking for a quick reference? Check the [Glossary](glossary.md) or [FAQ](faq.md).
