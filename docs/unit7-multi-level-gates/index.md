@@ -143,7 +143,7 @@ The general rule: **Replace all AND gates with NAND gates, replace the OR gate w
 
 This works because:
 - Each first-level NAND produces the complement of what an AND would produce
-- The second-level NAND, acting as a NOR-with-inverted-inputs, restores the correct function
+- The second-level NAND receives these complemented signals; by De Morgan's theorem, NAND(X', Y') = (X'·Y')' = X + Y, so it effectively performs OR on the original products
 
 #### Diagram: AND-OR to NAND-NAND Conversion
 
@@ -291,9 +291,9 @@ Factored: $F = A(BC + BD + E) = A(B(C + D) + E)$
 
 | Form | AND gates | OR gates | Total | Levels |
 |------|-----------|----------|-------|--------|
-| Two-level | 3 (3-input) | 1 (3-input) | 4 | 2 |
-| Factored | 2 (2-input) | 2 (2-input) | 4 | 3 |
-| Further factored | 1 (2-input) | 2 (2-input) | 3 | 4 |
+| Two-level | 2 (3-input) + 1 (2-input) | 1 (3-input) | 4 | 2 |
+| Factored | 3 (2-input) | 1 (3-input) | 4 | 3 |
+| Further factored | 2 (2-input) | 2 (2-input) | 4 | 4 |
 
 The factored forms use smaller gates (lower fan-in) though they introduce more levels.
 
