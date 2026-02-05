@@ -124,3 +124,24 @@ nav:
       - PI Chart Interactive: sims/pi-chart-interactive/index.md
       - QM Complexity Chart: sims/qm-complexity-chart/index.md
       - QM Complete Walkthrough: sims/qm-complete-walkthrough/index.md
+    - Unit 7 - Multi-Level Gates:
+      - Universal Gate Simulator: sims/universal-gate-simulator/index.md
+      - Bubble Pushing Simulator: sims/bubble-pushing-simulator/index.md
+      - NAND-NOR Converter: sims/nand-nor-converter/index.md
+      - Multi-Level Analyzer: sims/multi-level-analyzer/index.md
+    - Unit 8 - Combinational Modules:
+      - MUX Simulator: sims/mux-simulator/index.md
+      - Decoder Simulator: sims/decoder-simulator/index.md
+      - Priority Encoder Simulator: sims/priority-encoder-simulator/index.md
+      - Binary-Gray Converter: sims/binary-gray-converter/index.md
+      - Magnitude Comparator: sims/magnitude-comparator/index.md
+    - Unit 9 - Sequential Fundamentals:
+      - SR Latch Simulator: sims/sr-latch-simulator/index.md
+      - D Flip-Flop Simulator: sims/d-flipflop-simulator/index.md
+      - JK Flip-Flop Simulator: sims/jk-flipflop-simulator/index.md
+      - Timing Diagram Analyzer: sims/timing-diagram-analyzer/index.md
+    - Unit 10 - Sequential Design:
+      - Shift Register Simulator: sims/shift-register-simulator/index.md
+      - Counter Simulator: sims/counter-simulator/index.md
+      - FSM Designer: sims/fsm-designer/index.md
+      - Sequence Detector Demo: sims/sequence-detector-demo/index.md

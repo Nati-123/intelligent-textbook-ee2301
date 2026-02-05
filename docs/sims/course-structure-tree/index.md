@@ -10,7 +10,7 @@ This MicroSim provides a hierarchical view of all course content, including:
 - **Unit Content** pages with detailed educational material
 - **Quizzes** for each unit with multiple-choice questions
 - **References** with annotated academic sources
-- **37 MicroSims** for interactive learning
+- **55 MicroSims** for interactive learning
 - **Resources** including FAQ, Glossary, and Learning Graph
 
 ## How to Use

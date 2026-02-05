@@ -212,7 +212,18 @@ function initTreeData() {
         children: [
           { name: 'Content', type: 'content', children: [] },
           { name: 'Quiz', type: 'quiz', children: [] },
-          { name: 'References', type: 'references', children: [] }
+          { name: 'References', type: 'references', children: [] },
+          {
+            name: 'MicroSims (4)',
+            type: 'microsim',
+            expanded: false,
+            children: [
+              { name: 'Universal Gate Simulator', type: 'microsim', children: [] },
+              { name: 'Bubble Pushing Simulator', type: 'microsim', children: [] },
+              { name: 'NAND-NOR Converter', type: 'microsim', children: [] },
+              { name: 'Multi-Level Analyzer', type: 'microsim', children: [] }
+            ]
+          }
         ]
       },
       {
@@ -222,7 +233,19 @@ function initTreeData() {
         children: [
           { name: 'Content', type: 'content', children: [] },
           { name: 'Quiz', type: 'quiz', children: [] },
-          { name: 'References', type: 'references', children: [] }
+          { name: 'References', type: 'references', children: [] },
+          {
+            name: 'MicroSims (5)',
+            type: 'microsim',
+            expanded: false,
+            children: [
+              { name: 'MUX Simulator', type: 'microsim', children: [] },
+              { name: 'Decoder Simulator', type: 'microsim', children: [] },
+              { name: 'Priority Encoder Simulator', type: 'microsim', children: [] },
+              { name: 'Binary-Gray Converter', type: 'microsim', children: [] },
+              { name: 'Magnitude Comparator', type: 'microsim', children: [] }
+            ]
+          }
         ]
       },
       {
@@ -232,7 +255,18 @@ function initTreeData() {
         children: [
           { name: 'Content', type: 'content', children: [] },
           { name: 'Quiz', type: 'quiz', children: [] },
-          { name: 'References', type: 'references', children: [] }
+          { name: 'References', type: 'references', children: [] },
+          {
+            name: 'MicroSims (4)',
+            type: 'microsim',
+            expanded: false,
+            children: [
+              { name: 'SR Latch Simulator', type: 'microsim', children: [] },
+              { name: 'D Flip-Flop Simulator', type: 'microsim', children: [] },
+              { name: 'JK Flip-Flop Simulator', type: 'microsim', children: [] },
+              { name: 'Timing Diagram Analyzer', type: 'microsim', children: [] }
+            ]
+          }
         ]
       },
       {
@@ -242,7 +276,18 @@ function initTreeData() {
         children: [
           { name: 'Content', type: 'content', children: [] },
           { name: 'Quiz', type: 'quiz', children: [] },
-          { name: 'References', type: 'references', children: [] }
+          { name: 'References', type: 'references', children: [] },
+          {
+            name: 'MicroSims (4)',
+            type: 'microsim',
+            expanded: false,
+            children: [
+              { name: 'Shift Register Simulator', type: 'microsim', children: [] },
+              { name: 'Counter Simulator', type: 'microsim', children: [] },
+              { name: 'FSM Designer', type: 'microsim', children: [] },
+              { name: 'Sequence Detector Demo', type: 'microsim', children: [] }
+            ]
+          }
         ]
       },
       {
@@ -315,7 +360,7 @@ function draw() {
   fill(colors.textLight);
   textAlign(RIGHT, CENTER);
   textSize(10);
-  text('10 Units | 37 MicroSims', canvasWidth - 20, drawHeight + 25);
+  text('10 Units | 55 MicroSims', canvasWidth - 20, drawHeight + 25);
 }
 
 function drawNode(node, x, y, depth) {

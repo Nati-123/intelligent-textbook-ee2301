@@ -80,6 +80,43 @@ Interactive educational simulations for learning digital system design.
 | [QM Complexity Chart](qm-complexity-chart/index.md) | L5 Evaluate | Compare exact vs heuristic methods |
 | [QM Complete Walkthrough](qm-complete-walkthrough/index.md) | L6 Create | Full end-to-end QM solver |
 
+## Unit 7: Multi-Level Gate Circuits
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Universal Gate Simulator](universal-gate-simulator/index.md) | L2-L3 Apply | NAND/NOR implementing any gate |
+| [Bubble Pushing Simulator](bubble-pushing-simulator/index.md) | L4 Analyze | Interactive bubble pushing technique |
+| [NAND-NOR Converter](nand-nor-converter/index.md) | L3-L4 Apply | Convert between NAND/NOR implementations |
+| [Multi-Level Analyzer](multi-level-analyzer/index.md) | L4-L5 Evaluate | Analyze propagation delay and critical path |
+
+## Unit 8: Combinational Logic Modules
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [MUX Simulator](mux-simulator/index.md) | L2-L3 Apply | Interactive 4-to-1 multiplexer |
+| [Decoder Simulator](decoder-simulator/index.md) | L2-L3 Apply | Interactive 2-to-4 decoder |
+| [Priority Encoder Simulator](priority-encoder-simulator/index.md) | L2-L3 Apply | 4-to-2 priority encoder |
+| [Binary-Gray Converter](binary-gray-converter/index.md) | L2-L3 Apply | Convert between Binary and Gray code |
+| [Magnitude Comparator](magnitude-comparator/index.md) | L2-L3 Apply | 4-bit magnitude comparator |
+
+## Unit 9: Sequential Logic Fundamentals
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [SR Latch Simulator](sr-latch-simulator/index.md) | L2-L4 Analyze | Interactive NOR-gate SR latch |
+| [D Flip-Flop Simulator](d-flipflop-simulator/index.md) | L2-L3 Apply | Edge-triggered D flip-flop |
+| [JK Flip-Flop Simulator](jk-flipflop-simulator/index.md) | L2-L3 Apply | JK flip-flop with toggle |
+| [Timing Diagram Analyzer](timing-diagram-analyzer/index.md) | L3-L4 Analyze | Analyze flip-flop timing diagrams |
+
+## Unit 10: Sequential Circuit Design
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Shift Register Simulator](shift-register-simulator/index.md) | L2-L3 Apply | 4-bit shift register |
+| [Counter Simulator](counter-simulator/index.md) | L2-L3 Apply | 4-bit binary up/down counter |
+| [FSM Designer](fsm-designer/index.md) | L2-L4 Analyze | Moore state machine simulator |
+| [Sequence Detector Demo](sequence-detector-demo/index.md) | L3-L4 Analyze | "101" pattern detector |
+
 ## Summary Statistics
 
 | Unit | Count | Bloom Levels |
@@ -91,7 +128,11 @@ Interactive educational simulations for learning digital system design.
 | Unit 4: Minterms/Maxterms | 4 | L2-L4 |
 | Unit 5: Karnaugh Maps | 5 | L3-L4 |
 | Unit 6: Quine-McCluskey | 5 | L2-L6 |
-| **Total** | **38** | **L2-L6** |
+| Unit 7: Multi-Level Gates | 4 | L2-L5 |
+| Unit 8: Combinational Modules | 5 | L2-L3 |
+| Unit 9: Sequential Fundamentals | 4 | L2-L4 |
+| Unit 10: Sequential Design | 4 | L2-L4 |
+| **Total** | **55** | **L2-L6** |
 
 ## About MicroSims
 
