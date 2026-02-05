@@ -1004,3 +1004,7 @@ This unit provided mastery of Karnaugh maps for Boolean function simplification:
 
 ??? question "Self-Check: When simplifying with don't cares, must all X cells be covered?"
     No. Don't cares are optional—include them in groups only if they help form larger groups. Uncovered don't cares simply remain undefined in the implementation.
+
+---
+
+[See Annotated References](./references.md)

@@ -1034,3 +1034,7 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 ??? question "Self-Check: How do don't cares help circuit simplification?"
     Don't cares can be assigned either 0 or 1 during optimization. By strategically choosing these values, larger groups can be formed in K-maps, resulting in simpler Boolean expressions with fewer gates.
+
+---
+
+[See Annotated References](./references.md)

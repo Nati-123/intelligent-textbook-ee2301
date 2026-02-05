@@ -146,7 +146,7 @@ The complement of 0 is 1, and the complement of 1 is 0. This operation is fundam
 
 #### Diagram: Boolean Operations Visualizer
 
-<iframe src="../../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+•	<iframe src="../../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Boolean Operations Visualizer</summary>
@@ -1090,3 +1090,7 @@ This unit established the mathematical foundation of Boolean algebra for digital
 
 ??? question "Self-Check: Simplify $F = AB + A\overline{B} + \overline{A}B$"
     $F = A(B + \overline{B}) + \overline{A}B = A + \overline{A}B = A + B$ (by absorption: $A + \overline{A}B = A + B$)
+
+---
+
+[See Annotated References](./references.md)

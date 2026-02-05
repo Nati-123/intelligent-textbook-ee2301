@@ -945,3 +945,7 @@ The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean 
     **Primary advantage:** The QM method works for functions with any number of variables and can be easily programmed for computer implementation. It provides a systematic, verifiable procedure that doesn't rely on visual pattern recognition.
 
     **Main disadvantage:** The QM method has exponential worst-case complexity. The number of prime implicants and the size of the covering problem can grow exponentially with the number of variables, making it impractical for very large functions.
+
+---
+
+[See Annotated References](./references.md)

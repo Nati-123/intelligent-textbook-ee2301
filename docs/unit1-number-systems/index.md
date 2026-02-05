@@ -868,3 +868,7 @@ This unit established the mathematical foundation for digital system design thro
 
 ??? question "Self-Check: Convert $\text{A3}_{16}$ to binary."
     $\text{A} = 1010$, $3 = 0011$, so $\text{A3}_{16} = 10100011_2$.
+
+---
+
+[See Annotated References](./references.md)

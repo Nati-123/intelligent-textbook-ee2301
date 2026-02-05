@@ -787,3 +787,7 @@ This unit established canonical forms as the foundation for systematic Boolean f
 
 ??? question "Self-Check: Find the positive cofactor of F = ABC + ĀB + BC with respect to B."
     Set B = 1: $F_B = A(1)C + \overline{A}(1) + (1)C = AC + \overline{A} + C = \overline{A} + C$ (by absorption: AC + C = C, and $\overline{A} + C$ remains)
+
+---
+
+[See Annotated References](./references.md)
