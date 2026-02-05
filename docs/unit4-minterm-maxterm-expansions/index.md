@@ -65,7 +65,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1. Canonical vs Standard Forms
+## 4.1 Canonical vs Standard Forms
 
 Boolean expressions can be written in multiple equivalent ways. Two important classifications are **canonical forms** and **standard forms**.
 
@@ -102,7 +102,7 @@ The canonical form of a function is unique—there is exactly one canonical SOP 
 
 ---
 
-## 2. Minterms
+## 4.2 Minterms
 
 A **minterm** is a product term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. For n variables, there are exactly $2^n$ possible minterms.
 
@@ -197,7 +197,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3. Maxterms
+## 4.3 Maxterms
 
 A **maxterm** is a sum term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. Maxterms are the dual of minterms.
 
@@ -248,7 +248,7 @@ By DeMorgan's theorem: $\overline{m_5} = \overline{A\overline{B}C} = \overline{A
 
 ---
 
-## 4. Canonical SOP and POS Forms
+## 4.4 Canonical SOP and POS Forms
 
 ### Sum of Minterms (Canonical SOP)
 
@@ -356,7 +356,7 @@ Implementation: p5.js with DOM elements for truth table
 
 ---
 
-## 5. Compact Notation: Σ and Π
+## 4.5 Compact Notation: Σ and Π
 
 Writing out full canonical expressions is tedious. Compact notations provide efficient representations.
 
@@ -400,7 +400,7 @@ For 3 variables, indices 0-7 exist. If minterms are {1,3,5}, maxterms are {0,2,4
 
 ---
 
-## 6. Complement of a Function
+## 4.6 Complement of a Function
 
 The **complement of a function** $\overline{F}$ has the opposite output for every input combination. This leads to elegant relationships in canonical form.
 
@@ -431,7 +431,7 @@ $$F = \Pi M(0,2,4,6,7) \implies \overline{F} = \Sigma m(0,2,4,6,7)$$
 
 ---
 
-## 7. Converting Between SOP and POS
+## 4.7 Converting Between SOP and POS
 
 Beyond canonical forms, we often need to convert between standard SOP and POS expressions.
 
@@ -452,23 +452,24 @@ Beyond canonical forms, we often need to convert between standard SOP and POS ex
 
 **Example:** Convert $F = AB + \overline{A}C$ to POS
 
-Step 1: $\overline{F} = \overline{AB + \overline{A}C} = \overline{AB} \cdot \overline{\overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$
+Step 1: Find $\overline{F}$ using DeMorgan's:
 
-This is already POS form for $\overline{F}$.
+$$\overline{F} = \overline{AB + \overline{A}C} = \overline{AB} \cdot \overline{\overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$$
 
-Step 2: $F = \overline{(\overline{A}+\overline{B})(A+\overline{C})}$
+Step 2: Expand $\overline{F}$ to SOP by distributing:
 
-Apply DeMorgan's: $F = \overline{(\overline{A}+\overline{B})} + \overline{(A+\overline{C})} = (A \cdot B) + (\overline{A} \cdot C)$
+$$\overline{F} = \overline{A}A + \overline{A}\overline{C} + \overline{B}A + \overline{B}\overline{C} = \overline{A}\overline{C} + A\overline{B} + \overline{B}\overline{C}$$
 
-This returns us to SOP! For actual POS of F, we need:
+The term $\overline{B}\overline{C}$ is redundant by the consensus theorem, so $\overline{F} = \overline{A}\overline{C} + A\overline{B}$.
 
-$$F = \overline{\overline{F}} = \overline{(\overline{A}+\overline{B})(A+\overline{C})}$$
+Step 3: Complement $\overline{F}$ using DeMorgan's to get F in POS:
 
-By DeMorgan's on the complement of each factor and then combining... this gets complex.
+$$F = \overline{\overline{A}\overline{C} + A\overline{B}} = \overline{\overline{A}\overline{C}} \cdot \overline{A\overline{B}} = (A+C)(\overline{A}+B)$$
 
-**Easier Method: Use truth table**
+**Result:** $F = (A+C)(\overline{A}+B)$
 
-Build the truth table, read off maxterms where F=0.
+!!! tip "Algebraic vs Truth Table Conversion"
+    The algebraic method works but requires careful application of DeMorgan's theorem and distribution. For complex expressions, building a truth table and reading off maxterms directly is often faster and less error-prone.
 
 ### Converting POS to SOP
 
@@ -552,7 +553,7 @@ Implementation: p5.js with DOM elements
 
 ---
 
-## 8. Don't Cares in Canonical Form
+## 4.8 Don't Cares in Canonical Form
 
 **Don't care conditions** (introduced in Unit 3) have specific representations in canonical notation.
 
@@ -608,7 +609,7 @@ $$F = \Sigma m(\text{specified 1s}) + d(10,11,12,13,14,15)$$
 
 ---
 
-## 9. Shannon Expansion Theorem
+## 4.9 Shannon Expansion Theorem
 
 The **Shannon expansion theorem** (also called the **expansion theorem**) provides a systematic method for decomposing a Boolean function with respect to any variable.
 
@@ -638,9 +639,7 @@ $F_{\overline{A}}$ (set A = 0): $F_{\overline{A}} = 0 \cdot B + \overline{0} \cd
 
 Verify: $F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}} = A \cdot B + \overline{A} \cdot C = AB + \overline{A}C$
 
-Wait—this doesn't match the original! Let's check: Original was $F = AB + \overline{A}C + BC$
-
-The term BC is covered by either AB (when B=C=1, A=1) or $\overline{A}C$ (when B=C=1, A=0), so $AB + \overline{A}C + BC = AB + \overline{A}C$ by consensus theorem. ✓
+The reconstructed expression $AB + \overline{A}C$ appears different from the original $AB + \overline{A}C + BC$, but by the **consensus theorem**, the term $BC$ is redundant—it is covered by $AB$ (when A=1) and $\overline{A}C$ (when A=0). Therefore $AB + \overline{A}C + BC = AB + \overline{A}C$, confirming the expansion is correct. ✓
 
 ### Applications of Shannon Expansion
 
@@ -711,7 +710,7 @@ Implementation: p5.js with expression parser
 
 ---
 
-## 10. Literal Count and Expression Complexity
+## 4.10 Literal Count and Expression Complexity
 
 The **literal count** is a common metric for expression complexity, counting the total number of variable appearances (complemented or uncomplemented) in an expression.
 
