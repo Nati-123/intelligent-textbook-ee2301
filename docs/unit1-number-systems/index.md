@@ -69,7 +69,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1. Introduction to Digital Systems
+## 1.1 Introduction to Digital Systems
 
 Modern computing relies entirely on **digital systems**—electronic circuits that process information using discrete signal levels rather than continuous values. Unlike **analog signals**, which can take any value within a continuous range (like the smooth variation of audio from a microphone), **digital signals** represent information using only two distinct states: typically high voltage (logic 1) and low voltage (logic 0).
 
@@ -126,7 +126,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 2. Positional Number Systems
+## 1.2 Positional Number Systems
 
 All the number systems used in digital design—decimal, binary, octal, and hexadecimal—are **positional number systems**. In positional notation, the value of each digit depends on both the digit itself and its position within the number. The **base** (also called **radix**) determines how many unique symbols the system uses and the multiplier for each position.
 
@@ -228,7 +228,7 @@ Implementation: p5.js with responsive canvas, DOM elements for input
 
 ---
 
-## 3. Binary Data Units
+## 1.3 Binary Data Units
 
 Digital systems organize binary digits into standard groupings that facilitate data storage and manipulation. Understanding these units is essential for working with computer memory and data transfer.
 
@@ -254,7 +254,7 @@ Within any binary number, we identify positions by significance. The **Most Sign
 
 ---
 
-## 4. Base Conversion Methods
+## 1.4 Base Conversion Methods
 
 Converting between number systems is a fundamental skill in digital design. Different methods are optimal for different conversion types.
 
@@ -370,7 +370,7 @@ Implementation: p5.js with responsive canvas, DOM input elements
 
 ---
 
-## 5. Binary Arithmetic Operations
+## 1.5 Binary Arithmetic Operations
 
 Digital computers perform all arithmetic in binary. Understanding binary arithmetic operations is essential for comprehending how processors execute calculations.
 
@@ -503,7 +503,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 6. Signed Number Representations
+## 1.6 Signed Number Representations
 
 Digital systems must represent both positive and negative numbers. Several encoding schemes exist, each with distinct characteristics. The three primary methods are **sign-magnitude**, **one's complement**, and **two's complement**.
 
@@ -616,7 +616,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 7. Two's Complement Arithmetic
+## 1.7 Two's Complement Arithmetic
 
 Two's complement enables addition and subtraction using identical hardware, which is why it dominates in processor design.
 
@@ -663,7 +663,7 @@ Both represent $-3$ in two's complement.
 
 ---
 
-## 8. Overflow and Underflow Detection
+## 1.8 Overflow and Underflow Detection
 
 Arithmetic operations can produce results that exceed the representable range. **Overflow** occurs when the result is too large (positive) for the bit width; **underflow** occurs when the result is too small (negative).
 
@@ -770,7 +770,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 9. Practical Applications
+## 1.9 Practical Applications
 
 Number systems and binary arithmetic form the foundation for all digital hardware. Understanding these concepts is essential for:
 
