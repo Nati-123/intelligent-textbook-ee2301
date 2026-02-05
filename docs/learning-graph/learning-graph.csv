@@ -1,0 +1,201 @@
+ConceptID,ConceptLabel,Dependencies,TaxonomyID
+1,Digital Systems,,FOUND
+2,Analog vs Digital Signals,1,FOUND
+3,Binary Number System,1|4,NUMSYS
+4,Decimal Number System,,NUMSYS
+5,Octal Number System,4|7,NUMSYS
+6,Hexadecimal Number System,4|7,NUMSYS
+7,Positional Notation,4,NUMSYS
+8,Base of Number System,7,NUMSYS
+9,Radix Point,7|8,NUMSYS
+10,Bit,3,FOUND
+11,Nibble,10,FOUND
+12,Byte,11,FOUND
+13,Word,12,FOUND
+14,Most Significant Bit,10|3,FOUND
+15,Least Significant Bit,10|3,FOUND
+16,Binary to Decimal Conversion,3|4|7,CONV
+17,Decimal to Binary Conversion,3|4|7,CONV
+18,Octal to Decimal Conversion,5|4|7,CONV
+19,Decimal to Octal Conversion,5|4|7,CONV
+20,Hexadecimal to Decimal,6|4|7,CONV
+21,Decimal to Hexadecimal,6|4|7,CONV
+22,Binary to Octal Conversion,3|5,CONV
+23,Octal to Binary Conversion,3|5,CONV
+24,Binary to Hexadecimal,3|6|11,CONV
+25,Hexadecimal to Binary,3|6|11,CONV
+26,Binary Addition,3|10,ARITH
+27,Binary Subtraction,3|10|26,ARITH
+28,Binary Multiplication,3|26,ARITH
+29,Binary Division,3|27|28,ARITH
+30,Signed Numbers,3|10,ARITH
+31,Unsigned Numbers,3|10,ARITH
+32,Sign Magnitude,30|14,ARITH
+33,Ones Complement,30|50,ARITH
+34,Twos Complement,33,ARITH
+35,Sign Extension,30|14|12,ARITH
+36,Twos Complement Addition,34|26,ARITH
+37,Twos Complement Subtraction,34|27|36,ARITH
+38,Overflow Detection,36|37|30,ARITH
+39,Underflow,38,ARITH
+40,Range of Signed Numbers,30|32|33|34,ARITH
+41,Boolean Algebra,3,BOOLF
+42,Boolean Variable,41,BOOLF
+43,Boolean Constant,41,BOOLF
+44,Logic Levels,1|3,BOOLF
+45,High and Low States,44,BOOLF
+46,Truth Value,42|43,BOOLF
+47,AND Operation,42|46,BOOLF
+48,OR Operation,42|46,BOOLF
+49,NOT Operation,42|46,BOOLF
+50,Complement,49,BOOLF
+51,Logic Gates,44|47|48|49,GATES
+52,AND Gate,47|51,GATES
+53,OR Gate,48|51,GATES
+54,NOT Gate,49|51,GATES
+55,Inverter,54,GATES
+56,NAND Gate,52|54,GATES
+57,NOR Gate,53|54,GATES
+58,XOR Gate,52|53,GATES
+59,XNOR Gate,58|54,GATES
+60,Buffer Gate,51,GATES
+61,Universal Gates,56|57,GATES
+62,Gate Symbols,51,GATES
+63,IEEE Gate Symbols,62,GATES
+64,Truth Table,46|47|48|49,BOOLF
+65,Boolean Expression,42|47|48|49,FORMS
+66,Logic Function,65|64,FORMS
+67,Identity Law,41|47|48,THEOR
+68,Null Law,41|47|48,THEOR
+69,Idempotent Law,41|47|48,THEOR
+70,Involution Law,41|49|50,THEOR
+71,Complement Law,41|49|50,THEOR
+72,Commutative Law,41|47|48,THEOR
+73,Associative Law,41|47|48,THEOR
+74,Distributive Law,41|47|48,THEOR
+75,Absorption Law,41|74,THEOR
+76,Consensus Theorem,41|75,THEOR
+77,DeMorgans First Theorem,41|47|49,THEOR
+78,DeMorgans Second Theorem,41|48|49,THEOR
+79,Duality Principle,41|77|78,THEOR
+80,Algebraic Simplification,65|67|68|69|70|71|72|73|74|75,THEOR
+81,Literal,42|65,FORMS
+82,Product Term,47|81,FORMS
+83,Sum Term,48|81,FORMS
+84,Sum of Products,82|48,FORMS
+85,Product of Sums,83|47,FORMS
+86,Precedence of Operators,47|48|49,FORMS
+87,Parentheses in Boolean,65|86,FORMS
+88,Multiple Input Gates,51|73,GATES
+89,Cascading Gates,51|88,GATES
+90,Fan-In and Fan-Out,51|88,GATES
+91,Combinational Logic,51|66,COMB
+92,Sequential Logic,91,COMB
+93,Logic Circuit,51|91,COMB
+94,Circuit Analysis,93|64,COMB
+95,Circuit Synthesis,93|65|80,COMB
+96,Specification to Circuit,95,COMB
+97,Word Problems to Boolean,65|96,COMB
+98,Switching Functions,66|91,COMB
+99,Binary Decision,46|98,COMB
+100,Enable Signal,45|98,COMB
+101,Control Signal,100,COMB
+102,Half Adder,26|52|58,ACIR
+103,Full Adder,102|104,ACIR
+104,Carry Bit,26|102,ACIR
+105,Sum Bit,102|58,ACIR
+106,Ripple Carry Adder,103|89,ACIR
+107,Half Subtractor,27|58|55,ACIR
+108,Full Subtractor,107|109,ACIR
+109,Borrow Bit,27|107,ACIR
+110,Difference Bit,107|58,ACIR
+111,Adder Subtractor Circuit,106|108|101,ACIR
+112,Comparator Circuit,91|52|58,ACIR
+113,Magnitude Comparator,112,ACIR
+114,Parity Generator,58|89,ACIR
+115,Parity Checker,114,ACIR
+116,Even Parity,114,ACIR
+117,Odd Parity,114|55,ACIR
+118,Code Converter,91|95,ACIR
+119,BCD Code,4|3,NUMSYS
+120,Gray Code,3,NUMSYS
+121,BCD to Binary Converter,118|119,ACIR
+122,Binary to Gray Converter,118|120|58,ACIR
+123,Seven Segment Display,6,ACIR
+124,Seven Segment Decoder,118|123,ACIR
+125,Incompletely Specified Func,66|64|148,CANON
+126,Canonical Form,84|85,CANON
+127,Standard Form,126,CANON
+128,Minterm,82|64,CANON
+129,Maxterm,83|64,CANON
+130,Minterm Expansion,128|84,CANON
+131,Maxterm Expansion,129|85,CANON
+132,Minterm Designation,128|14|15,CANON
+133,Maxterm Designation,129|14|15,CANON
+134,Sum of Minterms,130|128,CANON
+135,Product of Maxterms,131|129,CANON
+136,Minterm to Maxterm,128|129|144,CANON
+137,Maxterm to Minterm,129|128|144,CANON
+138,Canonical SOP Form,134|126,CANON
+139,Canonical POS Form,135|126,CANON
+140,Minterm List Notation,134|132,CANON
+141,Maxterm List Notation,135|133,CANON
+142,Sigma Notation,140,CANON
+143,Pi Notation,141,CANON
+144,Complement of Function,66|50|77|78,CANON
+145,Function from Truth Table,64|66,CANON
+146,Minterm from Truth Table,145|128,CANON
+147,Maxterm from Truth Table,145|129,CANON
+148,Dont Care Condition,64|66,CANON
+149,Incompletely Specified,148|125,CANON
+150,Dont Care in SOP,148|138,CANON
+151,Dont Care in POS,148|139,CANON
+152,Converting SOP to POS,138|139|144,CANON
+153,Converting POS to SOP,139|138|144,CANON
+154,Expansion Theorem,74|144,CANON
+155,Shannon Expansion,154|42,CANON
+156,Cofactor,155|42,CANON
+157,On-Set of Function,64|66|128,CANON
+158,Off-Set of Function,64|66|129,CANON
+159,DC-Set of Function,148|157|158,CANON
+160,Literal Count,81|65,FORMS
+161,Karnaugh Map,64|128|129,KMAP
+162,K-Map Structure,161,KMAP
+163,K-Map Cell,162|128,KMAP
+164,K-Map Variables,162|42,KMAP
+165,Two Variable K-Map,162|164,KMAP
+166,Three Variable K-Map,165,KMAP
+167,Four Variable K-Map,166,KMAP
+168,Five Variable K-Map,167,KMAP
+169,K-Map Gray Code Order,120|162,KMAP
+170,K-Map Adjacency,162|169,KMAP
+171,Logical Adjacency,170,KMAP
+172,Physical Adjacency,170,KMAP
+173,K-Map Grouping,170|171,KMAP
+174,Group of Ones,173|157,KMAP
+175,Group of Zeros,173|158,KMAP
+176,Valid Group Sizes,173,KMAP
+177,Rectangular Groups,173|176,KMAP
+178,Wrapping in K-Maps,170|177,KMAP
+179,Corner Grouping,178,KMAP
+180,Implicant,82|173,KMAP
+181,Prime Implicant,180,KMAP
+182,Essential Prime Implicant,181,KMAP
+183,Redundant Prime Implicant,181|182,KMAP
+184,K-Map SOP Simplification,174|181|182|138,KMAP
+185,K-Map POS Simplification,175|181|182|139,KMAP
+186,Minimal SOP Expression,184|160,KMAP
+187,Minimal POS Expression,185|160,KMAP
+188,K-Map with Dont Cares,161|148,KMAP
+189,Using Dont Cares,188|150|151,KMAP
+190,Overlapping Groups,173|180,KMAP
+191,Covering All Ones,174|190,KMAP
+192,Covering All Zeros,175|190,KMAP
+193,Multiple Solutions,184|185|191|192,KMAP
+194,Cost of Expression,160|186|187,KMAP
+195,Gate Count Minimization,194|51,KMAP
+196,Literal Minimization,194|81,KMAP
+197,K-Map Limitations,167|168,KMAP
+198,Five Variable Technique,168|197,KMAP
+199,Entered Variable K-Map,161|42,KMAP
+200,K-Map vs Algebraic Method,80|184|185,KMAP

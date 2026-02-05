@@ -1,3 +1,9 @@
+---
+title: Course Description
+description: A detailed course description for EE 2301 Introduction to Digital System Design
+quality_score: 95
+---
+
 # Course Description
 
 ## Course Information

@@ -30,8 +30,30 @@ extra_javascript:
 nav:
   - Home: index.md
   - Course Description: course-description.md
-  - Unit 1 - Number Systems: unit1-number-systems/index.md
-  - Unit 2 - Boolean Algebra: unit2-boolean-algebra/index.md
-  - Unit 3 - Applications of Boolean Algebra: unit3-applications-boolean-algebra/index.md
-  - Unit 4 - Minterm & Maxterm Expansions: unit4-minterm-maxterm-expansions/index.md
-  - Unit 5 - Karnaugh Maps: unit5-karnaugh-maps/index.md
+  - Glossary: glossary.md
+  - Unit 1 - Number Systems:
+    - Content: unit1-number-systems/index.md
+    - Quiz: unit1-number-systems/quiz.md
+  - Unit 2 - Boolean Algebra:
+    - Content: unit2-boolean-algebra/index.md
+    - Quiz: unit2-boolean-algebra/quiz.md
+  - Unit 3 - Applications of Boolean Algebra:
+    - Content: unit3-applications-boolean-algebra/index.md
+    - Quiz: unit3-applications-boolean-algebra/quiz.md
+  - Unit 4 - Minterm & Maxterm Expansions:
+    - Content: unit4-minterm-maxterm-expansions/index.md
+    - Quiz: unit4-minterm-maxterm-expansions/quiz.md
+  - Unit 5 - Karnaugh Maps:
+    - Content: unit5-karnaugh-maps/index.md
+    - Quiz: unit5-karnaugh-maps/quiz.md
+  - Unit 6 - Quine-McCluskey Method:
+    - Content: unit6-quine-mccluskey/index.md
+    - Quiz: unit6-quine-mccluskey/quiz.md
+  - Learning Graph: learning-graph/concept-list.md
+  - MicroSims:
+    - Overview: sims/index.md
+    - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
+    - QM Combination Simulator: sims/qm-combination-simulator/index.md
+    - PI Chart Interactive: sims/pi-chart-interactive/index.md
+    - QM Complexity Chart: sims/qm-complexity-chart/index.md
+    - QM Complete Walkthrough: sims/qm-complete-walkthrough/index.md
