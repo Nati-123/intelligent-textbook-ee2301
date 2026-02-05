@@ -4,11 +4,11 @@ This file contains overall metrics for the intelligent textbook.
 
 | Metric Name | Value | Link | Notes |
 |-------------|-------|------|-------|
-| Chapters | 0 | [Chapters](../chapters/index.md) | Number of chapter directories |
-| Concepts | 200 | [Concept List](./concept-list.md) | Concepts from learning graph |
+| Units | 6 | [Home](../index.md) | Number of unit chapters |
+| Concepts | 225 | [Concept List](./concept-list.md) | Concepts from learning graph |
 | Glossary Terms | 225 | [Glossary](../glossary.md) | Defined terms |
-| FAQs | 0 | [FAQ](../faq.md) | Frequently asked questions |
-| Quiz Questions | 0 | - | Questions across all chapters |
+| FAQs | - | - | Not yet created |
+| Quiz Questions | 60 | - | Questions across all units (10 per unit) |
 | Diagrams | 37 | - | Level 4 headers starting with '#### Diagram:' |
 | Equations | 821 | - | LaTeX expressions (inline and display) |
 | MicroSims | 5 | [Simulations](../sims/index.md) | Interactive MicroSims |
@@ -18,7 +18,7 @@ This file contains overall metrics for the intelligent textbook.
 
 ## Metrics Explanation
 
-- **Chapters**: Count of chapter directories containing index.md files
+- **Units**: Count of unit directories containing index.md files
 - **Concepts**: Number of rows in learning-graph.csv
 - **Glossary Terms**: H4 headers in glossary.md
 - **FAQs**: H3 headers in faq.md
