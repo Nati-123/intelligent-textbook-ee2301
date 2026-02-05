@@ -1,68 +1,180 @@
-# Intelligent Textbook for EE Students — Digital System Design
+---
+title: Home
+description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
+---
 
-**Senior Design Project • University of Minnesota – Twin Cities**
-**Department of Electrical & Computer Engineering**
+<div align="center" markdown>
+
+# :material-chip: Digital System Design
+
+## An Intelligent Interactive Textbook
+
+**EE 2301 — Introduction to Digital System Design**
+
+*University of Minnesota — Twin Cities*
+*Department of Electrical & Computer Engineering*
+
+---
+
+</div>
+
+<div class="grid cards" markdown>
+
+-   :material-book-open-variant:{ .lg .middle } **10 Units**
+
+    ---
+
+    Comprehensive coverage from number systems to sequential circuit design
+
+-   :material-graph:{ .lg .middle } **225 Concepts**
+
+    ---
+
+    Structured learning graph with explicit dependencies
+
+-   :material-play-circle:{ .lg .middle } **55 MicroSims**
+
+    ---
+
+    Interactive p5.js simulations for hands-on learning
+
+-   :material-help-circle:{ .lg .middle } **100 Quiz Questions**
+
+    ---
+
+    Self-assessment with detailed explanations
+
+</div>
 
 ---
 
 ## Welcome
 
-This is an AI-assisted intelligent interactive textbook for **EE 2301: Introduction to Digital System Design**. Built using MkDocs Material and Claude Code, this textbook provides modern, accessible learning materials for sophomore and junior-level Electrical and Computer Engineering students.
+This is an **AI-assisted intelligent interactive textbook** for sophomore and junior-level Electrical and Computer Engineering students. Built using MkDocs Material and Claude Code, it provides modern, accessible learning materials covering the complete fundamentals of digital logic design.
+
+!!! tip "Getting Started"
+    **New to digital logic?** Start with [Unit 1 — Number Systems](unit1-number-systems/index.md)
+    **Already familiar with binary?** Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md)
+    **Looking for quick reference?** Check the [Glossary](glossary.md) or [FAQ](faq.md)
 
 ---
 
-## What's Inside
+## Course Units
 
-| Resource | Count | Description |
-|----------|-------|-------------|
-| Units | 6 | Comprehensive course chapters |
-| Concepts | 225 | Organized in a learning graph |
-| Glossary Terms | 225 | ISO 11179 compliant definitions |
-| FAQ Questions | 72 | Common questions answered |
-| Quiz Questions | 60 | 10 per unit with explanations |
-| References | 60 | Curated sources per unit |
-| MicroSims | 5 | Interactive p5.js simulations |
-| Equations | 821 | LaTeX mathematical expressions |
-| Total Words | 51,775 | ~218 equivalent pages |
-
----
-
-## Units Covered
+### Part I: Foundations
 
 | Unit | Topic | Key Concepts |
-|------|-------|--------------|
+|:----:|-------|--------------|
 | 1 | [Number Systems](unit1-number-systems/index.md) | Binary, octal, hexadecimal, two's complement |
-| 2 | [Boolean Algebra](unit2-boolean-algebra/index.md) | Logic gates, theorems, DeMorgan's laws |
+| 2 | [Boolean Algebra](unit2-boolean-algebra/index.md) | Logic gates, theorems, De Morgan's laws |
 | 3 | [Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md) | Adders, subtractors, comparators, decoders |
+
+### Part II: Minimization Techniques
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
 | 4 | [Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md) | Canonical forms, SOP/POS, cofactors |
 | 5 | [Karnaugh Maps](unit5-karnaugh-maps/index.md) | K-map simplification, prime implicants |
 | 6 | [Quine-McCluskey Method](unit6-quine-mccluskey/index.md) | Algorithmic minimization, PI charts |
 
-Each unit includes content, worked examples, a quiz, and annotated references.
+### Part III: Circuit Implementation
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 7 | [Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) | NAND/NOR universality, bubble pushing |
+| 8 | [Combinational Logic Modules](unit8-combinational-modules/index.md) | MUX, decoders, encoders, comparators |
+
+### Part IV: Sequential Logic
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 9 | [Sequential Logic Fundamentals](unit9-sequential-fundamentals/index.md) | Latches, flip-flops, timing diagrams |
+| 10 | [Sequential Circuit Design](unit10-sequential-design/index.md) | Counters, registers, FSM design |
+
+---
+
+## Interactive MicroSims
+
+Explore digital logic concepts through **55 interactive simulations**:
+
+<div class="grid cards" markdown>
+
+-   :material-numeric:{ .lg .middle } **Number Systems**
+
+    ---
+
+    Base Converter, Binary Arithmetic, Overflow Detection
+
+    [:octicons-arrow-right-24: View 7 MicroSims](sims/index.md#unit-1-number-systems)
+
+-   :material-gate-and:{ .lg .middle } **Boolean Algebra**
+
+    ---
+
+    Logic Gates, Truth Tables, De Morgan's Theorem
+
+    [:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-2-boolean-algebra)
+
+-   :material-calculator:{ .lg .middle } **Combinational Logic**
+
+    ---
+
+    Adders, K-Maps, MUX, Decoders, Encoders
+
+    [:octicons-arrow-right-24: View 26 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
+
+-   :material-flip-to-back:{ .lg .middle } **Sequential Logic**
+
+    ---
+
+    Flip-Flops, Counters, Shift Registers, FSMs
+
+    [:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
+
+</div>
+
+[Explore All MicroSims :material-arrow-right:](sims/index.md){ .md-button .md-button--primary }
+[View Course Structure Tree :material-file-tree:](sims/course-structure-tree/index.md){ .md-button }
 
 ---
 
 ## Learning Resources
 
-- **[Glossary](glossary.md)** — 225 terms with definitions and examples
-- **[FAQ](faq.md)** — 72 frequently asked questions across 6 categories
-- **[MicroSims](sims/index.md)** — 5 interactive simulations for hands-on learning
-- **[Concept List](learning-graph/concept-list.md)** — Complete learning graph
-- **[Book Metrics](learning-graph/book-metrics.md)** — Detailed statistics
+| Resource | Description |
+|----------|-------------|
+| :material-book-alphabet: [Glossary](glossary.md) | 225 terms with ISO 11179 compliant definitions |
+| :material-frequently-asked-questions: [FAQ](faq.md) | 72 frequently asked questions |
+| :material-graph: [Concept List](learning-graph/concept-list.md) | Complete learning graph with dependencies |
+| :material-chart-bar: [Book Metrics](learning-graph/book-metrics.md) | Detailed textbook statistics |
+
+---
+
+## Textbook Statistics
+
+| Metric | Value |
+|--------|------:|
+| Units | 10 |
+| Concepts | 225 |
+| Glossary Terms | 225 |
+| FAQ Questions | 72 |
+| Quiz Questions | 100 |
+| References | 100 |
+| MicroSims | 55 |
+| Equations | 821+ |
+| Total Words | 51,775+ |
 
 ---
 
 ## Features
 
-This intelligent textbook provides:
+!!! abstract "What Makes This Textbook Different"
 
-- **Original explanations** — Student-friendly content generated with Claude Code
-- **Step-by-step examples** — Detailed derivations and worked problems
-- **Visual learning aids** — Logic diagrams, truth tables, K-maps
-- **Interactive MicroSims** — p5.js simulations you can run in your browser
-- **Self-assessment quizzes** — 10 questions per unit with detailed explanations
-- **Comprehensive glossary** — ISO 11179 compliant terminology
-- **Curated references** — Wikipedia, textbooks, and online resources
+    - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
+    - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
+    - :material-play-box: **Interactive Simulations** — 55 p5.js MicroSims you can run in your browser
+    - :material-checkbox-marked: **Self-Assessment** — 10 quiz questions per unit with explanations
+    - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
+    - :material-link-variant: **Curated References** — Wikipedia, textbooks, and online resources
 
 ---
 
@@ -70,32 +182,46 @@ This intelligent textbook provides:
 
 This textbook is designed for:
 
-- Sophomore and junior-level Electrical Engineering students
-- Computer Engineering students
+- Sophomore and junior-level **Electrical Engineering** students
+- **Computer Engineering** students
 - Students pursuing minors in electronics or embedded systems
-- Anyone seeking foundational knowledge in digital logic design
+- Anyone seeking foundational knowledge in **digital logic design**
 
-**Prerequisites:** Basic algebra, introduction to programming (any language)
-
----
-
-## About This Project
-
-This project demonstrates how AI can augment educational content creation while maintaining pedagogical quality. All content follows Bloom's Taxonomy (2001) for learning outcomes and is structured around a 225-concept learning graph with explicit dependencies.
-
-**Built with:**
-
-- [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) — Documentation framework
-- [Claude Code](https://claude.ai/code) — AI-assisted content generation
-- [p5.js](https://p5js.org/) — Interactive simulations
-- [MathJax](https://www.mathjax.org/) — Mathematical notation
+!!! info "Prerequisites"
+    Basic algebra and introduction to programming (any language)
 
 ---
 
-## Getting Started
+## Built With
 
-New to digital logic? Start with [Unit 1 — Number Systems](unit1-number-systems/index.md).
+<div class="grid cards" markdown>
 
-Already familiar with binary? Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md).
+-   :simple-materialformkdocs: [**MkDocs Material**](https://squidfunk.github.io/mkdocs-material/)
 
-Looking for a quick reference? Check the [Glossary](glossary.md) or [FAQ](faq.md).
+    Documentation framework
+
+-   :material-robot: [**Claude Code**](https://claude.ai/code)
+
+    AI-assisted content generation
+
+-   :simple-p5dotjs: [**p5.js**](https://p5js.org/)
+
+    Interactive simulations
+
+-   :material-math-integral: [**MathJax**](https://www.mathjax.org/)
+
+    Mathematical notation
+
+</div>
+
+---
+
+<div align="center" markdown>
+
+**Senior Design Project**
+University of Minnesota — Twin Cities
+Department of Electrical & Computer Engineering
+
+*An AI-assisted intelligent textbook demonstrating how AI can augment educational content creation while maintaining pedagogical quality.*
+
+</div>
