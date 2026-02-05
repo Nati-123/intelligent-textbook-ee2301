@@ -7,6 +7,12 @@ description: Interactive simulations for learning digital system design concepts
 
 Interactive educational simulations for learning digital system design.
 
+## Course Overview
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Course Structure Tree](course-structure-tree/index.md) | L2 Understand | Interactive tree diagram of the textbook hierarchy |
+
 ## Unit 1: Number Systems
 
 | MicroSim | Bloom Level | Description |
@@ -78,13 +84,14 @@ Interactive educational simulations for learning digital system design.
 
 | Unit | Count | Bloom Levels |
 |------|-------|--------------|
+| Course Overview | 1 | L2 |
 | Unit 1: Number Systems | 7 | L2-L4 |
 | Unit 2: Boolean Algebra | 8 | L2-L5 |
 | Unit 3: Applications | 8 | L2-L6 |
 | Unit 4: Minterms/Maxterms | 4 | L2-L4 |
 | Unit 5: Karnaugh Maps | 5 | L3-L4 |
 | Unit 6: Quine-McCluskey | 5 | L2-L6 |
-| **Total** | **37** | **L2-L6** |
+| **Total** | **38** | **L2-L6** |
 
 ## About MicroSims
 

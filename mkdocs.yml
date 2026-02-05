@@ -64,6 +64,7 @@ nav:
     - FAQ Quality Report: learning-graph/faq-quality-report.md
   - MicroSims:
     - Overview: sims/index.md
+    - Course Structure Tree: sims/course-structure-tree/index.md
     - Unit 1 - Number Systems:
       - Base Converter: sims/base-converter/index.md
       - Analog vs Digital Signals: sims/analog-vs-digital-signals/index.md
