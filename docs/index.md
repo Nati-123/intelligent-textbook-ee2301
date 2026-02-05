@@ -3,7 +3,7 @@ title: Home
 description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
 ---
 
-<div align="center" markdown>
+<div class="hero" markdown>
 
 # :material-chip: Digital System Design
 
@@ -11,38 +11,34 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
 
 **EE 2301 — Introduction to Digital System Design**
 
-*University of Minnesota — Twin Cities*
-*Department of Electrical & Computer Engineering*
+<p class="subtitle">University of Minnesota — Twin Cities<br>Department of Electrical & Computer Engineering</p>
 
 ---
 
+<div class="hero-stats">
+  <div class="stat">
+    <span class="stat-number">10</span>
+    <span class="stat-label">Units</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">225</span>
+    <span class="stat-label">Concepts</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">55</span>
+    <span class="stat-label">MicroSims</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">100</span>
+    <span class="stat-label">Quiz Questions</span>
+  </div>
 </div>
 
-<div class="grid cards" markdown>
-
--   :material-book-open-variant:{ .lg .middle } **10 Units**
-
-    ---
-
-    Comprehensive coverage from number systems to sequential circuit design
-
--   :material-graph:{ .lg .middle } **225 Concepts**
-
-    ---
-
-    Structured learning graph with explicit dependencies
-
--   :material-play-circle:{ .lg .middle } **55 MicroSims**
-
-    ---
-
-    Interactive p5.js simulations for hands-on learning
-
--   :material-help-circle:{ .lg .middle } **100 Quiz Questions**
-
-    ---
-
-    Self-assessment with detailed explanations
+<div class="hero-buttons">
+  <a href="unit1-number-systems/" class="md-button md-button--primary">Get Started</a>
+  <a href="sims/" class="md-button">Explore MicroSims</a>
+  <a href="glossary/" class="md-button">View Glossary</a>
+</div>
 
 </div>
 
@@ -52,14 +48,16 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
 
 This is an **AI-assisted intelligent interactive textbook** for sophomore and junior-level Electrical and Computer Engineering students. Built using MkDocs Material and Claude Code, it provides modern, accessible learning materials covering the complete fundamentals of digital logic design.
 
-!!! tip "Getting Started"
-    **New to digital logic?** Start with [Unit 1 — Number Systems](unit1-number-systems/index.md)
-    **Already familiar with binary?** Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md)
-    **Looking for quick reference?** Check the [Glossary](glossary.md) or [FAQ](faq.md)
+!!! tip "Quick Navigation"
+    - **New to digital logic?** Start with [Unit 1 — Number Systems](unit1-number-systems/index.md)
+    - **Already familiar with binary?** Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md)
+    - **Looking for quick reference?** Check the [Glossary](glossary.md) or [FAQ](faq.md)
 
 ---
 
 ## Course Units
+
+<div class="unit-section" markdown>
 
 ### Part I: Foundations
 
@@ -69,6 +67,10 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 | 2 | [Boolean Algebra](unit2-boolean-algebra/index.md) | Logic gates, theorems, De Morgan's laws |
 | 3 | [Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md) | Adders, subtractors, comparators, decoders |
 
+</div>
+
+<div class="unit-section" markdown>
+
 ### Part II: Minimization Techniques
 
 | Unit | Topic | Key Concepts |
@@ -77,12 +79,20 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 | 5 | [Karnaugh Maps](unit5-karnaugh-maps/index.md) | K-map simplification, prime implicants |
 | 6 | [Quine-McCluskey Method](unit6-quine-mccluskey/index.md) | Algorithmic minimization, PI charts |
 
+</div>
+
+<div class="unit-section" markdown>
+
 ### Part III: Circuit Implementation
 
 | Unit | Topic | Key Concepts |
 |:----:|-------|--------------|
 | 7 | [Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) | NAND/NOR universality, bubble pushing |
 | 8 | [Combinational Logic Modules](unit8-combinational-modules/index.md) | MUX, decoders, encoders, comparators |
+
+</div>
+
+<div class="unit-section" markdown>
 
 ### Part IV: Sequential Logic
 
@@ -91,45 +101,55 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 | 9 | [Sequential Logic Fundamentals](unit9-sequential-fundamentals/index.md) | Latches, flip-flops, timing diagrams |
 | 10 | [Sequential Circuit Design](unit10-sequential-design/index.md) | Counters, registers, FSM design |
 
+</div>
+
 ---
 
 ## Interactive MicroSims
 
 Explore digital logic concepts through **55 interactive simulations**:
 
-<div class="grid cards" markdown>
+<div class="feature-grid" markdown>
 
--   :material-numeric:{ .lg .middle } **Number Systems**
+<div class="feature-card" markdown>
 
-    ---
+### :material-numeric: Number Systems
 
-    Base Converter, Binary Arithmetic, Overflow Detection
+Base Converter, Binary Arithmetic, Overflow Detection
 
-    [:octicons-arrow-right-24: View 7 MicroSims](sims/index.md#unit-1-number-systems)
+[:octicons-arrow-right-24: View 7 MicroSims](sims/index.md#unit-1-number-systems)
 
--   :material-gate-and:{ .lg .middle } **Boolean Algebra**
+</div>
 
-    ---
+<div class="feature-card" markdown>
 
-    Logic Gates, Truth Tables, De Morgan's Theorem
+### :material-gate-and: Boolean Algebra
 
-    [:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-2-boolean-algebra)
+Logic Gates, Truth Tables, De Morgan's Theorem
 
--   :material-calculator:{ .lg .middle } **Combinational Logic**
+[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-2-boolean-algebra)
 
-    ---
+</div>
 
-    Adders, K-Maps, MUX, Decoders, Encoders
+<div class="feature-card" markdown>
 
-    [:octicons-arrow-right-24: View 26 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
+### :material-calculator: Combinational Logic
 
--   :material-flip-to-back:{ .lg .middle } **Sequential Logic**
+Adders, K-Maps, MUX, Decoders, Encoders
 
-    ---
+[:octicons-arrow-right-24: View 26 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
 
-    Flip-Flops, Counters, Shift Registers, FSMs
+</div>
 
-    [:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
+<div class="feature-card" markdown>
+
+### :material-flip-to-back: Sequential Logic
+
+Flip-Flops, Counters, Shift Registers, FSMs
+
+[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
+
+</div>
 
 </div>
 
@@ -146,22 +166,6 @@ Explore digital logic concepts through **55 interactive simulations**:
 | :material-frequently-asked-questions: [FAQ](faq.md) | 72 frequently asked questions |
 | :material-graph: [Concept List](learning-graph/concept-list.md) | Complete learning graph with dependencies |
 | :material-chart-bar: [Book Metrics](learning-graph/book-metrics.md) | Detailed textbook statistics |
-
----
-
-## Textbook Statistics
-
-| Metric | Value |
-|--------|------:|
-| Units | 10 |
-| Concepts | 225 |
-| Glossary Terms | 225 |
-| FAQ Questions | 72 |
-| Quiz Questions | 100 |
-| References | 100 |
-| MicroSims | 55 |
-| Equations | 821+ |
-| Total Words | 51,775+ |
 
 ---
 
@@ -219,7 +223,9 @@ This textbook is designed for:
 <div align="center" markdown>
 
 **Senior Design Project**
+
 University of Minnesota — Twin Cities
+
 Department of Electrical & Computer Engineering
 
 *An AI-assisted intelligent textbook demonstrating how AI can augment educational content creation while maintaining pedagogical quality.*

@@ -1,0 +1,178 @@
+/* Cover Page Hero Section */
+.md-typeset .hero {
+  background: linear-gradient(135deg, #3949ab 0%, #1a237e 50%, #0d47a1 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  margin: -1rem -0.8rem 2rem -0.8rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.md-typeset .hero h1 {
+  color: white !important;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.md-typeset .hero h2 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0;
+  border-bottom: none;
+}
+
+.md-typeset .hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.md-typeset .hero .subtitle {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.md-typeset .hero hr {
+  border-color: rgba(255, 255, 255, 0.3);
+  margin: 1.5rem auto;
+  width: 60%;
+}
+
+/* Stats Cards in Hero */
+.md-typeset .hero-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.md-typeset .hero-stats .stat {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  min-width: 120px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.md-typeset .hero-stats .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  color: #ffeb3b;
+}
+
+.md-typeset .hero-stats .stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Call to Action Buttons */
+.md-typeset .hero-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.md-typeset .hero-buttons .md-button {
+  background: white;
+  color: #1a237e;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+}
+
+.md-typeset .hero-buttons .md-button:hover {
+  background: #ffeb3b;
+  color: #1a237e;
+}
+
+.md-typeset .hero-buttons .md-button--primary {
+  background: #ffeb3b;
+  color: #1a237e;
+}
+
+.md-typeset .hero-buttons .md-button--primary:hover {
+  background: white;
+}
+
+/* Feature Cards */
+.md-typeset .feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.md-typeset .feature-card {
+  background: linear-gradient(145deg, #f5f5f5, #ffffff);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #3949ab;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.md-typeset .feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.md-typeset .feature-card h3 {
+  color: #1a237e;
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.md-typeset .feature-card p {
+  color: #555;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Unit Cards */
+.md-typeset .unit-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.md-typeset .unit-section h3 {
+  color: #3949ab;
+  border-bottom: 2px solid #3949ab;
+  padding-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .md-typeset .hero {
+    padding: 2rem 1rem;
+    margin: -0.5rem -0.4rem 1.5rem -0.4rem;
+  }
+
+  .md-typeset .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .md-typeset .hero h2 {
+    font-size: 1.2rem;
+  }
+
+  .md-typeset .hero-stats .stat {
+    min-width: 100px;
+    padding: 0.8rem 1rem;
+  }
+
+  .md-typeset .hero-stats .stat-number {
+    font-size: 1.5rem;
+  }
+}
