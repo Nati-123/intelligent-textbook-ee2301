@@ -30,6 +30,7 @@ extra_javascript:
 nav:
   - Home: index.md
   - Course Description: course-description.md
+  - FAQ: faq.md
   - Glossary: glossary.md
   - Unit 1 - Number Systems:
     - Content: unit1-number-systems/index.md
@@ -54,6 +55,7 @@ nav:
     - Book Metrics: learning-graph/book-metrics.md
     - Glossary Quality Report: learning-graph/glossary-quality-report.md
     - Quiz Generation Report: learning-graph/quiz-generation-report.md
+    - FAQ Quality Report: learning-graph/faq-quality-report.md
   - MicroSims:
     - Overview: sims/index.md
     - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
