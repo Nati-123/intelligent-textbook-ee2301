@@ -4,17 +4,17 @@ This file contains overall metrics for the intelligent textbook.
 
 | Metric Name | Value | Link | Notes |
 |-------------|-------|------|-------|
-| Units | 6 | [Home](../index.md) | Number of unit chapters |
-| Concepts | 225 | [Concept List](./concept-list.md) | Concepts from learning graph |
+| Units | 10 | - | Number of unit directories |
+| Concepts | 200 | [Concept List](./concept-list.md) | Concepts from learning graph |
 | Glossary Terms | 225 | [Glossary](../glossary.md) | Defined terms |
-| FAQs | - | - | Not yet created |
-| Quiz Questions | 60 | - | Questions across all units (10 per unit) |
-| Diagrams | 37 | - | Level 4 headers starting with '#### Diagram:' |
-| Equations | 821 | - | LaTeX expressions (inline and display) |
-| MicroSims | 5 | [Simulations](../sims/index.md) | Interactive MicroSims |
-| Total Words | 51,775 | - | Words in all markdown files |
-| Links | 29 | - | Hyperlinks in markdown format |
-| Equivalent Pages | 218 | - | Estimated pages (250 words/page + visuals) |
+| FAQs | 63 | [FAQ](../faq.md) | Frequently asked questions |
+| Quiz Questions | 108 | - | Questions across all units |
+| Diagrams | 62 | - | Level 4 headers starting with '#### Diagram:' |
+| Equations | 2,090 | - | LaTeX expressions (inline and display) |
+| MicroSims | 55 | [Simulations](../sims/index.md) | Interactive MicroSims |
+| Total Words | 127,798 | - | Words in all markdown files |
+| Links | 271 | - | Hyperlinks in markdown format |
+| Equivalent Pages | 554 | - | Estimated pages (250 words/page + visuals) |
 
 ## Metrics Explanation
 
@@ -22,7 +22,7 @@ This file contains overall metrics for the intelligent textbook.
 - **Concepts**: Number of rows in learning-graph.csv
 - **Glossary Terms**: H4 headers in glossary.md
 - **FAQs**: H3 headers in faq.md
-- **Quiz Questions**: H4 headers with numbered questions (e.g., '#### 1.') or H2 headers in quiz.md files
+- **Quiz Questions**: Numbered question headers in quiz.md files across all units
 - **Diagrams**: H4 headers starting with '#### Diagram:'
 - **Equations**: LaTeX expressions using $ and $$ delimiters
 - **MicroSims**: Directories in docs/sims/ with index.md files
