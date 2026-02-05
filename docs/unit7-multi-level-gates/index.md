@@ -1066,7 +1066,7 @@ Any Boolean network can be decomposed into a network of 2-input NAND gates and i
 
 **Example:** Decompose a 3-input AND gate:
 
-$$ABC = \overline{\overline{AB} \cdot C} \cdot \overline{\overline{AB} \cdot C}} \rightarrow \text{NAND}(\text{NAND}(\text{NAND}(A,B), C), \text{NAND}(\text{NAND}(A,B), C))$$
+$$ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}} \rightarrow \text{NAND}(\text{NAND}(\text{INV}(\text{NAND}(A,B)), C))$$
 
 More practically: $ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}}$, which is INV(NAND(INV(NAND(A,B)), C)) = NAND2 + INV + NAND2 + INV.
 
