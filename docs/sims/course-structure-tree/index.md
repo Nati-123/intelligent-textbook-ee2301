@@ -6,7 +6,7 @@ An interactive tree diagram visualizing the complete structure of the Digital Sy
 
 This MicroSim provides a hierarchical view of all course content, including:
 
-- **6 Units** covering digital system design fundamentals
+- **10 Units** covering digital system design fundamentals
 - **Unit Content** pages with detailed educational material
 - **Quizzes** for each unit with multiple-choice questions
 - **References** with annotated academic sources

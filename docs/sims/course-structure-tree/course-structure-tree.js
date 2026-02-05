@@ -206,6 +206,46 @@ function initTreeData() {
         ]
       },
       {
+        name: 'Unit 7: Multi-Level Gate Circuits',
+        type: 'unit',
+        expanded: false,
+        children: [
+          { name: 'Content', type: 'content', children: [] },
+          { name: 'Quiz', type: 'quiz', children: [] },
+          { name: 'References', type: 'references', children: [] }
+        ]
+      },
+      {
+        name: 'Unit 8: Combinational Logic Modules',
+        type: 'unit',
+        expanded: false,
+        children: [
+          { name: 'Content', type: 'content', children: [] },
+          { name: 'Quiz', type: 'quiz', children: [] },
+          { name: 'References', type: 'references', children: [] }
+        ]
+      },
+      {
+        name: 'Unit 9: Sequential Logic Fundamentals',
+        type: 'unit',
+        expanded: false,
+        children: [
+          { name: 'Content', type: 'content', children: [] },
+          { name: 'Quiz', type: 'quiz', children: [] },
+          { name: 'References', type: 'references', children: [] }
+        ]
+      },
+      {
+        name: 'Unit 10: Sequential Circuit Design',
+        type: 'unit',
+        expanded: false,
+        children: [
+          { name: 'Content', type: 'content', children: [] },
+          { name: 'Quiz', type: 'quiz', children: [] },
+          { name: 'References', type: 'references', children: [] }
+        ]
+      },
+      {
         name: 'Resources',
         type: 'resource',
         expanded: false,
@@ -275,7 +315,7 @@ function draw() {
   fill(colors.textLight);
   textAlign(RIGHT, CENTER);
   textSize(10);
-  text('6 Units | 37 MicroSims', canvasWidth - 20, drawHeight + 25);
+  text('10 Units | 37 MicroSims', canvasWidth - 20, drawHeight + 25);
 }
 
 function drawNode(node, x, y, depth) {

@@ -56,6 +56,22 @@ nav:
     - Content: unit6-quine-mccluskey/index.md
     - Quiz: unit6-quine-mccluskey/quiz.md
     - References: unit6-quine-mccluskey/references.md
+  - Unit 7 - Multi-Level Gate Circuits:
+    - Content: unit7-multi-level-gates/index.md
+    - Quiz: unit7-multi-level-gates/quiz.md
+    - References: unit7-multi-level-gates/references.md
+  - Unit 8 - Combinational Logic Modules:
+    - Content: unit8-combinational-modules/index.md
+    - Quiz: unit8-combinational-modules/quiz.md
+    - References: unit8-combinational-modules/references.md
+  - Unit 9 - Sequential Logic Fundamentals:
+    - Content: unit9-sequential-fundamentals/index.md
+    - Quiz: unit9-sequential-fundamentals/quiz.md
+    - References: unit9-sequential-fundamentals/references.md
+  - Unit 10 - Sequential Circuit Design:
+    - Content: unit10-sequential-design/index.md
+    - Quiz: unit10-sequential-design/quiz.md
+    - References: unit10-sequential-design/references.md
   - Learning Graph:
     - Concept List: learning-graph/concept-list.md
     - Book Metrics: learning-graph/book-metrics.md
