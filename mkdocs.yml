@@ -64,13 +64,46 @@ nav:
     - FAQ Quality Report: learning-graph/faq-quality-report.md
   - MicroSims:
     - Overview: sims/index.md
-    - Base Converter: sims/base-converter/index.md
-    - Logic Gate Simulator: sims/logic-gate-simulator/index.md
-    - Binary Adder Visualizer: sims/binary-adder-visualizer/index.md
-    - Minterm/Maxterm Converter: sims/minterm-maxterm-converter/index.md
-    - K-Map Solver: sims/kmap-solver/index.md
-    - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
-    - QM Combination Simulator: sims/qm-combination-simulator/index.md
-    - PI Chart Interactive: sims/pi-chart-interactive/index.md
-    - QM Complexity Chart: sims/qm-complexity-chart/index.md
-    - QM Complete Walkthrough: sims/qm-complete-walkthrough/index.md
+    - Unit 1 - Number Systems:
+      - Base Converter: sims/base-converter/index.md
+      - Analog vs Digital Signals: sims/analog-vs-digital-signals/index.md
+      - Positional Notation Explorer: sims/positional-notation-explorer/index.md
+      - Binary Arithmetic Practice: sims/binary-arithmetic-practice/index.md
+      - Signed Number Comparison: sims/signed-number-comparison/index.md
+      - Overflow Detection Simulator: sims/overflow-detection-simulator/index.md
+      - Number Systems Concept Map: sims/number-systems-concept-map/index.md
+    - Unit 2 - Boolean Algebra:
+      - Logic Gate Simulator: sims/logic-gate-simulator/index.md
+      - Boolean Operations Visualizer: sims/boolean-operations-visualizer/index.md
+      - Truth Table Generator: sims/truth-table-generator/index.md
+      - Boolean Laws Explorer: sims/boolean-laws-explorer/index.md
+      - De Morgan's Theorem Visualizer: sims/demorgans-theorem-visualizer/index.md
+      - Boolean Simplification Tutor: sims/boolean-simplification-tutor/index.md
+      - Gate Cascade Simulator: sims/gate-cascade-simulator/index.md
+      - Circuit Analysis & Synthesis: sims/circuit-analysis-synthesis/index.md
+    - Unit 3 - Applications:
+      - Binary Adder Visualizer: sims/binary-adder-visualizer/index.md
+      - Design Flow Visualization: sims/design-flow-visualization/index.md
+      - Word Problem Translator: sims/word-problem-translator/index.md
+      - Adder-Subtractor Builder: sims/adder-subtractor-builder/index.md
+      - Parity Circuit Simulator: sims/parity-circuit-simulator/index.md
+      - Code Converter Demo: sims/code-converter-demo/index.md
+      - Seven Segment Decoder: sims/seven-segment-decoder/index.md
+      - Don't Care Optimizer: sims/dont-care-optimizer/index.md
+    - Unit 4 - Minterms & Maxterms:
+      - Minterm/Maxterm Converter: sims/minterm-maxterm-converter/index.md
+      - Minterm Visualizer: sims/minterm-visualizer/index.md
+      - SOP-POS Converter: sims/sop-pos-converter/index.md
+      - Shannon Expansion Explorer: sims/shannon-expansion-explorer/index.md
+    - Unit 5 - Karnaugh Maps:
+      - K-Map Solver: sims/kmap-solver/index.md
+      - K-Map 3-Variable Simulator: sims/kmap-3var-simulator/index.md
+      - Prime Implicant Finder: sims/prime-implicant-finder/index.md
+      - K-Map with Don't Cares: sims/kmap-dont-cares/index.md
+      - K-Map Practice Challenge: sims/kmap-practice-challenge/index.md
+    - Unit 6 - Quine-McCluskey:
+      - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
+      - QM Combination Simulator: sims/qm-combination-simulator/index.md
+      - PI Chart Interactive: sims/pi-chart-interactive/index.md
+      - QM Complexity Chart: sims/qm-complexity-chart/index.md
+      - QM Complete Walkthrough: sims/qm-complete-walkthrough/index.md
