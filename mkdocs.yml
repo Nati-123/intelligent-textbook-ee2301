@@ -8,6 +8,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
+    - navigation.footer
     - toc.integrate
     - content.tabs.link
   palette:
