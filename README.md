@@ -23,55 +23,82 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 - Original, student-friendly explanations of digital logic concepts
 - Step-by-step derivations and worked examples
-- Visual learning aids (logic diagrams, truth tables, K-maps)
-- Interactive MicroSims for hands-on learning
+- Visual learning aids (logic diagrams, truth tables, K-maps, timing diagrams)
+- 55 interactive MicroSims for hands-on learning
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
-- Comprehensive quizzes with detailed explanations
+- Comprehensive quizzes and practice problems with detailed explanations
 
 ## Site Metrics
 
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Units | 6 | Complete course chapters |
+| Units | 10 | Complete course chapters |
 | Concepts | 225 | Concepts in learning graph |
 | Glossary Terms | 225 | ISO 11179 compliant definitions |
-| Quiz Questions | 60 | 10 questions per unit |
-| Diagrams | 37 | Visual learning aids |
-| Equations | 821 | LaTeX mathematical expressions |
-| MicroSims | 5 | Interactive p5.js simulations |
-| Total Words | 51,775 | Comprehensive content |
-| Equivalent Pages | 218 | Based on 250 words/page |
+| MicroSims | 55 | Interactive p5.js simulations |
+| Practice Problems | 200 | End-of-unit problems with solutions |
+| Quiz Questions | 108 | Multiple-choice assessments |
+| FAQ Questions | 63 | Frequently asked questions |
+| References | 100 | Curated external resources |
 
-## Units Covered
+## Course Units
+
+### Part I: Foundations
 
 | Unit | Topic | Key Concepts |
-|------|-------|--------------|
+|:----:|-------|--------------|
 | 1 | Number Systems | Binary, octal, hexadecimal, two's complement, sign extension |
 | 2 | Boolean Algebra | Logic operators, DeMorgan's theorems, universal gates |
 | 3 | Applications of Boolean Algebra | Adders, subtractors, comparators, decoders |
-| 4 | Minterm & Maxterm Expansions | Canonical forms, SOP/POS, cofactors |
+
+### Part II: Minimization Techniques
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 4 | Minterm & Maxterm Expansions | Canonical forms, SOP/POS, cofactors, Shannon expansion |
 | 5 | Karnaugh Maps | K-map simplification, prime implicants, don't cares |
 | 6 | Quine-McCluskey Method | Algorithmic minimization, PI charts, Petrick's method |
 
+### Part III: Circuit Implementation
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 7 | Multi-Level Gate Circuits | NAND/NOR universality, bubble pushing, gate optimization |
+| 8 | Combinational Logic Modules | Multiplexers, decoders, encoders, comparators |
+
+### Part IV: Sequential Logic
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 9 | Sequential Logic Fundamentals | Latches, flip-flops, timing diagrams, setup/hold times |
+| 10 | Sequential Circuit Design | Registers, counters, FSM design, state machines |
+
 ## Interactive MicroSims
 
-The textbook includes 5 interactive MicroSims built with p5.js and Chart.js:
+The textbook includes **55 interactive MicroSims** organized by unit:
 
-| MicroSim | Description |
-|----------|-------------|
-| QM Grouping Visualization | Visualize grouping minterms by number of 1s |
-| QM Combination Simulator | Step through the combination process |
-| PI Chart Interactive | Build and solve prime implicant charts |
-| QM Complexity Chart | Compare algorithmic complexity vs K-maps |
-| QM Complete Walkthrough | Full Quine-McCluskey algorithm demonstration |
+| Unit | MicroSims | Examples |
+|------|-----------|----------|
+| 1 - Number Systems | 7 | Base Converter, Binary Arithmetic, Overflow Detection |
+| 2 - Boolean Algebra | 8 | Logic Gate Simulator, Truth Table Generator, De Morgan's Visualizer |
+| 3 - Applications | 8 | Binary Adder, Seven Segment Decoder, Parity Circuit |
+| 4 - Minterms/Maxterms | 4 | Minterm Visualizer, SOP-POS Converter, Shannon Expansion |
+| 5 - Karnaugh Maps | 5 | K-Map Solver, Prime Implicant Finder, K-Map Practice |
+| 6 - Quine-McCluskey | 5 | QM Grouping, PI Chart Interactive, QM Walkthrough |
+| 7 - Multi-Level Gates | 4 | Universal Gate Simulator, Bubble Pushing, NAND-NOR Converter |
+| 8 - Combinational Modules | 5 | MUX Simulator, Decoder Simulator, Priority Encoder |
+| 9 - Sequential Fundamentals | 4 | SR Latch, D Flip-Flop, JK Flip-Flop, Timing Analyzer |
+| 10 - Sequential Design | 4 | Shift Register, Counter Simulator, FSM Designer |
 
 ## Learning Resources
 
-- **Learning Graph:** 225 interconnected concepts with dependencies
-- **Glossary:** Comprehensive definitions following ISO 11179 standards
-- **Quizzes:** Multiple-choice assessments with Bloom's Taxonomy distribution
-- **Book Metrics:** Detailed analytics and quality reports
+| Resource | Description |
+|----------|-------------|
+| 📚 [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 225 terms with ISO 11179 compliant definitions |
+| ❓ [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 63 frequently asked questions |
+| 📊 [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 225 interconnected concepts with dependencies |
+| 📈 [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
 
 ## Getting Started
 
@@ -110,41 +137,39 @@ mkdocs gh-deploy --force
 ```
 intelligent-textbook-ee2301/
 ├── docs/                              # MkDocs documentation source
-│   ├── index.md                       # Homepage
+│   ├── index.md                       # Homepage with hero section
 │   ├── course-description.md          # Course info and learning outcomes
 │   ├── glossary.md                    # 225 term glossary
+│   ├── faq.md                         # 63 frequently asked questions
+│   ├── stylesheets/
+│   │   └── extra.css                  # Custom styling
 │   ├── javascripts/
 │   │   └── mathjax.js                 # MathJax configuration
 │   ├── unit1-number-systems/
-│   │   ├── index.md                   # Number systems content
-│   │   └── quiz.md                    # Unit 1 quiz
-│   ├── unit2-boolean-algebra/
-│   │   ├── index.md                   # Boolean algebra content
-│   │   └── quiz.md                    # Unit 2 quiz
+│   │   ├── index.md                   # Unit content
+│   │   ├── quiz.md                    # Multiple-choice quiz
+│   │   ├── problems.md                # Practice problems with solutions
+│   │   └── references.md              # Curated references
+│   ├── unit2-boolean-algebra/         # ... (same structure)
 │   ├── unit3-applications-boolean-algebra/
-│   │   ├── index.md                   # Boolean applications content
-│   │   └── quiz.md                    # Unit 3 quiz
 │   ├── unit4-minterm-maxterm-expansions/
-│   │   ├── index.md                   # SOP/POS forms content
-│   │   └── quiz.md                    # Unit 4 quiz
 │   ├── unit5-karnaugh-maps/
-│   │   ├── index.md                   # K-map content
-│   │   └── quiz.md                    # Unit 5 quiz
 │   ├── unit6-quine-mccluskey/
-│   │   ├── index.md                   # Quine-McCluskey content
-│   │   └── quiz.md                    # Unit 6 quiz
+│   ├── unit7-multi-level-gates/
+│   ├── unit8-combinational-modules/
+│   ├── unit9-sequential-fundamentals/
+│   ├── unit10-sequential-design/
 │   ├── learning-graph/
 │   │   ├── concept-list.md            # 225 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
-│   └── sims/                          # Interactive MicroSims
+│   └── sims/                          # 55 Interactive MicroSims
 │       ├── index.md                   # MicroSims overview
-│       ├── qm-grouping-visualization/
-│       ├── qm-combination-simulator/
-│       ├── pi-chart-interactive/
-│       ├── qm-complexity-chart/
-│       └── qm-complete-walkthrough/
-├── logs/                              # Generation session logs
+│       ├── base-converter/
+│       ├── logic-gate-simulator/
+│       ├── kmap-solver/
+│       ├── fsm-designer/
+│       └── ...                        # (51 more MicroSims)
 ├── mkdocs.yml                         # MkDocs configuration
 └── README.md                          # This file
 ```
@@ -164,18 +189,41 @@ This textbook is designed for:
 - Introduction to programming (any language)
 - Familiarity with basic circuit concepts (recommended but not required)
 
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| 🤖 AI-Assisted Content | Generated with Claude Code for clarity and consistency |
+| 📈 Scaffolded Learning | Concepts build on explicit prerequisites |
+| 🎮 Interactive MicroSims | 55 p5.js simulations you can run in your browser |
+| ✏️ Practice Problems | 200 end-of-unit problems with detailed solutions |
+| ✅ Self-Assessment | 108 quiz questions with explanations |
+| 📖 Comprehensive Glossary | ISO 11179 compliant terminology |
+| 🔗 Curated References | Wikipedia, textbooks, and online resources |
+
 ## Quality Standards
 
 - **Content:** AI-generated with human oversight, aligned with university curriculum
 - **Glossary:** ISO 11179 metadata registry standards (precise, concise, distinct)
 - **Quizzes:** Bloom's Taxonomy distribution (Remember, Understand, Apply, Analyze)
+- **Problems:** Comprehensive coverage with step-by-step solutions
 - **MicroSims:** Interactive p5.js simulations with responsive design
+
+## Built With
+
+- **[MkDocs](https://www.mkdocs.org/)** - Static site generator
+- **[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)** - Beautiful, responsive theme
+- **[MathJax](https://www.mathjax.org/)** - Mathematical notation rendering
+- **[p5.js](https://p5js.org/)** - Interactive MicroSims
+- **[Chart.js](https://www.chartjs.org/)** - Data visualizations
+- **[Claude Code](https://claude.ai/code)** - AI-assisted content generation
+- **[GitHub Pages](https://pages.github.com/)** - Free hosting
 
 ## Reporting Issues
 
-Found a bug, typo, or have a suggestion for improvement? Please report it:
+Found a bug, typo, or have a suggestion? Please report it:
 
-[GitHub Issues](https://github.com/Nati-123/intelligent-textbook-ee2301/issues)
+**[GitHub Issues](https://github.com/Nati-123/intelligent-textbook-ee2301/issues)**
 
 When reporting issues, please include:
 
@@ -190,8 +238,8 @@ This work is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 **You are free to:**
 
-- Share - copy and redistribute the material
-- Adapt - remix, transform, and build upon the material
+- **Share** - copy and redistribute the material
+- **Adapt** - remix, transform, and build upon the material
 
 **Under the following terms:**
 
@@ -201,22 +249,18 @@ This work is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## Acknowledgements
 
-This project is built on the shoulders of giants in the open source community:
+Special thanks to:
 
-- **[MkDocs](https://www.mkdocs.org/)** - Static site generator optimized for project documentation
-- **[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)** - Beautiful, responsive theme
-- **[MathJax](https://www.mathjax.org/)** - Beautiful math rendering in any browser
-- **[p5.js](https://p5js.org/)** - JavaScript library for creative coding and MicroSims
-- **[Chart.js](https://www.chartjs.org/)** - Simple yet flexible JavaScript charting
-- **[Claude AI](https://claude.ai)** by Anthropic - AI-assisted content generation
-- **[GitHub Pages](https://pages.github.com/)** - Free hosting for open source projects
+- **University of Minnesota** - Department of Electrical & Computer Engineering
+- **[Anthropic](https://anthropic.com)** - Claude AI for content generation
+- The open source community for MkDocs, Material theme, p5.js, and other tools
 
-Special thanks to the University of Minnesota Department of Electrical & Computer Engineering and the educators who contribute to making educational resources accessible and interactive.
+---
 
-## Contact
+<div align="center">
 
-**Project Repository:** [github.com/Nati-123/intelligent-textbook-ee2301](https://github.com/Nati-123/intelligent-textbook-ee2301)
+**[View Live Site](https://Nati-123.github.io/intelligent-textbook-ee2301/)** | **[Report Issue](https://github.com/Nati-123/intelligent-textbook-ee2301/issues)** | **[View Source](https://github.com/Nati-123/intelligent-textbook-ee2301)**
 
-**Live Site:** [Nati-123.github.io/intelligent-textbook-ee2301](https://Nati-123.github.io/intelligent-textbook-ee2301/)
+*An AI-assisted intelligent textbook demonstrating how AI can augment educational content creation while maintaining pedagogical quality.*
 
-Questions, suggestions, or collaboration opportunities? Feel free to open an issue on GitHub.
+</div>
