@@ -79,7 +79,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1. Introduction to Boolean Algebra
+## 2.1 Introduction to Boolean Algebra
 
 **Boolean Algebra** is a mathematical system for manipulating logical values, developed by George Boole in 1854. Unlike conventional algebra that operates on real numbers, Boolean algebra operates exclusively on binary values: 0 and 1. This restriction makes Boolean algebra perfectly suited for digital electronics, where circuits naturally represent two distinct voltage states.
 
@@ -97,7 +97,7 @@ The terms **high and low states** refer to voltage levels in physical circuits, 
 
 ---
 
-## 2. Basic Boolean Operations
+## 2.2 Basic Boolean Operations
 
 Boolean algebra defines three fundamental operations from which all other operations can be derived: AND, OR, and NOT.
 
@@ -204,7 +204,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3. Logic Gates
+## 2.3 Logic Gates
 
 **Logic gates** are the physical electronic devices that implement Boolean operations. Each gate has one or more inputs and produces an output based on a specific Boolean function. Gates are the building blocks of all digital circuits, from simple calculators to complex microprocessors.
 
@@ -314,7 +314,7 @@ Implementation: HTML/CSS/JavaScript with SVG gate symbols
 
 ---
 
-## 4. Truth Tables and Boolean Expressions
+## 2.4 Truth Tables and Boolean Expressions
 
 A **truth table** is a systematic listing of all possible input combinations and their corresponding outputs for a Boolean function. For $n$ input variables, the truth table has $2^n$ rows.
 
@@ -416,7 +416,7 @@ Implementation: p5.js with DOM elements for input
 
 ---
 
-## 5. Boolean Theorems and Identities
+## 2.5 Boolean Theorems and Identities
 
 Boolean algebra follows a set of fundamental theorems and identities that enable expression manipulation and simplification. These laws are presented in dual pairs—swapping AND with OR and 0 with 1 produces the dual form.
 
@@ -467,7 +467,7 @@ $$A + A \cdot B = A \qquad A \cdot (A + B) = A$$
 **Consensus Theorem:** Eliminates redundant consensus terms.
 
 $$AB + \overline{A}C + BC = AB + \overline{A}C$$
-$$$(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$$
+$$(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$$
 
 The consensus term ($BC$ or $B+C$) is redundant because it's covered by the other terms.
 
@@ -545,7 +545,7 @@ Implementation: p5.js with responsive layout
 
 ---
 
-## 6. DeMorgan's Theorems
+## 2.6 DeMorgan's Theorems
 
 **DeMorgan's theorems** are among the most important results in Boolean algebra, providing the relationship between AND and OR through complementation. They are essential for converting between logic forms and implementing circuits using universal gates.
 
@@ -651,7 +651,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 7. Algebraic Simplification
+## 2.7 Algebraic Simplification
 
 **Algebraic simplification** reduces Boolean expressions to simpler equivalent forms, minimizing the number of gates and connections required for implementation. A simplified expression uses fewer literals and terms while implementing the same logic function.
 
@@ -694,12 +694,12 @@ $$= A + A = A$$ (idempotent)
 
 **Example 4:** Simplify $F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$
 
-First, check for consensus: The term $\overline{A}B \cdot \overline{A}C$ has consensus term related to $B$ and $C$, but we need to verify if simplification is possible...
-
 $$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
-$$= \overline{A}(B + C) + \overline{B}\overline{C}$$ (factor)
+$$= \overline{A}(B + C) + \overline{B}\overline{C}$$ (factor out $\overline{A}$)
 
-This is the simplified form (cannot reduce further).
+The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
+
+$$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
 
 #### Diagram: Boolean Simplification Tutor
 
@@ -776,7 +776,7 @@ Implementation: p5.js with DOM elements for interaction
 
 ---
 
-## 8. Standard Forms: SOP and POS
+## 2.8 Standard Forms: SOP and POS
 
 Boolean expressions can be written in two **standard forms** that provide consistent representations and enable systematic circuit implementation.
 
@@ -817,9 +817,13 @@ Alternatively, apply DeMorgan's theorem and Boolean algebra:
 
 $$F = AB + \overline{A}C$$
 
-Complement: $\overline{F} = \overline{AB + \overline{A}C} = \overline{AB} \cdot \overline{\overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$
+Step 1 — Find $\overline{F}$ in POS: $\overline{F} = \overline{AB + \overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$
 
-Complement again: $F = \overline{(\overline{A}+\overline{B})(A+\overline{C})}$... or just use the truth table method!
+Step 2 — Expand $\overline{F}$ to SOP: $\overline{F} = \overline{A}A + \overline{A}\overline{C} + \overline{B}A + \overline{B}\overline{C} = \overline{A}\overline{C} + A\overline{B}$
+
+Step 3 — Complement to get F in POS: $F = \overline{\overline{A}\overline{C} + A\overline{B}} = (A+C)(\overline{A}+B)$
+
+The truth table method is often more straightforward for complex expressions.
 
 | Form | Structure | Implementation | Typical Use |
 |------|-----------|----------------|-------------|
@@ -828,7 +832,7 @@ Complement again: $F = \overline{(\overline{A}+\overline{B})(A+\overline{C})}$..
 
 ---
 
-## 9. Operator Precedence and Notation
+## 2.9 Operator Precedence and Notation
 
 **Precedence of operators** in Boolean algebra follows this order (highest to lowest):
 
@@ -853,7 +857,7 @@ Complement again: $F = \overline{(\overline{A}+\overline{B})(A+\overline{C})}$..
 
 ---
 
-## 10. Multiple Input Gates and Practical Considerations
+## 2.10 Multiple Input Gates and Practical Considerations
 
 ### Multiple Input Gates
 
@@ -947,7 +951,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 11. Circuit Analysis and Synthesis
+## 2.11 Circuit Analysis and Synthesis
 
 Boolean algebra bridges the gap between circuit diagrams and mathematical expressions, enabling both **circuit analysis** (deriving the expression from a circuit) and **circuit synthesis** (building a circuit from an expression).
 
