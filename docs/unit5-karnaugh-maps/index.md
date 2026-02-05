@@ -186,7 +186,7 @@ Wait, let me regroup more carefully:
 
 #### Diagram: 3-Variable K-Map Simulator
 
-<iframe src="../../sims/kmap-3var-simulator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/kmap-3var-simulator/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>3-Variable K-Map Simulator</summary>
@@ -470,7 +470,7 @@ A **redundant prime implicant** is a prime implicant that is not needed because 
 
 #### Diagram: Prime Implicant Finder
 
-<iframe src="../../sims/prime-implicant-finder/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/prime-implicant-finder/main.html" width="100%" height="600px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Prime Implicant Finder</summary>
@@ -684,7 +684,7 @@ Without using don't cares, the expression would be more complex.
 
 #### Diagram: K-Map with Don't Cares
 
-<iframe src="../../sims/kmap-dont-cares/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/kmap-dont-cares/main.html" width="100%" height="600px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>K-Map with Don't Cares</summary>
@@ -898,7 +898,7 @@ This technique is useful for documentation and quick analysis but less common in
 
 #### Diagram: K-Map Practice Challenge
 
-<iframe src="../../sims/kmap-practice-challenge/main.html" width="100%" height="650px" scrolling="no"></iframe>
+<iframe src="../sims/kmap-practice-challenge/main.html" width="100%" height="650px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>K-Map Practice Challenge</summary>

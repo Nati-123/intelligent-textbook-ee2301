@@ -141,7 +141,7 @@ Each minterm equals 1 for exactly one input combination and 0 for all others. Th
 
 #### Diagram: Minterm Visualizer
 
-<iframe src="../../sims/minterm-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Minterm Visualizer</summary>
@@ -493,7 +493,7 @@ $$= A + BC$$
 
 #### Diagram: SOP-POS Converter
 
-<iframe src="../../sims/sop-pos-converter/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>SOP-POS Converter</summary>
@@ -651,7 +651,7 @@ The term BC is covered by either AB (when B=C=1, A=1) or $\overline{A}C$ (when B
 
 #### Diagram: Shannon Expansion Explorer
 
-<iframe src="../../sims/shannon-expansion-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Shannon Expansion Explorer</summary>

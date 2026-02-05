@@ -146,7 +146,7 @@ The complement of 0 is 1, and the complement of 1 is 0. This operation is fundam
 
 #### Diagram: Boolean Operations Visualizer
 
-•	<iframe src="../../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Boolean Operations Visualizer</summary>
@@ -351,7 +351,7 @@ A **sum term** is a single literal or OR of literals: $A$, $A+B$, $\overline{A}+
 
 #### Diagram: Truth Table Generator
 
-<iframe src="../../sims/truth-table-generator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/truth-table-generator/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Truth Table Generator</summary>
@@ -484,7 +484,7 @@ The consensus term ($BC$ or $B+C$) is redundant because it's covered by the othe
 
 #### Diagram: Boolean Laws Interactive Proof
 
-<iframe src="../../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Boolean Laws Interactive Proof</summary>
@@ -594,7 +594,7 @@ For example, the dual of $A + 0 = A$ is $A \cdot 1 = A$, and both are valid. The
 
 #### Diagram: DeMorgan's Theorem Visualizer
 
-<iframe src="../../sims/demorgans-theorem-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/demorgans-theorem-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>DeMorgan's Theorem Visualizer</summary>
@@ -703,7 +703,7 @@ This is the simplified form (cannot reduce further).
 
 #### Diagram: Boolean Simplification Tutor
 
-<iframe src="../../sims/boolean-simplification-tutor/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-simplification-tutor/main.html" width="100%" height="600px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Boolean Simplification Tutor</summary>
@@ -890,7 +890,7 @@ When designs exceed these limits, buffer gates provide signal restoration and cu
 
 #### Diagram: Gate Cascading and Fan-Out Simulator
 
-<iframe src="../../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Gate Cascading and Fan-Out Simulator</summary>
@@ -982,7 +982,7 @@ Required gates:
 
 #### Diagram: Circuit Analysis and Synthesis Tool
 
-<iframe src="../../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Circuit Analysis and Synthesis Tool</summary>
