@@ -303,9 +303,9 @@ The 4-variable K-map forms a **torus** topology—imagine wrapping the map into 
 
 The bracketed cells form one group: $\overline{B}\overline{D}$ (B=0 and D=0 for all four).
 
-#### Diagram: 4-Variable K-Map Simulator
+#### Diagram: K-Map Solver
 
-<iframe src="../../sims/kmap-4var-simulator/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/kmap-solver/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>4-Variable K-Map Simulator</summary>

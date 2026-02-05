@@ -255,9 +255,9 @@ To implement basic operations using only NAND gates:
 - AND: $A \cdot B = \overline{\overline{A \cdot B}}$ (NAND followed by NAND inverter)
 - OR: $A + B = \overline{\overline{A} \cdot \overline{B}}$ (invert both inputs, then NAND)
 
-#### Diagram: Logic Gate Symbol Reference
+#### Diagram: Logic Gate Simulator
 
-<iframe src="../../sims/logic-gate-symbols/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/logic-gate-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Logic Gate Symbol Reference</summary>

@@ -320,9 +320,9 @@ For an n-bit ripple carry adder:
 
 **Limitation:** The ripple carry adder is slow for wide operands because each stage must wait for the previous carry to propagate. An 8-bit addition requires 8 sequential carry propagations.
 
-#### Diagram: Binary Adder Simulator
+#### Diagram: Binary Adder Visualizer
 
-<iframe src="../../sims/binary-adder-simulator/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/binary-adder-visualizer/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Binary Adder Simulator</summary>

@@ -7,6 +7,36 @@ description: Interactive simulations for learning digital system design concepts
 
 Interactive educational simulations for learning digital system design.
 
+## Unit 1: Number Systems
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Base Converter](base-converter/index.md) | L3 Apply | Convert between binary, decimal, octal, hexadecimal |
+
+## Unit 2: Boolean Algebra
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Logic Gate Simulator](logic-gate-simulator/index.md) | L4 Analyze | Interactive AND, OR, NOT, NAND, NOR, XOR, XNOR gates |
+
+## Unit 3: Applications of Boolean Algebra
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Binary Adder Visualizer](binary-adder-visualizer/index.md) | L2 Understand | Step through half adder and full adder operations |
+
+## Unit 4: Minterm & Maxterm Expansions
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Minterm/Maxterm Converter](minterm-maxterm-converter/index.md) | L3 Apply | Convert between SOP and POS canonical forms |
+
+## Unit 5: Karnaugh Maps
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [K-Map Solver](kmap-solver/index.md) | L4 Analyze | Interactive 2-4 variable K-map simplification |
+
 ## Unit 6: Quine-McCluskey Method
 
 | MicroSim | Bloom Level | Description |

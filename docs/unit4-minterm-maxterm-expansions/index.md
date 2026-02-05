@@ -294,9 +294,9 @@ $$= (A+B+C)(A+\overline{B}+C)(\overline{A}+B+C)(\overline{A}+\overline{B}+C)(\ov
 
 Both expressions represent the same function F!
 
-#### Diagram: Canonical Form Generator
+#### Diagram: Minterm/Maxterm Converter
 
-<iframe src="../../sims/canonical-form-generator/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Canonical Form Generator</summary>

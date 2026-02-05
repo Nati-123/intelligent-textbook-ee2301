@@ -312,7 +312,7 @@ Result: $10111010_2 = \text{BA}_{16}$
 
 #### Diagram: Base Conversion Calculator
 
-<iframe src="../../sims/base-conversion-calculator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/base-converter/main.html" width="100%" height="450px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Base Conversion Calculator</summary>
