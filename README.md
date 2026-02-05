@@ -1,10 +1,14 @@
 # Intelligent Textbook: Digital System Design (EE 2301)
 
-[![GitHub Pages](https://img.shields.io/badge/Live%20Site-GitHub%20Pages-brightgreen?logo=github)](https://Nati-123.github.io/intelligent-textbook-ee2301/)
 [![MkDocs](https://img.shields.io/badge/Made%20with-MkDocs-526CFE?logo=materialformkdocs)](https://www.mkdocs.org/)
 [![Material for MkDocs](https://img.shields.io/badge/Material%20for%20MkDocs-526CFE?logo=materialformkdocs)](https://squidfunk.github.io/mkdocs-material/)
-[![p5.js](https://img.shields.io/badge/MicroSims-p5.js-ED225D?logo=p5dotjs)](https://p5js.org/)
+[![GitHub Pages](https://img.shields.io/badge/View%20on-GitHub%20Pages-blue?logo=github)](https://Nati-123.github.io/intelligent-textbook-ee2301/)
+[![GitHub](https://img.shields.io/badge/GitHub-Nati--123%2Fintelligent--textbook--ee2301-blue?logo=github)](https://github.com/Nati-123/intelligent-textbook-ee2301)
 [![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-DA7857?logo=anthropic)](https://claude.ai/code)
+[![Claude Skills](https://img.shields.io/badge/Uses-Claude%20Skills-DA7857?logo=anthropic)](https://github.com/dmccreary/claude-skills)
+[![p5.js](https://img.shields.io/badge/MicroSims-p5.js-ED225D?logo=p5dotjs)](https://p5js.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ---
@@ -33,14 +37,17 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Units | 10 | Complete course chapters |
-| Concepts | 225 | Concepts in learning graph |
-| Glossary Terms | 225 | ISO 11179 compliant definitions |
-| MicroSims | 55 | Interactive p5.js simulations |
-| Practice Problems | 200 | End-of-unit problems with solutions |
+| Units | 10 | Complete course units |
+| Concepts | 200 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
+| Glossary Terms | 225 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
+| FAQs | 63 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 108 | Multiple-choice assessments |
-| FAQ Questions | 63 | Frequently asked questions |
-| References | 100 | Curated external resources |
+| Diagrams | 62 | Visual learning aids |
+| Equations | 2,090 | LaTeX expressions (inline and display) |
+| MicroSims | 55 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
+| Total Words | 127,798 | Across all markdown files |
+| Links | 271 | Hyperlinks in markdown format |
+| Equivalent Pages | 554 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -97,7 +104,7 @@ The textbook includes **55 interactive MicroSims** organized by unit:
 |----------|-------------|
 | 📚 [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 225 terms with ISO 11179 compliant definitions |
 | ❓ [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 63 frequently asked questions |
-| 📊 [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 225 interconnected concepts with dependencies |
+| 📊 [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 200 interconnected concepts with dependencies |
 | 📈 [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
 
 ## Getting Started
@@ -249,11 +256,24 @@ This work is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## Acknowledgements
 
-Special thanks to:
+This project is built on the shoulders of giants in the open source community:
 
+- **[MkDocs](https://www.mkdocs.org/)** - Static site generator optimized for project documentation
+- **[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)** - Beautiful, responsive theme
+- **[p5.js](https://p5js.org/)** - Creative coding library for interactive MicroSims
+- **[MathJax](https://www.mathjax.org/)** - Mathematical notation rendering
+- **[Chart.js](https://www.chartjs.org/)** - Data visualizations
+- **[Claude AI](https://claude.ai)** by Anthropic - AI-assisted content generation
+- **[GitHub Pages](https://pages.github.com/)** - Free hosting for open source projects
 - **University of Minnesota** - Department of Electrical & Computer Engineering
-- **[Anthropic](https://anthropic.com)** - Claude AI for content generation
-- The open source community for MkDocs, Material theme, p5.js, and other tools
+
+## Contact
+
+**Natol Dinka**
+
+- GitHub: [@Nati-123](https://github.com/Nati-123)
+
+Questions, suggestions, or collaboration opportunities? Feel free to open an issue on GitHub.
 
 ---
 
