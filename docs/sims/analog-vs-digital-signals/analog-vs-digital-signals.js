@@ -23,10 +23,16 @@ function setup() {
 
   // Noise slider
   noiseSlider = createSlider(0, 50, 10);
-  noiseSlider.position(120, drawHeight + 15);
   noiseSlider.size(150);
 
+  positionUIElements();
+
   describe('Comparison of analog and digital signal representations with noise visualization', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  noiseSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -234,6 +240,7 @@ function drawComparison(startY) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

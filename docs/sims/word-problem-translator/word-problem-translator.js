@@ -60,7 +60,6 @@ function setup() {
   canvas.parent(mainElement);
 
   problemSelect = createSelect();
-  problemSelect.position(100, drawHeight + 18);
   problemSelect.size(250);
   for (let i = 0; i < problems.length; i++) {
     problemSelect.option('Problem ' + (i + 1), i);
@@ -70,7 +69,14 @@ function setup() {
     showSolution = false;
   });
 
+  positionUIElements();
+
   describe('Word problem to Boolean expression translator', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  problemSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 18);
 }
 
 function draw() {
@@ -216,6 +222,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

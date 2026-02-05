@@ -106,14 +106,20 @@ function setup() {
   canvas.parent(mainElement);
 
   lawSelect = createSelect();
-  lawSelect.position(80, drawHeight + 20);
   lawSelect.size(280);
   for (let i = 0; i < laws.length; i++) {
     lawSelect.option(laws[i].name, i);
   }
   lawSelect.changed(() => { currentLaw = parseInt(lawSelect.value()); });
 
+  positionUIElements();
+
   describe('Boolean algebra laws explorer with interactive examples', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  lawSelect.position(mainRect.left + 80, mainRect.top + drawHeight + 20);
 }
 
 function draw() {
@@ -250,6 +256,7 @@ function drawVerificationTables(law, startY) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

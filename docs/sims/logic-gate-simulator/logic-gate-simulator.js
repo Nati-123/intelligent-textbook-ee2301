@@ -46,7 +46,6 @@ function setup() {
 
   // Create gate selector
   gateSelect = createSelect();
-  gateSelect.position(100, drawHeight + 15);
   for (let gate in gates) {
     gateSelect.option(gate);
   }
@@ -55,15 +54,22 @@ function setup() {
 
   // Create input count selector
   inputCountSelect = createSelect();
-  inputCountSelect.position(100, drawHeight + 50);
   inputCountSelect.option('2 inputs', 2);
   inputCountSelect.option('3 inputs', 3);
   inputCountSelect.selected('2 inputs');
   inputCountSelect.changed(handleInputCountChange);
 
+  positionUIElements();
+
   calculateOutput();
 
   describe('Interactive logic gate simulator showing AND, OR, NOT, NAND, NOR, XOR, and XNOR gates', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  gateSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  inputCountSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 50);
 }
 
 function draw() {
@@ -480,6 +486,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

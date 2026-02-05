@@ -62,14 +62,20 @@ function setup() {
   canvas.parent(mainElement);
 
   exampleSelect = createSelect();
-  exampleSelect.position(100, drawHeight + 18);
   exampleSelect.size(250);
   for (let i = 0; i < examples.length; i++) {
     exampleSelect.option(examples[i].name, i);
   }
   exampleSelect.changed(() => { currentExample = parseInt(exampleSelect.value()); });
 
+  positionUIElements();
+
   describe('Prime implicant finder showing essential prime implicants and minimal cover', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  exampleSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 18);
 }
 
 function draw() {
@@ -276,6 +282,7 @@ function drawResult(example) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

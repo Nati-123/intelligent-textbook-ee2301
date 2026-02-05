@@ -43,7 +43,6 @@ function setup() {
 
   // Create mode selector
   modeSelect = createSelect();
-  modeSelect.position(100, drawHeight + 15);
   modeSelect.option('Half Adder', 'half');
   modeSelect.option('Full Adder', 'full');
   modeSelect.option('4-bit Ripple Adder', 'ripple');
@@ -52,16 +51,23 @@ function setup() {
 
   // Create step button
   stepButton = createButton('Step');
-  stepButton.position(260, drawHeight + 15);
   stepButton.mousePressed(handleStep);
 
   // Create reset button
   resetButton = createButton('Reset');
-  resetButton.position(320, drawHeight + 15);
   resetButton.mousePressed(handleReset);
+
+  positionUIElements();
 
   updateMaxStep();
   describe('Interactive binary adder visualizer showing half adder, full adder, and ripple carry adder operations', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  modeSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  stepButton.position(mainRect.left + 260, mainRect.top + drawHeight + 15);
+  resetButton.position(mainRect.left + 320, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -588,6 +594,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

@@ -29,7 +29,6 @@ function setup() {
   canvas.parent(mainElement);
 
   conversionSelect = createSelect();
-  conversionSelect.position(100, drawHeight + 15);
   conversionSelect.size(220);
   for (let c of conversions) {
     conversionSelect.option(c.name, c.id);
@@ -37,11 +36,18 @@ function setup() {
   conversionSelect.changed(() => { currentConversion = conversionSelect.value(); });
 
   valueSlider = createSlider(0, 15, 5);
-  valueSlider.position(100, drawHeight + 45);
   valueSlider.size(180);
   valueSlider.input(() => { currentValue = valueSlider.value(); });
 
+  positionUIElements();
+
   describe('Code converter demonstrating binary, Gray, BCD, and Excess-3 conversions', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  conversionSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  valueSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 45);
 }
 
 function draw() {
@@ -314,6 +320,7 @@ function getBCDToExcess3Steps(decimal) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

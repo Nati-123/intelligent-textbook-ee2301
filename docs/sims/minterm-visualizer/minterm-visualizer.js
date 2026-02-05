@@ -22,7 +22,6 @@ function setup() {
   canvas.parent(mainElement);
 
   numVarsSelect = createSelect();
-  numVarsSelect.position(100, drawHeight + 12);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
@@ -31,18 +30,25 @@ function setup() {
     selectedMinterm = min(selectedMinterm, Math.pow(2, numVars) - 1);
     mintermSlider.remove();
     mintermSlider = createSlider(0, Math.pow(2, numVars) - 1, selectedMinterm);
-    mintermSlider.position(100, drawHeight + 42);
     mintermSlider.size(180);
     mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
+    positionUIElements();
   });
   numVarsSelect.selected('3 variables');
 
   mintermSlider = createSlider(0, 7, 3);
-  mintermSlider.position(100, drawHeight + 42);
   mintermSlider.size(180);
   mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
 
+  positionUIElements();
+
   describe('Minterm and maxterm visualizer showing product and sum terms', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numVarsSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 12);
+  mintermSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 42);
 }
 
 function draw() {
@@ -319,6 +325,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

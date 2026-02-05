@@ -45,30 +45,36 @@ function setup() {
 
   // Create buttons
   stepButton = createButton('Next Step');
-  stepButton.position(10, drawHeight + 10);
   stepButton.mousePressed(nextStep);
 
   runAllButton = createButton('Run All');
-  runAllButton.position(100, drawHeight + 10);
   runAllButton.mousePressed(runAll);
 
   resetButton = createButton('Reset');
-  resetButton.position(175, drawHeight + 10);
   resetButton.mousePressed(resetSimulation);
 
   // Create dropdown for number of variables
   numVarsSelect = createSelect();
-  numVarsSelect.position(350, drawHeight + 10);
   numVarsSelect.option('3 vars', 3);
   numVarsSelect.option('4 vars', 4);
   numVarsSelect.option('5 vars', 5);
   numVarsSelect.selected('4 vars');
   numVarsSelect.changed(updateNumVars);
 
+  positionUIElements();
+
   // Initialize
   initializeSimulation();
 
   describe('Step-by-step visualization of Quine-McCluskey combination process', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  stepButton.position(mainRect.left + 10, mainRect.top + drawHeight + 10);
+  runAllButton.position(mainRect.left + 100, mainRect.top + drawHeight + 10);
+  resetButton.position(mainRect.left + 175, mainRect.top + drawHeight + 10);
+  numVarsSelect.position(mainRect.left + 350, mainRect.top + drawHeight + 10);
 }
 
 function draw() {
@@ -472,6 +478,7 @@ function drawPrimeImplicantsSummary() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

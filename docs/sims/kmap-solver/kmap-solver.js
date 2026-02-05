@@ -49,7 +49,6 @@ function setup() {
 
   // Create variable count selector
   numVarsSelect = createSelect();
-  numVarsSelect.position(100, drawHeight + 15);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
@@ -58,17 +57,24 @@ function setup() {
 
   // Create solve button
   solveButton = createButton('Solve');
-  solveButton.position(250, drawHeight + 15);
   solveButton.mousePressed(handleSolve);
 
   // Create clear button
   clearButton = createButton('Clear');
-  clearButton.position(310, drawHeight + 15);
   clearButton.mousePressed(handleClear);
+
+  positionUIElements();
 
   initializeCells();
 
   describe('Interactive K-map solver for Boolean function simplification', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numVarsSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  solveButton.position(mainRect.left + 250, mainRect.top + drawHeight + 15);
+  clearButton.position(mainRect.left + 310, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -565,6 +571,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

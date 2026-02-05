@@ -56,14 +56,20 @@ function setup() {
   canvas.parent(mainElement);
 
   exampleSelect = createSelect();
-  exampleSelect.position(100, drawHeight + 12);
   exampleSelect.size(250);
   for (let i = 0; i < examples.length; i++) {
     exampleSelect.option(examples[i].name, i);
   }
   exampleSelect.changed(() => { currentExample = parseInt(exampleSelect.value()); });
 
+  positionUIElements();
+
   describe('Don\'t care optimizer showing how undefined inputs enable simpler circuits', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  exampleSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 12);
 }
 
 function draw() {
@@ -334,6 +340,7 @@ function drawExplanation(y) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

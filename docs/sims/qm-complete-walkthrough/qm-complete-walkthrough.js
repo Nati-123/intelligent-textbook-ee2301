@@ -48,19 +48,16 @@ function setup() {
 
   // Input field for minterms
   mintermInput = createInput('0,2,5,6,7,8,10,12,13,14,15');
-  mintermInput.position(85, drawHeight + 10);
   mintermInput.size(150);
   mintermInput.attribute('placeholder', 'e.g., 0,1,2,5');
 
   // Input field for don't cares
   dontCareInput = createInput('');
-  dontCareInput.position(85, drawHeight + 40);
   dontCareInput.size(150);
   dontCareInput.attribute('placeholder', 'e.g., 3,11 (optional)');
 
   // Variables dropdown
   numVarsSelect = createSelect();
-  numVarsSelect.position(85, drawHeight + 70);
   numVarsSelect.option('3 vars', 3);
   numVarsSelect.option('4 vars', 4);
   numVarsSelect.option('5 vars', 5);
@@ -68,20 +65,29 @@ function setup() {
 
   // Generate button
   generateButton = createButton('Generate Solution');
-  generateButton.position(250, drawHeight + 10);
   generateButton.mousePressed(generateSolution);
 
   // Reset button
   resetButton = createButton('Reset');
-  resetButton.position(250, drawHeight + 40);
   resetButton.mousePressed(resetSimulation);
 
   // Copy button
   copyButton = createButton('Copy Result');
-  copyButton.position(250, drawHeight + 70);
   copyButton.mousePressed(copyResult);
 
+  positionUIElements();
+
   describe('Complete Quine-McCluskey solver showing all steps from input to minimal expression', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  mintermInput.position(mainRect.left + 85, mainRect.top + drawHeight + 10);
+  dontCareInput.position(mainRect.left + 85, mainRect.top + drawHeight + 40);
+  numVarsSelect.position(mainRect.left + 85, mainRect.top + drawHeight + 70);
+  generateButton.position(mainRect.left + 250, mainRect.top + drawHeight + 10);
+  resetButton.position(mainRect.left + 250, mainRect.top + drawHeight + 40);
+  copyButton.position(mainRect.left + 250, mainRect.top + drawHeight + 70);
 }
 
 function draw() {
@@ -583,6 +589,7 @@ function windowResized() {
   resizeCanvas(containerWidth, containerHeight);
   mintermInput.size(Math.min(150, canvasWidth - 200));
   dontCareInput.size(Math.min(150, canvasWidth - 200));
+  positionUIElements();
   redraw();
 }
 

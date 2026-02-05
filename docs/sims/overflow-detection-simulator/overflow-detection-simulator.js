@@ -24,24 +24,30 @@ function setup() {
 
   // Operation selector
   operationSelect = createSelect();
-  operationSelect.position(120, drawHeight + 15);
   operationSelect.option('Addition', 'add');
   operationSelect.option('Subtraction', 'sub');
   operationSelect.changed(() => { operation = operationSelect.value(); });
 
   // Value A slider
   aSlider = createSlider(-8, 7, 3);
-  aSlider.position(120, drawHeight + 50);
   aSlider.size(180);
   aSlider.input(() => { valueA = aSlider.value(); });
 
   // Value B slider
   bSlider = createSlider(-8, 7, 4);
-  bSlider.position(120, drawHeight + 85);
   bSlider.size(180);
   bSlider.input(() => { valueB = bSlider.value(); });
 
+  positionUIElements();
+
   describe('Overflow detection simulator showing when signed arithmetic overflows', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  operationSelect.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
+  aSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 50);
+  bSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 85);
 }
 
 function draw() {
@@ -247,6 +253,7 @@ function detectSubOverflow(a, b) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

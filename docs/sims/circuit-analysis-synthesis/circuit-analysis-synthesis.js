@@ -89,7 +89,6 @@ function setup() {
   canvas.parent(mainElement);
 
   modeSelect = createSelect();
-  modeSelect.position(100, drawHeight + 15);
   modeSelect.option('Analysis (Circuit → Expression)', 'analyze');
   modeSelect.option('Synthesis (Expression → Circuit)', 'synthesize');
   modeSelect.changed(() => {
@@ -97,7 +96,14 @@ function setup() {
     exampleIdx = 0;
   });
 
+  positionUIElements();
+
   describe('Circuit analysis and synthesis showing the relationship between expressions and circuits', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  modeSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -347,6 +353,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

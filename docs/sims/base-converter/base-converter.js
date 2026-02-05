@@ -39,14 +39,12 @@ function setup() {
 
   // Create input field
   numberInput = createInput('42');
-  numberInput.position(100, drawHeight + 15);
   numberInput.size(150);
   numberInput.attribute('placeholder', 'Enter number');
   numberInput.input(handleInput);
 
   // Create base selector
   baseSelect = createSelect();
-  baseSelect.position(100, drawHeight + 50);
   baseSelect.option('Binary (2)', 2);
   baseSelect.option('Octal (8)', 8);
   baseSelect.option('Decimal (10)', 10);
@@ -56,13 +54,21 @@ function setup() {
 
   // Create signed checkbox
   signedCheckbox = createCheckbox("Two's complement (8-bit)", false);
-  signedCheckbox.position(270, drawHeight + 15);
   signedCheckbox.changed(handleSignedChange);
+
+  positionUIElements();
 
   // Initial conversion
   performConversion();
 
   describe('Interactive base converter for binary, decimal, octal, and hexadecimal numbers', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numberInput.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  baseSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 50);
+  signedCheckbox.position(mainRect.left + 270, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -353,6 +359,7 @@ function getBaseName(base) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

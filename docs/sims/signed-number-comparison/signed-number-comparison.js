@@ -20,11 +20,17 @@ function setup() {
   canvas.parent(mainElement);
 
   valueSlider = createSlider(-7, 7, 5);
-  valueSlider.position(120, drawHeight + 15);
   valueSlider.size(200);
   valueSlider.input(() => { currentValue = valueSlider.value(); });
 
+  positionUIElements();
+
   describe('Comparison of sign-magnitude, ones complement, and twos complement representations', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  valueSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -228,6 +234,7 @@ function drawComparisonTable() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

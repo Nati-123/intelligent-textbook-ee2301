@@ -22,12 +22,18 @@ function setup() {
   canvas.parent(mainElement);
 
   theoremSelect = createSelect();
-  theoremSelect.position(120, drawHeight + 15);
   theoremSelect.option("(A · B)' = A' + B'", 0);
   theoremSelect.option("(A + B)' = A' · B'", 1);
   theoremSelect.changed(() => { currentTheorem = parseInt(theoremSelect.value()); });
 
+  positionUIElements();
+
   describe("De Morgan's theorem visualizer showing gate equivalence", LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  theoremSelect.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -315,6 +321,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

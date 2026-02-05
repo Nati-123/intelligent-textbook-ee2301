@@ -23,23 +23,29 @@ function setup() {
   canvas.parent(mainElement);
 
   modeSelect = createSelect();
-  modeSelect.position(100, drawHeight + 15);
   modeSelect.option('Addition (A + B)', 'add');
   modeSelect.option('Subtraction (A - B)', 'sub');
   modeSelect.changed(() => { currentMode = modeSelect.value(); });
 
   // Value inputs using sliders
   aInput = createSlider(0, 15, 5);
-  aInput.position(60, drawHeight + 45);
   aInput.size(100);
   aInput.input(() => { valueA = aInput.value(); });
 
   bInput = createSlider(0, 15, 3);
-  bInput.position(220, drawHeight + 45);
   bInput.size(100);
   bInput.input(() => { valueB = bInput.value(); });
 
+  positionUIElements();
+
   describe('Adder-subtractor builder showing how one circuit does both operations', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  modeSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  aInput.position(mainRect.left + 60, mainRect.top + drawHeight + 45);
+  bInput.position(mainRect.left + 220, mainRect.top + drawHeight + 45);
 }
 
 function draw() {
@@ -258,6 +264,7 @@ function drawOperation() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

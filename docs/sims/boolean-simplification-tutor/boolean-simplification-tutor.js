@@ -72,7 +72,6 @@ function setup() {
   canvas.parent(mainElement);
 
   exampleSelect = createSelect();
-  exampleSelect.position(100, drawHeight + 20);
   exampleSelect.size(250);
   for (let i = 0; i < examples.length; i++) {
     exampleSelect.option(examples[i].name, i);
@@ -82,7 +81,14 @@ function setup() {
     currentStep = 0;
   });
 
+  positionUIElements();
+
   describe('Boolean simplification tutor with step-by-step solutions', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  exampleSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 20);
 }
 
 function draw() {
@@ -252,6 +258,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

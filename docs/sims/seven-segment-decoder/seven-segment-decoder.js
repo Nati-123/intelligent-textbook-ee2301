@@ -41,11 +41,17 @@ function setup() {
   canvas.parent(mainElement);
 
   valueSlider = createSlider(0, 15, 5);
-  valueSlider.position(100, drawHeight + 15);
   valueSlider.size(180);
   valueSlider.input(() => { currentValue = valueSlider.value(); });
 
+  positionUIElements();
+
   describe('Seven segment display decoder showing BCD to segment conversion', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  valueSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -329,6 +335,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

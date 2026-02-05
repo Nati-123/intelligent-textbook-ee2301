@@ -15,6 +15,7 @@ let operandB = [0, 1, 0, 1];
 let operation = 'add';
 let opSelect;
 let newProblemBtn;
+let showAnswerBtn;
 let showAnswer = false;
 
 function setup() {
@@ -24,21 +25,27 @@ function setup() {
   canvas.parent(mainElement);
 
   opSelect = createSelect();
-  opSelect.position(100, drawHeight + 15);
   opSelect.option('Addition', 'add');
   opSelect.option('Subtraction', 'sub');
   opSelect.selected('Addition');
   opSelect.changed(() => { showAnswer = false; });
 
   newProblemBtn = createButton('New Problem');
-  newProblemBtn.position(220, drawHeight + 15);
   newProblemBtn.mousePressed(generateNewProblem);
 
-  let showBtn = createButton('Show Answer');
-  showBtn.position(320, drawHeight + 15);
-  showBtn.mousePressed(() => { showAnswer = true; });
+  showAnswerBtn = createButton('Show Answer');
+  showAnswerBtn.mousePressed(() => { showAnswer = true; });
+
+  positionUIElements();
 
   describe('Binary arithmetic practice for addition and subtraction', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  opSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  newProblemBtn.position(mainRect.left + 220, mainRect.top + drawHeight + 15);
+  showAnswerBtn.position(mainRect.left + 320, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -236,6 +243,7 @@ function generateNewProblem() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

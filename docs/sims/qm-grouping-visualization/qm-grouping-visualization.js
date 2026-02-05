@@ -44,13 +44,11 @@ function setup() {
 
   // Create input field for minterms
   mintermInput = createInput('0,1,2,5,6,7,8,9,10,14');
-  mintermInput.position(120, drawHeight + 10);
   mintermInput.size(180);
   mintermInput.attribute('placeholder', 'e.g., 0,1,2,5,6,7');
 
   // Create dropdown for number of variables
   numVarsSelect = createSelect();
-  numVarsSelect.position(120, drawHeight + 45);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
   numVarsSelect.option('5 variables', 5);
@@ -60,19 +58,27 @@ function setup() {
 
   // Create Generate button
   generateButton = createButton('Generate Groups');
-  generateButton.position(320, drawHeight + 10);
   generateButton.mousePressed(generateGroups);
 
   // Create Reset button
   resetButton = createButton('Reset');
-  resetButton.position(320, drawHeight + 45);
   resetButton.mousePressed(resetSimulation);
 
   // Create checkbox
   showBinaryCheckbox = createCheckbox('Show binary', true);
-  showBinaryCheckbox.position(420, drawHeight + 45);
+
+  positionUIElements();
 
   describe('Interactive visualization showing how minterms are grouped by number of 1s for Quine-McCluskey method', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  mintermInput.position(mainRect.left + 120, mainRect.top + drawHeight + 10);
+  numVarsSelect.position(mainRect.left + 120, mainRect.top + drawHeight + 45);
+  generateButton.position(mainRect.left + 320, mainRect.top + drawHeight + 10);
+  resetButton.position(mainRect.left + 320, mainRect.top + drawHeight + 45);
+  showBinaryCheckbox.position(mainRect.left + 420, mainRect.top + drawHeight + 45);
 }
 
 function draw() {
@@ -313,6 +319,7 @@ function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
   mintermInput.size(Math.min(180, canvasWidth - 250));
+  positionUIElements();
   redraw();
 }
 

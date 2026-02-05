@@ -37,13 +37,11 @@ function setup() {
 
   // Create minterm input
   mintermInput = createInput('1,3,5,7');
-  mintermInput.position(130, drawHeight + 15);
   mintermInput.size(150);
   mintermInput.attribute('placeholder', 'e.g., 1,3,5,7');
 
   // Create variable count selector
   numVarsSelect = createSelect();
-  numVarsSelect.position(130, drawHeight + 50);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
@@ -52,12 +50,20 @@ function setup() {
 
   // Create generate button
   generateButton = createButton('Generate');
-  generateButton.position(300, drawHeight + 15);
   generateButton.mousePressed(handleGenerate);
+
+  positionUIElements();
 
   handleGenerate();
 
   describe('Interactive converter between minterm and maxterm canonical forms for Boolean functions', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  mintermInput.position(mainRect.left + 130, mainRect.top + drawHeight + 15);
+  numVarsSelect.position(mainRect.left + 130, mainRect.top + drawHeight + 50);
+  generateButton.position(mainRect.left + 300, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -343,6 +349,7 @@ function handleGenerate() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

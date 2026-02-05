@@ -25,7 +25,6 @@ function setup() {
 
   // Number of variables selector
   numVarsSelect = createSelect();
-  numVarsSelect.position(100, drawHeight + 15);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
@@ -36,15 +35,22 @@ function setup() {
 
   // Expression input
   expressionInput = createInput('A AND B');
-  expressionInput.position(100, drawHeight + 50);
   expressionInput.size(200);
   expressionInput.input(() => {
     expression = expressionInput.value();
     generateTruthTable();
   });
 
+  positionUIElements();
+
   generateTruthTable();
   describe('Truth table generator for Boolean expressions', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numVarsSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  expressionInput.position(mainRect.left + 100, mainRect.top + drawHeight + 50);
 }
 
 function draw() {
@@ -323,6 +329,7 @@ function parsePrimary(tokens, vars, state) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

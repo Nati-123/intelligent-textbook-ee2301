@@ -22,7 +22,6 @@ function setup() {
   canvas.parent(mainElement);
 
   operationSelect = createSelect();
-  operationSelect.position(120, drawHeight + 15);
   operationSelect.option('AND');
   operationSelect.option('OR');
   operationSelect.option('NOT A');
@@ -31,7 +30,14 @@ function setup() {
   operationSelect.option('XOR');
   operationSelect.changed(() => { currentOp = operationSelect.value(); });
 
+  positionUIElements();
+
   describe('Boolean operations visualized with Venn diagrams and truth values', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  operationSelect.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -309,6 +315,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

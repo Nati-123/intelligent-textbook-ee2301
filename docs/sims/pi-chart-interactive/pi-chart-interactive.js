@@ -69,28 +69,34 @@ function setup() {
 
   // Create buttons
   findEPIButton = createButton('Find Essential PIs');
-  findEPIButton.position(10, drawHeight + 10);
   findEPIButton.mousePressed(findEssentialPIs);
 
   checkSolutionButton = createButton('Check Solution');
-  checkSolutionButton.position(140, drawHeight + 10);
   checkSolutionButton.mousePressed(checkSolution);
 
   resetButton = createButton('Reset');
-  resetButton.position(255, drawHeight + 10);
   resetButton.mousePressed(resetSimulation);
 
   // Example selector
   exampleSelect = createSelect();
-  exampleSelect.position(10, drawHeight + 45);
   exampleSelect.option('Example 1');
   exampleSelect.option('Cyclic');
   exampleSelect.changed(loadExample);
+
+  positionUIElements();
 
   // Initialize with first example
   loadExample();
 
   describe('Interactive prime implicant chart for selecting essential PIs and finding minimum cover', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  findEPIButton.position(mainRect.left + 10, mainRect.top + drawHeight + 10);
+  checkSolutionButton.position(mainRect.left + 140, mainRect.top + drawHeight + 10);
+  resetButton.position(mainRect.left + 255, mainRect.top + drawHeight + 10);
+  exampleSelect.position(mainRect.left + 10, mainRect.top + drawHeight + 45);
 }
 
 function draw() {
@@ -405,6 +411,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
   redraw();
 }
 

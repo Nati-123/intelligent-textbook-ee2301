@@ -43,7 +43,6 @@ function setup() {
   canvas.parent(mainElement);
 
   functionSelect = createSelect();
-  functionSelect.position(100, drawHeight + 12);
   functionSelect.size(200);
   for (let i = 0; i < functions.length; i++) {
     functionSelect.option(functions[i].name, i);
@@ -55,13 +54,20 @@ function setup() {
   });
 
   varSelect = createSelect();
-  varSelect.position(100, drawHeight + 42);
   varSelect.option('A', 0);
   varSelect.option('B', 1);
   varSelect.option('C', 2);
   varSelect.changed(() => { expansionVar = parseInt(varSelect.value()); });
 
+  positionUIElements();
+
   describe('Shannon expansion theorem explorer showing function decomposition', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  functionSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 12);
+  varSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 42);
 }
 
 function draw() {
@@ -308,6 +314,7 @@ function arraysEqual(a, b) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

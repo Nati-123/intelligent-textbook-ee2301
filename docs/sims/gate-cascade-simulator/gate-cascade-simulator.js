@@ -65,14 +65,20 @@ function setup() {
   canvas.parent(mainElement);
 
   circuitSelect = createSelect();
-  circuitSelect.position(100, drawHeight + 15);
   circuitSelect.size(250);
   for (let i = 0; i < circuits.length; i++) {
     circuitSelect.option(circuits[i].name, i);
   }
   circuitSelect.changed(() => { currentCircuit = parseInt(circuitSelect.value()); });
 
+  positionUIElements();
+
   describe('Gate cascade simulator showing signal propagation through multi-level circuits', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  circuitSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -326,6 +332,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

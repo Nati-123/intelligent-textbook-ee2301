@@ -22,12 +22,10 @@ function setup() {
   canvas.parent(mainElement);
 
   numberInput = createInput('1011');
-  numberInput.position(100, drawHeight + 15);
   numberInput.size(120);
   numberInput.input(handleInput);
 
   baseSelect = createSelect();
-  baseSelect.position(100, drawHeight + 50);
   baseSelect.option('Binary (2)', 2);
   baseSelect.option('Octal (8)', 8);
   baseSelect.option('Decimal (10)', 10);
@@ -35,7 +33,15 @@ function setup() {
   baseSelect.selected('Binary (2)');
   baseSelect.changed(handleBaseChange);
 
+  positionUIElements();
+
   describe('Interactive positional notation explorer showing place values', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numberInput.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
+  baseSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 50);
 }
 
 function draw() {
@@ -224,6 +230,7 @@ function handleBaseChange() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

@@ -24,18 +24,24 @@ function setup() {
   canvas.parent(mainElement);
 
   modeSelect = createSelect();
-  modeSelect.position(80, drawHeight + 15);
   modeSelect.option('Generate Parity', 'generate');
   modeSelect.option('Check Parity', 'check');
   modeSelect.changed(() => { currentMode = modeSelect.value(); });
 
   parityTypeSelect = createSelect();
-  parityTypeSelect.position(230, drawHeight + 15);
   parityTypeSelect.option('Even Parity', 'even');
   parityTypeSelect.option('Odd Parity', 'odd');
   parityTypeSelect.changed(() => { parityType = parityTypeSelect.value(); });
 
+  positionUIElements();
+
   describe('Parity generation and checking circuit simulator', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  modeSelect.position(mainRect.left + 80, mainRect.top + drawHeight + 15);
+  parityTypeSelect.position(mainRect.left + 230, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -331,6 +337,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {
