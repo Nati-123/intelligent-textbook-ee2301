@@ -70,7 +70,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1. Introduction to Karnaugh Maps
+## 5.1 Introduction to Karnaugh Maps
 
 A **Karnaugh map** (K-map) is a graphical tool for simplifying Boolean functions that arranges the truth table in a grid format where adjacent cells differ by exactly one variable. This arrangement makes it easy to identify groups of 1s (or 0s) that can be combined to eliminate variables.
 
@@ -103,7 +103,7 @@ K-maps become impractical beyond 5-6 variables due to the difficulty of visualiz
 
 ---
 
-## 2. Two-Variable K-Map
+## 5.2 Two-Variable K-Map
 
 The **two-variable K-map** is the simplest form, with 4 cells arranged in a 2×2 grid.
 
@@ -137,7 +137,7 @@ Groups:
 
 ---
 
-## 3. Three-Variable K-Map
+## 5.3 Three-Variable K-Map
 
 The **three-variable K-map** uses a 2×4 grid with one variable on rows and two on columns (or vice versa).
 
@@ -174,12 +174,7 @@ A=1   |  1 |  1 |  0 |  1 |
 ```
 
 Groups:
-- Column 00 (m₀, m₄): $\overline{B}\overline{C}$
-- Wrap-around group (m₀, m₂, m₄, m₆): $\overline{C}$ (all four corners of columns 00 and 10)
-- Pair (m₄, m₅): $A\overline{B}$
-
-Wait, let me regroup more carefully:
-- Group (m₀, m₂, m₄, m₆) wraps columns 00 and 10: $\overline{C}$
+- Wrap-around group (m₀, m₂, m₄, m₆) spans columns 00 and 10: $\overline{C}$
 - Remaining 1: m₅, covered by pair (m₄, m₅): $A\overline{B}$
 
 **Result:** $F = \overline{C} + A\overline{B}$
@@ -248,7 +243,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 4. Four-Variable K-Map
+## 5.4 Four-Variable K-Map
 
 The **four-variable K-map** is the most commonly used size, with 16 cells in a 4×4 grid.
 
@@ -371,7 +366,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 5. Valid Groups and Grouping Rules
+## 5.5 Valid Groups and Grouping Rules
 
 ### Valid Group Sizes
 
@@ -423,13 +418,14 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
       +----+----+----+----+
 ```
 
-Group 1 (m₀, m₁, m₄, m₅): $\overline{A}B$ — wait, let me use correct indexing...
+Group 1 (m₀, m₁, m₄, m₅): $\overline{A}\overline{C}$ (A=0, C=0 for all four cells)
+Group 2 (m₅, m₇): $\overline{A}BD$ (A=0, B=1, D=1 for both cells)
 
-The key point: cell m₅ can be in multiple groups without causing issues.
+Cell m₅ belongs to both groups. The final expression is $F = \overline{A}\overline{C} + \overline{A}BD$, and the overlap does not cause duplication.
 
 ---
 
-## 6. Implicants and Prime Implicants
+## 5.6 Implicants and Prime Implicants
 
 ### Implicants
 
@@ -534,7 +530,7 @@ Implementation: p5.js with data visualization
 
 ---
 
-## 7. K-Map SOP Simplification
+## 5.7 K-Map SOP Simplification
 
 **K-Map SOP simplification** produces a minimal Sum of Products expression.
 
@@ -578,24 +574,20 @@ AB=10   |  1 |  1 |  0 |  0 |
 ```
 
 Prime implicants:
-- Column 00 (8 cells): $\overline{C}\overline{D}$ — wait, that's only column 00
-- Actually: Group (m₀,m₁,m₄,m₅,m₈,m₉,m₁₂,m₁₃) → $\overline{D}$
-- Group (m₀,m₂,m₄,m₆,m₈,m₁₀,m₁₂,m₁₄) → $\overline{C}$
+- Group (m₀,m₁,m₄,m₅,m₈,m₉,m₁₂,m₁₃) — columns 00 and 01, all rows: $\overline{C}$
+- Group (m₀,m₂,m₄,m₆) — rows 00,01, columns 00 and 10 (wrapping): $\overline{A}\overline{D}$
+- Group (m₄,m₆,m₁₂,m₁₄) — rows 01,11, columns 00 and 10 (wrapping): $B\overline{D}$
 
-Looking at column 01: all 1s = $\overline{C}D$... Hmm, let me recheck the function.
+All three are essential:
+- $\overline{C}$ is the only PI covering m₁, m₅, m₈, m₉, m₁₃
+- $\overline{A}\overline{D}$ is the only PI covering m₂
+- $B\overline{D}$ is the only PI covering m₁₄
 
-Better approach: Group the 1s systematically.
-- Column 00 (all 4 rows): $\overline{C}\overline{D}$
-- Column 01 (all 4 rows): $\overline{C}D$
-- Column 10 (rows 00,01,11): $C\overline{D}$ for 3 cells (m₂,m₆,m₁₄) is not valid (3 cells)
-
-Let me reconsider...
-
-**Result:** $F = \overline{C} + \overline{A}\overline{D} + B\overline{D}$ (example—actual grouping depends on careful analysis)
+**Result:** $F = \overline{C} + \overline{A}\overline{D} + B\overline{D}$
 
 ---
 
-## 8. K-Map POS Simplification
+## 5.8 K-Map POS Simplification
 
 **K-Map POS simplification** produces a minimal Product of Sums expression by grouping 0s instead of 1s.
 
@@ -639,7 +631,7 @@ Compare the literal counts of minimal SOP and minimal POS—choose the simpler f
 
 ---
 
-## 9. K-Maps with Don't Cares
+## 5.9 K-Maps with Don't Cares
 
 **K-maps with don't cares** include cells marked with X (or d) representing input combinations where the output doesn't matter.
 
@@ -743,7 +735,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 10. Five-Variable K-Maps
+## 5.10 Five-Variable K-Maps
 
 The **five-variable K-map** extends the technique to 32 cells, typically displayed as two adjacent 4×4 maps.
 
@@ -781,7 +773,7 @@ Groups can span both maps by including corresponding cells from each.
 ### Grouping Across Maps
 
 A valid group in a 5-variable K-map can include cells from:
-- Just the E=0 map (doesn't include E or $\overline{E}$... wait, if only E=0, then $\overline{E}$ is in the term)
+- Just the E=0 map ($\overline{E}$ appears in the product term)
 - Just the E=1 map (E is in the term)
 - Both maps in corresponding positions (E is eliminated)
 
@@ -789,17 +781,13 @@ A valid group in a 5-variable K-map can include cells from:
 
 ---
 
-## 11. Multiple Solutions and Cost Metrics
+## 5.11 Multiple Solutions and Cost Metrics
 
 ### Multiple Solutions
 
 Some functions have **multiple solutions**—different groupings that produce expressions with the same minimal cost. Both are equally valid minimal forms.
 
-**Example:** Consider a function where minterms m₁, m₃, m₅, m₇, m₉, m₁₁ can be grouped as:
-- Solution 1: (m₁,m₃,m₅,m₇) + (m₉,m₁₁)
-- Solution 2: (m₁,m₅,m₉) + (m₃,m₇,m₁₁)
-
-Wait, those aren't valid groups. Let me give a proper example:
+**Example:** Consider $F(A,B,C,D) = \Sigma m(0,1,2,5,6,7,8,9,10,14)$. After identifying essential prime implicants and covering them, suppose minterms m₅ and m₆ remain uncovered. If two different non-essential prime implicants each cover one of these remaining minterms with equal cost, choosing one over the other yields a different but equally minimal expression.
 
 When multiple prime implicants can cover the same set of remaining minterms after essential PIs, different valid choices lead to different but equally minimal expressions.
 
@@ -837,7 +825,7 @@ The **cost of expression** can be measured by:
 
 ---
 
-## 12. K-Map Limitations and Alternatives
+## 5.12 K-Map Limitations and Alternatives
 
 ### K-Map Limitations
 
