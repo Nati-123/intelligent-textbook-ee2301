@@ -65,7 +65,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1. Combinational vs Sequential Logic
+## 3.1 Combinational vs Sequential Logic
 
 Digital circuits are classified into two fundamental categories based on how they process information.
 
@@ -84,7 +84,7 @@ This unit focuses exclusively on **combinational logic**. A **logic circuit** is
 
 ---
 
-## 2. The Design Process: Specification to Circuit
+## 3.2 The Design Process: Specification to Circuit
 
 The process of creating a digital circuit follows a systematic methodology, moving from informal requirements to a working implementation.
 
@@ -109,13 +109,10 @@ A **switching function** is the formal name for a Boolean function that describe
 
 #### Diagram: Design Flow Visualization
 
-#### Diagram: Boolean Operations Visualizer
-
 <iframe src="../sims/boolean-operations-visualizer/main.html"
         width="100%"
         height="500"
         scrolling="no"></iframe>
-
 
 <details markdown="1">
 <summary>Design Flow Visualization</summary>
@@ -161,7 +158,7 @@ Implementation: HTML/CSS/JavaScript with SVG elements
 
 ---
 
-## 3. Word Problems to Boolean Expressions
+## 3.3 Word Problems to Boolean Expressions
 
 Real design problems often begin as English descriptions. **Word problems to Boolean** conversion requires careful translation of natural language into precise logical statements.
 
@@ -270,7 +267,7 @@ Implementation: p5.js with DOM elements
 
 ---
 
-## 4. Arithmetic Circuits: Adders
+## 3.4 Arithmetic Circuits: Adders
 
 Binary addition is fundamental to computer arithmetic. Digital systems implement addition using specialized circuits built from basic logic gates.
 
@@ -401,7 +398,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 5. Arithmetic Circuits: Subtractors
+## 3.5 Arithmetic Circuits: Subtractors
 
 Binary subtraction can be implemented directly with subtractor circuits or by using adders with two's complement representation.
 
@@ -521,7 +518,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 6. Comparator Circuits
+## 3.6 Comparator Circuits
 
 **Comparator circuits** determine the relationship between two binary numbers, producing outputs that indicate whether one number is greater than, less than, or equal to another.
 
@@ -562,7 +559,7 @@ The less-than output is: $L = \overline{G} \cdot \overline{E}$ (or derive symmet
 
 ---
 
-## 7. Parity Circuits
+## 3.7 Parity Circuits
 
 **Parity** is a simple error detection technique that adds a check bit to data, allowing detection of single-bit transmission errors.
 
@@ -664,7 +661,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8. Code Converters
+## 3.8 Code Converters
 
 **Code converters** translate data from one binary representation to another. Different codes offer advantages for specific applications.
 
@@ -790,7 +787,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 9. Seven-Segment Display Decoder
+## 3.9 Seven-Segment Display Decoder
 
 A **seven-segment display** uses seven LED segments (plus optional decimal point) arranged to display decimal digits and some letters.
 
@@ -896,7 +893,7 @@ Implementation: p5.js with SVG seven-segment rendering
 
 ---
 
-## 10. Incompletely Specified Functions
+## 3.10 Incompletely Specified Functions
 
 An **incompletely specified function** has some input combinations where the output doesn't matter—either because those inputs can never occur or because the output value for those inputs is irrelevant to the application.
 
@@ -940,12 +937,15 @@ The optimizer chooses the assignment (0 or 1) that minimizes the final expressio
 | 1 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 1 |
 
-Without don't cares: $F = \overline{A}\overline{B}\overline{C} + \overline{A}B\overline{C} + AB\overline{C} + ABC$
+Without don't cares (treating X as 0): $F = \overline{A}\overline{B}\overline{C} + \overline{A}B\overline{C} + AB\overline{C} + ABC = \overline{A}\overline{C} + AB$ (4 literals)
 
 Using don't cares strategically (treating row 011 as 1):
-$F = \overline{A}\overline{C} + \overline{A}B + AB = \overline{C}(\overline{A} + B) + AB = ...$
 
-K-maps (Unit 5) provide a systematic method for exploiting don't cares.
+$$F = \overline{A}\overline{C} + \overline{A}B + AB = \overline{A}\overline{C} + B(\overline{A} + A) = \overline{A}\overline{C} + B$$
+
+**Result:** $F = \overline{A}\overline{C} + B$ (3 literals — simpler than without don't cares!)
+
+K-maps (Unit 5) provide a systematic visual method for exploiting don't cares optimally.
 
 #### Diagram: Don't Care Optimizer
 
