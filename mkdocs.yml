@@ -49,7 +49,10 @@ nav:
   - Unit 6 - Quine-McCluskey Method:
     - Content: unit6-quine-mccluskey/index.md
     - Quiz: unit6-quine-mccluskey/quiz.md
-  - Learning Graph: learning-graph/concept-list.md
+  - Learning Graph:
+    - Concept List: learning-graph/concept-list.md
+    - Glossary Quality Report: learning-graph/glossary-quality-report.md
+    - Quiz Generation Report: learning-graph/quiz-generation-report.md
   - MicroSims:
     - Overview: sims/index.md
     - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
