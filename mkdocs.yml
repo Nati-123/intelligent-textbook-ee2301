@@ -51,6 +51,7 @@ nav:
     - Quiz: unit6-quine-mccluskey/quiz.md
   - Learning Graph:
     - Concept List: learning-graph/concept-list.md
+    - Book Metrics: learning-graph/book-metrics.md
     - Glossary Quality Report: learning-graph/glossary-quality-report.md
     - Quiz Generation Report: learning-graph/quiz-generation-report.md
   - MicroSims:
