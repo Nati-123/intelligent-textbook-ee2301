@@ -1,13 +1,13 @@
 // Base Converter MicroSim
-// Convert between binary, decimal, octal, and hexadecimal number systems
+// Convert between arbitrary number bases (2-36)
 // Bloom Level: Apply (L3) - Calculate, convert, use
 // MicroSim template version 2026.02
 
 // Canvas dimensions
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 370;
-let controlHeight = 80;
+let drawHeight = 400;
+let controlHeight = 110;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -18,16 +18,31 @@ let defaultTextSize = 14;
 // UI Elements
 let numberInput;
 let baseSelect;
+let outputBaseSelect;
 let signedCheckbox;
 
 // Data
 let inputNumber = '';
 let inputBase = 10;
+let outputBase = 2;
 let isSigned = false;
 let bitWidth = 8;
 let results = {};
 let conversionSteps = [];
 let errorMessage = '';
+
+// Common base labels
+const BASE_LABELS = {
+  2: 'Binary',
+  3: 'Ternary',
+  5: 'Quinary',
+  8: 'Octal',
+  10: 'Decimal',
+  12: 'Duodecimal',
+  16: 'Hexadecimal',
+  20: 'Vigesimal',
+  36: 'Base 36'
+};
 
 function setup() {
   updateCanvasSize();
@@ -43,14 +58,23 @@ function setup() {
   numberInput.attribute('placeholder', 'Enter number');
   numberInput.input(handleInput);
 
-  // Create base selector
+  // Create input base selector (2-36)
   baseSelect = createSelect();
-  baseSelect.option('Binary (2)', 2);
-  baseSelect.option('Octal (8)', 8);
-  baseSelect.option('Decimal (10)', 10);
-  baseSelect.option('Hexadecimal (16)', 16);
-  baseSelect.selected('Decimal (10)');
+  for (let b = 2; b <= 36; b++) {
+    let label = BASE_LABELS[b] ? `${b} - ${BASE_LABELS[b]}` : String(b);
+    baseSelect.option(label, b);
+  }
+  baseSelect.selected('10');
   baseSelect.changed(handleBaseChange);
+
+  // Create output base selector (2-36)
+  outputBaseSelect = createSelect();
+  for (let b = 2; b <= 36; b++) {
+    let label = BASE_LABELS[b] ? `${b} - ${BASE_LABELS[b]}` : String(b);
+    outputBaseSelect.option(label, b);
+  }
+  outputBaseSelect.selected('2');
+  outputBaseSelect.changed(handleOutputBaseChange);
 
   // Create signed checkbox
   signedCheckbox = createCheckbox("Two's complement (8-bit)", false);
@@ -61,14 +85,15 @@ function setup() {
   // Initial conversion
   performConversion();
 
-  describe('Interactive base converter for binary, decimal, octal, and hexadecimal numbers', LABEL);
+  describe('Interactive base converter supporting arbitrary bases from 2 to 36', LABEL);
 }
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  numberInput.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
-  baseSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 50);
-  signedCheckbox.position(mainRect.left + 270, mainRect.top + drawHeight + 15);
+  numberInput.position(mainRect.left + 110, mainRect.top + drawHeight + 12);
+  signedCheckbox.position(mainRect.left + 270, mainRect.top + drawHeight + 12);
+  baseSelect.position(mainRect.left + 110, mainRect.top + drawHeight + 45);
+  outputBaseSelect.position(mainRect.left + 110, mainRect.top + drawHeight + 78);
 }
 
 function draw() {
@@ -104,62 +129,69 @@ function draw() {
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(defaultTextSize);
-  text('Number:', 20, drawHeight + 25);
-  text('Base:', 20, drawHeight + 60);
+  text('Number:', 20, drawHeight + 22);
+  text('Input Base:', 20, drawHeight + 55);
+  text('Output Base:', 20, drawHeight + 88);
 }
 
 function drawResults() {
   let startY = 45;
-  let boxHeight = 50;
+  let boxHeight = 42;
   let boxWidth = canvasWidth - 2 * margin;
-  let spacing = 5;
+  let spacing = 4;
 
   let bases = [
-    { name: 'Binary (2)', key: 'binary', prefix: '0b' },
-    { name: 'Octal (8)', key: 'octal', prefix: '0o' },
-    { name: 'Decimal (10)', key: 'decimal', prefix: '' },
-    { name: 'Hexadecimal (16)', key: 'hex', prefix: '0x' }
+    { base: 2, name: 'Binary (2)', key: 'base2', prefix: '0b' },
+    { base: 8, name: 'Octal (8)', key: 'base8', prefix: '0o' },
+    { base: 10, name: 'Decimal (10)', key: 'base10', prefix: '' },
+    { base: 16, name: 'Hexadecimal (16)', key: 'base16', prefix: '0x' },
+    { base: outputBase, name: getBaseName(outputBase) + ' (' + outputBase + ')', key: 'custom', prefix: '' }
   ];
 
   for (let i = 0; i < bases.length; i++) {
     let y = startY + i * (boxHeight + spacing);
-    let isInput = (bases[i].key === getBaseKey(inputBase));
+    let isInput = (bases[i].base === inputBase);
+    let isCustom = (i === 4);
 
     // Box background
     if (isInput) {
       fill('#e3f2fd');
       stroke('#2196f3');
+    } else if (isCustom) {
+      fill('#fff8e1');
+      stroke('#ffa000');
     } else {
       fill('white');
       stroke('#ccc');
     }
-    strokeWeight(isInput ? 2 : 1);
+    strokeWeight(isInput ? 2 : (isCustom ? 2 : 1));
     rect(margin, y, boxWidth, boxHeight, 5);
 
     // Label
-    fill(isInput ? '#1565c0' : '#666');
+    fill(isInput ? '#1565c0' : (isCustom ? '#e65100' : '#666'));
     noStroke();
     textAlign(LEFT, CENTER);
-    textSize(12);
-    text(bases[i].name + (isInput ? ' (input)' : ''), margin + 10, y + 15);
+    textSize(11);
+    let labelSuffix = isInput ? ' (input)' : (isCustom ? ' (output)' : '');
+    text(bases[i].name + labelSuffix, margin + 10, y + 12);
 
     // Value
     fill('black');
-    textSize(18);
+    textSize(16);
     textFont('monospace');
     let displayValue = bases[i].prefix + (results[bases[i].key] || '—');
-    text(displayValue, margin + 10, y + 35);
+    text(displayValue, margin + 10, y + 30);
     textFont('sans-serif');
   }
 }
 
 function drawConversionSteps() {
-  let startY = 265;
+  let startY = 280;
 
   fill(240);
   stroke('silver');
   strokeWeight(1);
-  rect(margin, startY, canvasWidth - 2 * margin, 95, 5);
+  rect(margin, startY, canvasWidth - 2 * margin, 80, 5);
 
   fill('black');
   noStroke();
@@ -172,7 +204,7 @@ function drawConversionSteps() {
 
   if (conversionSteps.length > 0) {
     let stepY = startY + 25;
-    for (let i = 0; i < Math.min(conversionSteps.length, 4); i++) {
+    for (let i = 0; i < Math.min(conversionSteps.length, 3); i++) {
       text(conversionSteps[i], margin + 10, stepY);
       stepY += 16;
     }
@@ -202,6 +234,11 @@ function handleBaseChange() {
   performConversion();
 }
 
+function handleOutputBaseChange() {
+  outputBase = parseInt(outputBaseSelect.value());
+  performConversion();
+}
+
 function handleSignedChange() {
   isSigned = signedCheckbox.checked();
   performConversion();
@@ -218,7 +255,7 @@ function performConversion() {
 
   // Validate input for selected base
   if (!isValidInput(inputNumber, inputBase)) {
-    errorMessage = `Invalid ${getBaseName(inputBase)} number: "${inputNumber}"`;
+    errorMessage = `Invalid base-${inputBase} number: "${inputNumber}"`;
     return;
   }
 
@@ -252,18 +289,20 @@ function performConversion() {
   if (isSigned && decimalValue < 0) {
     // Two's complement for negative numbers
     let twosComp = (256 + decimalValue) >>> 0;
-    results.binary = twosComp.toString(2).padStart(8, '0');
-    results.octal = twosComp.toString(8);
-    results.decimal = decimalValue.toString();
-    results.hex = twosComp.toString(16).toUpperCase();
+    results.base2 = twosComp.toString(2).padStart(8, '0');
+    results.base8 = twosComp.toString(8);
+    results.base10 = decimalValue.toString();
+    results.base16 = twosComp.toString(16).toUpperCase();
+    results.custom = twosComp.toString(outputBase).toUpperCase();
   } else {
-    results.binary = decimalValue.toString(2);
-    results.octal = decimalValue.toString(8);
-    results.decimal = decimalValue.toString();
-    results.hex = decimalValue.toString(16).toUpperCase();
+    results.base2 = decimalValue.toString(2);
+    results.base8 = decimalValue.toString(8);
+    results.base10 = decimalValue.toString();
+    results.base16 = decimalValue.toString(16).toUpperCase();
+    results.custom = decimalValue.toString(outputBase).toUpperCase();
 
     if (isSigned) {
-      results.binary = results.binary.padStart(8, '0');
+      results.base2 = results.base2.padStart(8, '0');
     }
   }
 
@@ -272,36 +311,21 @@ function performConversion() {
 }
 
 function generateConversionSteps(decimalValue) {
-  let baseKey = getBaseKey(inputBase);
-
   if (inputBase !== 10) {
-    // Show conversion to decimal
-    conversionSteps.push(`Step 1: Convert ${getBaseName(inputBase)} to Decimal`);
-
-    if (inputBase === 2) {
-      let bits = inputNumber.split('');
-      let expanded = bits.map((b, i) => `${b}×2^${bits.length - 1 - i}`).join(' + ');
-      conversionSteps.push(`  ${inputNumber}₂ = ${expanded}`);
-      conversionSteps.push(`  = ${decimalValue}₁₀`);
-    } else if (inputBase === 16) {
-      conversionSteps.push(`  ${inputNumber}₁₆ = ${decimalValue}₁₀`);
-    } else if (inputBase === 8) {
-      conversionSteps.push(`  ${inputNumber}₈ = ${decimalValue}₁₀`);
-    }
+    conversionSteps.push(`Step 1: ${inputNumber} (base ${inputBase}) → ${decimalValue} (base 10)`);
   } else {
-    conversionSteps.push(`Input: ${decimalValue}₁₀ (Decimal)`);
+    conversionSteps.push(`Input: ${decimalValue} (base 10)`);
   }
 
-  // Show binary conversion
-  if (inputBase !== 2) {
-    conversionSteps.push(`Binary: ${results.binary}₂`);
+  if (outputBase !== 10 && outputBase !== inputBase) {
+    conversionSteps.push(`Step 2: ${decimalValue} (base 10) → ${results.custom} (base ${outputBase})`);
   }
 
-  // Show hex grouping if relevant
-  if (results.binary.length >= 4) {
-    let padded = results.binary.padStart(Math.ceil(results.binary.length / 4) * 4, '0');
+  // Show binary grouping for hex if relevant
+  if (results.base2 && results.base2.length >= 4) {
+    let padded = results.base2.padStart(Math.ceil(results.base2.length / 4) * 4, '0');
     let groups = padded.match(/.{4}/g).join(' ');
-    conversionSteps.push(`Binary groups (hex): ${groups}`);
+    conversionSteps.push(`Binary groups: ${groups}`);
   }
 }
 
@@ -316,44 +340,31 @@ function parseSignedBinary(binaryStr) {
 function isValidInput(str, base) {
   if (!str || str.length === 0) return false;
 
-  let validChars;
-  switch (base) {
-    case 2:
-      validChars = /^[01]+$/;
-      break;
-    case 8:
-      validChars = /^[0-7]+$/;
-      break;
-    case 10:
-      validChars = /^-?[0-9]+$/;
-      break;
-    case 16:
-      validChars = /^[0-9A-F]+$/i;
-      break;
-    default:
-      return false;
+  // Allow leading minus for base 10 (signed mode)
+  let digits = str;
+  if (base === 10 && str[0] === '-') {
+    digits = str.substring(1);
+    if (digits.length === 0) return false;
   }
-  return validChars.test(str);
-}
 
-function getBaseKey(base) {
-  switch (base) {
-    case 2: return 'binary';
-    case 8: return 'octal';
-    case 10: return 'decimal';
-    case 16: return 'hex';
-    default: return 'decimal';
+  // Valid characters for base N: 0-9 for positions up to 9, A-Z for 10-35
+  for (let i = 0; i < digits.length; i++) {
+    let ch = digits[i];
+    let value;
+    if (ch >= '0' && ch <= '9') {
+      value = ch.charCodeAt(0) - '0'.charCodeAt(0);
+    } else if (ch >= 'A' && ch <= 'Z') {
+      value = ch.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+    } else {
+      return false;
+    }
+    if (value >= base) return false;
   }
+  return true;
 }
 
 function getBaseName(base) {
-  switch (base) {
-    case 2: return 'Binary';
-    case 8: return 'Octal';
-    case 10: return 'Decimal';
-    case 16: return 'Hexadecimal';
-    default: return 'Unknown';
-  }
+  return BASE_LABELS[base] || ('Base ' + base);
 }
 
 function windowResized() {
