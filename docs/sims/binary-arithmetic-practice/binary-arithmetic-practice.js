@@ -89,7 +89,7 @@ function draw() {
   textAlign(LEFT, CENTER);
   textSize(14);
   text('Operation:', 20, drawHeight + 25);
-  text('Click operand or answer bits to toggle', 20, drawHeight + 55);
+  text('Click operand bits to set custom problems', 20, drawHeight + 55);
 }
 
 function drawProblem() {
