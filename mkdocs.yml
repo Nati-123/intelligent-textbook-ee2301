@@ -44,7 +44,7 @@ nav:
   - Course Description: course-description.md
   - FAQ: faq.md
   - Glossary: glossary.md
-  - Course Units:
+  - Unit Modules:
     - Unit 1 - Number Systems:
       - Content: unit1-number-systems/index.md
       - Quiz: unit1-number-systems/quiz.md
@@ -105,18 +105,6 @@ nav:
       - Problems: unit10-sequential-design/problems.md
       - Challenge: unit10-sequential-design/challenge.md
       - References: unit10-sequential-design/references.md
-  - Learning Graph:
-    - Overview: learning-graph/index.md
-    - Concept List: learning-graph/concept-list.md
-    - Concept Taxonomy: learning-graph/concept-taxonomy.md
-    - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
-    - Quality Metrics: learning-graph/quality-metrics.md
-    - Book Metrics: learning-graph/book-metrics.md
-    - Chapter Metrics: learning-graph/chapter-metrics.md
-    - Course Description Assessment: learning-graph/course-description-assessment.md
-    - Glossary Quality Report: learning-graph/glossary-quality-report.md
-    - Quiz Generation Report: learning-graph/quiz-generation-report.md
-    - FAQ Quality Report: learning-graph/faq-quality-report.md
   - MicroSims:
     - Overview: sims/index.md
     - Course Structure Tree: sims/course-structure-tree/index.md
@@ -194,3 +182,15 @@ nav:
       - FSM Designer: sims/fsm-designer/index.md
       - Sequence Detector Demo: sims/sequence-detector-demo/index.md
       - Shift Register Walkthrough: sims/shift-register-walkthrough/index.md
+  - Learning Graph:
+    - Overview: learning-graph/index.md
+    - Concept List: learning-graph/concept-list.md
+    - Concept Taxonomy: learning-graph/concept-taxonomy.md
+    - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
+    - Quality Metrics: learning-graph/quality-metrics.md
+    - Book Metrics: learning-graph/book-metrics.md
+    - Chapter Metrics: learning-graph/chapter-metrics.md
+    - Course Description Assessment: learning-graph/course-description-assessment.md
+    - Glossary Quality Report: learning-graph/glossary-quality-report.md
+    - Quiz Generation Report: learning-graph/quiz-generation-report.md
+    - FAQ Quality Report: learning-graph/faq-quality-report.md
