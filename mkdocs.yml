@@ -44,56 +44,57 @@ nav:
   - Course Description: course-description.md
   - FAQ: faq.md
   - Glossary: glossary.md
-  - Unit 1 - Number Systems:
-    - Content: unit1-number-systems/index.md
-    - Quiz: unit1-number-systems/quiz.md
-    - Problems: unit1-number-systems/problems.md
-    - References: unit1-number-systems/references.md
-  - Unit 2 - Boolean Algebra:
-    - Content: unit2-boolean-algebra/index.md
-    - Quiz: unit2-boolean-algebra/quiz.md
-    - Problems: unit2-boolean-algebra/problems.md
-    - References: unit2-boolean-algebra/references.md
-  - Unit 3 - Applications of Boolean Algebra:
-    - Content: unit3-applications-boolean-algebra/index.md
-    - Quiz: unit3-applications-boolean-algebra/quiz.md
-    - Problems: unit3-applications-boolean-algebra/problems.md
-    - References: unit3-applications-boolean-algebra/references.md
-  - Unit 4 - Minterm & Maxterm Expansions:
-    - Content: unit4-minterm-maxterm-expansions/index.md
-    - Quiz: unit4-minterm-maxterm-expansions/quiz.md
-    - Problems: unit4-minterm-maxterm-expansions/problems.md
-    - References: unit4-minterm-maxterm-expansions/references.md
-  - Unit 5 - Karnaugh Maps:
-    - Content: unit5-karnaugh-maps/index.md
-    - Quiz: unit5-karnaugh-maps/quiz.md
-    - Problems: unit5-karnaugh-maps/problems.md
-    - References: unit5-karnaugh-maps/references.md
-  - Unit 6 - Quine-McCluskey Method:
-    - Content: unit6-quine-mccluskey/index.md
-    - Quiz: unit6-quine-mccluskey/quiz.md
-    - Problems: unit6-quine-mccluskey/problems.md
-    - References: unit6-quine-mccluskey/references.md
-  - Unit 7 - Multi-Level Gate Circuits:
-    - Content: unit7-multi-level-gates/index.md
-    - Quiz: unit7-multi-level-gates/quiz.md
-    - Problems: unit7-multi-level-gates/problems.md
-    - References: unit7-multi-level-gates/references.md
-  - Unit 8 - Combinational Logic Modules:
-    - Content: unit8-combinational-modules/index.md
-    - Quiz: unit8-combinational-modules/quiz.md
-    - Problems: unit8-combinational-modules/problems.md
-    - References: unit8-combinational-modules/references.md
-  - Unit 9 - Sequential Logic Fundamentals:
-    - Content: unit9-sequential-fundamentals/index.md
-    - Quiz: unit9-sequential-fundamentals/quiz.md
-    - Problems: unit9-sequential-fundamentals/problems.md
-    - References: unit9-sequential-fundamentals/references.md
-  - Unit 10 - Sequential Circuit Design:
-    - Content: unit10-sequential-design/index.md
-    - Quiz: unit10-sequential-design/quiz.md
-    - Problems: unit10-sequential-design/problems.md
-    - References: unit10-sequential-design/references.md
+  - Course Units:
+    - Unit 1 - Number Systems:
+      - Content: unit1-number-systems/index.md
+      - Quiz: unit1-number-systems/quiz.md
+      - Problems: unit1-number-systems/problems.md
+      - References: unit1-number-systems/references.md
+    - Unit 2 - Boolean Algebra:
+      - Content: unit2-boolean-algebra/index.md
+      - Quiz: unit2-boolean-algebra/quiz.md
+      - Problems: unit2-boolean-algebra/problems.md
+      - References: unit2-boolean-algebra/references.md
+    - Unit 3 - Applications of Boolean Algebra:
+      - Content: unit3-applications-boolean-algebra/index.md
+      - Quiz: unit3-applications-boolean-algebra/quiz.md
+      - Problems: unit3-applications-boolean-algebra/problems.md
+      - References: unit3-applications-boolean-algebra/references.md
+    - Unit 4 - Minterm & Maxterm Expansions:
+      - Content: unit4-minterm-maxterm-expansions/index.md
+      - Quiz: unit4-minterm-maxterm-expansions/quiz.md
+      - Problems: unit4-minterm-maxterm-expansions/problems.md
+      - References: unit4-minterm-maxterm-expansions/references.md
+    - Unit 5 - Karnaugh Maps:
+      - Content: unit5-karnaugh-maps/index.md
+      - Quiz: unit5-karnaugh-maps/quiz.md
+      - Problems: unit5-karnaugh-maps/problems.md
+      - References: unit5-karnaugh-maps/references.md
+    - Unit 6 - Quine-McCluskey Method:
+      - Content: unit6-quine-mccluskey/index.md
+      - Quiz: unit6-quine-mccluskey/quiz.md
+      - Problems: unit6-quine-mccluskey/problems.md
+      - References: unit6-quine-mccluskey/references.md
+    - Unit 7 - Multi-Level Gate Circuits:
+      - Content: unit7-multi-level-gates/index.md
+      - Quiz: unit7-multi-level-gates/quiz.md
+      - Problems: unit7-multi-level-gates/problems.md
+      - References: unit7-multi-level-gates/references.md
+    - Unit 8 - Combinational Logic Modules:
+      - Content: unit8-combinational-modules/index.md
+      - Quiz: unit8-combinational-modules/quiz.md
+      - Problems: unit8-combinational-modules/problems.md
+      - References: unit8-combinational-modules/references.md
+    - Unit 9 - Sequential Logic Fundamentals:
+      - Content: unit9-sequential-fundamentals/index.md
+      - Quiz: unit9-sequential-fundamentals/quiz.md
+      - Problems: unit9-sequential-fundamentals/problems.md
+      - References: unit9-sequential-fundamentals/references.md
+    - Unit 10 - Sequential Circuit Design:
+      - Content: unit10-sequential-design/index.md
+      - Quiz: unit10-sequential-design/quiz.md
+      - Problems: unit10-sequential-design/problems.md
+      - References: unit10-sequential-design/references.md
   - Learning Graph:
     - Overview: learning-graph/index.md
     - Concept List: learning-graph/concept-list.md
