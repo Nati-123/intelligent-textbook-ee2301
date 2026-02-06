@@ -1,17 +1,21 @@
 // NAND Conversion Walkthrough MicroSim
-// Convert SOP expression F = AB + CD to all-NAND circuit
+// Convert SOP expression to all-NAND circuit
 // Bloom Level: Apply (L3) - Apply NAND conversion technique
 // MicroSim template version 2026.02
 
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 480;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
 let currentStep = 0;
 let totalSteps;
+
+let presetSelect;
+let goButton;
+let currentPreset = 0;
 
 const TITLE_BG = '#2196F3';
 const STEP_BG = '#E3F2FD';
@@ -21,50 +25,156 @@ const NAND_COLOR = '#7B1FA2';
 const AND_COLOR = '#1976D2';
 const OR_COLOR = '#388E3C';
 
-let steps = [
+let circuitData = { vars: ['A', 'B', 'C', 'D'], expr: 'AB + CD', term1: 'AB', term2: 'CD' };
+
+let presets = [
   {
-    title: "Convert F = AB + CD to All-NAND",
-    desc: "We will convert a two-level AND-OR circuit into an equivalent\ncircuit using only NAND gates.",
-    rule: "NAND is a Universal Gate",
-    visual: "intro"
+    label: 'F = AB + CD',
+    circuitData: { vars: ['A', 'B', 'C', 'D'], expr: 'AB + CD', term1: 'AB', term2: 'CD' },
+    steps: [
+      {
+        title: "Convert F = AB + CD to All-NAND",
+        desc: "We will convert a two-level AND-OR circuit into an equivalent\ncircuit using only NAND gates.",
+        rule: "NAND is a Universal Gate",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: AND-OR Implementation",
+        desc: "Start with the standard SOP implementation:\nTwo AND gates feed into one OR gate.",
+        rule: "SOP \u2192 AND-OR circuit (2 levels)",
+        visual: "and-or"
+      },
+      {
+        title: "Step 2: Apply Double Inversion",
+        desc: "Add two inversions (bubbles) between each AND gate and the\nOR gate. Double inversion doesn't change the logic.",
+        rule: "Double Inversion: X = (X')' = X",
+        visual: "double-inv"
+      },
+      {
+        title: "Step 3: Absorb Bubbles into Gates",
+        desc: "Each AND gate absorbs its output bubble \u2192 becomes NAND.\nThe OR gate absorbs its input bubbles \u2192 becomes NAND.\n(De Morgan's: OR with inverted inputs = NAND)",
+        rule: "De Morgan's Theorem: (A'+B')' = AB",
+        visual: "absorb"
+      },
+      {
+        title: "Step 4: All-NAND Circuit",
+        desc: "The circuit now uses only NAND gates!\nLevel 1: NAND(A,B) and NAND(C,D)\nLevel 2: NAND of the two NAND outputs",
+        rule: "2-level SOP \u2192 2-level NAND-NAND",
+        visual: "all-nand"
+      },
+      {
+        title: "Step 5: Verify Equivalence",
+        desc: "NAND(NAND(A,B), NAND(C,D))\n= ((AB)'\u00b7(CD)')' = AB + CD\nDe Morgan's confirms equivalence. \u2713",
+        rule: "Verify: NAND-NAND = AND-OR",
+        visual: "verify"
+      },
+      {
+        title: "Summary: SOP \u2192 NAND Conversion",
+        desc: "Any SOP expression can be converted to all-NAND:\n1. Replace AND gates with NAND gates\n2. Replace OR gate with NAND gate\nThe double inversion cancels out.",
+        rule: "General Rule: SOP \u2192 NAND-NAND",
+        visual: "summary"
+      }
+    ]
   },
   {
-    title: "Step 1: AND-OR Implementation",
-    desc: "Start with the standard SOP implementation:\nTwo AND gates feed into one OR gate.",
-    rule: "SOP \u2192 AND-OR circuit (2 levels)",
-    visual: "and-or"
+    label: 'F = PQ + RS',
+    circuitData: { vars: ['P', 'Q', 'R', 'S'], expr: 'PQ + RS', term1: 'PQ', term2: 'RS' },
+    steps: [
+      {
+        title: "Convert F = PQ + RS to All-NAND",
+        desc: "We will convert a two-level AND-OR circuit into an equivalent\ncircuit using only NAND gates.",
+        rule: "NAND is a Universal Gate",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: AND-OR Implementation",
+        desc: "Start with the standard SOP implementation:\nTwo AND gates feed into one OR gate.",
+        rule: "SOP \u2192 AND-OR circuit (2 levels)",
+        visual: "and-or"
+      },
+      {
+        title: "Step 2: Apply Double Inversion",
+        desc: "Add two inversions (bubbles) between each AND gate and the\nOR gate. Double inversion doesn't change the logic.",
+        rule: "Double Inversion: X = (X')' = X",
+        visual: "double-inv"
+      },
+      {
+        title: "Step 3: Absorb Bubbles into Gates",
+        desc: "Each AND gate absorbs its output bubble \u2192 becomes NAND.\nThe OR gate absorbs its input bubbles \u2192 becomes NAND.\n(De Morgan's: OR with inverted inputs = NAND)",
+        rule: "De Morgan's Theorem: (P'+Q')' = PQ",
+        visual: "absorb"
+      },
+      {
+        title: "Step 4: All-NAND Circuit",
+        desc: "The circuit now uses only NAND gates!\nLevel 1: NAND(P,Q) and NAND(R,S)\nLevel 2: NAND of the two NAND outputs",
+        rule: "2-level SOP \u2192 2-level NAND-NAND",
+        visual: "all-nand"
+      },
+      {
+        title: "Step 5: Verify Equivalence",
+        desc: "NAND(NAND(P,Q), NAND(R,S))\n= ((PQ)'\u00b7(RS)')' = PQ + RS\nDe Morgan's confirms equivalence. \u2713",
+        rule: "Verify: NAND-NAND = AND-OR",
+        visual: "verify"
+      },
+      {
+        title: "Summary: SOP \u2192 NAND Conversion",
+        desc: "Any SOP expression can be converted to all-NAND:\n1. Replace AND gates with NAND gates\n2. Replace OR gate with NAND gate\nThe double inversion cancels out.",
+        rule: "General Rule: SOP \u2192 NAND-NAND",
+        visual: "summary"
+      }
+    ]
   },
   {
-    title: "Step 2: Apply Double Inversion",
-    desc: "Add two inversions (bubbles) between each AND gate and the\nOR gate. Double inversion doesn't change the logic.",
-    rule: "Double Inversion: X = (X')' = X",
-    visual: "double-inv"
-  },
-  {
-    title: "Step 3: Absorb Bubbles into Gates",
-    desc: "Each AND gate absorbs its output bubble \u2192 becomes NAND.\nThe OR gate absorbs its input bubbles \u2192 becomes NAND.\n(De Morgan's: OR with inverted inputs = NAND)",
-    rule: "De Morgan's Theorem: (A'+B')' = AB",
-    visual: "absorb"
-  },
-  {
-    title: "Step 4: All-NAND Circuit",
-    desc: "The circuit now uses only NAND gates!\nLevel 1: NAND(A,B) and NAND(C,D)\nLevel 2: NAND of the two NAND outputs",
-    rule: "2-level SOP \u2192 2-level NAND-NAND",
-    visual: "all-nand"
-  },
-  {
-    title: "Step 5: Verify Equivalence",
-    desc: "NAND(NAND(A,B), NAND(C,D))\n= ((AB)')·((CD)')' = (AB)'' + (CD)'' ... wait\nActually: ((AB)'\u00b7(CD)')' = (AB) + (CD) = AB + CD \u2713",
-    rule: "Verify: NAND-NAND = AND-OR",
-    visual: "verify"
-  },
-  {
-    title: "Summary: SOP \u2192 NAND Conversion",
-    desc: "Any SOP expression can be converted to all-NAND:\n1. Replace AND gates with NAND gates\n2. Replace OR gate with NAND gate\nThe double inversion cancels out.",
-    rule: "General Rule: SOP \u2192 NAND-NAND",
-    visual: "summary"
+    label: 'F = WX + YZ',
+    circuitData: { vars: ['W', 'X', 'Y', 'Z'], expr: 'WX + YZ', term1: 'WX', term2: 'YZ' },
+    steps: [
+      {
+        title: "Convert F = WX + YZ to All-NAND",
+        desc: "We will convert a two-level AND-OR circuit into an equivalent\ncircuit using only NAND gates.",
+        rule: "NAND is a Universal Gate",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: AND-OR Implementation",
+        desc: "Start with the standard SOP implementation:\nTwo AND gates feed into one OR gate.",
+        rule: "SOP \u2192 AND-OR circuit (2 levels)",
+        visual: "and-or"
+      },
+      {
+        title: "Step 2: Apply Double Inversion",
+        desc: "Add two inversions (bubbles) between each AND gate and the\nOR gate. Double inversion doesn't change the logic.",
+        rule: "Double Inversion: X = (X')' = X",
+        visual: "double-inv"
+      },
+      {
+        title: "Step 3: Absorb Bubbles into Gates",
+        desc: "Each AND gate absorbs its output bubble \u2192 becomes NAND.\nThe OR gate absorbs its input bubbles \u2192 becomes NAND.\n(De Morgan's: OR with inverted inputs = NAND)",
+        rule: "De Morgan's Theorem: (W'+X')' = WX",
+        visual: "absorb"
+      },
+      {
+        title: "Step 4: All-NAND Circuit",
+        desc: "The circuit now uses only NAND gates!\nLevel 1: NAND(W,X) and NAND(Y,Z)\nLevel 2: NAND of the two NAND outputs",
+        rule: "2-level SOP \u2192 2-level NAND-NAND",
+        visual: "all-nand"
+      },
+      {
+        title: "Step 5: Verify Equivalence",
+        desc: "NAND(NAND(W,X), NAND(Y,Z))\n= ((WX)'\u00b7(YZ)')' = WX + YZ\nDe Morgan's confirms equivalence. \u2713",
+        rule: "Verify: NAND-NAND = AND-OR",
+        visual: "verify"
+      },
+      {
+        title: "Summary: SOP \u2192 NAND Conversion",
+        desc: "Any SOP expression can be converted to all-NAND:\n1. Replace AND gates with NAND gates\n2. Replace OR gate with NAND gate\nThe double inversion cancels out.",
+        rule: "General Rule: SOP \u2192 NAND-NAND",
+        visual: "summary"
+      }
+    ]
   }
 ];
+
+let steps = presets[0].steps;
 
 function setup() {
   updateCanvasSize();
@@ -73,6 +183,43 @@ function setup() {
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
   describe('NAND conversion walkthrough showing bubble pushing technique', LABEL);
+
+  presetSelect = createSelect();
+  presetSelect.parent(mainElement);
+  for (let i = 0; i < presets.length; i++) {
+    presetSelect.option(presets[i].label, i);
+  }
+  presetSelect.selected(0);
+
+  goButton = createButton('Go');
+  goButton.parent(mainElement);
+  goButton.mousePressed(handleGo);
+
+  positionUIElements();
+}
+
+function positionUIElements() {
+  let margin = 15;
+  let labelWidth = 60;
+  let selectWidth = 140;
+  let gapAfterSelect = 8;
+  let btnWidth = 50;
+  let leftX = margin + labelWidth;
+  let topY = drawHeight + 6;
+
+  presetSelect.position(leftX, topY);
+  presetSelect.size(selectWidth, 28);
+  goButton.position(leftX + selectWidth + gapAfterSelect, topY);
+  goButton.size(btnWidth, 28);
+}
+
+function handleGo() {
+  let idx = parseInt(presetSelect.value());
+  currentPreset = idx;
+  circuitData = presets[idx].circuitData;
+  steps = presets[idx].steps;
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -145,18 +292,26 @@ function draw() {
     text(descLines[i], margin + 10, descY + i * 15);
   }
 
+  // Preset label
+  fill(60);
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Example:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
 function drawVisual(step, mx, vy, w, vh) {
   let cx = canvasWidth / 2;
+  let cd = circuitData;
 
   if (step.visual === 'intro') {
     fill(60);
     textAlign(CENTER, CENTER);
     textSize(24);
     textStyle(BOLD);
-    text('F = AB + CD', cx, vy + 40);
+    text('F = ' + cd.expr, cx, vy + 40);
     fill(HIGHLIGHT);
     textSize(18);
     text('\u2193', cx, vy + 70);
@@ -188,12 +343,12 @@ function drawVisual(step, mx, vy, w, vh) {
     text('Verification using De Morgan\'s:', cx, y);
     y += 30;
     textSize(13);
-    text('NAND(A,B) = (AB)\'', cx, y); y += 20;
-    text('NAND(C,D) = (CD)\'', cx, y); y += 25;
-    text('NAND( (AB)\', (CD)\' )', cx, y); y += 20;
-    text('= ( (AB)\' \u00b7 (CD)\' )\'', cx, y); y += 20;
+    text('NAND(' + cd.vars[0] + ',' + cd.vars[1] + ') = (' + cd.term1 + ')\'', cx, y); y += 20;
+    text('NAND(' + cd.vars[2] + ',' + cd.vars[3] + ') = (' + cd.term2 + ')\'', cx, y); y += 25;
+    text('NAND( (' + cd.term1 + ')\', (' + cd.term2 + ')\' )', cx, y); y += 20;
+    text('= ( (' + cd.term1 + ')\' \u00b7 (' + cd.term2 + ')\' )\'', cx, y); y += 20;
     fill(HIGHLIGHT); textStyle(BOLD);
-    text('= AB + CD    (De Morgan\'s)', cx, y); y += 25;
+    text('= ' + cd.expr + '    (De Morgan\'s)', cx, y); y += 25;
     fill('#1B5E20');
     textSize(16);
     text('= F  \u2713', cx, y);
@@ -225,6 +380,7 @@ function drawVisual(step, mx, vy, w, vh) {
 
 function drawCircuit(mx, vy, w, vh, mode, showBubbles) {
   let cx = canvasWidth / 2;
+  let cd = circuitData;
   let inputX = mx + 40;
   let gate1X = cx - 60;
   let gate2X = cx + 50;
@@ -241,10 +397,10 @@ function drawCircuit(mx, vy, w, vh, mode, showBubbles) {
   fill(60);
   textAlign(RIGHT, CENTER);
   textSize(14); textStyle(BOLD);
-  text('A', inputX - 5, g1y1 - 10);
-  text('B', inputX - 5, g1y1 + 10);
-  text('C', inputX - 5, g1y2 - 10);
-  text('D', inputX - 5, g1y2 + 10);
+  text(cd.vars[0], inputX - 5, g1y1 - 10);
+  text(cd.vars[1], inputX - 5, g1y1 + 10);
+  text(cd.vars[2], inputX - 5, g1y2 - 10);
+  text(cd.vars[3], inputX - 5, g1y2 + 10);
 
   // Input wires
   stroke(60); strokeWeight(1.5);
@@ -332,15 +488,15 @@ function drawCircuit(mx, vy, w, vh, mode, showBubbles) {
   textAlign(CENTER, CENTER);
   textSize(12); textStyle(NORMAL);
   if (mode === 'and-or') {
-    text('F = AB + CD', cx, vy + vh - 15);
+    text('F = ' + cd.expr, cx, vy + vh - 15);
   } else if (mode === 'nand') {
     fill(NAND_COLOR); textStyle(BOLD);
-    text('F = ((AB)\'\u00b7(CD)\')\'  = AB + CD', cx, vy + vh - 15);
+    text('F = ((' + cd.term1 + ')\'\u00b7(' + cd.term2 + ')\')\'  = ' + cd.expr, cx, vy + vh - 15);
   }
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -369,7 +525,7 @@ function drawButtons() {
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -390,6 +546,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

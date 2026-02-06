@@ -6,7 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 480;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -21,75 +21,102 @@ const CLK_COLOR = '#1976D2';
 const D_COLOR = '#E91E63';
 const Q_COLOR = '#388E3C';
 
+// UI elements
+let dInput;
+let goButton;
+
 // D values at each rising edge (8 edges)
 let dValues = [1, 0, 1, 1, 0, 0, 1, 0];
 // Q values after each edge (Q starts at 0)
-let qValues = [0, 1, 0, 1, 1, 0, 0, 1, 0]; // index 0 is initial, 1-8 after each edge
+let qValues = [0, 1, 0, 1, 1, 0, 0, 1, 0];
 
-let steps = [
-  {
+function generateQValues(dVals) {
+  let q = [0];
+  for (let i = 0; i < dVals.length; i++) {
+    q.push(dVals[i]);
+  }
+  return q;
+}
+
+function generateSteps(dVals) {
+  dValues = dVals.slice();
+  qValues = generateQValues(dVals);
+
+  let dStr = dVals.join('');
+  let newSteps = [];
+
+  // Intro
+  newSteps.push({
     title: "D Flip-Flop Timing Analysis",
-    desc: "We will trace the output Q of a positive-edge-triggered D\nflip-flop given a clock and data input sequence.",
+    desc: "We will trace the output Q of a positive-edge-triggered D\nflip-flop given a clock and data input sequence: " + dStr + ".",
     rule: "Positive-Edge-Triggered D Flip-Flop",
     visual: "intro",
     edgesShown: 0
-  },
-  {
+  });
+
+  // Step 1: Waveforms
+  newSteps.push({
     title: "Step 1: Clock and D Input Waveforms",
-    desc: "The clock (CLK) is a regular square wave. D changes between\nclock edges. Q is initially 0 (unknown state → assume 0).",
+    desc: "The clock (CLK) is a regular square wave. D changes between\nclock edges. Q is initially 0 (unknown state \u2192 assume 0).",
     rule: "Setup: CLK, D waveforms given",
     visual: "timing",
     edgesShown: 0
-  },
-  {
-    title: "Step 2: Rising Edge 1",
-    desc: "At the first rising clock edge, D = 1.\nQ samples D and becomes 1.",
-    rule: "Rising edge: Q ← D",
-    visual: "timing",
-    edgesShown: 1
-  },
-  {
-    title: "Step 3: Rising Edge 2",
-    desc: "At the second rising clock edge, D = 0.\nQ samples D and becomes 0.",
-    rule: "Rising edge: Q ← D",
-    visual: "timing",
-    edgesShown: 2
-  },
-  {
-    title: "Step 4: Rising Edge 3",
-    desc: "At the third rising clock edge, D = 1.\nQ samples D and becomes 1.",
-    rule: "Rising edge: Q ← D",
-    visual: "timing",
-    edgesShown: 3
-  },
-  {
-    title: "Step 5: Rising Edge 4",
-    desc: "At the fourth rising clock edge, D = 1.\nQ samples D and stays at 1 (no change).",
-    rule: "Rising edge: Q ← D (Q unchanged if D = Q)",
-    visual: "timing",
-    edgesShown: 4
-  },
-  {
+  });
+
+  // Individual edge steps (1-4)
+  for (let i = 0; i < 4; i++) {
+    let dVal = dVals[i];
+    let qResult;
+    if (qValues[i] === dVal) {
+      qResult = "stays at " + qValues[i] + " (no change)";
+    } else {
+      qResult = "becomes " + dVal;
+    }
+
+    let ordinals = ['first', 'second', 'third', 'fourth'];
+    newSteps.push({
+      title: "Step " + (i + 2) + ": Rising Edge " + (i + 1),
+      desc: "At the " + ordinals[i] + " rising clock edge, D = " + dVal + ".\nQ samples D and " + qResult + ".",
+      rule: qValues[i] === dVal ? "Rising edge: Q \u2190 D (Q unchanged if D = Q)" : "Rising edge: Q \u2190 D",
+      visual: "timing",
+      edgesShown: i + 1
+    });
+  }
+
+  // Edges 5-6 combined
+  let q5result = dVals[4] === qValues[4] ? "stays " + qValues[4] : "becomes " + dVals[4];
+  let q6result = dVals[5] === dVals[4] ? "stays " + dVals[5] : "becomes " + dVals[5];
+  newSteps.push({
     title: "Step 6: Rising Edges 5-6",
-    desc: "Edge 5: D=0 → Q becomes 0.\nEdge 6: D=0 → Q stays 0.",
-    rule: "Rising edge: Q ← D",
+    desc: "Edge 5: D=" + dVals[4] + " \u2192 Q " + q5result + ".\nEdge 6: D=" + dVals[5] + " \u2192 Q " + q6result + ".",
+    rule: "Rising edge: Q \u2190 D",
     visual: "timing",
     edgesShown: 6
-  },
-  {
+  });
+
+  // Edges 7-8 combined
+  let q7result = dVals[6] === qValues[6] ? "stays " + qValues[6] : "becomes " + dVals[6];
+  let q8result = dVals[7] === qValues[7] ? "stays " + qValues[7] : "becomes " + dVals[7];
+  newSteps.push({
     title: "Step 7: Rising Edges 7-8",
-    desc: "Edge 7: D=1 → Q becomes 1.\nEdge 8: D=0 → Q becomes 0.",
-    rule: "Rising edge: Q ← D",
+    desc: "Edge 7: D=" + dVals[6] + " \u2192 Q " + q7result + ".\nEdge 8: D=" + dVals[7] + " \u2192 Q " + q8result + ".",
+    rule: "Rising edge: Q \u2190 D",
     visual: "timing",
     edgesShown: 8
-  },
-  {
+  });
+
+  // Complete
+  newSteps.push({
     title: "Complete Timing Diagram",
     desc: "Key insight: Q only changes at rising clock edges.\nBetween edges, Q holds its value regardless of D changes.\nThis is the fundamental behavior of edge-triggered storage.",
     rule: "D Flip-Flop: Edge-Triggered Storage Element",
     visual: "complete"
-  }
-];
+  });
+
+  return newSteps;
+}
+
+let steps = generateSteps([1, 0, 1, 1, 0, 0, 1, 0]);
 
 function setup() {
   updateCanvasSize();
@@ -97,7 +124,44 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Input field for D pattern
+  dInput = createInput('10110010');
+  dInput.size(100);
+  dInput.attribute('placeholder', 'e.g., 11001010');
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('D flip-flop timing diagram walkthrough', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  dInput.position(mainRect.left + 85, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 200, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let val = dInput.value().trim();
+  if (!/^[01]{8}$/.test(val)) {
+    dInput.style('border', '2px solid red');
+    return;
+  }
+  dInput.style('border', '');
+  let bits = val.split('').map(Number);
+  steps = generateSteps(bits);
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -174,6 +238,14 @@ function draw() {
     text(descLines[i], margin + 10, descY + i * 15);
   }
 
+  // Input label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('D pattern:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
@@ -236,7 +308,7 @@ function drawIntro(mx, vy, w, vh) {
   text('Q captures D value at each rising clock edge', cx, vy + 155);
   fill(HIGHLIGHT);
   textSize(13);
-  text('Click "Next →" to begin', cx, vy + vh - 15);
+  text('Click "Next \u2192" to begin', cx, vy + vh - 15);
 }
 
 function drawTimingDiagram(mx, vy, w, vh, edgesShown, isComplete) {
@@ -309,7 +381,6 @@ function drawTimingDiagram(mx, vy, w, vh, edgesShown, isComplete) {
     // Initial Q=0
     vertex(waveX, qY + lowY);
     for (let i = 0; i < showEdges; i++) {
-      // Rising edge is at waveX + (i+0.5)*cycleW (middle of each cycle, where CLK goes high... actually rising edge is at i*cycleW + cycleW/2)
       let edgeX = waveX + i * cycleW + cycleW / 2;
       let prevQ = qValues[i];
       let newQ = qValues[i + 1];
@@ -366,7 +437,6 @@ function drawTimingDiagram(mx, vy, w, vh, edgesShown, isComplete) {
   // Highlight current edge
   if (edgesShown > 0 && !isComplete && edgesShown <= 8) {
     let currentEdge = edgesShown - 1;
-    // Just highlight the last shown edge more prominently
     let edgeX = waveX + currentEdge * cycleW + cycleW / 2;
     stroke(HIGHLIGHT); strokeWeight(2);
     line(edgeX - 5, clkY - 5, edgeX + 5, clkY - 5);
@@ -377,7 +447,7 @@ function drawTimingDiagram(mx, vy, w, vh, edgesShown, isComplete) {
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -391,7 +461,7 @@ function drawButtons() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(14); textStyle(BOLD);
-  text('← Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
   rect(startX + btnW + gap, btnY, btnW, btnH, 5);
@@ -402,11 +472,11 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next →', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -427,6 +497,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

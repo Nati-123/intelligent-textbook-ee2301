@@ -6,7 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 500;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -19,78 +19,229 @@ const HIGHLIGHT = '#FF9800';
 const RESULT_BG = '#E8F5E9';
 const MUX_COLOR = '#7B1FA2';
 
-let truthTable = [
-  [0,0,0, 0], [0,0,1, 1],
-  [0,1,0, 1], [0,1,1, 0],
-  [1,0,0, 0], [1,0,1, 0],
-  [1,1,0, 1], [1,1,1, 1]
-];
+// UI elements
+let presetSelect;
+let goButton;
 
-let steps = [
+// Preset functions
+let presets = [
   {
-    title: "Implement F(A,B,C) Using a 4:1 MUX",
-    desc: "We will implement F(A,B,C) = Σm(1,2,6,7) using a 4-to-1\nmultiplexer with A and B as select inputs.",
-    rule: "MUX-based Function Implementation",
-    visual: "intro"
+    label: "\u03A3m(1,2,6,7)",
+    mintermStr: "\u03A3m(1,2,6,7)",
+    truthTable: [
+      [0,0,0, 0], [0,0,1, 1],
+      [0,1,0, 1], [0,1,1, 0],
+      [1,0,0, 0], [1,0,1, 0],
+      [1,1,0, 1], [1,1,1, 1]
+    ],
+    dataInputs: ['C', "C'", '0', '1'],
+    steps: [
+      {
+        title: "Implement F(A,B,C) Using a 4:1 MUX",
+        desc: "We will implement F(A,B,C) = \u03A3m(1,2,6,7) using a 4-to-1\nmultiplexer with A and B as select inputs.",
+        rule: "MUX-based Function Implementation",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 8 input combinations.\nF = 1 for minterms 1, 2, 6, and 7.",
+        rule: "Truth Table for F(A,B,C)",
+        visual: "truth-table",
+        highlightGroup: -1
+      },
+      {
+        title: "Step 2: Group by AB = 00",
+        desc: "When AB = 00: F(C=0) = 0, F(C=1) = 1\nF follows C exactly \u2192 D0 = C",
+        rule: "Group rows by select variable values",
+        visual: "truth-table",
+        highlightGroup: 0,
+        dinput: "D0 = C"
+      },
+      {
+        title: "Step 3: Group by AB = 01",
+        desc: "When AB = 01: F(C=0) = 1, F(C=1) = 0\nF is the complement of C \u2192 D1 = C'",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 1,
+        dinput: "D1 = C'"
+      },
+      {
+        title: "Step 4: Group by AB = 10",
+        desc: "When AB = 10: F(C=0) = 0, F(C=1) = 0\nF is always 0 \u2192 D2 = 0",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 2,
+        dinput: "D2 = 0"
+      },
+      {
+        title: "Step 5: Group by AB = 11",
+        desc: "When AB = 11: F(C=0) = 1, F(C=1) = 1\nF is always 1 \u2192 D3 = 1",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 3,
+        dinput: "D3 = 1"
+      },
+      {
+        title: "Step 6: Complete 4:1 MUX Circuit",
+        desc: "The 4:1 MUX implements F(A,B,C) = \u03A3m(1,2,6,7)\nwith A,B as select and C,C',0,1 as data inputs.",
+        rule: "MUX Implementation Complete",
+        visual: "mux-circuit"
+      },
+      {
+        title: "Summary of Data Inputs",
+        desc: "D0 = C,  D1 = C',  D2 = 0,  D3 = 1\nThese are the four possible values: C, C', 0, 1.",
+        rule: "Data inputs: {0, 1, C, C'}",
+        visual: "summary-inputs"
+      }
+    ]
   },
   {
-    title: "Step 1: Write the Truth Table",
-    desc: "List all 8 input combinations.\nF = 1 for minterms 1, 2, 6, and 7.",
-    rule: "Truth Table for F(A,B,C)",
-    visual: "truth-table",
-    highlightGroup: -1
+    label: "\u03A3m(3,5,6,7)",
+    mintermStr: "\u03A3m(3,5,6,7)",
+    truthTable: [
+      [0,0,0, 0], [0,0,1, 0],
+      [0,1,0, 0], [0,1,1, 1],
+      [1,0,0, 0], [1,0,1, 1],
+      [1,1,0, 1], [1,1,1, 1]
+    ],
+    dataInputs: ['0', 'C', 'C', '1'],
+    steps: [
+      {
+        title: "Implement F(A,B,C) Using a 4:1 MUX",
+        desc: "We will implement F(A,B,C) = \u03A3m(3,5,6,7) using a 4-to-1\nmultiplexer with A and B as select inputs.",
+        rule: "MUX-based Function Implementation",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 8 input combinations.\nF = 1 for minterms 3, 5, 6, and 7.",
+        rule: "Truth Table for F(A,B,C)",
+        visual: "truth-table",
+        highlightGroup: -1
+      },
+      {
+        title: "Step 2: Group by AB = 00",
+        desc: "When AB = 00: F(C=0) = 0, F(C=1) = 0\nF is always 0 \u2192 D0 = 0",
+        rule: "Group rows by select variable values",
+        visual: "truth-table",
+        highlightGroup: 0,
+        dinput: "D0 = 0"
+      },
+      {
+        title: "Step 3: Group by AB = 01",
+        desc: "When AB = 01: F(C=0) = 0, F(C=1) = 1\nF follows C exactly \u2192 D1 = C",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 1,
+        dinput: "D1 = C"
+      },
+      {
+        title: "Step 4: Group by AB = 10",
+        desc: "When AB = 10: F(C=0) = 0, F(C=1) = 1\nF follows C exactly \u2192 D2 = C",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 2,
+        dinput: "D2 = C"
+      },
+      {
+        title: "Step 5: Group by AB = 11",
+        desc: "When AB = 11: F(C=0) = 1, F(C=1) = 1\nF is always 1 \u2192 D3 = 1",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 3,
+        dinput: "D3 = 1"
+      },
+      {
+        title: "Step 6: Complete 4:1 MUX Circuit",
+        desc: "The 4:1 MUX implements F(A,B,C) = \u03A3m(3,5,6,7)\nwith A,B as select and 0,C,C,1 as data inputs.",
+        rule: "MUX Implementation Complete",
+        visual: "mux-circuit"
+      },
+      {
+        title: "Summary of Data Inputs",
+        desc: "D0 = 0,  D1 = C,  D2 = C,  D3 = 1\nTwo data inputs share the same value C.",
+        rule: "Data inputs: {0, 1, C, C'}",
+        visual: "summary-inputs"
+      }
+    ]
   },
   {
-    title: "Step 2: Choose Select Variables",
-    desc: "Use A and B as the MUX select inputs (S1=A, S0=B).\nThe remaining variable C connects to data inputs.\n4:1 MUX has 2 select lines → needs 2 variables.",
-    rule: "n select lines → 2ⁿ:1 MUX",
-    visual: "select-vars"
-  },
-  {
-    title: "Step 3: Group by AB = 00",
-    desc: "When AB = 00: F(C=0) = 0, F(C=1) = 1\nF follows C exactly → D0 = C",
-    rule: "Group rows by select variable values",
-    visual: "truth-table",
-    highlightGroup: 0,
-    dinput: "D0 = C"
-  },
-  {
-    title: "Step 4: Group by AB = 01",
-    desc: "When AB = 01: F(C=0) = 1, F(C=1) = 0\nF is the complement of C → D1 = C'",
-    rule: "Determine data input for each group",
-    visual: "truth-table",
-    highlightGroup: 1,
-    dinput: "D1 = C'"
-  },
-  {
-    title: "Step 5: Group by AB = 10",
-    desc: "When AB = 10: F(C=0) = 0, F(C=1) = 0\nF is always 0 → D2 = 0",
-    rule: "Determine data input for each group",
-    visual: "truth-table",
-    highlightGroup: 2,
-    dinput: "D2 = 0"
-  },
-  {
-    title: "Step 6: Group by AB = 11",
-    desc: "When AB = 11: F(C=0) = 1, F(C=1) = 1\nF is always 1 → D3 = 1",
-    rule: "Determine data input for each group",
-    visual: "truth-table",
-    highlightGroup: 3,
-    dinput: "D3 = 1"
-  },
-  {
-    title: "Step 7: Summary of Data Inputs",
-    desc: "D0 = C,  D1 = C',  D2 = 0,  D3 = 1\nThese are the four possible values: C, C', 0, 1.",
-    rule: "Data inputs: {0, 1, C, C'}",
-    visual: "summary-inputs"
-  },
-  {
-    title: "Complete: 4:1 MUX Circuit",
-    desc: "The 4:1 MUX implements F(A,B,C) = Σm(1,2,6,7)\nwith A,B as select and C,C',0,1 as data inputs.",
-    rule: "MUX Implementation Complete",
-    visual: "mux-circuit"
+    label: "\u03A3m(0,2,4,6)",
+    mintermStr: "\u03A3m(0,2,4,6)",
+    truthTable: [
+      [0,0,0, 1], [0,0,1, 0],
+      [0,1,0, 1], [0,1,1, 0],
+      [1,0,0, 1], [1,0,1, 0],
+      [1,1,0, 1], [1,1,1, 0]
+    ],
+    dataInputs: ["C'", "C'", "C'", "C'"],
+    steps: [
+      {
+        title: "Implement F(A,B,C) Using a 4:1 MUX",
+        desc: "We will implement F(A,B,C) = \u03A3m(0,2,4,6) using a 4-to-1\nmultiplexer with A and B as select inputs.",
+        rule: "MUX-based Function Implementation",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 8 input combinations.\nF = 1 for minterms 0, 2, 4, and 6.",
+        rule: "Truth Table for F(A,B,C)",
+        visual: "truth-table",
+        highlightGroup: -1
+      },
+      {
+        title: "Step 2: Group by AB = 00",
+        desc: "When AB = 00: F(C=0) = 1, F(C=1) = 0\nF is the complement of C \u2192 D0 = C'",
+        rule: "Group rows by select variable values",
+        visual: "truth-table",
+        highlightGroup: 0,
+        dinput: "D0 = C'"
+      },
+      {
+        title: "Step 3: Group by AB = 01",
+        desc: "When AB = 01: F(C=0) = 1, F(C=1) = 0\nF is the complement of C \u2192 D1 = C'",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 1,
+        dinput: "D1 = C'"
+      },
+      {
+        title: "Step 4: Group by AB = 10",
+        desc: "When AB = 10: F(C=0) = 1, F(C=1) = 0\nF is the complement of C \u2192 D2 = C'",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 2,
+        dinput: "D2 = C'"
+      },
+      {
+        title: "Step 5: Group by AB = 11",
+        desc: "When AB = 11: F(C=0) = 1, F(C=1) = 0\nF is the complement of C \u2192 D3 = C'",
+        rule: "Determine data input for each group",
+        visual: "truth-table",
+        highlightGroup: 3,
+        dinput: "D3 = C'"
+      },
+      {
+        title: "Step 6: Complete 4:1 MUX Circuit",
+        desc: "The 4:1 MUX implements F(A,B,C) = \u03A3m(0,2,4,6)\nwith A,B as select and C',C',C',C' as data inputs.",
+        rule: "MUX Implementation Complete",
+        visual: "mux-circuit"
+      },
+      {
+        title: "Summary of Data Inputs",
+        desc: "D0 = C',  D1 = C',  D2 = C',  D3 = C'\nAll data inputs are C' \u2014 F is independent of A and B.",
+        rule: "Data inputs: {0, 1, C, C'}",
+        visual: "summary-inputs"
+      }
+    ]
   }
 ];
+
+// Active preset data
+let activePreset = presets[0];
+let steps = activePreset.steps.slice();
+let truthTable = activePreset.truthTable;
+let dataInputs = activePreset.dataInputs;
 
 function setup() {
   updateCanvasSize();
@@ -98,7 +249,42 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Dropdown for preset selection
+  presetSelect = createSelect();
+  for (let i = 0; i < presets.length; i++) {
+    presetSelect.option(presets[i].label, i);
+  }
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('MUX function implementation walkthrough', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  presetSelect.position(mainRect.left + 65, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 250, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let idx = parseInt(presetSelect.value());
+  activePreset = presets[idx];
+  steps = activePreset.steps.slice();
+  truthTable = activePreset.truthTable;
+  dataInputs = activePreset.dataInputs;
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -168,6 +354,14 @@ function draw() {
     text(lines[i], margin + 10, descY + i * 15);
   }
 
+  // Preset label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Function:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
@@ -179,10 +373,10 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(20);
     textStyle(BOLD);
-    text('F(A,B,C) = Σm(1,2,6,7)', cx, vy + 35);
+    text('F(A,B,C) = ' + activePreset.mintermStr, cx, vy + 35);
     fill(HIGHLIGHT);
     textSize(18);
-    text('↓', cx, vy + 60);
+    text('\u2193', cx, vy + 60);
     // MUX box
     fill(MUX_COLOR + '22');
     stroke(MUX_COLOR); strokeWeight(2);
@@ -194,7 +388,7 @@ function drawVisual(step, mx, vy, w, vh) {
     text('MUX', cx, vy + 115);
     fill(100);
     textSize(13); textStyle(NORMAL);
-    text('Click "Next →" to begin', cx, vy + vh - 20);
+    text('Click "Next \u2192" to begin', cx, vy + vh - 20);
   }
   else if (step.visual === 'truth-table') {
     drawTruthTable(mx, vy, w, vh, step.highlightGroup, step.dinput);
@@ -210,7 +404,7 @@ function drawVisual(step, mx, vy, w, vh) {
     textSize(18); textStyle(BOLD);
     text('S1 = A,  S0 = B', cx, vy + 85);
     fill(HIGHLIGHT);
-    text('Remaining: C → data inputs', cx, vy + 115);
+    text('Remaining: C \u2192 data inputs', cx, vy + 115);
     // MUX diagram
     fill(MUX_COLOR + '22');
     stroke(MUX_COLOR); strokeWeight(2);
@@ -232,22 +426,17 @@ function drawVisual(step, mx, vy, w, vh) {
     text('S1(A)  S0(B)', cx, vy + 195);
   }
   else if (step.visual === 'summary-inputs') {
-    let inputs = [
-      {label: 'D0', value: 'C', color: '#1976D2'},
-      {label: 'D1', value: "C'", color: '#E91E63'},
-      {label: 'D2', value: '0', color: '#757575'},
-      {label: 'D3', value: '1', color: '#388E3C'}
-    ];
+    let inputColors = ['#1976D2', '#E91E63', '#757575', '#388E3C'];
     for (let i = 0; i < 4; i++) {
       let y = vy + 15 + i * 42;
-      fill(inputs[i].color + '15');
-      stroke(inputs[i].color); strokeWeight(1.5);
+      fill(inputColors[i] + '15');
+      stroke(inputColors[i]); strokeWeight(1.5);
       rect(mx + 30, y, w - 60, 35, 5);
       noStroke();
-      fill(inputs[i].color);
+      fill(inputColors[i]);
       textAlign(LEFT, CENTER);
       textSize(16); textStyle(BOLD);
-      text(inputs[i].label + ' = ' + inputs[i].value, mx + 50, y + 17);
+      text('D' + i + ' = ' + dataInputs[i], mx + 50, y + 17);
       // AB values
       fill(100); textSize(12); textStyle(NORMAL);
       textAlign(RIGHT, CENTER);
@@ -332,7 +521,6 @@ function drawMuxCircuit(mx, vy, w, vh) {
   text('4:1 MUX', cx, muxY + muxH / 2);
 
   // Data inputs
-  let inputs = ['C', "C'", '0', '1'];
   let inputColors = ['#1976D2', '#E91E63', '#757575', '#388E3C'];
   let inputX = muxX - 60;
 
@@ -346,7 +534,7 @@ function drawMuxCircuit(mx, vy, w, vh) {
     fill(inputColors[i]);
     textAlign(RIGHT, CENTER);
     textSize(13); textStyle(BOLD);
-    text('D' + i + '=' + inputs[i], inputX + 30, y);
+    text('D' + i + '=' + dataInputs[i], inputX + 30, y);
     // Port label on MUX
     fill(MUX_COLOR);
     textAlign(LEFT, CENTER);
@@ -386,11 +574,11 @@ function drawMuxCircuit(mx, vy, w, vh) {
   fill('#1B5E20');
   textAlign(CENTER, CENTER);
   textSize(14); textStyle(BOLD);
-  text('F(A,B,C) = Σm(1,2,6,7) ✓', cx, resY + 15);
+  text('F(A,B,C) = ' + activePreset.mintermStr + ' \u2713', cx, resY + 15);
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -404,7 +592,7 @@ function drawButtons() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(14); textStyle(BOLD);
-  text('← Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
   rect(startX + btnW + gap, btnY, btnW, btnH, 5);
@@ -415,11 +603,11 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next →', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -440,6 +628,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

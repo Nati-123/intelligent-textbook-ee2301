@@ -1,12 +1,12 @@
 // Shift Register Walkthrough MicroSim
-// Trace 4-bit shift register loading 1011 serial input
+// Trace 4-bit shift register loading serial input
 // Bloom Level: Apply (L3) - Apply shift register operation
 // MicroSim template version 2026.02
 
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 480;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -21,28 +21,45 @@ const FF_COLOR = '#5C6BC0';
 const NEW_DATA_COLOR = '#E91E63';
 const SHIFTED_COLOR = '#FF9800';
 
-// Serial input bits (MSB first): 1, 0, 1, 1
+// UI elements
+let bitsInput;
+let goButton;
+
+// Serial input bits (MSB first)
 let serialBits = [1, 0, 1, 1];
 
 // Register state at each step [Q0, Q1, Q2, Q3]
-// Q3Q2Q1Q0 is the displayed value
-let regStates = [
-  [0, 0, 0, 0],  // Initial
-  [1, 0, 0, 0],  // After clock 1
-  [0, 1, 0, 0],  // After clock 2
-  [1, 0, 1, 0],  // After clock 3
-  [1, 1, 0, 1]   // After clock 4
-];
+let regStates = [];
 
-let steps = [
-  {
-    title: "4-Bit Shift Register: Load 1011",
-    desc: "We will trace a 4-bit serial-in parallel-out (SIPO) shift\nregister as it loads the binary value 1011 one bit at a time.",
+function generateRegStates(bits) {
+  let states = [[0, 0, 0, 0]];
+  for (let i = 0; i < bits.length; i++) {
+    let prev = states[states.length - 1];
+    let next = [bits[i], prev[0], prev[1], prev[2]];
+    states.push(next);
+  }
+  return states;
+}
+
+function generateSteps(bits) {
+  let n = bits.length;
+  let bitStr = bits.join('');
+  serialBits = bits.slice();
+  regStates = generateRegStates(bits);
+
+  let newSteps = [];
+
+  // Intro
+  newSteps.push({
+    title: "4-Bit Shift Register: Load " + bitStr,
+    desc: "We will trace a 4-bit serial-in parallel-out (SIPO) shift\nregister as it loads the binary value " + bitStr + " one bit at a time.",
     rule: "Serial-In Parallel-Out (SIPO) Shift Register",
     visual: "intro",
     stateIdx: 0
-  },
-  {
+  });
+
+  // Initial state
+  newSteps.push({
     title: "Step 1: Initial State",
     desc: "All four flip-flops start at 0.\nRegister value: 0000",
     rule: "Initial state: all FFs cleared",
@@ -50,51 +67,50 @@ let steps = [
     stateIdx: 0,
     inputBit: null,
     clockNum: 0
-  },
-  {
-    title: "Step 2: Clock Pulse 1 — Input: 1",
-    desc: "Serial input = 1 (MSB of 1011) enters Q0.\nAll other FFs shift: Q0→Q1, Q1→Q2, Q2→Q3.\nRegister: 0001",
-    rule: "Clock 1: Serial In = 1 (MSB)",
-    visual: "register",
-    stateIdx: 1,
-    inputBit: 1,
-    clockNum: 1
-  },
-  {
-    title: "Step 3: Clock Pulse 2 — Input: 0",
-    desc: "Serial input = 0 enters Q0. Previous Q0(1) shifts to Q1.\nRegister: 0010",
-    rule: "Clock 2: Serial In = 0",
-    visual: "register",
-    stateIdx: 2,
-    inputBit: 0,
-    clockNum: 2
-  },
-  {
-    title: "Step 4: Clock Pulse 3 — Input: 1",
-    desc: "Serial input = 1 enters Q0. Data continues shifting right.\nRegister: 0101",
-    rule: "Clock 3: Serial In = 1",
-    visual: "register",
-    stateIdx: 3,
-    inputBit: 1,
-    clockNum: 3
-  },
-  {
-    title: "Step 5: Clock Pulse 4 — Input: 1",
-    desc: "Serial input = 1 (LSB) enters Q0. All 4 bits now loaded.\nRegister: 1011",
-    rule: "Clock 4: Serial In = 1 (LSB)",
-    visual: "register",
-    stateIdx: 4,
-    inputBit: 1,
-    clockNum: 4
-  },
-  {
-    title: "Result: 1011 Loaded Successfully",
-    desc: "After 4 clock pulses, the shift register contains 1011.\nQ3=1, Q2=0, Q1=1, Q0=1 → 1011₂ = 11₁₀",
-    rule: "4 clocks to load 4-bit serial data",
-    visual: "result",
-    stateIdx: 4
+  });
+
+  // Clock pulse steps
+  for (let i = 0; i < n; i++) {
+    let state = regStates[i + 1];
+    let regVal = '' + state[3] + state[2] + state[1] + state[0];
+    let bitLabel = i === 0 ? ' (MSB of ' + bitStr + ')' : (i === n - 1 ? ' (LSB)' : '');
+    let desc;
+    if (i === 0) {
+      desc = "Serial input = " + bits[i] + bitLabel + " enters Q0.\nAll other FFs shift: Q0\u2192Q1, Q1\u2192Q2, Q2\u2192Q3.\nRegister: " + regVal;
+    } else if (i === n - 1) {
+      desc = "Serial input = " + bits[i] + bitLabel + " enters Q0. All " + n + " bits now loaded.\nRegister: " + regVal;
+    } else {
+      desc = "Serial input = " + bits[i] + " enters Q0. Data continues shifting right.\nRegister: " + regVal;
+    }
+
+    newSteps.push({
+      title: "Step " + (i + 2) + ": Clock Pulse " + (i + 1) + " \u2014 Input: " + bits[i],
+      desc: desc,
+      rule: "Clock " + (i + 1) + ": Serial In = " + bits[i] + (i === 0 ? " (MSB)" : (i === n - 1 ? " (LSB)" : "")),
+      visual: "register",
+      stateIdx: i + 1,
+      inputBit: bits[i],
+      clockNum: i + 1
+    });
   }
-];
+
+  // Result
+  let finalState = regStates[n];
+  let finalRegVal = '' + finalState[3] + finalState[2] + finalState[1] + finalState[0];
+  let decVal = parseInt(finalRegVal, 2);
+
+  newSteps.push({
+    title: "Result: " + bitStr + " Loaded Successfully",
+    desc: "After " + n + " clock pulses, the shift register contains " + finalRegVal + ".\nQ3=" + finalState[3] + ", Q2=" + finalState[2] + ", Q1=" + finalState[1] + ", Q0=" + finalState[0] + " \u2192 " + finalRegVal + "\u2082 = " + decVal + "\u2081\u2080",
+    rule: n + " clocks to load " + n + "-bit serial data",
+    visual: "result",
+    stateIdx: n
+  });
+
+  return newSteps;
+}
+
+let steps = generateSteps([1, 0, 1, 1]);
 
 function setup() {
   updateCanvasSize();
@@ -102,7 +118,44 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Input field for bit pattern
+  bitsInput = createInput('1011');
+  bitsInput.size(80);
+  bitsInput.attribute('placeholder', 'e.g., 1101');
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('Shift register walkthrough showing data flowing through flip-flops', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  bitsInput.position(mainRect.left + 75, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 170, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let val = bitsInput.value().trim();
+  if (!/^[01]{1,8}$/.test(val)) {
+    bitsInput.style('border', '2px solid red');
+    return;
+  }
+  bitsInput.style('border', '');
+  let bits = val.split('').map(Number);
+  steps = generateSteps(bits);
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -181,6 +234,14 @@ function draw() {
     text(descLines[i], margin + 10, descY + i * 15);
   }
 
+  // Input label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Bits:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
@@ -192,11 +253,11 @@ function drawIntro(mx, vy, w, vh) {
   textAlign(CENTER, CENTER);
   textSize(18);
   textStyle(BOLD);
-  text('Serial Input: 1 → 0 → 1 → 1', cx, vy + 30);
+  text('Serial Input: ' + serialBits.join(' \u2192 '), cx, vy + 30);
 
   fill(HIGHLIGHT);
   textSize(16);
-  text('↓', cx, vy + 55);
+  text('\u2193', cx, vy + 55);
 
   // Draw 4 empty FF boxes
   let ffW = 50;
@@ -247,7 +308,7 @@ function drawIntro(mx, vy, w, vh) {
   fill(100);
   textAlign(CENTER, CENTER);
   textSize(13); textStyle(NORMAL);
-  text('Click "Next →" to begin', cx, vy + vh - 15);
+  text('Click "Next \u2192" to begin', cx, vy + vh - 15);
 }
 
 function drawRegister(mx, vy, w, vh, step) {
@@ -345,7 +406,7 @@ function drawRegister(mx, vy, w, vh, step) {
     noStroke();
     fill(TITLE_BG);
     textSize(9);
-    text('↑ Rising Edge', cx + 25, sy + 4);
+    text('\u2191 Rising Edge', cx + 25, sy + 4);
   }
 
   // Register value display
@@ -369,7 +430,7 @@ function drawRegister(mx, vy, w, vh, step) {
   textAlign(CENTER, CENTER);
   textSize(11); textStyle(NORMAL);
   text('Input sequence: ', cx - 50, seqY);
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < serialBits.length; i++) {
     let bitX = cx + i * 18;
     if (i < step.clockNum) {
       fill(NEW_DATA_COLOR); textStyle(BOLD);
@@ -414,6 +475,8 @@ function drawResult(mx, vy, w, vh, step) {
   }
 
   // Result box
+  let finalRegVal = '' + state[3] + state[2] + state[1] + state[0];
+  let decVal = parseInt(finalRegVal, 2);
   let resY = ffY + ffH + 25;
   fill(RESULT_BG);
   stroke('#4CAF50'); strokeWeight(2);
@@ -422,16 +485,16 @@ function drawResult(mx, vy, w, vh, step) {
   fill('#1B5E20');
   textAlign(CENTER, CENTER);
   textSize(20); textStyle(BOLD);
-  text('Q3Q2Q1Q0 = 1011₂ = 11₁₀', cx, resY + 25);
+  text('Q3Q2Q1Q0 = ' + finalRegVal + '\u2082 = ' + decVal + '\u2081\u2080', cx, resY + 25);
 
   // Summary
   fill(100);
   textSize(12); textStyle(NORMAL);
-  text('4 serial bits loaded in 4 clock cycles', cx, resY + 65);
+  text(serialBits.length + ' serial bits loaded in ' + serialBits.length + ' clock cycles', cx, resY + 65);
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -445,7 +508,7 @@ function drawButtons() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(14); textStyle(BOLD);
-  text('← Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
   rect(startX + btnW + gap, btnY, btnW, btnH, 5);
@@ -456,11 +519,11 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next →', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -481,6 +544,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

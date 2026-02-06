@@ -1,17 +1,22 @@
 // Base Conversion Walkthrough MicroSim
-// Convert 156₁₀ to binary, octal, and hexadecimal using repeated division
+// Convert any decimal number to binary, octal, and hexadecimal using repeated division
 // Bloom Level: Apply (L3) - Apply number base conversion algorithms
 // MicroSim template version 2026.02
 
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 580;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
 let currentStep = 0;
 let totalSteps; // set in setup based on steps array length
+let currentNumber = 156;
+
+// UI elements
+let numberInput;
+let goButton;
 
 // Color scheme
 const TITLE_BG = '#2196F3';
@@ -19,188 +24,100 @@ const STEP_BG = '#E3F2FD';
 const HIGHLIGHT = '#FF9800';
 const RESULT_BG = '#E8F5E9';
 
-// Steps data - converting 156 to binary, then octal, then hex
-let steps = [
-  {
-    title: "Convert 156₁₀ to Binary, Octal, and Hexadecimal",
-    desc: "We will convert the decimal number 156 to three different bases using the repeated division method.",
+// Conversion results stored for summary display
+let convResults = {};
+
+function generateSteps(num) {
+  let newSteps = [];
+  convResults = {};
+
+  // Intro step
+  newSteps.push({
+    title: "Convert " + num + "\u2081\u2080 to Binary, Octal, and Hexadecimal",
+    desc: "We will convert the decimal number " + num + " to three different bases using the repeated division method.",
     rule: "Repeated Division Method",
     visual: "intro"
-  },
-  // Binary conversion: 156 / 2
-  {
-    title: "Binary Conversion: Step 1",
-    desc: "Divide 156 by 2:\n156 ÷ 2 = 78 remainder 0",
-    rule: "Divide by target base (2), record remainder",
-    visual: "binary",
-    divisions: [{dividend: 156, divisor: 2, quotient: 78, remainder: 0}]
-  },
-  {
-    title: "Binary Conversion: Step 2",
-    desc: "Divide 78 by 2:\n78 ÷ 2 = 39 remainder 0",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 3",
-    desc: "Divide 39 by 2:\n39 ÷ 2 = 19 remainder 1",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 4",
-    desc: "Divide 19 by 2:\n19 ÷ 2 = 9 remainder 1",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1},
-      {dividend: 19, divisor: 2, quotient: 9, remainder: 1}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 5",
-    desc: "Divide 9 by 2:\n9 ÷ 2 = 4 remainder 1",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1},
-      {dividend: 19, divisor: 2, quotient: 9, remainder: 1},
-      {dividend: 9, divisor: 2, quotient: 4, remainder: 1}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 6",
-    desc: "Divide 4 by 2:\n4 ÷ 2 = 2 remainder 0",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1},
-      {dividend: 19, divisor: 2, quotient: 9, remainder: 1},
-      {dividend: 9, divisor: 2, quotient: 4, remainder: 1},
-      {dividend: 4, divisor: 2, quotient: 2, remainder: 0}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 7",
-    desc: "Divide 2 by 2:\n2 ÷ 2 = 1 remainder 0",
-    rule: "Continue dividing quotient by 2",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1},
-      {dividend: 19, divisor: 2, quotient: 9, remainder: 1},
-      {dividend: 9, divisor: 2, quotient: 4, remainder: 1},
-      {dividend: 4, divisor: 2, quotient: 2, remainder: 0},
-      {dividend: 2, divisor: 2, quotient: 1, remainder: 0}
-    ]
-  },
-  {
-    title: "Binary Conversion: Step 8",
-    desc: "Divide 1 by 2:\n1 ÷ 2 = 0 remainder 1\nQuotient is 0, so we stop.",
-    rule: "Stop when quotient = 0",
-    visual: "binary",
-    divisions: [
-      {dividend: 156, divisor: 2, quotient: 78, remainder: 0},
-      {dividend: 78, divisor: 2, quotient: 39, remainder: 0},
-      {dividend: 39, divisor: 2, quotient: 19, remainder: 1},
-      {dividend: 19, divisor: 2, quotient: 9, remainder: 1},
-      {dividend: 9, divisor: 2, quotient: 4, remainder: 1},
-      {dividend: 4, divisor: 2, quotient: 2, remainder: 0},
-      {dividend: 2, divisor: 2, quotient: 1, remainder: 0},
-      {dividend: 1, divisor: 2, quotient: 0, remainder: 1}
-    ]
-  },
-  {
-    title: "Binary Result",
-    desc: "Read remainders bottom-to-top:\n156₁₀ = 10011100₂",
-    rule: "Read remainders from last to first (LSB → MSB)",
-    visual: "binary-result",
-    result: "10011100"
-  },
-  // Octal conversion: 156 / 8
-  {
-    title: "Octal Conversion: Step 1",
-    desc: "Divide 156 by 8:\n156 ÷ 8 = 19 remainder 4",
-    rule: "Divide by target base (8), record remainder",
-    visual: "octal",
-    divisions: [{dividend: 156, divisor: 8, quotient: 19, remainder: 4}]
-  },
-  {
-    title: "Octal Conversion: Step 2",
-    desc: "Divide 19 by 8:\n19 ÷ 8 = 2 remainder 3",
-    rule: "Continue dividing quotient by 8",
-    visual: "octal",
-    divisions: [
-      {dividend: 156, divisor: 8, quotient: 19, remainder: 4},
-      {dividend: 19, divisor: 8, quotient: 2, remainder: 3}
-    ]
-  },
-  {
-    title: "Octal Conversion: Step 3",
-    desc: "Divide 2 by 8:\n2 ÷ 8 = 0 remainder 2\nQuotient is 0, so we stop.",
-    rule: "Stop when quotient = 0",
-    visual: "octal",
-    divisions: [
-      {dividend: 156, divisor: 8, quotient: 19, remainder: 4},
-      {dividend: 19, divisor: 8, quotient: 2, remainder: 3},
-      {dividend: 2, divisor: 8, quotient: 0, remainder: 2}
-    ]
-  },
-  {
-    title: "Octal Result",
-    desc: "Read remainders bottom-to-top:\n156₁₀ = 234₈",
-    rule: "Read remainders from last to first",
-    visual: "octal-result",
-    result: "234"
-  },
-  // Hex conversion: 156 / 16
-  {
-    title: "Hexadecimal Conversion: Step 1",
-    desc: "Divide 156 by 16:\n156 ÷ 16 = 9 remainder 12 (C)",
-    rule: "Divide by target base (16), record remainder",
-    visual: "hex",
-    divisions: [{dividend: 156, divisor: 16, quotient: 9, remainder: 12}]
-  },
-  {
-    title: "Hexadecimal Conversion: Step 2",
-    desc: "Divide 9 by 16:\n9 ÷ 16 = 0 remainder 9\nQuotient is 0, so we stop.",
-    rule: "Stop when quotient = 0",
-    visual: "hex",
-    divisions: [
-      {dividend: 156, divisor: 16, quotient: 9, remainder: 12},
-      {dividend: 9, divisor: 16, quotient: 0, remainder: 9}
-    ]
-  },
-  {
-    title: "Hexadecimal Result",
-    desc: "Read remainders bottom-to-top:\n156₁₀ = 9C₁₆\n(12 in hex = C)",
-    rule: "Read remainders from last to first; digits > 9 use A-F",
-    visual: "hex-result",
-    result: "9C"
-  },
-  {
+  });
+
+  let bases = [
+    {base: 2, name: "Binary", visual: "binary", resultVisual: "binary-result", subscript: "\u2082"},
+    {base: 8, name: "Octal", visual: "octal", resultVisual: "octal-result", subscript: "\u2088"},
+    {base: 16, name: "Hexadecimal", visual: "hex", resultVisual: "hex-result", subscript: "\u2081\u2086"}
+  ];
+
+  for (let b of bases) {
+    let divisions = [];
+    let q = num;
+    let stepNum = 0;
+
+    while (q > 0) {
+      stepNum++;
+      let remainder = q % b.base;
+      let quotient = Math.floor(q / b.base);
+      divisions.push({dividend: q, divisor: b.base, quotient: quotient, remainder: remainder});
+
+      let isLast = quotient === 0;
+      let remText = remainder.toString();
+      if (b.base === 16 && remainder >= 10) {
+        remText = remainder + ' (' + '0123456789ABCDEF'[remainder] + ')';
+      }
+      let descText = "Divide " + q + " by " + b.base + ":\n" + q + " \u00f7 " + b.base + " = " + quotient + " remainder " + remText;
+      if (isLast) descText += "\nQuotient is 0, so we stop.";
+
+      newSteps.push({
+        title: b.name + " Conversion: Step " + stepNum,
+        desc: descText,
+        rule: stepNum === 1 ? "Divide by target base (" + b.base + "), record remainder" :
+              (isLast ? "Stop when quotient = 0" : "Continue dividing quotient by " + b.base),
+        visual: b.visual,
+        divisions: divisions.map(function(d) { return {dividend: d.dividend, divisor: d.divisor, quotient: d.quotient, remainder: d.remainder}; })
+      });
+
+      q = quotient;
+    }
+
+    // Build result string from remainders (reverse order)
+    let resultStr = divisions.map(function(d) {
+      if (b.base === 16 && d.remainder >= 10) return '0123456789ABCDEF'[d.remainder];
+      return d.remainder.toString();
+    }).reverse().join('');
+    convResults[b.name] = resultStr;
+
+    // Result step
+    let ruleText = "Read remainders from last to first";
+    if (b.base === 2) ruleText += " (LSB \u2192 MSB)";
+    if (b.base === 16) ruleText += "; digits > 9 use A-F";
+
+    let descSuffix = '';
+    if (b.base === 16) {
+      // Check if any hex digit > 9
+      let hexDigits = divisions.filter(function(d) { return d.remainder >= 10; });
+      if (hexDigits.length > 0) {
+        descSuffix = '\n(' + hexDigits.map(function(d) { return d.remainder + ' in hex = ' + '0123456789ABCDEF'[d.remainder]; }).join(', ') + ')';
+      }
+    }
+
+    newSteps.push({
+      title: b.name + " Result",
+      desc: "Read remainders bottom-to-top:\n" + num + "\u2081\u2080 = " + resultStr + b.subscript + descSuffix,
+      rule: ruleText,
+      visual: b.resultVisual,
+      result: resultStr
+    });
+  }
+
+  // Summary step
+  newSteps.push({
     title: "Summary",
-    desc: "156₁₀ = 10011100₂ = 234₈ = 9C₁₆\n\nAll conversions use the same method: repeatedly divide by the target base and read remainders bottom-to-top.",
+    desc: num + "\u2081\u2080 = " + convResults["Binary"] + "\u2082 = " + convResults["Octal"] + "\u2088 = " + convResults["Hexadecimal"] + "\u2081\u2086\n\nAll conversions use the same method: repeatedly divide by the target base and read remainders bottom-to-top.",
     rule: "Repeated Division Method",
     visual: "summary"
-  }
-];
+  });
+
+  return newSteps;
+}
+
+let steps = generateSteps(156);
 
 function setup() {
   updateCanvasSize();
@@ -208,7 +125,47 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Input field for decimal number
+  numberInput = createInput('156');
+  numberInput.size(80);
+  numberInput.attribute('placeholder', 'e.g., 168');
+  numberInput.attribute('type', 'number');
+  numberInput.attribute('min', '1');
+  numberInput.attribute('max', '9999');
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('Base conversion walkthrough showing step-by-step division method', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  numberInput.position(mainRect.left + 85, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 180, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let val = parseInt(numberInput.value());
+  if (isNaN(val) || val < 1 || val > 9999) {
+    numberInput.style('border', '2px solid red');
+    return;
+  }
+  numberInput.style('border', '');
+  currentNumber = val;
+  steps = generateSteps(val);
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -282,6 +239,14 @@ function draw() {
     text(descLines[i], margin + 10, descY + i * 16);
   }
 
+  // Input label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Decimal:', margin, drawHeight + 18);
+
   // Buttons
   drawButtons();
 }
@@ -294,24 +259,24 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(28);
     textStyle(BOLD);
-    text('156₁₀ = ?₂ = ?₈ = ?₁₆', cx, vy + vh / 2 - 20);
+    text(currentNumber + '\u2081\u2080 = ?\u2082 = ?\u2088 = ?\u2081\u2086', cx, vy + vh / 2 - 20);
     textSize(14);
     textStyle(NORMAL);
     fill(100);
-    text('Click "Next →" to begin', cx, vy + vh / 2 + 20);
+    text('Click "Next \u2192" to begin', cx, vy + vh / 2 + 20);
   }
   else if (step.visual === 'summary') {
     textAlign(CENTER, CENTER);
     textSize(20);
     textStyle(BOLD);
     fill('#1B5E20');
-    text('156₁₀', cx, vy + 40);
+    text(currentNumber + '\u2081\u2080', cx, vy + 40);
     fill(60);
     textSize(16);
     let results = [
-      {label: 'Binary (base 2):', val: '10011100₂'},
-      {label: 'Octal (base 8):', val: '234₈'},
-      {label: 'Hex (base 16):', val: '9C₁₆'}
+      {label: 'Binary (base 2):', val: convResults['Binary'] + '\u2082'},
+      {label: 'Octal (base 8):', val: convResults['Octal'] + '\u2088'},
+      {label: 'Hex (base 16):', val: convResults['Hexadecimal'] + '\u2081\u2086'}
     ];
     for (let i = 0; i < results.length; i++) {
       let y = vy + 80 + i * 50;
@@ -332,7 +297,6 @@ function drawVisual(step, mx, vy, w, vh) {
   else if (step.visual.includes('-result')) {
     // Show the division table + highlighted result
     let base = step.visual.startsWith('binary') ? 2 : step.visual.startsWith('octal') ? 8 : 16;
-    let baseLabel = base === 2 ? 'Binary' : base === 8 ? 'Octal' : 'Hexadecimal';
     let prevStep = steps[currentStep - 1];
     let divs = prevStep.divisions || [];
     drawDivisionTable(divs, mx, vy, w, vh, base, true);
@@ -347,7 +311,7 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
-    text('156₁₀ = ' + step.result + (base === 2 ? '₂' : base === 8 ? '₈' : '₁₆'), cx, vy + vh - rh / 2 - 10);
+    text(currentNumber + '\u2081\u2080 = ' + step.result + (base === 2 ? '\u2082' : base === 8 ? '\u2088' : '\u2081\u2086'), cx, vy + vh - rh / 2 - 10);
   }
   else if (step.divisions) {
     let base = step.visual === 'binary' ? 2 : step.visual === 'octal' ? 8 : 16;
@@ -374,7 +338,7 @@ function drawDivisionTable(divisions, mx, vy, w, vh, base, showArrow) {
   textStyle(BOLD);
   let colW = tableW / 4;
   text('Dividend', tableX + colW * 0.5, startY + rowH / 2);
-  text('÷ ' + base, tableX + colW * 1.5, startY + rowH / 2);
+  text('\u00f7 ' + base, tableX + colW * 1.5, startY + rowH / 2);
   text('Quotient', tableX + colW * 2.5, startY + rowH / 2);
   text('Remainder', tableX + colW * 3.5, startY + rowH / 2);
 
@@ -422,13 +386,13 @@ function drawDivisionTable(divisions, mx, vy, w, vh, base, showArrow) {
     push();
     translate(arrowX + 8, (topY + botY) / 2);
     rotate(-PI / 2);
-    text('Read ↑', 0, 0);
+    text('Read \u2191', 0, 0);
     pop();
   }
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -444,7 +408,7 @@ function drawButtons() {
   textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
-  text('← Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   // Reset button
   fill('#757575');
@@ -457,11 +421,11 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next →', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -482,6 +446,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

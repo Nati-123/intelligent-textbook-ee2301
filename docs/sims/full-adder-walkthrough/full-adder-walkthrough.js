@@ -6,7 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 500;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -19,78 +19,218 @@ const HIGHLIGHT = '#FF9800';
 const RESULT_BG = '#E8F5E9';
 const HIGHLIGHT_ROW = '#FFF3E0';
 
-let truthTable = [
-  [0,0,0, 0,0],
-  [0,0,1, 1,0],
-  [0,1,0, 1,0],
-  [0,1,1, 0,1],
-  [1,0,0, 1,0],
-  [1,0,1, 0,1],
-  [1,1,0, 0,1],
-  [1,1,1, 1,1]
-];
+// UI elements
+let presetSelect;
+let goButton;
 
-let steps = [
+// Preset circuits
+let presets = [
   {
-    title: "Design a Full Adder Circuit",
-    desc: "A full adder adds three 1-bit inputs (A, B, Carry-in) and produces\na Sum and Carry-out. Let's design it step by step.",
-    rule: "Combinational Design Flow",
-    visual: "intro"
+    label: "Full Adder",
+    colHeaders: ['A', 'B', 'Cin', 'Sum', 'Cout'],
+    numInputs: 3,
+    truthTable: [
+      [0,0,0, 0,0],
+      [0,0,1, 1,0],
+      [0,1,0, 1,0],
+      [0,1,1, 0,1],
+      [1,0,0, 1,0],
+      [1,0,1, 0,1],
+      [1,1,0, 0,1],
+      [1,1,1, 1,1]
+    ],
+    steps: [
+      {
+        title: "Design a Full Adder Circuit",
+        desc: "A full adder adds three 1-bit inputs (A, B, Carry-in) and produces\na Sum and Carry-out. Let's design it step by step.",
+        rule: "Combinational Design Flow",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 8 input combinations for A, B, Cin.\nCalculate Sum and Cout for each row.",
+        rule: "Truth Table: 2\u207F rows for n inputs",
+        visual: "truth-table",
+        highlightRows: []
+      },
+      {
+        title: "Step 2: Identify Minterms for Sum",
+        desc: "Sum = 1 at rows 1, 2, 4, 7 (counting from 0).\nSum = \u03A3m(1, 2, 4, 7)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [1, 2, 4, 7],
+        highlightCol: "sum"
+      },
+      {
+        title: "Step 3: SOP Expression for Sum",
+        desc: "Sum = A'B'Cin + A'BCin' + AB'Cin' + ABCin\nThis is equivalent to Sum = A \u2295 B \u2295 Cin",
+        rule: "Sum-of-Products from minterms",
+        visual: "sop-sum"
+      },
+      {
+        title: "Step 4: Identify Minterms for Cout",
+        desc: "Cout = 1 at rows 3, 5, 6, 7 (counting from 0).\nCout = \u03A3m(3, 5, 6, 7)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [3, 5, 6, 7],
+        highlightCol: "cout"
+      },
+      {
+        title: "Step 5: SOP Expression for Cout",
+        desc: "Cout = A'BCin + AB'Cin + ABCin' + ABCin\nSimplifies to: Cout = AB + ACin + BCin",
+        rule: "Sum-of-Products \u2192 Simplified",
+        visual: "sop-cout"
+      },
+      {
+        title: "Step 6: Gate Circuit for Sum",
+        desc: "Sum = A \u2295 B \u2295 Cin\nImplemented with two XOR gates in cascade.",
+        rule: "XOR gate implements odd-parity function",
+        visual: "circuit-sum"
+      },
+      {
+        title: "Step 7: Gate Circuit for Cout",
+        desc: "Cout = AB + ACin + BCin\nThree AND gates feeding one OR gate.",
+        rule: "SOP \u2192 AND-OR implementation",
+        visual: "circuit-cout"
+      },
+      {
+        title: "Complete Full Adder",
+        desc: "The full adder is complete with:\n\u2022 Sum = A \u2295 B \u2295 Cin (two XOR gates)\n\u2022 Cout = AB + ACin + BCin (three AND + one OR)",
+        rule: "Full Adder Design Complete",
+        visual: "complete"
+      }
+    ]
   },
   {
-    title: "Step 1: Write the Truth Table",
-    desc: "List all 8 input combinations for A, B, Cin.\nCalculate Sum and Cout for each row.",
-    rule: "Truth Table: 2\u207F rows for n inputs",
-    visual: "truth-table",
-    highlightRows: []
+    label: "Half Adder",
+    colHeaders: ['A', 'B', 'Sum', 'Carry'],
+    numInputs: 2,
+    truthTable: [
+      [0,0, 0,0],
+      [0,1, 1,0],
+      [1,0, 1,0],
+      [1,1, 0,1]
+    ],
+    steps: [
+      {
+        title: "Design a Half Adder Circuit",
+        desc: "A half adder adds two 1-bit inputs (A, B) and produces\na Sum and Carry output. Let's design it step by step.",
+        rule: "Combinational Design Flow",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 4 input combinations for A, B.\nCalculate Sum and Carry for each row.",
+        rule: "Truth Table: 2\u207F rows for n inputs",
+        visual: "truth-table",
+        highlightRows: []
+      },
+      {
+        title: "Step 2: Identify Minterms for Sum",
+        desc: "Sum = 1 at rows 1, 2 (counting from 0).\nSum = \u03A3m(1, 2)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [1, 2],
+        highlightCol: "sum"
+      },
+      {
+        title: "Step 3: Expression for Sum",
+        desc: "Sum = A'B + AB'\nThis is equivalent to Sum = A \u2295 B (XOR)",
+        rule: "Sum-of-Products from minterms",
+        visual: "ha-sop-sum"
+      },
+      {
+        title: "Step 4: Identify Minterms for Carry",
+        desc: "Carry = 1 at row 3 (counting from 0).\nCarry = \u03A3m(3)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [3],
+        highlightCol: "cout"
+      },
+      {
+        title: "Step 5: Expression for Carry",
+        desc: "Carry = AB\nOnly one minterm, so the expression is simply AB.",
+        rule: "Single minterm \u2192 AND gate",
+        visual: "ha-sop-carry"
+      },
+      {
+        title: "Complete Half Adder",
+        desc: "The half adder is complete with:\n\u2022 Sum = A \u2295 B (one XOR gate)\n\u2022 Carry = AB (one AND gate)",
+        rule: "Half Adder Design Complete",
+        visual: "ha-complete"
+      }
+    ]
   },
   {
-    title: "Step 2: Identify Minterms for Sum",
-    desc: "Sum = 1 at rows 1, 2, 4, 7 (counting from 0).\nSum = \u03A3m(1, 2, 4, 7)",
-    rule: "Minterms: rows where output = 1",
-    visual: "truth-table",
-    highlightRows: [1, 2, 4, 7],
-    highlightCol: "sum"
-  },
-  {
-    title: "Step 3: SOP Expression for Sum",
-    desc: "Sum = A'B'Cin + A'BCin' + AB'Cin' + ABCin\nThis is equivalent to Sum = A \u2295 B \u2295 Cin",
-    rule: "Sum-of-Products from minterms",
-    visual: "sop-sum"
-  },
-  {
-    title: "Step 4: Identify Minterms for Cout",
-    desc: "Cout = 1 at rows 3, 5, 6, 7 (counting from 0).\nCout = \u03A3m(3, 5, 6, 7)",
-    rule: "Minterms: rows where output = 1",
-    visual: "truth-table",
-    highlightRows: [3, 5, 6, 7],
-    highlightCol: "cout"
-  },
-  {
-    title: "Step 5: SOP Expression for Cout",
-    desc: "Cout = A'BCin + AB'Cin + ABCin' + ABCin\nSimplifies to: Cout = AB + ACin + BCin",
-    rule: "Sum-of-Products \u2192 Simplified",
-    visual: "sop-cout"
-  },
-  {
-    title: "Step 6: Gate Circuit for Sum",
-    desc: "Sum = A \u2295 B \u2295 Cin\nImplemented with two XOR gates in cascade.",
-    rule: "XOR gate implements odd-parity function",
-    visual: "circuit-sum"
-  },
-  {
-    title: "Step 7: Gate Circuit for Cout",
-    desc: "Cout = AB + ACin + BCin\nThree AND gates feeding one OR gate.",
-    rule: "SOP \u2192 AND-OR implementation",
-    visual: "circuit-cout"
-  },
-  {
-    title: "Complete Full Adder",
-    desc: "The full adder is complete with:\n\u2022 Sum = A \u2295 B \u2295 Cin (two XOR gates)\n\u2022 Cout = AB + ACin + BCin (three AND + one OR)",
-    rule: "Full Adder Design Complete",
-    visual: "complete"
+    label: "Full Subtractor",
+    colHeaders: ['A', 'B', 'Bin', 'Diff', 'Bout'],
+    numInputs: 3,
+    truthTable: [
+      [0,0,0, 0,0],
+      [0,0,1, 1,1],
+      [0,1,0, 1,1],
+      [0,1,1, 0,1],
+      [1,0,0, 1,0],
+      [1,0,1, 0,0],
+      [1,1,0, 0,0],
+      [1,1,1, 1,1]
+    ],
+    steps: [
+      {
+        title: "Design a Full Subtractor Circuit",
+        desc: "A full subtractor computes A - B - Bin and produces\na Difference and Borrow-out. Let's design it step by step.",
+        rule: "Combinational Design Flow",
+        visual: "intro"
+      },
+      {
+        title: "Step 1: Write the Truth Table",
+        desc: "List all 8 input combinations for A, B, Bin.\nCalculate Diff and Bout for each row.",
+        rule: "Truth Table: 2\u207F rows for n inputs",
+        visual: "truth-table",
+        highlightRows: []
+      },
+      {
+        title: "Step 2: Identify Minterms for Diff",
+        desc: "Diff = 1 at rows 1, 2, 4, 7 (counting from 0).\nDiff = \u03A3m(1, 2, 4, 7)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [1, 2, 4, 7],
+        highlightCol: "sum"
+      },
+      {
+        title: "Step 3: Expression for Diff",
+        desc: "Diff = A'B'Bin + A'BBin' + AB'Bin' + ABBin\nThis is equivalent to Diff = A \u2295 B \u2295 Bin",
+        rule: "Sum-of-Products from minterms",
+        visual: "fs-sop-diff"
+      },
+      {
+        title: "Step 4: Identify Minterms for Bout",
+        desc: "Bout = 1 at rows 1, 2, 3, 7 (counting from 0).\nBout = \u03A3m(1, 2, 3, 7)",
+        rule: "Minterms: rows where output = 1",
+        visual: "truth-table",
+        highlightRows: [1, 2, 3, 7],
+        highlightCol: "cout"
+      },
+      {
+        title: "Step 5: Expression for Bout",
+        desc: "Bout = A'B'Bin + A'BBin' + A'BBin + ABBin\nSimplifies to: Bout = A'B + A'Bin + BBin",
+        rule: "Sum-of-Products \u2192 Simplified",
+        visual: "fs-sop-bout"
+      },
+      {
+        title: "Complete Full Subtractor",
+        desc: "The full subtractor is complete with:\n\u2022 Diff = A \u2295 B \u2295 Bin (two XOR gates)\n\u2022 Bout = A'B + A'Bin + BBin (three AND + one OR)",
+        rule: "Full Subtractor Design Complete",
+        visual: "fs-complete"
+      }
+    ]
   }
 ];
+
+let activePreset = presets[0];
+let truthTable = activePreset.truthTable.slice();
+let colHeaders = activePreset.colHeaders.slice();
+let steps = activePreset.steps.slice();
 
 function setup() {
   updateCanvasSize();
@@ -98,7 +238,42 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Dropdown for preset selection
+  presetSelect = createSelect();
+  for (let i = 0; i < presets.length; i++) {
+    presetSelect.option(presets[i].label, i);
+  }
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('Full adder design walkthrough from truth table to gate circuit', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  presetSelect.position(mainRect.left + 65, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 250, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let idx = parseInt(presetSelect.value());
+  activePreset = presets[idx];
+  truthTable = activePreset.truthTable.slice();
+  colHeaders = activePreset.colHeaders.slice();
+  steps = activePreset.steps.slice();
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -168,6 +343,14 @@ function draw() {
     text(lines[i], margin + 10, descY + i * 16);
   }
 
+  // Preset label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Circuit:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
@@ -175,74 +358,24 @@ function drawVisual(step, mx, vy, w, vh) {
   let cx = canvasWidth / 2;
 
   if (step.visual === 'intro') {
-    fill(60);
-    textAlign(CENTER, CENTER);
-    textSize(16);
-    textStyle(BOLD);
-    text('A, B, Cin', cx - 80, vy + vh / 2);
-    // Box
-    fill(TITLE_BG);
-    rect(cx - 40, vy + vh / 2 - 25, 80, 50, 5);
-    fill(255);
-    textSize(14);
-    text('Full\nAdder', cx, vy + vh / 2);
-    // Outputs
-    fill(60);
-    textSize(16);
-    text('Sum, Cout', cx + 90, vy + vh / 2);
-    // Arrows
-    stroke(60);
-    strokeWeight(2);
-    line(cx - 55, vy + vh / 2, cx - 40, vy + vh / 2);
-    line(cx + 40, vy + vh / 2, cx + 55, vy + vh / 2);
-    noStroke();
+    drawIntroVisual(cx, vy, vh);
   }
   else if (step.visual === 'truth-table') {
     drawTruthTable(mx, vy, w, vh, step.highlightRows || [], step.highlightCol || null);
   }
   else if (step.visual === 'sop-sum') {
-    fill(60);
-    textAlign(CENTER, CENTER);
-    textSize(14);
-    textStyle(NORMAL);
-    text("Minterms: \u03A3m(1, 2, 4, 7)", cx, vy + 30);
-    textSize(13);
-    text("A'B'Cin + A'BCin' + AB'Cin' + ABCin", cx, vy + 60);
-    // Arrow
-    fill(HIGHLIGHT);
-    textSize(18);
-    text('\u2193', cx, vy + 85);
-    // Simplified
-    fill(RESULT_BG);
-    stroke('#4CAF50');
-    strokeWeight(2);
-    rect(mx + 40, vy + 100, w - 80, 45, 8);
-    noStroke();
-    fill('#1B5E20');
-    textSize(22);
-    textStyle(BOLD);
-    text('Sum = A \u2295 B \u2295 Cin', cx, vy + 122);
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(1, 2, 4, 7)",
+      "A'B'Cin + A'BCin' + AB'Cin' + ABCin",
+      "Sum = A \u2295 B \u2295 Cin"
+    );
   }
   else if (step.visual === 'sop-cout') {
-    fill(60);
-    textAlign(CENTER, CENTER);
-    textSize(14);
-    textStyle(NORMAL);
-    text("Minterms: \u03A3m(3, 5, 6, 7)", cx, vy + 30);
-    textSize(13);
-    text("A'BCin + AB'Cin + ABCin' + ABCin", cx, vy + 60);
-    fill(HIGHLIGHT);
-    textSize(18);
-    text('\u2193', cx, vy + 85);
-    fill(RESULT_BG);
-    stroke('#4CAF50');
-    strokeWeight(2);
-    rect(mx + 40, vy + 100, w - 80, 45, 8);
-    noStroke();
-    fill('#1B5E20');
-    textSize(22);
-    textStyle(BOLD);
-    text('Cout = AB + ACin + BCin', cx, vy + 122);
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(3, 5, 6, 7)",
+      "A'BCin + AB'Cin + ABCin' + ABCin",
+      "Cout = AB + ACin + BCin"
+    );
   }
   else if (step.visual === 'circuit-sum') {
     drawSumCircuit(mx, vy, w, vh);
@@ -251,7 +384,24 @@ function drawVisual(step, mx, vy, w, vh) {
     drawCoutCircuit(mx, vy, w, vh);
   }
   else if (step.visual === 'complete') {
-    // Summary boxes
+    drawCompleteFullAdder(cx, mx, vy, w, vh);
+  }
+  // Half Adder visuals
+  else if (step.visual === 'ha-sop-sum') {
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(1, 2)",
+      "A'B + AB'",
+      "Sum = A \u2295 B"
+    );
+  }
+  else if (step.visual === 'ha-sop-carry') {
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(3)",
+      "AB",
+      "Carry = AB"
+    );
+  }
+  else if (step.visual === 'ha-complete') {
     fill(RESULT_BG);
     stroke('#4CAF50');
     strokeWeight(2);
@@ -262,23 +412,148 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
-    text('Sum = A \u2295 B \u2295 Cin', cx, vy + 45);
-    text('Cout = AB + ACin + BCin', cx, vy + 110);
-    // Gate counts
+    text('Sum = A \u2295 B', cx, vy + 45);
+    text('Carry = AB', cx, vy + 110);
+    fill(100);
+    textSize(13);
+    textStyle(NORMAL);
+    text('1 XOR gate', cx, vy + 150);
+    text('1 AND gate', cx, vy + 170);
+    text('Total: 2 gates', cx, vy + 195);
+  }
+  // Full Subtractor visuals
+  else if (step.visual === 'fs-sop-diff') {
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(1, 2, 4, 7)",
+      "A'B'Bin + A'BBin' + AB'Bin' + ABBin",
+      "Diff = A \u2295 B \u2295 Bin"
+    );
+  }
+  else if (step.visual === 'fs-sop-bout') {
+    drawSOPVisual(cx, mx, vy, w,
+      "\u03A3m(1, 2, 3, 7)",
+      "A'B'Bin + A'BBin' + A'BBin + ABBin",
+      "Bout = A'B + A'Bin + BBin"
+    );
+  }
+  else if (step.visual === 'fs-complete') {
+    fill(RESULT_BG);
+    stroke('#4CAF50');
+    strokeWeight(2);
+    rect(mx + 20, vy + 20, w - 40, 50, 8);
+    rect(mx + 20, vy + 85, w - 40, 50, 8);
+    noStroke();
+    fill('#1B5E20');
+    textAlign(CENTER, CENTER);
+    textSize(18);
+    textStyle(BOLD);
+    text('Diff = A \u2295 B \u2295 Bin', cx, vy + 45);
+    text('Bout = A\'B + A\'Bin + BBin', cx, vy + 110);
     fill(100);
     textSize(13);
     textStyle(NORMAL);
     text('2 XOR gates', cx, vy + 150);
-    text('3 AND gates + 1 OR gate', cx, vy + 170);
-    text('Total: 6 gates', cx, vy + 195);
+    text('3 AND gates + 1 OR gate + 1 NOT gate', cx, vy + 170);
+    text('Total: 7 gates', cx, vy + 195);
   }
 }
 
+function drawIntroVisual(cx, vy, vh) {
+  let preset = activePreset;
+  let inputLabels, outputLabels, boxLabel;
+
+  if (preset.label === 'Full Adder') {
+    inputLabels = 'A, B, Cin';
+    outputLabels = 'Sum, Cout';
+    boxLabel = 'Full\nAdder';
+  } else if (preset.label === 'Half Adder') {
+    inputLabels = 'A, B';
+    outputLabels = 'Sum, Carry';
+    boxLabel = 'Half\nAdder';
+  } else {
+    inputLabels = 'A, B, Bin';
+    outputLabels = 'Diff, Bout';
+    boxLabel = 'Full\nSubtractor';
+  }
+
+  fill(60);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  textStyle(BOLD);
+  text(inputLabels, cx - 80, vy + vh / 2);
+  // Box
+  fill(TITLE_BG);
+  rect(cx - 40, vy + vh / 2 - 25, 80, 50, 5);
+  fill(255);
+  textSize(14);
+  text(boxLabel, cx, vy + vh / 2);
+  // Outputs
+  fill(60);
+  textSize(16);
+  text(outputLabels, cx + 90, vy + vh / 2);
+  // Arrows
+  stroke(60);
+  strokeWeight(2);
+  line(cx - 55, vy + vh / 2, cx - 40, vy + vh / 2);
+  line(cx + 40, vy + vh / 2, cx + 55, vy + vh / 2);
+  noStroke();
+}
+
+function drawSOPVisual(cx, mx, vy, w, mintermLabel, sopExpr, simplifiedExpr) {
+  fill(60);
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(NORMAL);
+  text("Minterms: " + mintermLabel, cx, vy + 30);
+  textSize(13);
+  text(sopExpr, cx, vy + 60);
+  // Arrow
+  fill(HIGHLIGHT);
+  textSize(18);
+  text('\u2193', cx, vy + 85);
+  // Simplified
+  fill(RESULT_BG);
+  stroke('#4CAF50');
+  strokeWeight(2);
+  rect(mx + 40, vy + 100, w - 80, 45, 8);
+  noStroke();
+  fill('#1B5E20');
+  textSize(22);
+  textStyle(BOLD);
+  text(simplifiedExpr, cx, vy + 122);
+}
+
+function drawCompleteFullAdder(cx, mx, vy, w, vh) {
+  // Summary boxes
+  fill(RESULT_BG);
+  stroke('#4CAF50');
+  strokeWeight(2);
+  rect(mx + 20, vy + 20, w - 40, 50, 8);
+  rect(mx + 20, vy + 85, w - 40, 50, 8);
+  noStroke();
+  fill('#1B5E20');
+  textAlign(CENTER, CENTER);
+  textSize(18);
+  textStyle(BOLD);
+  text('Sum = A \u2295 B \u2295 Cin', cx, vy + 45);
+  text('Cout = AB + ACin + BCin', cx, vy + 110);
+  // Gate counts
+  fill(100);
+  textSize(13);
+  textStyle(NORMAL);
+  text('2 XOR gates', cx, vy + 150);
+  text('3 AND gates + 1 OR gate', cx, vy + 170);
+  text('Total: 6 gates', cx, vy + 195);
+}
+
 function drawTruthTable(mx, vy, w, vh, highlightRows, highlightCol) {
-  let cols = ['A', 'B', 'Cin', 'Sum', 'Cout'];
+  let cols = colHeaders;
+  let numCols = cols.length;
+  let numRows = truthTable.length;
+  let numInputCols = activePreset.numInputs;
   let tableW = min(w - 40, 350);
   let tableX = mx + (w - tableW) / 2;
-  let colW = tableW / 5;
+  let colW = tableW / numCols;
   let rowH = 24;
   let startY = vy + 10;
 
@@ -290,17 +565,17 @@ function drawTruthTable(mx, vy, w, vh, highlightRows, highlightCol) {
   textAlign(CENTER, CENTER);
   textSize(12);
   textStyle(BOLD);
-  for (let c = 0; c < cols.length; c++) {
+  for (let c = 0; c < numCols; c++) {
     text(cols[c], tableX + colW * c + colW / 2, startY + rowH / 2);
   }
   // Separator line between inputs and outputs
   stroke(255);
   strokeWeight(1);
-  line(tableX + colW * 3, startY, tableX + colW * 3, startY + rowH);
+  line(tableX + colW * numInputCols, startY, tableX + colW * numInputCols, startY + rowH);
   noStroke();
 
   // Data rows
-  for (let r = 0; r < 8; r++) {
+  for (let r = 0; r < numRows; r++) {
     let y = startY + rowH * (r + 1);
     let isHighlighted = highlightRows.includes(r);
     fill(isHighlighted ? HIGHLIGHT_ROW : (r % 2 === 0 ? 245 : 255));
@@ -309,9 +584,10 @@ function drawTruthTable(mx, vy, w, vh, highlightRows, highlightCol) {
     rect(tableX, y, tableW, rowH);
     noStroke();
 
-    for (let c = 0; c < 5; c++) {
+    for (let c = 0; c < numCols; c++) {
       let val = truthTable[r][c];
-      let isOutputCol = (c === 3 && highlightCol === 'sum') || (c === 4 && highlightCol === 'cout');
+      // "sum" highlights first output column, "cout" highlights second output column
+      let isOutputCol = (c === numInputCols && highlightCol === 'sum') || (c === numInputCols + 1 && highlightCol === 'cout');
       if (isHighlighted && isOutputCol && val === 1) {
         fill(HIGHLIGHT);
         textStyle(BOLD);
@@ -476,7 +752,7 @@ function drawCoutCircuit(mx, vy, w, vh) {
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -506,7 +782,7 @@ function drawButtons() {
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -527,6 +803,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

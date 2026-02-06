@@ -1,12 +1,12 @@
 // Boolean Proof Walkthrough MicroSim
-// Prove A + AB = A using Boolean algebra laws
+// Prove Boolean algebra theorems using step-by-step laws
 // Bloom Level: Apply (L3) - Apply Boolean algebra theorems
 // MicroSim template version 2026.02
 
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 450;
-let controlHeight = 50;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -19,54 +19,82 @@ const HIGHLIGHT = '#FF9800';
 const RESULT_BG = '#E8F5E9';
 const CHANGED_COLOR = '#D32F2F';
 
-let steps = [
+// UI elements
+let presetSelect;
+let goButton;
+
+// Preset proofs
+let presets = [
   {
-    title: "Prove: A + AB = A",
-    expr: "A + AB",
-    rule: "Absorption Theorem Proof",
-    desc: "We will prove that A + AB simplifies to A using Boolean algebra laws.\nThis is known as the Absorption Law.",
-    highlight: null
+    label: "A + AB = A",
+    startExpr: "A + AB",
+    finalExpr: "A + AB = A",
+    proofName: "Absorption Theorem Proof",
+    lawName: "Absorption Law (Proven)",
+    steps: [
+      { title: "Prove: A + AB = A", expr: "A + AB", rule: "Absorption Theorem Proof", desc: "We will prove that A + AB simplifies to A using Boolean algebra laws.\nThis is known as the Absorption Law.", highlight: null },
+      { title: "Step 1: Apply Identity Law", expr: "A\u00b71 + AB", rule: "Identity Law: A = A\u00b71", desc: "Replace A with A\u00b71 since multiplying by 1 does not change the value.\nThis sets up the expression for factoring.", highlight: "A\u00b71", prev: "A" },
+      { title: "Step 2: Factor out A", expr: "A(1 + B)", rule: "Distributive Law: A\u00b71 + A\u00b7B = A(1 + B)", desc: "Factor A out of both terms.\nA\u00b71 + A\u00b7B becomes A(1 + B).", highlight: "A(", prev: "A\u00b71 + AB" },
+      { title: "Step 3: Apply Dominance Law", expr: "A \u00b7 1", rule: "Dominance Law: 1 + B = 1", desc: "The OR of 1 with anything is always 1.\nSo (1 + B) simplifies to 1.", highlight: "1", prev: "(1 + B)" },
+      { title: "Step 4: Apply Identity Law", expr: "A", rule: "Identity Law: A \u00b7 1 = A", desc: "Multiplying A by 1 gives A.\nTherefore A + AB = A. \u220e", highlight: "A", prev: "A \u00b7 1" },
+      { title: "Proof Complete!", expr: "A + AB = A", rule: "Absorption Law (Proven)", desc: "We have proven the Absorption Law:\nA + AB = A\n\nLaws used: Identity, Distributive, Dominance, Identity", highlight: null }
+    ],
+    summarySteps: ["A + AB", "A\u00b71 + AB", "A(1 + B)", "A\u00b71", "A"]
   },
   {
-    title: "Step 1: Apply Identity Law",
-    expr: "A·1 + AB",
-    rule: "Identity Law: A = A·1",
-    desc: "Replace A with A·1 since multiplying by 1 does not change the value.\nThis sets up the expression for factoring.",
-    highlight: "A·1",
-    prev: "A"
+    label: "A(A + B) = A",
+    startExpr: "A(A + B)",
+    finalExpr: "A(A + B) = A",
+    proofName: "Absorption (Dual) Proof",
+    lawName: "Absorption Dual (Proven)",
+    steps: [
+      { title: "Prove: A(A + B) = A", expr: "A(A + B)", rule: "Absorption (Dual) Proof", desc: "We will prove that A(A + B) simplifies to A.\nThis is the dual form of the Absorption Law.", highlight: null },
+      { title: "Step 1: Distribute A", expr: "AA + AB", rule: "Distributive Law: A(A + B) = AA + AB", desc: "Apply the distributive law to expand the expression.\nA(A + B) becomes A\u00b7A + A\u00b7B.", highlight: "AA + AB", prev: "A(A + B)" },
+      { title: "Step 2: Apply Idempotent Law", expr: "A + AB", rule: "Idempotent Law: AA = A", desc: "A AND A is just A (idempotent law).\nSo AA + AB becomes A + AB.", highlight: "A", prev: "AA" },
+      { title: "Step 3: Apply Absorption Law", expr: "A", rule: "Absorption Law: A + AB = A", desc: "By the absorption law we already proved,\nA + AB = A.", highlight: "A", prev: "A + AB" },
+      { title: "Proof Complete!", expr: "A(A + B) = A", rule: "Absorption Dual (Proven)", desc: "We have proven the dual Absorption Law:\nA(A + B) = A\n\nLaws used: Distributive, Idempotent, Absorption", highlight: null }
+    ],
+    summarySteps: ["A(A + B)", "AA + AB", "A + AB", "A"]
   },
   {
-    title: "Step 2: Factor out A",
-    expr: "A(1 + B)",
-    rule: "Distributive Law: A·1 + A·B = A(1 + B)",
-    desc: "Factor A out of both terms.\nA·1 + A·B becomes A(1 + B).",
-    highlight: "A(",
-    prev: "A·1 + AB"
+    label: "A + A'B = A + B",
+    startExpr: "A + A'B",
+    finalExpr: "A + A'B = A + B",
+    proofName: "Simplification Theorem Proof",
+    lawName: "Simplification Theorem (Proven)",
+    steps: [
+      { title: "Prove: A + A'B = A + B", expr: "A + A'B", rule: "Simplification Theorem Proof", desc: "We will prove that A + A'B simplifies to A + B.\nThis is a commonly used Boolean simplification.", highlight: null },
+      { title: "Step 1: OR with AB", expr: "(A + AB) + A'B", rule: "Absorption: A = A + AB", desc: "By absorption law, A = A + AB.\nReplace A with (A + AB).", highlight: "(A + AB)", prev: "A" },
+      { title: "Step 2: Rearrange terms", expr: "A + (AB + A'B)", rule: "Associative Law: regroup", desc: "Use associative law to regroup.\nGroup the last two terms together.", highlight: "(AB + A'B)", prev: "AB) + A'B" },
+      { title: "Step 3: Factor out B", expr: "A + B(A + A')", rule: "Distributive Law: AB + A'B = B(A + A')", desc: "Factor B out of AB + A'B.\nAB + A'B = B(A + A').", highlight: "B(A + A')", prev: "AB + A'B" },
+      { title: "Step 4: Apply Complement Law", expr: "A + B\u00b71", rule: "Complement Law: A + A' = 1", desc: "A OR A' is always 1.\nSo (A + A') = 1.", highlight: "1", prev: "(A + A')" },
+      { title: "Step 5: Apply Identity Law", expr: "A + B", rule: "Identity Law: B\u00b71 = B", desc: "B times 1 is just B.\nTherefore A + A'B = A + B. \u220e", highlight: "B", prev: "B\u00b71" },
+      { title: "Proof Complete!", expr: "A + A'B = A + B", rule: "Simplification Theorem (Proven)", desc: "We have proven the Simplification Theorem:\nA + A'B = A + B\n\nLaws used: Absorption, Associative, Distributive, Complement, Identity", highlight: null }
+    ],
+    summarySteps: ["A + A'B", "(A + AB) + A'B", "A + B(A + A')", "A + B\u00b71", "A + B"]
   },
   {
-    title: "Step 3: Apply Dominance Law",
-    expr: "A · 1",
-    rule: "Dominance Law: 1 + B = 1",
-    desc: "The OR of 1 with anything is always 1.\nSo (1 + B) simplifies to 1.",
-    highlight: "1",
-    prev: "(1 + B)"
-  },
-  {
-    title: "Step 4: Apply Identity Law",
-    expr: "A",
-    rule: "Identity Law: A · 1 = A",
-    desc: "Multiplying A by 1 gives A.\nTherefore A + AB = A. ∎",
-    highlight: "A",
-    prev: "A · 1"
-  },
-  {
-    title: "Proof Complete!",
-    expr: "A + AB = A",
-    rule: "Absorption Law (Proven)",
-    desc: "We have proven the Absorption Law:\nA + AB = A\n\nLaws used: Identity, Distributive, Dominance, Identity",
-    highlight: null
+    label: "(A + B)(A + B') = A",
+    startExpr: "(A + B)(A + B')",
+    finalExpr: "(A + B)(A + B') = A",
+    proofName: "Consensus-Adjacent Proof",
+    lawName: "Consensus-Adjacent (Proven)",
+    steps: [
+      { title: "Prove: (A+B)(A+B') = A", expr: "(A + B)(A + B')", rule: "Consensus-Adjacent Proof", desc: "We will prove that (A + B)(A + B') simplifies to A.\nThis uses the distributive and complement laws.", highlight: null },
+      { title: "Step 1: Distribute (FOIL)", expr: "AA + AB' + BA + BB'", rule: "Distributive Law: expand product", desc: "Expand using the distributive law (FOIL method).\n(A+B)(A+B') = AA + AB' + BA + BB'", highlight: "AA + AB' + BA + BB'", prev: "(A + B)(A + B')" },
+      { title: "Step 2: Simplify AA and BB'", expr: "A + AB' + AB + 0", rule: "Idempotent: AA=A; Complement: BB'=0", desc: "AA = A (idempotent law).\nBB' = 0 (complement law).", highlight: "A", prev: "AA" },
+      { title: "Step 3: Drop the 0 term", expr: "A + AB' + AB", rule: "Identity Law: X + 0 = X", desc: "Adding 0 does not change the value.\nRemove the 0 term.", highlight: "A + AB' + AB", prev: "+ 0" },
+      { title: "Step 4: Factor A from last two", expr: "A + A(B' + B)", rule: "Distributive: AB' + AB = A(B' + B)", desc: "Factor A out of the last two terms.\nAB' + AB = A(B' + B).", highlight: "A(B' + B)", prev: "AB' + AB" },
+      { title: "Step 5: Apply Complement Law", expr: "A + A\u00b71", rule: "Complement Law: B' + B = 1", desc: "B' + B is always 1.\nSo A(B' + B) = A\u00b71.", highlight: "1", prev: "(B' + B)" },
+      { title: "Step 6: Apply Identity & Absorption", expr: "A", rule: "Identity: A\u00b71 = A; Absorption: A + A = A", desc: "A\u00b71 = A, and A + A = A.\nTherefore (A+B)(A+B') = A. \u220e", highlight: "A", prev: "A + A\u00b71" },
+      { title: "Proof Complete!", expr: "(A+B)(A+B') = A", rule: "Consensus-Adjacent (Proven)", desc: "We have proven:\n(A + B)(A + B') = A\n\nLaws used: Distributive, Idempotent, Complement, Identity, Absorption", highlight: null }
+    ],
+    summarySteps: ["(A+B)(A+B')", "AA+AB'+BA+BB'", "A+AB'+AB", "A+A(B'+B)", "A+A\u00b71", "A"]
   }
 ];
+
+let activePreset = presets[0];
+let steps = activePreset.steps.slice();
 
 function setup() {
   updateCanvasSize();
@@ -74,7 +102,40 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
+
+  // Dropdown for preset selection
+  presetSelect = createSelect();
+  for (let i = 0; i < presets.length; i++) {
+    presetSelect.option(presets[i].label, i);
+  }
+
+  // Go button
+  goButton = createButton('Go');
+  goButton.mousePressed(handleGo);
+  goButton.style('background-color', '#388E3C');
+  goButton.style('color', 'white');
+  goButton.style('border', 'none');
+  goButton.style('padding', '4px 16px');
+  goButton.style('border-radius', '4px');
+  goButton.style('cursor', 'pointer');
+  goButton.style('font-weight', 'bold');
+
+  positionUIElements();
   describe('Boolean proof walkthrough showing step-by-step algebraic simplification', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  presetSelect.position(mainRect.left + 65, mainRect.top + drawHeight + 10);
+  goButton.position(mainRect.left + 250, mainRect.top + drawHeight + 8);
+}
+
+function handleGo() {
+  let idx = parseInt(presetSelect.value());
+  activePreset = presets[idx];
+  steps = activePreset.steps.slice();
+  totalSteps = steps.length;
+  currentStep = 0;
 }
 
 function draw() {
@@ -145,6 +206,14 @@ function draw() {
     text(lines[i], margin + 10, descY + i * 18);
   }
 
+  // Preset label
+  fill(60);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('Proof:', margin, drawHeight + 18);
+
   drawButtons();
 }
 
@@ -157,11 +226,11 @@ function drawExpressionChain(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(36);
     textStyle(BOLD);
-    text('A + AB', cx, vy + vh / 2 - 10);
+    text(activePreset.startExpr, cx, vy + vh / 2 - 10);
     textSize(14);
     textStyle(NORMAL);
     fill(100);
-    text('Click "Next →" to start the proof', cx, vy + vh / 2 + 30);
+    text('Click "Next \u2192" to start the proof', cx, vy + vh / 2 + 30);
     return;
   }
 
@@ -176,19 +245,18 @@ function drawExpressionChain(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(32);
     textStyle(BOLD);
-    text('A + AB = A  ∎', cx, vy + vh / 2 - 20);
+    text(activePreset.finalExpr + '  \u220e', cx, vy + vh / 2 - 20);
 
     // Show all steps summary
     textSize(11);
     textStyle(NORMAL);
     fill(100);
-    let summarySteps = ['A + AB', 'A·1 + AB', 'A(1 + B)', 'A·1', 'A'];
-    let arrows = ' → ';
-    text(summarySteps.join(arrows), cx, vy + vh / 2 + 20);
+    let arrows = ' \u2192 ';
+    text(activePreset.summarySteps.join(arrows), cx, vy + vh / 2 + 20);
     return;
   }
 
-  // Show previous expression → current expression
+  // Show previous expression -> current expression
   let prevExpr = steps[currentStep - 1].expr;
   let currExpr = step.expr;
 
@@ -202,7 +270,7 @@ function drawExpressionChain(step, mx, vy, w, vh) {
   // Arrow
   fill(HIGHLIGHT);
   textSize(20);
-  text('↓', cx, vy + vh / 2 - 10);
+  text('\u2193', cx, vy + vh / 2 - 10);
 
   // Current expression (bold, colored)
   fill(TITLE_BG);
@@ -212,7 +280,7 @@ function drawExpressionChain(step, mx, vy, w, vh) {
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -227,7 +295,7 @@ function drawButtons() {
   textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
-  text('← Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
   rect(startX + btnW + gap, btnY, btnW, btnH, 5);
@@ -238,11 +306,11 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next →', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 8;
+  let btnY = drawHeight + 48;
   let btnW = 90;
   let btnH = 34;
   let gap = 10;
@@ -263,6 +331,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
 }
 
 function updateCanvasSize() {

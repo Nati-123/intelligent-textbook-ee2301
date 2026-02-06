@@ -6,7 +6,7 @@ quality_score: 85
 
 # NAND Conversion Walkthrough
 
-<iframe src="main.html" height="580px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="620px" width="100%" scrolling="no"></iframe>
 
 [Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
