@@ -152,6 +152,14 @@
   padding-bottom: 0.5rem;
 }
 
+/* Pipe separators between navigation tabs */
+.md-tabs__list .md-tabs__item:not(:last-child)::after {
+  content: "|";
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .md-typeset .hero {
