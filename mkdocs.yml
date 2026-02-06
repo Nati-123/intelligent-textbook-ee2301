@@ -118,6 +118,7 @@ nav:
       - Signed Number Comparison: sims/signed-number-comparison/index.md
       - Overflow Detection Simulator: sims/overflow-detection-simulator/index.md
       - Number Systems Concept Map: sims/number-systems-concept-map/index.md
+      - Base Conversion Walkthrough: sims/base-conversion-walkthrough/index.md
     - Unit 2 - Boolean Algebra:
       - Logic Gate Simulator: sims/logic-gate-simulator/index.md
       - Boolean Operations Visualizer: sims/boolean-operations-visualizer/index.md
@@ -127,6 +128,7 @@ nav:
       - Boolean Simplification Tutor: sims/boolean-simplification-tutor/index.md
       - Gate Cascade Simulator: sims/gate-cascade-simulator/index.md
       - Circuit Analysis & Synthesis: sims/circuit-analysis-synthesis/index.md
+      - Boolean Proof Walkthrough: sims/boolean-proof-walkthrough/index.md
     - Unit 3 - Applications:
       - Binary Adder Visualizer: sims/binary-adder-visualizer/index.md
       - Design Flow Visualization: sims/design-flow-visualization/index.md
@@ -136,41 +138,49 @@ nav:
       - Code Converter Demo: sims/code-converter-demo/index.md
       - Seven Segment Decoder: sims/seven-segment-decoder/index.md
       - Don't Care Optimizer: sims/dont-care-optimizer/index.md
+      - Full Adder Walkthrough: sims/full-adder-walkthrough/index.md
     - Unit 4 - Minterms & Maxterms:
       - Minterm/Maxterm Converter: sims/minterm-maxterm-converter/index.md
       - Minterm Visualizer: sims/minterm-visualizer/index.md
       - SOP-POS Converter: sims/sop-pos-converter/index.md
       - Shannon Expansion Explorer: sims/shannon-expansion-explorer/index.md
+      - Minterm Expansion Walkthrough: sims/minterm-expansion-walkthrough/index.md
     - Unit 5 - Karnaugh Maps:
       - K-Map Solver: sims/kmap-solver/index.md
       - K-Map 3-Variable Simulator: sims/kmap-3var-simulator/index.md
       - Prime Implicant Finder: sims/prime-implicant-finder/index.md
       - K-Map with Don't Cares: sims/kmap-dont-cares/index.md
       - K-Map Practice Challenge: sims/kmap-practice-challenge/index.md
+      - K-Map Simplification Walkthrough: sims/kmap-simplification-walkthrough/index.md
     - Unit 6 - Quine-McCluskey:
       - QM Grouping Visualization: sims/qm-grouping-visualization/index.md
       - QM Combination Simulator: sims/qm-combination-simulator/index.md
       - PI Chart Interactive: sims/pi-chart-interactive/index.md
       - QM Complexity Chart: sims/qm-complexity-chart/index.md
       - QM Complete Walkthrough: sims/qm-complete-walkthrough/index.md
+      - QM Method Walkthrough: sims/qm-method-walkthrough/index.md
     - Unit 7 - Multi-Level Gates:
       - Universal Gate Simulator: sims/universal-gate-simulator/index.md
       - Bubble Pushing Simulator: sims/bubble-pushing-simulator/index.md
       - NAND-NOR Converter: sims/nand-nor-converter/index.md
       - Multi-Level Analyzer: sims/multi-level-analyzer/index.md
+      - NAND Conversion Walkthrough: sims/nand-conversion-walkthrough/index.md
     - Unit 8 - Combinational Modules:
       - MUX Simulator: sims/mux-simulator/index.md
       - Decoder Simulator: sims/decoder-simulator/index.md
       - Priority Encoder Simulator: sims/priority-encoder-simulator/index.md
       - Binary-Gray Converter: sims/binary-gray-converter/index.md
       - Magnitude Comparator: sims/magnitude-comparator/index.md
+      - MUX Function Walkthrough: sims/mux-function-walkthrough/index.md
     - Unit 9 - Sequential Fundamentals:
       - SR Latch Simulator: sims/sr-latch-simulator/index.md
       - D Flip-Flop Simulator: sims/d-flipflop-simulator/index.md
       - JK Flip-Flop Simulator: sims/jk-flipflop-simulator/index.md
       - Timing Diagram Analyzer: sims/timing-diagram-analyzer/index.md
+      - Flip-Flop Timing Walkthrough: sims/flipflop-timing-walkthrough/index.md
     - Unit 10 - Sequential Design:
       - Shift Register Simulator: sims/shift-register-simulator/index.md
       - Counter Simulator: sims/counter-simulator/index.md
       - FSM Designer: sims/fsm-designer/index.md
       - Sequence Detector Demo: sims/sequence-detector-demo/index.md
+      - Shift Register Walkthrough: sims/shift-register-walkthrough/index.md

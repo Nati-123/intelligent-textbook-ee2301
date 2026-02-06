@@ -1178,4 +1178,12 @@ This unit covered the transformation of Boolean expressions into practical multi
 
 ---
 
+## Interactive Walkthrough
+
+Step through converting an AND-OR circuit to all-NAND using bubble pushing:
+
+<iframe src="../sims/nand-conversion-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

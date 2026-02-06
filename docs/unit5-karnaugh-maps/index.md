@@ -995,4 +995,12 @@ This unit provided mastery of Karnaugh maps for Boolean function simplification:
 
 ---
 
+## Interactive Walkthrough
+
+Step through K-map simplification of a 4-variable function with grouping and term extraction:
+
+<iframe src="../sims/kmap-simplification-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

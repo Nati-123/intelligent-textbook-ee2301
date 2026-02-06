@@ -789,4 +789,12 @@ This unit established canonical forms as the foundation for systematic Boolean f
 
 ---
 
+## Interactive Walkthrough
+
+Step through expanding a Boolean expression into canonical minterm form:
+
+<iframe src="../sims/minterm-expansion-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

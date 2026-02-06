@@ -1097,4 +1097,12 @@ This unit established the mathematical foundation of Boolean algebra for digital
 
 ---
 
+## Interactive Walkthrough
+
+Step through a complete Boolean algebra proof with each law identified:
+
+<iframe src="../sims/boolean-proof-walkthrough/main.html" width="100%" height="550px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

@@ -948,4 +948,12 @@ The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean 
 
 ---
 
+## Interactive Walkthrough
+
+Step through the Quine-McCluskey algorithm with grouping, combining, and PI chart:
+
+<iframe src="../sims/qm-method-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

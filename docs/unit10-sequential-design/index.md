@@ -1179,3 +1179,11 @@ This unit completed the study of digital logic design by covering the three majo
 - **Sequence detectors** are the classic FSM application, combining all design steps into a complete example
 
 These techniques, combined with the combinational design methods from earlier units, provide the complete foundation for designing digital systems at the gate and register-transfer levels.
+
+---
+
+## Interactive Walkthrough
+
+Step through a 4-bit shift register loading serial data one bit at a time:
+
+<iframe src="../sims/shift-register-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>

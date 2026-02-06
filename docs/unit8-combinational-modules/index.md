@@ -1119,4 +1119,12 @@ This unit covered the essential MSI combinational building blocks that form the 
 
 ---
 
+## Interactive Walkthrough
+
+Step through implementing a Boolean function using a 4:1 multiplexer:
+
+<iframe src="../sims/mux-function-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+
+---
+
 [See Annotated References](./references.md)

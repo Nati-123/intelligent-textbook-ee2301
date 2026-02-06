@@ -1041,3 +1041,11 @@ This unit established the fundamental principles of sequential logic, which form
 - **Timing diagram analysis** is the key skill for verifying sequential circuit behavior by tracing signal values through clock edges
 
 These memory elements are the building blocks for registers, counters, and finite state machines explored in the next unit.
+
+---
+
+## Interactive Walkthrough
+
+Step through a D flip-flop timing diagram trace with clock edge analysis:
+
+<iframe src="../sims/flipflop-timing-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
