@@ -875,7 +875,7 @@ This unit established the mathematical foundation for digital system design thro
 
 Step through a complete base conversion problem with animated visuals:
 
-<iframe src="../sims/base-conversion-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/base-conversion-walkthrough/main.html" width="100%" height="680px" scrolling="no"></iframe>
 
 ---
 

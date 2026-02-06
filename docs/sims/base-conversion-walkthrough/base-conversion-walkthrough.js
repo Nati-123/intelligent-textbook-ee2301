@@ -5,7 +5,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 500;
+let drawHeight = 580;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
@@ -256,9 +256,13 @@ function draw() {
   textStyle(BOLD);
   text(step.rule, canvasWidth / 2, ruleY + 12);
 
+  // Description text - measure first to allocate space
+  let descLines = step.desc.split('\n');
+  let descHeight = descLines.length * 16 + 10;
+
   // Visual area
   let visY = ruleY + 40;
-  let visH = drawHeight - visY - 80;
+  let visH = drawHeight - visY - descHeight - 15;
   fill(STEP_BG);
   stroke(200);
   strokeWeight(1);
@@ -269,14 +273,13 @@ function draw() {
   drawVisual(step, margin, visY, w, visH);
 
   // Description text
-  let descY = drawHeight - 70;
+  let descY = visY + visH + 8;
   fill(60);
   textAlign(LEFT, TOP);
   textSize(13);
   textStyle(NORMAL);
-  let lines = step.desc.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    text(lines[i], margin + 10, descY + i * 16);
+  for (let i = 0; i < descLines.length; i++) {
+    text(descLines[i], margin + 10, descY + i * 16);
   }
 
   // Buttons
@@ -355,7 +358,10 @@ function drawVisual(step, mx, vy, w, vh) {
 function drawDivisionTable(divisions, mx, vy, w, vh, base, showArrow) {
   let tableX = mx + 30;
   let tableW = w - 60;
-  let rowH = 28;
+  // Adaptive row height: shrink for large tables so they fit
+  let maxTableH = vh - (showArrow ? 80 : 30);
+  let rowH = min(28, Math.floor(maxTableH / (divisions.length + 1)));
+  rowH = max(rowH, 20);
   let startY = vy + 15;
 
   // Header

@@ -6,7 +6,7 @@ quality_score: 85
 
 # Base Conversion Walkthrough
 
-<iframe src="main.html" height="600px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="680px" width="100%" scrolling="no"></iframe>
 
 [Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
