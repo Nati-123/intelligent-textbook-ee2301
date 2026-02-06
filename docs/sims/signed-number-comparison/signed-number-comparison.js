@@ -64,7 +64,26 @@ function draw() {
   text('Value (-7 to +7):', 20, drawHeight + 25);
   text(currentValue, 330, drawHeight + 25);
   textSize(11);
-  text('4-bit representations', 20, drawHeight + 55);
+  text('4-bit representations — click bits to toggle', 20, drawHeight + 55);
+
+  // Set pointer cursor when hovering over clickable bits
+  let bitWidth = 35;
+  let hStartX = 40;
+  let bitRows = [93, 173, 253];
+  let overBit = false;
+  for (let r = 0; r < bitRows.length; r++) {
+    if (mouseY >= bitRows[r] && mouseY <= bitRows[r] + 30) {
+      for (let i = 0; i < 4; i++) {
+        let bx = hStartX + i * bitWidth;
+        if (mouseX >= bx && mouseX <= bx + bitWidth - 4) {
+          overBit = true;
+          break;
+        }
+      }
+      if (overBit) break;
+    }
+  }
+  cursor(overBit ? HAND : ARROW);
 }
 
 function drawRepresentations() {
@@ -229,6 +248,53 @@ function drawComparisonTable() {
   text('Rare', col3, rowY);
   fill('#4CAF50');
   text('Standard', col4, rowY);
+}
+
+function mousePressed() {
+  let bitWidth = 35;
+  let startX = 40; // margin (20) + inner offset (20)
+
+  let rows = [
+    { bitY: 93, getBinary: getSignMagnitude, decode: decodeSignMagnitude },
+    { bitY: 173, getBinary: getOnesComplement, decode: decodeOnesComplement },
+    { bitY: 253, getBinary: getTwosComplement, decode: decodeTwosComplement }
+  ];
+
+  for (let r = 0; r < rows.length; r++) {
+    if (mouseY >= rows[r].bitY && mouseY <= rows[r].bitY + 30) {
+      for (let i = 0; i < 4; i++) {
+        let bx = startX + i * bitWidth;
+        if (mouseX >= bx && mouseX <= bx + bitWidth - 4) {
+          let binary = rows[r].getBinary(currentValue);
+          let bits = binary.split('');
+          bits[i] = bits[i] === '0' ? '1' : '0';
+          let newValue = rows[r].decode(bits.join(''));
+          newValue = constrain(newValue, -7, 7);
+          currentValue = newValue;
+          valueSlider.value(currentValue);
+          return;
+        }
+      }
+    }
+  }
+}
+
+function decodeSignMagnitude(binary) {
+  let magnitude = parseInt(binary.substring(1), 2);
+  return binary[0] === '1' ? -magnitude : magnitude;
+}
+
+function decodeOnesComplement(binary) {
+  if (binary[0] === '0') {
+    return parseInt(binary, 2);
+  }
+  let inverted = binary.split('').map(b => b === '0' ? '1' : '0').join('');
+  return -parseInt(inverted, 2);
+}
+
+function decodeTwosComplement(binary) {
+  let val = parseInt(binary, 2);
+  return binary[0] === '1' ? val - 16 : val;
 }
 
 function windowResized() {
