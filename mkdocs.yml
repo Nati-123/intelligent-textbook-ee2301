@@ -95,8 +95,14 @@ nav:
     - Problems: unit10-sequential-design/problems.md
     - References: unit10-sequential-design/references.md
   - Learning Graph:
+    - Overview: learning-graph/index.md
     - Concept List: learning-graph/concept-list.md
+    - Concept Taxonomy: learning-graph/concept-taxonomy.md
+    - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
+    - Quality Metrics: learning-graph/quality-metrics.md
     - Book Metrics: learning-graph/book-metrics.md
+    - Chapter Metrics: learning-graph/chapter-metrics.md
+    - Course Description Assessment: learning-graph/course-description-assessment.md
     - Glossary Quality Report: learning-graph/glossary-quality-report.md
     - Quiz Generation Report: learning-graph/quiz-generation-report.md
     - FAQ Quality Report: learning-graph/faq-quality-report.md
