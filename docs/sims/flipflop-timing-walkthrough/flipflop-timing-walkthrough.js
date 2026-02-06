@@ -145,9 +145,13 @@ function draw() {
   textAlign(CENTER, CENTER);
   text(step.rule, canvasWidth / 2, ruleY + 12);
 
+  // Measure description to allocate space
+  let descLines = step.desc.split('\n');
+  let descHeight = descLines.length * 15 + 10;
+
   // Visual area
   let visY = ruleY + 40;
-  let visH = drawHeight - visY - 60;
+  let visH = drawHeight - visY - descHeight - 12;
   fill(STEP_BG);
   stroke(200);
   strokeWeight(1);
@@ -161,14 +165,13 @@ function draw() {
   }
 
   // Description
-  let descY = drawHeight - 52;
+  let descY = visY + visH + 8;
   fill(60);
   textAlign(LEFT, TOP);
   textSize(12);
   textStyle(NORMAL);
-  let lines = step.desc.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    text(lines[i], margin + 10, descY + i * 15);
+  for (let i = 0; i < descLines.length; i++) {
+    text(descLines[i], margin + 10, descY + i * 15);
   }
 
   drawButtons();

@@ -150,9 +150,13 @@ function draw() {
   textAlign(CENTER, CENTER);
   text(step.rule, canvasWidth / 2, ruleY + 12);
 
+  // Measure description to allocate space
+  let descLines = step.desc.split('\n');
+  let descHeight = descLines.length * 15 + 10;
+
   // Visual area
   let visY = ruleY + 40;
-  let visH = drawHeight - visY - 60;
+  let visH = drawHeight - visY - descHeight - 12;
   fill(STEP_BG);
   stroke(200);
   strokeWeight(1);
@@ -168,14 +172,13 @@ function draw() {
   }
 
   // Description
-  let descY = drawHeight - 52;
+  let descY = visY + visH + 8;
   fill(60);
   textAlign(LEFT, TOP);
   textSize(12);
   textStyle(NORMAL);
-  let lines = step.desc.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    text(lines[i], margin + 10, descY + i * 15);
+  for (let i = 0; i < descLines.length; i++) {
+    text(descLines[i], margin + 10, descY + i * 15);
   }
 
   drawButtons();
@@ -253,11 +256,11 @@ function drawRegister(mx, vy, w, vh, step) {
   let prevState = step.stateIdx > 0 ? regStates[step.stateIdx - 1] : null;
 
   let ffW = 55;
-  let ffH = 60;
+  let ffH = 50;
   let gap = 15;
   let totalFFW = 4 * ffW + 3 * gap;
   let startX = cx - totalFFW / 2;
-  let ffY = vy + 30;
+  let ffY = vy + 20;
 
   // Serial input indicator
   if (step.inputBit !== null) {
@@ -327,12 +330,12 @@ function drawRegister(mx, vy, w, vh, step) {
   fill(TITLE_BG);
   textAlign(CENTER, CENTER);
   textSize(12); textStyle(BOLD);
-  let clkY = ffY + ffH + 25;
+  let clkY = ffY + ffH + 18;
   if (step.clockNum > 0) {
     text('Clock Pulse ' + step.clockNum, cx, clkY);
     // Clock symbol
     stroke(TITLE_BG); strokeWeight(1.5);
-    let sy = clkY + 15;
+    let sy = clkY + 13;
     let sx = cx - 20;
     line(sx, sy + 8, sx + 5, sy + 8);
     line(sx + 5, sy + 8, sx + 5, sy);
@@ -347,21 +350,21 @@ function drawRegister(mx, vy, w, vh, step) {
 
   // Register value display
   let regVal = '' + state[3] + state[2] + state[1] + state[0];
-  let valY = clkY + 40;
+  let valY = clkY + 35;
   fill(240);
   stroke(200); strokeWeight(1);
-  rect(cx - 80, valY, 160, 30, 5);
+  rect(cx - 80, valY, 160, 28, 5);
   noStroke();
   fill(60);
   textAlign(CENTER, CENTER);
   textSize(14); textStyle(NORMAL);
-  text('Register: ', cx - 30, valY + 15);
+  text('Register: ', cx - 30, valY + 14);
   fill(FF_COLOR);
   textSize(18); textStyle(BOLD);
-  text(regVal, cx + 40, valY + 15);
+  text(regVal, cx + 40, valY + 14);
 
   // Show input sequence progress
-  let seqY = valY + 45;
+  let seqY = valY + 38;
   fill(100);
   textAlign(CENTER, CENTER);
   textSize(11); textStyle(NORMAL);
