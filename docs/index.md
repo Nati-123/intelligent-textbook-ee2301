@@ -1,238 +1,153 @@
 ---
 title: Home
 description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
+hide:
+  - navigation
+  - toc
 ---
 
-<div class="hero" markdown>
+<div class="cover-page" markdown>
 
-# :material-chip: Digital System Design
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" class="cover-circuit">
+  <!-- Background grid -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+    </pattern>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="#0d1b2a" rx="12"/>
+  <rect width="800" height="500" fill="url(#grid)" rx="12"/>
 
-## An Intelligent Interactive Textbook
+  <!-- Wires - input lines -->
+  <g stroke-width="2.5" fill="none" stroke-linecap="round">
+    <!-- Input A lines -->
+    <line x1="40" y1="100" x2="130" y2="100" stroke="#00e5ff" filter="url(#glow)"/>
+    <line x1="40" y1="140" x2="130" y2="140" stroke="#00e5ff" filter="url(#glow)"/>
+    <!-- Input B lines -->
+    <line x1="40" y1="230" x2="130" y2="230" stroke="#76ff03" filter="url(#glow)"/>
+    <line x1="40" y1="270" x2="130" y2="270" stroke="#76ff03" filter="url(#glow)"/>
+    <!-- Input C lines -->
+    <line x1="40" y1="360" x2="130" y2="360" stroke="#ff9100" filter="url(#glow)"/>
+    <line x1="40" y1="400" x2="130" y2="400" stroke="#ff9100" filter="url(#glow)"/>
+  </g>
 
-**EE 2301 — Introduction to Digital System Design**
+  <!-- Input labels -->
+  <text x="25" y="105" fill="#00e5ff" font-family="monospace" font-size="14" text-anchor="end">A</text>
+  <text x="25" y="145" fill="#00e5ff" font-family="monospace" font-size="14" text-anchor="end">B</text>
+  <text x="25" y="235" fill="#76ff03" font-family="monospace" font-size="14" text-anchor="end">C</text>
+  <text x="25" y="275" fill="#76ff03" font-family="monospace" font-size="14" text-anchor="end">D</text>
+  <text x="25" y="365" fill="#ff9100" font-family="monospace" font-size="14" text-anchor="end">E</text>
+  <text x="25" y="405" fill="#ff9100" font-family="monospace" font-size="14" text-anchor="end">F</text>
 
-<p class="subtitle">University of Minnesota — Twin Cities<br>Department of Electrical & Computer Engineering</p>
+  <!-- AND Gate (top) -->
+  <g transform="translate(130, 80)">
+    <path d="M 0,0 L 40,0 C 80,0 80,60 40,60 L 0,60 Z" fill="#1a237e" stroke="#42a5f5" stroke-width="2.5"/>
+    <text x="28" y="36" fill="#90caf9" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">AND</text>
+  </g>
 
----
+  <!-- OR Gate (middle) -->
+  <g transform="translate(130, 210)">
+    <path d="M 0,0 C 15,0 15,60 0,60 C 40,60 70,50 80,30 C 70,10 40,0 0,0 Z" fill="#1b5e20" stroke="#66bb6a" stroke-width="2.5"/>
+    <text x="32" y="36" fill="#a5d6a7" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">OR</text>
+  </g>
 
-<div class="hero-stats">
-  <div class="stat">
-    <span class="stat-number">10</span>
-    <span class="stat-label">Units</span>
-  </div>
-  <div class="stat">
-    <span class="stat-number">225</span>
-    <span class="stat-label">Concepts</span>
-  </div>
-  <div class="stat">
-    <span class="stat-number">55</span>
-    <span class="stat-label">MicroSims</span>
-  </div>
-  <div class="stat">
-    <span class="stat-number">200</span>
-    <span class="stat-label">Problems</span>
-  </div>
-  <div class="stat">
-    <span class="stat-number">108</span>
-    <span class="stat-label">Quiz Questions</span>
-  </div>
-</div>
+  <!-- NAND Gate (bottom) -->
+  <g transform="translate(130, 340)">
+    <path d="M 0,0 L 40,0 C 80,0 80,60 40,60 L 0,60 Z" fill="#bf360c" stroke="#ff7043" stroke-width="2.5"/>
+    <circle cx="82" cy="30" r="6" fill="#0d1b2a" stroke="#ff7043" stroke-width="2"/>
+    <text x="28" y="36" fill="#ffab91" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">NAND</text>
+  </g>
 
-<div class="hero-buttons">
+  <!-- Mid-stage wires -->
+  <g stroke-width="2.5" fill="none" stroke-linecap="round">
+    <!-- AND output -->
+    <line x1="210" y1="110" x2="320" y2="160" stroke="#42a5f5" filter="url(#glow)"/>
+    <!-- OR output -->
+    <line x1="210" y1="240" x2="320" y2="190" stroke="#66bb6a" filter="url(#glow)"/>
+    <!-- NAND output -->
+    <line x1="220" y1="370" x2="320" y2="330" stroke="#ff7043" filter="url(#glow)"/>
+    <!-- Extra wire to XOR -->
+    <line x1="210" y1="110" x2="320" y2="310" stroke="rgba(66,165,245,0.3)" stroke-dasharray="4,4"/>
+  </g>
+
+  <!-- XOR Gate (mid-right lower) -->
+  <g transform="translate(320, 290)">
+    <path d="M 5,0 C 20,0 20,60 5,60 C 45,60 75,50 85,30 C 75,10 45,0 5,0 Z" fill="#4a148c" stroke="#ce93d8" stroke-width="2.5"/>
+    <path d="M 0,0 C 15,0 15,60 0,60" fill="none" stroke="#ce93d8" stroke-width="2.5"/>
+    <text x="38" y="36" fill="#e1bee7" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">XOR</text>
+  </g>
+
+  <!-- NOR Gate (mid-right upper) -->
+  <g transform="translate(320, 140)">
+    <path d="M 0,0 C 15,0 15,60 0,60 C 40,60 70,50 80,30 C 70,10 40,0 0,0 Z" fill="#006064" stroke="#4dd0e1" stroke-width="2.5"/>
+    <circle cx="82" cy="30" r="6" fill="#0d1b2a" stroke="#4dd0e1" stroke-width="2"/>
+    <text x="32" y="36" fill="#80deea" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">NOR</text>
+  </g>
+
+  <!-- Final stage wires -->
+  <g stroke-width="2.5" fill="none" stroke-linecap="round">
+    <line x1="410" y1="170" x2="510" y2="210" stroke="#4dd0e1" filter="url(#glow)"/>
+    <line x1="410" y1="320" x2="510" y2="260" stroke="#ce93d8" filter="url(#glow)"/>
+  </g>
+
+  <!-- Final AND Gate (output) -->
+  <g transform="translate(510, 210)">
+    <path d="M 0,0 L 50,0 C 100,0 100,70 50,70 L 0,70 Z" fill="#e65100" stroke="#ffb74d" stroke-width="3"/>
+    <text x="35" y="42" fill="#ffe0b2" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">AND</text>
+  </g>
+
+  <!-- Output wire -->
+  <line x1="610" y1="245" x2="720" y2="245" stroke="#ffd740" stroke-width="3" filter="url(#glow)"/>
+  <text x="735" y="250" fill="#ffd740" font-family="monospace" font-size="16" font-weight="bold">F</text>
+
+  <!-- Signal dots (animated feel) -->
+  <circle cx="80" cy="100" r="3" fill="#00e5ff" opacity="0.8"/>
+  <circle cx="80" cy="230" r="3" fill="#76ff03" opacity="0.8"/>
+  <circle cx="80" cy="360" r="3" fill="#ff9100" opacity="0.8"/>
+  <circle cx="265" cy="135" r="3" fill="#42a5f5" opacity="0.8"/>
+  <circle cx="265" cy="215" r="3" fill="#66bb6a" opacity="0.8"/>
+  <circle cx="265" cy="350" r="3" fill="#ff7043" opacity="0.8"/>
+  <circle cx="460" cy="190" r="3" fill="#4dd0e1" opacity="0.8"/>
+  <circle cx="460" cy="290" r="3" fill="#ce93d8" opacity="0.8"/>
+  <circle cx="670" cy="245" r="4" fill="#ffd740" opacity="0.9"/>
+
+  <!-- NOT Gate (small, decorative) -->
+  <g transform="translate(580, 90)">
+    <polygon points="0,0 40,18 0,36" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/>
+    <circle cx="44" cy="18" r="5" fill="#0d1b2a" stroke="#f48fb1" stroke-width="1.5"/>
+    <text x="15" y="23" fill="#f8bbd0" font-family="sans-serif" font-size="10" font-weight="bold">NOT</text>
+  </g>
+  <line x1="545" y1="108" x2="580" y2="108" stroke="#f48fb1" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="630" y1="108" x2="665" y2="108" stroke="#f48fb1" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <!-- Buffer (small, decorative) -->
+  <g transform="translate(580, 400)">
+    <polygon points="0,0 40,18 0,36" fill="#33691e" stroke="#aed581" stroke-width="2"/>
+    <text x="13" y="23" fill="#c5e1a5" font-family="sans-serif" font-size="9" font-weight="bold">BUF</text>
+  </g>
+  <line x1="545" y1="418" x2="580" y2="418" stroke="#aed581" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="620" y1="418" x2="665" y2="418" stroke="#aed581" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <!-- Title overlay -->
+  <text x="400" y="478" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="11" text-anchor="middle" letter-spacing="3">MULTI-LEVEL DIGITAL LOGIC CIRCUIT</text>
+</svg>
+
+<h1 class="cover-title">Digital System Design</h1>
+<p class="cover-subtitle">EE 2301 &mdash; Introduction to Digital System Design</p>
+<p class="cover-institution">University of Minnesota &mdash; Twin Cities</p>
+<p class="cover-dept">Department of Electrical &amp; Computer Engineering</p>
+
+<div class="cover-buttons">
   <a href="unit1-number-systems/" class="md-button md-button--primary">Get Started</a>
   <a href="sims/" class="md-button">Explore MicroSims</a>
-  <a href="glossary/" class="md-button">View Glossary</a>
+  <a href="glossary/" class="md-button">Glossary</a>
 </div>
-
-</div>
-
----
-
-## Welcome
-
-This is an **AI-assisted intelligent interactive textbook** for sophomore and junior-level Electrical and Computer Engineering students. Built using MkDocs Material and Claude Code, it provides modern, accessible learning materials covering the complete fundamentals of digital logic design.
-
-!!! tip "Quick Navigation"
-    - **New to digital logic?** Start with [Unit 1 — Number Systems](unit1-number-systems/index.md)
-    - **Already familiar with binary?** Jump to [Unit 2 — Boolean Algebra](unit2-boolean-algebra/index.md)
-    - **Looking for quick reference?** Check the [Glossary](glossary.md) or [FAQ](faq.md)
-
----
-
-## Course Units
-
-<div class="unit-section" markdown>
-
-### Part I: Foundations
-
-| Unit | Topic | Key Concepts |
-|:----:|-------|--------------|
-| 1 | [Number Systems](unit1-number-systems/index.md) | Binary, octal, hexadecimal, two's complement |
-| 2 | [Boolean Algebra](unit2-boolean-algebra/index.md) | Logic gates, theorems, De Morgan's laws |
-| 3 | [Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md) | Adders, subtractors, comparators, decoders |
-
-</div>
-
-<div class="unit-section" markdown>
-
-### Part II: Minimization Techniques
-
-| Unit | Topic | Key Concepts |
-|:----:|-------|--------------|
-| 4 | [Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md) | Canonical forms, SOP/POS, cofactors |
-| 5 | [Karnaugh Maps](unit5-karnaugh-maps/index.md) | K-map simplification, prime implicants |
-| 6 | [Quine-McCluskey Method](unit6-quine-mccluskey/index.md) | Algorithmic minimization, PI charts |
-
-</div>
-
-<div class="unit-section" markdown>
-
-### Part III: Circuit Implementation
-
-| Unit | Topic | Key Concepts |
-|:----:|-------|--------------|
-| 7 | [Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) | NAND/NOR universality, bubble pushing |
-| 8 | [Combinational Logic Modules](unit8-combinational-modules/index.md) | MUX, decoders, encoders, comparators |
-
-</div>
-
-<div class="unit-section" markdown>
-
-### Part IV: Sequential Logic
-
-| Unit | Topic | Key Concepts |
-|:----:|-------|--------------|
-| 9 | [Sequential Logic Fundamentals](unit9-sequential-fundamentals/index.md) | Latches, flip-flops, timing diagrams |
-| 10 | [Sequential Circuit Design](unit10-sequential-design/index.md) | Counters, registers, FSM design |
-
-</div>
-
----
-
-## Interactive MicroSims
-
-Explore digital logic concepts through **55 interactive simulations**:
-
-<div class="feature-grid" markdown>
-
-<div class="feature-card" markdown>
-
-### :material-numeric: Number Systems
-
-Base Converter, Binary Arithmetic, Overflow Detection
-
-[:octicons-arrow-right-24: View 7 MicroSims](sims/index.md#unit-1-number-systems)
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-gate-and: Boolean Algebra
-
-Logic Gates, Truth Tables, De Morgan's Theorem
-
-[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-2-boolean-algebra)
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-calculator: Combinational Logic
-
-Adders, K-Maps, MUX, Decoders, Encoders
-
-[:octicons-arrow-right-24: View 26 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-flip-to-back: Sequential Logic
-
-Flip-Flops, Counters, Shift Registers, FSMs
-
-[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
-
-</div>
-
-</div>
-
-[Explore All MicroSims :material-arrow-right:](sims/index.md){ .md-button .md-button--primary }
-[View Course Structure Tree :material-file-tree:](sims/course-structure-tree/index.md){ .md-button }
-
----
-
-## Learning Resources
-
-| Resource | Description |
-|----------|-------------|
-| :material-book-alphabet: [Glossary](glossary.md) | 225 terms with ISO 11179 compliant definitions |
-| :material-frequently-asked-questions: [FAQ](faq.md) | 63 frequently asked questions |
-| :material-graph: [Concept List](learning-graph/concept-list.md) | Complete learning graph with dependencies |
-| :material-chart-bar: [Book Metrics](learning-graph/book-metrics.md) | Detailed textbook statistics |
-
----
-
-## Features
-
-!!! abstract "What Makes This Textbook Different"
-
-    - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
-    - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
-    - :material-play-box: **Interactive Simulations** — 55 p5.js MicroSims you can run in your browser
-    - :material-pencil: **Practice Problems** — 200 end-of-unit problems with detailed solutions
-    - :material-checkbox-marked: **Self-Assessment** — 108 quiz questions with detailed explanations
-    - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
-    - :material-link-variant: **Curated References** — Wikipedia, textbooks, and online resources
-
----
-
-## Target Audience
-
-This textbook is designed for:
-
-- Sophomore and junior-level **Electrical Engineering** students
-- **Computer Engineering** students
-- Students pursuing minors in electronics or embedded systems
-- Anyone seeking foundational knowledge in **digital logic design**
-
-!!! info "Prerequisites"
-    Basic algebra and introduction to programming (any language)
-
----
-
-## Built With
-
-<div class="grid cards" markdown>
-
--   :simple-materialformkdocs: [**MkDocs Material**](https://squidfunk.github.io/mkdocs-material/)
-
-    Documentation framework
-
--   :material-robot: [**Claude Code**](https://claude.ai/code)
-
-    AI-assisted content generation
-
--   :simple-p5dotjs: [**p5.js**](https://p5js.org/)
-
-    Interactive simulations
-
--   :material-math-integral: [**MathJax**](https://www.mathjax.org/)
-
-    Mathematical notation
-
-</div>
-
----
-
-<div align="center" markdown>
-
-**Senior Design Project**
-
-University of Minnesota — Twin Cities
-
-Department of Electrical & Computer Engineering
-
-*An AI-assisted intelligent textbook demonstrating how AI can augment educational content creation while maintaining pedagogical quality.*
 
 </div>
