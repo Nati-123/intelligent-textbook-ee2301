@@ -69,12 +69,27 @@ function draw() {
   drawProblem();
   drawInputArea();
 
+  // Set pointer cursor when hovering over clickable operand bits
+  let hoverCenterX = canvasWidth / 2;
+  let hoverBitWidth = 40;
+  let hoverStartX = hoverCenterX - (4 * hoverBitWidth) / 2;
+  let overOperand = false;
+  for (let i = 0; i < 4; i++) {
+    let bx = hoverStartX + i * hoverBitWidth;
+    if (mouseX >= bx && mouseX <= bx + hoverBitWidth - 2 &&
+        ((mouseY >= 50 && mouseY <= 80) || (mouseY >= 90 && mouseY <= 120))) {
+      overOperand = true;
+      break;
+    }
+  }
+  cursor(overOperand ? HAND : ARROW);
+
   fill('black');
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(14);
   text('Operation:', 20, drawHeight + 25);
-  text('Click bits to toggle your answer', 20, drawHeight + 55);
+  text('Click operand or answer bits to toggle', 20, drawHeight + 55);
 }
 
 function drawProblem() {
@@ -229,6 +244,32 @@ function drawInputArea() {
     text('1 - 0 = 1', 30, y + 45);
     text('1 - 1 = 0', 30, y + 60);
     text('0 - 1 = 1 (with borrow)', 30, y + 75);
+  }
+}
+
+function mousePressed() {
+  let centerX = canvasWidth / 2;
+  let bitWidth = 40;
+  let startX = centerX - (4 * bitWidth) / 2;
+
+  // Check operand A bits (y=50, height=30)
+  for (let i = 0; i < 4; i++) {
+    let bx = startX + i * bitWidth;
+    if (mouseX >= bx && mouseX <= bx + bitWidth - 2 && mouseY >= 50 && mouseY <= 80) {
+      operandA[i] = 1 - operandA[i];
+      showAnswer = false;
+      return;
+    }
+  }
+
+  // Check operand B bits (y=90, height=30)
+  for (let i = 0; i < 4; i++) {
+    let bx = startX + i * bitWidth;
+    if (mouseX >= bx && mouseX <= bx + bitWidth - 2 && mouseY >= 90 && mouseY <= 120) {
+      operandB[i] = 1 - operandB[i];
+      showAnswer = false;
+      return;
+    }
   }
 }
 
