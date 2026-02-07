@@ -144,8 +144,8 @@ function drawResults() {
   let spacing = 4;
 
   let bases = [
-    { base: 2, name: 'Binary (2)', key: 'base2', prefix: '0b' },
-    { base: 8, name: 'Octal (8)', key: 'base8', prefix: '0o' },
+    { base: 2, name: 'Binary (2)', key: 'base2', prefix: '0B' },
+    { base: 8, name: 'Octal (8)', key: 'base8', prefix: '0O' },
     { base: 10, name: 'Decimal (10)', key: 'base10', prefix: '' },
     { base: 16, name: 'Hexadecimal (16)', key: 'base16', prefix: '0X' },
     { base: outputBase, name: getBaseName(outputBase) + ' (' + outputBase + ')', key: 'custom', prefix: '' }
