@@ -907,6 +907,26 @@ Logic gates can accept more than two inputs. **Multiple input gates** extend nat
 - **n-input NOR:** Output is 0 if ANY input is 1
 - **n-input XOR:** Output is 1 if an ODD number of inputs are 1
 
+#### Diagram: 3-Input AND Gate
+
+<iframe src="../sims/3-input-and-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+
+#### Diagram: 3-Input OR Gate
+
+<iframe src="../sims/3-input-or-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+
+#### Diagram: 3-Input NAND Gate
+
+<iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+
+#### Diagram: 3-Input NOR Gate
+
+<iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+
+#### Diagram: 3-Input XOR Gate
+
+<iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+
 The associative property guarantees that $(A \cdot B) \cdot C = A \cdot (B \cdot C)$, allowing gates to be extended to any number of inputs.
 
 ### Cascading Gates
