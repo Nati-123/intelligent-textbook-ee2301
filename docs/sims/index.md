@@ -24,17 +24,32 @@ Interactive educational simulations for learning digital system design.
 | [Signed Number Comparison](signed-number-comparison/index.md) | L4 Analyze | Compare sign-magnitude, 1's and 2's complement |
 | [Overflow Detection Simulator](overflow-detection-simulator/index.md) | L4 Analyze | Detect overflow in signed arithmetic |
 | [Number Systems Concept Map](number-systems-concept-map/index.md) | L2 Understand | Interactive concept map of number systems |
+| [Base Conversion Walkthrough](base-conversion-walkthrough/index.md) | L3 Apply | Step-by-step base conversion with multi-base input |
 
 ## Unit 2: Boolean Algebra
 
 | MicroSim | Bloom Level | Description |
 |----------|-------------|-------------|
+| [AND Gate Truth Table](and-gate-truth-table/index.md) | L2 Understand | Interactive AND gate with truth table |
+| [OR Gate Truth Table](or-gate-truth-table/index.md) | L2 Understand | Interactive OR gate with truth table |
+| [NOT Gate Truth Table](not-gate-truth-table/index.md) | L2 Understand | Interactive NOT gate with truth table |
+| [Buffer Gate Truth Table](buffer-gate-truth-table/index.md) | L2 Understand | Interactive buffer gate with truth table |
+| [Tri-State Buffer Truth Table](tri-state-buffer-truth-table/index.md) | L2 Understand | Interactive tri-state buffer with truth table |
+| [NAND Gate Truth Table](nand-gate-truth-table/index.md) | L2 Understand | Interactive NAND gate with truth table |
+| [NOR Gate Truth Table](nor-gate-truth-table/index.md) | L2 Understand | Interactive NOR gate with truth table |
+| [XOR Gate Truth Table](xor-gate-truth-table/index.md) | L2 Understand | Interactive XOR gate with truth table |
+| [XNOR Gate Truth Table](xnor-gate-truth-table/index.md) | L2 Understand | Interactive XNOR gate with truth table |
 | [Logic Gate Simulator](logic-gate-simulator/index.md) | L4 Analyze | Interactive AND, OR, NOT, NAND, NOR, XOR, XNOR gates |
 | [Boolean Operations Visualizer](boolean-operations-visualizer/index.md) | L2 Understand | Visualize Boolean operations with Venn diagrams |
 | [Truth Table Generator](truth-table-generator/index.md) | L3 Apply | Generate truth tables for Boolean expressions |
 | [Boolean Laws Explorer](boolean-laws-explorer/index.md) | L2 Understand | Explore Boolean algebra laws interactively |
 | [De Morgan's Theorem Visualizer](demorgans-theorem-visualizer/index.md) | L4 Analyze | Visualize De Morgan's theorem transformations |
 | [Boolean Simplification Tutor](boolean-simplification-tutor/index.md) | L3 Apply | Step-by-step Boolean expression simplification |
+| [3-Input AND Gate](3-input-and-gate/index.md) | L2 Understand | Interactive 3-input AND gate with truth table |
+| [3-Input OR Gate](3-input-or-gate/index.md) | L2 Understand | Interactive 3-input OR gate with truth table |
+| [3-Input NAND Gate](3-input-nand-gate/index.md) | L2 Understand | Interactive 3-input NAND gate with truth table |
+| [3-Input NOR Gate](3-input-nor-gate/index.md) | L2 Understand | Interactive 3-input NOR gate with truth table |
+| [3-Input XOR Gate](3-input-xor-gate/index.md) | L2 Understand | Interactive 3-input XOR gate with truth table |
 | [Gate Cascade Simulator](gate-cascade-simulator/index.md) | L4 Analyze | Simulate multi-level logic gate circuits |
 | [Circuit Analysis & Synthesis](circuit-analysis-synthesis/index.md) | L5 Evaluate | Analyze and synthesize logic circuits |
 
@@ -122,8 +137,8 @@ Interactive educational simulations for learning digital system design.
 | Unit | Count | Bloom Levels |
 |------|-------|--------------|
 | Course Overview | 1 | L2 |
-| Unit 1: Number Systems | 7 | L2-L4 |
-| Unit 2: Boolean Algebra | 8 | L2-L5 |
+| Unit 1: Number Systems | 8 | L2-L4 |
+| Unit 2: Boolean Algebra | 22 | L2-L5 |
 | Unit 3: Applications | 8 | L2-L6 |
 | Unit 4: Minterms/Maxterms | 4 | L2-L4 |
 | Unit 5: Karnaugh Maps | 5 | L3-L4 |
@@ -132,7 +147,7 @@ Interactive educational simulations for learning digital system design.
 | Unit 8: Combinational Modules | 5 | L2-L3 |
 | Unit 9: Sequential Fundamentals | 4 | L2-L4 |
 | Unit 10: Sequential Design | 4 | L2-L4 |
-| **Total** | **55** | **L2-L6** |
+| **Total** | **70** | **L2-L6** |
 
 ## About MicroSims
 
