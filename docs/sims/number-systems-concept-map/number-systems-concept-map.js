@@ -5,8 +5,8 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
-let controlHeight = 50;
+let drawHeight = 550;
+let controlHeight = 110;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -31,28 +31,28 @@ function initializeGraph() {
   let centerY = drawHeight / 2;
 
   nodes = [
-    { id: 'number', label: 'Number\nSystems', x: centerX, y: centerY - 20,
+    { id: 'number', label: 'Number\nSystems', x: centerX, y: centerY - 30,
       color: '#9c27b0', info: 'Methods for representing numeric values using different bases' },
 
-    { id: 'binary', label: 'Binary\n(Base 2)', x: centerX - 150, y: centerY - 100,
+    { id: 'binary', label: 'Binary\n(Base 2)', x: centerX - 150, y: centerY - 140,
       color: '#2196f3', info: 'Uses digits 0 and 1. Foundation of digital systems. Each bit represents a power of 2.' },
 
-    { id: 'decimal', label: 'Decimal\n(Base 10)', x: centerX + 150, y: centerY - 100,
+    { id: 'decimal', label: 'Decimal\n(Base 10)', x: centerX + 150, y: centerY - 140,
       color: '#4CAF50', info: 'Uses digits 0-9. Human-friendly format we use daily.' },
 
-    { id: 'octal', label: 'Octal\n(Base 8)', x: centerX - 150, y: centerY + 80,
+    { id: 'octal', label: 'Octal\n(Base 8)', x: centerX - 150, y: centerY + 60,
       color: '#ff9800', info: 'Uses digits 0-7. Each octal digit = 3 binary bits. Shorthand for binary.' },
 
-    { id: 'hex', label: 'Hexadecimal\n(Base 16)', x: centerX + 150, y: centerY + 80,
+    { id: 'hex', label: 'Hexadecimal\n(Base 16)', x: centerX + 150, y: centerY + 60,
       color: '#f44336', info: 'Uses 0-9 and A-F. Each hex digit = 4 binary bits. Common in programming.' },
 
-    { id: 'signed', label: 'Signed\nNumbers', x: centerX, y: centerY + 170,
+    { id: 'signed', label: 'Signed\nNumbers', x: centerX, y: centerY + 150,
       color: '#795548', info: 'Representations for positive and negative values: sign-magnitude, 1\'s complement, 2\'s complement.' },
 
-    { id: 'unsigned', label: 'Unsigned\nNumbers', x: centerX - 100, y: centerY + 250,
+    { id: 'unsigned', label: 'Unsigned\nNumbers', x: centerX - 100, y: centerY + 230,
       color: '#607d8b', info: 'Non-negative integers only. Full range used for magnitude.' },
 
-    { id: 'twos', label: "Two's\nComplement", x: centerX + 100, y: centerY + 250,
+    { id: 'twos', label: "Two's\nComplement", x: centerX + 100, y: centerY + 230,
       color: '#e91e63', info: 'Most common signed representation. Simple addition hardware. One zero value.' }
   ];
 
@@ -100,31 +100,31 @@ function draw() {
     drawNode(node);
   }
 
-  // Draw info box
+  // Draw info box or instructions in control area
   if (hoveredNode || selectedNode) {
     drawInfoBox(hoveredNode || selectedNode);
+  } else {
+    fill('#666');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(12);
+    text('Click or hover over concepts to learn more', canvasWidth / 2, drawHeight + controlHeight / 2);
   }
-
-  // Instructions
-  fill('#666');
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(12);
-  text('Click or hover over concepts to learn more', canvasWidth / 2, drawHeight + 25);
 }
 
 function updateNodePositions() {
   let centerX = canvasWidth / 2;
+  let centerY = drawHeight / 2;
 
-  // Update x positions relative to center
-  nodes[0].x = centerX;  // number
-  nodes[1].x = centerX - min(150, canvasWidth * 0.3);  // binary
-  nodes[2].x = centerX + min(150, canvasWidth * 0.3);  // decimal
-  nodes[3].x = centerX - min(150, canvasWidth * 0.3);  // octal
-  nodes[4].x = centerX + min(150, canvasWidth * 0.3);  // hex
-  nodes[5].x = centerX;  // signed
-  nodes[6].x = centerX - min(100, canvasWidth * 0.2);  // unsigned
-  nodes[7].x = centerX + min(100, canvasWidth * 0.2);  // twos
+  // Update positions relative to center
+  nodes[0].x = centerX;                                  nodes[0].y = centerY - 30;   // number
+  nodes[1].x = centerX - min(150, canvasWidth * 0.3);    nodes[1].y = centerY - 140;  // binary
+  nodes[2].x = centerX + min(150, canvasWidth * 0.3);    nodes[2].y = centerY - 140;  // decimal
+  nodes[3].x = centerX - min(150, canvasWidth * 0.3);    nodes[3].y = centerY + 60;   // octal
+  nodes[4].x = centerX + min(150, canvasWidth * 0.3);    nodes[4].y = centerY + 60;   // hex
+  nodes[5].x = centerX;                                  nodes[5].y = centerY + 150;  // signed
+  nodes[6].x = centerX - min(100, canvasWidth * 0.2);    nodes[6].y = centerY + 230;  // unsigned
+  nodes[7].x = centerX + min(100, canvasWidth * 0.2);    nodes[7].y = centerY + 230;  // twos
 }
 
 function drawNode(node) {
@@ -207,7 +207,7 @@ function drawEdge(edge) {
 }
 
 function drawInfoBox(node) {
-  let boxY = drawHeight - 85;
+  let boxY = drawHeight + 5;
   let boxHeight = 75;
 
   fill('white');

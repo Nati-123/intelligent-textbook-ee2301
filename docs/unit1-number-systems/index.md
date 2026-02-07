@@ -790,7 +790,7 @@ Number systems and binary arithmetic form the foundation for all digital hardwar
 
 #### Diagram: Number Systems Concept Map
 
-<iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="670px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Number Systems Concept Map</summary>
