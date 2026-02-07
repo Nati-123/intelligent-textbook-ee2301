@@ -212,9 +212,21 @@ Implementation: p5.js with responsive canvas
 
 The **AND gate** implements the AND operation, producing a HIGH output only when all inputs are HIGH. Its distinctive shape features a flat left edge and a curved right edge.
 
+#### Diagram: AND Gate with Truth Table
+
+<iframe src="../sims/and-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+
 The **OR gate** implements the OR operation, producing a HIGH output when any input is HIGH. Its shape features a curved left edge (concave) and a pointed right edge.
 
+#### Diagram: OR Gate with Truth Table
+
+<iframe src="../sims/or-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+
 The **NOT gate** (also called an **inverter**) implements the NOT operation, inverting its single input. It is drawn as a triangle with a small circle (bubble) at the output indicating inversion.
+
+#### Diagram: NOT Gate with Truth Table
+
+<iframe src="../sims/not-gate-truth-table/main.html" width="100%" height="390px" scrolling="no"></iframe>
 
 The **buffer gate** passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
 
@@ -226,17 +238,33 @@ The **NAND gate** (NOT-AND) produces the complement of AND: output is LOW only w
 
 $$F = \overline{A \cdot B}$$
 
+#### Diagram: NAND Gate with Truth Table
+
+<iframe src="../sims/nand-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+
 The **NOR gate** (NOT-OR) produces the complement of OR: output is HIGH only when all inputs are LOW.
 
 $$F = \overline{A + B}$$
+
+#### Diagram: NOR Gate with Truth Table
+
+<iframe src="../sims/nor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
 
 The **XOR gate** (exclusive OR) produces a HIGH output when inputs differ (odd number of 1s).
 
 $$F = A \oplus B = A\overline{B} + \overline{A}B$$
 
+#### Diagram: XOR Gate with Truth Table
+
+<iframe src="../sims/xor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+
 The **XNOR gate** (exclusive NOR) produces a HIGH output when inputs are the same (equality detector).
 
 $$F = \overline{A \oplus B} = AB + \overline{A}\overline{B}$$
+
+#### Diagram: XNOR Gate with Truth Table
+
+<iframe src="../sims/xnor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
 
 | A | B | NAND | NOR | XOR | XNOR |
 |---|---|------|-----|-----|------|
