@@ -82,6 +82,9 @@ function setup() {
 
   positionUIElements();
 
+  // Set initial input value from the field
+  inputNumber = numberInput.value().trim().toUpperCase();
+
   // Initial conversion
   performConversion();
 
