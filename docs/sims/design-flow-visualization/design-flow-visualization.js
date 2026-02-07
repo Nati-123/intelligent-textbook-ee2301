@@ -33,7 +33,7 @@ let designSteps = [
     example: "F = A'BC + AB'C + ABC'"
   },
   {
-    name: 'Simplification',
+    name: 'Boolean Simplification',
     color: '#ff9800',
     description: 'Simplify using Boolean algebra, K-maps, or other methods.',
     example: "F = A'BC + AB'C + ABC'\n(No further simplification possible for this function)"
@@ -45,7 +45,7 @@ let designSteps = [
     example: '3 AND gates + 1 OR gate + 3 NOT gates'
   },
   {
-    name: 'Verification',
+    name: 'Design Verification',
     color: '#795548',
     description: 'Verify the circuit produces correct outputs for all inputs.',
     example: 'Test all 8 input combinations against original truth table'
