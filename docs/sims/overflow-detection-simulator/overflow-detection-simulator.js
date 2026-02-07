@@ -86,6 +86,31 @@ function draw() {
   // Draw overflow explanation
   drawExplanation(result, hasOverflow);
 
+  // Hint text for clickable bits
+  fill('#999');
+  textAlign(CENTER, TOP);
+  textSize(10);
+  text('Click bits to toggle', canvasWidth / 2, 38);
+
+  // Set pointer cursor when hovering over clickable operand bits
+  let hBitWidth = 35;
+  let hStartX = canvasWidth / 2 - 80;
+  let bitRows = [40, 75]; // y positions of operand A and B bit rows
+  let overBit = false;
+  for (let r = 0; r < bitRows.length; r++) {
+    if (mouseY >= bitRows[r] && mouseY <= bitRows[r] + 30) {
+      for (let i = 0; i < 4; i++) {
+        let bx = hStartX + i * hBitWidth;
+        if (mouseX >= bx && mouseX <= bx + hBitWidth - 4) {
+          overBit = true;
+          break;
+        }
+      }
+      if (overBit) break;
+    }
+  }
+  cursor(overBit ? HAND : ARROW);
+
   // Control labels
   fill('black');
   noStroke();
@@ -248,6 +273,41 @@ function detectAddOverflow(a, b) {
 function detectSubOverflow(a, b) {
   let result = a - b;
   return result < -8 || result > 7;
+}
+
+function mousePressed() {
+  let bitWidth = 35;
+  let x = canvasWidth / 2 - 80;
+
+  // Row A bits: drawBinary called with y=55, rect top = 55-15 = 40
+  // Row B bits: drawBinary called with y=90, rect top = 90-15 = 75
+  let rows = [
+    { bitY: 40, currentValue: valueA },
+    { bitY: 75, currentValue: valueB }
+  ];
+
+  for (let r = 0; r < rows.length; r++) {
+    if (mouseY >= rows[r].bitY && mouseY <= rows[r].bitY + 30) {
+      for (let i = 0; i < 4; i++) {
+        let bx = x + i * bitWidth;
+        if (mouseX >= bx && mouseX <= bx + bitWidth - 4) {
+          let binary = toTwosComplement(rows[r].currentValue);
+          let bits = binary.split('');
+          bits[i] = bits[i] === '0' ? '1' : '0';
+          let newValue = fromTwosComplement(bits.join(''));
+          newValue = constrain(newValue, -8, 7);
+          if (r === 0) {
+            valueA = newValue;
+            aSlider.value(valueA);
+          } else {
+            valueB = newValue;
+            bSlider.value(valueB);
+          }
+          return;
+        }
+      }
+    }
+  }
 }
 
 function windowResized() {
