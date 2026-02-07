@@ -234,6 +234,12 @@ The **buffer gate** passes its input unchanged to the output ($F = A$). While se
 
 <iframe src="../sims/buffer-gate-truth-table/main.html" width="100%" height="390px" scrolling="no"></iframe>
 
+The **tri-state buffer** adds an **enable (EN)** control input to the standard buffer. When enabled (EN = 1), the output follows the input. When disabled (EN = 0), the output enters a **high-impedance (Z)** state—effectively disconnecting from the circuit. Tri-state buffers are essential for allowing multiple devices to share a common data bus without signal conflicts.
+
+#### Diagram: Tri-State Buffer with Truth Table
+
+<iframe src="../sims/tri-state-buffer-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+
 ### Derived Gates
 
 **Derived gates** combine basic operations into single devices, often providing more efficient implementations.
