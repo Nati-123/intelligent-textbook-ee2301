@@ -217,12 +217,12 @@ function drawInputToggles() {
   // Instruction
   fill('#666');
   textSize(11);
-  text('Click to toggle inputs', canvasWidth / 2, y + 50);
+  text('Click to toggle inputs', canvasWidth / 2, y + 42);
 }
 
 function drawResult() {
   let result = calculateResult();
-  let y = 355;
+  let y = 375;
 
   fill(result ? '#4CAF50' : '#f44336');
   noStroke();
