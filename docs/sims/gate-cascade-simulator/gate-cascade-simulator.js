@@ -290,7 +290,7 @@ function drawConnections(gate, gateX, gateY, circuit, inputY, gateOutputs, gateI
 }
 
 function drawInputToggles(circuit) {
-  let y = drawHeight + 55;
+  let y = drawHeight + 42;
   let toggleW = 45;
   let spacing = 60;
   let startX = canvasWidth / 2 - spacing;
@@ -301,29 +301,29 @@ function drawInputToggles(circuit) {
     fill(inputs[i] ? '#4CAF50' : '#f44336');
     stroke('#333');
     strokeWeight(2);
-    rect(x, y, toggleW, 30, 5);
+    rect(x, y, toggleW, 28, 5);
 
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(12);
-    text(circuit.inputLabels[i] + '=' + inputs[i], x + toggleW / 2, y + 15);
+    text(circuit.inputLabels[i] + '=' + inputs[i], x + toggleW / 2, y + 14);
   }
 
   fill('#666');
   textSize(10);
-  text('Click to toggle inputs', canvasWidth / 2, y + 40);
+  text('Click to toggle inputs', canvasWidth / 2, y + 36);
 }
 
 function mousePressed() {
-  let y = drawHeight + 55;
+  let y = drawHeight + 42;
   let toggleW = 45;
   let spacing = 60;
   let startX = canvasWidth / 2 - spacing;
 
   for (let i = 0; i < 3; i++) {
     let x = startX + (i - 1) * spacing;
-    if (mouseX >= x && mouseX <= x + toggleW && mouseY >= y && mouseY <= y + 30) {
+    if (mouseX >= x && mouseX <= x + toggleW && mouseY >= y && mouseY <= y + 28) {
       inputs[i] = 1 - inputs[i];
     }
   }
