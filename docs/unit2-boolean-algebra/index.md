@@ -230,6 +230,10 @@ The **NOT gate** (also called an **inverter**) implements the NOT operation, inv
 
 The **buffer gate** passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
 
+#### Diagram: Buffer Gate with Truth Table
+
+<iframe src="../sims/buffer-gate-truth-table/main.html" width="100%" height="390px" scrolling="no"></iframe>
+
 ### Derived Gates
 
 **Derived gates** combine basic operations into single devices, often providing more efficient implementations.
