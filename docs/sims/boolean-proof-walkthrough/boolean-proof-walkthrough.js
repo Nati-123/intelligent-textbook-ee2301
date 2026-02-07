@@ -201,10 +201,7 @@ function draw() {
   textAlign(LEFT, TOP);
   textSize(13);
   textStyle(NORMAL);
-  let lines = step.desc.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    text(lines[i], margin + 10, descY + i * 18);
-  }
+  text(step.desc, margin + 10, descY, w - 20);
 
   // Preset label
   fill(60);
@@ -243,16 +240,23 @@ function drawExpressionChain(step, mx, vy, w, vh) {
     noStroke();
     fill('#1B5E20');
     textAlign(CENTER, CENTER);
-    textSize(32);
     textStyle(BOLD);
-    text(activePreset.finalExpr + '  \u220e', cx, vy + vh / 2 - 20);
+    let finalSize = 32;
+    textSize(finalSize);
+    let finalText = activePreset.finalExpr + '  \u220e';
+    while (textWidth(finalText) > w - 60 && finalSize > 16) {
+      finalSize -= 2;
+      textSize(finalSize);
+    }
+    text(finalText, cx, vy + vh / 2 - 20);
 
     // Show all steps summary
-    textSize(11);
+    textSize(10);
     textStyle(NORMAL);
     fill(100);
     let arrows = ' \u2192 ';
-    text(activePreset.summarySteps.join(arrows), cx, vy + vh / 2 + 20);
+    textAlign(CENTER, TOP);
+    text(activePreset.summarySteps.join(arrows), cx, vy + vh / 2 + 10, w - 60);
     return;
   }
 
@@ -260,11 +264,16 @@ function drawExpressionChain(step, mx, vy, w, vh) {
   let prevExpr = steps[currentStep - 1].expr;
   let currExpr = step.expr;
 
-  // Previous expression (faded)
+  // Previous expression (faded) - auto-size to fit box
   fill(150);
   textAlign(CENTER, CENTER);
-  textSize(24);
   textStyle(NORMAL);
+  let prevSize = 24;
+  textSize(prevSize);
+  while (textWidth(prevExpr) > w - 40 && prevSize > 12) {
+    prevSize -= 2;
+    textSize(prevSize);
+  }
   text(prevExpr, cx, vy + vh / 2 - 40);
 
   // Arrow
@@ -272,10 +281,15 @@ function drawExpressionChain(step, mx, vy, w, vh) {
   textSize(20);
   text('\u2193', cx, vy + vh / 2 - 10);
 
-  // Current expression (bold, colored)
+  // Current expression (bold, colored) - auto-size to fit box
   fill(TITLE_BG);
-  textSize(32);
   textStyle(BOLD);
+  let exprSize = 32;
+  textSize(exprSize);
+  while (textWidth(currExpr) > w - 40 && exprSize > 16) {
+    exprSize -= 2;
+    textSize(exprSize);
+  }
   text(currExpr, cx, vy + vh / 2 + 25);
 }
 
