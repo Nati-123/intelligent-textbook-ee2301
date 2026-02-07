@@ -133,11 +133,14 @@ function draw() {
 }
 
 function drawSteps(example) {
-  let startY = 75;
-  let stepHeight = 55;
-  let maxVisible = min(example.steps.length, 6);
+  let startY = 70;
+  let btnY = 400;
+  let numSteps = example.steps.length;
+  let stepHeight = min(55, floor((btnY - startY - 25) / numSteps));
+  let compact = stepHeight < 50;
+  let boxH = stepHeight - 5;
 
-  for (let i = 0; i <= currentStep && i < example.steps.length; i++) {
+  for (let i = 0; i <= currentStep && i < numSteps; i++) {
     let step = example.steps[i];
     let y = startY + i * stepHeight;
 
@@ -150,43 +153,45 @@ function drawSteps(example) {
       stroke('#ddd');
     }
     strokeWeight(2);
-    rect(30, y, canvasWidth - 60, stepHeight - 5, 5);
+    rect(30, y, canvasWidth - 60, boxH, 5);
 
     // Step number
     fill(i === currentStep ? '#2196f3' : '#999');
     noStroke();
     textAlign(LEFT, TOP);
-    textSize(11);
-    text('Step ' + (i + 1), 40, y + 5);
+    textSize(compact ? 9 : 11);
+    text('Step ' + (i + 1), 40, y + 4);
 
     // Expression
     fill('black');
-    textSize(18);
+    textSize(compact ? 14 : 18);
     textAlign(CENTER, TOP);
-    text(step.expr, canvasWidth / 2, y + 8);
+    text(step.expr, canvasWidth / 2, y + (compact ? 5 : 8));
 
     // Rule applied
     fill('#666');
-    textSize(11);
-    text(step.rule, canvasWidth / 2, y + 32);
+    textSize(compact ? 9 : 11);
+    text(step.rule, canvasWidth / 2, y + (compact ? 22 : 32));
 
     // Arrow to next step
-    if (i < currentStep && i < example.steps.length - 1) {
+    if (i < currentStep && i < numSteps - 1) {
       fill('#4CAF50');
       noStroke();
-      let arrowY = y + stepHeight - 5;
-      triangle(canvasWidth / 2, arrowY + 5, canvasWidth / 2 - 8, arrowY - 3, canvasWidth / 2 + 8, arrowY - 3);
+      let arrowY = y + boxH;
+      triangle(canvasWidth / 2, arrowY + 4, canvasWidth / 2 - 6, arrowY - 2, canvasWidth / 2 + 6, arrowY - 2);
     }
   }
 
   // Final result highlight
-  if (currentStep === example.steps.length - 1) {
-    let finalY = startY + currentStep * stepHeight + stepHeight + 10;
-    fill('#4CAF50');
-    noStroke();
-    textAlign(CENTER, TOP);
-    textSize(14);
-    text('✓ Simplified to: ' + example.steps[example.steps.length - 1].expr, canvasWidth / 2, finalY);
+  if (currentStep === numSteps - 1) {
+    let finalY = startY + currentStep * stepHeight + stepHeight + 5;
+    if (finalY < btnY - 15) {
+      fill('#4CAF50');
+      noStroke();
+      textAlign(CENTER, TOP);
+      textSize(13);
+      text('✓ Simplified to: ' + example.steps[numSteps - 1].expr, canvasWidth / 2, finalY);
+    }
   }
 }
 
