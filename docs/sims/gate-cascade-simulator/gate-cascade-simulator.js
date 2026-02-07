@@ -214,34 +214,44 @@ function drawGate(type, x, y, output) {
   stroke(output ? '#4CAF50' : '#666');
   strokeWeight(2);
 
-  let w = 50;
   let h = 35;
 
   if (type === 'NOT') {
     // Triangle with bubble
     triangle(x - 20, y - 15, x - 20, y + 15, x + 15, y);
+    fill('white');
     ellipse(x + 20, y, 10);
   } else if (type === 'AND' || type === 'NAND') {
+    // AND body: flat left, curved right
     beginShape();
     vertex(x - 20, y - h / 2);
     vertex(x, y - h / 2);
-    arc(x, y, h, h, -HALF_PI, HALF_PI);
+    for (let a = -HALF_PI; a <= HALF_PI; a += 0.1) {
+      vertex(x + cos(a) * h / 2, y + sin(a) * h / 2);
+    }
     vertex(x, y + h / 2);
     vertex(x - 20, y + h / 2);
     endShape(CLOSE);
-    if (type === 'NAND') ellipse(x + h / 2 + 5, y, 10);
+    if (type === 'NAND') {
+      fill('white');
+      ellipse(x + h / 2 + 5, y, 10);
+    }
   } else if (type === 'OR' || type === 'NOR' || type === 'XOR') {
+    // OR body: curved left, pointed right
     beginShape();
     vertex(x - 20, y - h / 2);
     bezierVertex(x - 5, y - h / 2, x + 15, y - 10, x + 25, y);
     bezierVertex(x + 15, y + 10, x - 5, y + h / 2, x - 20, y + h / 2);
     bezierVertex(x - 10, y, x - 10, y, x - 20, y - h / 2);
     endShape(CLOSE);
-    if (type === 'NOR') ellipse(x + 30, y, 10);
+    if (type === 'NOR') {
+      fill('white');
+      ellipse(x + 30, y, 10);
+    }
     if (type === 'XOR') {
       noFill();
       stroke(output ? '#4CAF50' : '#666');
-      arc(x - 25, y, 15, h, -HALF_PI, HALF_PI);
+      bezier(x - 25, y - h / 2, x - 15, y - 5, x - 15, y + 5, x - 25, y + h / 2);
     }
   }
 
