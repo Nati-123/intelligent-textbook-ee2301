@@ -88,7 +88,7 @@ function draw() {
 function drawCircuits() {
   let leftX = canvasWidth / 4;
   let rightX = 3 * canvasWidth / 4;
-  let y = 180;
+  let y = 155;
 
   // Calculate results
   let leftResult, rightResult;
@@ -114,7 +114,7 @@ function drawCircuits() {
   drawInvertedInputGate(rightX, y, currentTheorem === 0 ? 'OR' : 'AND', rightResult);
 
   // Results
-  let resultY = 330;
+  let resultY = 300;
   textSize(14);
 
   fill(leftResult ? '#4CAF50' : '#f44336');
@@ -127,7 +127,7 @@ function drawCircuits() {
   // Verification
   fill(leftResult === rightResult ? '#4CAF50' : '#f44336');
   textSize(16);
-  text(leftResult === rightResult ? '✓ Equal!' : '✗ Not equal', canvasWidth / 2, resultY + 40);
+  text(leftResult === rightResult ? '✓ Equal!' : '✗ Not equal', canvasWidth / 2, resultY + 25);
 }
 
 function drawNandNorGate(x, y, type, result) {
@@ -273,7 +273,7 @@ function drawInvertedInputGate(x, y, type, result) {
 }
 
 function drawInputToggles() {
-  let y = 365;
+  let y = 360;
   let toggleW = 50;
   let toggleH = 30;
 
@@ -303,7 +303,7 @@ function drawInputToggles() {
 }
 
 function mousePressed() {
-  let y = 365;
+  let y = 360;
   let toggleW = 50;
   let toggleH = 30;
 
