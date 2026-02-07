@@ -133,10 +133,11 @@ function draw() {
 }
 
 function drawSteps(example) {
-  let startY = 70;
-  let btnY = 400;
+  let startY = 65;
+  let btnH = 28;
+  let bottomMargin = 55; // space for buttons + final result
   let numSteps = example.steps.length;
-  let stepHeight = min(55, floor((btnY - startY - 25) / numSteps));
+  let stepHeight = min(55, floor((drawHeight - startY - bottomMargin) / numSteps));
   let compact = stepHeight < 50;
   let boxH = stepHeight - 5;
 
@@ -188,7 +189,7 @@ function drawSteps(example) {
   // Final result highlight
   if (currentStep === numSteps - 1) {
     let finalY = startY + currentStep * stepHeight + stepHeight + 5;
-    if (finalY < btnY - 15) {
+    if (finalY < drawHeight - bottomMargin) {
       fill('#4CAF50');
       noStroke();
       textAlign(CENTER, TOP);
@@ -199,9 +200,9 @@ function drawSteps(example) {
 }
 
 function drawNavButtons(example) {
-  let btnY = 400;
-  let btnW = 100;
-  let btnH = 35;
+  let btnH = 28;
+  let btnY = drawHeight - btnH - 10;
+  let btnW = 90;
 
   // Previous button
   let prevX = canvasWidth / 2 - btnW - 20;
@@ -244,9 +245,9 @@ function drawNavButtons(example) {
 }
 
 function mousePressed() {
-  let btnY = 400;
-  let btnW = 100;
-  let btnH = 35;
+  let btnH = 28;
+  let btnY = drawHeight - btnH - 10;
+  let btnW = 90;
 
   let example = examples[currentExample];
 
