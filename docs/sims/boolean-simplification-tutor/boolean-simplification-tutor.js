@@ -156,14 +156,14 @@ function drawSteps(example) {
     rect(30, y, canvasWidth - 60, boxH, 5);
 
     // Step number badge
-    let badgeR = compact ? 10 : 12;
+    let badgeR = compact ? 8 : 9;
     fill(i === currentStep ? '#2196f3' : '#ccc');
     noStroke();
-    ellipse(30 + badgeR + 5, y + boxH / 2, badgeR * 2);
+    ellipse(30 + badgeR + 4, y + boxH / 2, badgeR * 2);
     fill('white');
     textAlign(CENTER, CENTER);
-    textSize(compact ? 9 : 11);
-    text(i + 1, 30 + badgeR + 5, y + boxH / 2);
+    textSize(compact ? 8 : 10);
+    text(i + 1, 30 + badgeR + 4, y + boxH / 2);
 
     // Expression
     fill('black');
@@ -239,8 +239,8 @@ function drawNavButtons(example) {
 
   // Progress indicator
   fill('#666');
-  textSize(12);
-  text('Step ' + (currentStep + 1) + ' of ' + example.steps.length, canvasWidth / 2, btnY + btnH + 15);
+  textSize(11);
+  text((currentStep + 1) + ' / ' + example.steps.length, canvasWidth / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
