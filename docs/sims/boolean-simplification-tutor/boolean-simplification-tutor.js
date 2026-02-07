@@ -155,18 +155,21 @@ function drawSteps(example) {
     strokeWeight(2);
     rect(30, y, canvasWidth - 60, boxH, 5);
 
-    // Step number
-    fill(i === currentStep ? '#2196f3' : '#999');
+    // Step number badge
+    let badgeR = compact ? 10 : 12;
+    fill(i === currentStep ? '#2196f3' : '#ccc');
     noStroke();
-    textAlign(LEFT, TOP);
+    ellipse(30 + badgeR + 5, y + boxH / 2, badgeR * 2);
+    fill('white');
+    textAlign(CENTER, CENTER);
     textSize(compact ? 9 : 11);
-    text('Step ' + (i + 1), 40, y + 4);
+    text(i + 1, 30 + badgeR + 5, y + boxH / 2);
 
     // Expression
     fill('black');
     textSize(compact ? 14 : 18);
     textAlign(CENTER, TOP);
-    text(step.expr, canvasWidth / 2, y + (compact ? 5 : 8));
+    text(step.expr, canvasWidth / 2 + 10, y + (compact ? 5 : 8));
 
     // Rule applied
     fill('#666');
