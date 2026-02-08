@@ -49,7 +49,7 @@ let presets = [
       {
         title: "Step 1: Write the Truth Table",
         desc: "List all 8 input combinations for A, B, Cin.\nCalculate Sum and Cout for each row.",
-        rule: "Truth Table: 2\u207F rows for n inputs",
+        rule: "Truth Table: 2^n rows for n inputs",
         visual: "truth-table",
         highlightRows: []
       },
@@ -63,7 +63,7 @@ let presets = [
       },
       {
         title: "Step 3: SOP Expression for Sum",
-        desc: "Sum = A'B'Cin + A'BCin' + AB'Cin' + ABCin\nThis is equivalent to Sum = A \u2295 B \u2295 Cin",
+        desc: "Sum = A'B'Cin + A'BCin' + AB'Cin' + ABCin\nThis is equivalent to Sum = A XOR B XOR Cin",
         rule: "Sum-of-Products from minterms",
         visual: "sop-sum"
       },
@@ -78,24 +78,24 @@ let presets = [
       {
         title: "Step 5: SOP Expression for Cout",
         desc: "Cout = A'BCin + AB'Cin + ABCin' + ABCin\nSimplifies to: Cout = AB + ACin + BCin",
-        rule: "Sum-of-Products \u2192 Simplified",
+        rule: "Sum-of-Products -> Simplified",
         visual: "sop-cout"
       },
       {
         title: "Step 6: Gate Circuit for Sum",
-        desc: "Sum = A \u2295 B \u2295 Cin\nImplemented with two XOR gates in cascade.",
+        desc: "Sum = A XOR B XOR Cin\nImplemented with two XOR gates in cascade.",
         rule: "XOR gate implements odd-parity function",
         visual: "circuit-sum"
       },
       {
         title: "Step 7: Gate Circuit for Cout",
         desc: "Cout = AB + ACin + BCin\nThree AND gates feeding one OR gate.",
-        rule: "SOP \u2192 AND-OR implementation",
+        rule: "SOP -> AND-OR implementation",
         visual: "circuit-cout"
       },
       {
         title: "Complete Full Adder",
-        desc: "The full adder is complete with:\n\u2022 Sum = A \u2295 B \u2295 Cin (two XOR gates)\n\u2022 Cout = AB + ACin + BCin (three AND + one OR)",
+        desc: "The full adder is complete with:\n- Sum = A XOR B XOR Cin (two XOR gates)\n- Cout = AB + ACin + BCin (three AND + one OR)",
         rule: "Full Adder Design Complete",
         visual: "complete"
       }
@@ -121,7 +121,7 @@ let presets = [
       {
         title: "Step 1: Write the Truth Table",
         desc: "List all 4 input combinations for A, B.\nCalculate Sum and Carry for each row.",
-        rule: "Truth Table: 2\u207F rows for n inputs",
+        rule: "Truth Table: 2^n rows for n inputs",
         visual: "truth-table",
         highlightRows: []
       },
@@ -135,7 +135,7 @@ let presets = [
       },
       {
         title: "Step 3: Expression for Sum",
-        desc: "Sum = A'B + AB'\nThis is equivalent to Sum = A \u2295 B (XOR)",
+        desc: "Sum = A'B + AB'\nThis is equivalent to Sum = A XOR B (XOR)",
         rule: "Sum-of-Products from minterms",
         visual: "ha-sop-sum"
       },
@@ -150,12 +150,12 @@ let presets = [
       {
         title: "Step 5: Expression for Carry",
         desc: "Carry = AB\nOnly one minterm, so the expression is simply AB.",
-        rule: "Single minterm \u2192 AND gate",
+        rule: "Single minterm -> AND gate",
         visual: "ha-sop-carry"
       },
       {
         title: "Complete Half Adder",
-        desc: "The half adder is complete with:\n\u2022 Sum = A \u2295 B (one XOR gate)\n\u2022 Carry = AB (one AND gate)",
+        desc: "The half adder is complete with:\n- Sum = A XOR B (one XOR gate)\n- Carry = AB (one AND gate)",
         rule: "Half Adder Design Complete",
         visual: "ha-complete"
       }
@@ -185,7 +185,7 @@ let presets = [
       {
         title: "Step 1: Write the Truth Table",
         desc: "List all 8 input combinations for A, B, Bin.\nCalculate Diff and Bout for each row.",
-        rule: "Truth Table: 2\u207F rows for n inputs",
+        rule: "Truth Table: 2^n rows for n inputs",
         visual: "truth-table",
         highlightRows: []
       },
@@ -199,7 +199,7 @@ let presets = [
       },
       {
         title: "Step 3: Expression for Diff",
-        desc: "Diff = A'B'Bin + A'BBin' + AB'Bin' + ABBin\nThis is equivalent to Diff = A \u2295 B \u2295 Bin",
+        desc: "Diff = A'B'Bin + A'BBin' + AB'Bin' + ABBin\nThis is equivalent to Diff = A XOR B XOR Bin",
         rule: "Sum-of-Products from minterms",
         visual: "fs-sop-diff"
       },
@@ -214,12 +214,12 @@ let presets = [
       {
         title: "Step 5: Expression for Bout",
         desc: "Bout = A'B'Bin + A'BBin' + A'BBin + ABBin\nSimplifies to: Bout = A'B + A'Bin + BBin",
-        rule: "Sum-of-Products \u2192 Simplified",
+        rule: "Sum-of-Products -> Simplified",
         visual: "fs-sop-bout"
       },
       {
         title: "Complete Full Subtractor",
-        desc: "The full subtractor is complete with:\n\u2022 Diff = A \u2295 B \u2295 Bin (two XOR gates)\n\u2022 Bout = A'B + A'Bin + BBin (three AND + one OR)",
+        desc: "The full subtractor is complete with:\n- Diff = A XOR B XOR Bin (two XOR gates)\n- Bout = A'B + A'Bin + BBin (three AND + one OR)",
         rule: "Full Subtractor Design Complete",
         visual: "fs-complete"
       }
@@ -367,7 +367,7 @@ function drawVisual(step, mx, vy, w, vh) {
     drawSOPVisual(cx, mx, vy, w,
       "m(1, 2, 4, 7)",
       "A'B'Cin + A'BCin' + AB'Cin' + ABCin",
-      "Sum = A \u2295 B \u2295 Cin"
+      "Sum = A XOR B XOR Cin"
     );
   }
   else if (step.visual === 'sop-cout') {
@@ -391,7 +391,7 @@ function drawVisual(step, mx, vy, w, vh) {
     drawSOPVisual(cx, mx, vy, w,
       "m(1, 2)",
       "A'B + AB'",
-      "Sum = A \u2295 B"
+      "Sum = A XOR B"
     );
   }
   else if (step.visual === 'ha-sop-carry') {
@@ -412,7 +412,7 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
-    text('Sum = A \u2295 B', cx, vy + 45);
+    text('Sum = A XOR B', cx, vy + 45);
     text('Carry = AB', cx, vy + 110);
     fill(100);
     textSize(13);
@@ -426,7 +426,7 @@ function drawVisual(step, mx, vy, w, vh) {
     drawSOPVisual(cx, mx, vy, w,
       "m(1, 2, 4, 7)",
       "A'B'Bin + A'BBin' + AB'Bin' + ABBin",
-      "Diff = A \u2295 B \u2295 Bin"
+      "Diff = A XOR B XOR Bin"
     );
   }
   else if (step.visual === 'fs-sop-bout') {
@@ -447,7 +447,7 @@ function drawVisual(step, mx, vy, w, vh) {
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
-    text('Diff = A \u2295 B \u2295 Bin', cx, vy + 45);
+    text('Diff = A XOR B XOR Bin', cx, vy + 45);
     text('Bout = A\'B + A\'Bin + BBin', cx, vy + 110);
     fill(100);
     textSize(13);
@@ -510,7 +510,7 @@ function drawSOPVisual(cx, mx, vy, w, mintermLabel, sopExpr, simplifiedExpr) {
   // Arrow
   fill(HIGHLIGHT);
   textSize(18);
-  text('\u2193', cx, vy + 85);
+  text('v', cx, vy + 85);
   // Simplified
   fill(RESULT_BG);
   stroke('#4CAF50');
@@ -535,7 +535,7 @@ function drawCompleteFullAdder(cx, mx, vy, w, vh) {
   textAlign(CENTER, CENTER);
   textSize(18);
   textStyle(BOLD);
-  text('Sum = A \u2295 B \u2295 Cin', cx, vy + 45);
+  text('Sum = A XOR B XOR Cin', cx, vy + 45);
   text('Cout = AB + ACin + BCin', cx, vy + 110);
   // Gate counts
   fill(100);
@@ -669,7 +669,7 @@ function drawSumCircuit(mx, vy, w, vh) {
   textAlign(CENTER, CENTER);
   textSize(12);
   textStyle(NORMAL);
-  text('Sum = A \u2295 B \u2295 Cin', cx, vy + vh - 20);
+  text('Sum = A XOR B XOR Cin', cx, vy + vh - 20);
 }
 
 function drawCoutCircuit(mx, vy, w, vh) {
@@ -767,7 +767,7 @@ function drawButtons() {
   textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
-  text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
+  text('<- Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
   rect(startX + btnW + gap, btnY, btnW, btnH, 5);
@@ -778,7 +778,7 @@ function drawButtons() {
   fill(nextEnabled ? '#388E3C' : '#BDBDBD');
   rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
   fill(255);
-  text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  text('Next ->', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
 
 function mousePressed() {
