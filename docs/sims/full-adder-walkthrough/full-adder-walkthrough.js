@@ -55,7 +55,7 @@ let presets = [
       },
       {
         title: "Step 2: Identify Minterms for Sum",
-        desc: "Sum = 1 at rows 1, 2, 4, 7 (counting from 0).\nSum = \u03A3m(1, 2, 4, 7)",
+        desc: "Sum = 1 at rows 1, 2, 4, 7 (counting from 0).\nSum minterms: m(1, 2, 4, 7)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [1, 2, 4, 7],
@@ -69,7 +69,7 @@ let presets = [
       },
       {
         title: "Step 4: Identify Minterms for Cout",
-        desc: "Cout = 1 at rows 3, 5, 6, 7 (counting from 0).\nCout = \u03A3m(3, 5, 6, 7)",
+        desc: "Cout = 1 at rows 3, 5, 6, 7 (counting from 0).\nCout minterms: m(3, 5, 6, 7)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [3, 5, 6, 7],
@@ -127,7 +127,7 @@ let presets = [
       },
       {
         title: "Step 2: Identify Minterms for Sum",
-        desc: "Sum = 1 at rows 1, 2 (counting from 0).\nSum = \u03A3m(1, 2)",
+        desc: "Sum = 1 at rows 1, 2 (counting from 0).\nSum minterms: m(1, 2)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [1, 2],
@@ -141,7 +141,7 @@ let presets = [
       },
       {
         title: "Step 4: Identify Minterms for Carry",
-        desc: "Carry = 1 at row 3 (counting from 0).\nCarry = \u03A3m(3)",
+        desc: "Carry = 1 at row 3 (counting from 0).\nCarry minterms: m(3)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [3],
@@ -191,7 +191,7 @@ let presets = [
       },
       {
         title: "Step 2: Identify Minterms for Diff",
-        desc: "Diff = 1 at rows 1, 2, 4, 7 (counting from 0).\nDiff = \u03A3m(1, 2, 4, 7)",
+        desc: "Diff = 1 at rows 1, 2, 4, 7 (counting from 0).\nDiff minterms: m(1, 2, 4, 7)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [1, 2, 4, 7],
@@ -205,7 +205,7 @@ let presets = [
       },
       {
         title: "Step 4: Identify Minterms for Bout",
-        desc: "Bout = 1 at rows 1, 2, 3, 7 (counting from 0).\nBout = \u03A3m(1, 2, 3, 7)",
+        desc: "Bout = 1 at rows 1, 2, 3, 7 (counting from 0).\nBout minterms: m(1, 2, 3, 7)",
         rule: "Minterms: rows where output = 1",
         visual: "truth-table",
         highlightRows: [1, 2, 3, 7],
@@ -365,14 +365,14 @@ function drawVisual(step, mx, vy, w, vh) {
   }
   else if (step.visual === 'sop-sum') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(1, 2, 4, 7)",
+      "m(1, 2, 4, 7)",
       "A'B'Cin + A'BCin' + AB'Cin' + ABCin",
       "Sum = A \u2295 B \u2295 Cin"
     );
   }
   else if (step.visual === 'sop-cout') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(3, 5, 6, 7)",
+      "m(3, 5, 6, 7)",
       "A'BCin + AB'Cin + ABCin' + ABCin",
       "Cout = AB + ACin + BCin"
     );
@@ -389,14 +389,14 @@ function drawVisual(step, mx, vy, w, vh) {
   // Half Adder visuals
   else if (step.visual === 'ha-sop-sum') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(1, 2)",
+      "m(1, 2)",
       "A'B + AB'",
       "Sum = A \u2295 B"
     );
   }
   else if (step.visual === 'ha-sop-carry') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(3)",
+      "m(3)",
       "AB",
       "Carry = AB"
     );
@@ -424,14 +424,14 @@ function drawVisual(step, mx, vy, w, vh) {
   // Full Subtractor visuals
   else if (step.visual === 'fs-sop-diff') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(1, 2, 4, 7)",
+      "m(1, 2, 4, 7)",
       "A'B'Bin + A'BBin' + AB'Bin' + ABBin",
       "Diff = A \u2295 B \u2295 Bin"
     );
   }
   else if (step.visual === 'fs-sop-bout') {
     drawSOPVisual(cx, mx, vy, w,
-      "\u03A3m(1, 2, 3, 7)",
+      "m(1, 2, 3, 7)",
       "A'B'Bin + A'BBin' + A'BBin + ABBin",
       "Bout = A'B + A'Bin + BBin"
     );
