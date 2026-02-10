@@ -458,7 +458,7 @@ $$A - B = A + \overline{B} + 1$$
 
 #### Diagram: Adder-Subtractor Circuit Builder
 
-<iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="700px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Adder-Subtractor Circuit Builder</summary>
@@ -1033,7 +1033,7 @@ This unit applied Boolean algebra to practical digital circuit design:
 - **Incompletely specified functions** have don't care conditions that enable simpler implementations by choosing optimal output values.
 
 ??? question "Self-Check: What is the Boolean expression for the carry output of a full adder?"
-    $C_{out} = AB + C_{in}(A \oplus B) = AB + AC_{in} + BC_{in}$. The carry is produced when at least two of the three inputs are 1.
+    $C_{out} = AB + AC_{in} + BC_{in}$. The carry is produced when at least two of the three inputs are 1.
 
 ??? question "Self-Check: Why is Gray code useful for position encoders?"
     In Gray code, adjacent positions differ by only one bit. This prevents ambiguous readings when a sensor is between positions—only one bit can be changing at a time, eliminating glitches.
