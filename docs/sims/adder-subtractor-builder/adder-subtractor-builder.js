@@ -115,14 +115,14 @@ function drawCircuit() {
 
   // Input A (top left)
   let inputAX = blockX + 50;
-  drawInputBus('A', valueA, inputAX, blockY - 30);
+  drawInputBus('A', valueA, inputAX, blockY - 45);
   stroke('#2196f3');
   strokeWeight(2);
-  line(inputAX, blockY - 20, inputAX, blockY);
+  line(inputAX, blockY - 25, inputAX, blockY);
 
   // Input B with XOR gates (top right)
   let inputBX = blockX + blockW - 50;
-  drawInputBus('B', valueB, inputBX, blockY - 30);
+  drawInputBus('B', valueB, inputBX, blockY - 45);
 
   // XOR gates for B input
   let xorY = blockY + 35;
