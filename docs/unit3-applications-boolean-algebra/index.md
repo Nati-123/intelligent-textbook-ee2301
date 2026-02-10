@@ -307,7 +307,7 @@ A **full adder** adds three single-bit inputs: A, B, and a carry-in ($C_{in}$) f
 The Boolean equations are:
 
 $$S = A \oplus B \oplus C_{in}$$
-$$C_{out} = AB + C_{in}(A \oplus B) = AB + AC_{in} + BC_{in}$$
+$$C_{out} = AB + AC_{in} + BC_{in}$$
 
 A full adder can be built from two half adders and an OR gate, or directly from the Boolean expressions.
 
