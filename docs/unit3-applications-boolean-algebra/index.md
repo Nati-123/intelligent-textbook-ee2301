@@ -557,6 +557,10 @@ The less-than output is: $L = \overline{G} \cdot \overline{E}$ (or derive symmet
 !!! tip "Cascading Comparators"
     Commercial comparator ICs (like 74LS85) include cascade inputs that allow connecting multiple 4-bit comparators to compare larger numbers.
 
+Try the interactive magnitude comparator below — set the A and B inputs and observe the G, E, L outputs:
+
+<iframe src="../sims/magnitude-comparator/main.html" width="100%" height="640px" scrolling="no"></iframe>
+
 ---
 
 ## 3.7 Parity Circuits
