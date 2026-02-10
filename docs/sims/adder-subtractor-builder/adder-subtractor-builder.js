@@ -6,15 +6,23 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 430;
-let controlHeight = 70;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
 let modeSelect;
-let aInput, bInput;
 let currentMode = 'add';
-let valueA = 5;
-let valueB = 3;
+
+// Store individual bits for A and B
+let aBits = [0, 1, 0, 1]; // A = 5 (0101)
+let bBits = [0, 0, 1, 1]; // B = 3 (0011)
+
+let bitBoxSize = 28;
+let bitSpacing = 6;
+
+function bitsToValue(bits) {
+  return bits[0] * 8 + bits[1] * 4 + bits[2] * 2 + bits[3];
+}
 
 function setup() {
   updateCanvasSize();
@@ -27,15 +35,6 @@ function setup() {
   modeSelect.option('Subtraction (A - B)', 'sub');
   modeSelect.changed(() => { currentMode = modeSelect.value(); });
 
-  // Value inputs using sliders
-  aInput = createSlider(0, 15, 5);
-  aInput.size(100);
-  aInput.input(() => { valueA = aInput.value(); });
-
-  bInput = createSlider(0, 15, 3);
-  bInput.size(100);
-  bInput.input(() => { valueB = bInput.value(); });
-
   positionUIElements();
 
   describe('Adder-subtractor builder showing how one circuit does both operations', LABEL);
@@ -43,9 +42,7 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  modeSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
-  aInput.position(mainRect.left + 60, mainRect.top + drawHeight + 45);
-  bInput.position(mainRect.left + 220, mainRect.top + drawHeight + 45);
+  modeSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 10);
 }
 
 function draw() {
@@ -79,12 +76,107 @@ function draw() {
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(12);
-  text('Mode:', 25, drawHeight + 27);
-  text('A=' + valueA, 25, drawHeight + 57);
-  text('B=' + valueB, 170, drawHeight + 57);
+  text('Mode:', 25, drawHeight + 22);
+
+  // Draw clickable bit toggles
+  drawBitToggles();
+}
+
+function drawBitToggles() {
+  let valueA = bitsToValue(aBits);
+  let valueB = bitsToValue(bBits);
+
+  // A bits
+  let aStartX = 30;
+  let bitY = drawHeight + 45;
+
+  fill('black');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  text('A=' + valueA, aStartX, bitY + bitBoxSize / 2);
+
+  let aBoxStartX = aStartX + 40;
+  for (let i = 0; i < 4; i++) {
+    let x = aBoxStartX + i * (bitBoxSize + bitSpacing);
+    fill(aBits[i] === 1 ? '#2196f3' : '#e0e0e0');
+    stroke('#999');
+    strokeWeight(1);
+    rect(x, bitY, bitBoxSize, bitBoxSize, 4);
+
+    fill(aBits[i] === 1 ? 'white' : '#333');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text(aBits[i], x + bitBoxSize / 2, bitY + bitBoxSize / 2);
+  }
+
+  // B bits
+  let bStartX = canvasWidth / 2 + 20;
+
+  fill('black');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  text('B=' + valueB, bStartX, bitY + bitBoxSize / 2);
+
+  let bBoxStartX = bStartX + 40;
+  for (let i = 0; i < 4; i++) {
+    let x = bBoxStartX + i * (bitBoxSize + bitSpacing);
+    fill(bBits[i] === 1 ? '#ff9800' : '#e0e0e0');
+    stroke('#999');
+    strokeWeight(1);
+    rect(x, bitY, bitBoxSize, bitBoxSize, 4);
+
+    fill(bBits[i] === 1 ? 'white' : '#333');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text(bBits[i], x + bitBoxSize / 2, bitY + bitBoxSize / 2);
+  }
+
+  // Bit position labels
+  fill('#999');
+  noStroke();
+  textSize(9);
+  textAlign(CENTER, TOP);
+  for (let i = 0; i < 4; i++) {
+    let ax = aBoxStartX + i * (bitBoxSize + bitSpacing) + bitBoxSize / 2;
+    text(3 - i, ax, bitY + bitBoxSize + 2);
+    let bx = bBoxStartX + i * (bitBoxSize + bitSpacing) + bitBoxSize / 2;
+    text(3 - i, bx, bitY + bitBoxSize + 2);
+  }
+}
+
+function mousePressed() {
+  let bitY = drawHeight + 45;
+  let aBoxStartX = 30 + 40;
+  let bBoxStartX = canvasWidth / 2 + 20 + 40;
+
+  // Check A bits
+  for (let i = 0; i < 4; i++) {
+    let x = aBoxStartX + i * (bitBoxSize + bitSpacing);
+    if (mouseX >= x && mouseX <= x + bitBoxSize &&
+        mouseY >= bitY && mouseY <= bitY + bitBoxSize) {
+      aBits[i] = aBits[i] === 0 ? 1 : 0;
+      return;
+    }
+  }
+
+  // Check B bits
+  for (let i = 0; i < 4; i++) {
+    let x = bBoxStartX + i * (bitBoxSize + bitSpacing);
+    if (mouseX >= x && mouseX <= x + bitBoxSize &&
+        mouseY >= bitY && mouseY <= bitY + bitBoxSize) {
+      bBits[i] = bBits[i] === 0 ? 1 : 0;
+      return;
+    }
+  }
 }
 
 function drawCircuit() {
+  let valueA = bitsToValue(aBits);
+  let valueB = bitsToValue(bBits);
   let centerX = canvasWidth / 2;
   let startY = 45;
 
@@ -144,7 +236,7 @@ function drawCircuit() {
   // Show B XOR M result
   fill('#333');
   textSize(10);
-  text('B⊕M = ' + xorResult, inputBX, xorY + 35);
+  text('B\u2295M = ' + xorResult, inputBX, xorY + 35);
 
   // Mode input (M)
   let modeX = blockX + blockW - 20;
@@ -249,15 +341,15 @@ function drawOperation() {
   let lineY = y + 30;
 
   if (currentMode === 'add') {
-    text('• Mode M = 0 (Addition)', 45, lineY);
-    text('• B XOR 0 = B (B unchanged)', 45, lineY + 15);
-    text('• Carry-in = 0', 45, lineY + 30);
-    text('• Result = A + B', 45, lineY + 45);
+    text('* Mode M = 0 (Addition)', 45, lineY);
+    text('* B XOR 0 = B (B unchanged)', 45, lineY + 15);
+    text('* Carry-in = 0', 45, lineY + 30);
+    text('* Result = A + B', 45, lineY + 45);
   } else {
-    text("• Mode M = 1 (Subtraction)", 45, lineY);
-    text("• B XOR 1 = B' (B inverted = one's complement)", 45, lineY + 15);
-    text("• Carry-in = 1 (completes two's complement)", 45, lineY + 30);
-    text("• Result = A + B' + 1 = A - B", 45, lineY + 45);
+    text("* Mode M = 1 (Subtraction)", 45, lineY);
+    text("* B XOR 1 = B' (B inverted = one's complement)", 45, lineY + 15);
+    text("* Carry-in = 1 (completes two's complement)", 45, lineY + 30);
+    text("* Result = A + B' + 1 = A - B", 45, lineY + 45);
   }
 }
 
