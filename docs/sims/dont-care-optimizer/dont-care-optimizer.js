@@ -9,7 +9,6 @@ let drawHeight = 580;
 let canvasHeight = drawHeight;
 let containerHeight = canvasHeight;
 
-let exampleSelect;
 let currentExample = 0;
 
 let examples = [
@@ -54,31 +53,11 @@ function setup() {
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
-  // Create controls container below the canvas
-  let controlsDiv = createDiv('');
-  controlsDiv.parent(mainElement);
-  controlsDiv.style('display', 'flex');
-  controlsDiv.style('align-items', 'center');
-  controlsDiv.style('gap', '10px');
-  controlsDiv.style('padding', '10px 20px');
-  controlsDiv.style('background', 'white');
-  controlsDiv.style('border', '1px solid silver');
-  controlsDiv.style('border-top', 'none');
-
-  let label = createSpan('Example:');
-  label.parent(controlsDiv);
-  label.style('font-size', '14px');
-  label.style('font-weight', 'bold');
-
-  exampleSelect = createSelect();
-  exampleSelect.parent(controlsDiv);
-  exampleSelect.style('font-size', '14px');
-  exampleSelect.style('padding', '5px 10px');
-  exampleSelect.style('min-width', '250px');
-  for (let i = 0; i < examples.length; i++) {
-    exampleSelect.option(examples[i].name, i);
-  }
-  exampleSelect.changed(() => { currentExample = parseInt(exampleSelect.value()); });
+  // Connect to HTML select element
+  let selectEl = document.getElementById('exampleSelect');
+  selectEl.addEventListener('change', function() {
+    currentExample = parseInt(this.value);
+  });
 
   describe('Don\'t care optimizer showing how undefined inputs enable simpler circuits', LABEL);
 }

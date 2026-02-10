@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Don't Care Optimizer MicroSim</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
         body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        #controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid silver;
+            border-top: none;
+        }
+        #controls label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #exampleSelect {
+            font-size: 14px;
+            padding: 5px 10px;
+            min-width: 250px;
+            cursor: pointer;
+        }
     </style>
-    <script src="dont-care-optimizer.js?v=20260210"></script>
 </head>
 <body>
     <main></main>
+    <div id="controls">
+        <label for="exampleSelect">Example:</label>
+        <select id="exampleSelect">
+            <option value="0">BCD Odd Parity</option>
+            <option value="1">BCD &gt; 5 Detector</option>
+            <option value="2">Simplified Example</option>
+        </select>
+    </div>
     <br/>
     <a href=".">Back to Documentation</a>
+    <script src="dont-care-optimizer.js?v=20260210b"></script>
 </body>
 </html>
