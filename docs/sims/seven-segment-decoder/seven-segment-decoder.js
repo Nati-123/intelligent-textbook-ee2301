@@ -38,25 +38,25 @@ let segmentPatterns = [
   [1,0,0,0,1,1,1]  // F
 ];
 
-// Vivid distinct colors for each segment
+// Bright red for all segments
 let segmentColors = [
-  '#ff0000', // a - vivid red
-  '#ff8800', // b - vivid orange
-  '#ccff00', // c - vivid lime
-  '#00ff55', // d - vivid green
-  '#44aaff', // e - vivid blue
-  '#ee55ff', // f - vivid magenta
-  '#00ffff'  // g - vivid cyan
+  '#ff0000', // a
+  '#ff0000', // b
+  '#ff0000', // c
+  '#ff0000', // d
+  '#ff0000', // e
+  '#ff0000', // f
+  '#ff0000'  // g
 ];
 
 let segmentOffColors = [
-  '#550000', // a - dark red
-  '#552200', // b - dark orange
-  '#335500', // c - dark lime green
-  '#005500', // d - dark green
-  '#002255', // e - dark blue
-  '#330055', // f - dark purple
-  '#005555'  // g - dark cyan
+  '#330000', // a
+  '#330000', // b
+  '#330000', // c
+  '#330000', // d
+  '#330000', // e
+  '#330000', // f
+  '#330000'  // g
 ];
 
 function bitsToValue(bits) {
