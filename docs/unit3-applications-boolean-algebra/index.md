@@ -726,7 +726,7 @@ This requires multipliers and adders, making the circuit significantly more comp
 
 #### Diagram: Code Converter Demonstrator
 
-<iframe src="../sims/code-converter-demo/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/code-converter-demo/main.html" width="100%" height="700px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Code Converter Demonstrator</summary>
