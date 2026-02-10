@@ -5,7 +5,7 @@
 
 let containerWidth;
 let canvasWidth = 500;
-let drawHeight = 580;
+let drawHeight = 640;
 let canvasHeight = drawHeight;
 let containerHeight = canvasHeight;
 
@@ -183,7 +183,7 @@ function drawComparison(example) {
   drawKmapHint(y + 165);
 
   // Explanation
-  drawExplanation(y + 275);
+  drawExplanation(y + 340);
 }
 
 function drawKmapHint(y) {
@@ -192,19 +192,19 @@ function drawKmapHint(y) {
   fill('#E1BEE7');
   stroke('#7B1FA2');
   strokeWeight(2);
-  rect(20, y, canvasWidth - 40, 100, 5);
+  rect(20, y, canvasWidth - 40, 160, 5);
 
   fill('#4A148C');
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(12);
+  textSize(14);
   text('K-Map Visualization:', 30, y + 10);
 
-  // Draw mini K-map
+  // Draw K-map
   let kmapX = 40;
-  let kmapY = y + 30;
-  let cellW = 30;
-  let cellH = 22;
+  let kmapY = y + 35;
+  let cellW = 45;
+  let cellH = 30;
 
   // For 4-variable examples
   if (example.vars.length === 4) {
@@ -236,7 +236,7 @@ function drawKmapHint(y) {
         fill(isDontcare ? '#E65100' : '#1a1a1a');
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(11);
+        textSize(14);
         textStyle(BOLD);
         text(isMinterterm ? '1' : (isDontcare ? 'X' : '0'), cellX + cellW / 2, cellY + cellH / 2);
         textStyle(NORMAL);
@@ -269,7 +269,7 @@ function drawKmapHint(y) {
         fill(isDontcare ? '#E65100' : '#1a1a1a');
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(11);
+        textSize(14);
         textStyle(BOLD);
         text(isMinterterm ? '1' : (isDontcare ? 'X' : '0'), cellX + cellW / 2, cellY + cellH / 2);
         textStyle(NORMAL);
@@ -278,24 +278,24 @@ function drawKmapHint(y) {
   }
 
   // Legend
-  let legendX = kmapX + 160;
+  let legendX = kmapX + 220;
   fill('#66BB6A');
   stroke('#666');
   strokeWeight(1);
-  rect(legendX, kmapY, 16, 16);
+  rect(legendX, kmapY + 10, 20, 20);
   fill('#1a1a1a');
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(11);
-  text('= 1 (minterm)', legendX + 22, kmapY + 8);
+  textSize(13);
+  text('= 1 (minterm)', legendX + 26, kmapY + 20);
 
   fill('#FFB74D');
   stroke('#666');
   strokeWeight(1);
-  rect(legendX, kmapY + 24, 16, 16);
+  rect(legendX, kmapY + 40, 20, 20);
   fill('#1a1a1a');
   noStroke();
-  text("= X (don't care)", legendX + 22, kmapY + 32);
+  text("= X (don't care)", legendX + 26, kmapY + 50);
 }
 
 function drawExplanation(y) {
