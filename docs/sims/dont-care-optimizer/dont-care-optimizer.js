@@ -6,8 +6,7 @@
 let containerWidth;
 let canvasWidth = 500;
 let drawHeight = 580;
-let controlHeight = 50;
-let canvasHeight = drawHeight + controlHeight;
+let canvasHeight = drawHeight;
 let containerHeight = canvasHeight;
 
 let exampleSelect;
@@ -55,21 +54,33 @@ function setup() {
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
+  // Create controls container below the canvas
+  let controlsDiv = createDiv('');
+  controlsDiv.parent(mainElement);
+  controlsDiv.style('display', 'flex');
+  controlsDiv.style('align-items', 'center');
+  controlsDiv.style('gap', '10px');
+  controlsDiv.style('padding', '10px 20px');
+  controlsDiv.style('background', 'white');
+  controlsDiv.style('border', '1px solid silver');
+  controlsDiv.style('border-top', 'none');
+
+  let label = createSpan('Example:');
+  label.parent(controlsDiv);
+  label.style('font-size', '14px');
+  label.style('font-weight', 'bold');
+
   exampleSelect = createSelect();
-  exampleSelect.size(250);
+  exampleSelect.parent(controlsDiv);
+  exampleSelect.style('font-size', '14px');
+  exampleSelect.style('padding', '5px 10px');
+  exampleSelect.style('min-width', '250px');
   for (let i = 0; i < examples.length; i++) {
     exampleSelect.option(examples[i].name, i);
   }
   exampleSelect.changed(() => { currentExample = parseInt(exampleSelect.value()); });
 
-  positionUIElements();
-
   describe('Don\'t care optimizer showing how undefined inputs enable simpler circuits', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  exampleSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 12);
 }
 
 function draw() {
@@ -80,10 +91,6 @@ function draw() {
   stroke('silver');
   strokeWeight(1);
   rect(0, 0, canvasWidth, drawHeight);
-
-  // Control area
-  fill('white');
-  rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill('black');
@@ -104,13 +111,6 @@ function draw() {
 
   // Draw comparison
   drawComparison(example);
-
-  // Control label
-  fill('black');
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  text('Example:', 25, drawHeight + 24);
 }
 
 function drawSpecification(example) {
@@ -351,7 +351,6 @@ function drawExplanation(y) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
 }
 
 function updateCanvasSize() {
