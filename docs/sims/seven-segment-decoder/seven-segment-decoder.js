@@ -6,13 +6,17 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 430;
-let controlHeight = 70;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
-let valueSlider;
 let currentValue = 5;
 let showEquations = false;
+
+// Clickable bits
+let valueBits = [0, 1, 0, 1]; // 5 (0101)
+let bitBoxSize = 30;
+let bitSpacing = 8;
 
 // Segment patterns for 0-F (a,b,c,d,e,f,g)
 let segmentPatterns = [
@@ -34,28 +38,43 @@ let segmentPatterns = [
   [1,0,0,0,1,1,1]  // F
 ];
 
+// Distinct colors for each segment
+let segmentColors = [
+  '#ff4444', // a - red
+  '#ff9800', // b - orange
+  '#ffeb3b', // c - yellow
+  '#4CAF50', // d - green
+  '#2196f3', // e - blue
+  '#9c27b0', // f - purple
+  '#00bcd4'  // g - cyan
+];
+
+let segmentOffColors = [
+  '#4d1515', // a - dark red
+  '#4d2e00', // b - dark orange
+  '#4d4612', // c - dark yellow
+  '#173517', // d - dark green
+  '#0a2d4d', // e - dark blue
+  '#2e0c35', // f - dark purple
+  '#003840'  // g - dark cyan
+];
+
+function bitsToValue(bits) {
+  return bits[0] * 8 + bits[1] * 4 + bits[2] * 2 + bits[3];
+}
+
 function setup() {
   updateCanvasSize();
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
-  valueSlider = createSlider(0, 15, 5);
-  valueSlider.size(180);
-  valueSlider.input(() => { currentValue = valueSlider.value(); });
-
-  positionUIElements();
-
   describe('Seven segment display decoder showing BCD to segment conversion', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  valueSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
   updateCanvasSize();
+  currentValue = bitsToValue(valueBits);
 
   // Drawing area
   fill('aliceblue');
@@ -86,17 +105,70 @@ function draw() {
   // Draw truth table excerpt
   drawTruthTable();
 
-  // Control labels
+  // Draw clickable bit toggles and controls
+  drawControls();
+}
+
+function drawControls() {
+  let bitY = drawHeight + 12;
+
+  // BCD Input label
   fill('black');
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
-  text('BCD Input (0-F):', 20, drawHeight + 27);
-  textAlign(RIGHT, CENTER);
-  text(currentValue.toString(16).toUpperCase() + ' (' + currentValue + ')', canvasWidth - 30, drawHeight + 27);
+  text('BCD Input:', 20, bitY + bitBoxSize / 2);
 
-  // Toggle button for equations
-  drawEquationToggle();
+  // Bit boxes
+  let boxStartX = 90;
+  for (let i = 0; i < 4; i++) {
+    let x = boxStartX + i * (bitBoxSize + bitSpacing);
+    fill(valueBits[i] === 1 ? '#2196f3' : '#e0e0e0');
+    stroke('#999');
+    strokeWeight(1);
+    rect(x, bitY, bitBoxSize, bitBoxSize, 4);
+
+    fill(valueBits[i] === 1 ? 'white' : '#333');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    text(valueBits[i], x + bitBoxSize / 2, bitY + bitBoxSize / 2);
+  }
+
+  // Bit labels
+  fill('#999');
+  noStroke();
+  textSize(9);
+  textAlign(CENTER, TOP);
+  let bitLabels = ['D', 'C', 'B', 'A'];
+  for (let i = 0; i < 4; i++) {
+    let bx = boxStartX + i * (bitBoxSize + bitSpacing) + bitBoxSize / 2;
+    text(bitLabels[i], bx, bitY + bitBoxSize + 2);
+  }
+
+  // Value display
+  fill('#666');
+  textSize(11);
+  textAlign(LEFT, CENTER);
+  let afterBitsX = boxStartX + 4 * (bitBoxSize + bitSpacing) + 10;
+  text('= ' + currentValue.toString(16).toUpperCase() + ' (' + currentValue + ')', afterBitsX, bitY + bitBoxSize / 2);
+
+  // Equation toggle button
+  let btnX = afterBitsX + 70;
+  let btnY = bitY + 3;
+  let btnW = 100;
+  let btnH = 25;
+
+  fill(showEquations ? '#4CAF50' : '#2196f3');
+  stroke(showEquations ? '#388E3C' : '#1976d2');
+  strokeWeight(1);
+  rect(btnX, btnY, btnW, btnH, 3);
+
+  fill('white');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text(showEquations ? 'Show States' : 'Show Equations', btnX + btnW / 2, btnY + btnH / 2);
 }
 
 function drawInput() {
@@ -131,7 +203,6 @@ function drawInput() {
 
 function drawDecoder() {
   let y = 110;
-  let centerX = canvasWidth / 2 - 30;
 
   // Decoder box
   fill('#fff3e0');
@@ -146,7 +217,7 @@ function drawDecoder() {
   text('BCD to 7-Segment', 105, y + 8);
   text('Decoder', 105, y + 22);
 
-  // Arrows from input to decoder
+  // Arrow from input to decoder
   stroke('#2196f3');
   strokeWeight(2);
   line(105, 95, 105, 110);
@@ -154,15 +225,14 @@ function drawDecoder() {
   noStroke();
   triangle(105, 110, 100, 103, 110, 103);
 
-  // Segment outputs
-  textSize(10);
-  fill('#666');
+  // Segment outputs with individual colors
   let segments = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
   let pattern = segmentPatterns[currentValue];
 
+  textSize(10);
   for (let i = 0; i < 7; i++) {
     let sx = 45 + i * 20;
-    fill(pattern[i] ? '#4CAF50' : '#ccc');
+    fill(pattern[i] ? segmentColors[i] : '#ccc');
     text(segments[i] + '=' + pattern[i], sx, y + 55);
   }
 
@@ -190,52 +260,68 @@ function drawSevenSegment() {
   strokeWeight(2);
   rect(x - 15, y - 10, 80, 120, 5);
 
-  // Segments
-  let onColor = '#ff0000';
-  let offColor = '#330000';
+  noStroke();
 
   // Segment a (top)
-  fill(pattern[0] ? onColor : offColor);
-  noStroke();
+  fill(pattern[0] ? segmentColors[0] : segmentOffColors[0]);
   rect(x + gap, y, segW, segH, 2);
 
   // Segment b (top right)
-  fill(pattern[1] ? onColor : offColor);
+  fill(pattern[1] ? segmentColors[1] : segmentOffColors[1]);
   rect(x + segW + gap, y + gap, segH, segW, 2);
 
   // Segment c (bottom right)
-  fill(pattern[2] ? onColor : offColor);
+  fill(pattern[2] ? segmentColors[2] : segmentOffColors[2]);
   rect(x + segW + gap, y + segW + 2 * gap, segH, segW, 2);
 
   // Segment d (bottom)
-  fill(pattern[3] ? onColor : offColor);
+  fill(pattern[3] ? segmentColors[3] : segmentOffColors[3]);
   rect(x + gap, y + 2 * segW + 2 * gap, segW, segH, 2);
 
   // Segment e (bottom left)
-  fill(pattern[4] ? onColor : offColor);
+  fill(pattern[4] ? segmentColors[4] : segmentOffColors[4]);
   rect(x - gap, y + segW + 2 * gap, segH, segW, 2);
 
   // Segment f (top left)
-  fill(pattern[5] ? onColor : offColor);
+  fill(pattern[5] ? segmentColors[5] : segmentOffColors[5]);
   rect(x - gap, y + gap, segH, segW, 2);
 
   // Segment g (middle)
-  fill(pattern[6] ? onColor : offColor);
+  fill(pattern[6] ? segmentColors[6] : segmentOffColors[6]);
   rect(x + gap, y + segW + gap, segW, segH, 2);
 
-  // Segment labels
-  if (showEquations) {
-    fill('#999');
-    textSize(8);
-    textAlign(CENTER, CENTER);
-    text('a', x + segW / 2 + gap, y - 8);
-    text('b', x + segW + segH + 5, y + segW / 2);
-    text('c', x + segW + segH + 5, y + 1.5 * segW + gap);
-    text('d', x + segW / 2 + gap, y + 2 * segW + segH + 10);
-    text('e', x - segH - 5, y + 1.5 * segW + gap);
-    text('f', x - segH - 5, y + segW / 2);
-    text('g', x + segW + 15, y + segW + gap);
-  }
+  // Segment labels (always visible for color reference)
+  let segments = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+  textSize(9);
+  textAlign(CENTER, CENTER);
+
+  // a label
+  fill(segmentColors[0]);
+  text('a', x + segW / 2 + gap, y - 10);
+
+  // b label
+  fill(segmentColors[1]);
+  text('b', x + segW + segH + 8, y + segW / 2);
+
+  // c label
+  fill(segmentColors[2]);
+  text('c', x + segW + segH + 8, y + 1.5 * segW + gap);
+
+  // d label
+  fill(segmentColors[3]);
+  text('d', x + segW / 2 + gap, y + 2 * segW + segH + 12);
+
+  // e label
+  fill(segmentColors[4]);
+  text('e', x - segH - 8, y + 1.5 * segW + gap);
+
+  // f label
+  fill(segmentColors[5]);
+  text('f', x - segH - 8, y + segW / 2);
+
+  // g label
+  fill(segmentColors[6]);
+  text('g', x + segW + 18, y + segW + gap);
 
   // Display value label
   fill('white');
@@ -259,11 +345,10 @@ function drawTruthTable() {
   noStroke();
   textAlign(LEFT, TOP);
   textSize(10);
-  text('Segment Equations (simplified):', x + 10, y + 8);
 
   if (showEquations) {
+    text('Segment Equations (simplified):', x + 10, y + 8);
     textSize(8);
-    fill('#666');
     let eqY = y + 25;
     let equations = [
       "a = A'C + B + A'D + CD'",
@@ -275,8 +360,9 @@ function drawTruthTable() {
       "g = A'C + B + CD'"
     ];
 
-    for (let eq of equations) {
-      text(eq, x + 10, eqY);
+    for (let i = 0; i < equations.length; i++) {
+      fill(segmentColors[i]);
+      text(equations[i], x + 10, eqY);
       eqY += 14;
     }
 
@@ -284,47 +370,52 @@ function drawTruthTable() {
     fill('#999');
     text('(Active high outputs)', x + 10, eqY + 8);
   } else {
-    // Show current segment states
-    textSize(9);
-    fill('#666');
+    text('Segment states for ' + currentValue.toString(16).toUpperCase() + ':', x + 10, y + 8);
+
     let pattern = segmentPatterns[currentValue];
     let segments = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
-    let stateY = y + 30;
+    let stateY = y + 28;
 
-    text('Current output for ' + currentValue.toString(16).toUpperCase() + ':', x + 10, stateY);
-    stateY += 18;
-
+    textSize(10);
     for (let i = 0; i < 7; i++) {
-      fill(pattern[i] ? '#4CAF50' : '#f44336');
-      text(segments[i] + ' = ' + pattern[i] + (pattern[i] ? ' (ON)' : ' (OFF)'), x + 15, stateY);
-      stateY += 14;
+      // Color dot
+      fill(pattern[i] ? segmentColors[i] : '#ccc');
+      noStroke();
+      ellipse(x + 18, stateY + 5, 8, 8);
+
+      // Text
+      fill(pattern[i] ? segmentColors[i] : '#999');
+      textAlign(LEFT, TOP);
+      text(segments[i] + ' = ' + pattern[i] + (pattern[i] ? '  (ON)' : '  (OFF)'), x + 28, stateY);
+      stateY += 18;
     }
+
+    // Color legend
+    fill('#999');
+    textSize(8);
+    text('Each segment has a unique color', x + 10, stateY + 10);
   }
 }
 
-function drawEquationToggle() {
-  let btnX = 200;
-  let btnY = drawHeight + 40;
-  let btnW = 120;
-  let btnH = 25;
-
-  fill(showEquations ? '#4CAF50' : '#2196f3');
-  stroke(showEquations ? '#388E3C' : '#1976d2');
-  strokeWeight(1);
-  rect(btnX, btnY, btnW, btnH, 3);
-
-  fill('white');
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(10);
-  text(showEquations ? 'Show States' : 'Show Equations', btnX + btnW / 2, btnY + btnH / 2);
-}
-
 function mousePressed() {
+  let bitY = drawHeight + 12;
+  let boxStartX = 90;
+
+  // Check bit toggles
+  for (let i = 0; i < 4; i++) {
+    let x = boxStartX + i * (bitBoxSize + bitSpacing);
+    if (mouseX >= x && mouseX <= x + bitBoxSize &&
+        mouseY >= bitY && mouseY <= bitY + bitBoxSize) {
+      valueBits[i] = valueBits[i] === 0 ? 1 : 0;
+      return;
+    }
+  }
+
   // Check equation toggle button
-  let btnX = 200;
-  let btnY = drawHeight + 40;
-  let btnW = 120;
+  let afterBitsX = boxStartX + 4 * (bitBoxSize + bitSpacing) + 10 + 70;
+  let btnX = afterBitsX;
+  let btnY = bitY + 3;
+  let btnW = 100;
   let btnH = 25;
 
   if (mouseX >= btnX && mouseX <= btnX + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
@@ -335,7 +426,6 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
 }
 
 function updateCanvasSize() {
