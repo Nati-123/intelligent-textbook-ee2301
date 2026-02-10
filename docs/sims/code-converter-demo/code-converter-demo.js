@@ -6,21 +6,28 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 430;
-let controlHeight = 70;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
 let conversionSelect;
-let valueSlider;
-let currentValue = 5;
 let currentConversion = 'binary-gray';
 
+// Store individual bits
+let valueBits = [0, 1, 0, 1]; // 5 (0101)
+let bitBoxSize = 30;
+let bitSpacing = 8;
+
 let conversions = [
-  { id: 'binary-gray', name: 'Binary → Gray Code', from: 'Binary', to: 'Gray' },
-  { id: 'gray-binary', name: 'Gray Code → Binary', from: 'Gray', to: 'Binary' },
-  { id: 'decimal-bcd', name: 'Decimal → BCD', from: 'Decimal', to: 'BCD' },
-  { id: 'bcd-excess3', name: 'BCD → Excess-3', from: 'BCD', to: 'Excess-3' }
+  { id: 'binary-gray', name: 'Binary \u2192 Gray Code', from: 'Binary', to: 'Gray' },
+  { id: 'gray-binary', name: 'Gray Code \u2192 Binary', from: 'Gray', to: 'Binary' },
+  { id: 'decimal-bcd', name: 'Decimal \u2192 BCD', from: 'Decimal', to: 'BCD' },
+  { id: 'bcd-excess3', name: 'BCD \u2192 Excess-3', from: 'BCD', to: 'Excess-3' }
 ];
+
+function bitsToValue(bits) {
+  return bits[0] * 8 + bits[1] * 4 + bits[2] * 2 + bits[3];
+}
 
 function setup() {
   updateCanvasSize();
@@ -35,10 +42,6 @@ function setup() {
   }
   conversionSelect.changed(() => { currentConversion = conversionSelect.value(); });
 
-  valueSlider = createSlider(0, 15, 5);
-  valueSlider.size(180);
-  valueSlider.input(() => { currentValue = valueSlider.value(); });
-
   positionUIElements();
 
   describe('Code converter demonstrating binary, Gray, BCD, and Excess-3 conversions', LABEL);
@@ -46,12 +49,12 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  conversionSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
-  valueSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 45);
+  conversionSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 10);
 }
 
 function draw() {
   updateCanvasSize();
+  let currentValue = bitsToValue(valueBits);
 
   // Drawing area
   fill('aliceblue');
@@ -73,7 +76,7 @@ function draw() {
   let conv = conversions.find(c => c.id === currentConversion);
   textSize(12);
   fill('#666');
-  text(conv.from + ' → ' + conv.to, canvasWidth / 2, 35);
+  text(conv.from + ' \u2192 ' + conv.to, canvasWidth / 2, 35);
 
   // Draw conversion
   drawConversion();
@@ -83,13 +86,73 @@ function draw() {
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
-  text('Conversion:', 20, drawHeight + 27);
-  text('Value (0-15):', 20, drawHeight + 57);
-  textAlign(RIGHT, CENTER);
-  text(currentValue, canvasWidth - 30, drawHeight + 57);
+  text('Conversion:', 20, drawHeight + 22);
+
+  // Draw clickable bit toggles
+  drawBitToggles();
+}
+
+function drawBitToggles() {
+  let currentValue = bitsToValue(valueBits);
+  let bitY = drawHeight + 45;
+
+  // Label
+  fill('black');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  text('Value=' + currentValue, 20, bitY + bitBoxSize / 2);
+
+  // Bit boxes
+  let boxStartX = 90;
+  for (let i = 0; i < 4; i++) {
+    let x = boxStartX + i * (bitBoxSize + bitSpacing);
+    fill(valueBits[i] === 1 ? '#2196f3' : '#e0e0e0');
+    stroke('#999');
+    strokeWeight(1);
+    rect(x, bitY, bitBoxSize, bitBoxSize, 4);
+
+    fill(valueBits[i] === 1 ? 'white' : '#333');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    text(valueBits[i], x + bitBoxSize / 2, bitY + bitBoxSize / 2);
+  }
+
+  // Bit position labels
+  fill('#999');
+  noStroke();
+  textSize(9);
+  textAlign(CENTER, TOP);
+  for (let i = 0; i < 4; i++) {
+    let bx = boxStartX + i * (bitBoxSize + bitSpacing) + bitBoxSize / 2;
+    text(3 - i, bx, bitY + bitBoxSize + 2);
+  }
+
+  // Decimal display
+  fill('#666');
+  textSize(11);
+  textAlign(LEFT, CENTER);
+  let afterBitsX = boxStartX + 4 * (bitBoxSize + bitSpacing) + 10;
+  text('= ' + currentValue + ' (decimal)', afterBitsX, bitY + bitBoxSize / 2);
+}
+
+function mousePressed() {
+  let bitY = drawHeight + 45;
+  let boxStartX = 90;
+
+  for (let i = 0; i < 4; i++) {
+    let x = boxStartX + i * (bitBoxSize + bitSpacing);
+    if (mouseX >= x && mouseX <= x + bitBoxSize &&
+        mouseY >= bitY && mouseY <= bitY + bitBoxSize) {
+      valueBits[i] = valueBits[i] === 0 ? 1 : 0;
+      return;
+    }
+  }
 }
 
 function drawConversion() {
+  let currentValue = bitsToValue(valueBits);
   let centerX = canvasWidth / 2;
   let y = 65;
 
@@ -221,13 +284,13 @@ function drawBitComparison(y, input, output) {
     textSize(14);
     for (let i = 0; i < 4; i++) {
       fill(input[i] === output[i] ? '#999' : '#f44336');
-      text(input[i] + '→' + output[i], startX + i * bitW, y + 40);
+      text(input[i] + '\u2192' + output[i], startX + i * bitW, y + 40);
     }
   } else {
     fill('#666');
     textAlign(CENTER, CENTER);
     textSize(10);
-    text('Input: ' + input + '  →  Output: ' + output, canvasWidth / 2, y + 35);
+    text('Input: ' + input + '  \u2192  Output: ' + output, canvasWidth / 2, y + 35);
   }
 }
 
@@ -265,10 +328,10 @@ function bcdToExcess3(decimal) {
 
 function getBinaryToGraySteps(binary) {
   return [
-    'G₃ = B₃ = ' + binary[0],
-    'G₂ = B₃ ⊕ B₂ = ' + binary[0] + ' ⊕ ' + binary[1] + ' = ' + (parseInt(binary[0]) ^ parseInt(binary[1])),
-    'G₁ = B₂ ⊕ B₁ = ' + binary[1] + ' ⊕ ' + binary[2] + ' = ' + (parseInt(binary[1]) ^ parseInt(binary[2])),
-    'G₀ = B₁ ⊕ B₀ = ' + binary[2] + ' ⊕ ' + binary[3] + ' = ' + (parseInt(binary[2]) ^ parseInt(binary[3]))
+    'G\u2083 = B\u2083 = ' + binary[0],
+    'G\u2082 = B\u2083 \u2295 B\u2082 = ' + binary[0] + ' \u2295 ' + binary[1] + ' = ' + (parseInt(binary[0]) ^ parseInt(binary[1])),
+    'G\u2081 = B\u2082 \u2295 B\u2081 = ' + binary[1] + ' \u2295 ' + binary[2] + ' = ' + (parseInt(binary[1]) ^ parseInt(binary[2])),
+    'G\u2080 = B\u2081 \u2295 B\u2080 = ' + binary[2] + ' \u2295 ' + binary[3] + ' = ' + (parseInt(binary[2]) ^ parseInt(binary[3]))
   ];
 }
 
@@ -279,10 +342,10 @@ function getGrayToBinarySteps(gray) {
   let b0 = (parseInt(b1) ^ parseInt(gray[3])).toString();
 
   return [
-    'B₃ = G₃ = ' + b3,
-    'B₂ = B₃ ⊕ G₂ = ' + b3 + ' ⊕ ' + gray[1] + ' = ' + b2,
-    'B₁ = B₂ ⊕ G₁ = ' + b2 + ' ⊕ ' + gray[2] + ' = ' + b1,
-    'B₀ = B₁ ⊕ G₀ = ' + b1 + ' ⊕ ' + gray[3] + ' = ' + b0
+    'B\u2083 = G\u2083 = ' + b3,
+    'B\u2082 = B\u2083 \u2295 G\u2082 = ' + b3 + ' \u2295 ' + gray[1] + ' = ' + b2,
+    'B\u2081 = B\u2082 \u2295 G\u2081 = ' + b2 + ' \u2295 ' + gray[2] + ' = ' + b1,
+    'B\u2080 = B\u2081 \u2295 G\u2080 = ' + b1 + ' \u2295 ' + gray[3] + ' = ' + b0
   ];
 }
 
@@ -292,8 +355,8 @@ function getDecimalToBCDSteps(decimal) {
     let ones = decimal % 10;
     return [
       'Split into digits: ' + tens + ' and ' + ones,
-      'Tens digit ' + tens + ' → ' + tens.toString(2).padStart(4, '0'),
-      'Ones digit ' + ones + ' → ' + ones.toString(2).padStart(4, '0'),
+      'Tens digit ' + tens + ' \u2192 ' + tens.toString(2).padStart(4, '0'),
+      'Ones digit ' + ones + ' \u2192 ' + ones.toString(2).padStart(4, '0'),
       'BCD = ' + tens.toString(2).padStart(4, '0') + ' ' + ones.toString(2).padStart(4, '0')
     ];
   }
