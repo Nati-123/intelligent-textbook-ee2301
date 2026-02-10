@@ -4,8 +4,8 @@
 // MicroSim template version 2026.02
 
 let containerWidth;
-let canvasWidth = 400;
-let drawHeight = 450;
+let canvasWidth = 500;
+let drawHeight = 580;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
@@ -89,15 +89,15 @@ function draw() {
   fill('black');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(18);
+  textSize(20);
   text("Don't Care Optimization", canvasWidth / 2, 10);
 
   let example = examples[currentExample];
 
   // Description
-  textSize(12);
-  fill('#666');
-  text(example.description, canvasWidth / 2, 35);
+  textSize(14);
+  fill('#555');
+  text(example.description, canvasWidth / 2, 38);
 
   // Draw function specification
   drawSpecification(example);
@@ -109,125 +109,130 @@ function draw() {
   fill('black');
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(11);
+  textSize(12);
   text('Example:', 25, drawHeight + 24);
 }
 
 function drawSpecification(example) {
   let y = 60;
 
-  fill('#e3f2fd');
-  stroke('#2196f3');
+  fill('#64B5F6');
+  stroke('#1565C0');
   strokeWeight(2);
-  rect(20, y, canvasWidth - 40, 80, 8);
+  rect(20, y, canvasWidth - 40, 90, 8);
 
-  fill('#2196f3');
+  fill('#0D47A1');
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(11);
-  text('Function Specification:', 30, y + 8);
+  textSize(13);
+  text('Function Specification:', 30, y + 10);
 
-  fill('#333');
-  textSize(10);
+  fill('#1a1a1a');
+  textSize(12);
 
   // Minterms
-  text('Minterms (F=1): Σm(' + example.minterms.join(', ') + ')', 35, y + 28);
+  text('Minterms (F=1): Σm(' + example.minterms.join(', ') + ')', 35, y + 32);
 
   // Don't cares
-  fill('#ff9800');
-  text("Don't Cares (F=X): Σd(" + example.dontcares.join(', ') + ')', 35, y + 45);
+  fill('#E65100');
+  text("Don't Cares (F=X): Σd(" + example.dontcares.join(', ') + ')', 35, y + 52);
 
   // Explanation
-  fill('#666');
-  textSize(9);
-  text("Don't cares are input combinations that will never occur or whose output doesn't matter", 35, y + 62);
+  fill('#333');
+  textSize(10);
+  text("Don't cares: input combinations that never occur or whose output doesn't matter", 35, y + 72);
 }
 
 function drawComparison(example) {
-  let y = 155;
-  let halfW = (canvasWidth - 50) / 2;
+  let y = 165;
+  let halfW = (canvasWidth - 60) / 2;
 
   // Without don't cares
-  fill('#ffebee');
-  stroke('#f44336');
+  fill('#FF8A80');
+  stroke('#C62828');
   strokeWeight(2);
-  rect(20, y, halfW, 135, 8);
+  rect(20, y, halfW, 150, 8);
 
-  fill('#f44336');
+  fill('#B71C1C');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
-  text("Without Don't Cares", 20 + halfW / 2, y + 8);
+  textSize(13);
+  text("Without Don't Cares", 20 + halfW / 2, y + 10);
 
-  fill('#333');
-  textSize(9);
+  fill('#1a1a1a');
+  textSize(11);
   textAlign(LEFT, TOP);
 
   // Wrap expression
   let expr1 = example.withoutDC;
-  text('F = ' + expr1.substring(0, 25), 30, y + 30);
-  if (expr1.length > 25) {
-    text('    ' + expr1.substring(25, 50), 30, y + 45);
-    if (expr1.length > 50) {
-      text('    ' + expr1.substring(50), 30, y + 60);
+  let charLimit = Math.floor(halfW / 7);
+  text('F = ' + expr1.substring(0, charLimit), 30, y + 35);
+  if (expr1.length > charLimit) {
+    text('    ' + expr1.substring(charLimit, charLimit * 2), 30, y + 52);
+    if (expr1.length > charLimit * 2) {
+      text('    ' + expr1.substring(charLimit * 2), 30, y + 69);
     }
   }
 
-  fill('#666');
-  text('Gates: ' + example.gatesWithout, 30, y + 85);
+  fill('#333');
+  textSize(10);
+  text('Gates: ' + example.gatesWithout, 30, y + 100);
 
   // With don't cares
-  fill('#e8f5e9');
-  stroke('#4CAF50');
+  fill('#69F0AE');
+  stroke('#1B5E20');
   strokeWeight(2);
-  rect(30 + halfW, y, halfW, 135, 8);
+  rect(40 + halfW, y, halfW, 150, 8);
 
-  fill('#4CAF50');
+  fill('#1B5E20');
   noStroke();
   textAlign(CENTER, TOP);
+  textSize(13);
+  text("With Don't Cares", 40 + halfW + halfW / 2, y + 10);
+
+  fill('#1a1a1a');
   textSize(11);
-  text("With Don't Cares", 30 + halfW + halfW / 2, y + 8);
+  textAlign(LEFT, TOP);
+  text('F = ' + example.withDC, 50 + halfW, y + 35);
 
   fill('#333');
-  textSize(9);
-  textAlign(LEFT, TOP);
-  text('F = ' + example.withDC, 40 + halfW, y + 30);
-
-  fill('#666');
-  text('Gates: ' + example.gatesWith, 40 + halfW, y + 85);
+  textSize(10);
+  text('Gates: ' + example.gatesWith, 50 + halfW, y + 100);
 
   // Savings indicator
-  fill('#4CAF50');
+  fill('#1B5E20');
   textAlign(CENTER, TOP);
-  textSize(10);
-  text('✓ Simpler!', 30 + halfW + halfW / 2, y + 105);
+  textSize(12);
+  textStyle(BOLD);
+  text('✓ Simpler!', 40 + halfW + halfW / 2, y + 122);
+  textStyle(NORMAL);
 
   // Draw K-map visualization hint
-  drawKmapHint(y + 150);
+  drawKmapHint(y + 165);
 
   // Explanation
-  drawExplanation(y + 250);
+  drawExplanation(y + 275);
 }
 
 function drawKmapHint(y) {
   let example = examples[currentExample];
 
-  fill('#f5f5f5');
-  stroke('#ccc');
-  strokeWeight(1);
-  rect(20, y, canvasWidth - 40, 90, 5);
+  fill('#E1BEE7');
+  stroke('#7B1FA2');
+  strokeWeight(2);
+  rect(20, y, canvasWidth - 40, 100, 5);
 
-  fill('#333');
+  fill('#4A148C');
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(10);
-  text('K-Map Visualization:', 30, y + 8);
+  textSize(12);
+  text('K-Map Visualization:', 30, y + 10);
 
   // Draw mini K-map
   let kmapX = 40;
-  let kmapY = y + 28;
-  let cellW = 25;
-  let cellH = 20;
+  let kmapY = y + 30;
+  let cellW = 30;
+  let cellH = 22;
 
   // For 4-variable examples
   if (example.vars.length === 4) {
@@ -246,21 +251,23 @@ function drawKmapHint(y) {
         let isDontcare = example.dontcares.includes(minterm);
 
         if (isMinterterm) {
-          fill('#c8e6c9');
+          fill('#66BB6A');
         } else if (isDontcare) {
-          fill('#fff3e0');
+          fill('#FFB74D');
         } else {
           fill('white');
         }
-        stroke('#999');
+        stroke('#666');
         strokeWeight(1);
         rect(cellX, cellY, cellW, cellH);
 
-        fill(isDontcare ? '#ff9800' : '#333');
+        fill(isDontcare ? '#E65100' : '#1a1a1a');
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(9);
+        textSize(11);
+        textStyle(BOLD);
         text(isMinterterm ? '1' : (isDontcare ? 'X' : '0'), cellX + cellW / 2, cellY + cellH / 2);
+        textStyle(NORMAL);
       }
     }
   } else {
@@ -277,64 +284,68 @@ function drawKmapHint(y) {
         let isDontcare = example.dontcares.includes(minterm);
 
         if (isMinterterm) {
-          fill('#c8e6c9');
+          fill('#66BB6A');
         } else if (isDontcare) {
-          fill('#fff3e0');
+          fill('#FFB74D');
         } else {
           fill('white');
         }
-        stroke('#999');
+        stroke('#666');
         strokeWeight(1);
         rect(cellX, cellY, cellW, cellH);
 
-        fill(isDontcare ? '#ff9800' : '#333');
+        fill(isDontcare ? '#E65100' : '#1a1a1a');
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(9);
+        textSize(11);
+        textStyle(BOLD);
         text(isMinterterm ? '1' : (isDontcare ? 'X' : '0'), cellX + cellW / 2, cellY + cellH / 2);
+        textStyle(NORMAL);
       }
     }
   }
 
   // Legend
-  let legendX = kmapX + 140;
-  fill('#c8e6c9');
-  stroke('#999');
+  let legendX = kmapX + 160;
+  fill('#66BB6A');
+  stroke('#666');
   strokeWeight(1);
-  rect(legendX, kmapY, 15, 15);
-  fill('#333');
+  rect(legendX, kmapY, 16, 16);
+  fill('#1a1a1a');
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(9);
-  text('= 1 (minterm)', legendX + 20, kmapY + 8);
+  textSize(11);
+  text('= 1 (minterm)', legendX + 22, kmapY + 8);
 
-  fill('#fff3e0');
-  stroke('#999');
+  fill('#FFB74D');
+  stroke('#666');
   strokeWeight(1);
-  rect(legendX, kmapY + 22, 15, 15);
-  fill('#333');
+  rect(legendX, kmapY + 24, 16, 16);
+  fill('#1a1a1a');
   noStroke();
-  text("= X (don't care)", legendX + 20, kmapY + 30);
+  text("= X (don't care)", legendX + 22, kmapY + 32);
 }
 
 function drawExplanation(y) {
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(1);
-  rect(20, y, canvasWidth - 40, 85, 5);
+  fill('#80D8FF');
+  stroke('#0277BD');
+  strokeWeight(2);
+  rect(20, y, canvasWidth - 40, 90, 5);
 
-  fill('#2196f3');
+  fill('#01579B');
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(10);
-  text('Key Insight:', 30, y + 8);
+  textSize(12);
+  textStyle(BOLD);
+  text('Key Insight:', 30, y + 10);
+  textStyle(NORMAL);
 
-  fill('#333');
-  textSize(9);
-  text("Don't care conditions can be treated as either 0 or 1,", 30, y + 25);
-  text('whichever allows for larger groupings in the K-map.', 30, y + 38);
-  text('This results in simpler Boolean expressions and', 30, y + 53);
-  text('fewer gates in the final circuit implementation.', 30, y + 66);
+  fill('#1a1a1a');
+  textSize(11);
+  text("Don't care conditions can be treated as either 0 or 1,", 30, y + 30);
+  text('whichever allows for larger groupings in the K-map.', 30, y + 46);
+  text('This results in simpler Boolean expressions and', 30, y + 62);
+  text('fewer gates in the final circuit implementation.', 30, y + 78);
 }
 
 function windowResized() {
