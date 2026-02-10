@@ -42,7 +42,7 @@ let segmentPatterns = [
 let segmentColors = [
   '#ff1111', // a - bright red
   '#ff6600', // b - bright orange
-  '#ffdd00', // c - bright yellow
+  '#aaff00', // c - bright lime green
   '#00e040', // d - bright green
   '#3399ff', // e - bright blue
   '#cc44ff', // f - bright purple
@@ -52,7 +52,7 @@ let segmentColors = [
 let segmentOffColors = [
   '#550000', // a - dark red
   '#552200', // b - dark orange
-  '#554400', // c - dark yellow
+  '#335500', // c - dark lime green
   '#005500', // d - dark green
   '#002255', // e - dark blue
   '#330055', // f - dark purple
