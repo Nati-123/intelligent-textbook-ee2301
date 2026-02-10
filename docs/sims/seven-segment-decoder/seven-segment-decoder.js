@@ -38,15 +38,15 @@ let segmentPatterns = [
   [1,0,0,0,1,1,1]  // F
 ];
 
-// Bright distinct colors for each segment
+// Vivid distinct colors for each segment
 let segmentColors = [
-  '#ff1111', // a - bright red
-  '#ff6600', // b - bright orange
-  '#aaff00', // c - bright lime green
-  '#00e040', // d - bright green
-  '#3399ff', // e - bright blue
-  '#cc44ff', // f - bright purple
-  '#00e5ff'  // g - bright cyan
+  '#ff0000', // a - vivid red
+  '#ff8800', // b - vivid orange
+  '#ccff00', // c - vivid lime
+  '#00ff55', // d - vivid green
+  '#44aaff', // e - vivid blue
+  '#ee55ff', // f - vivid magenta
+  '#00ffff'  // g - vivid cyan
 ];
 
 let segmentOffColors = [

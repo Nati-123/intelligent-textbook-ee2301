@@ -837,7 +837,7 @@ This can be simplified using Boolean algebra or K-maps (covered in Unit 5).
 
 #### Diagram: Seven-Segment Decoder Simulator
 
-<iframe src="../sims/seven-segment-decoder/main.html?v=4" width="100%" height="700px" scrolling="no"></iframe>
+<iframe src="../sims/seven-segment-decoder/main.html?v=5" width="100%" height="700px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Seven-Segment Decoder Simulator</summary>
