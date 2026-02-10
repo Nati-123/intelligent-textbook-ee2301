@@ -7,10 +7,39 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
         body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
+        #controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 25px;
+            background: #f0f0f0;
+            border: 2px solid #999;
+        }
+        #controls label {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        #exampleSelect {
+            font-size: 15px;
+            padding: 6px 12px;
+            min-width: 260px;
+            cursor: pointer;
+            border: 2px solid #666;
+            border-radius: 4px;
+            background: white;
+        }
     </style>
-    <script src="dont-care-optimizer.js?v=3"></script>
+    <script src="dont-care-optimizer.js?v=4"></script>
 </head>
 <body>
+    <div id="controls">
+        <label for="exampleSelect">Example:</label>
+        <select id="exampleSelect" onchange="currentExample = parseInt(this.value);">
+            <option value="0">BCD Odd Parity</option>
+            <option value="1">BCD &gt; 5 Detector</option>
+            <option value="2">Simplified Example</option>
+        </select>
+    </div>
     <main></main>
     <br/>
     <a href=".">Back to Documentation</a>

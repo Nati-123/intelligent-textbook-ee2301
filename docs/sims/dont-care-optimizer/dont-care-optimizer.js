@@ -6,11 +6,9 @@
 let containerWidth;
 let canvasWidth = 500;
 let drawHeight = 580;
-let controlHeight = 50;
-let canvasHeight = drawHeight + controlHeight;
+let canvasHeight = drawHeight;
 let containerHeight = canvasHeight;
 
-let exampleSelect;
 let currentExample = 0;
 
 let examples = [
@@ -54,26 +52,7 @@ function setup() {
   const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
-
-  exampleSelect = createSelect();
-  exampleSelect.size(250);
-  for (let i = 0; i < examples.length; i++) {
-    exampleSelect.option(examples[i].name, i);
-  }
-  exampleSelect.changed(handleExampleChange);
-
-  positionUIElements();
-
   describe('Don\'t care optimizer showing how undefined inputs enable simpler circuits', LABEL);
-}
-
-function handleExampleChange() {
-  currentExample = parseInt(exampleSelect.value());
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  exampleSelect.position(mainRect.left + 110, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
@@ -84,11 +63,6 @@ function draw() {
   stroke('silver');
   strokeWeight(1);
   rect(0, 0, canvasWidth, drawHeight);
-
-  // Control area
-  fill('white');
-  noStroke();
-  rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill('black');
@@ -109,13 +83,6 @@ function draw() {
 
   // Draw comparison
   drawComparison(example);
-
-  // Control label
-  fill('black');
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  text('Example:', 25, drawHeight + 25);
 }
 
 function drawSpecification(example) {
@@ -356,7 +323,6 @@ function drawExplanation(y) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
 }
 
 function updateCanvasSize() {
