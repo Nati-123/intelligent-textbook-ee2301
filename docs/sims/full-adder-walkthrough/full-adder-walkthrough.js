@@ -154,6 +154,18 @@ let presets = [
         visual: "ha-sop-carry"
       },
       {
+        title: "Step 6: Gate Circuit for Sum",
+        desc: "Sum = A XOR B\nImplemented with one XOR gate.",
+        rule: "XOR gate implements odd-parity function",
+        visual: "ha-circuit-sum"
+      },
+      {
+        title: "Step 7: Gate Circuit for Carry",
+        desc: "Carry = AB\nImplemented with one AND gate.",
+        rule: "Single AND gate for product term",
+        visual: "ha-circuit-carry"
+      },
+      {
         title: "Complete Half Adder",
         desc: "The half adder is complete with:\n- Sum = A XOR B (one XOR gate)\n- Carry = AB (one AND gate)",
         rule: "Half Adder Design Complete",
@@ -216,6 +228,18 @@ let presets = [
         desc: "Bout = A'B'Bin + A'BBin' + A'BBin + ABBin\nSimplifies to: Bout = A'B + A'Bin + BBin",
         rule: "Sum-of-Products -> Simplified",
         visual: "fs-sop-bout"
+      },
+      {
+        title: "Step 6: Gate Circuit for Diff",
+        desc: "Diff = A XOR B XOR Bin\nImplemented with two XOR gates in cascade.",
+        rule: "XOR gate implements odd-parity function",
+        visual: "fs-circuit-diff"
+      },
+      {
+        title: "Step 7: Gate Circuit for Bout",
+        desc: "Bout = A'B + A'Bin + BBin\nNOT gate on A, three AND gates feeding one OR gate.",
+        rule: "SOP -> NOT-AND-OR implementation",
+        visual: "fs-circuit-bout"
       },
       {
         title: "Complete Full Subtractor",
@@ -401,6 +425,12 @@ function drawVisual(step, mx, vy, w, vh) {
       "Carry = AB"
     );
   }
+  else if (step.visual === 'ha-circuit-sum') {
+    drawHaSumCircuit(mx, vy, w, vh);
+  }
+  else if (step.visual === 'ha-circuit-carry') {
+    drawHaCarryCircuit(mx, vy, w, vh);
+  }
   else if (step.visual === 'ha-complete') {
     fill(RESULT_BG);
     stroke('#4CAF50');
@@ -435,6 +465,12 @@ function drawVisual(step, mx, vy, w, vh) {
       "A'B'Bin + A'BBin' + A'BBin + ABBin",
       "Bout = A'B + A'Bin + BBin"
     );
+  }
+  else if (step.visual === 'fs-circuit-diff') {
+    drawFsDiffCircuit(mx, vy, w, vh);
+  }
+  else if (step.visual === 'fs-circuit-bout') {
+    drawFsBoutCircuit(mx, vy, w, vh);
   }
   else if (step.visual === 'fs-complete') {
     fill(RESULT_BG);
@@ -749,6 +785,265 @@ function drawCoutCircuit(mx, vy, w, vh) {
   fill(100); textAlign(CENTER, CENTER);
   textSize(12); textStyle(NORMAL);
   text('Cout = AB + ACin + BCin', cx, vy + vh - 20);
+}
+
+function drawHaSumCircuit(mx, vy, w, vh) {
+  let cx = canvasWidth / 2;
+  let startX = mx + 60;
+  let gateX = cx - 25;
+  let endX = mx + w - 60;
+
+  // Input labels
+  fill(60);
+  textAlign(RIGHT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('A', startX, vy + 55);
+  text('B', startX, vy + 85);
+
+  // Wires to gate
+  stroke(60);
+  strokeWeight(2);
+  line(startX + 5, vy + 55, gateX, vy + 55);
+  line(startX + 5, vy + 85, gateX, vy + 85);
+
+  // XOR gate
+  fill('#BBDEFB');
+  stroke(TITLE_BG);
+  rect(gateX, vy + 45, 50, 50, 5);
+  fill(TITLE_BG);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text('XOR', gateX + 25, vy + 70);
+
+  // Output wire
+  stroke(60);
+  strokeWeight(2);
+  line(gateX + 50, vy + 70, endX, vy + 70);
+  noStroke();
+  fill('#1B5E20');
+  textAlign(LEFT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('Sum', endX + 5, vy + 70);
+
+  // Label
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(12);
+  textStyle(NORMAL);
+  text('Sum = A XOR B', cx, vy + vh - 20);
+}
+
+function drawHaCarryCircuit(mx, vy, w, vh) {
+  let cx = canvasWidth / 2;
+  let startX = mx + 60;
+  let gateX = cx - 25;
+  let endX = mx + w - 60;
+
+  // Input labels
+  fill(60);
+  textAlign(RIGHT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('A', startX, vy + 55);
+  text('B', startX, vy + 85);
+
+  // Wires to gate
+  stroke(60);
+  strokeWeight(2);
+  line(startX + 5, vy + 55, gateX, vy + 55);
+  line(startX + 5, vy + 85, gateX, vy + 85);
+
+  // AND gate
+  fill('#FFF3E0');
+  stroke(HIGHLIGHT);
+  rect(gateX, vy + 45, 50, 50, 5);
+  fill(HIGHLIGHT);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text('AND', gateX + 25, vy + 70);
+
+  // Output wire
+  stroke(60);
+  strokeWeight(2);
+  line(gateX + 50, vy + 70, endX, vy + 70);
+  noStroke();
+  fill('#1B5E20');
+  textAlign(LEFT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('Carry', endX + 5, vy + 70);
+
+  // Label
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(12);
+  textStyle(NORMAL);
+  text('Carry = AB', cx, vy + vh - 20);
+}
+
+function drawFsDiffCircuit(mx, vy, w, vh) {
+  let cx = canvasWidth / 2;
+  let startX = mx + 40;
+  let gateX1 = cx - 40;
+  let gateX2 = cx + 40;
+  let endX = mx + w - 40;
+
+  // Input labels
+  fill(60);
+  textAlign(RIGHT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('A', startX, vy + 40);
+  text('B', startX, vy + 70);
+  text('Bin', startX, vy + 110);
+
+  // XOR gate 1
+  stroke(60);
+  strokeWeight(2);
+  line(startX + 5, vy + 40, gateX1 - 20, vy + 40);
+  line(startX + 5, vy + 70, gateX1 - 20, vy + 70);
+  fill('#BBDEFB');
+  stroke(TITLE_BG);
+  rect(gateX1 - 20, vy + 30, 50, 50, 5);
+  fill(TITLE_BG);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text('XOR', gateX1 + 5, vy + 55);
+
+  // Wire from gate 1 to gate 2
+  stroke(60);
+  strokeWeight(2);
+  line(gateX1 + 30, vy + 55, gateX2 - 20, vy + 55);
+  // Bin to gate 2
+  line(startX + 5, vy + 110, gateX2 - 30, vy + 110);
+  line(gateX2 - 30, vy + 110, gateX2 - 20, vy + 85);
+
+  // XOR gate 2
+  fill('#BBDEFB');
+  stroke(TITLE_BG);
+  rect(gateX2 - 20, vy + 45, 50, 50, 5);
+  fill(TITLE_BG);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  text('XOR', gateX2 + 5, vy + 70);
+
+  // Output
+  stroke(60);
+  strokeWeight(2);
+  line(gateX2 + 30, vy + 70, endX, vy + 70);
+  noStroke();
+  fill('#1B5E20');
+  textAlign(LEFT, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('Diff', endX + 5, vy + 70);
+
+  // Label
+  noStroke();
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(12);
+  textStyle(NORMAL);
+  text('Diff = A XOR B XOR Bin', cx, vy + vh - 20);
+}
+
+function drawFsBoutCircuit(mx, vy, w, vh) {
+  let cx = canvasWidth / 2;
+  let startX = mx + 30;
+  let notX = startX + 40;
+  let gateX = cx - 30;
+  let orX = cx + 60;
+  let endX = mx + w - 40;
+
+  // Input label A and NOT gate
+  fill(60);
+  textAlign(RIGHT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  text('A', startX, vy + 35);
+  stroke(60); strokeWeight(1.5);
+  line(startX + 5, vy + 35, notX - 5, vy + 35);
+  // NOT gate
+  fill('#F3E5F5'); stroke('#9C27B0');
+  rect(notX - 5, vy + 22, 35, 26, 4);
+  fill('#9C27B0'); noStroke();
+  textAlign(CENTER, CENTER); textSize(11);
+  text('NOT', notX + 13, vy + 35);
+  // Wire from NOT output (A')
+  stroke(60); strokeWeight(1.5);
+  let notOutX = notX + 30;
+
+  // AND gate 1: A'B
+  fill(60); textAlign(RIGHT, CENTER); textSize(13); textStyle(BOLD);
+  text('B', startX, vy + 55);
+  stroke(60); strokeWeight(1.5);
+  line(notOutX, vy + 35, notOutX + 5, vy + 35);
+  line(notOutX + 5, vy + 35, gateX - 15, vy + 25);
+  line(startX + 5, vy + 55, gateX - 15, vy + 45);
+  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  rect(gateX - 15, vy + 15, 45, 40, 4);
+  fill(HIGHLIGHT); noStroke();
+  textAlign(CENTER, CENTER); textSize(12);
+  text('AND', gateX + 8, vy + 35);
+
+  // AND gate 2: A'Bin
+  fill(60); textAlign(RIGHT, CENTER); textSize(13); textStyle(BOLD);
+  text('Bin', startX, vy + 105);
+  stroke(60); strokeWeight(1.5);
+  // A' wire to gate 2
+  line(notOutX + 5, vy + 35, notOutX + 5, vy + 75);
+  line(notOutX + 5, vy + 75, gateX - 15, vy + 75);
+  line(startX + 5, vy + 105, gateX - 15, vy + 95);
+  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  rect(gateX - 15, vy + 65, 45, 40, 4);
+  fill(HIGHLIGHT); noStroke();
+  textAlign(CENTER, CENTER); textSize(12);
+  text('AND', gateX + 8, vy + 85);
+
+  // AND gate 3: BBin
+  fill(60); textAlign(RIGHT, CENTER); textSize(13); textStyle(BOLD);
+  text('B', startX, vy + 135);
+  text('Bin', startX, vy + 155);
+  stroke(60); strokeWeight(1.5);
+  line(startX + 5, vy + 135, gateX - 15, vy + 125);
+  line(startX + 5, vy + 155, gateX - 15, vy + 145);
+  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  rect(gateX - 15, vy + 115, 45, 40, 4);
+  fill(HIGHLIGHT); noStroke();
+  textAlign(CENTER, CENTER); textSize(12);
+  text('AND', gateX + 8, vy + 135);
+
+  // Wires to OR gate
+  stroke(60); strokeWeight(1.5);
+  line(gateX + 30, vy + 35, orX - 15, vy + 70);
+  line(gateX + 30, vy + 85, orX - 15, vy + 85);
+  line(gateX + 30, vy + 135, orX - 15, vy + 100);
+
+  // OR gate
+  fill('#C8E6C9'); stroke('#4CAF50');
+  rect(orX - 15, vy + 60, 45, 50, 4);
+  fill('#4CAF50'); noStroke();
+  textAlign(CENTER, CENTER); textSize(12);
+  text('OR', orX + 8, vy + 85);
+
+  // Output
+  stroke(60); strokeWeight(1.5);
+  line(orX + 30, vy + 85, endX, vy + 85);
+  noStroke();
+  fill('#1B5E20');
+  textAlign(LEFT, CENTER);
+  textSize(14); textStyle(BOLD);
+  text('Bout', endX + 5, vy + 85);
+
+  // Label
+  fill(100); textAlign(CENTER, CENTER);
+  textSize(12); textStyle(NORMAL);
+  text("Bout = A'B + A'Bin + BBin", cx, vy + vh - 20);
 }
 
 function drawButtons() {

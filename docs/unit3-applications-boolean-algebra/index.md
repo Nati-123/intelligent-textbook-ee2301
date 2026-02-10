@@ -1047,7 +1047,7 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 Step through the complete design of a full adder from truth table to gate circuit:
 
-<iframe src="../sims/full-adder-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/full-adder-walkthrough/main.html" width="100%" height="640px" scrolling="no"></iframe>
 
 ---
 
