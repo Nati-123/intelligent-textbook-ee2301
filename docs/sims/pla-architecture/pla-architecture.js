@@ -250,8 +250,8 @@ function drawANDArray() {
   // Vertical input lines
   for (let c = 0; c < numInputCols; c++) {
     let x = andStartX + c * andCellW + andCellW / 2;
-    stroke(220);
-    strokeWeight(1);
+    stroke('#B39DDB');
+    strokeWeight(1.5);
     line(x, andStartY, x, andStartY + numProducts * andCellH);
   }
 
@@ -259,8 +259,8 @@ function drawANDArray() {
   for (let r = 0; r < numProducts; r++) {
     let y = andStartY + r * andCellH + andCellH / 2;
     let isActive = evaluated && productResults[r] === 1;
-    stroke(isActive ? '#4CAF50' : 220);
-    strokeWeight(isActive ? 2 : 1);
+    stroke(isActive ? '#00E676' : '#CE93D8');
+    strokeWeight(isActive ? 2.5 : 1.5);
     line(andStartX, y, andStartX + numInputCols * andCellW, y);
   }
 
@@ -307,8 +307,8 @@ function drawORArray() {
   // Vertical output lines
   for (let c = 0; c < numOutputs; c++) {
     let x = orStartX + c * orCellW + orCellW / 2;
-    stroke(220);
-    strokeWeight(1);
+    stroke('#FFAB91');
+    strokeWeight(1.5);
     line(x, orStartY, x, orStartY + numProducts * orCellH);
   }
 
@@ -316,8 +316,8 @@ function drawORArray() {
   for (let r = 0; r < numProducts; r++) {
     let y = orStartY + r * orCellH + orCellH / 2;
     let isActive = evaluated && productResults[r] === 1;
-    stroke(isActive ? '#4CAF50' : 220);
-    strokeWeight(isActive ? 2 : 1);
+    stroke(isActive ? '#00E676' : '#FF8A65');
+    strokeWeight(isActive ? 2.5 : 1.5);
     line(orStartX, y, orStartX + numOutputs * orCellW, y);
   }
 
@@ -362,17 +362,15 @@ function drawProductLines() {
     let x2 = orStartX;
     let isActive = evaluated && productResults[r] === 1;
 
-    stroke(isActive ? '#4CAF50' : '#ddd');
-    strokeWeight(isActive ? 2.5 : 1);
+    stroke(isActive ? '#00E676' : '#FF9800');
+    strokeWeight(isActive ? 3 : 2);
     // Arrow-like connector
     line(x1, y, x2, y);
 
-    // Small arrow head
-    if (isActive) {
-      fill('#4CAF50');
-      noStroke();
-      triangle(x2 - 2, y - 4, x2 - 2, y + 4, x2 + 3, y);
-    }
+    // Arrow head
+    fill(isActive ? '#00E676' : '#FF9800');
+    noStroke();
+    triangle(x2 - 2, y - 4, x2 - 2, y + 4, x2 + 3, y);
   }
 }
 
@@ -404,8 +402,8 @@ function drawOutputLabels() {
     textStyle(NORMAL);
 
     // Line from array to output
-    stroke(evaluated && outputResults[c] ? '#4CAF50' : '#ddd');
-    strokeWeight(evaluated && outputResults[c] ? 2 : 1);
+    stroke(evaluated && outputResults[c] ? '#00E676' : '#FF8A65');
+    strokeWeight(evaluated && outputResults[c] ? 2.5 : 1.5);
     line(x, orStartY + numProducts * orCellH, x, outputY - 15);
   }
 }
