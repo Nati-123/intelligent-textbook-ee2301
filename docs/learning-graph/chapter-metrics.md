@@ -4,17 +4,20 @@ This file contains unit-by-unit metrics for the intelligent textbook.
 
 | Unit | Name | Sections | Diagrams | Words | Quiz Questions |
 |------|------|----------|----------|-------|----------------|
-| 1 | [Number Systems](../unit1-number-systems/index.md) | 62 | 7 | 8,361 | 10 |
-| 2 | [Boolean Algebra](../unit2-boolean-algebra/index.md) | 64 | 8 | 9,888 | 10 |
-| 3 | [Applications of Boolean Algebra](../unit3-applications-boolean-algebra/index.md) | 65 | 9 | 9,794 | 10 |
-| 4 | [Minterm and Maxterm Expansions](../unit4-minterm-maxterm-expansions/index.md) | 67 | 4 | 8,212 | 10 |
-| 5 | [Karnaugh Maps](../unit5-karnaugh-maps/index.md) | 76 | 5 | 8,971 | 10 |
-| 6 | [Quine-McCluskey Method](../unit6-quine-mccluskey/index.md) | 45 | 5 | 11,435 | 10 |
-| 7 | [Multi-Level Gate Circuits](../unit7-multi-level-gates/index.md) | 87 | 7 | 13,921 | 12 |
-| 8 | [Combinational Logic Modules](../unit8-combinational-modules/index.md) | 77 | 6 | 12,867 | 12 |
-| 9 | [Sequential Logic Fundamentals](../unit9-sequential-fundamentals/index.md) | 80 | 7 | 13,099 | 12 |
-| 10 | [Sequential Circuit Design](../unit10-sequential-design/index.md) | 98 | 4 | 14,253 | 12 |
-| **Total** | | **721** | **62** | **110,801** | **108** |
+| 1 | [Number Systems](../unit1-number-systems/index.md) | 64 | 7 | 8,925 | 10 |
+| 2 | [Boolean Algebra](../unit2-boolean-algebra/index.md) | 66 | 22 | 10,946 | 10 |
+| 3 | [Applications of Boolean Algebra](../unit3-applications-boolean-algebra/index.md) | 67 | 8 | 11,067 | 10 |
+| 4 | [Minterm and Maxterm Expansions](../unit4-minterm-maxterm-expansions/index.md) | 69 | 4 | 9,454 | 10 |
+| 5 | [Karnaugh Maps](../unit5-karnaugh-maps/index.md) | 78 | 5 | 9,288 | 10 |
+| 6 | [Quine-McCluskey Method](../unit6-quine-mccluskey/index.md) | 47 | 5 | 12,750 | 10 |
+| 7 | [Multi-Level Gate Circuits](../unit7-multi-level-gates/index.md) | 88 | 7 | 14,028 | 10 |
+| 8 | [Combinational Logic Modules](../unit8-combinational-modules/index.md) | 78 | 6 | 14,180 | 10 |
+| 9 | [Sequential Logic Fundamentals](../unit9-sequential-fundamentals/index.md) | 81 | 7 | 14,506 | 10 |
+| 10 | [Sequential Circuit Design](../unit10-sequential-design/index.md) | 99 | 4 | 15,748 | 10 |
+| 11 | [Programmable Logic Devices](../unit11-programmable-logic/index.md) | 35 | 10 | 8,646 | 10 |
+| 12 | [Introduction to VHDL](../unit12-vhdl/index.md) | 51 | 5 | 5,838 | 10 |
+| 13 | [System Integration and Design Projects](../unit13-system-integration/index.md) | 34 | 6 | 6,421 | 10 |
+| **Total** | | **857** | **96** | **141,797** | **130** |
 
 ## Metrics Explanation
 
