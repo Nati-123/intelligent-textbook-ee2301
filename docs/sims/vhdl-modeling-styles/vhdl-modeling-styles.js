@@ -391,37 +391,50 @@ function drawColumnCode(idx, x, y, w, h) {
   noStroke();
   rect(x, y, w, h, 4);
 
-  let lines = [];
+  let output = (inputSel === 0) ? inputA : inputB;
+  let selN = 1 - inputSel;
+  let t1 = inputA & selN;
+  let t2 = inputB & inputSel;
+
+  let codeLines = [];
   if (idx === 0) {
-    lines = [
-      '-- Dataflow',
-      'Y <= (A AND NOT Sel)',
-      '     OR',
-      '     (B AND Sel);'
+    // Dataflow - show evaluated values
+    codeLines = [
+      { txt: '-- Dataflow (A=' + inputA + ' B=' + inputB + ')', color: '#69F0AE', active: false },
+      { txt: 'Y <= (' + inputA + ' AND NOT ' + inputSel + ')', color: KEYWORD_COLOR, active: true },
+      { txt: '     OR', color: KEYWORD_COLOR, active: false },
+      { txt: '     (' + inputB + ' AND ' + inputSel + ');', color: KEYWORD_COLOR, active: true },
+      { txt: '', color: CODE_TEXT, active: false },
+      { txt: '-- ' + inputA + ' AND ' + selN + ' = ' + t1, color: '#69F0AE', active: false },
+      { txt: '-- ' + inputB + ' AND ' + inputSel + ' = ' + t2, color: '#69F0AE', active: false },
+      { txt: '-- Y = ' + t1 + ' OR ' + t2 + ' = ' + output, color: '#FFEB3B', active: true }
     ];
   } else if (idx === 1) {
-    lines = [
-      '-- Structural',
-      'U1: NOT1 port map',
-      '  (Sel, Sel_n);',
-      'U2: AND2 port map',
-      '  (A, Sel_n, T1);',
-      'U3: AND2 port map',
-      '  (B, Sel, T2);',
-      'U4: OR2 port map',
-      '  (T1, T2, Y);'
+    // Structural - show signal values at each gate
+    codeLines = [
+      { txt: '-- Structural', color: '#69F0AE', active: false },
+      { txt: 'Sel=' + inputSel + ' -> NOT -> ' + selN, color: '#FFAB91', active: true },
+      { txt: 'A=' + inputA + ', Sel_n=' + selN, color: CODE_TEXT, active: false },
+      { txt: '  -> AND -> T1=' + t1, color: '#FFAB91', active: t1 === 1 },
+      { txt: 'B=' + inputB + ', Sel=' + inputSel, color: CODE_TEXT, active: false },
+      { txt: '  -> AND -> T2=' + t2, color: '#FFAB91', active: t2 === 1 },
+      { txt: 'T1=' + t1 + ', T2=' + t2, color: CODE_TEXT, active: false },
+      { txt: '  -> OR  -> Y=' + output, color: '#FFEB3B', active: true }
     ];
   } else {
-    lines = [
-      '-- Behavioral',
-      'process(A, B, Sel)',
-      'begin',
-      '  if Sel=\'0\' then',
-      '    Y <= A;',
-      '  else',
-      '    Y <= B;',
-      '  end if;',
-      'end process;'
+    // Behavioral - highlight active branch
+    let selIsZero = (inputSel === 0);
+    codeLines = [
+      { txt: '-- Behavioral', color: '#69F0AE', active: false },
+      { txt: 'process(A,B,Sel)', color: KEYWORD_COLOR, active: false },
+      { txt: 'begin', color: KEYWORD_COLOR, active: false },
+      { txt: '  if Sel=\'0\' then', color: KEYWORD_COLOR, active: selIsZero },
+      { txt: '    Y <= A;  -- ' + inputA, color: selIsZero ? '#FFEB3B' : '#546E7A', active: selIsZero },
+      { txt: '  else', color: KEYWORD_COLOR, active: !selIsZero },
+      { txt: '    Y <= B;  -- ' + inputB, color: !selIsZero ? '#FFEB3B' : '#546E7A', active: !selIsZero },
+      { txt: '  end if;', color: KEYWORD_COLOR, active: false },
+      { txt: 'end process;', color: KEYWORD_COLOR, active: false },
+      { txt: '-- Y = ' + output, color: '#FFEB3B', active: true }
     ];
   }
 
@@ -429,20 +442,22 @@ function drawColumnCode(idx, x, y, w, h) {
   textAlign(LEFT, TOP);
   let lineH = 13;
 
-  for (let i = 0; i < lines.length; i++) {
+  for (let i = 0; i < codeLines.length; i++) {
     let ly = y + 6 + i * lineH;
     if (ly + lineH > y + h) break;
 
-    let line = lines[i];
-    if (line.startsWith('--')) {
-      fill('#69F0AE');
-    } else {
-      // Simple keyword highlighting
-      let keywords = ['process', 'begin', 'end', 'if', 'then', 'else', 'port', 'map', 'NOT', 'AND', 'OR'];
-      let hasKeyword = keywords.some(k => line.includes(k));
-      fill(hasKeyword ? KEYWORD_COLOR : CODE_TEXT);
+    let cl = codeLines[i];
+
+    // Highlight active lines with a background bar
+    if (cl.active) {
+      noStroke();
+      fill(255, 255, 255, 20);
+      rect(x + 2, ly - 1, w - 4, lineH, 2);
     }
-    text(line, x + 6, ly);
+
+    fill(cl.color);
+    noStroke();
+    text(cl.txt, x + 6, ly);
   }
 }
 
