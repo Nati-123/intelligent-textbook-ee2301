@@ -5,7 +5,7 @@ quality_score: 85
 ---
 # VHDL Flip-Flop Patterns
 
-<iframe src="main.html" height="500px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="540px" width="100%" scrolling="no"></iframe>
 
 [Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
