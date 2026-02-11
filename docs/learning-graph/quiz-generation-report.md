@@ -17,45 +17,51 @@ skill_version: 0.2
 | Answer distribution balance | Verified | Balanced | ✅ Pass |
 | Concept coverage | 100% | 90%+ | ✅ Exceeds |
 
-**Overall Quality Score: 95/100**
+**Overall Quality Score: 97/100**
 
 ## Quiz Details by Unit
 
 ### Unit 1: Number Systems
 - **File:** `/docs/unit1-number-systems/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** Binary to decimal conversion, Two's complement, Overflow detection, Hexadecimal, Nibble, Sign extension, Octal conversion, Base/radix, Binary subtraction, Range of signed numbers
-- **Answer distribution:** A=2, B=3, C=2, D=3
+- **Concepts tested:** Binary to Decimal Conversion, Base/Radix, Two's Complement, Overflow Detection, Hexadecimal to Binary, Nibble/Data Units, Range of Signed Numbers, Binary Subtraction, Sign Extension, Octal to Decimal
+- **Answer distribution:** A=3, B=2, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 2: Boolean Algebra
 - **File:** `/docs/unit2-boolean-algebra/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** AND operation, DeMorgan's theorem, Universal gates, Absorption law, Operator precedence, XOR gate, Null law, Product term, Fan-in/Fan-out, Consensus theorem
-- **Answer distribution:** A=0, B=5, C=4, D=1
+- **Concepts tested:** AND Operation, DeMorgan's Theorem, Universal Gates (NAND/NOR), Absorption Law, Operator Precedence, XOR Gate, Null Law, Product Term/SOP, Fan-In and Fan-Out, Consensus Theorem
+- **Answer distribution:** A=2, B=3, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 3: Applications of Boolean Algebra
 - **File:** `/docs/unit3-applications-boolean-algebra/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** Combinational logic, Half adder, Ripple carry adder, Adder-subtractor circuit, Parity generator, Gray code, Seven-segment decoder, Half subtractor, Binary to Gray converter, Magnitude comparator
-- **Answer distribution:** A=1, B=4, C=4, D=1
+- **Concepts tested:** Combinational vs Sequential Logic, Half Adder, Ripple Carry Adder, Adder-Subtractor Circuit, Parity Generator, Gray Code, Seven-Segment Decoder/Don't Cares, Half Subtractor, Binary to Gray Converter, Magnitude Comparator
+- **Answer distribution:** A=3, B=2, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 4: Minterm & Maxterm Expansions
 - **File:** `/docs/unit4-minterm-maxterm-expansions/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** Canonical form, Minterm, Minterm to maxterm, Sigma notation, Converting SOP to POS, Complement of function, Cofactor, On-set/Off-set/DC-set, Literal count, Maxterm
-- **Answer distribution:** A=0, B=5, C=3, D=2
+- **Concepts tested:** Canonical Form, Minterm Construction, Minterm-to-Maxterm Relationship, Sigma Notation, SOP to POS Conversion, Function Complement, Cofactor/Shannon Expansion, On-Set/Off-Set/DC-Set, Literal Count, Maxterm Construction
+- **Answer distribution:** A=2, B=3, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 5: Karnaugh Maps
 - **File:** `/docs/unit5-karnaugh-maps/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** K-map Gray code order, Valid group sizes, Corner grouping/wrapping, Prime implicant, Essential prime implicant, Using don't cares, K-map POS simplification, K-map SOP simplification, K-map limitations, Overlapping groups
-- **Answer distribution:** A=0, B=6, C=3, D=1
+- **Concepts tested:** K-Map Gray Code Order, Valid Group Sizes, Corner Grouping/Wrap-Around, Prime Implicant, Essential Prime Implicant, Don't Care Conditions, K-Map POS Simplification, K-Map SOP Simplification, K-Map Limitations, Overlapping Groups
+- **Answer distribution:** A=3, B=2, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 6: Quine-McCluskey Method
 - **File:** `/docs/unit6-quine-mccluskey/quiz.md`
 - **Questions:** 10
-- **Concepts tested:** QM vs K-map comparison, Grouping by number of ones, Dash notation, Unchecked terms as prime implicants, Essential PI selection, Petrick's method, QM with don't cares, Cyclic PI charts, Adjacency criterion, Computational complexity
-- **Answer distribution:** A=1, B=6, C=2, D=1
+- **Concepts tested:** QM vs K-Map Comparison, Grouping by Number of Ones, Dash Notation, Identifying Prime Implicants, Essential PI Selection, Petrick's Method, QM with Don't Cares, Cyclic PI Charts, Adjacency Criterion, Computational Complexity
+- **Answer distribution:** A=2, B=3, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=4, Apply=3, Analyze=1
 
 ### Unit 7: Multi-Level Gate Circuits
 - **File:** `/docs/unit7-multi-level-gates/quiz.md`
@@ -167,17 +173,18 @@ skill_version: 0.2
 - [x] No ambiguous wording
 - [x] Appropriate difficulty for college-level EE students
 - [x] Technical accuracy verified
+- [x] Computational questions have verifiable answers
 
 ### Answer Distribution Analysis
 
 | Unit | A | B | C | D | Balance Score |
 |------|---|---|---|---|---------------|
-| 1 | 2 | 3 | 2 | 3 | Excellent |
-| 2 | 0 | 5 | 4 | 1 | Good |
-| 3 | 1 | 4 | 4 | 1 | Good |
-| 4 | 0 | 5 | 3 | 2 | Good |
-| 5 | 0 | 6 | 3 | 1 | Acceptable |
-| 6 | 1 | 6 | 2 | 1 | Acceptable |
+| 1 | 3 | 2 | 2 | 3 | Excellent |
+| 2 | 2 | 3 | 3 | 2 | Excellent |
+| 3 | 3 | 2 | 2 | 3 | Excellent |
+| 4 | 2 | 3 | 2 | 3 | Excellent |
+| 5 | 3 | 2 | 3 | 2 | Excellent |
+| 6 | 2 | 3 | 3 | 2 | Excellent |
 | 7 | 2 | 3 | 3 | 2 | Excellent |
 | 8 | 3 | 2 | 2 | 3 | Excellent |
 | 9 | 2 | 3 | 2 | 3 | Excellent |
@@ -185,9 +192,9 @@ skill_version: 0.2
 | 11 | 3 | 2 | 3 | 2 | Excellent |
 | 12 | 2 | 3 | 2 | 3 | Excellent |
 | 13 | 3 | 2 | 2 | 3 | Excellent |
-| **Total** | **22** | **46** | **35** | **27** | **Good** |
+| **Total** | **33** | **32** | **32** | **33** | **Excellent** |
 
-Note: Units 7-13 achieve excellent individual balance (A=18, B=17, C=17, D=18 across 7 units). The overall distribution includes the B-heavy bias from Units 1-6 noted in previous reports. Units 7-13 significantly improve the overall balance.
+All 13 units achieve excellent individual balance. The overall distribution is near-perfect: 25.4% A, 24.6% B, 24.6% C, 25.4% D.
 
 ## Validation Checklist
 
@@ -200,14 +207,13 @@ Note: Units 7-13 achieve excellent individual balance (A=18, B=17, C=17, D=18 ac
 - [x] Markdown syntax correct
 - [x] Added to mkdocs.yml navigation
 - [x] Intermediate and advanced units include higher Bloom's levels (Evaluate L5)
+- [x] Answer distribution balanced across all units (no B-heavy bias)
 
 ## Recommendations
 
-1. **Consider rebalancing Units 2-6 answers:** The Units 1-6 distribution still favors B answers. For more rigorous assessment, redistribute some correct answers to A and D options.
+1. **Add Create (L6) questions:** Consider adding synthesis-type questions requiring students to propose designs, which can be assessed through multi-part questions or open-ended formats.
 
-2. **Add Create (L6) questions:** Consider adding synthesis-type questions requiring students to propose designs, which can be assessed through multi-part questions or open-ended formats.
-
-3. **Future enhancements:**
+2. **Future enhancements:**
    - Add timed quiz mode
    - Implement question randomization
    - Create question banks for repeat assessments
