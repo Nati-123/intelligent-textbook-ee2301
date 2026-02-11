@@ -58,7 +58,6 @@ function setup() {
 
   // Create Input A number field
   inputAField = createInput(String(inputA), 'number');
-  inputAField.parent(mainElement);
   inputAField.style('width', '50px');
   inputAField.style('height', '28px');
   inputAField.style('font-size', '14px');
@@ -68,7 +67,8 @@ function setup() {
   inputAField.style('border-radius', '4px');
   inputAField.style('background', '#FFF3E0');
   inputAField.style('color', '#BF360C');
-  inputAField.style('position', 'absolute');
+  inputAField.style('position', 'fixed');
+  inputAField.style('z-index', '10');
   inputAField.attribute('min', '-999');
   inputAField.attribute('max', '999');
   inputAField.input(function() {
@@ -78,7 +78,6 @@ function setup() {
 
   // Create Input B number field
   inputBField = createInput(String(inputB), 'number');
-  inputBField.parent(mainElement);
   inputBField.style('width', '50px');
   inputBField.style('height', '28px');
   inputBField.style('font-size', '14px');
@@ -88,7 +87,8 @@ function setup() {
   inputBField.style('border-radius', '4px');
   inputBField.style('background', '#FFF3E0');
   inputBField.style('color', '#BF360C');
-  inputBField.style('position', 'absolute');
+  inputBField.style('position', 'fixed');
+  inputBField.style('z-index', '10');
   inputBField.attribute('min', '-999');
   inputBField.attribute('max', '999');
   inputBField.input(function() {
@@ -98,7 +98,6 @@ function setup() {
 
   // Create ALU operation dropdown
   opSelect = createSelect();
-  opSelect.parent(mainElement);
   opSelect.option('ADD');
   opSelect.option('SUB');
   opSelect.selected('ADD');
@@ -112,7 +111,8 @@ function setup() {
   opSelect.style('background', '#E8F5E9');
   opSelect.style('color', '#1B5E20');
   opSelect.style('cursor', 'pointer');
-  opSelect.style('position', 'absolute');
+  opSelect.style('position', 'fixed');
+  opSelect.style('z-index', '10');
   opSelect.changed(function() {
     selectedOp = this.value();
   });
@@ -158,29 +158,25 @@ function draw() {
 }
 
 function positionDOMElements() {
-  // Get canvas position on page
   let cnv = document.querySelector('canvas');
   if (!cnv) return;
   let rect = cnv.getBoundingClientRect();
-  let parentRect = cnv.parentElement.getBoundingClientRect();
-  let offsetX = rect.left - parentRect.left;
-  let offsetY = rect.top - parentRect.top;
 
-  let y = drawHeight + 12;
+  let y = rect.top + drawHeight + 12;
   let clkW = 58;
   let sp = 8;
 
   // Input A field: after CLK button + label "A"
-  let aX = 8 + clkW + sp + 16;
-  inputAField.position(offsetX + aX, offsetY + y + 1);
+  let aX = rect.left + 8 + clkW + sp + 16;
+  inputAField.position(aX, y + 1);
 
   // Input B field: after A field + label "B"
   let bX = aX + 56 + sp + 16;
-  inputBField.position(offsetX + bX, offsetY + y + 1);
+  inputBField.position(bX, y + 1);
 
   // ALU op dropdown: after B field + label "Op"
   let opX = bX + 56 + sp + 22;
-  opSelect.position(offsetX + opX, offsetY + y);
+  opSelect.position(opX, y);
 }
 
 function drawFSM(areaWidth) {
