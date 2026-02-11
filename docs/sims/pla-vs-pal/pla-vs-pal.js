@@ -95,18 +95,18 @@ function draw() {
     if (dist(mouseX, mouseY, hx, 48) < 16) { hovering = true; break; }
   }
   if (!hovering) {
-    let cW = 24, cH = 36, g = 20;
-    let aW = numInputCols * cW, oW = numOutputs * cW;
+    let cW = 24, ocW = 32, cH = 36, g = 24;
+    let aW = numInputCols * cW, oW = numOutputs * ocW;
     let tW = aW + g + oW;
     let sides = [
-      { ax: 10 + ((midX - 10) - tW) / 2, arr: plaAnd, orArr: plaOr, orClick: true },
-      { ax: midX + 10 + ((midX - 10) - tW) / 2, arr: palAnd, orArr: null, orClick: false }
+      { ax: 10 + ((midX - 10) - tW) / 2, orClick: true },
+      { ax: midX + 10 + ((midX - 10) - tW) / 2, orClick: false }
     ];
     for (let s of sides) {
       for (let r = 0; r < numProducts && !hovering; r++) {
         for (let c = 0; c < numInputCols; c++) {
           let hx = s.ax + c * cW + cW / 2;
-          let hy = 115 + r * cH + cH / 2;
+          let hy = 120 + r * cH + cH / 2;
           if (Math.abs(mouseX - hx) < 9 && Math.abs(mouseY - hy) < 8) { hovering = true; break; }
         }
       }
@@ -114,9 +114,9 @@ function draw() {
         let ox = s.ax + aW + g;
         for (let r = 0; r < numProducts && !hovering; r++) {
           for (let c = 0; c < numOutputs; c++) {
-            let hx = ox + c * cW + cW / 2;
-            let hy = 115 + r * cH + cH / 2;
-            if (Math.abs(mouseX - hx) < 9 && Math.abs(mouseY - hy) < 8) { hovering = true; break; }
+            let hx = ox + c * ocW + ocW / 2;
+            let hy = 120 + r * cH + cH / 2;
+            if (Math.abs(mouseX - hx) < 10 && Math.abs(mouseY - hy) < 8) { hovering = true; break; }
           }
         }
       }
@@ -163,9 +163,10 @@ function drawInputToggles() {
 function drawSide(startX, width, title, andColor, orColor,
                   andArr, orArr, orProgrammable, prodRes, outRes) {
   let cellW = 24;
+  let orCellW = 32; // wider cells for OR array
   let cellH = 36;
   let colLabels = ['A', "A'", 'B', "B'"];
-  let gap = 20; // gap between AND and OR arrays
+  let gap = 24; // gap between AND and OR arrays
 
   // Side title
   fill(50);
@@ -178,12 +179,12 @@ function drawSide(startX, width, title, andColor, orColor,
 
   // Compute array widths
   let andW = numInputCols * cellW;
-  let orW = numOutputs * cellW;
+  let orW = numOutputs * orCellW;
   let totalW = andW + gap + orW;
 
   // Center both arrays within the side panel
   let andX = startX + (width - totalW) / 2;
-  let andY = 115;
+  let andY = 120;
   let andH = numProducts * cellH;
 
   let orX = andX + andW + gap;
@@ -195,15 +196,15 @@ function drawSide(startX, width, title, andColor, orColor,
   textSize(10);
   textStyle(BOLD);
   textAlign(CENTER, CENTER);
-  text('AND (Prog.)', andX + andW / 2, andY - 28);
+  text('AND (Prog.)', andX + andW / 2, andY - 32);
   textStyle(NORMAL);
 
   // OR array label
   fill(orColor);
   textSize(10);
   textStyle(BOLD);
-  text('OR', orX + orW / 2, andY - 28);
-  text(orProgrammable ? '(Prog.)' : '(Fixed)', orX + orW / 2, andY - 16);
+  text('OR', orX + orW / 2, andY - 32);
+  text(orProgrammable ? '(Prog.)' : '(Fixed)', orX + orW / 2, andY - 20);
   textStyle(NORMAL);
 
   // Column labels for AND
@@ -299,12 +300,12 @@ function drawSide(startX, width, title, andColor, orColor,
   textSize(10);
   textAlign(CENTER, CENTER);
   for (let c = 0; c < numOutputs; c++) {
-    text('F' + c, orX + c * cellW + cellW / 2, orY - 8);
+    text('F' + c, orX + c * orCellW + orCellW / 2, orY - 8);
   }
 
   // Vertical lines in OR (bright orange)
   for (let c = 0; c < numOutputs; c++) {
-    let x = orX + c * cellW + cellW / 2;
+    let x = orX + c * orCellW + orCellW / 2;
     stroke('#FFAB91');
     strokeWeight(1);
     line(x, orY, x, orY + orH);
@@ -319,8 +320,8 @@ function drawSide(startX, width, title, andColor, orColor,
     line(orX, y, orX + orW, y);
 
     for (let c = 0; c < numOutputs; c++) {
-      let cx = orX + c * cellW + cellW / 2;
-      let boxW = 18;
+      let cx = orX + c * orCellW + orCellW / 2;
+      let boxW = 20;
       let boxH = 16;
       let dotActive = isActive && orArr[r][c];
 
@@ -365,7 +366,7 @@ function drawSide(startX, width, title, andColor, orColor,
   // Output section
   let outY = orY + orH + 45;
   for (let c = 0; c < numOutputs; c++) {
-    let x = orX + c * cellW + cellW / 2;
+    let x = orX + c * orCellW + orCellW / 2;
     let val = outRes[c];
 
     // Line from OR array to output box
@@ -454,16 +455,17 @@ function mousePressed() {
 
   let midX = canvasWidth / 2;
   let cellW = 24;
+  let oCellW = 32;
   let cellH = 36;
-  let gap = 20;
+  let gap = 24;
   let andW = numInputCols * cellW;
-  let orW = numOutputs * cellW;
+  let orW = numOutputs * oCellW;
   let totalW = andW + gap + orW;
 
   // PLA side
   let plaHalfW = midX - 10;
   let plaAndX = 10 + (plaHalfW - totalW) / 2;
-  let plaAndY = 115;
+  let plaAndY = 120;
   let plaOrX = plaAndX + andW + gap;
 
   // Check PLA AND array
@@ -481,9 +483,9 @@ function mousePressed() {
   // Check PLA OR array (programmable)
   for (let r = 0; r < numProducts; r++) {
     for (let c = 0; c < numOutputs; c++) {
-      let cx = plaOrX + c * cellW + cellW / 2;
+      let cx = plaOrX + c * oCellW + oCellW / 2;
       let cy = plaAndY + r * cellH + cellH / 2;
-      if (Math.abs(mouseX - cx) < 9 && Math.abs(mouseY - cy) < 8) {
+      if (Math.abs(mouseX - cx) < 10 && Math.abs(mouseY - cy) < 8) {
         plaOr[r][c] = plaOr[r][c] ? 0 : 1;
         return;
       }
@@ -493,7 +495,7 @@ function mousePressed() {
   // PAL side
   let palHalfW = midX - 10;
   let palAndX = midX + 10 + (palHalfW - totalW) / 2;
-  let palAndY = 115;
+  let palAndY = 120;
 
   // Check PAL AND array (programmable)
   for (let r = 0; r < numProducts; r++) {
