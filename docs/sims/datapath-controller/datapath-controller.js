@@ -534,7 +534,7 @@ function drawControls() {
   textStyle(NORMAL);
 
   // Reset button (after the dropdown)
-  x += 22 + 70 + sp;
+  x += 22 + 70 + sp + 12;
   let rstW = 50;
   _resetBtn = { x: x, y: y, w: rstW, h: btnH };
   fill('#F44336');
@@ -549,7 +549,7 @@ function drawControls() {
   textStyle(NORMAL);
 
   // State display
-  x += rstW + sp;
+  x += rstW + sp + 8;
   let stateW = 70;
   fill(currentState === DONE ? COLOR_ACTIVE : COLOR_FSM);
   stroke(currentState === DONE ? '#388E3C' : '#303F9F');
