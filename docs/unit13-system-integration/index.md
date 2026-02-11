@@ -96,7 +96,7 @@ The top-down approach decomposes a complex problem into progressively smaller, m
 
 #### Diagram: Top-Down Design Flow
 
-<iframe src="../../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Top-Down Design Flow</summary>
@@ -201,7 +201,7 @@ This separation is powerful because:
 
 #### Diagram: Datapath-Controller Architecture
 
-<iframe src="../../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Datapath-Controller Architecture</summary>
@@ -373,7 +373,7 @@ This ensures that data doesn't change too quickly after the clock edge. Hold tim
 
 #### Diagram: Timing Analysis Visualizer
 
-<iframe src="../../sims/timing-analysis-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/timing-analysis-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Timing Analysis Visualizer</summary>
@@ -507,7 +507,7 @@ Digital Combination Lock
 
 #### Diagram: Digital Lock System Architecture
 
-<iframe src="../../sims/digital-lock-system/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/digital-lock-system/main.html" width="100%" height="600px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Digital Lock System Architecture</summary>
@@ -720,7 +720,7 @@ This design combines:
 
 #### Diagram: UART Transmission Protocol and Architecture
 
-<iframe src="../../sims/uart-transmitter/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/uart-transmitter/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>UART Transmission Protocol and Architecture</summary>
@@ -837,7 +837,7 @@ The complete journey from idea to working hardware follows a well-defined path. 
 
 #### Diagram: Course Concept Integration Map
 
-<iframe src="../../sims/course-integration-map/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/course-integration-map/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Course Concept Integration Map</summary>
@@ -910,3 +910,9 @@ Each path builds directly on the foundation established in this course: Boolean 
 
 ??? question "Self-Check: Why does pipelining increase throughput even though it adds latency?"
     Pipelining divides a long combinational path into shorter stages separated by registers. Each stage has less delay, allowing a higher clock frequency. Although a single result takes more clock cycles to complete (increased latency), a new result is produced every clock cycle once the pipeline is full. The higher clock frequency means more results per second (higher throughput), even though each individual result takes longer. It is analogous to an assembly line: each car takes longer to pass through all stations, but the factory produces more cars per hour.
+
+## Interactive Walkthrough
+
+Design a datapath-controller system step-by-step, connecting registers, ALU, and MUX with an FSM controller:
+
+<iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>

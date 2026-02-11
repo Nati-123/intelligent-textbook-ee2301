@@ -204,7 +204,7 @@ The statement `y <= a and b;` is a **concurrent signal assignment**. The symbol 
 
 #### Diagram: Entity-Architecture Relationship
 
-<iframe src="../../sims/entity-architecture/main.html" width="100%" height="450px" scrolling="no"></iframe>
+<iframe src="../sims/entity-architecture/main.html" width="100%" height="450px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Entity-Architecture Relationship</summary>
@@ -440,7 +440,7 @@ end architecture behavioral;
 
 #### Diagram: VHDL Modeling Styles Comparison
 
-<iframe src="../../sims/vhdl-modeling-styles/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>VHDL Modeling Styles Comparison</summary>
@@ -731,7 +731,7 @@ The synchronous reset is **not** in the sensitivity list—it is evaluated only 
 
 #### Diagram: VHDL Flip-Flop Patterns
 
-<iframe src="../../sims/vhdl-flipflop-patterns/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>VHDL Flip-Flop Patterns</summary>
@@ -959,7 +959,7 @@ end architecture rtl;
 
 #### Diagram: FSM VHDL Code-to-State Diagram Mapper
 
-<iframe src="../../sims/vhdl-fsm-mapper/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="550px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>FSM VHDL Code-to-State Diagram Mapper</summary>
@@ -1098,7 +1098,7 @@ The synthesis tool reads the VHDL code and infers hardware structures:
 
 #### Diagram: VHDL Code to Hardware Inference
 
-<iframe src="../../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>VHDL Code to Hardware Inference</summary>
@@ -1245,3 +1245,9 @@ This example integrates:
 
 ??? question "Self-Check: What happens if you write an if-then statement inside a combinational process without an else clause?"
     The synthesis tool infers a **latch**—an unintended memory element. Without the `else` clause, the signal retains its previous value when the condition is false, which requires a latch to implement. Always provide default assignments or complete if-else coverage in combinational processes to avoid this common bug.
+
+## Interactive Walkthrough
+
+Design a VHDL finite state machine step-by-step, from state diagram to complete VHDL code:
+
+<iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
