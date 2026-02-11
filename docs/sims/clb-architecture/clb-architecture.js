@@ -4,7 +4,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 500;
+let drawHeight = 560;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -55,13 +55,13 @@ function initComponents() {
   // Component layout positions (relative to drawing area)
   // Each: { name, type, x, y, w, h }
   components = [
-    { name: 'LUT-A', type: 'lut', x: 100, y: 70, w: 90, h: 80 },
-    { name: 'LUT-B', type: 'lut', x: 100, y: 240, w: 90, h: 80 },
-    { name: 'FF-A', type: 'ff', x: 260, y: 75, w: 70, h: 60 },
-    { name: 'FF-B', type: 'ff', x: 260, y: 245, w: 70, h: 60 },
-    { name: 'MUX-A', type: 'mux', x: 370, y: 70, w: 40, h: 80 },
-    { name: 'MUX-B', type: 'mux', x: 370, y: 240, w: 40, h: 80 },
-    { name: 'Carry', type: 'carry', x: 210, y: 370, w: 50, h: 60 }
+    { name: 'LUT-A', type: 'lut', x: 100, y: 70, w: 100, h: 90 },
+    { name: 'LUT-B', type: 'lut', x: 100, y: 260, w: 100, h: 90 },
+    { name: 'FF-A', type: 'ff', x: 265, y: 75, w: 80, h: 70 },
+    { name: 'FF-B', type: 'ff', x: 265, y: 265, w: 80, h: 70 },
+    { name: 'MUX-A', type: 'mux', x: 380, y: 70, w: 45, h: 90 },
+    { name: 'MUX-B', type: 'mux', x: 380, y: 260, w: 45, h: 90 },
+    { name: 'Carry', type: 'carry', x: 215, y: 400, w: 55, h: 65 }
   ];
 }
 
@@ -103,7 +103,7 @@ function draw() {
   stroke('#BDBDBD');
   strokeWeight(2);
   fill(255, 255, 255, 60);
-  rect(50 * scale, 50, 440 * scale, 380, 10);
+  rect(50 * scale, 50, 440 * scale, 430, 10);
 
   // CLB label
   fill('#999');
@@ -120,7 +120,7 @@ function draw() {
 
   // Draw all components
   for (let comp of components) {
-    drawComponent(comp, scale);
+    drawComponent(comp, scale, offsetX);
   }
 
   // Draw input labels
@@ -137,6 +137,25 @@ function draw() {
   // Draw info panel at bottom
   drawInfoPanel();
 
+  // Hand cursor on hover over components
+  let hovering = false;
+  let hScale = Math.min(canvasWidth / 520, 1.0);
+  let hOffsetX = (canvasWidth - 520 * hScale) / 2;
+  let hmx = mouseX - hOffsetX;
+  for (let comp of components) {
+    // Check bit boxes
+    if (comp._bitBox) {
+      let bb = comp._bitBox;
+      if (mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+          mouseY >= bb.y && mouseY <= bb.y + bb.h) { hovering = true; break; }
+    }
+    let hcx = comp.x * hScale;
+    let hcw = comp.w * hScale;
+    if (hmx >= hcx && hmx <= hcx + hcw &&
+        mouseY >= comp.y && mouseY <= comp.y + comp.h) { hovering = true; break; }
+  }
+  cursor(hovering ? HAND : ARROW);
+
   // Control area text
   fill(colors.text);
   noStroke();
@@ -145,6 +164,9 @@ function draw() {
   let modeA = muxABypass ? 'Combinational' : 'Registered';
   let modeB = muxBBypass ? 'Combinational' : 'Registered';
   text('Output A: ' + modeA + '   |   Output B: ' + modeB, canvasWidth / 2, drawHeight + 15);
+  textSize(10);
+  fill('#999');
+  text('Click components to inspect | Click MUX bit box to toggle mode', canvasWidth / 2, drawHeight + 35);
 }
 
 function drawWires(scale) {
@@ -152,51 +174,51 @@ function drawWires(scale) {
 
   // LUT-A to FF-A
   stroke(colors.wire);
-  line(190 * scale, 110, 260 * scale, 105);
+  line(200 * scale, 115, 265 * scale, 110);
 
   // LUT-A to MUX-A (bypass path)
   stroke(muxABypass ? colors.selected : '#BDBDBD');
   strokeWeight(muxABypass ? 2.5 : 1.5);
   setLineDash(muxABypass ? [] : [4, 4]);
-  line(190 * scale, 100, 230 * scale, 80);
-  line(230 * scale, 80, 370 * scale, 95);
+  line(200 * scale, 105, 240 * scale, 82);
+  line(240 * scale, 82, 380 * scale, 100);
   setLineDash([]);
 
   // FF-A to MUX-A (registered path)
   stroke(!muxABypass ? colors.selected : '#BDBDBD');
   strokeWeight(!muxABypass ? 2.5 : 1.5);
   setLineDash(!muxABypass ? [] : [4, 4]);
-  line(330 * scale, 105, 370 * scale, 115);
+  line(345 * scale, 110, 380 * scale, 120);
   setLineDash([]);
 
   // LUT-B to FF-B
   strokeWeight(2);
   stroke(colors.wire);
-  line(190 * scale, 280, 260 * scale, 275);
+  line(200 * scale, 305, 265 * scale, 300);
 
   // LUT-B to MUX-B (bypass path)
   stroke(muxBBypass ? colors.selected : '#BDBDBD');
   strokeWeight(muxBBypass ? 2.5 : 1.5);
   setLineDash(muxBBypass ? [] : [4, 4]);
-  line(190 * scale, 270, 230 * scale, 250);
-  line(230 * scale, 250, 370 * scale, 265);
+  line(200 * scale, 295, 240 * scale, 272);
+  line(240 * scale, 272, 380 * scale, 290);
   setLineDash([]);
 
   // FF-B to MUX-B (registered path)
   stroke(!muxBBypass ? colors.selected : '#BDBDBD');
   strokeWeight(!muxBBypass ? 2.5 : 1.5);
   setLineDash(!muxBBypass ? [] : [4, 4]);
-  line(330 * scale, 275, 370 * scale, 285);
+  line(345 * scale, 300, 380 * scale, 310);
   setLineDash([]);
 
   // MUX-A output wire
   strokeWeight(2);
   stroke(colors.outputWire);
   setLineDash([]);
-  line(410 * scale, 110, 470 * scale, 110);
+  line(425 * scale, 115, 475 * scale, 115);
 
   // MUX-B output wire
-  line(410 * scale, 280, 470 * scale, 280);
+  line(425 * scale, 305, 475 * scale, 305);
 
   // Animated signal dot
   if (animateSignal) {
@@ -206,46 +228,46 @@ function drawWires(scale) {
 
     // Dot on path A
     if (muxABypass) {
-      let dx = lerp(190 * scale, 370 * scale, dotPhase);
-      let dy = lerp(100, 95, dotPhase);
+      let dx = lerp(200 * scale, 380 * scale, dotPhase);
+      let dy = lerp(105, 100, dotPhase);
       ellipse(dx, dy, 8);
     } else {
       if (dotPhase < 0.5) {
-        let dx = lerp(190 * scale, 260 * scale, dotPhase * 2);
-        ellipse(dx, 107, 8);
+        let dx = lerp(200 * scale, 265 * scale, dotPhase * 2);
+        ellipse(dx, 112, 8);
       } else {
-        let dx = lerp(330 * scale, 370 * scale, (dotPhase - 0.5) * 2);
-        ellipse(dx, 110, 8);
+        let dx = lerp(345 * scale, 380 * scale, (dotPhase - 0.5) * 2);
+        ellipse(dx, 115, 8);
       }
     }
 
     // Dot on path B
     let dotPhaseB = (signalPhase + 0.3) % 1;
     if (muxBBypass) {
-      let dx = lerp(190 * scale, 370 * scale, dotPhaseB);
-      let dy = lerp(270, 265, dotPhaseB);
+      let dx = lerp(200 * scale, 380 * scale, dotPhaseB);
+      let dy = lerp(295, 290, dotPhaseB);
       ellipse(dx, dy, 8);
     } else {
       if (dotPhaseB < 0.5) {
-        let dx = lerp(190 * scale, 260 * scale, dotPhaseB * 2);
-        ellipse(dx, 277, 8);
+        let dx = lerp(200 * scale, 265 * scale, dotPhaseB * 2);
+        ellipse(dx, 302, 8);
       } else {
-        let dx = lerp(330 * scale, 370 * scale, (dotPhaseB - 0.5) * 2);
-        ellipse(dx, 280, 8);
+        let dx = lerp(345 * scale, 380 * scale, (dotPhaseB - 0.5) * 2);
+        ellipse(dx, 305, 8);
       }
     }
   }
 }
 
 function drawCarryChain(scale) {
-  let cx = 235 * scale;
+  let cx = 242 * scale;
 
   // Vertical carry path
   stroke(colors.carry);
   strokeWeight(3);
-  line(cx, 430, cx, 370);
-  line(cx, 370, cx, 190);
-  line(cx, 190, cx, 50);
+  line(cx, 470, cx, 400);
+  line(cx, 400, cx, 200);
+  line(cx, 200, cx, 50);
 
   // Arrow at top (Cout)
   fill(colors.carry);
@@ -253,15 +275,15 @@ function drawCarryChain(scale) {
   triangle(cx - 6, 60, cx + 6, 60, cx, 48);
 
   // Arrow at bottom (Cin)
-  triangle(cx - 6, 425, cx + 6, 425, cx, 435);
+  triangle(cx - 6, 465, cx + 6, 465, cx, 475);
 
   // Labels
   fill(colors.carry);
   textSize(10);
   textAlign(CENTER, CENTER);
   noStroke();
-  text('Cout', cx + 20, 50);
-  text('Cin', cx + 18, 435);
+  text('Cout', cx + 22, 50);
+  text('Cin', cx + 20, 475);
 
   // Carry logic box
   let comp = components[6]; // Carry component
@@ -279,7 +301,7 @@ function drawCarryChain(scale) {
   text('Logic', (comp.x + comp.w / 2) * scale, comp.y + 38);
 }
 
-function drawComponent(comp, scale) {
+function drawComponent(comp, scale, offsetX) {
   if (comp.type === 'carry') return; // Already drawn
 
   let isSelected = selectedComponent === comp.name;
@@ -297,6 +319,7 @@ function drawComponent(comp, scale) {
   // Draw shape based on type
   if (comp.type === 'mux') {
     // Trapezoid shape for MUX
+    let isBypass = comp.name === 'MUX-A' ? muxABypass : muxBBypass;
     fill(fillColor);
     stroke(isSelected ? '#F57F17' : '#BF360C');
     strokeWeight(2);
@@ -311,13 +334,31 @@ function drawComponent(comp, scale) {
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(10);
-    text('MUX', cx + cw / 2, comp.y + comp.h / 2 - 7);
+    textSize(11);
+    text('MUX', cx + cw / 2, comp.y + comp.h / 2 - 8);
 
-    // Show bypass state
-    let isBypass = comp.name === 'MUX-A' ? muxABypass : muxBBypass;
     textSize(8);
-    text(isBypass ? 'COMB' : 'REG', cx + cw / 2, comp.y + comp.h / 2 + 8);
+    text(isBypass ? 'COMB' : 'REG', cx + cw / 2, comp.y + comp.h / 2 + 6);
+
+    // Clickable bit box for MUX mode
+    let boxW = 26;
+    let boxH = 16;
+    let boxX = cx + cw / 2 - boxW / 2;
+    let boxY = comp.y + comp.h - boxH - 4;
+
+    fill(isBypass ? color(255, 152, 0) : color(76, 175, 80));
+    stroke(isBypass ? color(230, 126, 0) : color(56, 142, 60));
+    strokeWeight(1.5);
+    rect(boxX, boxY, boxW, boxH, 3);
+
+    fill(255);
+    noStroke();
+    textSize(10);
+    textStyle(BOLD);
+    text(isBypass ? '0' : '1', boxX + boxW / 2, boxY + boxH / 2);
+    textStyle(NORMAL);
+
+    comp._bitBox = { x: boxX + offsetX, y: boxY, w: boxW, h: boxH };
   } else if (comp.type === 'ff') {
     // Rectangle with triangle (clock) for FF
     fill(fillColor);
@@ -334,10 +375,10 @@ function drawComponent(comp, scale) {
 
     // FF label
     textAlign(CENTER, CENTER);
-    textSize(12);
-    text(comp.name, cx + cw / 2, comp.y + comp.h / 2 - 5);
-    textSize(9);
-    text('D-FF', cx + cw / 2, comp.y + comp.h / 2 + 10);
+    textSize(13);
+    text(comp.name, cx + cw / 2, comp.y + comp.h / 2 - 6);
+    textSize(10);
+    text('D-FF', cx + cw / 2, comp.y + comp.h / 2 + 12);
   } else if (comp.type === 'lut') {
     // Rounded rectangle for LUT
     fill(fillColor);
@@ -349,10 +390,10 @@ function drawComponent(comp, scale) {
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(12);
-    text(comp.name, cx + cw / 2, comp.y + comp.h / 2 - 8);
-    textSize(9);
-    text('4-Input', cx + cw / 2, comp.y + comp.h / 2 + 8);
+    textSize(13);
+    text(comp.name, cx + cw / 2, comp.y + comp.h / 2 - 10);
+    textSize(10);
+    text('4-Input', cx + cw / 2, comp.y + comp.h / 2 + 6);
     text('16x1 SRAM', cx + cw / 2, comp.y + comp.h / 2 + 20);
   }
 }
@@ -364,11 +405,11 @@ function drawInputLabels(scale) {
   fill(colors.inputWire);
   noStroke();
   textAlign(RIGHT, CENTER);
-  textSize(10);
+  textSize(11);
 
   // LUT-A inputs
   for (let i = 0; i < 4; i++) {
-    let y = 80 + i * 18;
+    let y = 82 + i * 20;
     text(inputLabels[i], inputX - 5, y);
     stroke(colors.inputWire);
     strokeWeight(1.5);
@@ -378,7 +419,7 @@ function drawInputLabels(scale) {
 
   // LUT-B inputs
   for (let i = 0; i < 4; i++) {
-    let y = 250 + i * 18;
+    let y = 272 + i * 20;
     text(inputLabels[i], inputX - 5, y);
     stroke(colors.inputWire);
     strokeWeight(1.5);
@@ -388,22 +429,22 @@ function drawInputLabels(scale) {
 }
 
 function drawOutputLabels(scale) {
-  let outX = 475 * scale;
+  let outX = 480 * scale;
 
   fill(colors.outputWire);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(11);
+  textSize(12);
 
   // Output A
-  text('Out-A', outX + 5, 110);
+  text('Out-A', outX + 5, 115);
   // Output B
-  text('Out-B', outX + 5, 280);
+  text('Out-B', outX + 5, 305);
 }
 
 function drawClockSignal(scale) {
   let clkX = 50 * scale;
-  let clkY = 360;
+  let clkY = 390;
 
   fill(colors.text);
   noStroke();
@@ -431,16 +472,16 @@ function drawClockSignal(scale) {
   stroke('#E91E63');
   strokeWeight(1);
   setLineDash([3, 3]);
-  line(waveX + 28, clkY, 260 * scale, clkY);
-  line(295 * scale, clkY, 295 * scale, 135);
-  line(295 * scale, clkY, 295 * scale, 305);
+  line(waveX + 28, clkY, 265 * scale, clkY);
+  line(305 * scale, clkY, 305 * scale, 145);
+  line(305 * scale, clkY, 305 * scale, 335);
   setLineDash([]);
 }
 
 function drawInfoPanel() {
   if (selectedComponent) {
-    let panelY = drawHeight - 55;
-    let panelH = 50;
+    let panelY = drawHeight - 65;
+    let panelH = 60;
 
     fill(255, 255, 255, 230);
     stroke(colors.selected);
@@ -451,8 +492,8 @@ function drawInfoPanel() {
     fill(colors.text);
     noStroke();
     textAlign(LEFT, TOP);
-    textSize(10);
-    text(infoText, 20, panelY + 8, canvasWidth - 40, panelH - 10);
+    textSize(11);
+    text(infoText, 20, panelY + 10, canvasWidth - 40, panelH - 12);
   } else {
     let panelY = drawHeight - 30;
     fill('#999');
@@ -472,6 +513,20 @@ function mousePressed() {
   let offsetX = (canvasWidth - 520 * scale) / 2;
   let mx = mouseX - offsetX;
   let my = mouseY;
+
+  // Check MUX bit box clicks first (using absolute coords stored in _bitBox)
+  for (let comp of components) {
+    if (comp.type === 'mux' && comp._bitBox) {
+      let bb = comp._bitBox;
+      if (mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+          mouseY >= bb.y && mouseY <= bb.y + bb.h) {
+        selectedComponent = comp.name;
+        if (comp.name === 'MUX-A') muxABypass = !muxABypass;
+        else if (comp.name === 'MUX-B') muxBBypass = !muxBBypass;
+        return;
+      }
+    }
+  }
 
   // Check component clicks
   for (let comp of components) {
