@@ -33,6 +33,9 @@ let controlSignals = {
   load_result: false
 };
 
+// Button bounds
+let _clockBtn, _aBtn, _bBtn, _resetBtn;
+
 // Colors
 const COLOR_FSM = '#5C6BC0';
 const COLOR_DATAPATH = '#FF7043';
@@ -76,6 +79,14 @@ function draw() {
   drawDatapath(dpAreaX, dpAreaWidth);
   drawControlSignals(fsmAreaWidth, dpAreaX);
   drawControls();
+
+  // Hand cursor on hover
+  let hovering = false;
+  if (_clockBtn && isInside(mouseX, mouseY, _clockBtn)) hovering = true;
+  if (_aBtn && isInside(mouseX, mouseY, _aBtn)) hovering = true;
+  if (_bBtn && isInside(mouseX, mouseY, _bBtn)) hovering = true;
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
+  cursor(hovering ? HAND : ARROW);
 }
 
 function drawFSM(areaWidth) {
@@ -387,44 +398,103 @@ function drawControls() {
   noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
-  // Clock button
-  let clockBtnX = canvasWidth / 2 - 90;
-  let clockBtnY = drawHeight + 10;
-  let btnW = 80;
-  let btnH = 30;
+  let btnH = 34;
+  let spacing = 8;
+  let y = drawHeight + 8;
+  let x = 10;
 
-  let hoverClock = mouseX > clockBtnX && mouseX < clockBtnX + btnW &&
-                   mouseY > clockBtnY && mouseY < clockBtnY + btnH;
+  textAlign(CENTER, CENTER);
 
-  fill(hoverClock ? '#1976D2' : COLOR_FSM);
+  // Clock button (prominent)
+  let clkW = 75;
+  _clockBtn = { x: x, y: y, w: clkW, h: btnH };
+  fill(COLOR_FSM);
   stroke('#303F9F');
-  strokeWeight(1);
-  rect(clockBtnX, clockBtnY, btnW, btnH, 5);
-
+  strokeWeight(2);
+  rect(x, y, clkW, btnH, 5);
   fill(255);
   noStroke();
-  textSize(13);
   textStyle(BOLD);
+  textSize(14);
+  text('Clock', x + clkW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+
+  // Input A bit box
+  x += clkW + spacing;
+  let boxW = 55;
+  fill(80);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  textStyle(BOLD);
+  text('A', x, y + btnH / 2);
+  textStyle(NORMAL);
+  let aBoxX = x + 14;
+  let aBoxW = boxW - 16;
+  fill(COLOR_DATAPATH);
+  stroke('#D84315');
+  strokeWeight(2);
+  rect(aBoxX, y + 3, aBoxW, btnH - 6, 4);
+  fill(255);
+  noStroke();
   textAlign(CENTER, CENTER);
-  text("Clock", clockBtnX + btnW / 2, clockBtnY + btnH / 2);
+  textSize(14);
+  textStyle(BOLD);
+  text(inputA, aBoxX + aBoxW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+  _aBtn = { x: aBoxX, y: y + 3, w: aBoxW, h: btnH - 6 };
+
+  // Input B bit box
+  x += boxW + spacing;
+  fill(80);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  textStyle(BOLD);
+  text('B', x, y + btnH / 2);
+  textStyle(NORMAL);
+  let bBoxX = x + 14;
+  let bBoxW = boxW - 16;
+  fill(COLOR_DATAPATH);
+  stroke('#D84315');
+  strokeWeight(2);
+  rect(bBoxX, y + 3, bBoxW, btnH - 6, 4);
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text(inputB, bBoxX + bBoxW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+  _bBtn = { x: bBoxX, y: y + 3, w: bBoxW, h: btnH - 6 };
 
   // Reset button
-  let resetBtnX = canvasWidth / 2 + 10;
-
-  let hoverReset = mouseX > resetBtnX && mouseX < resetBtnX + btnW &&
-                   mouseY > resetBtnY && mouseY < resetBtnY + btnH;
-  let resetBtnY = drawHeight + 10;
-
-  fill(hoverReset ? '#D32F2F' : '#F44336');
+  x += boxW + spacing;
+  let rstW = 60;
+  _resetBtn = { x: x, y: y, w: rstW, h: btnH };
+  fill('#F44336');
   stroke('#C62828');
-  rect(resetBtnX, resetBtnY, btnW, btnH, 5);
-
+  strokeWeight(2);
+  rect(x, y, rstW, btnH, 5);
   fill(255);
   noStroke();
-  textSize(13);
+  textSize(12);
   textStyle(BOLD);
-  textAlign(CENTER, CENTER);
-  text("Reset", resetBtnX + btnW / 2, resetBtnY + btnH / 2);
+  text('Reset', x + rstW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+
+  // State display box
+  x += rstW + spacing;
+  let stateW = 80;
+  fill(currentState === DONE ? COLOR_ACTIVE : COLOR_FSM);
+  stroke(currentState === DONE ? '#388E3C' : '#303F9F');
+  strokeWeight(2);
+  rect(x, y + 2, stateW, btnH - 4, 5);
+  fill(255);
+  noStroke();
+  textSize(12);
+  textStyle(BOLD);
+  text(stateNames[currentState], x + stateW / 2, y + btnH / 2);
   textStyle(NORMAL);
 }
 
@@ -485,26 +555,35 @@ function resetSystem() {
 }
 
 function mousePressed() {
-  let btnW = 80;
-  let btnH = 30;
-  let clockBtnX = canvasWidth / 2 - 90;
-  let clockBtnY = drawHeight + 10;
-  let resetBtnX = canvasWidth / 2 + 10;
-  let resetBtnY = drawHeight + 10;
-
   // Clock button
-  if (mouseX > clockBtnX && mouseX < clockBtnX + btnW &&
-      mouseY > clockBtnY && mouseY < clockBtnY + btnH) {
+  if (_clockBtn && isInside(mouseX, mouseY, _clockBtn)) {
     advanceClock();
     return;
   }
 
+  // Input A toggle (cycle 0-9)
+  if (_aBtn && isInside(mouseX, mouseY, _aBtn)) {
+    inputA = (inputA + 1) % 10;
+    if (currentState === IDLE) resetSystem();
+    return;
+  }
+
+  // Input B toggle (cycle 0-9)
+  if (_bBtn && isInside(mouseX, mouseY, _bBtn)) {
+    inputB = (inputB + 1) % 10;
+    if (currentState === IDLE) resetSystem();
+    return;
+  }
+
   // Reset button
-  if (mouseX > resetBtnX && mouseX < resetBtnX + btnW &&
-      mouseY > resetBtnY && mouseY < resetBtnY + btnH) {
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) {
     resetSystem();
     return;
   }
+}
+
+function isInside(mx, my, bounds) {
+  return mx > bounds.x && mx < bounds.x + bounds.w && my > bounds.y && my < bounds.y + bounds.h;
 }
 
 function windowResized() {
