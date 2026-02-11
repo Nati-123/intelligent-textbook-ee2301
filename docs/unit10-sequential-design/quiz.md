@@ -18,10 +18,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Parallel load (all four bits loaded simultaneously)
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. The universal shift register uses a 2-bit mode selector to control four operations: $S_1 S_0 = 00$ (hold), $S_1 S_0 = 01$ (shift right), $S_1 S_0 = 10$ (shift left), $S_1 S_0 = 11$ (parallel load). Each flip-flop's D input is driven by a 4-to-1 MUX controlled by $S_1 S_0$, selecting among the current value (hold), the left-neighbor output (shift right), the right-neighbor output (shift left), or the external data input (parallel load).
+**Answer:** The correct answer is **B**. The universal shift register uses a 2-bit mode selector to control four operations: $S_1 S_0 = 00$ (hold), $S_1 S_0 = 01$ (shift right), $S_1 S_0 = 10$ (shift left), $S_1 S_0 = 11$ (parallel load). Each flip-flop's D input is driven by a 4-to-1 MUX controlled by $S_1 S_0$, selecting among the current value (hold), the left-neighbor output (shift right), the right-neighbor output (shift left), or the external data input (parallel load).
 
-    **Concept Tested:** Universal Shift Register
+**Concept Tested:** Universal Shift Register
 
 ---
 
@@ -34,10 +33,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. 4 states: a Gray code sequence 0000 → 0001 → 0011 → 0010
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. A Johnson counter feeds the complement of the last flip-flop's output ($\overline{Q_0}$) back to the first flip-flop's input, "twisting" the shift register. This doubles the number of unique states compared to a ring counter: $n$ flip-flops produce $2n$ states. For 4 flip-flops: 8 states. The sequence fills with 1s from the left (0000 → 1000 → 1100 → 1110 → 1111), then drains with 0s from the left (1111 → 0111 → 0011 → 0001). Each consecutive state differs by exactly one bit, and each state can be decoded with a single 2-input AND gate examining adjacent flip-flop pairs.
+**Answer:** The correct answer is **C**. A Johnson counter feeds the complement of the last flip-flop's output ($\overline{Q_0}$) back to the first flip-flop's input, "twisting" the shift register. This doubles the number of unique states compared to a ring counter: $n$ flip-flops produce $2n$ states. For 4 flip-flops: 8 states. The sequence fills with 1s from the left (0000 → 1000 → 1100 → 1110 → 1111), then drains with 0s from the left (1111 → 0111 → 0011 → 0001). Each consecutive state differs by exactly one bit, and each state can be decoded with a single 2-input AND gate examining adjacent flip-flop pairs.
 
-    **Concept Tested:** Johnson Counter (Twisted Ring Counter)
+**Concept Tested:** Johnson Counter (Twisted Ring Counter)
 
 ---
 
@@ -50,10 +48,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Moore outputs are always active-low; Mealy outputs are always active-high
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. In a Moore machine, the output function is $O = \lambda(S)$—outputs are associated with states and written inside state circles on the state diagram. In a Mealy machine, $O = \lambda(S, I)$—outputs are associated with transitions and written on the arrows. This means Moore outputs change only at clock edges (when the state changes), while Mealy outputs can change asynchronously whenever inputs change. Moore machines often require more states but produce glitch-free synchronous outputs. Both models are equally powerful in terms of what behaviors they can implement.
+**Answer:** The correct answer is **A**. In a Moore machine, the output function is $O = \lambda(S)$—outputs are associated with states and written inside state circles on the state diagram. In a Mealy machine, $O = \lambda(S, I)$—outputs are associated with transitions and written on the arrows. This means Moore outputs change only at clock edges (when the state changes), while Mealy outputs can change asynchronously whenever inputs change. Moore machines often require more states but produce glitch-free synchronous outputs. Both models are equally powerful in terms of what behaviors they can implement.
 
-    **Concept Tested:** Moore Machine Model / Mealy Machine Model
+**Concept Tested:** Moore Machine Model / Mealy Machine Model
 
 ---
 
@@ -66,10 +63,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Only when $Q_1$ transitions from 1 to 0
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. In a synchronous up counter, bit $i$ toggles when all lower-order bits are simultaneously 1. The toggle equations are: $T_0 = 1$, $T_1 = Q_0$, $T_2 = Q_0 \cdot Q_1$, $T_3 = Q_0 \cdot Q_1 \cdot Q_2$. Observing the binary sequence: $Q_2$ changes between counts 011→100 (all lower bits are 1) and 111→000 (all lower bits are 1). When $Q_0 = Q_1 = 1$, the AND gate produces $T_2 = 1$, causing $Q_2$ to toggle at the next clock edge. Option D describes ripple counter behavior (asynchronous), not synchronous counter behavior.
+**Answer:** The correct answer is **C**. In a synchronous up counter, bit $i$ toggles when all lower-order bits are simultaneously 1. The toggle equations are: $T_0 = 1$, $T_1 = Q_0$, $T_2 = Q_0 \cdot Q_1$, $T_3 = Q_0 \cdot Q_1 \cdot Q_2$. Observing the binary sequence: $Q_2$ changes between counts 011→100 (all lower bits are 1) and 111→000 (all lower bits are 1). When $Q_0 = Q_1 = 1$, the AND gate produces $T_2 = 1$, causing $Q_2$ to toggle at the next clock edge. Option D describes ripple counter behavior (asynchronous), not synchronous counter behavior.
 
-    **Concept Tested:** Synchronous Counter Design / Binary Up Counter
+**Concept Tested:** Synchronous Counter Design / Binary Up Counter
 
 ---
 
@@ -82,10 +78,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. State 0000 (decimal 0)—the initial state
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. The synchronous reset method lets the counter increment normally through states 0000–1001 (0–9). On the clock edge following state 1001, the counter would naturally advance to 1010 (decimal 10). The detection logic recognizes this state ($Q_3 \cdot \overline{Q_2} \cdot Q_1 \cdot \overline{Q_0}$, or simply $Q_3 \cdot Q_1$ if we exploit that states 1011–1111 never occur) and forces all flip-flops back to 0000. The counter momentarily enters state 1010 for less than one clock period before resetting—in synchronous designs, this transient is resolved within the same clock cycle.
+**Answer:** The correct answer is **A**. The synchronous reset method lets the counter increment normally through states 0000–1001 (0–9). On the clock edge following state 1001, the counter would naturally advance to 1010 (decimal 10). The detection logic recognizes this state ($Q_3 \cdot \overline{Q_2} \cdot Q_1 \cdot \overline{Q_0}$, or simply $Q_3 \cdot Q_1$ if we exploit that states 1011–1111 never occur) and forces all flip-flops back to 0000. The counter momentarily enters state 1010 for less than one clock period before resetting—in synchronous designs, this transient is resolved within the same clock cycle.
 
-    **Concept Tested:** Modulo-N Counters / BCD Counter (Decade Counter)
+**Concept Tested:** Modulo-N Counters / BCD Counter (Decade Counter)
 
 ---
 
@@ -98,10 +93,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. $D_0 = X$
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. With D flip-flops, the design relationship is direct: $D_i = Q_i^+$ (the D input equals the desired next-state value for that bit). If the transition table shows that $Q_0^+ = X$ for all current-state and input combinations, then $D_0 = X$. This is one of the key advantages of D flip-flops in FSM design—the next-state expressions from the transition table become the flip-flop input equations directly, without the additional conversion step required by JK or T flip-flops (which use excitation tables).
+**Answer:** The correct answer is **D**. With D flip-flops, the design relationship is direct: $D_i = Q_i^+$ (the D input equals the desired next-state value for that bit). If the transition table shows that $Q_0^+ = X$ for all current-state and input combinations, then $D_0 = X$. This is one of the key advantages of D flip-flops in FSM design—the next-state expressions from the transition table become the flip-flop input equations directly, without the additional conversion step required by JK or T flip-flops (which use excitation tables).
 
-    **Concept Tested:** Next-State Logic Design / FSM Design Procedure
+**Concept Tested:** Next-State Logic Design / FSM Design Procedure
 
 ---
 
@@ -114,10 +108,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Parallel-In-Parallel-Out (PIPO)
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. Parallel-to-serial conversion requires a PISO shift register. In one clock cycle, all 8 bits are loaded simultaneously via the parallel inputs (parallel load operation). Then, over the next 8 clock cycles, the bits are shifted out one at a time through the serial output. SISO is for delay lines (serial in, serial out). SIPO performs the inverse operation: serial-to-parallel conversion. PIPO is equivalent to a parallel load register with no shifting capability.
+**Answer:** The correct answer is **C**. Parallel-to-serial conversion requires a PISO shift register. In one clock cycle, all 8 bits are loaded simultaneously via the parallel inputs (parallel load operation). Then, over the next 8 clock cycles, the bits are shifted out one at a time through the serial output. SISO is for delay lines (serial in, serial out). SIPO performs the inverse operation: serial-to-parallel conversion. PIPO is equivalent to a parallel load register with no shifting capability.
 
-    **Concept Tested:** Shift Register Types / PISO Register
+**Concept Tested:** Shift Register Types / PISO Register
 
 ---
 
@@ -130,10 +123,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Power optimization: fewer state transitions between non-adjacent states reduces switching activity
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. Overlapping detection allows the suffix of one detected pattern to serve as the prefix of the next. When the FSM detects "101" (in $S_3$) and receives input 0, the recent history is "...1010". The last two characters "10" match the beginning of a new "101" pattern, so the machine should be in the "received 10" state ($S_2$), not back at the start ($S_0$). If the next input is 1, the machine will detect "101" again immediately. Without this overlap transition (going to $S_0$ instead), the detector would miss overlapping patterns in sequences like "10101" which should produce two detections.
+**Answer:** The correct answer is **A**. Overlapping detection allows the suffix of one detected pattern to serve as the prefix of the next. When the FSM detects "101" (in $S_3$) and receives input 0, the recent history is "...1010". The last two characters "10" match the beginning of a new "101" pattern, so the machine should be in the "received 10" state ($S_2$), not back at the start ($S_0$). If the next input is 1, the machine will detect "101" again immediately. Without this overlap transition (going to $S_0$ instead), the detector would miss overlapping patterns in sequences like "10101" which should produce two detections.
 
-    **Concept Tested:** Sequence Detector Design / State Diagram Construction
+**Concept Tested:** Sequence Detector Design / State Diagram Construction
 
 ---
 
@@ -146,10 +138,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. One-hot encoding eliminates the need for a system clock signal
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. In one-hot encoding, each state is identified by a single flip-flop being 1. The next-state logic for each flip-flop is typically a simple OR of AND terms involving one state bit and one input—often fitting within a single LUT. Binary encoding uses fewer flip-flops ($\lceil\log_2 N\rceil$) but the next-state logic involves decoding the full binary state, requiring more LUT inputs and potentially multiple logic levels. Since FPGAs provide flip-flops abundantly (one per LUT), the one-hot trade-off—more flip-flops for simpler, faster logic—is often favorable. For an 8-state FSM: binary uses 3 flip-flops with complex logic, one-hot uses 8 flip-flops with simple 1–2 level logic.
+**Answer:** The correct answer is **B**. In one-hot encoding, each state is identified by a single flip-flop being 1. The next-state logic for each flip-flop is typically a simple OR of AND terms involving one state bit and one input—often fitting within a single LUT. Binary encoding uses fewer flip-flops ($\lceil\log_2 N\rceil$) but the next-state logic involves decoding the full binary state, requiring more LUT inputs and potentially multiple logic levels. Since FPGAs provide flip-flops abundantly (one per LUT), the one-hot trade-off—more flip-flops for simpler, faster logic—is often favorable. For an 8-state FSM: binary uses 3 flip-flops with complex logic, one-hot uses 8 flip-flops with simple 1–2 level logic.
 
-    **Concept Tested:** One-Hot State Encoding / State Assignment Strategies
+**Concept Tested:** One-Hot State Encoding / State Assignment Strategies
 
 ---
 
@@ -162,10 +153,9 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 4. Yes—the ripple counter's accumulated propagation delay causes outputs to pass through invalid intermediate states during transitions; a synchronous counter updates all flip-flops simultaneously, eliminating these transient glitches
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. In a ripple counter, each flip-flop is clocked by the previous flip-flop's output, creating a cascade of delays. During the transition from 0111 to 1000, the outputs may momentarily show 0110, 0100, or 0000 as the toggle ripples through the stages (total settling time: $n \times t_{cq}$). If synchronous logic samples the counter during this settling period, it reads an incorrect intermediate value. A synchronous counter clocks all flip-flops from the same clock signal, so all bits transition simultaneously (within one $t_{cq}$) and the outputs are valid after a single flip-flop delay. This eliminates the glitch problem entirely.
+**Answer:** The correct answer is **D**. In a ripple counter, each flip-flop is clocked by the previous flip-flop's output, creating a cascade of delays. During the transition from 0111 to 1000, the outputs may momentarily show 0110, 0100, or 0000 as the toggle ripples through the stages (total settling time: $n \times t_{cq}$). If synchronous logic samples the counter during this settling period, it reads an incorrect intermediate value. A synchronous counter clocks all flip-flops from the same clock signal, so all bits transition simultaneously (within one $t_{cq}$) and the outputs are valid after a single flip-flop delay. This eliminates the glitch problem entirely.
 
-    **Concept Tested:** Asynchronous (Ripple) Counters / Synchronous Counters
+**Concept Tested:** Asynchronous (Ripple) Counters / Synchronous Counters
 
 ---
 

@@ -18,10 +18,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. Combinational circuit outputs depend only on current inputs, with no memory of past states
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. Combinational logic circuits produce outputs that are a pure function of the current input values—they have no memory elements and no concept of history. Sequential logic circuits incorporate feedback and storage elements (latches, flip-flops), so their outputs depend on both current inputs and the circuit's internal state. This distinction is the most fundamental classification in digital circuit design.
+**Answer:** The correct answer is **D**. Combinational logic circuits produce outputs that are a pure function of the current input values—they have no memory elements and no concept of history. Sequential logic circuits incorporate feedback and storage elements (latches, flip-flops), so their outputs depend on both current inputs and the circuit's internal state. This distinction is the most fundamental classification in digital circuit design.
 
-    **Concept Tested:** Combinational vs Sequential Logic
+**Concept Tested:** Combinational vs Sequential Logic
 
 ---
 
@@ -34,10 +33,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. $S = A \cdot B$, $C = A \oplus B$
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. The half adder computes the sum and carry of two single-bit inputs. The Sum output is the XOR: $S = A \oplus B$ (1 when exactly one input is 1). The Carry output is the AND: $C = A \cdot B$ (1 only when both inputs are 1, producing a carry to the next bit position). A half adder has no carry-in input, which limits it to the least-significant bit position in a multi-bit adder.
+**Answer:** The correct answer is **A**. The half adder computes the sum and carry of two single-bit inputs. The Sum output is the XOR: $S = A \oplus B$ (1 when exactly one input is 1). The Carry output is the AND: $C = A \cdot B$ (1 only when both inputs are 1, producing a carry to the next bit position). A half adder has no carry-in input, which limits it to the least-significant bit position in a multi-bit adder.
 
-    **Concept Tested:** Half Adder
+**Concept Tested:** Half Adder
 
 ---
 
@@ -50,10 +48,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. It cannot handle signed (two's complement) numbers
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. In a ripple carry adder, each full adder stage must wait for the carry output of the previous stage before computing its result. For an $n$-bit adder, the worst-case delay is $n$ sequential carry propagations (e.g., adding $0111...1 + 0000...1$). This makes the total delay $O(n)$, which is unacceptable for wide datapaths. Carry-lookahead adders reduce this to $O(\log n)$ by computing carries in parallel.
+**Answer:** The correct answer is **B**. In a ripple carry adder, each full adder stage must wait for the carry output of the previous stage before computing its result. For an $n$-bit adder, the worst-case delay is $n$ sequential carry propagations (e.g., adding $0111...1 + 0000...1$). This makes the total delay $O(n)$, which is unacceptable for wide datapaths. Carry-lookahead adders reduce this to $O(\log n)$ by computing carries in parallel.
 
-    **Concept Tested:** Ripple Carry Adder
+**Concept Tested:** Ripple Carry Adder
 
 ---
 
@@ -66,10 +63,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. It negates the adder's final output
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. The adder-subtractor circuit uses a mode signal $M$ that controls XOR gates on each bit of $B$. When $M = 1$ (subtract mode), each $B_i$ is XORed with 1, complementing it to $\overline{B_i}$. The mode signal also feeds the carry-in, adding 1. This computes $A + \overline{B} + 1 = A + (-B) = A - B$ using two's complement arithmetic. When $M = 0$, $B$ passes through unchanged and carry-in is 0, performing normal addition.
+**Answer:** The correct answer is **A**. The adder-subtractor circuit uses a mode signal $M$ that controls XOR gates on each bit of $B$. When $M = 1$ (subtract mode), each $B_i$ is XORed with 1, complementing it to $\overline{B_i}$. The mode signal also feeds the carry-in, adding 1. This computes $A + \overline{B} + 1 = A + (-B) = A - B$ using two's complement arithmetic. When $M = 0$, $B$ passes through unchanged and carry-in is 0, performing normal addition.
 
-    **Concept Tested:** Adder-Subtractor Circuit
+**Concept Tested:** Adder-Subtractor Circuit
 
 ---
 
@@ -82,10 +78,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. To create a check bit that enables detection of single-bit transmission errors
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. A parity generator creates a parity bit such that the total number of 1s in the data word plus the parity bit is always even (even parity) or always odd (odd parity). The receiver uses a parity checker—an XOR tree—to verify that the received word has correct parity. If a single bit flips during transmission, the parity check fails, flagging the error. The parity generator itself is implemented as a cascade of XOR gates.
+**Answer:** The correct answer is **D**. A parity generator creates a parity bit such that the total number of 1s in the data word plus the parity bit is always even (even parity) or always odd (odd parity). The receiver uses a parity checker—an XOR tree—to verify that the received word has correct parity. If a single bit flips during transmission, the parity check fails, flagging the error. The parity generator itself is implemented as a cascade of XOR gates.
 
-    **Concept Tested:** Parity Generator / Error Detection
+**Concept Tested:** Parity Generator / Error Detection
 
 ---
 
@@ -98,10 +93,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. The code uses hexadecimal digits
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. In Gray code, consecutive values differ in exactly one bit position. This single-bit-change property prevents ambiguous readings in rotary and linear position encoders: during a transition, only one sensor changes state, so the encoder never produces an incorrect intermediate value. In contrast, standard binary code can have multiple bits changing simultaneously (e.g., $011 \rightarrow 100$ changes all three bits), creating transient erroneous readings.
+**Answer:** The correct answer is **C**. In Gray code, consecutive values differ in exactly one bit position. This single-bit-change property prevents ambiguous readings in rotary and linear position encoders: during a transition, only one sensor changes state, so the encoder never produces an incorrect intermediate value. In contrast, standard binary code can have multiple bits changing simultaneously (e.g., $011 \rightarrow 100$ changes all three bits), creating transient erroneous readings.
 
-    **Concept Tested:** Gray Code
+**Concept Tested:** Gray Code
 
 ---
 
@@ -114,10 +108,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. Add input validation logic to reject invalid codes
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. In a properly functioning BCD system, inputs 1010–1111 never occur, so these six combinations can be treated as don't care conditions in the K-maps for each segment function. This gives the minimization algorithm maximum freedom to form larger groups, often producing significantly simpler Boolean expressions. For example, the segment $a$ function with don't cares may simplify from a 4-term expression to a 3-term expression, reducing gate count.
+**Answer:** The correct answer is **B**. In a properly functioning BCD system, inputs 1010–1111 never occur, so these six combinations can be treated as don't care conditions in the K-maps for each segment function. This gives the minimization algorithm maximum freedom to form larger groups, often producing significantly simpler Boolean expressions. For example, the segment $a$ function with don't cares may simplify from a 4-term expression to a 3-term expression, reducing gate count.
 
-    **Concept Tested:** Seven-Segment Decoder / Don't Care Conditions
+**Concept Tested:** Seven-Segment Decoder / Don't Care Conditions
 
 ---
 
@@ -130,10 +123,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. $B_{out} = A + B$
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. The half subtractor computes $A - B$, producing a Difference output $D = A \oplus B$ and a Borrow output $B_{out} = \overline{A} \cdot B$. A borrow is needed when subtracting a 1 ($B = 1$) from a 0 ($A = 0$)—the only case where $\overline{A} \cdot B = 1$. This differs from the half adder's Carry output ($C = A \cdot B$), where $A$ is not complemented.
+**Answer:** The correct answer is **A**. The half subtractor computes $A - B$, producing a Difference output $D = A \oplus B$ and a Borrow output $B_{out} = \overline{A} \cdot B$. A borrow is needed when subtracting a 1 ($B = 1$) from a 0 ($A = 0$)—the only case where $\overline{A} \cdot B = 1$. This differs from the half adder's Carry output ($C = A \cdot B$), where $A$ is not complemented.
 
-    **Concept Tested:** Half Subtractor
+**Concept Tested:** Half Subtractor
 
 ---
 
@@ -146,17 +138,16 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. 1111
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. Applying the conversion formulas to binary $B_3B_2B_1B_0 = 1010$:
+**Answer:** The correct answer is **D**. Applying the conversion formulas to binary $B_3B_2B_1B_0 = 1010$:
 
-    - $G_3 = B_3 = 1$
-    - $G_2 = B_3 \oplus B_2 = 1 \oplus 0 = 1$
-    - $G_1 = B_2 \oplus B_1 = 0 \oplus 1 = 1$
-    - $G_0 = B_1 \oplus B_0 = 1 \oplus 0 = 1$
+- $G_3 = B_3 = 1$
+- $G_2 = B_3 \oplus B_2 = 1 \oplus 0 = 1$
+- $G_1 = B_2 \oplus B_1 = 0 \oplus 1 = 1$
+- $G_0 = B_1 \oplus B_0 = 1 \oplus 0 = 1$
 
-    Gray code result: 1111. This can be verified: adjacent binary values 1001 and 1010 should produce Gray codes differing in exactly one bit.
+Gray code result: 1111. This can be verified: adjacent binary values 1001 and 1010 should produce Gray codes differing in exactly one bit.
 
-    **Concept Tested:** Binary to Gray Code Converter
+**Concept Tested:** Binary to Gray Code Converter
 
 ---
 
@@ -169,10 +160,9 @@ Test your understanding of combinational logic design, arithmetic circuits, comp
 4. Because the XOR operation is applied from MSB to LSB
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. In a positional number system, bit $i$ has weight $2^i$, and the sum of all lower-order bits is $\sum_{j=0}^{i-1} 2^j = 2^i - 1 < 2^i$. Therefore, if $A_i = 1$ and $B_i = 0$ at the first differing position, then $A > B$ regardless of all lower-order bits—even if all remaining bits of $B$ are 1 and all remaining bits of $A$ are 0. This mathematical property enables the MSB-to-LSB cascading architecture used in magnitude comparators like the 7485.
+**Answer:** The correct answer is **C**. In a positional number system, bit $i$ has weight $2^i$, and the sum of all lower-order bits is $\sum_{j=0}^{i-1} 2^j = 2^i - 1 < 2^i$. Therefore, if $A_i = 1$ and $B_i = 0$ at the first differing position, then $A > B$ regardless of all lower-order bits—even if all remaining bits of $B$ are 1 and all remaining bits of $A$ are 0. This mathematical property enables the MSB-to-LSB cascading architecture used in magnitude comparators like the 7485.
 
-    **Concept Tested:** Magnitude Comparator
+**Concept Tested:** Magnitude Comparator
 
 ---
 

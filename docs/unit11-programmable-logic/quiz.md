@@ -18,10 +18,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. The programmable connection map for product terms
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. A ROM implements combinational logic by storing the complete truth table in hardware. Each address corresponds to one input combination, and the data stored at that address provides the corresponding output values. The ROM's fixed decoder (AND plane) generates all $2^n$ minterms, and the programmable OR plane stores which minterms contribute to each output.
+**Answer:** The correct answer is **C**. A ROM implements combinational logic by storing the complete truth table in hardware. Each address corresponds to one input combination, and the data stored at that address provides the corresponding output values. The ROM's fixed decoder (AND plane) generates all $2^n$ minterms, and the programmable OR plane stores which minterms contribute to each output.
 
-    **Concept Tested:** ROM as a Logic Device
+**Concept Tested:** ROM as a Logic Device
 
 ---
 
@@ -34,10 +33,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. EPROM
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. A PAL (Programmable Array Logic) features a programmable AND plane where the designer configures product terms, but a fixed OR plane where each output is permanently connected to a predetermined set of AND gates. This simplification makes PALs faster than PLAs (which have both planes programmable) but prevents product term sharing between outputs.
+**Answer:** The correct answer is **C**. A PAL (Programmable Array Logic) features a programmable AND plane where the designer configures product terms, but a fixed OR plane where each output is permanently connected to a predetermined set of AND gates. This simplification makes PALs faster than PLAs (which have both planes programmable) but prevents product term sharing between outputs.
 
-    **Concept Tested:** Programmable Array Logic (PAL)
+**Concept Tested:** Programmable Array Logic (PAL)
 
 ---
 
@@ -50,10 +48,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. Minimization is equally important for both devices but is optional for ROMs
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. A ROM contains a fixed $n$-to-$2^n$ decoder that generates all possible minterms, so every function is implemented as a complete truth table regardless of complexity—no minimization is needed. A PLA has a finite number of programmable AND gates (product terms), so the designer must minimize functions using K-maps or Quine-McCluskey to ensure the total number of distinct product terms fits within the PLA's capacity.
+**Answer:** The correct answer is **A**. A ROM contains a fixed $n$-to-$2^n$ decoder that generates all possible minterms, so every function is implemented as a complete truth table regardless of complexity—no minimization is needed. A PLA has a finite number of programmable AND gates (product terms), so the designer must minimize functions using K-maps or Quine-McCluskey to ensure the total number of distinct product terms fits within the PLA's capacity.
 
-    **Concept Tested:** PLA Architecture and Programming
+**Concept Tested:** PLA Architecture and Programming
 
 ---
 
@@ -66,10 +63,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. CPLDs use lookup tables that evaluate faster than FPGA routing
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. CPLDs use a global programmable interconnect matrix that provides fixed routing paths between function blocks, resulting in predictable and consistent propagation delays regardless of which blocks are connected. FPGAs use segmented routing where signal delays vary depending on the physical path taken through multiple switch matrices, making timing analysis more complex and delays less predictable.
+**Answer:** The correct answer is **B**. CPLDs use a global programmable interconnect matrix that provides fixed routing paths between function blocks, resulting in predictable and consistent propagation delays regardless of which blocks are connected. FPGAs use segmented routing where signal delays vary depending on the physical path taken through multiple switch matrices, making timing analysis more complex and delays less predictable.
 
-    **Concept Tested:** Complex PLD (CPLD) Architecture
+**Concept Tested:** Complex PLD (CPLD) Architecture
 
 ---
 
@@ -82,10 +78,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. 128
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. A $k$-input LUT stores $2^k$ output values—one for each possible input combination. For a 6-input LUT: $2^6 = 64$ SRAM cells are needed. Each cell stores either a '0' or '1', and the 6 input signals select which cell's value appears at the output via a 64:1 multiplexer.
+**Answer:** The correct answer is **C**. A $k$-input LUT stores $2^k$ output values—one for each possible input combination. For a 6-input LUT: $2^6 = 64$ SRAM cells are needed. Each cell stores either a '0' or '1', and the 6 input signals select which cell's value appears at the output via a 64:1 multiplexer.
 
-    **Concept Tested:** Lookup Tables (LUTs)
+**Concept Tested:** Lookup Tables (LUTs)
 
 ---
 
@@ -98,10 +93,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. PLA—because its programmable OR plane can connect any product term to any output
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. A PLA has both a programmable AND plane and a programmable OR plane. The programmable OR plane allows any product term generated in the AND plane to be connected to multiple outputs. In a PAL, the OR plane is fixed, so each output has its own dedicated AND gates and product terms cannot be shared between outputs. Product term sharing is a key advantage of PLAs for multi-output functions.
+**Answer:** The correct answer is **D**. A PLA has both a programmable AND plane and a programmable OR plane. The programmable OR plane allows any product term generated in the AND plane to be connected to multiple outputs. In a PAL, the OR plane is fixed, so each output has its own dedicated AND gates and product terms cannot be shared between outputs. Product term sharing is a key advantage of PLAs for multi-output functions.
 
-    **Concept Tested:** PAL vs PLA Trade-offs
+**Concept Tested:** PAL vs PLA Trade-offs
 
 ---
 
@@ -114,10 +108,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. Functional simulation
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. The FPGA design flow proceeds: Design Entry → Functional Simulation → Synthesis → **Technology Mapping** → Placement → Routing → Timing Analysis → Bitstream Generation → Programming. Technology mapping converts the generic gate-level netlist produced by synthesis into the specific primitives available on the target FPGA (LUTs, flip-flops, carry chains, block RAMs, DSP slices).
+**Answer:** The correct answer is **A**. The FPGA design flow proceeds: Design Entry → Functional Simulation → Synthesis → **Technology Mapping** → Placement → Routing → Timing Analysis → Bitstream Generation → Programming. Technology mapping converts the generic gate-level netlist produced by synthesis into the specific primitives available on the target FPGA (LUTs, flip-flops, carry chains, block RAMs, DSP slices).
 
-    **Concept Tested:** FPGA Design Flow
+**Concept Tested:** FPGA Design Flow
 
 ---
 
@@ -130,10 +123,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. Flash-based FPGA
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. The requirements point to a flash-based FPGA: 100,000 gates exceeds CPLD and PAL capacity; instant-on requires non-volatile configuration storage, which rules out SRAM-based FPGAs that need time to load a bitstream at power-up; and satellite applications demand radiation tolerance—flash-based FPGAs (such as Microchip/Microsemi devices) are preferred for aerospace because their non-volatile configuration is inherently more resistant to radiation-induced bit flips than SRAM cells.
+**Answer:** The correct answer is **D**. The requirements point to a flash-based FPGA: 100,000 gates exceeds CPLD and PAL capacity; instant-on requires non-volatile configuration storage, which rules out SRAM-based FPGAs that need time to load a bitstream at power-up; and satellite applications demand radiation tolerance—flash-based FPGAs (such as Microchip/Microsemi devices) are preferred for aerospace because their non-volatile configuration is inherently more resistant to radiation-induced bit flips than SRAM cells.
 
-    **Concept Tested:** PLD Selection Criteria
+**Concept Tested:** PLD Selection Criteria
 
 ---
 
@@ -146,10 +138,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. The ROM is more efficient because its fixed decoder eliminates the need for minimization
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. A 4-input ROM generates all $2^4 = 16$ minterms through its fixed decoder, regardless of how many the function actually uses. The PLA generates only the 5 product terms needed, and its programmable OR plane allows the 3 shared terms to connect to multiple outputs without duplication. For sparse functions (few product terms relative to total minterms), the PLA is significantly more resource-efficient than a ROM.
+**Answer:** The correct answer is **B**. A 4-input ROM generates all $2^4 = 16$ minterms through its fixed decoder, regardless of how many the function actually uses. The PLA generates only the 5 product terms needed, and its programmable OR plane allows the 3 shared terms to connect to multiple outputs without duplication. For sparse functions (few product terms relative to total minterms), the PLA is significantly more resource-efficient than a ROM.
 
-    **Concept Tested:** ROM as a Logic Device / PLA Architecture
+**Concept Tested:** ROM as a Logic Device / PLA Architecture
 
 ---
 
@@ -162,10 +153,9 @@ Test your understanding of programmable logic device architectures, configuratio
 4. The recommendation is partially correct for cost but ignores the field update requirement
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. Custom ASIC fabrication requires very high non-recurring engineering (NRE) costs for mask design and fabrication. At only 500 units, the per-unit cost savings of an ASIC cannot offset this NRE investment, making the total cost much higher than using an FPGA or CPLD. Furthermore, ASICs cannot be reprogrammed after manufacturing, so the field update requirement eliminates them entirely. An FPGA or CPLD with 10,000-gate capacity would provide low NRE cost, sufficient logic capacity, and reprogrammability for field updates.
+**Answer:** The correct answer is **A**. Custom ASIC fabrication requires very high non-recurring engineering (NRE) costs for mask design and fabrication. At only 500 units, the per-unit cost savings of an ASIC cannot offset this NRE investment, making the total cost much higher than using an FPGA or CPLD. Furthermore, ASICs cannot be reprogrammed after manufacturing, so the field update requirement eliminates them entirely. An FPGA or CPLD with 10,000-gate capacity would provide low NRE cost, sufficient logic capacity, and reprogrammability for field updates.
 
-    **Concept Tested:** Applications of Programmable Logic / PLD Selection Criteria
+**Concept Tested:** Applications of Programmable Logic / PLD Selection Criteria
 
 ---
 

@@ -18,10 +18,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Process
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. The entity declaration defines the external interface of a VHDL component, specifying its name, input ports, output ports, and their data types. It represents the "outside view" of the circuit—equivalent to the symbol on a schematic. The architecture body, which is a separate design unit, defines the internal implementation.
+**Answer:** The correct answer is **B**. The entity declaration defines the external interface of a VHDL component, specifying its name, input ports, output ports, and their data types. It represents the "outside view" of the circuit—equivalent to the symbol on a schematic. The architecture body, which is a separate design unit, defines the internal implementation.
 
-    **Concept Tested:** Entity Declaration
+**Concept Tested:** Entity Declaration
 
 ---
 
@@ -34,10 +33,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. 'U' (Uninitialized)
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. The value 'U' (Uninitialized) in the IEEE 1164 `std_logic` type indicates that a signal has never been driven or assigned. Seeing 'U' in a simulation waveform is a diagnostic clue that a signal was not connected to a driver. In contrast, 'X' means two or more drivers are conflicting, 'Z' is an intentional high-impedance (tri-state) output, and '-' represents a don't-care condition used in synthesis.
+**Answer:** The correct answer is **D**. The value 'U' (Uninitialized) in the IEEE 1164 `std_logic` type indicates that a signal has never been driven or assigned. Seeing 'U' in a simulation waveform is a diagnostic clue that a signal was not connected to a driver. In contrast, 'X' means two or more drivers are conflicting, 'Z' is an intentional high-impedance (tri-state) output, and '-' represents a don't-care condition used in synthesis.
 
-    **Concept Tested:** std_logic and std_logic_vector
+**Concept Tested:** std_logic and std_logic_vector
 
 ---
 
@@ -50,10 +48,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Concurrent assignments can only describe combinational logic while sequential statements describe only sequential logic
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. Concurrent signal assignments in VHDL model hardware wires that are always active and continuously driven—their order in the source code does not matter. Inside a process, statements execute sequentially from top to bottom when the process is activated, similar to software. However, the process itself is a concurrent statement that runs in parallel with other concurrent statements. Both concurrent and sequential statements are synthesizable and can describe either combinational or sequential logic.
+**Answer:** The correct answer is **A**. Concurrent signal assignments in VHDL model hardware wires that are always active and continuously driven—their order in the source code does not matter. Inside a process, statements execute sequentially from top to bottom when the process is activated, similar to software. However, the process itself is a concurrent statement that runs in parallel with other concurrent statements. Both concurrent and sequential statements are synthesizable and can describe either combinational or sequential logic.
 
-    **Concept Tested:** Concurrent Signal Assignment
+**Concept Tested:** Concurrent Signal Assignment
 
 ---
 
@@ -66,10 +63,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Latches are always inferred from `if` statements regardless of whether an `else` clause is present
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. In a combinational process, every output signal must be assigned a value for every possible input combination. When an `if` statement lacks an `else` clause, the signal has no new assignment when the condition is false, so it must "remember" its previous value. This memory behavior requires a latch—an unintended storage element. The solution is to either provide an `else` clause or use a default assignment at the beginning of the process.
+**Answer:** The correct answer is **C**. In a combinational process, every output signal must be assigned a value for every possible input combination. When an `if` statement lacks an `else` clause, the signal has no new assignment when the condition is false, so it must "remember" its previous value. This memory behavior requires a latch—an unintended storage element. The solution is to either provide an `else` clause or use a default assignment at the beginning of the process.
 
-    **Concept Tested:** Combinational Logic in VHDL
+**Concept Tested:** Combinational Logic in VHDL
 
 ---
 
@@ -82,10 +78,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. A 4-bit register
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. The `when-else` conditional signal assignment implements a priority-encoded selection, which synthesizes to a 4:1 multiplexer. The 2-bit `sel` signal selects among four data inputs (`d0` through `d3`), routing the selected input to the output `y`. This directly implements the MUX concept from Unit 8 in VHDL syntax.
+**Answer:** The correct answer is **B**. The `when-else` conditional signal assignment implements a priority-encoded selection, which synthesizes to a 4:1 multiplexer. The 2-bit `sel` signal selects among four data inputs (`d0` through `d3`), routing the selected input to the output `y`. This directly implements the MUX concept from Unit 8 in VHDL syntax.
 
-    **Concept Tested:** Conditional Signal Assignment (when-else)
+**Concept Tested:** Conditional Signal Assignment (when-else)
 
 ---
 
@@ -98,10 +93,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Process with only `rst` in the sensitivity list; `if rising_edge(clk)` nested inside `if rst='0'`
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. An asynchronous reset takes effect immediately, regardless of the clock. The correct pattern includes both `clk` and `rst` in the sensitivity list (so the process responds to changes in either signal), with the reset condition checked first (`if rst='1' then q <= '0';`) and the clock edge checked second (`elsif rising_edge(clk) then q <= d;`). Option B describes a synchronous reset (checked only at clock edges). Options C and D are syntactically incorrect.
+**Answer:** The correct answer is **A**. An asynchronous reset takes effect immediately, regardless of the clock. The correct pattern includes both `clk` and `rst` in the sensitivity list (so the process responds to changes in either signal), with the reset condition checked first (`if rst='1' then q <= '0';`) and the clock edge checked second (`elsif rising_edge(clk) then q <= d;`). Option B describes a synchronous reset (checked only at clock edges). Options C and D are syntactically incorrect.
 
-    **Concept Tested:** D Flip-Flop in VHDL
+**Concept Tested:** D Flip-Flop in VHDL
 
 ---
 
@@ -114,10 +108,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. `count <= std_logic_vector(cnt);`
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. VHDL is strongly typed—you cannot directly assign an `unsigned` value to a `std_logic_vector` port without explicit type conversion. The `std_logic_vector()` function from the `ieee.numeric_std` library converts the `unsigned` signal to `std_logic_vector` for the output port. Option A fails with a type mismatch error. Option B converts to `integer`, which is incompatible with `std_logic_vector`. Option C has the wrong conversion direction.
+**Answer:** The correct answer is **D**. VHDL is strongly typed—you cannot directly assign an `unsigned` value to a `std_logic_vector` port without explicit type conversion. The `std_logic_vector()` function from the `ieee.numeric_std` library converts the `unsigned` signal to `std_logic_vector` for the output port. Option A fails with a type mismatch error. Option B converts to `integer`, which is incompatible with `std_logic_vector`. Option C has the wrong conversion direction.
 
-    **Concept Tested:** VHDL Data Types / Counters in VHDL
+**Concept Tested:** VHDL Data Types / Counters in VHDL
 
 ---
 
@@ -130,10 +123,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. It forces the synthesis tool to use flip-flops instead of latches for the state register
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. The default assignment `next_state <= current_state;` ensures that `next_state` always has a defined value, even for state/input combinations not explicitly covered in the case branches. Without this default, any missing branch would leave `next_state` unassigned for that condition, causing the synthesis tool to infer a latch to hold the previous value. The default says "stay in the current state unless a case branch explicitly changes it," which is both the desired behavior and the correct way to prevent unintended latches.
+**Answer:** The correct answer is **C**. The default assignment `next_state <= current_state;` ensures that `next_state` always has a defined value, even for state/input combinations not explicitly covered in the case branches. Without this default, any missing branch would leave `next_state` unassigned for that condition, causing the synthesis tool to infer a latch to hold the previous value. The default says "stay in the current state unless a case branch explicitly changes it," which is both the desired behavior and the correct way to prevent unintended latches.
 
-    **Concept Tested:** Finite State Machines in VHDL
+**Concept Tested:** Finite State Machines in VHDL
 
 ---
 
@@ -146,10 +138,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Statement (1) has higher propagation delay because it evaluates all states
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. Statement (1) is a Moore output because it depends only on `current_state`—the output is '1' whenever the FSM is in state S1, regardless of input values. Statement (2) is a Mealy output because it depends on both `current_state` and `input_sig`—the output is '1' only when the FSM is in S1 AND the input is '1'. This directly corresponds to the Moore vs Mealy machine distinction from Unit 10: Moore outputs are associated with states, Mealy outputs are associated with state-input combinations.
+**Answer:** The correct answer is **B**. Statement (1) is a Moore output because it depends only on `current_state`—the output is '1' whenever the FSM is in state S1, regardless of input values. Statement (2) is a Mealy output because it depends on both `current_state` and `input_sig`—the output is '1' only when the FSM is in S1 AND the input is '1'. This directly corresponds to the Moore vs Mealy machine distinction from Unit 10: Moore outputs are associated with states, Mealy outputs are associated with state-input combinations.
 
-    **Concept Tested:** Finite State Machines in VHDL / Moore vs Mealy
+**Concept Tested:** Finite State Machines in VHDL / Moore vs Mealy
 
 ---
 
@@ -162,10 +153,9 @@ Test your understanding of VHDL fundamentals including design units, data types,
 4. Simulation uses ideal zero-delay logic models; the real hardware has propagation delays and timing constraints that the testbench did not exercise
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. Functional simulation in VHDL uses ideal models where gates have zero propagation delay (unless explicitly specified with `after` clauses, which are ignored by synthesis). This means simulation verifies logical correctness but not timing correctness. In real hardware, signals have finite propagation delays, and setup/hold time violations can cause incorrect behavior that simulation would not reveal. This is why the FPGA design flow includes static timing analysis after place-and-route—to catch timing violations that functional simulation misses.
+**Answer:** The correct answer is **D**. Functional simulation in VHDL uses ideal models where gates have zero propagation delay (unless explicitly specified with `after` clauses, which are ignored by synthesis). This means simulation verifies logical correctness but not timing correctness. In real hardware, signals have finite propagation delays, and setup/hold time violations can cause incorrect behavior that simulation would not reveal. This is why the FPGA design flow includes static timing analysis after place-and-route—to catch timing violations that functional simulation misses.
 
-    **Concept Tested:** Synthesis vs Simulation
+**Concept Tested:** Synthesis vs Simulation
 
 ---
 

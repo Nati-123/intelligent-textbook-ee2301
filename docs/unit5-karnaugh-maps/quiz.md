@@ -18,10 +18,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. To eliminate the need for don't care conditions
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. Gray code ordering (00, 01, 11, 10) ensures that cells that are physically next to each other on the K-map are also logically adjacent—they differ in exactly one variable. This is the foundational property that makes K-maps work: cells that differ by one variable can be grouped to eliminate that variable from the product term. Standard binary order (00, 01, 10, 11) would place logically non-adjacent cells next to each other, defeating the visual grouping method.
+**Answer:** The correct answer is **C**. Gray code ordering (00, 01, 11, 10) ensures that cells that are physically next to each other on the K-map are also logically adjacent—they differ in exactly one variable. This is the foundational property that makes K-maps work: cells that differ by one variable can be grouped to eliminate that variable from the product term. Standard binary order (00, 01, 10, 11) would place logically non-adjacent cells next to each other, defeating the visual grouping method.
 
-    **Concept Tested:** K-Map Gray Code Order
+**Concept Tested:** K-Map Gray Code Order
 
 ---
 
@@ -34,10 +33,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. Any size from 1 to $2^n$—all group sizes are valid in a K-map
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. Valid K-map groups must contain $2^k$ cells (where $k = 0, 1, 2, ..., n$): that is, 1, 2, 4, 8, or 16 cells. Each doubling of the group size eliminates one variable from the resulting product term: a group of 1 has $n$ literals, a group of 2 has $n-1$ literals, a group of 4 has $n-2$ literals, etc. Groups of 3, 5, 6, or other non-power-of-2 sizes cannot be expressed as a single AND product term.
+**Answer:** The correct answer is **A**. Valid K-map groups must contain $2^k$ cells (where $k = 0, 1, 2, ..., n$): that is, 1, 2, 4, 8, or 16 cells. Each doubling of the group size eliminates one variable from the resulting product term: a group of 1 has $n$ literals, a group of 2 has $n-1$ literals, a group of 4 has $n-2$ literals, etc. Groups of 3, 5, 6, or other non-power-of-2 sizes cannot be expressed as a single AND product term.
 
-    **Concept Tested:** Valid Group Sizes in K-Maps
+**Concept Tested:** Valid Group Sizes in K-Maps
 
 ---
 
@@ -50,10 +48,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. Yes—due to wrap-around in both horizontal and vertical directions, all four corners are mutually adjacent
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. The K-map wraps around in both directions, conceptually forming a torus (donut shape). The four corners correspond to minterms where the two middle variables are both 0 (e.g., $m_0$, $m_2$, $m_8$, $m_{10}$ in a standard 4-variable map). Each pair of corners differs by exactly one variable, making them all mutually adjacent. Grouping all four corners produces a 2-literal product term, eliminating 2 variables. This wrap-around adjacency is one of the most commonly missed groupings by students.
+**Answer:** The correct answer is **D**. The K-map wraps around in both directions, conceptually forming a torus (donut shape). The four corners correspond to minterms where the two middle variables are both 0 (e.g., $m_0$, $m_2$, $m_8$, $m_{10}$ in a standard 4-variable map). Each pair of corners differs by exactly one variable, making them all mutually adjacent. Grouping all four corners produces a 2-literal product term, eliminating 2 variables. This wrap-around adjacency is one of the most commonly missed groupings by students.
 
-    **Concept Tested:** Corner Grouping / Wrap-Around in K-Maps
+**Concept Tested:** Corner Grouping / Wrap-Around in K-Maps
 
 ---
 
@@ -66,10 +63,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. A prime implicant is a group that contains only essential cells
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. An implicant is any valid group of 1s (power-of-2 size, rectangular, respecting adjacency). A prime implicant (PI) is an implicant that is as large as possible—it cannot be expanded further while remaining a valid group. Every minterm is covered by at least one PI. The minimum SOP expression is found by selecting a subset of prime implicants that covers all minterms. Not all PIs are necessarily included in the final solution—only enough to achieve complete coverage.
+**Answer:** The correct answer is **C**. An implicant is any valid group of 1s (power-of-2 size, rectangular, respecting adjacency). A prime implicant (PI) is an implicant that is as large as possible—it cannot be expanded further while remaining a valid group. Every minterm is covered by at least one PI. The minimum SOP expression is found by selecting a subset of prime implicants that covers all minterms. Not all PIs are necessarily included in the final solution—only enough to achieve complete coverage.
 
-    **Concept Tested:** Prime Implicant
+**Concept Tested:** Prime Implicant
 
 ---
 
@@ -82,10 +78,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. It wraps around the K-map edges
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. An essential prime implicant (EPI) covers at least one minterm that no other prime implicant covers. Since that minterm must be included in the function, and the EPI is the only PI that covers it, the EPI is mandatory in every minimum solution. On the prime implicant chart, EPIs are identified by columns (minterms) that contain only a single mark. After selecting all EPIs, the remaining uncovered minterms are handled by choosing additional PIs.
+**Answer:** The correct answer is **A**. An essential prime implicant (EPI) covers at least one minterm that no other prime implicant covers. Since that minterm must be included in the function, and the EPI is the only PI that covers it, the EPI is mandatory in every minimum solution. On the prime implicant chart, EPIs are identified by columns (minterms) that contain only a single mark. After selecting all EPIs, the remaining uncovered minterms are handled by choosing additional PIs.
 
-    **Concept Tested:** Essential Prime Implicant
+**Concept Tested:** Essential Prime Implicant
 
 ---
 
@@ -98,10 +93,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. Don't cares must always be covered by at least one group
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. Don't care cells can be treated as either 1 or 0, whichever produces a simpler expression. Include an X in a group if it enlarges the group (eliminating a variable), but don't cares are NOT required to be covered—they represent input combinations that never occur or whose output doesn't matter. Different groups in the same K-map may treat the same don't care cell differently. This flexibility is what makes don't cares so powerful for minimization.
+**Answer:** The correct answer is **B**. Don't care cells can be treated as either 1 or 0, whichever produces a simpler expression. Include an X in a group if it enlarges the group (eliminating a variable), but don't cares are NOT required to be covered—they represent input combinations that never occur or whose output doesn't matter. Different groups in the same K-map may treat the same don't care cell differently. This flexibility is what makes don't cares so powerful for minimization.
 
-    **Concept Tested:** Using Don't Care Conditions in K-Maps
+**Concept Tested:** Using Don't Care Conditions in K-Maps
 
 ---
 
@@ -114,10 +108,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. Group both 1s and 0s, then select the smaller expression
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **C**. For POS simplification, the 0-cells are grouped (using the same power-of-2, rectangular, adjacency rules as SOP). Each group of 0s yields a sum term where constant-0 variables appear uncomplemented and constant-1 variables appear complemented—the complement of the SOP grouping convention. The final POS expression is the AND (product) of all sum terms. This is the dual procedure of SOP simplification, which groups 1s.
+**Answer:** The correct answer is **C**. For POS simplification, the 0-cells are grouped (using the same power-of-2, rectangular, adjacency rules as SOP). Each group of 0s yields a sum term where constant-0 variables appear uncomplemented and constant-1 variables appear complemented—the complement of the SOP grouping convention. The final POS expression is the AND (product) of all sum terms. This is the dual procedure of SOP simplification, which groups 1s.
 
-    **Concept Tested:** K-Map POS Simplification
+**Concept Tested:** K-Map POS Simplification
 
 ---
 
@@ -130,10 +123,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. $B\overline{C}$
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **D**. When a variable is constant throughout a group, it appears in the product term: uncomplemented if constant 1, complemented if constant 0. Variables that change value across the group are eliminated. Here: $A$ varies (eliminated), $B = 1$ (include $B$), $C = 0$ (include $\overline{C}$), $D$ varies (eliminated). The product term is $B\overline{C}$. This group covers 4 cells ($2^2$, since 2 variables are eliminated), so it has 2 literals.
+**Answer:** The correct answer is **D**. When a variable is constant throughout a group, it appears in the product term: uncomplemented if constant 1, complemented if constant 0. Variables that change value across the group are eliminated. Here: $A$ varies (eliminated), $B = 1$ (include $B$), $C = 0$ (include $\overline{C}$), $D$ varies (eliminated). The product term is $B\overline{C}$. This group covers 4 cells ($2^2$, since 2 variables are eliminated), so it has 2 literals.
 
-    **Concept Tested:** K-Map SOP Simplification / Reading Product Terms
+**Concept Tested:** K-Map SOP Simplification / Reading Product Terms
 
 ---
 
@@ -146,10 +138,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. K-maps require computer software to solve
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **A**. K-maps rely on the human ability to visually spot rectangular groups of adjacent 1s. For 5 variables, two overlaid 4×4 maps are needed, and adjacency between the two halves must be tracked mentally. For 6+ variables, the visual complexity becomes overwhelming and error-prone. The Quine-McCluskey algorithm performs the same minimization systematically and can be computer-automated for any number of variables, though at the cost of exponential worst-case complexity.
+**Answer:** The correct answer is **A**. K-maps rely on the human ability to visually spot rectangular groups of adjacent 1s. For 5 variables, two overlaid 4×4 maps are needed, and adjacency between the two halves must be tracked mentally. For 6+ variables, the visual complexity becomes overwhelming and error-prone. The Quine-McCluskey algorithm performs the same minimization systematically and can be computer-automated for any number of variables, though at the cost of exponential worst-case complexity.
 
-    **Concept Tested:** K-Map Limitations
+**Concept Tested:** K-Map Limitations
 
 ---
 
@@ -162,10 +153,9 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 4. Only in K-maps with 4 or more variables
 </div>
 
-!!! question "Show Answer"
-    The correct answer is **B**. Overlapping groups are allowed and frequently necessary to achieve the minimum expression. In Boolean algebra, $A + A = A$ (idempotent law), so covering a minterm multiple times does not change the function—it simply means that minterm appears in more than one product term. The goal is to select the largest possible groups (prime implicants) to minimize literals, even if some minterms end up covered by multiple groups.
+**Answer:** The correct answer is **B**. Overlapping groups are allowed and frequently necessary to achieve the minimum expression. In Boolean algebra, $A + A = A$ (idempotent law), so covering a minterm multiple times does not change the function—it simply means that minterm appears in more than one product term. The goal is to select the largest possible groups (prime implicants) to minimize literals, even if some minterms end up covered by multiple groups.
 
-    **Concept Tested:** Overlapping Groups in K-Maps
+**Concept Tested:** Overlapping Groups in K-Maps
 
 ---
 
