@@ -28,7 +28,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - Original, student-friendly explanations of digital logic concepts
 - Step-by-step derivations and worked examples
 - Visual learning aids (logic diagrams, truth tables, K-maps, timing diagrams)
-- 79 interactive MicroSims for hands-on learning
+- 103 interactive MicroSims for hands-on learning
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
@@ -43,11 +43,11 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | FAQs | 63 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments |
 | Diagrams | 96 | Visual learning aids |
-| Equations | 3,554 | LaTeX expressions (inline and display) |
-| MicroSims | 79 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 169,140 | Across all markdown files |
-| Links | 306 | Hyperlinks in markdown format |
-| Equivalent Pages | 740 | Estimated pages (250 words/page + visuals) |
+| Equations | 3,882 | LaTeX expressions (inline and display) |
+| MicroSims | 103 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
+| Total Words | 222,449 | Across all markdown files |
+| Links | 379 | Hyperlinks in markdown format |
+| Equivalent Pages | 965 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -91,7 +91,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 ## Interactive MicroSims
 
-The textbook includes **79 interactive MicroSims** organized by unit:
+The textbook includes **103 interactive MicroSims** organized by unit:
 
 | Unit | MicroSims | Examples |
 |------|-----------|----------|
@@ -105,6 +105,9 @@ The textbook includes **79 interactive MicroSims** organized by unit:
 | 8 - Combinational Modules | 6 | MUX Simulator, Decoder Simulator, Priority Encoder |
 | 9 - Sequential Fundamentals | 5 | SR Latch, D Flip-Flop, JK Flip-Flop, Timing Analyzer |
 | 10 - Sequential Design | 5 | Shift Register, Counter Simulator, FSM Designer |
+| 11 - Programmable Logic | 11 | Programmable Connections, ROM Architecture, PLA, LUT Explorer, FPGA Design Flow |
+| 12 - VHDL | 6 | Entity-Architecture Explorer, VHDL Modeling Styles, VHDL FSM Mapper |
+| 13 - System Integration | 7 | Datapath-Controller, Timing Analysis, Digital Lock, UART Transmitter |
 | Gate Truth Tables | 14 | AND, OR, NOT, NAND, NOR, XOR, XNOR, Buffer, Tri-State |
 
 ## Learning Resources
@@ -165,23 +168,21 @@ intelligent-textbook-ee2301/
 │   │   ├── index.md                   # Unit content
 │   │   ├── quiz.md                    # Multiple-choice quiz
 │   │   ├── problems.md                # Practice problems with solutions
+│   │   ├── challenge.md               # Challenge problems with answers
 │   │   └── references.md              # Curated references
 │   ├── unit2-boolean-algebra/         # ... (same structure)
-│   ├── ...                            # Units 3-10
-│   ├── unit11-programmable-logic/
-│   ├── unit12-vhdl/
-│   ├── unit13-system-integration/
+│   ├── ...                            # Units 3-13 (all with quiz, problems, challenge, references)
 │   ├── learning-graph/
 │   │   ├── concept-list.md            # 200 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
-│   └── sims/                          # 79 Interactive MicroSims
+│   └── sims/                          # 103 Interactive MicroSims
 │       ├── index.md                   # MicroSims overview
 │       ├── base-converter/
 │       ├── logic-gate-simulator/
 │       ├── kmap-solver/
 │       ├── fsm-designer/
-│       └── ...                        # (75 more MicroSims)
+│       └── ...                        # (99 more MicroSims)
 ├── mkdocs.yml                         # MkDocs configuration
 └── README.md                          # This file
 ```
@@ -207,7 +208,7 @@ This textbook is designed for:
 |---------|-------------|
 | AI-Assisted Content | Generated with Claude Code for clarity and consistency |
 | Scaffolded Learning | Concepts build on explicit prerequisites |
-| Interactive MicroSims | 79 p5.js simulations you can run in your browser |
+| Interactive MicroSims | 103 p5.js simulations you can run in your browser |
 | Practice Problems | End-of-unit problems with detailed solutions |
 | Self-Assessment | 130 quiz questions with explanations |
 | Comprehensive Glossary | ISO 11179 compliant terminology |
