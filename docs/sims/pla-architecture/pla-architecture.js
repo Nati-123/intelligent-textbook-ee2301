@@ -117,13 +117,47 @@ function draw() {
   // Draw output labels and values
   drawOutputLabels();
 
+  // Hand cursor on hover over clickable elements
+  let hovering = false;
+  // Check input toggles
+  let hSpacing = 70;
+  let hStartX = canvasWidth / 2 - hSpacing;
+  for (let i = 0; i < 3; i++) {
+    let hx = hStartX + i * hSpacing;
+    let hy = topY + 15;
+    if (dist(mouseX, mouseY, hx, hy) < 18) { hovering = true; break; }
+  }
+  // Check AND crosspoints
+  if (!hovering) {
+    for (let r = 0; r < numProducts; r++) {
+      for (let c = 0; c < numInputCols; c++) {
+        let hx = andStartX + c * andCellW + andCellW / 2;
+        let hy = andStartY + r * andCellH + andCellH / 2;
+        if (Math.abs(mouseX - hx) < 11 && Math.abs(mouseY - hy) < 9) { hovering = true; break; }
+      }
+      if (hovering) break;
+    }
+  }
+  // Check OR crosspoints
+  if (!hovering) {
+    for (let r = 0; r < numProducts; r++) {
+      for (let c = 0; c < numOutputs; c++) {
+        let hx = orStartX + c * orCellW + orCellW / 2;
+        let hy = orStartY + r * orCellH + orCellH / 2;
+        if (Math.abs(mouseX - hx) < 11 && Math.abs(mouseY - hy) < 9) { hovering = true; break; }
+      }
+      if (hovering) break;
+    }
+  }
+  cursor(hovering ? HAND : ARROW);
+
   // Info text
   fill(100);
   noStroke();
   textSize(12);
   textAlign(CENTER, CENTER);
   let infoY = andStartY + numProducts * andCellH + 70;
-  text('Click crosspoints to program | Click inputs to toggle', canvasWidth / 2, infoY);
+  text('Click boxes to toggle bits | Click inputs to toggle', canvasWidth / 2, infoY);
 
   if (evaluated) {
     fill(50);
@@ -230,24 +264,35 @@ function drawANDArray() {
     line(andStartX, y, andStartX + numInputCols * andCellW, y);
   }
 
-  // Crosspoints
+  // Crosspoint bit boxes
   for (let r = 0; r < numProducts; r++) {
     for (let c = 0; c < numInputCols; c++) {
       let cx = andStartX + c * andCellW + andCellW / 2;
       let cy = andStartY + r * andCellH + andCellH / 2;
       let isConn = andArray[r][c];
       let isActive = evaluated && productResults[r] === 1;
+      let boxW = 22;
+      let boxH = 18;
 
+      // Box background
       if (isConn) {
         fill(isActive ? '#4CAF50' : '#9C27B0');
-        noStroke();
-        ellipse(cx, cy, 12, 12);
+        stroke(isActive ? '#388E3C' : '#7B1FA2');
       } else {
-        noFill();
+        fill(240);
         stroke(210);
-        strokeWeight(1);
-        ellipse(cx, cy, 8, 8);
       }
+      strokeWeight(1.5);
+      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 3);
+
+      // Bit value
+      fill(isConn ? 255 : 180);
+      noStroke();
+      textSize(11);
+      textAlign(CENTER, CENTER);
+      textStyle(BOLD);
+      text(isConn ? '1' : '0', cx, cy);
+      textStyle(NORMAL);
     }
   }
 }
@@ -276,24 +321,35 @@ function drawORArray() {
     line(orStartX, y, orStartX + numOutputs * orCellW, y);
   }
 
-  // Crosspoints
+  // Crosspoint bit boxes
   for (let r = 0; r < numProducts; r++) {
     for (let c = 0; c < numOutputs; c++) {
       let cx = orStartX + c * orCellW + orCellW / 2;
       let cy = orStartY + r * orCellH + orCellH / 2;
       let isConn = orArray[r][c];
       let isActive = evaluated && productResults[r] === 1 && isConn;
+      let boxW = 22;
+      let boxH = 18;
 
+      // Box background
       if (isConn) {
         fill(isActive ? '#4CAF50' : '#FF5722');
-        noStroke();
-        ellipse(cx, cy, 12, 12);
+        stroke(isActive ? '#388E3C' : '#D84315');
       } else {
-        noFill();
+        fill(240);
         stroke(210);
-        strokeWeight(1);
-        ellipse(cx, cy, 8, 8);
       }
+      strokeWeight(1.5);
+      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 3);
+
+      // Bit value
+      fill(isConn ? 255 : 180);
+      noStroke();
+      textSize(11);
+      textAlign(CENTER, CENTER);
+      textStyle(BOLD);
+      text(isConn ? '1' : '0', cx, cy);
+      textStyle(NORMAL);
     }
   }
 }
@@ -404,7 +460,7 @@ function mousePressed() {
     let y = topY + 15;
     if (dist(mouseX, mouseY, x, y) < 18) {
       inputs[i] = 1 - inputs[i];
-      evaluated = false;
+      evaluatePLA();
       return;
     }
   }
@@ -414,9 +470,9 @@ function mousePressed() {
     for (let c = 0; c < numInputCols; c++) {
       let cx = andStartX + c * andCellW + andCellW / 2;
       let cy = andStartY + r * andCellH + andCellH / 2;
-      if (dist(mouseX, mouseY, cx, cy) < andCellW / 2) {
+      if (Math.abs(mouseX - cx) < 11 && Math.abs(mouseY - cy) < 9) {
         andArray[r][c] = andArray[r][c] ? 0 : 1;
-        evaluated = false;
+        evaluatePLA();
         return;
       }
     }
@@ -427,9 +483,9 @@ function mousePressed() {
     for (let c = 0; c < numOutputs; c++) {
       let cx = orStartX + c * orCellW + orCellW / 2;
       let cy = orStartY + r * orCellH + orCellH / 2;
-      if (dist(mouseX, mouseY, cx, cy) < orCellW / 2) {
+      if (Math.abs(mouseX - cx) < 11 && Math.abs(mouseY - cy) < 9) {
         orArray[r][c] = orArray[r][c] ? 0 : 1;
-        evaluated = false;
+        evaluatePLA();
         return;
       }
     }
