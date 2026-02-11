@@ -3,7 +3,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
+let drawHeight = 530;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -48,61 +48,97 @@ function draw() {
   drawInputToggles();
 
   // Column width
-  let colW = (canvasWidth - 40) / 3;
-  let colStartY = 80;
-  let colH = 340;
+  let colGap = 8;
+  let colW = (canvasWidth - 20 - colGap * 2) / 3;
+  let colStartY = 55;
+  let colH = 420;
 
   // Draw three columns
   drawColumn(0, 10, colStartY, colW, colH, 'Dataflow', DATAFLOW_COLOR, output);
-  drawColumn(1, 15 + colW, colStartY, colW, colH, 'Structural', STRUCTURAL_COLOR, output);
-  drawColumn(2, 20 + colW * 2, colStartY, colW, colH, 'Behavioral', BEHAVIORAL_COLOR, output);
+  drawColumn(1, 10 + colW + colGap, colStartY, colW, colH, 'Structural', STRUCTURAL_COLOR, output);
+  drawColumn(2, 10 + (colW + colGap) * 2, colStartY, colW, colH, 'Behavioral', BEHAVIORAL_COLOR, output);
 
   // Draw shared output at bottom
   drawOutputBar(output);
+
+  // Hand cursor on hover over clickable elements
+  let hovering = false;
+  if (btnA && isInside(mouseX, mouseY, btnA)) hovering = true;
+  if (btnB && isInside(mouseX, mouseY, btnB)) hovering = true;
+  if (btnSel && isInside(mouseX, mouseY, btnSel)) hovering = true;
+  for (let i = 0; i < colHeaders.length; i++) {
+    if (colHeaders[i] && isInside(mouseX, mouseY, colHeaders[i])) { hovering = true; break; }
+  }
+  cursor(hovering ? HAND : ARROW);
 }
 
 function drawInputToggles() {
-  let y = 10;
-  let btnW = 70;
-  let btnH = 28;
-  let spacing = 15;
+  let y = 12;
+  let spacing = 20;
 
-  textAlign(CENTER, CENTER);
-  textSize(13);
+  // Input boxes layout
+  let inputs = [
+    { label: 'A', val: inputA, color: ON_COLOR, offColor: OFF_COLOR },
+    { label: 'B', val: inputB, color: ON_COLOR, offColor: OFF_COLOR },
+    { label: 'Sel', val: inputSel, color: '#E91E63', offColor: '#607D8B' }
+  ];
 
-  // A toggle
-  let ax = 10;
-  btnA = { x: ax, y: y, w: btnW, h: btnH };
-  fill(inputA ? ON_COLOR : OFF_COLOR);
-  noStroke();
-  rect(ax, y, btnW, btnH, 4);
-  fill(255);
-  text('A = ' + inputA, ax + btnW / 2, y + btnH / 2);
+  let totalW = inputs.length * 80 + (inputs.length - 1) * spacing;
+  let startX = (canvasWidth - totalW - 80) / 2;
 
-  // B toggle
-  let bx = ax + btnW + spacing;
-  btnB = { x: bx, y: y, w: btnW, h: btnH };
-  fill(inputB ? ON_COLOR : OFF_COLOR);
-  rect(bx, y, btnW, btnH, 4);
-  fill(255);
-  text('B = ' + inputB, bx + btnW / 2, y + btnH / 2);
+  for (let i = 0; i < inputs.length; i++) {
+    let inp = inputs[i];
+    let bx = startX + i * (80 + spacing);
+    let btnW = 80;
+    let btnH = 32;
 
-  // Sel toggle
-  let sx = bx + btnW + spacing;
-  btnSel = { x: sx, y: y, w: btnW, h: btnH };
-  fill(inputSel ? '#E91E63' : '#607D8B');
-  rect(sx, y, btnW, btnH, 4);
-  fill(255);
-  text('Sel = ' + inputSel, sx + btnW / 2, y + btnH / 2);
+    // Label
+    fill(80);
+    noStroke();
+    textAlign(LEFT, CENTER);
+    textSize(13);
+    textStyle(BOLD);
+    text(inp.label, bx, y + btnH / 2);
+    textStyle(NORMAL);
+
+    // Bit box
+    let boxX = bx + 30;
+    let boxW = 44;
+    let boxH = btnH;
+
+    fill(inp.val ? inp.color : inp.offColor);
+    stroke(inp.val ? inp.color : color(160));
+    strokeWeight(2);
+    rect(boxX, y, boxW, boxH, 5);
+
+    fill(255);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    textStyle(BOLD);
+    text(inp.val, boxX + boxW / 2, y + boxH / 2);
+    textStyle(NORMAL);
+
+    // Store bounds
+    if (i === 0) btnA = { x: boxX, y: y, w: boxW, h: boxH };
+    else if (i === 1) btnB = { x: boxX, y: y, w: boxW, h: boxH };
+    else btnSel = { x: boxX, y: y, w: boxW, h: boxH };
+  }
 
   // Output preview
-  fill(60);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(14);
-  textStyle(BOLD);
   let output = (inputSel === 0) ? inputA : inputB;
-  text('Y = ' + output, sx + btnW + 20, y + btnH / 2);
+  let outX = startX + inputs.length * (80 + spacing);
+  fill(output ? ON_COLOR : OFF_COLOR);
+  stroke(output ? '#388E3C' : color(160));
+  strokeWeight(2);
+  rect(outX, y, 50, 32, 5);
+
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(15);
+  textStyle(BOLD);
+  text('Y=' + output, outX + 25, y + 16);
   textStyle(NORMAL);
 }
 
@@ -132,12 +168,12 @@ function drawColumn(idx, x, y, w, h, title, color, output) {
   textStyle(NORMAL);
 
   // Draw circuit diagram in middle section
-  let diagY = y + 35;
-  let diagH = 130;
+  let diagY = y + 38;
+  let diagH = 150;
   drawCircuitDiagram(idx, x + 5, diagY, w - 10, diagH, color);
 
   // Draw VHDL code at bottom of column
-  let codeY = diagY + diagH + 5;
+  let codeY = diagY + diagH + 8;
   let codeH = h - (codeY - y) - 5;
   drawColumnCode(idx, x + 5, codeY, w - 10, codeH);
 }
@@ -355,9 +391,9 @@ function drawColumnCode(idx, x, y, w, h) {
     ];
   }
 
-  textSize(9);
+  textSize(10);
   textAlign(LEFT, TOP);
-  let lineH = 13;
+  let lineH = 15;
 
   for (let i = 0; i < lines.length; i++) {
     let ly = y + 6 + i * lineH;
@@ -377,16 +413,16 @@ function drawColumnCode(idx, x, y, w, h) {
 }
 
 function drawOutputBar(output) {
-  let y = drawHeight + 10;
-  let barH = 30;
+  let y = drawHeight + 8;
+  let barH = 34;
 
   fill(output ? ON_COLOR : OFF_COLOR);
   noStroke();
-  rect(10, y, canvasWidth - 20, barH, 4);
+  rect(10, y, canvasWidth - 20, barH, 5);
 
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(14);
+  textSize(13);
   textStyle(BOLD);
   text('All 3 styles produce: Y = ' + output + '  (Sel=' + inputSel + ', selecting ' + (inputSel === 0 ? 'A=' + inputA : 'B=' + inputB) + ')', canvasWidth / 2, y + barH / 2);
   textStyle(NORMAL);
