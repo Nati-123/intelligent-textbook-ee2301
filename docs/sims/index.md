@@ -52,6 +52,7 @@ Interactive educational simulations for learning digital system design.
 | [3-Input XOR Gate](3-input-xor-gate/index.md) | L2 Understand | Interactive 3-input XOR gate with truth table |
 | [Gate Cascade Simulator](gate-cascade-simulator/index.md) | L4 Analyze | Simulate multi-level logic gate circuits |
 | [Circuit Analysis & Synthesis](circuit-analysis-synthesis/index.md) | L5 Evaluate | Analyze and synthesize logic circuits |
+| [Boolean Proof Walkthrough](boolean-proof-walkthrough/index.md) | L3 Apply | Step-by-step Boolean algebra proof walkthrough |
 
 ## Unit 3: Applications of Boolean Algebra
 
@@ -65,6 +66,7 @@ Interactive educational simulations for learning digital system design.
 | [Code Converter Demo](code-converter-demo/index.md) | L3 Apply | Convert between Binary, Gray, BCD, Excess-3 |
 | [Seven Segment Decoder](seven-segment-decoder/index.md) | L3 Apply | Design and test a 7-segment decoder |
 | [Don't Care Optimizer](dont-care-optimizer/index.md) | L4 Analyze | Show how don't cares enable optimization |
+| [Full Adder Walkthrough](full-adder-walkthrough/index.md) | L3 Apply | Step-by-step full adder design walkthrough |
 
 ## Unit 4: Minterm & Maxterm Expansions
 
@@ -74,6 +76,7 @@ Interactive educational simulations for learning digital system design.
 | [Minterm Visualizer](minterm-visualizer/index.md) | L2 Understand | Visualize minterms and maxterms |
 | [SOP-POS Converter](sop-pos-converter/index.md) | L3 Apply | Convert between SOP and POS forms |
 | [Shannon Expansion Explorer](shannon-expansion-explorer/index.md) | L4 Analyze | Explore Shannon's expansion theorem |
+| [Minterm Expansion Walkthrough](minterm-expansion-walkthrough/index.md) | L3 Apply | Step-by-step minterm expansion walkthrough |
 
 ## Unit 5: Karnaugh Maps
 
@@ -84,6 +87,7 @@ Interactive educational simulations for learning digital system design.
 | [Prime Implicant Finder](prime-implicant-finder/index.md) | L4 Analyze | Find prime and essential prime implicants |
 | [K-Map with Don't Cares](kmap-dont-cares/index.md) | L3 Apply | K-map simplification with don't cares |
 | [K-Map Practice Challenge](kmap-practice-challenge/index.md) | L3 Apply | Practice problems for K-map simplification |
+| [K-Map Simplification Walkthrough](kmap-simplification-walkthrough/index.md) | L3 Apply | Step-by-step K-map simplification walkthrough |
 
 ## Unit 6: Quine-McCluskey Method
 
@@ -94,6 +98,7 @@ Interactive educational simulations for learning digital system design.
 | [PI Chart Interactive](pi-chart-interactive/index.md) | L4 Analyze | Find essential PIs and minimum cover |
 | [QM Complexity Chart](qm-complexity-chart/index.md) | L5 Evaluate | Compare exact vs heuristic methods |
 | [QM Complete Walkthrough](qm-complete-walkthrough/index.md) | L6 Create | Full end-to-end QM solver |
+| [QM Method Walkthrough](qm-method-walkthrough/index.md) | L3 Apply | Step-by-step Quine-McCluskey method walkthrough |
 
 ## Unit 7: Multi-Level Gate Circuits
 
@@ -103,6 +108,7 @@ Interactive educational simulations for learning digital system design.
 | [Bubble Pushing Simulator](bubble-pushing-simulator/index.md) | L4 Analyze | Interactive bubble pushing technique |
 | [NAND-NOR Converter](nand-nor-converter/index.md) | L3-L4 Apply | Convert between NAND/NOR implementations |
 | [Multi-Level Analyzer](multi-level-analyzer/index.md) | L4-L5 Evaluate | Analyze propagation delay and critical path |
+| [NAND Conversion Walkthrough](nand-conversion-walkthrough/index.md) | L3 Apply | Step-by-step NAND gate conversion walkthrough |
 
 ## Unit 8: Combinational Logic Modules
 
@@ -113,6 +119,7 @@ Interactive educational simulations for learning digital system design.
 | [Priority Encoder Simulator](priority-encoder-simulator/index.md) | L2-L3 Apply | 4-to-2 priority encoder |
 | [Binary-Gray Converter](binary-gray-converter/index.md) | L2-L3 Apply | Convert between Binary and Gray code |
 | [Magnitude Comparator](magnitude-comparator/index.md) | L2-L3 Apply | 4-bit magnitude comparator |
+| [MUX Function Walkthrough](mux-function-walkthrough/index.md) | L3 Apply | Step-by-step MUX function implementation walkthrough |
 
 ## Unit 9: Sequential Logic Fundamentals
 
@@ -122,6 +129,7 @@ Interactive educational simulations for learning digital system design.
 | [D Flip-Flop Simulator](d-flipflop-simulator/index.md) | L2-L3 Apply | Edge-triggered D flip-flop |
 | [JK Flip-Flop Simulator](jk-flipflop-simulator/index.md) | L2-L3 Apply | JK flip-flop with toggle |
 | [Timing Diagram Analyzer](timing-diagram-analyzer/index.md) | L3-L4 Analyze | Analyze flip-flop timing diagrams |
+| [Flip-Flop Timing Walkthrough](flipflop-timing-walkthrough/index.md) | L3 Apply | Step-by-step flip-flop timing analysis walkthrough |
 
 ## Unit 10: Sequential Circuit Design
 
@@ -131,6 +139,7 @@ Interactive educational simulations for learning digital system design.
 | [Counter Simulator](counter-simulator/index.md) | L2-L3 Apply | 4-bit binary up/down counter |
 | [FSM Designer](fsm-designer/index.md) | L2-L4 Analyze | Moore state machine simulator |
 | [Sequence Detector Demo](sequence-detector-demo/index.md) | L3-L4 Analyze | "101" pattern detector |
+| [Shift Register Walkthrough](shift-register-walkthrough/index.md) | L3 Apply | Step-by-step shift register design walkthrough |
 
 ## Unit 11: Programmable Logic Devices
 
@@ -177,19 +186,19 @@ Interactive educational simulations for learning digital system design.
 |------|-------|--------------|
 | Course Overview | 1 | L2 |
 | Unit 1: Number Systems | 8 | L2-L4 |
-| Unit 2: Boolean Algebra | 22 | L2-L5 |
-| Unit 3: Applications | 8 | L2-L6 |
-| Unit 4: Minterms/Maxterms | 4 | L2-L4 |
-| Unit 5: Karnaugh Maps | 5 | L3-L4 |
-| Unit 6: Quine-McCluskey | 5 | L2-L6 |
-| Unit 7: Multi-Level Gates | 4 | L2-L5 |
-| Unit 8: Combinational Modules | 5 | L2-L3 |
-| Unit 9: Sequential Fundamentals | 4 | L2-L4 |
-| Unit 10: Sequential Design | 4 | L2-L4 |
+| Unit 2: Boolean Algebra | 23 | L2-L5 |
+| Unit 3: Applications | 9 | L2-L6 |
+| Unit 4: Minterms/Maxterms | 5 | L2-L4 |
+| Unit 5: Karnaugh Maps | 6 | L3-L4 |
+| Unit 6: Quine-McCluskey | 6 | L2-L6 |
+| Unit 7: Multi-Level Gates | 5 | L2-L5 |
+| Unit 8: Combinational Modules | 6 | L2-L3 |
+| Unit 9: Sequential Fundamentals | 5 | L2-L4 |
+| Unit 10: Sequential Design | 5 | L2-L4 |
 | Unit 11: Programmable Logic | 11 | L1-L5 |
 | Unit 12: VHDL | 6 | L2-L4 |
 | Unit 13: System Integration | 7 | L2-L6 |
-| **Total** | **94** | **L1-L6** |
+| **Total** | **103** | **L1-L6** |
 
 ## About MicroSims
 
