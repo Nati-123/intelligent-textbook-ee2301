@@ -15,10 +15,9 @@ Simplify the following expression using Boolean algebra laws (show only the fina
 
 $$F = \overline{A}B\overline{C} + A\overline{B}\overline{C} + AB\overline{C} + \overline{A}BC + ABC$$
 
-!!! success "Answer"
-    $F = \overline{C} \cdot (A + B) + BC = A\overline{C} + B$
+**Answer:** $F = \overline{C} \cdot (A + B) + BC = A\overline{C} + B$
 
-    Simplified: $F = A\overline{C} + B$
+Simplified: $F = A\overline{C} + B$
 
 ---
 
@@ -30,16 +29,15 @@ $$AB + \overline{A}C + BC = AB + \overline{A}C$$
 
 This is the **Consensus Theorem**. Your proof should use only the basic Boolean algebra axioms and theorems.
 
-!!! success "Answer"
-    $AB + \overline{A}C + BC$
+**Answer:** $AB + \overline{A}C + BC$
 
-    $= AB + \overline{A}C + BC(A + \overline{A})$
+$= AB + \overline{A}C + BC(A + \overline{A})$
 
-    $= AB + \overline{A}C + ABC + \overline{A}BC$
+$= AB + \overline{A}C + ABC + \overline{A}BC$
 
-    $= AB(1 + C) + \overline{A}C(1 + B)$
+$= AB(1 + C) + \overline{A}C(1 + B)$
 
-    $= AB + \overline{A}C$ ∎
+$= AB + \overline{A}C$ ∎
 
 ---
 
@@ -49,8 +47,7 @@ Find the complement of the expression below, then simplify the result to a minim
 
 $$F = (A + B)(\overline{B} + C)(A + \overline{C})$$
 
-!!! success "Answer"
-    $\overline{F} = \overline{A}\,\overline{B} + B\overline{C} + \overline{A}\,C$
+**Answer:** $\overline{F} = \overline{A}\,\overline{B} + B\overline{C} + \overline{A}\,C$
 
 ---
 
@@ -61,12 +58,11 @@ Determine whether the following two expressions are equivalent. If not, find an 
 $$F_1 = A\overline{B} + \overline{A}B + AB$$
 $$F_2 = A + B$$
 
-!!! success "Answer"
-    **They are equivalent.**
+**Answer:** **They are equivalent.**
 
-    $F_1 = A\overline{B} + \overline{A}B + AB = A\overline{B} + B(\overline{A} + A) = A\overline{B} + B = A + B = F_2$
+$F_1 = A\overline{B} + \overline{A}B + AB = A\overline{B} + B(\overline{A} + A) = A\overline{B} + B = A + B = F_2$
 
-    Both functions equal 0 only when $A = 0, B = 0$, and equal 1 for all other inputs.
+Both functions equal 0 only when $A = 0, B = 0$, and equal 1 for all other inputs.
 
 ---
 
@@ -76,7 +72,7 @@ Simplify the following 5-term SOP expression to a minimum form:
 
 $$F = \overline{A}\,\overline{B}\,\overline{C}\,D + \overline{A}\,\overline{B}\,C\,D + A\overline{B}\,\overline{C}\,D + A\overline{B}\,C\,D + AB\overline{C}\,D$$
 
-!!! success "Answer"
-    $F = \overline{B}\,D + A\overline{C}\,D$
+**Answer:** $F = \overline{B}\,D + A\overline{C}\,D$
 
-    This can also be written as: $F = D(\overline{B} + A\overline{C})$
+This can also be written as: $F = D(\overline{B} + A\overline{C})$
+
