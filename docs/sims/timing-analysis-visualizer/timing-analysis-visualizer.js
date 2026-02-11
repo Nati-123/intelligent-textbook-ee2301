@@ -17,15 +17,16 @@ let tSetup = 2;      // Setup time in ns
 let tCQ = 1;          // Clock-to-Q delay in ns
 let tHold = 0.5;      // Hold time in ns
 
-// Slider definitions
-let sliders = [
-  { label: "AND Delay", min: 1, max: 10, value: 3, unit: "ns", y: 0 },
-  { label: "OR Delay",  min: 1, max: 10, value: 4, unit: "ns", y: 0 },
-  { label: "Routing",   min: 0.5, max: 5, value: 1, unit: "ns", step: 0.5, y: 0 }
+// Parameter definitions
+let params = [
+  { label: "AND Delay", min: 1, max: 10, step: 1, unit: "ns" },
+  { label: "OR Delay",  min: 1, max: 10, step: 1, unit: "ns" },
+  { label: "Routing",   min: 0.5, max: 5, step: 0.5, unit: "ns" }
 ];
 
-// Drag state
-let draggingSlider = -1;
+// Button bounds for hit detection
+let paramBtns = []; // [{minus, plus, val}]
+let _resetBtn;
 
 // Colors
 const COLOR_CRITICAL = '#E91E63';
@@ -33,6 +34,19 @@ const COLOR_PATH = '#4CAF50';
 const COLOR_GATE = '#5C6BC0';
 const COLOR_TIMING = '#FF9800';
 const COLOR_FF = '#7E57C2';
+
+function getParamValue(i) {
+  if (i === 0) return andDelay;
+  if (i === 1) return orDelay;
+  return routingDelay;
+}
+
+function setParamValue(i, v) {
+  v = constrain(v, params[i].min, params[i].max);
+  if (i === 0) andDelay = v;
+  else if (i === 1) orDelay = v;
+  else routingDelay = v;
+}
 
 function setup() {
   updateCanvasSize();
@@ -46,11 +60,6 @@ function draw() {
   updateCanvasSize();
   background(245);
 
-  // Update slider values
-  andDelay = sliders[0].value;
-  orDelay = sliders[1].value;
-  routingDelay = sliders[2].value;
-
   // Calculate path delays
   let path1Delay = andDelay + orDelay + routingDelay;
   let path2Delay = andDelay + orDelay + routingDelay;
@@ -59,10 +68,20 @@ function draw() {
   let fMax = 1000 / tMin; // Convert to MHz
 
   drawCircuitDiagram(criticalPath);
-  drawSliders();
+  drawParamControls();
   drawCalculations(path1Delay, path2Delay, criticalPath, tMin, fMax);
   drawTimingDiagram(tMin, criticalPath);
   drawControls();
+
+  // Hand cursor on hover
+  let hovering = false;
+  for (let i = 0; i < paramBtns.length; i++) {
+    let b = paramBtns[i];
+    if (b && b.minus && isInside(mouseX, mouseY, b.minus)) hovering = true;
+    if (b && b.plus && isInside(mouseX, mouseY, b.plus)) hovering = true;
+  }
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
+  cursor(hovering ? HAND : ARROW);
 }
 
 function drawCircuitDiagram(criticalPath) {
@@ -105,14 +124,12 @@ function drawCircuitDiagram(criticalPath) {
   // Input wires
   stroke(COLOR_PATH);
   strokeWeight(1.5);
-  // Path 1 inputs
   line(and1X - gateW / 2 - 15, and1Y - 6, and1X - gateW / 2, and1Y - 6);
   line(and1X - gateW / 2 - 15, and1Y + 6, and1X - gateW / 2, and1Y + 6);
-  // Path 2 inputs
   line(and2X - gateW / 2 - 15, and2Y - 6, and2X - gateW / 2, and2Y - 6);
   line(and2X - gateW / 2 - 15, and2Y + 6, and2X - gateW / 2, and2Y + 6);
 
-  // AND gate 1 - critical path highlight
+  // AND gate 1
   fill('#E3F2FD');
   stroke(COLOR_GATE);
   strokeWeight(2);
@@ -141,9 +158,7 @@ function drawCircuitDiagram(criticalPath) {
   // Wires: AND gates to OR gate
   stroke(COLOR_CRITICAL);
   strokeWeight(2);
-  // From AND1 to OR
   line(and1X + gateW / 2, and1Y, orX - gateW / 2, orY - 8);
-  // From AND2 to OR
   line(and2X + gateW / 2, and2Y, orX - gateW / 2, orY + 8);
 
   // OR gate
@@ -159,7 +174,7 @@ function drawCircuitDiagram(criticalPath) {
   text("OR", orX, orY);
   textStyle(NORMAL);
 
-  // Wire: OR to FF (routing delay segment)
+  // Wire: OR to FF
   stroke(COLOR_CRITICAL);
   strokeWeight(2);
   drawingContext.setLineDash([]);
@@ -178,7 +193,6 @@ function drawCircuitDiagram(criticalPath) {
   strokeWeight(2);
   rect(ffX - ffW / 2, ffY - ffH / 2 + 7, ffW, ffH, 3);
 
-  // FF label and clock triangle
   fill(COLOR_FF);
   noStroke();
   textSize(10);
@@ -205,58 +219,74 @@ function drawCircuitDiagram(criticalPath) {
   text(orDelay + "ns", orX, orY + gateH / 2 + 2);
 }
 
-function drawSliders() {
-  let sliderAreaY = 165;
-  let sliderX = 20;
-  let sliderW = canvasWidth * 0.4;
-  let sliderH = 20;
-  let gap = 35;
+function drawParamControls() {
+  let areaY = 165;
+  let startX = 15;
+  let rowH = 30;
+  let btnSize = 24;
+  let valW = 50;
 
-  for (let i = 0; i < sliders.length; i++) {
-    let s = sliders[i];
-    let sy = sliderAreaY + i * gap;
-    s.y = sy;
+  paramBtns = [];
+
+  for (let i = 0; i < params.length; i++) {
+    let p = params[i];
+    let y = areaY + i * rowH;
+    let x = startX;
+    let val = getParamValue(i);
 
     // Label
     fill(60);
     noStroke();
     textSize(11);
     textAlign(LEFT, CENTER);
-    text(s.label + ":", sliderX, sy + sliderH / 2);
+    text(p.label + ":", x, y + btnSize / 2);
 
-    // Track
-    let trackX = sliderX + 80;
-    let trackW = sliderW - 80;
-    fill(220);
-    stroke(180);
-    strokeWeight(1);
-    rect(trackX, sy + sliderH / 2 - 3, trackW, 6, 3);
-
-    // Filled portion
-    let fraction = (s.value - s.min) / (s.max - s.min);
-    fill(COLOR_GATE);
+    // Minus button
+    x += 78;
+    let minusBtn = { x: x, y: y, w: btnSize, h: btnSize };
+    fill(val <= p.min ? '#ccc' : COLOR_CRITICAL);
+    stroke(val <= p.min ? '#aaa' : '#C2185B');
+    strokeWeight(1.5);
+    rect(x, y, btnSize, btnSize, 4);
+    fill(255);
     noStroke();
-    rect(trackX, sy + sliderH / 2 - 3, trackW * fraction, 6, 3);
-
-    // Thumb
-    let thumbX = trackX + trackW * fraction;
-    fill(draggingSlider === i ? COLOR_CRITICAL : COLOR_GATE);
-    stroke(255);
-    strokeWeight(2);
-    ellipse(thumbX, sy + sliderH / 2, 14, 14);
-
-    // Value display
-    fill(COLOR_GATE);
-    noStroke();
-    textSize(11);
+    textSize(16);
     textStyle(BOLD);
-    textAlign(LEFT, CENTER);
-    text(s.value.toFixed(1) + " " + s.unit, trackX + trackW + 10, sy + sliderH / 2);
+    textAlign(CENTER, CENTER);
+    text('-', x + btnSize / 2, y + btnSize / 2);
     textStyle(NORMAL);
 
-    // Store track bounds for drag detection
-    s.trackX = trackX;
-    s.trackW = trackW;
+    // Value display
+    x += btnSize + 4;
+    let valBtn = { x: x, y: y, w: valW, h: btnSize };
+    fill(255);
+    stroke(COLOR_GATE);
+    strokeWeight(2);
+    rect(x, y, valW, btnSize, 4);
+    fill(COLOR_GATE);
+    noStroke();
+    textSize(13);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text(val.toFixed(p.step < 1 ? 1 : 0) + " " + p.unit, x + valW / 2, y + btnSize / 2);
+    textStyle(NORMAL);
+
+    // Plus button
+    x += valW + 4;
+    let plusBtn = { x: x, y: y, w: btnSize, h: btnSize };
+    fill(val >= p.max ? '#ccc' : COLOR_PATH);
+    stroke(val >= p.max ? '#aaa' : '#388E3C');
+    strokeWeight(1.5);
+    rect(x, y, btnSize, btnSize, 4);
+    fill(255);
+    noStroke();
+    textSize(16);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text('+', x + btnSize / 2, y + btnSize / 2);
+    textStyle(NORMAL);
+
+    paramBtns.push({ minus: minusBtn, plus: plusBtn, val: valBtn });
   }
 }
 
@@ -374,15 +404,12 @@ function drawTimingDiagram(tMin, criticalPath) {
   noStroke();
   rect(tdX, dataY, tCQ * timeScale, sigH);
 
-  // Data transition (after t_cq, data propagates through logic)
+  // Data transition
   stroke(COLOR_TIMING);
   strokeWeight(2);
   noFill();
-  // Old data (hatched low)
   line(tdX, dataY + sigH, cqEndX, dataY + sigH);
-  // Transition
   line(cqEndX, dataY + sigH, cqEndX + 3, dataY);
-  // New data valid
   let dataValidX = cqEndX + criticalPath * timeScale;
   line(cqEndX + 3, dataY, dataValidX, dataY);
 
@@ -402,15 +429,12 @@ function drawTimingDiagram(tMin, criticalPath) {
   noStroke();
   textSize(8);
   textAlign(CENTER, BOTTOM);
-  // t_cq annotation
   drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
-  // Critical path annotation
   drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
-  // Setup time annotation
   fill(COLOR_TIMING);
   drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
 
-  // Setup requirement arrow
+  // Next clock edge
   let nextClkX = tdX + tMin * timeScale;
   stroke(COLOR_FF);
   strokeWeight(1.5);
@@ -457,16 +481,14 @@ function drawControls() {
 
   // Reset button
   let btnW = 100;
-  let btnH = 30;
+  let btnH = 34;
   let btnX = canvasWidth / 2 - btnW / 2;
-  let btnY = drawHeight + 10;
+  let btnY = drawHeight + 8;
 
-  let isHover = mouseX > btnX && mouseX < btnX + btnW &&
-                mouseY > btnY && mouseY < btnY + btnH;
-
-  fill(isHover ? '#1976D2' : COLOR_GATE);
+  _resetBtn = { x: btnX, y: btnY, w: btnW, h: btnH };
+  fill(COLOR_GATE);
   stroke('#303F9F');
-  strokeWeight(1);
+  strokeWeight(2);
   rect(btnX, btnY, btnW, btnH, 5);
 
   fill(255);
@@ -479,65 +501,34 @@ function drawControls() {
 }
 
 function mousePressed() {
-  // Check Reset button
-  let btnW = 100;
-  let btnH = 30;
-  let btnX = canvasWidth / 2 - btnW / 2;
-  let btnY = drawHeight + 10;
+  // Check param +/- buttons
+  for (let i = 0; i < paramBtns.length; i++) {
+    let b = paramBtns[i];
+    if (!b) continue;
+    let val = getParamValue(i);
+    let step = params[i].step;
 
-  if (mouseX > btnX && mouseX < btnX + btnW &&
-      mouseY > btnY && mouseY < btnY + btnH) {
-    sliders[0].value = 3;
-    sliders[1].value = 4;
-    sliders[2].value = 1;
+    if (isInside(mouseX, mouseY, b.minus)) {
+      setParamValue(i, val - step);
+      return;
+    }
+    if (isInside(mouseX, mouseY, b.plus)) {
+      setParamValue(i, val + step);
+      return;
+    }
+  }
+
+  // Check Reset button
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) {
+    andDelay = 3;
+    orDelay = 4;
+    routingDelay = 1;
     return;
   }
-
-  // Check slider thumb clicks
-  for (let i = 0; i < sliders.length; i++) {
-    let s = sliders[i];
-    let fraction = (s.value - s.min) / (s.max - s.min);
-    let thumbX = s.trackX + s.trackW * fraction;
-    let thumbY = s.y + 10;
-
-    if (dist(mouseX, mouseY, thumbX, thumbY) < 12) {
-      draggingSlider = i;
-      return;
-    }
-  }
-
-  // Check if click is on slider track
-  for (let i = 0; i < sliders.length; i++) {
-    let s = sliders[i];
-    let trackY = s.y + 10;
-    if (mouseX >= s.trackX && mouseX <= s.trackX + s.trackW &&
-        mouseY >= trackY - 10 && mouseY <= trackY + 10) {
-      draggingSlider = i;
-      updateSliderValue(i, mouseX);
-      return;
-    }
-  }
 }
 
-function mouseDragged() {
-  if (draggingSlider >= 0) {
-    updateSliderValue(draggingSlider, mouseX);
-  }
-}
-
-function mouseReleased() {
-  draggingSlider = -1;
-}
-
-function updateSliderValue(index, mx) {
-  let s = sliders[index];
-  let fraction = constrain((mx - s.trackX) / s.trackW, 0, 1);
-  let rawValue = s.min + fraction * (s.max - s.min);
-
-  // Snap to step if defined
-  let step = s.step || 1;
-  s.value = Math.round(rawValue / step) * step;
-  s.value = constrain(s.value, s.min, s.max);
+function isInside(mx, my, bounds) {
+  return mx > bounds.x && mx < bounds.x + bounds.w && my > bounds.y && my < bounds.y + bounds.h;
 }
 
 function windowResized() {
