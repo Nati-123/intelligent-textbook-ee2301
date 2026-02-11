@@ -172,29 +172,10 @@ function drawColumn(idx, x, y, w, h, title, color, output) {
   let diagH = 150;
   drawCircuitDiagram(idx, x + 5, diagY, w - 10, diagH, color);
 
-  // Draw VHDL code
+  // Draw VHDL code at bottom of column
   let codeY = diagY + diagH + 8;
-  let codeH = h - (codeY - y) - 50;
+  let codeH = h - (codeY - y) - 5;
   drawColumnCode(idx, x + 5, codeY, w - 10, codeH);
-
-  // Output Y box at bottom of column
-  let outBoxY = y + h - 38;
-  let outBoxH = 30;
-  let outBoxX = x + 10;
-  let outBoxW = w - 20;
-
-  fill(output ? ON_COLOR : OFF_COLOR);
-  stroke(output ? '#388E3C' : color(160));
-  strokeWeight(2);
-  rect(outBoxX, outBoxY, outBoxW, outBoxH, 5);
-
-  fill(255);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(14);
-  textStyle(BOLD);
-  text('Y = ' + output, outBoxX + outBoxW / 2, outBoxY + outBoxH / 2);
-  textStyle(NORMAL);
 }
 
 function drawCircuitDiagram(idx, x, y, w, h, color) {
