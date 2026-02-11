@@ -3,7 +3,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 510;
+let drawHeight = 460;
 let controlHeight = 55;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -249,9 +249,9 @@ function getActiveLines() {
 
 function drawTimingDiagram() {
   let diagX = 60;
-  let diagY = 195;
+  let diagY = 190;
   let diagW = canvasWidth - 80;
-  let diagH = 260;
+  let diagH = 220;
   let signalH = 35;
   let waveH = 22;
 
@@ -355,8 +355,8 @@ function drawControls() {
   textAlign(CENTER, CENTER);
   textSize(12);
 
-  // Clock button (wider, prominent)
-  let clkW = 65;
+  // Clock button (prominent)
+  let clkW = 55;
   clockBtn = { x: x, y: y, w: clkW, h: btnH };
   fill(CLK_COLOR);
   stroke('#1565C0');
@@ -371,7 +371,7 @@ function drawControls() {
 
   // D bit box
   x += clkW + spacing;
-  let boxW = 55;
+  let boxW = 48;
   dBtn = { x: x, y: y, w: boxW, h: btnH };
   fill(80);
   noStroke();
@@ -457,21 +457,21 @@ function drawControls() {
 
   // Reset sim button
   x += boxW + spacing;
-  let rstBtnW = 50;
+  let rstBtnW = 45;
   _resetBtn = { x: x, y: y, w: rstBtnW, h: btnH };
   fill(100);
   noStroke();
   rect(x, y, rstBtnW, btnH, 5);
   fill(255);
-  textSize(11);
+  textSize(10);
   text('Reset', x + rstBtnW / 2, y + btnH / 2);
 
   // Q output display
-  x += rstBtnW + spacing + 5;
+  x += rstBtnW + spacing;
   fill(outputQ ? Q_COLOR : '#999');
   stroke(outputQ ? '#E65100' : '#777');
   strokeWeight(2);
-  let qBoxW = 50;
+  let qBoxW = 45;
   rect(x, y + 2, qBoxW, btnH - 4, 5);
   fill(255);
   noStroke();
