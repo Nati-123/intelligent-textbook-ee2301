@@ -3,8 +3,8 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
-let controlHeight = 50;
+let drawHeight = 510;
+let controlHeight = 55;
 let canvasHeight = drawHeight + controlHeight;
 
 // State
@@ -83,7 +83,7 @@ const vhdlCode = [
 
 // Button bounds
 let tabButtons = [];
-let clockBtn, dBtn, rstBtn, enBtn;
+let clockBtn, dBtn, rstBtn, enBtn, _resetBtn;
 
 function setup() {
   updateCanvasSize();
@@ -119,6 +119,18 @@ function draw() {
 
   // Draw control buttons
   drawControls();
+
+  // Hand cursor on hover
+  let hovering = false;
+  for (let i = 0; i < tabButtons.length; i++) {
+    if (tabButtons[i] && isInside(mouseX, mouseY, tabButtons[i])) hovering = true;
+  }
+  if (clockBtn && isInside(mouseX, mouseY, clockBtn)) hovering = true;
+  if (dBtn && isInside(mouseX, mouseY, dBtn)) hovering = true;
+  if (rstBtn && isInside(mouseX, mouseY, rstBtn) && (currentTab === 1 || currentTab === 2)) hovering = true;
+  if (enBtn && isInside(mouseX, mouseY, enBtn) && currentTab === 3) hovering = true;
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
+  cursor(hovering ? HAND : ARROW);
 }
 
 function drawTabs() {
@@ -151,7 +163,7 @@ function drawCodeSection() {
   let codeX = 10;
   let codeY = 40;
   let codeW = canvasWidth - 20;
-  let codeH = 130;
+  let codeH = 140;
 
   // Background
   fill(CODE_BG);
@@ -161,6 +173,9 @@ function drawCodeSection() {
   let lines = vhdlCode[currentTab];
   let lineH = 14;
   let startY = codeY + 10;
+
+  // Determine which lines are active based on current state
+  let activeLines = getActiveLines();
 
   textSize(11);
   textAlign(LEFT, TOP);
@@ -172,8 +187,15 @@ function drawCodeSection() {
     let y = startY + i * lineH;
     if (y + lineH > codeY + codeH) break;
 
+    // Highlight active line background
+    if (activeLines.includes(i)) {
+      noStroke();
+      fill(255, 255, 255, 25);
+      rect(codeX + 2, y - 1, codeW - 4, lineH, 2);
+    }
+
     // Line number
-    fill(100);
+    fill(activeLines.includes(i) ? 200 : 100);
     text((i + 1).toString().padStart(2, ' '), codeX + 6, y);
 
     // Syntax highlighting - word by word
@@ -183,10 +205,14 @@ function drawCodeSection() {
 
     for (let t of tokens) {
       let cleaned = t.replace(/[;,()':<=]/g, '');
-      if (keywords.includes(cleaned)) {
+      if (activeLines.includes(i) && (t.includes('Q') || t.includes('D'))) {
+        fill('#FFEB3B'); // Yellow for active assignments
+      } else if (keywords.includes(cleaned)) {
         fill(KEYWORD_COLOR);
       } else if (t.includes("'")) {
         fill(Q_COLOR);
+      } else if (activeLines.includes(i)) {
+        fill('#FFEB3B');
       } else {
         fill(CODE_TEXT);
       }
@@ -194,13 +220,38 @@ function drawCodeSection() {
       xPos += textWidth(t);
     }
   }
+
+  // Show current state below code
+  fill(200);
+  textSize(10);
+  textAlign(LEFT, TOP);
+  let stateStr = 'D=' + inputD + '  RST=' + inputRST + '  EN=' + inputEN + '  Q=' + outputQ;
+  text(stateStr, codeX + 10, codeY + codeH - 16);
+}
+
+function getActiveLines() {
+  // Returns indices of active VHDL lines based on current input state
+  switch (currentTab) {
+    case 0: // Basic DFF: Q <= D always active on clock
+      return [2, 3]; // rising_edge line + Q <= D
+    case 1: // Sync Reset
+      if (inputRST === 1) return [2, 3, 4]; // rising_edge + RST check + Q <= 0
+      else return [2, 5, 6]; // rising_edge + else + Q <= D
+    case 2: // Async Reset
+      if (inputRST === 1) return [2, 3]; // RST check + Q <= 0
+      else return [4, 5]; // elsif rising_edge + Q <= D
+    case 3: // With Enable
+      if (inputEN === 1) return [2, 3, 4]; // rising_edge + EN check + Q <= D
+      else return [2, 3]; // rising_edge + EN check (but no assignment)
+    default: return [];
+  }
 }
 
 function drawTimingDiagram() {
   let diagX = 60;
-  let diagY = 185;
+  let diagY = 195;
   let diagW = canvasWidth - 80;
-  let diagH = 220;
+  let diagH = 260;
   let signalH = 35;
   let waveH = 22;
 
@@ -296,81 +347,138 @@ function drawTimingDiagram() {
 }
 
 function drawControls() {
-  let y = drawHeight + 8;
-  let btnW = 70;
-  let btnH = 30;
+  let y = drawHeight + 10;
+  let btnH = 34;
+  let spacing = 6;
   let x = 10;
-  let spacing = 8;
 
   textAlign(CENTER, CENTER);
   textSize(12);
 
-  // Clock button
-  clockBtn = { x: x, y: y, w: btnW, h: btnH };
+  // Clock button (wider, prominent)
+  let clkW = 65;
+  clockBtn = { x: x, y: y, w: clkW, h: btnH };
   fill(CLK_COLOR);
-  noStroke();
-  rect(x, y, btnW, btnH, 4);
+  stroke('#1565C0');
+  strokeWeight(2);
+  rect(x, y, clkW, btnH, 5);
   fill(255);
+  noStroke();
   textStyle(BOLD);
-  text('Clock', x + btnW / 2, y + btnH / 2);
+  textSize(13);
+  text('CLK', x + clkW / 2, y + btnH / 2);
   textStyle(NORMAL);
 
-  // D toggle
-  x += btnW + spacing;
-  dBtn = { x: x, y: y, w: btnW, h: btnH };
-  fill(inputD ? D_COLOR : '#999');
-  rect(x, y, btnW, btnH, 4);
-  fill(255);
-  text('D = ' + inputD, x + btnW / 2, y + btnH / 2);
-
-  // RST toggle (show for sync/async reset)
-  x += btnW + spacing;
-  rstBtn = { x: x, y: y, w: btnW, h: btnH };
-  if (currentTab === 1 || currentTab === 2) {
-    fill(inputRST ? RST_COLOR : '#999');
-    rect(x, y, btnW, btnH, 4);
-    fill(255);
-    text('RST = ' + inputRST, x + btnW / 2, y + btnH / 2);
-  } else {
-    fill(210);
-    rect(x, y, btnW, btnH, 4);
-    fill(170);
-    text('RST --', x + btnW / 2, y + btnH / 2);
-  }
-
-  // EN toggle (show for enable variant)
-  x += btnW + spacing;
-  enBtn = { x: x, y: y, w: btnW, h: btnH };
-  if (currentTab === 3) {
-    fill(inputEN ? EN_COLOR : '#999');
-    rect(x, y, btnW, btnH, 4);
-    fill(255);
-    text('EN = ' + inputEN, x + btnW / 2, y + btnH / 2);
-  } else {
-    fill(210);
-    rect(x, y, btnW, btnH, 4);
-    fill(170);
-    text('EN --', x + btnW / 2, y + btnH / 2);
-  }
-
-  // Reset sim button
-  x += btnW + spacing;
-  let resetBtn = { x: x, y: y, w: btnW, h: btnH };
-  fill(100);
-  rect(x, y, btnW, btnH, 4);
-  fill(255);
-  text('Reset', x + btnW / 2, y + btnH / 2);
-  // Store for click detection
-  this._resetBtn = resetBtn;
-
-  // Q output display
-  x += btnW + spacing + 10;
-  fill(Q_COLOR);
+  // D bit box
+  x += clkW + spacing;
+  let boxW = 55;
+  dBtn = { x: x, y: y, w: boxW, h: btnH };
+  fill(80);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(16);
+  textSize(12);
   textStyle(BOLD);
-  text('Q = ' + outputQ, x, y + btnH / 2);
+  text('D', x, y + btnH / 2);
+  textStyle(NORMAL);
+  let dBoxX = x + 16;
+  let dBoxW = boxW - 18;
+  fill(inputD ? D_COLOR : '#999');
+  stroke(inputD ? '#388E3C' : '#777');
+  strokeWeight(2);
+  rect(dBoxX, y + 3, dBoxW, btnH - 6, 4);
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text(inputD, dBoxX + dBoxW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+  dBtn = { x: dBoxX, y: y + 3, w: dBoxW, h: btnH - 6 };
+
+  // RST bit box
+  x += boxW + spacing;
+  let rstActive = (currentTab === 1 || currentTab === 2);
+  fill(80);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  textStyle(BOLD);
+  text('R', x, y + btnH / 2);
+  textStyle(NORMAL);
+  let rBoxX = x + 14;
+  let rBoxW = boxW - 16;
+  if (rstActive) {
+    fill(inputRST ? RST_COLOR : '#999');
+    stroke(inputRST ? '#C2185B' : '#777');
+  } else {
+    fill(210);
+    stroke(190);
+  }
+  strokeWeight(2);
+  rect(rBoxX, y + 3, rBoxW, btnH - 6, 4);
+  fill(rstActive ? 255 : 170);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text(rstActive ? inputRST : '-', rBoxX + rBoxW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+  rstBtn = { x: rBoxX, y: y + 3, w: rBoxW, h: btnH - 6 };
+
+  // EN bit box
+  x += boxW + spacing;
+  let enActive = (currentTab === 3);
+  fill(80);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  textStyle(BOLD);
+  text('E', x, y + btnH / 2);
+  textStyle(NORMAL);
+  let eBoxX = x + 14;
+  let eBoxW = boxW - 16;
+  if (enActive) {
+    fill(inputEN ? EN_COLOR : '#999');
+    stroke(inputEN ? '#7B1FA2' : '#777');
+  } else {
+    fill(210);
+    stroke(190);
+  }
+  strokeWeight(2);
+  rect(eBoxX, y + 3, eBoxW, btnH - 6, 4);
+  fill(enActive ? 255 : 170);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text(enActive ? inputEN : '-', eBoxX + eBoxW / 2, y + btnH / 2);
+  textStyle(NORMAL);
+  enBtn = { x: eBoxX, y: y + 3, w: eBoxW, h: btnH - 6 };
+
+  // Reset sim button
+  x += boxW + spacing;
+  let rstBtnW = 50;
+  _resetBtn = { x: x, y: y, w: rstBtnW, h: btnH };
+  fill(100);
+  noStroke();
+  rect(x, y, rstBtnW, btnH, 5);
+  fill(255);
+  textSize(11);
+  text('Reset', x + rstBtnW / 2, y + btnH / 2);
+
+  // Q output display
+  x += rstBtnW + spacing + 5;
+  fill(outputQ ? Q_COLOR : '#999');
+  stroke(outputQ ? '#E65100' : '#777');
+  strokeWeight(2);
+  let qBoxW = 50;
+  rect(x, y + 2, qBoxW, btnH - 4, 5);
+  fill(255);
+  noStroke();
+  textSize(15);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text('Q=' + outputQ, x + qBoxW / 2, y + btnH / 2);
   textStyle(NORMAL);
 }
 
@@ -463,7 +571,7 @@ function mousePressed() {
   }
 
   // Check Reset button
-  if (this._resetBtn && isInside(mouseX, mouseY, this._resetBtn)) {
+  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) {
     resetHistory();
     return;
   }
