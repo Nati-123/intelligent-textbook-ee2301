@@ -3,7 +3,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
+let drawHeight = 520;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -88,18 +88,54 @@ function draw() {
   drawSide(midX + 10, halfW, 'PAL: Fixed OR Array', '#9C27B0', '#795548',
            palAnd, palOrFixed, false, palProductRes, palOutputRes);
 
+  // Hand cursor on hover over clickable elements
+  let hovering = false;
+  for (let i = 0; i < 2; i++) {
+    let hx = canvasWidth / 2 - 40 + i * 80;
+    if (dist(mouseX, mouseY, hx, 48) < 16) { hovering = true; break; }
+  }
+  if (!hovering) {
+    let cW = 24, cH = 36, g = 20;
+    let aW = numInputCols * cW, oW = numOutputs * cW;
+    let tW = aW + g + oW;
+    let sides = [
+      { ax: 10 + ((midX - 10) - tW) / 2, arr: plaAnd, orArr: plaOr, orClick: true },
+      { ax: midX + 10 + ((midX - 10) - tW) / 2, arr: palAnd, orArr: null, orClick: false }
+    ];
+    for (let s of sides) {
+      for (let r = 0; r < numProducts && !hovering; r++) {
+        for (let c = 0; c < numInputCols; c++) {
+          let hx = s.ax + c * cW + cW / 2;
+          let hy = 115 + r * cH + cH / 2;
+          if (Math.abs(mouseX - hx) < 9 && Math.abs(mouseY - hy) < 8) { hovering = true; break; }
+        }
+      }
+      if (s.orClick && !hovering) {
+        let ox = s.ax + aW + g;
+        for (let r = 0; r < numProducts && !hovering; r++) {
+          for (let c = 0; c < numOutputs; c++) {
+            let hx = ox + c * cW + cW / 2;
+            let hy = 115 + r * cH + cH / 2;
+            if (Math.abs(mouseX - hx) < 9 && Math.abs(mouseY - hy) < 8) { hovering = true; break; }
+          }
+        }
+      }
+    }
+  }
+  cursor(hovering ? HAND : ARROW);
+
   // Bottom comparison text
   fill(80);
   noStroke();
   textSize(11);
   textAlign(CENTER, CENTER);
-  let bottomY = drawHeight + 10;
-  text('PLA: More flexible, slower (two programmable arrays)', canvasWidth / 4, bottomY);
-  text('PAL: Less flexible, faster (fixed OR = simpler routing)', canvasWidth * 3 / 4, bottomY);
+  let bottomY = drawHeight + 5;
+  text('PLA: More flexible, slower', canvasWidth / 4, bottomY);
+  text('PAL: Less flexible, faster', canvasWidth * 3 / 4, bottomY);
 
   fill(100);
   textSize(11);
-  text('Click inputs to toggle | Click crosspoints in programmable arrays', canvasWidth / 2, bottomY + 25);
+  text('Click inputs to toggle | Click bit boxes in programmable arrays', canvasWidth / 2, bottomY + 20);
 }
 
 function drawInputToggles() {
@@ -126,9 +162,10 @@ function drawInputToggles() {
 
 function drawSide(startX, width, title, andColor, orColor,
                   andArr, orArr, orProgrammable, prodRes, outRes) {
-  let cellW = Math.min(28, (width - 80) / (numInputCols + numOutputs + 2));
-  let cellH = 30;
+  let cellW = 24;
+  let cellH = 36;
   let colLabels = ['A', "A'", 'B', "B'"];
+  let gap = 20; // gap between AND and OR arrays
 
   // Side title
   fill(50);
@@ -139,16 +176,18 @@ function drawSide(startX, width, title, andColor, orColor,
   text(title, startX + width / 2, 75);
   textStyle(NORMAL);
 
-  // AND array position
-  let andX = startX + 30;
-  let andY = 105;
+  // Compute array widths
   let andW = numInputCols * cellW;
+  let orW = numOutputs * cellW;
+  let totalW = andW + gap + orW;
+
+  // Center both arrays within the side panel
+  let andX = startX + (width - totalW) / 2;
+  let andY = 115;
   let andH = numProducts * cellH;
 
-  // OR array position
-  let orX = andX + andW + 30;
+  let orX = andX + andW + gap;
   let orY = andY;
-  let orW = numOutputs * cellW;
   let orH = numProducts * cellH;
 
   // AND array label
@@ -156,23 +195,23 @@ function drawSide(startX, width, title, andColor, orColor,
   textSize(10);
   textStyle(BOLD);
   textAlign(CENTER, CENTER);
-  text('AND', andX + andW / 2, andY - 25);
-  text('(Prog.)', andX + andW / 2, andY - 13);
+  text('AND (Prog.)', andX + andW / 2, andY - 28);
   textStyle(NORMAL);
 
   // OR array label
   fill(orColor);
   textSize(10);
   textStyle(BOLD);
-  text('OR', orX + orW / 2, orY - 25);
-  text(orProgrammable ? '(Prog.)' : '(Fixed)', orX + orW / 2, orY - 13);
+  text('OR', orX + orW / 2, andY - 28);
+  text(orProgrammable ? '(Prog.)' : '(Fixed)', orX + orW / 2, andY - 16);
   textStyle(NORMAL);
 
   // Column labels for AND
   fill(80);
   textSize(10);
+  textAlign(CENTER, CENTER);
   for (let c = 0; c < numInputCols; c++) {
-    text(colLabels[c], andX + c * cellW + cellW / 2, andY - 2);
+    text(colLabels[c], andX + c * cellW + cellW / 2, andY - 8);
   }
 
   // Product labels
@@ -181,65 +220,75 @@ function drawSide(startX, width, title, andColor, orColor,
     let y = andY + r * cellH + cellH / 2;
     fill(80);
     textSize(9);
-    text('P' + r, andX - 4, y);
+    text('P' + r, andX - 6, y);
   }
 
   // Draw AND array grid
   fill(255);
   stroke(200);
   strokeWeight(1);
-  rect(andX, andY + 8, andW, andH);
+  rect(andX, andY, andW, andH);
 
-  // Vertical lines
+  // Vertical lines (bright purple)
   for (let c = 0; c < numInputCols; c++) {
     let x = andX + c * cellW + cellW / 2;
-    stroke(230);
-    strokeWeight(0.5);
-    line(x, andY + 8, x, andY + 8 + andH);
+    stroke('#CE93D8');
+    strokeWeight(1);
+    line(x, andY, x, andY + andH);
   }
 
-  // Horizontal lines + crosspoints
+  // Horizontal lines + crosspoint bit boxes
   for (let r = 0; r < numProducts; r++) {
-    let y = andY + 8 + r * cellH + cellH / 2;
+    let y = andY + r * cellH + cellH / 2;
     let isActive = prodRes[r] === 1;
-    stroke(isActive ? '#4CAF50' : 230);
-    strokeWeight(isActive ? 1.5 : 0.5);
+    stroke(isActive ? '#00E676' : '#CE93D8');
+    strokeWeight(isActive ? 2 : 1);
     line(andX, y, andX + andW, y);
 
     for (let c = 0; c < numInputCols; c++) {
       let cx = andX + c * cellW + cellW / 2;
+      let boxW = 18;
+      let boxH = 16;
+
       if (andArr[r][c]) {
         fill(isActive ? '#4CAF50' : andColor);
-        noStroke();
-        ellipse(cx, y, 10, 10);
+        stroke(isActive ? '#388E3C' : '#7B1FA2');
       } else {
-        noFill();
-        stroke(220);
-        strokeWeight(1);
-        ellipse(cx, y, 6, 6);
+        fill(240);
+        stroke(210);
       }
+      strokeWeight(1.5);
+      rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 3);
+
+      fill(andArr[r][c] ? 255 : 180);
+      noStroke();
+      textSize(10);
+      textAlign(CENTER, CENTER);
+      textStyle(BOLD);
+      text(andArr[r][c] ? '1' : '0', cx, y);
+      textStyle(NORMAL);
     }
   }
 
   // Draw OR array grid
-  fill(orProgrammable ? 255 : 240);
+  fill(orProgrammable ? 255 : 245);
   stroke(200);
   strokeWeight(1);
-  rect(orX, orY + 8, orW, orH);
+  rect(orX, orY, orW, orH);
 
   if (!orProgrammable) {
     // Hatching to show fixed
-    stroke(220);
+    stroke(210);
     strokeWeight(0.5);
     for (let i = 0; i < orW + orH; i += 8) {
       let x1 = orX + i;
-      let y1 = orY + 8;
+      let y1 = orY;
       let x2 = orX + i - orH;
-      let y2 = orY + 8 + orH;
+      let y2 = orY + orH;
       x1 = constrain(x1, orX, orX + orW);
       x2 = constrain(x2, orX, orX + orW);
-      if (x1 > orX + orW) { y1 = orY + 8 + (x1 - orX - orW); x1 = orX + orW; }
-      if (x2 < orX) { y2 = orY + 8 + orH - (orX - x2); x2 = orX; }
+      if (x1 > orX + orW) { y1 = orY + (x1 - orX - orW); x1 = orX + orW; }
+      if (x2 < orX) { y2 = orY + orH - (orX - x2); x2 = orX; }
       line(x1, y1, x2, y2);
     }
   }
@@ -250,84 +299,101 @@ function drawSide(startX, width, title, andColor, orColor,
   textSize(10);
   textAlign(CENTER, CENTER);
   for (let c = 0; c < numOutputs; c++) {
-    text('F' + c, orX + c * cellW + cellW / 2, orY - 2);
+    text('F' + c, orX + c * cellW + cellW / 2, orY - 8);
   }
 
-  // Vertical lines in OR
+  // Vertical lines in OR (bright orange)
   for (let c = 0; c < numOutputs; c++) {
     let x = orX + c * cellW + cellW / 2;
-    stroke(230);
-    strokeWeight(0.5);
-    line(x, orY + 8, x, orY + 8 + orH);
+    stroke('#FFAB91');
+    strokeWeight(1);
+    line(x, orY, x, orY + orH);
   }
 
-  // Horizontal lines + crosspoints for OR
+  // Horizontal lines + crosspoint bit boxes for OR
   for (let r = 0; r < numProducts; r++) {
-    let y = orY + 8 + r * cellH + cellH / 2;
+    let y = orY + r * cellH + cellH / 2;
     let isActive = prodRes[r] === 1;
-    stroke(isActive ? '#4CAF50' : 230);
-    strokeWeight(isActive ? 1.5 : 0.5);
+    stroke(isActive ? '#00E676' : '#FFAB91');
+    strokeWeight(isActive ? 2 : 1);
     line(orX, y, orX + orW, y);
 
     for (let c = 0; c < numOutputs; c++) {
       let cx = orX + c * cellW + cellW / 2;
+      let boxW = 18;
+      let boxH = 16;
+      let dotActive = isActive && orArr[r][c];
+
       if (orArr[r][c]) {
-        let dotActive = isActive && orArr[r][c];
-        if (orProgrammable) {
-          fill(dotActive ? '#4CAF50' : orColor);
-        } else {
-          fill(dotActive ? '#4CAF50' : '#795548');
-        }
-        noStroke();
-        if (orProgrammable) {
-          ellipse(cx, y, 10, 10);
-        } else {
-          // Fixed connections shown as squares
-          rectMode(CENTER);
-          rect(cx, y, 10, 10, 1);
-          rectMode(CORNER);
-        }
+        fill(dotActive ? '#4CAF50' : orColor);
+        stroke(dotActive ? '#388E3C' : (orProgrammable ? '#D84315' : '#5D4037'));
       } else {
-        noFill();
-        stroke(220);
-        strokeWeight(1);
-        ellipse(cx, y, 6, 6);
+        fill(240);
+        stroke(210);
       }
+      strokeWeight(1.5);
+      if (orProgrammable) {
+        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 3);
+      } else {
+        // Fixed connections shown as squares with sharp corners
+        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 1);
+      }
+
+      fill(orArr[r][c] ? 255 : 180);
+      noStroke();
+      textSize(10);
+      textAlign(CENTER, CENTER);
+      textStyle(BOLD);
+      text(orArr[r][c] ? '1' : '0', cx, y);
+      textStyle(NORMAL);
     }
   }
 
-  // Product term connector lines
+  // Product term connector lines (bright orange)
   for (let r = 0; r < numProducts; r++) {
-    let y = andY + 8 + r * cellH + cellH / 2;
+    let y = andY + r * cellH + cellH / 2;
     let isActive = prodRes[r] === 1;
-    stroke(isActive ? '#4CAF50' : '#ddd');
-    strokeWeight(isActive ? 2 : 1);
+    stroke(isActive ? '#00E676' : '#FF9800');
+    strokeWeight(isActive ? 2.5 : 1.5);
     line(andX + andW, y, orX, y);
+    // Arrow head
+    fill(isActive ? '#00E676' : '#FF9800');
+    noStroke();
+    triangle(orX - 1, y - 3, orX - 1, y + 3, orX + 3, y);
   }
 
-  // Output values
-  let outY = orY + 8 + orH + 20;
+  // Output section
+  let outY = orY + orH + 45;
   for (let c = 0; c < numOutputs; c++) {
     let x = orX + c * cellW + cellW / 2;
     let val = outRes[c];
 
+    // Line from OR array to output box
+    stroke(val ? '#00E676' : '#FFAB91');
+    strokeWeight(val ? 2.5 : 1.5);
+    line(x, orY + orH, x, outY - 18);
+
+    // Output box
     fill(val ? '#4CAF50' : '#eee');
     stroke(val ? '#388E3C' : '#ccc');
-    strokeWeight(1.5);
-    rect(x - 12, outY - 12, 24, 24, 4);
+    strokeWeight(2);
+    rect(x - 16, outY - 16, 32, 32, 6);
 
+    // Output value
     fill(val ? 255 : 100);
     noStroke();
-    textSize(13);
+    textSize(15);
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
     text(val, x, outY);
     textStyle(NORMAL);
 
-    // Line from OR array to output
-    stroke(val ? '#4CAF50' : '#ddd');
-    strokeWeight(val ? 2 : 1);
-    line(x, orY + 8 + orH, x, outY - 13);
+    // Output label below box
+    fill(80);
+    textSize(11);
+    textStyle(BOLD);
+    text('F' + c, x, outY + 24);
+    textStyle(NORMAL);
   }
 }
 
@@ -387,20 +453,25 @@ function mousePressed() {
   }
 
   let midX = canvasWidth / 2;
-  let cellW = Math.min(28, (midX - 20 - 80) / (numInputCols + numOutputs + 2));
-  let cellH = 30;
+  let cellW = 24;
+  let cellH = 36;
+  let gap = 20;
+  let andW = numInputCols * cellW;
+  let orW = numOutputs * cellW;
+  let totalW = andW + gap + orW;
 
   // PLA side
-  let plaAndX = 10 + 30;
-  let plaAndY = 105 + 8;
-  let plaOrX = plaAndX + numInputCols * cellW + 30;
+  let plaHalfW = midX - 10;
+  let plaAndX = 10 + (plaHalfW - totalW) / 2;
+  let plaAndY = 115;
+  let plaOrX = plaAndX + andW + gap;
 
   // Check PLA AND array
   for (let r = 0; r < numProducts; r++) {
     for (let c = 0; c < numInputCols; c++) {
       let cx = plaAndX + c * cellW + cellW / 2;
       let cy = plaAndY + r * cellH + cellH / 2;
-      if (dist(mouseX, mouseY, cx, cy) < cellW / 2) {
+      if (Math.abs(mouseX - cx) < 9 && Math.abs(mouseY - cy) < 8) {
         plaAnd[r][c] = plaAnd[r][c] ? 0 : 1;
         return;
       }
@@ -412,7 +483,7 @@ function mousePressed() {
     for (let c = 0; c < numOutputs; c++) {
       let cx = plaOrX + c * cellW + cellW / 2;
       let cy = plaAndY + r * cellH + cellH / 2;
-      if (dist(mouseX, mouseY, cx, cy) < cellW / 2) {
+      if (Math.abs(mouseX - cx) < 9 && Math.abs(mouseY - cy) < 8) {
         plaOr[r][c] = plaOr[r][c] ? 0 : 1;
         return;
       }
@@ -420,16 +491,16 @@ function mousePressed() {
   }
 
   // PAL side
-  let halfW = midX - 10;
-  let palAndX = midX + 10 + 30;
-  let palAndY = 105 + 8;
+  let palHalfW = midX - 10;
+  let palAndX = midX + 10 + (palHalfW - totalW) / 2;
+  let palAndY = 115;
 
   // Check PAL AND array (programmable)
   for (let r = 0; r < numProducts; r++) {
     for (let c = 0; c < numInputCols; c++) {
       let cx = palAndX + c * cellW + cellW / 2;
       let cy = palAndY + r * cellH + cellH / 2;
-      if (dist(mouseX, mouseY, cx, cy) < cellW / 2) {
+      if (Math.abs(mouseX - cx) < 9 && Math.abs(mouseY - cy) < 8) {
         palAnd[r][c] = palAnd[r][c] ? 0 : 1;
         return;
       }
