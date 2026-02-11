@@ -200,6 +200,12 @@ nav:
       - FSM Designer: sims/fsm-designer/index.md
       - Sequence Detector Demo: sims/sequence-detector-demo/index.md
       - Shift Register Walkthrough: sims/shift-register-walkthrough/index.md
+    - Unit 11 - Programmable Logic:
+      - PLA Programming Walkthrough: sims/pla-programming-walkthrough/index.md
+    - Unit 12 - VHDL:
+      - VHDL FSM Walkthrough: sims/vhdl-fsm-walkthrough/index.md
+    - Unit 13 - System Integration:
+      - Datapath-Controller Walkthrough: sims/datapath-controller-walkthrough/index.md
   - Learning Graph:
     - Overview: learning-graph/index.md
     - Concept List: learning-graph/concept-list.md
