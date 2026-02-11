@@ -105,6 +105,18 @@ function draw() {
     drawPanel(i, px, py, panelW, panelH);
   }
 
+  // Change cursor to pointer when hovering over bit boxes
+  let overBitBox = false;
+  for (let i = 0; i < 4; i++) {
+    let bb = technologies[i]._bitBox;
+    if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+        mouseY >= bb.y && mouseY <= bb.y + bb.h) {
+      overBitBox = true;
+      break;
+    }
+  }
+  cursor(overBitBox ? HAND : ARROW);
+
   // Info bar at bottom
   let tech = technologies[selectedIndex];
   let infoY = drawHeight - 40;
@@ -176,6 +188,31 @@ function drawPanel(index, px, py, pw, ph) {
   textSize(12);
   textAlign(LEFT, CENTER);
   text(isConnected ? 'Connected' : 'Disconnected', diagCenterX - 30, stateY);
+
+  // Clickable bit toggle box
+  let bitBoxX = px + pw - 42;
+  let bitBoxY = py + 6;
+  let bitBoxW = 36;
+  let bitBoxH = 22;
+  let bitVal = tech.programmed ? 1 : 0;
+
+  // Store hit area for click detection
+  tech._bitBox = { x: bitBoxX, y: bitBoxY, w: bitBoxW, h: bitBoxH };
+
+  // Draw box background
+  fill(tech.programmed ? tech.color : 220);
+  stroke(tech.programmed ? tech.color : 160);
+  strokeWeight(1.5);
+  rect(bitBoxX, bitBoxY, bitBoxW, bitBoxH, 4);
+
+  // Draw bit value
+  fill(tech.programmed ? 255 : 100);
+  noStroke();
+  textSize(14);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  text(bitVal, bitBoxX + bitBoxW / 2, bitBoxY + bitBoxH / 2);
+  textStyle(NORMAL);
 
   // Volatility label
   let volY = py + ph * 0.86;
@@ -348,6 +385,18 @@ function toggleConnection() {
 }
 
 function mousePressed() {
+  // Check if a bit toggle box was clicked
+  for (let i = 0; i < 4; i++) {
+    let bb = technologies[i]._bitBox;
+    if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+        mouseY >= bb.y && mouseY <= bb.y + bb.h) {
+      selectedIndex = i;
+      technologies[i].programmed = !technologies[i].programmed;
+      toggleButton.style('background-color', technologies[selectedIndex].color);
+      return;
+    }
+  }
+
   // Check which panel was clicked
   let panelMargin = 10;
   let panelW = (canvasWidth - panelMargin * 3) / 2;
