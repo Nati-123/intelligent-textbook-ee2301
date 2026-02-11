@@ -15,7 +15,7 @@ Convert the following 3-level AND-OR-AND expression to an equivalent all-NAND im
 
 $$F = (AB + CD)(E + FG)$$
 
-??? success "Answer"
+!!! success "Answer"
     Expand: $F = ABE + ABFG + CDE + CDFG$
 
     For NAND-NAND two-level: 4 NAND gates (one for each product term) + 1 NAND gate (for the OR function) = **5 NAND gates**.
@@ -43,7 +43,7 @@ For the function $F(A, B, C, D) = \sum m(1, 3, 5, 7, 8, 12, 13)$, find the minim
 
 Compare the total gate counts for each implementation.
 
-??? success "Answer"
+!!! success "Answer"
     **Minimum SOP:** $F = \overline{A}\,D + A\,\overline{B}\,\overline{C} + A\,B\,\overline{D}$
 
     **Wait** — verify: $\overline{A}\,D$ covers {1,3,5,7} ✓. $A\,\overline{B}\,\overline{C}$ covers {8,9} — but 9 not in set. $A\,B\,\overline{D}$ covers {12,14} — 14 not in set.
@@ -70,7 +70,7 @@ $$F = ABCD + ABCE + AB\overline{C}F + AB\overline{C}G + \overline{A}\,\overline{
 
 State the original literal count and the reduced literal count.
 
-??? success "Answer"
+!!! success "Answer"
     **Original literal count:** $4 + 4 + 4 + 4 + 4 = 20$ literals
 
     **Factored form:**
@@ -91,7 +91,7 @@ $$F = (A + B)(\overline{C} + D)$$
 
 Draw the logic diagram and state the number of NOR gates needed (including any used as inverters).
 
-??? success "Answer"
+!!! success "Answer"
     $F = (A + B)(\overline{C} + D)$
 
     Step 1: $(A + B) = \overline{\overline{A + B}} = \overline{A \downarrow B}$ — needs NOR then NOR-inverter
@@ -121,7 +121,7 @@ A circuit implements $F = \overline{\overline{(A \cdot B)} \cdot \overline{(C + 
 
 Use bubble pushing to convert this entire expression into an equivalent all-NAND implementation. State the final expression and gate count.
 
-??? success "Answer"
+!!! success "Answer"
     Simplify the expression first:
 
     $\overline{(A \cdot B)} = \overline{AB}$ (NAND)

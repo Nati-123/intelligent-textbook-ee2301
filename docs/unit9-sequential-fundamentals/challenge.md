@@ -26,7 +26,7 @@ A negative-edge-triggered JK flip-flop has asynchronous active-low Preset ($\ove
 
 Determine $Q$ after each cycle.
 
-??? success "Answer"
+!!! success "Answer"
     | Cycle | Action | $Q$ after |
     |---|---|---|
     | Start | — | 0 |
@@ -56,7 +56,7 @@ Design a synchronous sequential circuit with two D flip-flops ($Q_1, Q_0$) and o
 
 Derive the excitation equations for $D_1$ and $D_0$.
 
-??? success "Answer"
+!!! success "Answer"
     From the state table, next state = present state + 1 when $X=0$, and present state + 2 when $X=1$ (modulo 4).
 
     **Truth table for $D_1$ and $D_0$:**
@@ -102,7 +102,7 @@ Derive the excitation equations for $D_1$ and $D_0$.
 
 Starting with a gated SR latch, show how to add logic to create a D flip-flop. Give the complete Boolean equations for the $S$ and $R$ inputs in terms of the $D$ input and the clock $CLK$.
 
-??? success "Answer"
+!!! success "Answer"
     **Connection:**
 
     $S = D \cdot CLK$
@@ -129,7 +129,7 @@ A D flip-flop has $t_{setup} = 3\text{ ns}$, $t_{hold} = 1\text{ ns}$, and $t_{c
 (b) If the data path has a minimum delay of $t_{pd,min}$, what is the constraint on $t_{pd,min}$ to avoid hold time violations?
 (c) If $t_{pd} = 14\text{ ns}$ and $t_{pd,min} = 0.5\text{ ns}$, are there any violations?
 
-??? success "Answer"
+!!! success "Answer"
     **(a) Setup time constraint:**
 
     $t_{clk\text{-}to\text{-}Q} + t_{pd} + t_{setup} \leq T_{clk}$
@@ -169,7 +169,7 @@ Explain the "ones catching" problem in a master-slave JK flip-flop. Given the fo
 
 What is the final state of $Q$ if the master latch is level-sensitive? What would happen with an edge-triggered design instead?
 
-??? success "Answer"
+!!! success "Answer"
     **Master-slave (level-sensitive master):**
 
     1. At rising edge: $J=1, K=0$ → master sets to 1

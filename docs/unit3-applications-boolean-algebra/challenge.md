@@ -18,7 +18,7 @@ A security system has four sensors: Door ($D$), Window ($W$), Motion ($M$), and 
 
 Write the minimum SOP expression for the alarm output $A$.
 
-??? success "Answer"
+!!! success "Answer"
     $A = DW + DM + DG + WMG$
 
     The first three terms cover "door AND at least one other." The last term covers "any three without door" (only $WMG$ is possible for three or more without $D$). The case of all four is covered by the first three terms already.
@@ -29,7 +29,7 @@ Write the minimum SOP expression for the alarm output $A$.
 
 Design a combinational circuit that acts as both a full adder and a full subtractor, controlled by a mode signal $M$. When $M = 0$, it performs $A + B + C_{in}$; when $M = 1$, it performs $A - B - C_{in}$ (using two's complement). Give the expressions for the output ($Result$) and the carry/borrow ($C_{out}/B_{out}$).
 
-??? success "Answer"
+!!! success "Answer"
     $Result = A \oplus (B \oplus M) \oplus C_{in}$
 
     $C_{out}/B_{out} = (A \oplus M) \cdot (B \oplus M) + (B \oplus M) \cdot C_{in} + C_{in} \cdot (A \oplus M)$
@@ -48,7 +48,7 @@ Design a combinational circuit that acts as both a full adder and a full subtrac
 
 Construct the truth table for a BCD-to-Excess-3 code converter (4-bit input $B_3B_2B_1B_0$, 4-bit output $E_3E_2E_1E_0$). Write the minimum SOP expression for each output bit, using don't-care conditions for invalid BCD inputs (10–15).
 
-??? success "Answer"
+!!! success "Answer"
     | BCD ($B_3B_2B_1B_0$) | Excess-3 ($E_3E_2E_1E_0$) |
     |---|---|
     | 0000 | 0011 |
@@ -78,7 +78,7 @@ Construct the truth table for a BCD-to-Excess-3 code converter (4-bit input $B_3
 
 Design an even-parity generator for a 7-bit ASCII input ($D_6 D_5 D_4 D_3 D_2 D_1 D_0$) that produces a parity bit $P$. Then design a parity checker circuit that takes the 8-bit code ($D_6 \ldots D_0, P$) and outputs an error signal $E$ that is 1 when a single-bit error is detected. Express both circuits using XOR gates and state the total gate count.
 
-??? success "Answer"
+!!! success "Answer"
     **Parity generator:**
 
     $P = D_6 \oplus D_5 \oplus D_4 \oplus D_3 \oplus D_2 \oplus D_1 \oplus D_0$
@@ -105,7 +105,7 @@ A combinational circuit has three inputs ($A$, $B$, $C$) and three outputs defin
 
 Find the minimum two-level AND-OR implementation for all three outputs using shared product terms where possible. State the total gate count (AND gates + OR gates + inverters).
 
-??? success "Answer"
+!!! success "Answer"
     Minimum expressions:
 
     $F_1 = \overline{A}\,\overline{B} + \overline{A}\,C + BC = \overline{A}\,\overline{B} + C(\overline{A} + B)$

@@ -18,7 +18,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. It eliminates the need to identify prime implicants
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **C**. The QM method's primary advantage is its algorithmic nature—it follows a deterministic procedure that works for functions with any number of input variables and is easily programmed for computer implementation. K-maps become impractical beyond 5–6 variables because visual pattern recognition breaks down. Both methods find the same set of prime implicants and produce equally minimal results; QM simply scales to larger problems where K-maps cannot.
 
     **Concept Tested:** QM vs K-Map Comparison
@@ -34,7 +34,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. To identify essential prime implicants before the combination phase
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **B**. Two minterms can combine (differ in exactly one bit position) only if one has exactly one more 1-bit than the other. Grouping by 1-count exploits this: the algorithm only compares minterms in adjacent groups (group $k$ vs. group $k+1$), dramatically reducing the number of comparisons from $O(n^2)$ to $O(n \cdot g)$ where $g$ is the average group size. Minterms within the same group can never combine since they differ in at least two bit positions.
 
     **Concept Tested:** Grouping by Number of Ones
@@ -50,7 +50,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. A don't care input condition
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **A**. When two terms that differ in exactly one bit position are combined, the differing bit is replaced with a dash. The dash indicates that the corresponding variable has been eliminated—it can be either 0 or 1 without affecting the function for the minterms covered by that term. For example, combining $0\mathbf{1}01$ and $0\mathbf{0}01$ yields $0{-}01$, eliminating the second variable. The remaining non-dash positions define the product term.
 
     **Concept Tested:** Dash Notation for Combined Terms
@@ -66,7 +66,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. They are the unchecked (unmarked) terms from all columns—terms that could not be combined further
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **D**. During the combination phase, each time two terms combine to form a larger term, both original terms are checked (marked). After all possible combinations across all columns are exhausted, the unchecked terms are the prime implicants—they represent the largest possible groupings and cannot be absorbed into any larger term. Prime implicants may appear in any column (first, second, third, etc.), not just the first.
 
     **Concept Tested:** Identifying Prime Implicants (Unchecked Terms)
@@ -82,7 +82,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. It has the fewest literals of all prime implicants
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **C**. In the prime implicant chart (rows = PIs, columns = required minterms), an essential PI is identified by finding a column with only one × mark. That single PI is the only one covering that particular minterm, so it must be included in any minimum cover. After selecting all essential PIs and removing the minterms they cover, the remaining uncovered minterms are addressed by additional PI selection using dominance or Petrick's method.
 
     **Concept Tested:** Essential Prime Implicant Selection
@@ -98,7 +98,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. Select the prime implicant with the most literals
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **B**. Petrick's method constructs a Boolean expression where each column (uncovered minterm) generates a sum term of the PIs that cover it, and these sum terms are ANDed together. Multiplying out this product-of-sums expression and applying Boolean absorption yields all possible minimum covers. The cover with the fewest PIs (and among those, the fewest total literals) is selected as the optimal solution.
 
     **Concept Tested:** Petrick's Method
@@ -114,7 +114,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. Don't cares are converted to 0s before the algorithm begins
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **A**. Don't cares serve a dual role in QM: during the combination phase, they are included alongside required minterms, enabling the formation of larger prime implicants (with fewer literals). However, in the PI chart phase, only required minterms appear as columns—don't cares do not need to be covered. This allows the algorithm to benefit from don't cares during optimization without imposing unnecessary coverage constraints.
 
     **Concept Tested:** QM Method with Don't Care Conditions
@@ -130,7 +130,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. A chart where all prime implicants have the same number of literals
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **C**. A cyclic PI chart has no essential prime implicants (every column has multiple ×'s) and cannot be reduced by row dominance (no PI is strictly dominated by another) or column dominance (no minterm's coverage is a subset of another's). Multiple equivalent minimum solutions exist, and the only systematic resolution is Petrick's method. Cyclic charts arise in specific functions where the prime implicants have symmetric coverage patterns.
 
     **Concept Tested:** Cyclic Prime Implicant Charts
@@ -146,7 +146,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. Dashes must be in identical positions, and the non-dash bits must differ in exactly one position
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **D**. When combining terms that already contain dashes from earlier iterations, two requirements must hold: (1) the dash positions must be identical in both terms (they must have eliminated the same variables previously), and (2) the remaining non-dash bit positions must differ in exactly one position. For example, $0{-}01$ and $0{-}11$ can combine to $0{-}{-}1$ (dashes in same position, one non-dash bit differs). But $0{-}01$ and ${-}001$ cannot combine (dashes in different positions).
 
     **Concept Tested:** Adjacency Criterion for Terms with Dashes
@@ -162,7 +162,7 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 4. Heuristic algorithms always produce better results for large functions
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **B**. The QM method has exponential worst-case complexity: the number of prime implicants for an $n$-variable function can be as large as $3^n/n$. For 20 variables, this could mean billions of prime implicants. The PI chart (and Petrick's method) also become intractable at this scale. This is why heuristic algorithms like ESPRESSO are used in practice—they find near-optimal solutions in polynomial time without exhaustively enumerating all prime implicants.
 
     **Concept Tested:** Computational Complexity of the QM Method

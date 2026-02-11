@@ -13,7 +13,7 @@ These challenge problems test deeper understanding. Only final answers are provi
 
 Design a mod-6 synchronous up-counter (counts 0 → 1 → 2 → 3 → 4 → 5 → 0 → ...) using D flip-flops. Derive the excitation equations for $D_2$, $D_1$, $D_0$ and the output equations. States 6 and 7 are don't cares.
 
-??? success "Answer"
+!!! success "Answer"
     **State table:**
 
     | $Q_2 Q_1 Q_0$ | Next State | $D_2$ | $D_1$ | $D_0$ |
@@ -57,7 +57,7 @@ Design a Moore FSM that detects the input sequence **1011** on a serial input $X
 
 Provide the state diagram, state table, state assignment, and excitation equations using D flip-flops.
 
-??? success "Answer"
+!!! success "Answer"
     **States:** $S_0$ (reset), $S_1$ (seen "1"), $S_2$ (seen "10"), $S_3$ (seen "101"), $S_4$ (seen "1011", output $Z=1$)
 
     **State table (Moore — output depends only on state):**
@@ -100,7 +100,7 @@ Starting with register contents $Q_3 Q_2 Q_1 Q_0 = 1010$, serial input right ($S
 4. Parallel load $D_3 D_2 D_1 D_0 = 0110$
 5. Shift left
 
-??? success "Answer"
+!!! success "Answer"
     | Step | Operation | $SI$ | $Q_3 Q_2 Q_1 Q_0$ |
     |---|---|---|---|
     | Initial | — | — | 1010 |
@@ -123,7 +123,7 @@ A 4-bit Johnson (twisted ring) counter starts at state $0000$.
 (b) Design a decoding circuit that produces 8 unique outputs ($Y_0$ through $Y_7$), one for each valid state, using only 2-input AND gates.
 (c) What happens if the counter enters an invalid state (e.g., $0101$)? Does it self-correct?
 
-??? success "Answer"
+!!! success "Answer"
     **(a) State sequence:**
 
     | Step | $Q_3 Q_2 Q_1 Q_0$ |
@@ -163,7 +163,7 @@ A 4-bit Johnson (twisted ring) counter starts at state $0000$.
 
 Design both a Mealy and Moore FSM that outputs $Z = 1$ whenever the input sequence $X = 110$ is detected (with overlap allowed). Compare the two designs in terms of number of states, flip-flops, and output timing.
 
-??? success "Answer"
+!!! success "Answer"
     **Mealy Machine:**
 
     | State | Meaning | $X=0$ (Next/$Z$) | $X=1$ (Next/$Z$) |

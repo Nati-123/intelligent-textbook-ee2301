@@ -14,7 +14,7 @@ Work through these problems to reinforce your understanding of MSI combinational
 ### Problem 1
 Design the truth table and Boolean expression for a 4-to-1 multiplexer with inputs D₀, D₁, D₂, D₃, select lines S₁, S₀, and output Y.
 
-??? success "Solution"
+!!! success "Solution"
     **Truth Table:**
 
     | S₁ | S₀ | Y |
@@ -44,7 +44,7 @@ Implement the function $F(A, B, C) = \sum m(1, 2, 6, 7)$ using:
 a) An 8-to-1 MUX with A, B, C as select inputs
 b) A 4-to-1 MUX with B, C as select inputs
 
-??? success "Solution"
+!!! success "Solution"
     a) **8-to-1 MUX implementation:**
 
     Connect minterms directly to data inputs:
@@ -88,7 +88,7 @@ b) A 4-to-1 MUX with B, C as select inputs
 ### Problem 3
 Build a 16-to-1 MUX using 4-to-1 MUXes only. How many 4-to-1 MUXes are needed?
 
-??? success "Solution"
+!!! success "Solution"
     **Two-level tree structure:**
 
     **Level 1:** Four 4-to-1 MUXes
@@ -128,7 +128,7 @@ a) NOT gate
 b) AND gate
 c) OR gate
 
-??? success "Solution"
+!!! success "Solution"
     **2-to-1 MUX equation:** Y = S'D₀ + SD₁
 
     a) **NOT gate (Y = A'):**
@@ -158,7 +158,7 @@ c) OR gate
 ### Problem 5
 Implement the function $F(W, X, Y, Z) = \sum m(0, 1, 3, 4, 8, 9, 15)$ using a single 8-to-1 MUX with W, X, Y as select inputs.
 
-??? success "Solution"
+!!! success "Solution"
     **Shannon expansion with Z as residual:**
 
     For each WXY combination, determine F in terms of Z:
@@ -191,7 +191,7 @@ Implement the function $F(W, X, Y, Z) = \sum m(0, 1, 3, 4, 8, 9, 15)$ using a si
 ### Problem 6
 Design a 4-bit barrel shifter using multiplexers. The shifter should shift input data D[3:0] by S[1:0] positions to the right.
 
-??? success "Solution"
+!!! success "Solution"
     **Barrel Shifter operation:**
 
     | S[1:0] | Output |
@@ -256,7 +256,7 @@ Design a 4-bit barrel shifter using multiplexers. The shifter should shift input
 ### Problem 7
 Design a 3-to-8 decoder with an enable input. Show the truth table and logic equations for all 8 outputs.
 
-??? success "Solution"
+!!! success "Solution"
     **Truth Table:**
 
     | EN | A₂ | A₁ | A₀ | Y₀ | Y₁ | Y₂ | Y₃ | Y₄ | Y₅ | Y₆ | Y₇ |
@@ -289,7 +289,7 @@ Design a 3-to-8 decoder with an enable input. Show the truth table and logic equ
 ### Problem 8
 Implement $F(A, B, C) = \sum m(1, 2, 4, 7)$ using a 3-to-8 decoder and an OR gate.
 
-??? success "Solution"
+!!! success "Solution"
     **Decoder outputs correspond to minterms:**
 
     - Y₀ = m₀ = A'B'C'
@@ -322,7 +322,7 @@ Implement $F(A, B, C) = \sum m(1, 2, 4, 7)$ using a 3-to-8 decoder and an OR gat
 ### Problem 9
 Build a 4-to-16 decoder using 2-to-4 decoders with enable inputs. Show the interconnections.
 
-??? success "Solution"
+!!! success "Solution"
     **Architecture:**
 
     Use 5 decoders: 1 for high-order bits (enable selector), 4 for low-order bits (output generators)
@@ -359,7 +359,7 @@ Build a 4-to-16 decoder using 2-to-4 decoders with enable inputs. Show the inter
 ### Problem 10
 Design a BCD-to-Seven-Segment decoder. Show outputs for digits 0-9.
 
-??? success "Solution"
+!!! success "Solution"
     **Seven-segment display segments:**
 
     ```
@@ -408,7 +408,7 @@ Design a BCD-to-Seven-Segment decoder. Show outputs for digits 0-9.
 ### Problem 11
 A memory chip has 1024 addresses. How many decoder output lines are needed, and what is the minimum number of address bits?
 
-??? success "Solution"
+!!! success "Solution"
     **Analysis:**
 
     - 1024 addresses = 2¹⁰ addresses
@@ -449,7 +449,7 @@ A memory chip has 1024 addresses. How many decoder output lines are needed, and 
 ### Problem 12
 Design an 8-to-3 priority encoder. Show the truth table with priority (7 highest, 0 lowest).
 
-??? success "Solution"
+!!! success "Solution"
     **Truth Table:**
 
     | D₇ | D₆ | D₅ | D₄ | D₃ | D₂ | D₁ | D₀ | Y₂ | Y₁ | Y₀ | Valid |
@@ -484,7 +484,7 @@ Design an 8-to-3 priority encoder. Show the truth table with priority (7 highest
 ### Problem 13
 An interrupt controller receives requests from 8 devices. Design a circuit that outputs the binary code of the highest-priority active request.
 
-??? success "Solution"
+!!! success "Solution"
     **Use an 8-to-3 priority encoder:**
 
     **Connections:**
@@ -521,7 +521,7 @@ Convert between encoder types:
 a) How can a standard encoder be converted to a priority encoder?
 b) Why can't a priority encoder easily become a standard encoder?
 
-??? success "Solution"
+!!! success "Solution"
     a) **Standard to Priority Encoder:**
 
     Add priority resolution logic before the encoder:
@@ -562,7 +562,7 @@ b) Why can't a priority encoder easily become a standard encoder?
 ### Problem 15
 Design a decimal-to-BCD encoder (10-to-4 encoder) for a calculator keypad.
 
-??? success "Solution"
+!!! success "Solution"
     **Input:** 10 keys (K₀ through K₉), one active at a time
     **Output:** 4-bit BCD code (D₃D₂D₁D₀)
 
@@ -609,7 +609,7 @@ Design a decimal-to-BCD encoder (10-to-4 encoder) for a calculator keypad.
 ### Problem 16
 Design a 4-bit binary-to-Gray code converter.
 
-??? success "Solution"
+!!! success "Solution"
     **Gray code property:** Adjacent values differ by exactly one bit.
 
     **Conversion formula:**
@@ -657,7 +657,7 @@ Design a 4-bit binary-to-Gray code converter.
 ### Problem 17
 Design a 4-bit Gray-to-binary converter.
 
-??? success "Solution"
+!!! success "Solution"
     **Conversion formula (derived from Gray-to-binary relationship):**
 
     - B₃ = G₃
@@ -695,7 +695,7 @@ Design a 4-bit Gray-to-binary converter.
 ### Problem 18
 Design a BCD-to-Excess-3 code converter.
 
-??? success "Solution"
+!!! success "Solution"
     **Excess-3 = BCD + 3**
 
     | Decimal | BCD (DCBA) | Excess-3 (E₃E₂E₁E₀) |
@@ -747,7 +747,7 @@ Design a BCD-to-Excess-3 code converter.
 ### Problem 19
 Design a 2-bit magnitude comparator that compares A₁A₀ with B₁B₀ and produces three outputs: A>B, A=B, A<B.
 
-??? success "Solution"
+!!! success "Solution"
     **Bit comparisons:**
 
     Let x₁ = A₁ ⊙ B₁ (equals 1 if A₁ = B₁)
@@ -791,7 +791,7 @@ Design a 2-bit magnitude comparator that compares A₁A₀ with B₁B₀ and pro
 ### Problem 20
 Cascade two 4-bit comparators to create an 8-bit comparator. Show the connections.
 
-??? success "Solution"
+!!! success "Solution"
     **4-bit comparator inputs/outputs:**
 
     - Inputs: A[3:0], B[3:0]

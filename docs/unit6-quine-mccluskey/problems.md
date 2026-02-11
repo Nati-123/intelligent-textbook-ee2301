@@ -18,7 +18,7 @@ a) List all minterms with their binary representations
 b) Group minterms by the number of 1s
 c) Construct the initial implicant table
 
-??? success "Solution"
+!!! success "Solution"
     a) Binary representations:
 
     | Minterm | A | B | C | D |
@@ -50,7 +50,7 @@ c) Construct the initial implicant table
 ### Problem 2
 Combine adjacent minterms from Problem 1 to generate the first set of combined terms (Column 2).
 
-??? success "Solution"
+!!! success "Solution"
     **Column 2 - Combining adjacent groups:**
 
     From Groups 0-1:
@@ -88,7 +88,7 @@ For the function $F(W, X, Y, Z) = \sum m(1, 3, 4, 5, 9, 11, 12, 13, 15)$:
 
 Construct the complete implicant table through all combination stages.
 
-??? success "Solution"
+!!! success "Solution"
     **Column 1 - Minterms by groups:**
 
     - Group 1: m₁ (0001), m₄ (0100)
@@ -127,7 +127,7 @@ For $F(A, B, C) = \sum m(1, 2, 3, 5, 7)$:
 a) Complete the QM method to find all prime implicants
 b) Write the Boolean expression for each prime implicant
 
-??? success "Solution"
+!!! success "Solution"
     **Column 1 - Minterms by groups:**
 
     - Group 1: m₁ (001), m₂ (010)
@@ -165,7 +165,7 @@ For $F(A, B, C, D) = \sum m(0, 1, 2, 8, 9, 10, 11, 14, 15)$:
 
 Find all prime implicants using the QM method.
 
-??? success "Solution"
+!!! success "Solution"
     **Grouping:**
 
     - Group 0: m₀ (0000)
@@ -198,7 +198,7 @@ Given prime implicants for $F = \sum m(0, 1, 2, 5, 6, 7)$:
 
 Construct the prime implicant chart and identify essential prime implicants.
 
-??? success "Solution"
+!!! success "Solution"
     **Prime Implicant Chart:**
 
     |     | 0 | 1 | 2 | 5 | 6 | 7 |
@@ -239,7 +239,7 @@ For the following prime implicant chart, find all essential prime implicants:
 | P5  |   |   |   |   | ×  | ×  |
 | P6  |   |   |   | × |    | ×  |
 
-??? success "Solution"
+!!! success "Solution"
     **Checking for essential prime implicants:**
 
     - Column 2: Only P1 covers it → **P1 is essential**
@@ -272,7 +272,7 @@ Apply row dominance and column dominance to simplify this chart:
 | P4  |   | × |   | × |   | ×  |
 | P5  |   |   |   |   | × | ×  |
 
-??? success "Solution"
+!!! success "Solution"
     **Row Dominance:** (A row dominates another if it covers all minterms of the other plus more)
 
     - P2 dominates P1 (P2 covers 1, 5, 9 while P1 covers only 1, 5)
@@ -314,7 +314,7 @@ Identify the cyclic nature of this prime implicant chart:
 | P3  |   |   | × | × |
 | P4  | × |   |   | × |
 
-??? success "Solution"
+!!! success "Solution"
     **Analysis:**
 
     Each minterm is covered by exactly 2 prime implicants:
@@ -344,7 +344,7 @@ Identify the cyclic nature of this prime implicant chart:
 ### Problem 10
 Use Petrick's method to find all minimum covers for the chart in Problem 9.
 
-??? success "Solution"
+!!! success "Solution"
     **Petrick's Method:**
 
     For each minterm, write a sum (OR) of the PIs that cover it:
@@ -386,7 +386,7 @@ Use Petrick's method to find all minimum covers for the chart in Problem 9.
 ### Problem 11
 Minimize $F(A, B, C, D) = \sum m(4, 5, 6, 7, 12, 14, 15)$ using the complete QM method.
 
-??? success "Solution"
+!!! success "Solution"
     **Step 1: Group minterms**
 
     - Group 1: m₄ (0100)
@@ -439,7 +439,7 @@ Minimize $F(A, B, C, D) = \sum m(4, 5, 6, 7, 12, 14, 15)$ using the complete QM 
 ### Problem 12
 Minimize $F(W, X, Y, Z) = \sum m(0, 2, 3, 4, 5, 13, 15)$ using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **Step 1: Group minterms**
 
     - Group 0: m₀ (0000)
@@ -497,7 +497,7 @@ Minimize $F(W, X, Y, Z) = \sum m(0, 2, 3, 4, 5, 13, 15)$ using QM.
 ### Problem 13
 Minimize $F(A, B, C, D) = \sum m(0, 2, 8, 10)$ using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **Step 1: Group minterms**
 
     - Group 0: m₀ (0000)
@@ -528,7 +528,7 @@ Minimize $F(A, B, C, D) = \sum m(0, 2, 8, 10)$ using QM.
 ### Problem 14
 Minimize $F(A, B, C, D) = \sum m(1, 5, 7, 8, 9, 10, 11, 14, 15)$ using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **Step 1: Group by ones**
 
     - Group 1: m₁ (0001), m₈ (1000)
@@ -566,7 +566,7 @@ Minimize $F(A, B, C, D) = \sum m(1, 5, 7, 8, 9, 10, 11, 14, 15)$ using QM.
 ### Problem 15
 Apply QM to $F(A, B, C, D) = \sum m(0, 1, 3, 5, 7, 9, 11, 13, 15)$.
 
-??? success "Solution"
+!!! success "Solution"
     **Observation:** The minterms are 0, 1, 3, 5, 7, 9, 11, 13, 15
 
     Notice: All odd numbers (D=1) plus 0.
@@ -602,7 +602,7 @@ Apply QM to $F(A, B, C, D) = \sum m(0, 1, 3, 5, 7, 9, 11, 13, 15)$.
 ### Problem 16
 Minimize $F(A, B, C, D) = \sum m(0, 1, 2, 5, 7) + d(8, 9, 10)$ using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **Include don't cares in combination phase:**
 
     Minterms + Don't cares: 0, 1, 2, 5, 7, 8, 9, 10
@@ -659,7 +659,7 @@ Minimize $F(A, B, C, D) = \sum m(0, 1, 2, 5, 7) + d(8, 9, 10)$ using QM.
 ### Problem 17
 Minimize $F(A, B, C, D) = \sum m(2, 4, 5, 6, 10) + d(12, 13, 14, 15)$ using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **All terms:** 2, 4, 5, 6, 10, 12, 13, 14, 15
 
     **After QM combinations:**
@@ -689,7 +689,7 @@ Minimize $F(A, B, C, D) = \sum m(2, 4, 5, 6, 10) + d(12, 13, 14, 15)$ using QM.
 ### Problem 18
 For $F(A, B, C) = \sum m(1, 2) + d(3, 5, 7)$, find the minimum expression using QM.
 
-??? success "Solution"
+!!! success "Solution"
     **All terms:** 1, 2, 3, 5, 7
 
     **Group by ones:**
@@ -746,7 +746,7 @@ a) Solve using QM
 b) Verify using K-map
 c) Discuss which method is more efficient for this function
 
-??? success "Solution"
+!!! success "Solution"
     a) **QM Solution:**
 
     Minterms: 0, 3, 4, 7, 8, 11, 12, 15
@@ -809,7 +809,7 @@ c) Discuss which method is more efficient for this function
 ### Problem 20
 A digital system has 6 inputs (A, B, C, D, E, F). Explain why the Quine-McCluskey method would be preferred over K-maps for this problem, and describe the computational challenges involved.
 
-??? success "Solution"
+!!! success "Solution"
     **Why QM is preferred for 6 variables:**
 
     1. **K-map limitations:**

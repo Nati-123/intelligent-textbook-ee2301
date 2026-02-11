@@ -13,7 +13,7 @@ These challenge problems test deeper understanding. Only final answers are provi
 
 Implement the function $F(A, B, C, D) = \sum m(0, 2, 4, 5, 6, 9, 11, 13, 15)$ using a single 8:1 multiplexer with $A$, $B$, $C$ as select inputs. Determine the data input ($I_0$ through $I_7$) for each MUX channel as a function of $D$.
 
-??? success "Answer"
+!!! success "Answer"
     With $A$, $B$, $C$ as select lines ($S_2 = A$, $S_1 = B$, $S_0 = C$):
 
     | Select ($ABC$) | Minterms | $D=0$ | $D=1$ | Data Input |
@@ -35,7 +35,7 @@ Implement the function $F(A, B, C, D) = \sum m(0, 2, 4, 5, 6, 9, 11, 13, 15)$ us
 
 Design an 8-to-3 priority encoder with active-high inputs ($I_0$ through $I_7$, where $I_7$ has the highest priority). The outputs are a 3-bit binary code ($Y_2 Y_1 Y_0$) representing the highest-priority active input, plus a valid output $V$ that is 1 when any input is active. Write the Boolean expressions for all outputs.
 
-??? success "Answer"
+!!! success "Answer"
     **Valid output:**
 
     $V = I_0 + I_1 + I_2 + I_3 + I_4 + I_5 + I_6 + I_7$
@@ -58,7 +58,7 @@ Design an 8-to-3 priority encoder with active-high inputs ($I_0$ through $I_7$, 
 
 Using two 3-to-8 decoders with enable inputs and basic logic gates, design a 4-to-16 decoder. Specify how the enable inputs are connected, and write the expression for output line $Y_{13}$.
 
-??? success "Answer"
+!!! success "Answer"
     **Design:**
 
     - Input $A_3$ (MSB) controls the enable lines
@@ -79,7 +79,7 @@ Using two 3-to-8 decoders with enable inputs and basic logic gates, design a 4-t
 
 Using a 4-to-1 MUX and a 2-to-4 decoder, implement a circuit that computes $F = A \oplus B$ (XOR) and $G = A \cdot B$ (AND) simultaneously. Show the connections for both outputs.
 
-??? success "Answer"
+!!! success "Answer"
     **Using a 4:1 MUX for $F = A \oplus B$:**
 
     Select lines: $S_1 = A$, $S_0 = B$
@@ -107,7 +107,7 @@ Using a 4-to-1 MUX and a 2-to-4 decoder, implement a circuit that computes $F = 
 
 Design a 4-bit Gray-to-binary converter. Given Gray code input $G_3 G_2 G_1 G_0$, derive the Boolean expressions for each binary output bit $B_3 B_2 B_1 B_0$ and determine the total number of XOR gates needed.
 
-??? success "Answer"
+!!! success "Answer"
     **Conversion formulas:**
 
     $B_3 = G_3$

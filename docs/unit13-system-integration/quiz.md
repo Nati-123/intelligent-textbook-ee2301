@@ -18,7 +18,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. Specification → Architecture → Detailed Design → Integration → Verification → Implementation
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **D**. The top-down methodology begins with a clear specification of system requirements, followed by architectural partitioning into subsystems, detailed RTL design of each subsystem, integration of subsystems using structural VHDL, verification through comprehensive testbenches and timing analysis, and finally implementation on the target FPGA. Working from abstract to detailed prevents the designer from getting lost in low-level details before the overall structure is defined.
 
     **Concept Tested:** Top-Down Design Methodology
@@ -34,7 +34,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. The clock distribution network
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **A**. The control unit is a finite state machine that generates control signals (MUX selects, register load enables, ALU operation codes) to direct data flow through the datapath on each clock cycle. The datapath performs the actual data processing, while the control unit orchestrates the sequence of operations. This separation allows the same datapath hardware to perform different operations on different clock cycles.
 
     **Concept Tested:** Datapath and Control Unit Separation
@@ -50,7 +50,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. Verification can be fully automated while design requires manual intervention
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **C**. In digital ASIC and FPGA design, errors discovered late in the development cycle or after manufacturing are vastly more expensive to fix than those caught early. A bug found in simulation costs minutes to fix; a bug found after ASIC fabrication requires a new mask set costing millions of dollars. Even for FPGAs, hardware debugging is much more time-consuming than simulation. Comprehensive verification—including functional simulation, timing analysis, and edge-case testing—is the primary defense against costly post-implementation errors.
 
     **Concept Tested:** Verification Planning
@@ -66,7 +66,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. The clock skew between source and destination flip-flops
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **B**. In the timing model for synchronous circuits, $T_{comb}$ represents the worst-case propagation delay through all combinational logic gates on the path between a source flip-flop's Q output and the destination flip-flop's D input. The critical path—the path with the largest total $T_{cq} + T_{comb} + T_{setup}$—determines the maximum achievable clock frequency. $T_{cq}$ is the source flip-flop's clock-to-Q delay, and $T_{setup}$ is the destination flip-flop's setup time requirement.
 
     **Concept Tested:** Static Timing Analysis
@@ -82,7 +82,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. 100 MHz
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **A**. The maximum clock frequency is determined by $f_{max} = 1/(T_{cq} + T_{comb} + T_{setup})$. Substituting the values: $f_{max} = 1/(2 + 15 + 3) \text{ ns} = 1/20 \text{ ns} = 50$ MHz. The clock period must be at least 20 ns to ensure data propagates from the source flip-flop through the combinational logic and arrives at the destination flip-flop before the next clock edge, satisfying the setup time requirement.
 
     **Concept Tested:** Critical Path Identification / Clock Frequency Determination
@@ -98,7 +98,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. 100 MHz
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **C**. After pipelining, each stage has $T_{comb} = 10$ ns. The new constraint is $f_{max} = 1/(T_{cq} + T_{comb} + T_{setup}) = 1/(2 + 10 + 1) \text{ ns} = 1/13 \text{ ns} \approx 76.9$ MHz. Compared to the unpipelined frequency of $1/23 \text{ ns} \approx 43.5$ MHz, pipelining achieves a 1.77× throughput improvement. The trade-off is one additional clock cycle of latency and the area cost of the pipeline register.
 
     **Concept Tested:** Pipelining for Performance
@@ -114,7 +114,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. The baud rate generator (clock divider counter)
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **D**. The baud rate generator is a counter that divides the system clock frequency down to the desired baud rate (e.g., 9600, 115200 baud). It generates a timing tick at the correct intervals to shift out each bit. For example, with a 50 MHz system clock and 9600 baud: the counter counts to $50{,}000{,}000 / 9{,}600 \approx 5208$ before generating a tick. The shift register, bit counter, and FSM all depend on this timing signal to operate at the correct rate.
 
     **Concept Tested:** System-Level Example: Serial Communication
@@ -130,7 +130,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. When the design requires the lowest possible latency per operation
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **B**. Resource sharing trades execution time for hardware area: using one adder instead of two halves the adder count but doubles the time required (two clock cycles instead of one). This approach is preferred when FPGA area (LUTs, flip-flops) is constrained and the two additions can tolerate sequential execution. If both additions must complete in the same clock cycle (for throughput or latency reasons), dedicated parallel adders are necessary despite the higher area cost.
 
     **Concept Tested:** Resource Sharing and Scheduling
@@ -146,7 +146,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. Edge detection is needed to prevent metastability in the flip-flops
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **A**. A mechanical button press typically lasts hundreds of milliseconds, while the FSM clock runs at megahertz frequencies—meaning the button appears HIGH for thousands of clock cycles. Without edge detection, the FSM would see the sustained HIGH level and interpret it as multiple presses, advancing through multiple states incorrectly. An edge detector produces a single-cycle pulse on the rising edge of the button signal, ensuring exactly one FSM transition per button press regardless of how long the button is held.
 
     **Concept Tested:** System-Level Example: Digital Lock
@@ -162,7 +162,7 @@ Test your understanding of top-down design methodology, datapath-controller arch
 4. Interface mismatches between modules (signal encoding, timing assumptions, or protocol violations); trace control signals and data across module boundaries in an integration testbench
 </div>
 
-??? question "Show Answer"
+!!! question "Show Answer"
     The correct answer is **D**. When individually-verified modules fail during integration, the most common cause is interface mismatches—disagreements between modules about signal encoding (e.g., unsigned vs signed), timing conventions (e.g., data valid one cycle after request vs same cycle), bus widths, or handshake protocols. The best debugging approach is to create an integration testbench that traces control signals and data across module boundaries, verifying that each module's outputs match the next module's expected inputs. This is why interface specification (port names, types, timing, encoding, and protocol) is a critical step in the top-down design methodology.
 
     **Concept Tested:** Interface Specification / Design Review and Optimization

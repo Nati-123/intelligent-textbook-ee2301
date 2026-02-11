@@ -15,7 +15,7 @@ Use the Quine-McCluskey method to find the minimum SOP expression for:
 
 $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 
-??? success "Answer"
+!!! success "Answer"
     **Prime implicants (after combining with don't cares):**
 
     - $\overline{B}\,\overline{C}$ (covers 0, 1, 8, 9; with d: 3, 11)
@@ -47,7 +47,7 @@ For $F(A, B, C, D) = \sum m(0, 4, 5, 6, 7, 8, 9, 14, 15)$, use the Quine-McClusk
 2. Identify the essential prime implicants
 3. Determine the minimum SOP
 
-??? success "Answer"
+!!! success "Answer"
     **Step 1 — All prime implicants:**
 
     | PI | Minterms Covered | Expression |
@@ -82,7 +82,7 @@ For $F(A, B, C, D) = \sum m(0, 4, 5, 6, 7, 8, 9, 14, 15)$, use the Quine-McClusk
 
 For $F(W, X, Y, Z) = \sum m(0, 1, 5, 7, 8, 10, 14, 15)$, find all prime implicants using QM, construct the PI chart, and identify any cyclic (non-essential) cover situation. Find the minimum cover.
 
-??? success "Answer"
+!!! success "Answer"
     **Prime implicants:**
 
     - $\overline{X}\,\overline{Y}\,\overline{Z}$ (covers 0, 8)
@@ -109,7 +109,7 @@ For $F(W, X, Y, Z) = \sum m(0, 1, 5, 7, 8, 10, 14, 15)$, find all prime implican
 
 For $F(A, B, C, D) = \sum m(1, 3, 4, 5, 9, 11, 12, 14)$, solve using both the Quine-McCluskey method and a K-map. Verify that both approaches yield the same minimum SOP expression.
 
-??? success "Answer"
+!!! success "Answer"
     **By K-map and QM (both methods):**
 
     Prime implicants: $\overline{B}\,D$, $B\,\overline{C}\,\overline{D}$, $A\,C\,\overline{D}$... verify:
@@ -145,7 +145,7 @@ For $F(A, B, C, D) = \sum m(1, 3, 4, 5, 9, 11, 12, 14)$, solve using both the Qu
 
 For $F(A, B, C, D) = \sum m(2, 3, 7, 9, 11, 13)$, after finding all prime implicants via QM, use Petrick's method to find all minimum SOP covers.
 
-??? success "Answer"
+!!! success "Answer"
     **Prime implicants:**
 
     - $P_1$: $\overline{A}\,\overline{B}\,C$ (covers 2, 3)

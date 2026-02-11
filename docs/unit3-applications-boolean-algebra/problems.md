@@ -18,7 +18,7 @@ a) Write the truth table
 b) Derive the Boolean expressions for Sum and Carry
 c) Verify with inputs A=1, B=1
 
-??? success "Solution"
+!!! success "Solution"
     a) Truth table:
 
     | A | B | Sum | Carry |
@@ -46,7 +46,7 @@ a) Draw the block diagram
 b) Write the Boolean expressions for Sum and Cout
 c) Calculate the output for A=1, B=1, Cin=1
 
-??? success "Solution"
+!!! success "Solution"
     a) Block diagram uses two half adders and an OR gate:
     - HA1: inputs A, B → Sum1, Carry1
     - HA2: inputs Sum1, Cin → Sum, Carry2
@@ -70,7 +70,7 @@ a) Show the carry propagation through each full adder
 b) What is the final sum?
 c) Is there an overflow?
 
-??? success "Solution"
+!!! success "Solution"
     Adding A = 1011 (11) and B = 0110 (6):
 
     ```
@@ -99,7 +99,7 @@ c) Is there an overflow?
 ### Problem 4
 Design a circuit that adds three 1-bit numbers (A, B, C).
 
-??? success "Solution"
+!!! success "Solution"
     The output range is 0 to 3, requiring 2 output bits (S1, S0).
 
     Truth table:
@@ -128,7 +128,7 @@ Calculate the worst-case propagation delay for an 8-bit ripple carry adder if ea
 - AND gate delay: 5 ns
 - OR gate delay: 5 ns
 
-??? success "Solution"
+!!! success "Solution"
     In a ripple carry adder, the critical path is the carry chain.
 
     For each full adder:
@@ -153,7 +153,7 @@ Design a half subtractor.
 a) Write the truth table (A - B)
 b) Derive expressions for Difference and Borrow
 
-??? success "Solution"
+!!! success "Solution"
     a) Truth table for A - B:
 
     | A | B | Difference | Borrow |
@@ -172,7 +172,7 @@ b) Derive expressions for Difference and Borrow
 ### Problem 7
 Design an adder/subtractor circuit for 4-bit numbers using a control signal M (M=0 for add, M=1 for subtract).
 
-??? success "Solution"
+!!! success "Solution"
     The key insight: A - B = A + (-B) = A + (B' + 1) in two's complement
 
     Design:
@@ -192,7 +192,7 @@ Design an adder/subtractor circuit for 4-bit numbers using a control signal M (M
 ### Problem 8
 Perform 4-bit subtraction using two's complement: 1001 - 0101
 
-??? success "Solution"
+!!! success "Solution"
     A = 1001 (9), B = 0101 (5)
     A - B = A + (-B)
 
@@ -219,7 +219,7 @@ Perform 4-bit subtraction using two's complement: 1001 - 0101
 What happens when you subtract a larger number from a smaller one using 4-bit two's complement?
 Calculate: 0011 - 0111 (3 - 7)
 
-??? success "Solution"
+!!! success "Solution"
     A = 0011 (3), B = 0111 (7)
 
     Step 1: Two's complement of B
@@ -253,7 +253,7 @@ Design a 1-bit comparator that outputs three signals:
 - E (A = B)
 - L (A < B)
 
-??? success "Solution"
+!!! success "Solution"
     Truth table:
 
     | A | B | G | E | L |
@@ -273,7 +273,7 @@ Design a 1-bit comparator that outputs three signals:
 ### Problem 11
 Design a 2-bit magnitude comparator.
 
-??? success "Solution"
+!!! success "Solution"
     Inputs: A1A0 and B1B0
 
     Compare MSB first, then LSB:
@@ -296,7 +296,7 @@ Design a 2-bit magnitude comparator.
 ### Problem 12
 Compare the numbers A = 1011 and B = 1010 using a 4-bit comparator.
 
-??? success "Solution"
+!!! success "Solution"
     A = 1011₂ = 11₁₀
     B = 1010₂ = 10₁₀
 
@@ -313,7 +313,7 @@ Compare the numbers A = 1011 and B = 1010 using a 4-bit comparator.
 ### Problem 13
 Design a circuit that determines if a 4-bit number is within the range 5 to 10 (inclusive).
 
-??? success "Solution"
+!!! success "Solution"
     Need: 5 ≤ N ≤ 10, where N = N3N2N1N0
 
     Using comparators:
@@ -336,7 +336,7 @@ Design a circuit that determines if a 4-bit number is within the range 5 to 10 (
 ### Problem 14
 Design a 2-to-4 decoder with an enable input E.
 
-??? success "Solution"
+!!! success "Solution"
     Inputs: E (enable), A1, A0
     Outputs: Y0, Y1, Y2, Y3
 
@@ -362,7 +362,7 @@ Design a 2-to-4 decoder with an enable input E.
 ### Problem 15
 Implement the function F(A, B, C) = Σm(1, 2, 6, 7) using a 3-to-8 decoder.
 
-??? success "Solution"
+!!! success "Solution"
     A 3-to-8 decoder generates all 8 minterms m0 through m7.
 
     For F = Σm(1, 2, 6, 7):
@@ -379,7 +379,7 @@ Implement the function F(A, B, C) = Σm(1, 2, 6, 7) using a 3-to-8 decoder.
 ### Problem 16
 Design a priority encoder for 4 inputs (D3, D2, D1, D0) where D3 has highest priority.
 
-??? success "Solution"
+!!! success "Solution"
     Outputs: Y1, Y0 (binary code), V (valid - at least one input active)
 
     Priority: If D3=1, output 11 regardless of other inputs
@@ -405,7 +405,7 @@ Design a BCD to 7-segment decoder for displaying digit 5.
 a) What segments should be ON for digit 5?
 b) Write the segment pattern
 
-??? success "Solution"
+!!! success "Solution"
     7-segment display layout:
     ```
        a
@@ -434,7 +434,7 @@ b) Write the segment pattern
 ### Problem 18
 Design a binary coded decimal (BCD) adder that adds two BCD digits and produces a BCD sum.
 
-??? success "Solution"
+!!! success "Solution"
     BCD digits range from 0-9. When adding two BCD digits + carry:
     - If sum ≤ 9: result is valid BCD
     - If sum > 9: add 6 (0110) to correct
@@ -458,7 +458,7 @@ A vending machine accepts quarters (25¢) only. Design a circuit that indicates 
 
 Let Q2, Q1, Q0 represent the count of quarters (0-7).
 
-??? success "Solution"
+!!! success "Solution"
     75¢ = 3 quarters, so we need Q ≥ 3
 
     Q (count) in binary: Q2Q1Q0
@@ -481,7 +481,7 @@ Let Q2, Q1, Q0 represent the count of quarters (0-7).
 ### Problem 20
 Design a 4-bit parity generator that outputs 1 if the input has an odd number of 1s.
 
-??? success "Solution"
+!!! success "Solution"
     For inputs A, B, C, D:
 
     **Parity = A ⊕ B ⊕ C ⊕ D**

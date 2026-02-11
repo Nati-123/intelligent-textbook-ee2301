@@ -14,7 +14,7 @@ Work through these problems to master K-map simplification techniques.
 ### Problem 1
 Simplify using a 2-variable K-map: F(A, B) = Σm(0, 1, 2)
 
-??? success "Solution"
+!!! success "Solution"
     ```
         B=0  B=1
     A=0  1    1
@@ -32,7 +32,7 @@ Simplify using a 2-variable K-map: F(A, B) = Σm(0, 1, 2)
 ### Problem 2
 Simplify: F(A, B, C) = Σm(0, 2, 4, 6)
 
-??? success "Solution"
+!!! success "Solution"
     ```
           BC
          00  01  11  10
@@ -49,7 +49,7 @@ Simplify: F(A, B, C) = Σm(0, 2, 4, 6)
 ### Problem 3
 Simplify: F(A, B, C) = Σm(1, 3, 4, 5, 6, 7)
 
-??? success "Solution"
+!!! success "Solution"
     ```
           BC
          00  01  11  10
@@ -68,7 +68,7 @@ Simplify: F(A, B, C) = Σm(1, 3, 4, 5, 6, 7)
 ### Problem 4
 Simplify: F(A, B, C) = Σm(0, 1, 2, 5, 6, 7)
 
-??? success "Solution"
+!!! success "Solution"
     ```
           BC
          00  01  11  10
@@ -99,7 +99,7 @@ Simplify: F(A, B, C) = Σm(0, 1, 2, 5, 6, 7)
 ### Problem 5
 Find all prime implicants for: F(A, B, C) = Σm(0, 1, 3, 5, 7)
 
-??? success "Solution"
+!!! success "Solution"
     ```
           BC
          00  01  11  10
@@ -124,7 +124,7 @@ Find all prime implicants for: F(A, B, C) = Σm(0, 1, 3, 5, 7)
 ### Problem 6
 Simplify: F(A, B, C, D) = Σm(0, 1, 2, 3, 4, 5, 6, 7)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -143,7 +143,7 @@ Simplify: F(A, B, C, D) = Σm(0, 1, 2, 3, 4, 5, 6, 7)
 ### Problem 7
 Simplify: F(A, B, C, D) = Σm(0, 2, 8, 10, 5, 7, 13, 15)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -166,7 +166,7 @@ Simplify: F(A, B, C, D) = Σm(0, 2, 8, 10, 5, 7, 13, 15)
 ### Problem 8
 Simplify: F(A, B, C, D) = Σm(1, 3, 5, 7, 9, 11, 12, 14)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -194,7 +194,7 @@ Simplify: F(A, B, C, D) = Σm(1, 3, 5, 7, 9, 11, 12, 14)
 ### Problem 9
 Simplify using K-map: F(A, B, C, D) = Σm(0, 4, 5, 7, 8, 9, 13, 15)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -223,7 +223,7 @@ Simplify using K-map: F(A, B, C, D) = Σm(0, 4, 5, 7, 8, 9, 13, 15)
 ### Problem 10
 Find minimum SOP and POS for: F = Σm(0, 1, 4, 5, 11, 14, 15)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -255,7 +255,7 @@ Find minimum SOP and POS for: F = Σm(0, 1, 4, 5, 11, 14, 15)
 ### Problem 11
 Identify all prime implicants for: F = Σm(0, 2, 3, 4, 7, 8, 10, 11, 15)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -294,7 +294,7 @@ Identify all prime implicants for: F = Σm(0, 2, 3, 4, 7, 8, 10, 11, 15)
 ### Problem 12
 Simplify: F = Σm(1, 3, 5, 7, 9) + Σd(6, 12, 13)
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -327,7 +327,7 @@ Simplify: F = Σm(1, 3, 5, 7, 9) + Σd(6, 12, 13)
 ### Problem 13
 Design a BCD-to-Excess-3 code converter. Use don't cares for invalid BCD inputs (10-15).
 
-??? success "Solution"
+!!! success "Solution"
     BCD input: ABCD (0-9 valid)
     Excess-3 output: WXYZ = BCD + 3
 
@@ -359,7 +359,7 @@ F(A,B,C,D) = Σm(2, 4, 6, 8, 10, 12) + Σd(0, 7, 15)
 
 Find minimum SOP expression.
 
-??? success "Solution"
+!!! success "Solution"
     ```
            CD
           00  01  11  10
@@ -398,7 +398,7 @@ Find minimum SOP expression.
 ### Problem 15
 In a BCD system, design a circuit that outputs 1 for prime numbers (2, 3, 5, 7).
 
-??? success "Solution"
+!!! success "Solution"
     Input: ABCD (BCD digit 0-9)
     Output: P = 1 for primes 2, 3, 5, 7
 
@@ -450,7 +450,7 @@ F2 = Σm(0, 2, 3, 5, 6, 7)
 
 Share common terms where possible.
 
-??? success "Solution"
+!!! success "Solution"
     For 3 variables A, B, C:
 
     F1 K-map:
@@ -493,7 +493,7 @@ Share common terms where possible.
 ### Problem 17
 Given F1 = Σm(0, 1, 3, 7) and F2 = Σm(1, 3, 6, 7), find F1 · F2 and F1 + F2 using K-maps.
 
-??? success "Solution"
+!!! success "Solution"
     **F1 · F2 (AND):** Intersection of 1s
     F1 has 1s at: 0, 1, 3, 7
     F2 has 1s at: 1, 3, 6, 7
@@ -524,7 +524,7 @@ Design a circuit with two outputs:
 
 Identify any common sub-expressions.
 
-??? success "Solution"
+!!! success "Solution"
     This is a full adder!
 
     **SUM K-map:**
@@ -564,7 +564,7 @@ A security system has 4 sensors (A, B, C, D). The alarm should sound when:
 
 Design using K-map.
 
-??? success "Solution"
+!!! success "Solution"
     Alarm = A + (at least 2 of B, C, D triggered)
 
     "At least 2" means majority or more:
@@ -595,7 +595,7 @@ Design using K-map.
 ### Problem 20
 Design a combinational lock that opens when the 4-bit input equals either 1001 or 1100.
 
-??? success "Solution"
+!!! success "Solution"
     F = 1 when ABCD = 1001 OR ABCD = 1100
 
     Minterms: m9 (1001) and m12 (1100)

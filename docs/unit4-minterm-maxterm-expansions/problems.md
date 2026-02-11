@@ -19,7 +19,7 @@ b) The maxterm for row 3
 c) The minterm notation for A'BC
 d) The maxterm notation for (A + B' + C)
 
-??? success "Solution"
+!!! success "Solution"
     a) Row 5 = 101₂, so A=1, B=0, C=1
        **m5 = AB'C**
 
@@ -42,7 +42,7 @@ b) F = ΠM(1, 3, 4, 6) to minterm form
 
 For 3 variables (A, B, C).
 
-??? success "Solution"
+!!! success "Solution"
     a) F = Σm(0, 2, 5, 7)
        Missing minterms: 1, 3, 4, 6
        **F = ΠM(1, 3, 4, 6)**
@@ -69,7 +69,7 @@ Given the truth table, express F in both minterm and maxterm forms:
 | 1 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 0 |
 
-??? success "Solution"
+!!! success "Solution"
     F = 1 at rows: 0, 2, 3, 6
 
     **Minterm form (SOP):**
@@ -89,7 +89,7 @@ Expand the following to canonical SOP form:
 
 F(A, B, C) = A + BC
 
-??? success "Solution"
+!!! success "Solution"
     Method: Expand each term to include all variables.
 
     Term 1: A = A(B + B')(C + C')
@@ -113,7 +113,7 @@ Expand to canonical POS form:
 
 F(A, B, C) = (A + B)(B + C)
 
-??? success "Solution"
+!!! success "Solution"
     Method: Expand each term to include all variables.
 
     Term 1: (A + B) = (A + B + CC') = (A + B + C)(A + B + C')
@@ -137,7 +137,7 @@ Convert the following SOP expression to POS:
 
 F = AB + A'C + BC
 
-??? success "Solution"
+!!! success "Solution"
     Step 1: Find the truth table or minterms
 
     AB = m6, m7 (when A=1, B=1)
@@ -159,7 +159,7 @@ Convert the following POS expression to SOP:
 
 F = (A + B)(A' + C)(B + C')
 
-??? success "Solution"
+!!! success "Solution"
     Method 1: Expand algebraically
     F = (A + B)(A' + C)(B + C')
 
@@ -184,7 +184,7 @@ Find the complement of F = Σm(1, 3, 5, 7) using:
 a) De Morgan's theorem
 b) Missing minterms
 
-??? success "Solution"
+!!! success "Solution"
     F = Σm(1, 3, 5, 7) for F(A, B, C)
 
     a) **De Morgan's method:**
@@ -210,7 +210,7 @@ Express F and F' in both SOP and POS forms:
 
 F(A, B, C) = Σm(0, 1, 4, 5)
 
-??? success "Solution"
+!!! success "Solution"
     **F in SOP:** F = Σm(0, 1, 4, 5)
     F = A'B'C' + A'B'C + AB'C' + AB'C = **B'**
 
@@ -232,7 +232,7 @@ a) F1 + F2 (OR)
 b) F1 · F2 (AND)
 c) F1 ⊕ F2 (XOR)
 
-??? success "Solution"
+!!! success "Solution"
     a) **F1 + F2:** Union of minterms
     {0, 2, 4, 6} ∪ {1, 3, 5, 6} = {0, 1, 2, 3, 4, 5, 6}
     **F1 + F2 = Σm(0, 1, 2, 3, 4, 5, 6)** = (m7)' = A' + B' + C'
@@ -252,7 +252,7 @@ c) F1 ⊕ F2 (XOR)
 ### Problem 11
 Apply Shannon's expansion to F(A, B, C) = AB + BC + A'C with respect to variable A.
 
-??? success "Solution"
+!!! success "Solution"
     Shannon's expansion: F = A·F(1,B,C) + A'·F(0,B,C)
 
     **F(1, B, C):** Substitute A=1
@@ -272,7 +272,7 @@ Use Shannon's expansion with respect to B for:
 
 F(A, B, C) = A'B'C + ABC' + AB'C
 
-??? success "Solution"
+!!! success "Solution"
     F = B·F(A,1,C) + B'·F(A,0,C)
 
     **F(A, 1, C):** Substitute B=1
@@ -294,7 +294,7 @@ Find the positive and negative cofactors of F with respect to A:
 
 F(A, B, C, D) = AB + CD + A'BD
 
-??? success "Solution"
+!!! success "Solution"
     **Positive cofactor F_A (A=1):**
     F(1, B, C, D) = 1·B + CD + 0·BD = B + CD
     **F_A = B + CD**
@@ -312,7 +312,7 @@ F(A, B, C, D) = AB + CD + A'BD
 ### Problem 14
 Recursively expand F(A, B, C) = A ⊕ B ⊕ C using Shannon's expansion.
 
-??? success "Solution"
+!!! success "Solution"
     **Level 1 - Expand with respect to A:**
     F = A·F_A + A'·F_A'
     F_A = 1 ⊕ B ⊕ C = (B ⊕ C)'
@@ -334,7 +334,7 @@ Recursively expand F(A, B, C) = A ⊕ B ⊕ C using Shannon's expansion.
 ### Problem 15
 Use cofactors to implement F(A, B, C) = Σm(1, 2, 4, 7) using a 2-to-1 MUX with A as the select input.
 
-??? success "Solution"
+!!! success "Solution"
     For a 2-to-1 MUX with select A:
     - When A=0: output = I0
     - When A=1: output = I1
@@ -366,7 +366,7 @@ Implement F = Σm(0, 1, 4, 5, 6) using:
 a) Only AND and OR gates (from SOP)
 b) Only NAND gates
 
-??? success "Solution"
+!!! success "Solution"
     a) **SOP implementation:**
     F = m0 + m1 + m4 + m5 + m6
     = A'B'C' + A'B'C + AB'C' + AB'C + ABC'
@@ -396,7 +396,7 @@ Implement F = ΠM(0, 3, 5, 6) using:
 a) Only AND and OR gates (from POS)
 b) Only NOR gates
 
-??? success "Solution"
+!!! success "Solution"
     a) **POS implementation:**
     F = M0 · M3 · M5 · M6
     = (A+B+C)(A+B'+C')(A'+B+C')(A'+B'+C)
@@ -420,7 +420,7 @@ b) Only NOR gates
 ### Problem 18
 Design a circuit for F(A, B, C, D) = Σm(0, 1, 2, 3, 8, 9, 10, 11) using a 3-to-8 decoder.
 
-??? success "Solution"
+!!! success "Solution"
     First, identify the pattern:
     Minterms: 0-3 have A=0, B=0
     Minterms: 8-11 have A=1, B=0
@@ -444,7 +444,7 @@ Design a circuit for F(A, B, C, D) = Σm(0, 1, 2, 3, 8, 9, 10, 11) using a 3-to-
 ### Problem 19
 Implement F(A, B, C) = Σm(1, 2, 4, 7) using an 8-to-1 multiplexer.
 
-??? success "Solution"
+!!! success "Solution"
     For 8-to-1 MUX with 3 select lines (A, B, C):
 
     Connect inputs based on minterm values:
@@ -470,7 +470,7 @@ F(A, B, C) = Σm(0, 2, 3, 5, 7)
 
 Use A and B as select lines.
 
-??? success "Solution"
+!!! success "Solution"
     Group minterms by A, B values:
 
     | A | B | C values where F=1 | MUX input |

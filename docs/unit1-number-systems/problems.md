@@ -19,7 +19,7 @@ b) 243
 c) 512
 d) 1000
 
-??? success "Solution"
+!!! success "Solution"
     a) 156₁₀ = 10011100₂ = 234₈ = 9C₁₆
 
     b) 243₁₀ = 11110011₂ = 363₈ = F3₁₆
@@ -38,7 +38,7 @@ b) 10101010₂
 c) 11111111₂
 d) 10000001₂
 
-??? success "Solution"
+!!! success "Solution"
     a) 11010110₂ = 128 + 64 + 16 + 4 + 2 = **214₁₀**
 
     b) 10101010₂ = 128 + 32 + 8 + 2 = **170₁₀**
@@ -57,7 +57,7 @@ b) 1010111001₂ to hexadecimal
 c) BEEF₁₆ to binary
 d) 110011110000₂ to hexadecimal
 
-??? success "Solution"
+!!! success "Solution"
     a) 3F7₁₆ = 0011 1111 0111₂ = **001111110111₂**
 
     b) 1010111001₂ = 0010 1011 1001₂ = **2B9₁₆**
@@ -76,7 +76,7 @@ b) 377₈
 c) 1234₈
 d) 4000₈
 
-??? success "Solution"
+!!! success "Solution"
     a) 752₈ = 7×64 + 5×8 + 2×1 = 448 + 40 + 2 = **490₁₀** = 111101010₂
 
     b) 377₈ = 3×64 + 7×8 + 7×1 = 192 + 56 + 7 = **255₁₀** = 11111111₂
@@ -94,7 +94,7 @@ a) Convert this to decimal
 b) Convert this to binary
 c) How many bytes can be addressed from 0000₁₆ to 7FFF₁₆?
 
-??? success "Solution"
+!!! success "Solution"
     a) 7FFF₁₆ = 7×4096 + 15×256 + 15×16 + 15 = 28672 + 3840 + 240 + 15 = **32767₁₀**
 
     b) 7FFF₁₆ = 0111 1111 1111 1111₂ = **111111111111111₂** (15 ones)
@@ -112,7 +112,7 @@ a) Sign-magnitude
 b) One's complement
 c) Two's complement
 
-??? success "Solution"
+!!! success "Solution"
     First, 45₁₀ = 00101101₂
 
     a) Sign-magnitude: **10101101** (MSB = 1 for negative)
@@ -131,7 +131,7 @@ b) 11111111
 c) 10000001
 d) 01111111
 
-??? success "Solution"
+!!! success "Solution"
     a) 10000000₂ = **-128** (most negative 8-bit value)
 
     b) 11111111₂ = **-1** (invert → 00000000, add 1 → 00000001, negate → -1)
@@ -150,7 +150,7 @@ b) 8-bit two's complement
 c) 16-bit unsigned
 d) 16-bit two's complement
 
-??? success "Solution"
+!!! success "Solution"
     a) 8-bit unsigned: **0 to 255** (0 to 2⁸ - 1)
 
     b) 8-bit two's complement: **-128 to +127** (-2⁷ to 2⁷ - 1)
@@ -169,7 +169,7 @@ b) 35 + (-47)
 c) (-35) + (-47)
 d) 100 + 50 (check for overflow)
 
-??? success "Solution"
+!!! success "Solution"
     a) 35 = 00100011, 47 = 00101111
        00100011 + 00101111 = 01010010 = **82** ✓
 
@@ -190,7 +190,7 @@ d) 100 + 50 (check for overflow)
 ### Problem 10
 Explain why overflow occurred in Problem 9d and how you can detect it.
 
-??? success "Solution"
+!!! success "Solution"
     **Why overflow occurred:**
     - Both operands (100 and 50) are positive
     - The true sum (150) exceeds the maximum positive value (+127) for 8-bit two's complement
@@ -216,7 +216,7 @@ a) 10110 + 11011
 b) 111111 + 000001
 c) 10101010 + 01010101
 
-??? success "Solution"
+!!! success "Solution"
     a)
     ```
         10110
@@ -253,7 +253,7 @@ a) 11010 - 10011
 b) 10000 - 00001
 c) 01100100 - 00110010
 
-??? success "Solution"
+!!! success "Solution"
     a) 11010 - 10011 = 11010 + (two's complement of 10011)
        Two's complement of 10011 = 01101
        11010 + 01101 = 100111 → discard carry → **00111** = 7
@@ -274,7 +274,7 @@ Multiply the following binary numbers:
 a) 1101 × 101
 b) 1011 × 110
 
-??? success "Solution"
+!!! success "Solution"
     a) 1101 × 101:
     ```
             1101
@@ -312,7 +312,7 @@ a) 0.625
 b) 0.3125
 c) 6.75
 
-??? success "Solution"
+!!! success "Solution"
     a) 0.625 × 2 = 1.25 → 1
        0.25 × 2 = 0.5 → 0
        0.5 × 2 = 1.0 → 1
@@ -337,7 +337,7 @@ a) 101.011₂
 b) 11.1101₂
 c) 0.0001₂
 
-??? success "Solution"
+!!! success "Solution"
     a) 101.011₂ = 4 + 0 + 1 + 0.25 + 0.125 = **5.375₁₀**
 
     b) 11.1101₂ = 2 + 1 + 0.5 + 0.25 + 0 + 0.0625 = **3.8125₁₀**
@@ -355,7 +355,7 @@ a) What binary value represents 50% gray?
 b) What is the hex value for white?
 c) How many distinct shades can be represented?
 
-??? success "Solution"
+!!! success "Solution"
     a) 50% gray = 255 × 0.5 ≈ 127 or 128
        127 = **01111111₂** or 128 = **10000000₂**
 
@@ -373,7 +373,7 @@ b) What color is #00FF00?
 c) What color is #808080?
 d) How many colors can be represented?
 
-??? success "Solution"
+!!! success "Solution"
     a) Pure red: R=255, G=0, B=0 → **#FF0000**
 
     b) R=0, G=255, B=0 → **Pure green**
@@ -392,7 +392,7 @@ b) If it increments every 1 ms, how long until it returns to 0000?
 c) What is the state after 0111?
 d) What is the state after 1111?
 
-??? success "Solution"
+!!! success "Solution"
     a) 4 bits = 2⁴ = **16 states** (0 to 15)
 
     b) 16 states × 1 ms = **16 ms** for one complete cycle
@@ -410,7 +410,7 @@ a) How many bytes of memory can be addressed?
 b) Express this in KB, MB, and GB
 c) If upgrading to 64-bit addressing, how much more memory can be addressed?
 
-??? success "Solution"
+!!! success "Solution"
     a) 2³² = **4,294,967,296 bytes**
 
     b) 4,294,967,296 bytes = 4,194,304 KB = 4,096 MB = **4 GB**
@@ -429,7 +429,7 @@ a) How many bits are needed?
 b) What encoding scheme would you use?
 c) Show the encoding for -10°C, 0°C, and 25.5°C
 
-??? success "Solution"
+!!! success "Solution"
     a) Range: -40 to +85 = 126 degrees
        With 0.5°C resolution: 126 / 0.5 = 252 values needed
        2⁸ = 256, so **8 bits** are sufficient

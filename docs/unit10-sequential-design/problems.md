@@ -14,7 +14,7 @@ Work through these problems to reinforce your understanding of registers, counte
 ### Problem 1
 Design a 4-bit parallel-load register with load enable. Show the circuit using D flip-flops and describe its operation.
 
-??? success "Solution"
+!!! success "Solution"
     **4-bit Parallel Load Register:**
 
     **Components per bit:**
@@ -78,7 +78,7 @@ Design a 4-bit shift register that supports:
 
 Show the connections and trace through shifting the pattern 1011.
 
-??? success "Solution"
+!!! success "Solution"
     **4-bit SISO Shift Register:**
 
     ```
@@ -123,7 +123,7 @@ Design a universal shift register with the following modes:
 - Mode 10: Shift left
 - Mode 11: Parallel load
 
-??? success "Solution"
+!!! success "Solution"
     **Universal Shift Register (4-bit):**
 
     Each bit needs a 4-to-1 MUX to select the source:
@@ -177,7 +177,7 @@ Design a universal shift register with the following modes:
 ### Problem 4
 A PISO (Parallel-In Serial-Out) shift register is used for serial communication. Design a 4-bit PISO register with Load and Shift controls.
 
-??? success "Solution"
+!!! success "Solution"
     **PISO Register Operation:**
 
     - Load = 1: Parallel data loaded
@@ -221,7 +221,7 @@ A PISO (Parallel-In Serial-Out) shift register is used for serial communication.
 ### Problem 5
 Design a 3-bit synchronous binary up counter using T flip-flops. Show the state table and circuit.
 
-??? success "Solution"
+!!! success "Solution"
     **3-bit Up Counter States:**
 
     | Count | Q₂ | Q₁ | Q₀ |
@@ -269,7 +269,7 @@ Design a 3-bit synchronous binary up counter using T flip-flops. Show the state 
 ### Problem 6
 Design a mod-6 counter (counts 0 to 5, then resets to 0) using D flip-flops.
 
-??? success "Solution"
+!!! success "Solution"
     **State sequence:** 0 → 1 → 2 → 3 → 4 → 5 → 0 (repeat)
 
     **State table:**
@@ -352,7 +352,7 @@ Design a mod-6 counter (counts 0 to 5, then resets to 0) using D flip-flops.
 ### Problem 7
 Design a ring counter with 4 bits. Show how it differs from a Johnson counter.
 
-??? success "Solution"
+!!! success "Solution"
     **Ring Counter (4-bit):**
 
     **Structure:** Shift register with Q₀ fed back to D₃
@@ -417,7 +417,7 @@ Design a ring counter with 4 bits. Show how it differs from a Johnson counter.
 ### Problem 8
 Design a BCD counter (0-9) with synchronous reset.
 
-??? success "Solution"
+!!! success "Solution"
     **BCD Counter:** Counts 0-9, then resets to 0
 
     **State sequence:** 0→1→2→3→4→5→6→7→8→9→0
@@ -479,7 +479,7 @@ Calculate the maximum clock frequency for a 4-bit ripple counter if each flip-fl
 - Propagation delay (tpd): 10 ns
 - Setup time: 5 ns
 
-??? success "Solution"
+!!! success "Solution"
     **Ripple Counter Propagation:**
 
     In a ripple (asynchronous) counter, each flip-flop is clocked by the previous flip-flop's output.
@@ -525,7 +525,7 @@ Calculate the maximum clock frequency for a 4-bit ripple counter if each flip-fl
 ### Problem 10
 Design a sequence detector that outputs 1 when it detects the sequence "101" (overlapping allowed). Draw the state diagram, create the state table, and implement using D flip-flops.
 
-??? success "Solution"
+!!! success "Solution"
     **State Diagram:**
 
     States represent what portion of "101" has been seen:
@@ -596,7 +596,7 @@ Design a sequence detector that outputs 1 when it detects the sequence "101" (ov
 ### Problem 11
 Explain the difference between Moore and Mealy machines. Convert the sequence detector from Problem 10 to a Mealy machine.
 
-??? success "Solution"
+!!! success "Solution"
     **Moore vs Mealy:**
 
     | Feature | Moore | Mealy |
@@ -666,7 +666,7 @@ Design an FSM for a traffic light controller with the following requirements:
 - Sensor input S: 1 when car waiting
 - Transitions: G→R when T=1, R→G when T=1 AND S=1
 
-??? success "Solution"
+!!! success "Solution"
     **State Diagram:**
 
     ```
@@ -738,7 +738,7 @@ Design a 2-bit up/down counter controlled by signal U:
 - U = 1: Count up
 - U = 0: Count down
 
-??? success "Solution"
+!!! success "Solution"
     **State Sequence:**
 
     Up (U=1): 00 → 01 → 10 → 11 → 00
@@ -808,7 +808,7 @@ Design a 2-bit up/down counter controlled by signal U:
 ### Problem 14
 What is one-hot encoding for state machines? Give advantages and disadvantages.
 
-??? success "Solution"
+!!! success "Solution"
     **One-Hot Encoding:**
 
     Each state uses one flip-flop; only one flip-flop is '1' at a time.
@@ -869,7 +869,7 @@ Design a vending machine controller with the following specifications:
 - Dispenses item when 15¢ or more is deposited
 - Returns to idle after dispensing
 
-??? success "Solution"
+!!! success "Solution"
     **States (based on amount deposited):**
 
     - S0: 0¢ (idle)
@@ -933,7 +933,7 @@ Design a vending machine controller with the following specifications:
 ### Problem 16
 Design a serial adder that adds two n-bit numbers bit by bit, starting from LSB. The circuit has inputs A, B (serial bits), outputs S (sum bit), and must handle carry.
 
-??? success "Solution"
+!!! success "Solution"
     **Serial Adder Operation:**
 
     Add one bit position per clock cycle, propagating carry to next cycle.
@@ -997,7 +997,7 @@ Design a serial adder that adds two n-bit numbers bit by bit, starting from LSB.
 ### Problem 17
 Design a sequence generator that outputs the repeating sequence: 1, 1, 0, 1, 0, 0
 
-??? success "Solution"
+!!! success "Solution"
     **Sequence:** 1, 1, 0, 1, 0, 0 (period = 6)
 
     **Approach:** Use mod-6 counter with output decoder
@@ -1058,7 +1058,7 @@ CLK ┴──────┴────────────┘
 
 (D is input, CLK is shared, Q₀ output of FF₀ feeds D input of FF₁)
 
-??? success "Solution"
+!!! success "Solution"
     **Circuit Analysis:**
 
     - FF₀: D input = external D, outputs Q₀
@@ -1111,7 +1111,7 @@ D₁ = Q₀'
 Both share CLK
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **State Transition Analysis:**
 
     | Present Q₁Q₀ | D₁=Q₀' | D₀=Q₁ | Next Q₁Q₀ |
@@ -1157,7 +1157,7 @@ Transitions:
 - C: input 0 → A, input 1 → C
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **State Table:**
 
     | State | Input X | Next State | Output Z |

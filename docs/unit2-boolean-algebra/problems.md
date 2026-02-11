@@ -18,7 +18,7 @@ a) 3-input AND gate
 b) 3-input OR gate
 c) 3-input NAND gate
 
-??? success "Solution"
+!!! success "Solution"
     a) **3-input AND** (output = 1 only when ALL inputs = 1)
 
     | A | B | C | Y |
@@ -70,7 +70,7 @@ d) NAND gate: A=1, B=1
 e) NOR gate: A=0, B=1
 f) XNOR gate: A=1, B=0
 
-??? success "Solution"
+!!! success "Solution"
     a) AND(1, 0) = 1 · 0 = **0**
 
     b) OR(0, 0) = 0 + 0 = **0**
@@ -91,7 +91,7 @@ For the circuit: Y = ((A · B) + C)'
 a) Create the truth table
 b) Identify the output for A=1, B=1, C=0
 
-??? success "Solution"
+!!! success "Solution"
     a) Truth table:
 
     | A | B | C | A·B | (A·B)+C | Y=((A·B)+C)' |
@@ -121,7 +121,7 @@ d) (A · B)' = A' + B'
 e) A + A = A
 f) A · (A + B) = A
 
-??? success "Solution"
+!!! success "Solution"
     a) **Identity Law** (OR with 0)
 
     b) **Complement Law** (AND with complement)
@@ -141,7 +141,7 @@ Prove the following using Boolean algebra laws:
 
 A + A'B = A + B
 
-??? success "Solution"
+!!! success "Solution"
     Starting with: A + A'B
 
     Step 1: A + A'B = A·1 + A'B (Identity law)
@@ -167,7 +167,7 @@ a) AB + AB' + A'B
 b) (A + B)(A + B')
 c) A'B'C + A'BC + AB'C + ABC
 
-??? success "Solution"
+!!! success "Solution"
     a) AB + AB' + A'B
        = A(B + B') + A'B (Factor A)
        = A·1 + A'B (Complement law)
@@ -195,7 +195,7 @@ a) (AB + CD)'
 b) (A + B)(C + D)'
 c) ((A + B)'C)'
 
-??? success "Solution"
+!!! success "Solution"
     a) (AB + CD)' = (AB)' · (CD)' (De Morgan: break OR)
        = (A' + B')(C' + D') (De Morgan on each term)
 
@@ -214,7 +214,7 @@ c) ((A + B)'C)'
 ### Problem 8
 Prove De Morgan's theorem for two variables using truth tables.
 
-??? success "Solution"
+!!! success "Solution"
     Proving: (A · B)' = A' + B'
 
     | A | B | A·B | (A·B)' | A' | B' | A'+B' |
@@ -237,7 +237,7 @@ a) A'B + AB' + AB
 b) (A + B)(A' + B)(A + B')
 c) ABC + ABC' + AB'C + AB'C'
 
-??? success "Solution"
+!!! success "Solution"
     a) A'B + AB' + AB
        = A'B + A(B' + B) (Factor)
        = A'B + A (Complement)
@@ -263,7 +263,7 @@ Given F = Σm(1, 3, 5, 7), write:
 a) The SOP expression
 b) Simplify the expression
 
-??? success "Solution"
+!!! success "Solution"
     a) For 3 variables (A, B, C):
        - m1 = A'B'C
        - m3 = A'BC
@@ -283,7 +283,7 @@ b) Simplify the expression
 ### Problem 11
 Simplify: F = A'B'C' + A'B'C + A'BC' + AB'C'
 
-??? success "Solution"
+!!! success "Solution"
     F = A'B'C' + A'B'C + A'BC' + AB'C'
 
     Group terms:
@@ -308,7 +308,7 @@ Write the Boolean expression for a circuit with:
 - Second level: OR gate combining the AND outputs
 - Third level: NOT gate on the OR output
 
-??? success "Solution"
+!!! success "Solution"
     Step by step:
     1. First level: X = AB, Y = CD
     2. Second level: Z = X + Y = AB + CD
@@ -323,7 +323,7 @@ Analyze the circuit: F = A ⊕ B ⊕ C
 
 Create the complete truth table and describe what this circuit detects.
 
-??? success "Solution"
+!!! success "Solution"
     | A | B | C | A⊕B | F=A⊕B⊕C |
     |---|---|---|-----|---------|
     | 0 | 0 | 0 |  0  |    0    |
@@ -343,7 +343,7 @@ Create the complete truth table and describe what this circuit detects.
 ### Problem 14
 Design a circuit that outputs 1 only when exactly two of three inputs (A, B, C) are 1.
 
-??? success "Solution"
+!!! success "Solution"
     Identify the minterms where exactly two inputs are 1:
     - A=0, B=1, C=1: m3 = A'BC
     - A=1, B=0, C=1: m5 = AB'C
@@ -367,7 +367,7 @@ When S=0, Y=A; when S=1, Y=B.
 
 Write the Boolean expression for Y.
 
-??? success "Solution"
+!!! success "Solution"
     Create truth table:
 
     | S | A | B | Y |
@@ -400,7 +400,7 @@ Let D1, D2, D3, D4 represent the four door switches (1 = open) and H represent t
 
 Write the Boolean expression for the dome light L.
 
-??? success "Solution"
+!!! success "Solution"
     The light turns on if ANY door is open OR if the headlight switch is in dome position:
 
     **L = D1 + D2 + D3 + D4 + H**
@@ -417,7 +417,7 @@ A safety interlock system requires that a machine can only start (S=1) when:
 
 Write and simplify the Boolean expression for S.
 
-??? success "Solution"
+!!! success "Solution"
     Translating the requirements:
     - Guard in place: G
     - Emergency stop NOT pressed: E'
@@ -435,7 +435,7 @@ Design an alarm system where the alarm (A) sounds when:
 - A door/window sensor is triggered (D=1) AND the system is armed (S=1), OR
 - The panic button is pressed (P=1) regardless of arm status
 
-??? success "Solution"
+!!! success "Solution"
     **A = SM + SD + P**
 
     Simplified by factoring:
@@ -450,7 +450,7 @@ Design an alarm system where the alarm (A) sounds when:
 ### Problem 19
 A voting circuit has 4 inputs (A, B, C, D) representing votes from 4 committee members. The output Y should be 1 if at least 3 members vote yes (majority of 4).
 
-??? success "Solution"
+!!! success "Solution"
     Y = 1 when 3 or 4 inputs are 1.
 
     Minterms with 3 ones: m7, m11, m13, m14
@@ -474,7 +474,7 @@ Inputs are C2, C1, C0 (MSB to LSB). Output O=1 when code matches.
 
 Write the expression and implement with basic gates.
 
-??? success "Solution"
+!!! success "Solution"
     The code 101 means: C2=1, C1=0, C0=1
 
     **O = C2 · C1' · C0**

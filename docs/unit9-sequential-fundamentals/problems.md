@@ -14,7 +14,7 @@ Work through these problems to reinforce your understanding of memory elements a
 ### Problem 1
 Draw the circuit and complete the truth table for an SR latch using NOR gates.
 
-??? success "Solution"
+!!! success "Solution"
     **NOR-based SR Latch circuit:**
 
     ```
@@ -53,7 +53,7 @@ Draw the circuit and complete the truth table for an SR latch using NOR gates.
 ### Problem 2
 Design an SR latch using NAND gates and compare its operation to the NOR-based version.
 
-??? success "Solution"
+!!! success "Solution"
     **NAND-based SR Latch:**
 
     Note: Inputs are active-LOW (S̄ and R̄)
@@ -103,7 +103,7 @@ For the gated SR latch, draw the timing diagram for the following input sequence
 - t=6 to t=8: EN=1, S=0, R=1
 - t=8 to t=10: EN=0, S=1, R=1
 
-??? success "Solution"
+!!! success "Solution"
     **Gated SR Latch operation:**
 
     Q changes only when EN = 1
@@ -139,7 +139,7 @@ For the gated SR latch, draw the timing diagram for the following input sequence
 ### Problem 4
 Design a D latch using an SR latch and additional gates. Explain why the D latch eliminates the invalid state problem.
 
-??? success "Solution"
+!!! success "Solution"
     **D Latch from SR Latch:**
 
     ```
@@ -195,7 +195,7 @@ Design a D latch using an SR latch and additional gates. Explain why the D latch
 ### Problem 5
 What is the difference between a latch and a flip-flop? Give an example timing scenario where this difference matters.
 
-??? success "Solution"
+!!! success "Solution"
     **Fundamental Difference:**
 
     | Property | Latch | Flip-Flop |
@@ -247,7 +247,7 @@ What is the difference between a latch and a flip-flop? Give an example timing s
 ### Problem 6
 Complete the characteristic table and excitation table for a D flip-flop.
 
-??? success "Solution"
+!!! success "Solution"
     **D Flip-Flop Characteristic Table:**
 
     (What Q becomes for each D input)
@@ -281,7 +281,7 @@ Complete the characteristic table and excitation table for a D flip-flop.
 ### Problem 7
 Complete the characteristic table and excitation table for a JK flip-flop.
 
-??? success "Solution"
+!!! success "Solution"
     **JK Flip-Flop Characteristic Table:**
 
     | J | K | Q(next) | Operation |
@@ -314,7 +314,7 @@ Complete the characteristic table and excitation table for a JK flip-flop.
 ### Problem 8
 Complete the characteristic table and excitation table for a T flip-flop.
 
-??? success "Solution"
+!!! success "Solution"
     **T Flip-Flop Characteristic Table:**
 
     | T | Q(next) | Operation |
@@ -349,7 +349,7 @@ D: 0 from t=0-3, 1 from t=3-7, 0 from t=7-10
 
 Initial Q = 0
 
-??? success "Solution"
+!!! success "Solution"
     **Clock edges at:** t = 2, 4, 6, 8, 10, ... (rising edges)
 
     **Analysis at each rising edge:**
@@ -387,7 +387,7 @@ Initial Q = 0
 ### Problem 10
 Convert a D flip-flop to a T flip-flop using external logic.
 
-??? success "Solution"
+!!! success "Solution"
     **T flip-flop behavior:**
 
     - T=0: Q holds
@@ -447,7 +447,7 @@ Initial Q = 0
 - Pulse 4: J=1, K=1
 - Pulse 5: J=0, K=0
 
-??? success "Solution"
+!!! success "Solution"
     **JK Flip-Flop operation:**
 
     - J=0, K=0: Hold
@@ -481,7 +481,7 @@ A D flip-flop has the following timing parameters:
 
 If the clock period is 10 ns, what is the maximum combinational logic delay allowed between two flip-flops?
 
-??? success "Solution"
+!!! success "Solution"
     **Timing constraint equation:**
 
     tCQ + tlogic + tsu ≤ Tclk
@@ -518,7 +518,7 @@ If the clock period is 10 ns, what is the maximum combinational logic delay allo
 ### Problem 13
 Explain what happens when setup time is violated. What is metastability?
 
-??? success "Solution"
+!!! success "Solution"
     **Setup Time Violation:**
 
     Setup time violation occurs when the D input changes too close to (within tsu of) the clock edge.
@@ -570,7 +570,7 @@ Two flip-flops are connected with combinational logic between them. Calculate th
 - Logic delay: 4 ns (typical), 6 ns (maximum)
 - Clock skew: 0.5 ns
 
-??? success "Solution"
+!!! success "Solution"
     **Setup time constraint (using maximum logic delay):**
 
     Tclk ≥ tCQ + tlogic(max) + tsu + tskew
@@ -608,7 +608,7 @@ Two flip-flops are connected with combinational logic between them. Calculate th
 ### Problem 15
 A master-slave flip-flop has an inherent timing issue called "ones catching" or "zeros catching." Explain this problem and how edge-triggered flip-flops solve it.
 
-??? success "Solution"
+!!! success "Solution"
     **Master-Slave Flip-Flop Structure:**
 
     ```
@@ -675,7 +675,7 @@ Q    ____|‾‾‾|_____|‾‾|__
          2    6    8
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **Analysis of transitions:**
 
     | Clock Edge | D Value | Q Transition |
@@ -724,7 +724,7 @@ Draw the timing diagram for a JK flip-flop (positive-edge-triggered) with:
 - K: 0 from t=0-4, 1 from t=4-12
 - Clock period: 2 (edges at t=1, 3, 5, 7, 9, 11)
 
-??? success "Solution"
+!!! success "Solution"
     **Clock rising edges at:** t = 1, 3, 5, 7, 9, 11
 
     **Analysis at each edge:**
@@ -765,7 +765,7 @@ Given a T flip-flop with asynchronous PRESET and CLEAR inputs (both active-low),
 - CLEAR: Low from t=5-6 only
 - Clock edges at t=2, 3, 4, 7, 8
 
-??? success "Solution"
+!!! success "Solution"
     **Asynchronous inputs override clock:**
 
     - PRESET low → Q = 1 immediately
@@ -824,7 +824,7 @@ CLK ────┤>                    │
                     (Q' feeds back to D)
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **Circuit Analysis:**
 
     D input is connected to Q' (complement of output)
@@ -873,7 +873,7 @@ Two D flip-flops: FF0 (Q₀) and FF1 (Q₁)
 Initial state: Q₁Q₀ = 00
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **State Transition Analysis:**
 
     Next state equations:

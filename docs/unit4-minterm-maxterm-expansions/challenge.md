@@ -17,7 +17,7 @@ $$F(A, B, C, D) = \sum m(1, 3, 5, 7, 9, 11, 13, 15)$$
 
 Express $F$ in maxterm list form $\prod M(\ldots)$ and identify the pattern in the function.
 
-??? success "Answer"
+!!! success "Answer"
     $F(A, B, C, D) = \prod M(0, 2, 4, 6, 8, 10, 12, 14)$
 
     **Pattern:** $F = D$ — the function equals 1 exactly when the least significant bit $D = 1$ (all odd minterms).
@@ -30,7 +30,7 @@ Expand the following expression into canonical sum-of-minterms form for variable
 
 $$F = A\overline{C} + \overline{B}\,D + \overline{A}\,B\,C$$
 
-??? success "Answer"
+!!! success "Answer"
     $F(A, B, C, D) = \sum m(1, 3, 5, 8, 9, 10, 11, 12, 14, 15)$
 
     Expansion:
@@ -51,7 +51,7 @@ $$F = \overline{A} \cdot F_0 + A \cdot F_1$$
 
 where $F_0 = F|_{A=0}$ and $F_1 = F|_{A=1}$. Give both cofactors as simplified expressions.
 
-??? success "Answer"
+!!! success "Answer"
     **Cofactor $F_0 = F|_{A=0}$:** Minterms with $A=0$: $m(0, 1, 4, 5, 6, 7)$ → as 3-variable function of $B, C, D$: $m_3(0, 1, 4, 5, 6, 7) = \overline{B} + C$
 
     Simplified: $F_0 = \overline{B} + C$
@@ -72,7 +72,7 @@ $$F(A, B, C) = (A + B + C)(A + \overline{B} + C)(\overline{A} + B + \overline{C}
 
 Find $\overline{F}$ in SOP form, then use it to derive $F$ in SOP form.
 
-??? success "Answer"
+!!! success "Answer"
     The maxterms present in $F$: $(A + B + C) = M_0$, $(A + \overline{B} + C) = M_2$, $(\overline{A} + B + \overline{C}) = M_5$
 
     So $F = \prod M(0, 2, 5)$.
@@ -96,7 +96,7 @@ A function of three variables satisfies both of these conditions simultaneously:
 
 If $F = \sum m(1, 3, 5, 7)$, find $G$ as a minterm list and simplified expression.
 
-??? success "Answer"
+!!! success "Answer"
     Since $F \cdot G = \sum m(1, 5, 7)$, $G$ must include minterms $1, 5, 7$.
 
     Since $F + G = \sum m(0, 1, 2, 3, 5, 6, 7)$, every minterm in this set must be in $F$ or $G$ (or both).

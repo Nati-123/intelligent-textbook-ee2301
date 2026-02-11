@@ -15,7 +15,7 @@ Simplify the following function using a Karnaugh map to obtain the minimum SOP e
 
 $$F(A, B, C, D) = \sum m(2, 3, 4, 5, 13, 15) + \sum d(8, 9, 10, 11)$$
 
-??? success "Answer"
+!!! success "Answer"
     $F = \overline{A}\,\overline{B}\,C + \overline{A}\,B\,\overline{C} + A\,\overline{B} + B\,C\,D$
 
     Using don't cares optimally:
@@ -30,7 +30,7 @@ Find the minimum POS (product of sums) expression for:
 
 $$F(A, B, C, D) = \prod M(0, 1, 2, 8, 9, 10, 14)$$
 
-??? success "Answer"
+!!! success "Answer"
     Group the 0s on the K-map:
 
     $\overline{F} = \overline{B}\,\overline{C}\,\overline{D} + \overline{B}\,\overline{D}\,A + ...$
@@ -53,7 +53,7 @@ $$F(A, B, C, D) = \sum m(0, 2, 5, 7, 8, 10, 13, 15)$$
 
 Identify the essential prime implicants and show that the function has more than one minimum cover.
 
-??? success "Answer"
+!!! success "Answer"
     Essential prime implicants: **None** — this function has no essential prime implicants.
 
     The prime implicants are: $\overline{B}\,\overline{D}$, $B\,D$, $\overline{A}\,\overline{C}\,\overline{D}$, $A\,\overline{C}\,\overline{D}$, $\overline{A}\,C\,D$, $A\,C\,D$, $\overline{C}\,\overline{D}$, $C\,D$.
@@ -78,7 +78,7 @@ For the function $F(W, X, Y, Z) = \sum m(0, 2, 4, 5, 6, 7, 8, 10, 13)$, use a K-
 2. Identify the essential prime implicants
 3. Find the minimum SOP expression
 
-??? success "Answer"
+!!! success "Answer"
     **All prime implicants:**
 
     - $\overline{X}\,\overline{Z}$ (covers 0, 2, 8, 10)
@@ -104,7 +104,7 @@ Simplify the following 5-variable function using a K-map (two 4-variable maps fo
 
 $$F(A, B, C, D, E) = \sum m(0, 1, 2, 4, 5, 6, 16, 17, 18, 20, 21, 22, 25, 29)$$
 
-??? success "Answer"
+!!! success "Answer"
     Split into two maps:
 
     **$A = 0$ map:** minterms $0, 1, 2, 4, 5, 6$ → These are $\overline{C}\,\overline{D}\,\overline{E}$, $\overline{C}\,\overline{D}\,E$, $\overline{C}\,D\,\overline{E}$, $C\,\overline{D}\,\overline{E}$, $C\,\overline{D}\,E$, $C\,D\,\overline{E}$ → $\overline{B}\,\overline{E} + \overline{B}\,\overline{D}$

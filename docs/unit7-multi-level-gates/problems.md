@@ -19,7 +19,7 @@ b) AND
 c) OR
 d) XOR
 
-??? success "Solution"
+!!! success "Solution"
     a) **NOT from NAND:**
     ```
     A' = A NAND A = (A·A)' = A'
@@ -59,7 +59,7 @@ b) OR
 c) AND
 d) XNOR
 
-??? success "Solution"
+!!! success "Solution"
     a) **NOT from NOR:**
     ```
     A' = A NOR A = (A+A)' = A'
@@ -100,7 +100,7 @@ d) XNOR
 ### Problem 3
 Prove that a 2-input NAND gate can implement any 2-input Boolean function by showing how many NAND gates are needed for each of the 16 possible functions.
 
-??? success "Solution"
+!!! success "Solution"
     **All 16 two-input Boolean functions:**
 
     | Function | Expression | NAND Implementation | Gates |
@@ -132,7 +132,7 @@ Design a half adder using:
 a) Only NAND gates
 b) Only NOR gates
 
-??? success "Solution"
+!!! success "Solution"
     **Half Adder equations:**
 
     - Sum = A ⊕ B = A'B + AB'
@@ -182,7 +182,7 @@ $F = AB + CD + E$
 
 Draw the circuit and count the number of gates.
 
-??? success "Solution"
+!!! success "Solution"
     **Original AND-OR circuit:**
 
     - Level 1: 2 AND gates (for AB and CD)
@@ -260,7 +260,7 @@ Draw the circuit and count the number of gates.
 ### Problem 6
 Convert $F = A'BC + AB'C + ABC'$ to a NAND-only implementation.
 
-??? success "Solution"
+!!! success "Solution"
     **Original expression** is XOR of A, B, C (actually A⊕B⊕C).
 
     **Standard AND-OR:**
@@ -323,7 +323,7 @@ Convert the following circuit to use only NAND gates:
 
 $F = (A + B)(C + D)$
 
-??? success "Solution"
+!!! success "Solution"
     **Original:** OR-AND (POS form)
 
     **Method 1: Convert to SOP first**
@@ -376,7 +376,7 @@ A function is given as $F = AB + A'C + BC$.
 a) Simplify using Boolean algebra
 b) Implement simplified form using NAND gates only
 
-??? success "Solution"
+!!! success "Solution"
     a) **Simplification:**
 
     F = AB + A'C + BC
@@ -409,7 +409,7 @@ Convert the following POS expression to a NOR-only implementation:
 
 $F = (A + B)(C + D)(E + F)$
 
-??? success "Solution"
+!!! success "Solution"
     **Original OR-AND circuit:**
 
     - Level 1: 3 OR gates
@@ -462,7 +462,7 @@ $F = (A + B)(C + D)(E + F)$
 ### Problem 10
 Convert $F = (A' + B)(A + C')$ to NOR-only implementation.
 
-??? success "Solution"
+!!! success "Solution"
     **Expand:**
 
     F = (A' + B)(A + C')
@@ -517,7 +517,7 @@ Convert $F = (A' + B)(A + C')$ to NOR-only implementation.
 ### Problem 11
 Design a full adder using only NOR gates.
 
-??? success "Solution"
+!!! success "Solution"
     **Full Adder equations:**
 
     - Sum = A ⊕ B ⊕ Cᵢₙ
@@ -557,7 +557,7 @@ Design a full adder using only NOR gates.
 ### Problem 12
 Show that $(A + B)' = A' \cdot B'$ using only NOR gates to prove De Morgan's theorem.
 
-??? success "Solution"
+!!! success "Solution"
     **Goal:** Demonstrate (A + B)' = A' · B' using NOR gates
 
     **Left side: (A + B)'**
@@ -632,7 +632,7 @@ Apply bubble pushing to convert this circuit to all-NAND:
     D ──┘
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **Original:** Two AND gates feeding an OR gate
 
     **Bubble Pushing Rules:**
@@ -681,7 +681,7 @@ Analyze the following NAND-only circuit and find the output expression:
     C ──┘
 ```
 
-??? success "Solution"
+!!! success "Solution"
     **Gate-by-gate analysis:**
 
     ```
@@ -714,7 +714,7 @@ Given the circuit below, determine if it implements F = A'B + AB':
 
 (○ indicates an inverter/bubble on input)
 
-??? success "Solution"
+!!! success "Solution"
     **Analysis:**
 
     Top NAND gate inputs: A' and B
@@ -746,7 +746,7 @@ Convert the following multi-level circuit to use only 2-input NAND gates:
 
 $F = A(B + CD)$
 
-??? success "Solution"
+!!! success "Solution"
     **Original structure:**
 
     - Level 1: CD (AND)
@@ -806,7 +806,7 @@ a) How many gates for two-level SOP?
 b) Factor the expression and implement
 c) Compare gate counts
 
-??? success "Solution"
+!!! success "Solution"
     a) **Two-level SOP:**
 
     - 4 AND gates (4 inputs each): for ABCD, ABCE, ABDE, ACDE
@@ -882,7 +882,7 @@ Calculate the propagation delay for a ripple carry adder with 4 bits, assuming:
 - OR gate delay: 1 ns
 - XOR gate delay: 2 ns
 
-??? success "Solution"
+!!! success "Solution"
     **Full Adder delays:**
 
     - Sum = A ⊕ B ⊕ Cᵢₙ
@@ -919,7 +919,7 @@ Design a circuit for $F = AB + CD + EF + GH$ optimized for:
 a) Minimum gate count
 b) Minimum propagation delay
 
-??? success "Solution"
+!!! success "Solution"
     a) **Minimum gate count:**
 
     Direct two-level AND-OR:
@@ -973,7 +973,7 @@ b) Gate count
 c) Fan-in requirements
 d) Power consumption
 
-??? success "Solution"
+!!! success "Solution"
     a) **Propagation Delay:**
 
     | Type | Delay | Analysis |
