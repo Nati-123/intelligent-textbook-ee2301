@@ -24,6 +24,10 @@ let inputA = 7;  // Input value for A
 let inputB = 5;  // Input value for B
 let aluOutput = 0;
 
+// ALU operation selection
+let aluOps = ["ADD", "SUB"];
+let selectedOp = 0; // 0=ADD, 1=SUB
+
 // Control signals
 let controlSignals = {
   load_A: false,
@@ -34,7 +38,7 @@ let controlSignals = {
 };
 
 // Button bounds
-let _clockBtn, _aBtn, _bBtn, _resetBtn;
+let _clockBtn, _aBtn, _bBtn, _opBtn, _resetBtn;
 
 // Colors
 const COLOR_FSM = '#5C6BC0';
@@ -85,6 +89,7 @@ function draw() {
   if (_clockBtn && isInside(mouseX, mouseY, _clockBtn)) hovering = true;
   if (_aBtn && isInside(mouseX, mouseY, _aBtn)) hovering = true;
   if (_bBtn && isInside(mouseX, mouseY, _bBtn)) hovering = true;
+  if (_opBtn && isInside(mouseX, mouseY, _opBtn)) hovering = true;
   if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
   cursor(hovering ? HAND : ARROW);
 }
@@ -163,10 +168,11 @@ function drawFSM(areaWidth) {
   textSize(10);
   fill(80);
   textAlign(LEFT, TOP);
+  let opDesc = selectedOp === 0 ? "A + B" : "A - B";
   let descriptions = [
     "Waiting for start.\nNo operations active.",
     "Loading input values\ninto registers A and B.",
-    "ALU computes A + B.\nResult on ALU output.",
+    "ALU computes " + opDesc + ".\nResult on ALU output.",
     "Storing result in\noutput register."
   ];
   text(descriptions[currentState], 20, infoY + 30);
@@ -204,6 +210,7 @@ function drawDatapath(dpX, dpWidth) {
   let cx = dpX + dpWidth / 2;
   let regW = 70;
   let regH = 40;
+  let aluActive = (controlSignals.alu_op === "ADD" || controlSignals.alu_op === "SUB");
 
   // Register A
   let regAX = cx - 50;
@@ -224,7 +231,7 @@ function drawDatapath(dpX, dpWidth) {
   text("In: " + inputB, regBX, regBY - regH / 2 - 2);
 
   // Wires from registers down to MUX/ALU
-  let wireColor = controlSignals.alu_op === "ADD" ? COLOR_ACTIVE : COLOR_WIRE;
+  let wireColor = aluActive ? COLOR_ACTIVE : COLOR_WIRE;
   stroke(wireColor);
   strokeWeight(1.5);
   // Wire from Reg A down
@@ -238,8 +245,8 @@ function drawDatapath(dpX, dpWidth) {
   let aluW = 80;
   let aluH = 60;
 
-  fill(controlSignals.alu_op === "ADD" ? '#C8E6C9' : '#E0E0E0');
-  stroke(controlSignals.alu_op === "ADD" ? COLOR_ACTIVE : COLOR_WIRE);
+  fill(aluActive ? '#C8E6C9' : '#E0E0E0');
+  stroke(aluActive ? COLOR_ACTIVE : COLOR_WIRE);
   strokeWeight(2);
   // ALU as trapezoid
   beginShape();
@@ -250,7 +257,7 @@ function drawDatapath(dpX, dpWidth) {
   endShape(CLOSE);
 
   // ALU label
-  fill(controlSignals.alu_op === "ADD" ? '#2E7D32' : 100);
+  fill(aluActive ? '#2E7D32' : 100);
   noStroke();
   textSize(14);
   textStyle(BOLD);
@@ -258,7 +265,8 @@ function drawDatapath(dpX, dpWidth) {
   text("ALU", aluX, aluY - 5);
   textSize(10);
   textStyle(NORMAL);
-  text(controlSignals.alu_op === "ADD" ? "A + B" : "---", aluX, aluY + 15);
+  let opSymbol = selectedOp === 0 ? '+' : '-';
+  text(aluActive ? "A " + opSymbol + " B" : "---", aluX, aluY + 15);
 
   // Wires into ALU
   stroke(wireColor);
@@ -268,11 +276,11 @@ function drawDatapath(dpX, dpWidth) {
 
   // ALU output wire
   let aluOutY = aluY + aluH / 2;
-  stroke(controlSignals.alu_op === "ADD" ? COLOR_ACTIVE : COLOR_WIRE);
+  stroke(aluActive ? COLOR_ACTIVE : COLOR_WIRE);
   line(aluX, aluOutY, aluX, aluOutY + 30);
 
   // ALU output value
-  if (controlSignals.alu_op === "ADD" || currentState === DONE) {
+  if (aluActive || currentState === DONE) {
     fill(COLOR_ACTIVE);
     noStroke();
     textSize(11);
@@ -324,7 +332,8 @@ function drawDatapath(dpX, dpWidth) {
     textSize(14);
     textStyle(BOLD);
     textAlign(CENTER, TOP);
-    text(inputA + " + " + inputB + " = " + regResult, aluX, resultY + regH / 2 + 8);
+    let sym = selectedOp === 0 ? '+' : '-';
+    text(inputA + " " + sym + " " + inputB + " = " + regResult, aluX, resultY + regH / 2 + 8);
     textStyle(NORMAL);
   }
 }
@@ -375,7 +384,7 @@ function drawControlSignals(fsmWidth, dpX) {
   textSize(10);
   for (let i = 0; i < signals.length; i++) {
     let sy = sigY + 18 + i * 16;
-    let isActive = (signals[i].val === true || signals[i].val === "ADD" || signals[i].val === "ALU");
+    let isActive = (signals[i].val === true || signals[i].val === "ADD" || signals[i].val === "SUB" || signals[i].val === "ALU");
 
     // Signal indicator dot
     fill(isActive ? COLOR_ACTIVE : COLOR_INACTIVE);
@@ -399,14 +408,14 @@ function drawControls() {
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   let btnH = 34;
-  let spacing = 8;
+  let sp = 6;
   let y = drawHeight + 8;
-  let x = 10;
+  let x = 8;
 
   textAlign(CENTER, CENTER);
 
-  // Clock button (prominent)
-  let clkW = 75;
+  // Clock button
+  let clkW = 58;
   _clockBtn = { x: x, y: y, w: clkW, h: btnH };
   fill(COLOR_FSM);
   stroke('#303F9F');
@@ -415,87 +424,61 @@ function drawControls() {
   fill(255);
   noStroke();
   textStyle(BOLD);
-  textSize(14);
-  text('Clock', x + clkW / 2, y + btnH / 2);
+  textSize(13);
+  text('CLK', x + clkW / 2, y + btnH / 2);
   textStyle(NORMAL);
 
-  // Input A bit box
-  x += clkW + spacing;
-  let boxW = 55;
-  fill(80);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text('A', x, y + btnH / 2);
-  textStyle(NORMAL);
-  let aBoxX = x + 14;
-  let aBoxW = boxW - 16;
-  fill(COLOR_DATAPATH);
-  stroke('#D84315');
-  strokeWeight(2);
+  // Input A box
+  x += clkW + sp;
+  let boxW = 48;
+  fill(80); noStroke(); textAlign(LEFT, CENTER); textSize(11); textStyle(BOLD);
+  text('A', x, y + btnH / 2); textStyle(NORMAL);
+  let aBoxX = x + 13, aBoxW = boxW - 14;
+  fill(COLOR_DATAPATH); stroke('#D84315'); strokeWeight(2);
   rect(aBoxX, y + 3, aBoxW, btnH - 6, 4);
-  fill(255);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(14);
-  textStyle(BOLD);
-  text(inputA, aBoxX + aBoxW / 2, y + btnH / 2);
-  textStyle(NORMAL);
+  fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(14); textStyle(BOLD);
+  text(inputA, aBoxX + aBoxW / 2, y + btnH / 2); textStyle(NORMAL);
   _aBtn = { x: aBoxX, y: y + 3, w: aBoxW, h: btnH - 6 };
 
-  // Input B bit box
-  x += boxW + spacing;
-  fill(80);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text('B', x, y + btnH / 2);
-  textStyle(NORMAL);
-  let bBoxX = x + 14;
-  let bBoxW = boxW - 16;
-  fill(COLOR_DATAPATH);
-  stroke('#D84315');
-  strokeWeight(2);
+  // Input B box
+  x += boxW + sp;
+  fill(80); noStroke(); textAlign(LEFT, CENTER); textSize(11); textStyle(BOLD);
+  text('B', x, y + btnH / 2); textStyle(NORMAL);
+  let bBoxX = x + 13, bBoxW = boxW - 14;
+  fill(COLOR_DATAPATH); stroke('#D84315'); strokeWeight(2);
   rect(bBoxX, y + 3, bBoxW, btnH - 6, 4);
-  fill(255);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(14);
-  textStyle(BOLD);
-  text(inputB, bBoxX + bBoxW / 2, y + btnH / 2);
-  textStyle(NORMAL);
+  fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(14); textStyle(BOLD);
+  text(inputB, bBoxX + bBoxW / 2, y + btnH / 2); textStyle(NORMAL);
   _bBtn = { x: bBoxX, y: y + 3, w: bBoxW, h: btnH - 6 };
 
-  // Reset button
-  x += boxW + spacing;
-  let rstW = 60;
-  _resetBtn = { x: x, y: y, w: rstW, h: btnH };
-  fill('#F44336');
-  stroke('#C62828');
-  strokeWeight(2);
-  rect(x, y, rstW, btnH, 5);
-  fill(255);
-  noStroke();
-  textSize(12);
-  textStyle(BOLD);
-  text('Reset', x + rstW / 2, y + btnH / 2);
-  textStyle(NORMAL);
+  // ALU Op toggle box
+  x += boxW + sp;
+  let opW = 48;
+  let opLabel = aluOps[selectedOp];
+  let opColor = selectedOp === 0 ? COLOR_ACTIVE : '#FF9800';
+  fill(opColor); stroke(selectedOp === 0 ? '#388E3C' : '#E65100'); strokeWeight(2);
+  rect(x, y + 3, opW, btnH - 6, 4);
+  fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(13); textStyle(BOLD);
+  text(opLabel, x + opW / 2, y + btnH / 2); textStyle(NORMAL);
+  _opBtn = { x: x, y: y + 3, w: opW, h: btnH - 6 };
 
-  // State display box
-  x += rstW + spacing;
-  let stateW = 80;
+  // Reset button
+  x += opW + sp;
+  let rstW = 50;
+  _resetBtn = { x: x, y: y, w: rstW, h: btnH };
+  fill('#F44336'); stroke('#C62828'); strokeWeight(2);
+  rect(x, y, rstW, btnH, 5);
+  fill(255); noStroke(); textSize(11); textStyle(BOLD);
+  text('Reset', x + rstW / 2, y + btnH / 2); textStyle(NORMAL);
+
+  // State display
+  x += rstW + sp;
+  let stateW = 70;
   fill(currentState === DONE ? COLOR_ACTIVE : COLOR_FSM);
-  stroke(currentState === DONE ? '#388E3C' : '#303F9F');
-  strokeWeight(2);
+  stroke(currentState === DONE ? '#388E3C' : '#303F9F'); strokeWeight(2);
   rect(x, y + 2, stateW, btnH - 4, 5);
-  fill(255);
-  noStroke();
-  textSize(12);
-  textStyle(BOLD);
-  text(stateNames[currentState], x + stateW / 2, y + btnH / 2);
-  textStyle(NORMAL);
+  fill(255); noStroke(); textSize(11); textStyle(BOLD);
+  text(stateNames[currentState], x + stateW / 2, y + btnH / 2); textStyle(NORMAL);
 }
 
 function advanceClock() {
@@ -517,10 +500,10 @@ function advanceClock() {
       currentState = COMPUTE;
       controlSignals.load_A = false;
       controlSignals.load_B = false;
-      controlSignals.alu_op = "ADD";
+      controlSignals.alu_op = aluOps[selectedOp];
       controlSignals.mux_sel = "ALU";
       controlSignals.load_result = false;
-      aluOutput = regA + regB;
+      aluOutput = selectedOp === 0 ? regA + regB : regA - regB;
       break;
 
     case COMPUTE:
@@ -571,6 +554,13 @@ function mousePressed() {
   // Input B toggle (cycle 0-9)
   if (_bBtn && isInside(mouseX, mouseY, _bBtn)) {
     inputB = (inputB + 1) % 10;
+    if (currentState === IDLE) resetSystem();
+    return;
+  }
+
+  // ALU Op toggle
+  if (_opBtn && isInside(mouseX, mouseY, _opBtn)) {
+    selectedOp = (selectedOp + 1) % aluOps.length;
     if (currentState === IDLE) resetSystem();
     return;
   }
