@@ -3,7 +3,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 500;
+let drawHeight = 580;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -22,8 +22,9 @@ let fbPositions = [];
 let matrixRect = {};
 let ioBlocks = [];
 
-// Function block names and details
+// Function block names and enable state
 let fbNames = ['FB1', 'FB2', 'FB3', 'FB4'];
+let fbEnabled = [1, 1, 1, 1]; // clickable toggle
 let fbDetails = [
   {
     title: 'Function Block 1 (FB1)',
@@ -103,20 +104,44 @@ function draw() {
   // Draw info panel at bottom
   drawInfoPanel();
 
+  // Hand cursor on hover
+  let hovering = false;
+  for (let i = 0; i < 4; i++) {
+    let fb = fbPositions[i];
+    let bb = fb._bitBox;
+    if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+        mouseY >= bb.y && mouseY <= bb.y + bb.h) { hovering = true; break; }
+    if (mouseX >= fb.x && mouseX <= fb.x + fb.w &&
+        mouseY >= fb.y && mouseY <= fb.y + fb.h) { hovering = true; break; }
+  }
+  if (!hovering) {
+    let m = matrixRect;
+    if (mouseX >= m.x && mouseX <= m.x + m.w &&
+        mouseY >= m.y && mouseY <= m.y + m.h) hovering = true;
+  }
+  if (!hovering) {
+    for (let i = 0; i < ioBlocks.length; i++) {
+      let io = ioBlocks[i];
+      if (mouseX >= io.x && mouseX <= io.x + io.w &&
+          mouseY >= io.y && mouseY <= io.y + io.h) { hovering = true; break; }
+    }
+  }
+  cursor(hovering ? HAND : ARROW);
+
   // Control area
   fill(100);
   noStroke();
   textSize(11);
   textAlign(CENTER, CENTER);
-  text('Click on Function Blocks, Interconnect Matrix, or I/O Blocks for details',
+  text('Click components for details | Click bit boxes to enable/disable',
        canvasWidth / 2, drawHeight + 25);
 }
 
 function computePositions() {
   let cx = canvasWidth / 2;
-  let cy = 210;
-  let matW = Math.min(160, canvasWidth * 0.3);
-  let matH = Math.min(120, 120);
+  let cy = 230;
+  let matW = Math.min(180, canvasWidth * 0.35);
+  let matH = Math.min(140, 140);
 
   matrixRect = {
     x: cx - matW / 2,
@@ -125,9 +150,9 @@ function computePositions() {
     h: matH
   };
 
-  let fbW = Math.min(110, canvasWidth * 0.2);
-  let fbH = 50;
-  let gap = 30;
+  let fbW = Math.min(130, canvasWidth * 0.25);
+  let fbH = 60;
+  let gap = 35;
 
   // FB1: top
   fbPositions[0] = {
@@ -156,14 +181,14 @@ function computePositions() {
 
   // I/O blocks: small rectangles on the outer edges
   ioBlocks = [];
-  let ioW = 20;
-  let ioH = 16;
+  let ioW = 24;
+  let ioH = 20;
 
   // Top I/O blocks (above FB1)
   for (let i = 0; i < 4; i++) {
     let ioX = fbPositions[0].x - 10 + i * (fbW + 20) / 4;
     ioBlocks.push({
-      x: ioX, y: fbPositions[0].y - ioH - 10,
+      x: ioX, y: fbPositions[0].y - ioH - 12,
       w: ioW, h: ioH, side: 'top'
     });
   }
@@ -171,7 +196,7 @@ function computePositions() {
   for (let i = 0; i < 3; i++) {
     let ioY = fbPositions[1].y - 10 + i * (fbH + 20) / 3;
     ioBlocks.push({
-      x: fbPositions[1].x + fbW + 10, y: ioY,
+      x: fbPositions[1].x + fbW + 12, y: ioY,
       w: ioW, h: ioH, side: 'right'
     });
   }
@@ -179,7 +204,7 @@ function computePositions() {
   for (let i = 0; i < 4; i++) {
     let ioX = fbPositions[2].x - 10 + i * (fbW + 20) / 4;
     ioBlocks.push({
-      x: ioX, y: fbPositions[2].y + fbH + 10,
+      x: ioX, y: fbPositions[2].y + fbH + 12,
       w: ioW, h: ioH, side: 'bottom'
     });
   }
@@ -187,7 +212,7 @@ function computePositions() {
   for (let i = 0; i < 3; i++) {
     let ioY = fbPositions[3].y - 10 + i * (fbH + 20) / 3;
     ioBlocks.push({
-      x: fbPositions[3].x - ioW - 10, y: ioY,
+      x: fbPositions[3].x - ioW - 12, y: ioY,
       w: ioW, h: ioH, side: 'left'
     });
   }
@@ -236,6 +261,7 @@ function drawFunctionBlocks() {
   for (let i = 0; i < 4; i++) {
     let fb = fbPositions[i];
     let isSelected = (selectedType === COMP_FB && selectedIndex === i);
+    let enabled = fbEnabled[i];
 
     // Shadow
     noStroke();
@@ -243,27 +269,49 @@ function drawFunctionBlocks() {
     rect(fb.x + 3, fb.y + 3, fb.w, fb.h, 8);
 
     // Block
-    fill(235, 237, 255);
+    fill(enabled ? color(235, 237, 255) : color(235, 235, 235));
     if (isSelected) {
       stroke(fbColor);
       strokeWeight(3);
     } else {
-      stroke(fbColor);
+      stroke(enabled ? fbColor : color(180));
       strokeWeight(1.5);
     }
     rect(fb.x, fb.y, fb.w, fb.h, 8);
 
     // Label
-    fill(fbColor);
+    fill(enabled ? fbColor : color(160));
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(13);
+    textSize(14);
     textStyle(BOLD);
-    text(fbNames[i], fb.x + fb.w / 2, fb.y + fb.h / 2 - 7);
+    text(fbNames[i], fb.x + fb.w / 2, fb.y + fb.h / 2 - 8);
     textStyle(NORMAL);
-    textSize(9);
-    fill(120);
+    textSize(10);
+    fill(enabled ? 120 : 170);
     text('8 Macrocells', fb.x + fb.w / 2, fb.y + fb.h / 2 + 10);
+
+    // Clickable enable/disable bit box
+    let boxW = 28;
+    let boxH = 18;
+    let boxX = fb.x + fb.w - boxW - 4;
+    let boxY = fb.y + 4;
+
+    fill(enabled ? color(76, 175, 80) : color(220));
+    stroke(enabled ? color(56, 142, 60) : color(180));
+    strokeWeight(1.5);
+    rect(boxX, boxY, boxW, boxH, 4);
+
+    fill(enabled ? 255 : 120);
+    noStroke();
+    textSize(11);
+    textAlign(CENTER, CENTER);
+    textStyle(BOLD);
+    text(enabled ? '1' : '0', boxX + boxW / 2, boxY + boxH / 2);
+    textStyle(NORMAL);
+
+    // Store hit area
+    fb._bitBox = { x: boxX, y: boxY, w: boxW, h: boxH };
   }
 }
 
@@ -313,6 +361,7 @@ function drawConnections() {
     let fbCx = fb.x + fb.w / 2;
     let fbCy = fb.y + fb.h / 2;
     let isActive = (selectedType === COMP_FB && selectedIndex === i);
+    let enabled = fbEnabled[i];
 
     // Determine connection points
     let fromX, fromY, toX, toY;
@@ -338,8 +387,9 @@ function drawConnections() {
 
     // Draw connection bus (multiple lines)
     let busWidth = 6;
-    stroke(isActive ? fbColor : color(180));
-    strokeWeight(isActive ? 2.5 : 1.5);
+    let lineColor = !enabled ? color(220) : (isActive ? fbColor : color(180));
+    stroke(lineColor);
+    strokeWeight(isActive && enabled ? 2.5 : 1.5);
     line(fromX, fromY, toX, toY);
 
     // Draw parallel lines for bus effect
@@ -349,8 +399,8 @@ function drawConnections() {
     let nx = -dy / len * busWidth / 2;
     let ny = dx / len * busWidth / 2;
 
-    stroke(isActive ? fbColor : color(200));
-    strokeWeight(isActive ? 1.5 : 0.8);
+    stroke(!enabled ? color(230) : (isActive ? fbColor : color(200)));
+    strokeWeight(isActive && enabled ? 1.5 : 0.8);
     line(fromX + nx, fromY + ny, toX + nx, toY + ny);
     line(fromX - nx, fromY - ny, toX - nx, toY - ny);
 
@@ -364,7 +414,7 @@ function drawConnections() {
     let ax = toX - ux * 2;
     let ay = toY - uy * 2;
 
-    fill(isActive ? fbColor : color(180));
+    fill(lineColor);
     noStroke();
     triangle(
       toX, toY,
@@ -386,8 +436,8 @@ function drawConnections() {
       let ioCx = io.x + io.w / 2;
       let ioCy = io.y + io.h / 2;
 
-      stroke(isActive ? ioColor : color(210));
-      strokeWeight(isActive ? 1.5 : 0.8);
+      stroke(!enabled ? color(230) : (isActive ? ioColor : color(210)));
+      strokeWeight(isActive && enabled ? 1.5 : 0.8);
 
       // Connect from FB edge to IO block
       switch (io.side) {
@@ -409,7 +459,7 @@ function drawConnections() {
 }
 
 function drawInfoPanel() {
-  let panelY = 330;
+  let panelY = 400;
   let panelH = drawHeight - panelY - 5;
   let panelX = 10;
   let panelW = canvasWidth - 20;
@@ -494,6 +544,18 @@ function drawInfoPanel() {
 }
 
 function mousePressed() {
+  // Check bit box clicks on function blocks first
+  for (let i = 0; i < 4; i++) {
+    let bb = fbPositions[i]._bitBox;
+    if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+        mouseY >= bb.y && mouseY <= bb.y + bb.h) {
+      fbEnabled[i] = fbEnabled[i] ? 0 : 1;
+      selectedType = COMP_FB;
+      selectedIndex = i;
+      return;
+    }
+  }
+
   // Check function blocks
   for (let i = 0; i < 4; i++) {
     let fb = fbPositions[i];
