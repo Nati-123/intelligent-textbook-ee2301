@@ -207,73 +207,143 @@ function drawDataflowDiagram(x, y, w, h) {
 function drawStructuralDiagram(x, y, w, h) {
   let cx = x + w / 2;
   let cy = y + h / 2;
-  let gateW = 28;
-  let gateH = 18;
+  let gW = 34;
+  let gH = 24;
 
-  // NOT gate for Sel
-  fill(255);
-  stroke(STRUCTURAL_COLOR);
-  strokeWeight(1.2);
-  let notX = x + 25;
-  let notY = cy - 25;
-  triangle(notX, notY - 7, notX, notY + 7, notX + 14, notY);
-  ellipse(notX + 16, notY, 4, 4);
-
-  // AND gate 1 (A AND NOT Sel)
-  let and1X = cx - 15;
-  let and1Y = cy - 20;
-  fill(255);
-  stroke(STRUCTURAL_COLOR);
-  rect(and1X, and1Y - gateH / 2, gateW / 2, gateH);
-  arc(and1X + gateW / 2, and1Y, gateW, gateH, -HALF_PI, HALF_PI);
-  fill(60);
-  noStroke();
-  textSize(7);
-  textAlign(CENTER, CENTER);
-  text('AND', and1X + 10, and1Y);
-
-  // AND gate 2 (B AND Sel)
-  let and2X = cx - 15;
-  let and2Y = cy + 20;
-  fill(255);
-  stroke(STRUCTURAL_COLOR);
-  strokeWeight(1.2);
-  rect(and2X, and2Y - gateH / 2, gateW / 2, gateH);
-  arc(and2X + gateW / 2, and2Y, gateW, gateH, -HALF_PI, HALF_PI);
-  fill(60);
-  noStroke();
-  textSize(7);
-  text('AND', and2X + 10, and2Y);
-
-  // OR gate
-  let orX = cx + 25;
-  let orY = cy;
-  fill(255);
-  stroke(STRUCTURAL_COLOR);
-  strokeWeight(1.2);
-  arc(orX, orY, gateW, gateH * 2, -HALF_PI, HALF_PI);
-  fill(60);
-  noStroke();
-  textSize(7);
-  text('OR', orX + 5, orY);
-
-  // Connection lines
-  stroke(150);
-  strokeWeight(0.8);
-  line(and1X + gateW, and1Y, orX, orY - 8);
-  line(and2X + gateW, and2Y, orX, orY + 8);
-  line(orX + gateW / 2 + 2, orY, x + w - 15, orY);
-
-  // Labels
+  // Input labels
   fill(60);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(9);
-  text('A', x + 5, and1Y - 5);
-  text('B', x + 5, and2Y + 5);
-  text('Sel', x + 5, cy + 40);
+  textSize(10);
+  textStyle(BOLD);
+  text('A', x + 6, cy - 30);
+  text('B', x + 6, cy + 30);
+  text('Sel', x + 6, cy + 50);
+  textStyle(NORMAL);
+
+  // NOT gate for Sel (triangle + bubble)
+  let notX = x + 30;
+  let notY = cy - 5;
+  fill(255, 245, 230);
+  stroke(STRUCTURAL_COLOR);
+  strokeWeight(1.5);
+  beginShape();
+  vertex(notX, notY - 8);
+  vertex(notX + 16, notY);
+  vertex(notX, notY + 8);
+  endShape(CLOSE);
+  // Bubble
+  noFill();
+  stroke(STRUCTURAL_COLOR);
+  strokeWeight(1.5);
+  ellipse(notX + 19, notY, 5, 5);
+  // NOT label
+  fill(STRUCTURAL_COLOR);
+  noStroke();
+  textSize(7);
+  textAlign(CENTER, CENTER);
+  text('NOT', notX + 8, notY - 14);
+
+  // AND gate 1 (A AND NOT Sel) — flat left + rounded right
+  let a1X = cx - 12;
+  let a1Y = cy - 28;
+  fill(255, 245, 230);
+  stroke(STRUCTURAL_COLOR);
+  strokeWeight(1.5);
+  beginShape();
+  vertex(a1X, a1Y - gH / 2);
+  vertex(a1X + gW / 2, a1Y - gH / 2);
+  endShape();
+  arc(a1X + gW / 2, a1Y, gW, gH, -HALF_PI, HALF_PI);
+  line(a1X, a1Y - gH / 2, a1X, a1Y + gH / 2);
+  line(a1X, a1Y + gH / 2, a1X + gW / 2, a1Y + gH / 2);
+  // Label
+  fill(STRUCTURAL_COLOR);
+  noStroke();
+  textSize(8);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text('AND', a1X + gW / 3, a1Y);
+  textStyle(NORMAL);
+
+  // AND gate 2 (B AND Sel)
+  let a2X = cx - 12;
+  let a2Y = cy + 28;
+  fill(255, 245, 230);
+  stroke(STRUCTURAL_COLOR);
+  strokeWeight(1.5);
+  beginShape();
+  vertex(a2X, a2Y - gH / 2);
+  vertex(a2X + gW / 2, a2Y - gH / 2);
+  endShape();
+  arc(a2X + gW / 2, a2Y, gW, gH, -HALF_PI, HALF_PI);
+  line(a2X, a2Y - gH / 2, a2X, a2Y + gH / 2);
+  line(a2X, a2Y + gH / 2, a2X + gW / 2, a2Y + gH / 2);
+  // Label
+  fill(STRUCTURAL_COLOR);
+  noStroke();
+  textSize(8);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text('AND', a2X + gW / 3, a2Y);
+  textStyle(NORMAL);
+
+  // OR gate — curved shape
+  let orX = cx + 30;
+  let orY = cy;
+  let orW = 34;
+  let orH = 30;
+  fill(255, 245, 230);
+  stroke(STRUCTURAL_COLOR);
+  strokeWeight(1.5);
+  beginShape();
+  vertex(orX - orW / 2, orY - orH / 2);
+  bezierVertex(orX - orW / 4, orY - orH / 2, orX + orW / 3, orY - orH / 3, orX + orW / 2, orY);
+  bezierVertex(orX + orW / 3, orY + orH / 3, orX - orW / 4, orY + orH / 2, orX - orW / 2, orY + orH / 2);
+  bezierVertex(orX - orW / 4, orY, orX - orW / 4, orY, orX - orW / 2, orY - orH / 2);
+  endShape(CLOSE);
+  // Label
+  fill(STRUCTURAL_COLOR);
+  noStroke();
+  textSize(8);
+  textStyle(BOLD);
+  text('OR', orX, orY);
+  textStyle(NORMAL);
+
+  // Wires: inputs to AND gates
+  stroke('#FF9800');
+  strokeWeight(1.2);
+  // A -> AND1 top input
+  line(x + 16, cy - 30, a1X, a1Y - 6);
+  // Sel_n -> AND1 bottom input
+  line(notX + 22, notY, a1X - 4, notY);
+  line(a1X - 4, notY, a1X, a1Y + 6);
+  // B -> AND2 top input
+  line(x + 16, cy + 30, a2X, a2Y - 6);
+  // Sel -> AND2 bottom input
+  line(x + 22, cy + 50, a2X - 8, cy + 50);
+  line(a2X - 8, cy + 50, a2X, a2Y + 6);
+  // Sel -> NOT
+  line(x + 22, cy + 50, x + 22, notY);
+  line(x + 22, notY, notX, notY);
+
+  // AND outputs to OR inputs
+  line(a1X + gW / 2 + gW / 2, a1Y, orX - orW / 2 + 2, orY - 8);
+  line(a2X + gW / 2 + gW / 2, a2Y, orX - orW / 2 + 2, orY + 8);
+
+  // OR output to Y
+  stroke('#FF9800');
+  strokeWeight(1.5);
+  line(orX + orW / 2, orY, x + w - 14, orY);
+
+  // Output label
+  fill(60);
+  noStroke();
   textAlign(RIGHT, CENTER);
+  textSize(10);
+  textStyle(BOLD);
   text('Y', x + w - 5, orY);
+  textStyle(NORMAL);
 }
 
 function drawBehavioralDiagram(x, y, w, h) {
