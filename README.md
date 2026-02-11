@@ -28,7 +28,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - Original, student-friendly explanations of digital logic concepts
 - Step-by-step derivations and worked examples
 - Visual learning aids (logic diagrams, truth tables, K-maps, timing diagrams)
-- 55 interactive MicroSims for hands-on learning
+- 79 interactive MicroSims for hands-on learning
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
@@ -37,17 +37,17 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Units | 10 | Complete course units |
+| Units | 13 | Complete course units |
 | Concepts | 200 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
 | Glossary Terms | 225 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
 | FAQs | 63 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
-| Quiz Questions | 108 | Multiple-choice assessments |
-| Diagrams | 62 | Visual learning aids |
-| Equations | 2,090 | LaTeX expressions (inline and display) |
-| MicroSims | 55 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 127,798 | Across all markdown files |
-| Links | 271 | Hyperlinks in markdown format |
-| Equivalent Pages | 554 | Estimated pages (250 words/page + visuals) |
+| Quiz Questions | 130 | Multiple-choice assessments |
+| Diagrams | 96 | Visual learning aids |
+| Equations | 3,554 | LaTeX expressions (inline and display) |
+| MicroSims | 79 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
+| Total Words | 169,140 | Across all markdown files |
+| Links | 306 | Hyperlinks in markdown format |
+| Equivalent Pages | 740 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -81,31 +81,40 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | 9 | Sequential Logic Fundamentals | Latches, flip-flops, timing diagrams, setup/hold times |
 | 10 | Sequential Circuit Design | Registers, counters, FSM design, state machines |
 
+### Part V: Advanced Topics
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 11 | Programmable Logic Devices | ROM, PAL, PLA, CPLD, FPGA, lookup tables |
+| 12 | Introduction to VHDL | Entity/architecture, concurrent assignment, FSMs in VHDL |
+| 13 | System Integration | Top-down design, datapath-controller, pipelining, UART |
+
 ## Interactive MicroSims
 
-The textbook includes **55 interactive MicroSims** organized by unit:
+The textbook includes **79 interactive MicroSims** organized by unit:
 
 | Unit | MicroSims | Examples |
 |------|-----------|----------|
-| 1 - Number Systems | 7 | Base Converter, Binary Arithmetic, Overflow Detection |
-| 2 - Boolean Algebra | 8 | Logic Gate Simulator, Truth Table Generator, De Morgan's Visualizer |
-| 3 - Applications | 8 | Binary Adder, Seven Segment Decoder, Parity Circuit |
-| 4 - Minterms/Maxterms | 4 | Minterm Visualizer, SOP-POS Converter, Shannon Expansion |
-| 5 - Karnaugh Maps | 5 | K-Map Solver, Prime Implicant Finder, K-Map Practice |
-| 6 - Quine-McCluskey | 5 | QM Grouping, PI Chart Interactive, QM Walkthrough |
-| 7 - Multi-Level Gates | 4 | Universal Gate Simulator, Bubble Pushing, NAND-NOR Converter |
-| 8 - Combinational Modules | 5 | MUX Simulator, Decoder Simulator, Priority Encoder |
-| 9 - Sequential Fundamentals | 4 | SR Latch, D Flip-Flop, JK Flip-Flop, Timing Analyzer |
-| 10 - Sequential Design | 4 | Shift Register, Counter Simulator, FSM Designer |
+| 1 - Number Systems | 8 | Base Converter, Binary Arithmetic, Overflow Detection |
+| 2 - Boolean Algebra | 9 | Logic Gate Simulator, Truth Table Generator, De Morgan's Visualizer |
+| 3 - Applications | 9 | Binary Adder, Seven Segment Decoder, Parity Circuit |
+| 4 - Minterms/Maxterms | 5 | Minterm Visualizer, SOP-POS Converter, Shannon Expansion |
+| 5 - Karnaugh Maps | 6 | K-Map Solver, Prime Implicant Finder, K-Map Practice |
+| 6 - Quine-McCluskey | 6 | QM Grouping, PI Chart Interactive, QM Walkthrough |
+| 7 - Multi-Level Gates | 5 | Universal Gate Simulator, Bubble Pushing, NAND-NOR Converter |
+| 8 - Combinational Modules | 6 | MUX Simulator, Decoder Simulator, Priority Encoder |
+| 9 - Sequential Fundamentals | 5 | SR Latch, D Flip-Flop, JK Flip-Flop, Timing Analyzer |
+| 10 - Sequential Design | 5 | Shift Register, Counter Simulator, FSM Designer |
+| Gate Truth Tables | 14 | AND, OR, NOT, NAND, NOR, XOR, XNOR, Buffer, Tri-State |
 
 ## Learning Resources
 
 | Resource | Description |
 |----------|-------------|
-| 📚 [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 225 terms with ISO 11179 compliant definitions |
-| ❓ [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 63 frequently asked questions |
-| 📊 [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 200 interconnected concepts with dependencies |
-| 📈 [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
+| [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 225 terms with ISO 11179 compliant definitions |
+| [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 63 frequently asked questions |
+| [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 200 interconnected concepts with dependencies |
+| [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
 
 ## Getting Started
 
@@ -158,25 +167,21 @@ intelligent-textbook-ee2301/
 │   │   ├── problems.md                # Practice problems with solutions
 │   │   └── references.md              # Curated references
 │   ├── unit2-boolean-algebra/         # ... (same structure)
-│   ├── unit3-applications-boolean-algebra/
-│   ├── unit4-minterm-maxterm-expansions/
-│   ├── unit5-karnaugh-maps/
-│   ├── unit6-quine-mccluskey/
-│   ├── unit7-multi-level-gates/
-│   ├── unit8-combinational-modules/
-│   ├── unit9-sequential-fundamentals/
-│   ├── unit10-sequential-design/
+│   ├── ...                            # Units 3-10
+│   ├── unit11-programmable-logic/
+│   ├── unit12-vhdl/
+│   ├── unit13-system-integration/
 │   ├── learning-graph/
-│   │   ├── concept-list.md            # 225 concepts
+│   │   ├── concept-list.md            # 200 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
-│   └── sims/                          # 55 Interactive MicroSims
+│   └── sims/                          # 79 Interactive MicroSims
 │       ├── index.md                   # MicroSims overview
 │       ├── base-converter/
 │       ├── logic-gate-simulator/
 │       ├── kmap-solver/
 │       ├── fsm-designer/
-│       └── ...                        # (51 more MicroSims)
+│       └── ...                        # (75 more MicroSims)
 ├── mkdocs.yml                         # MkDocs configuration
 └── README.md                          # This file
 ```
@@ -200,19 +205,19 @@ This textbook is designed for:
 
 | Feature | Description |
 |---------|-------------|
-| 🤖 AI-Assisted Content | Generated with Claude Code for clarity and consistency |
-| 📈 Scaffolded Learning | Concepts build on explicit prerequisites |
-| 🎮 Interactive MicroSims | 55 p5.js simulations you can run in your browser |
-| ✏️ Practice Problems | 200 end-of-unit problems with detailed solutions |
-| ✅ Self-Assessment | 108 quiz questions with explanations |
-| 📖 Comprehensive Glossary | ISO 11179 compliant terminology |
-| 🔗 Curated References | Wikipedia, textbooks, and online resources |
+| AI-Assisted Content | Generated with Claude Code for clarity and consistency |
+| Scaffolded Learning | Concepts build on explicit prerequisites |
+| Interactive MicroSims | 79 p5.js simulations you can run in your browser |
+| Practice Problems | End-of-unit problems with detailed solutions |
+| Self-Assessment | 130 quiz questions with explanations |
+| Comprehensive Glossary | ISO 11179 compliant terminology |
+| Curated References | Wikipedia, textbooks, and online resources |
 
 ## Quality Standards
 
 - **Content:** AI-generated with human oversight, aligned with university curriculum
 - **Glossary:** ISO 11179 metadata registry standards (precise, concise, distinct)
-- **Quizzes:** Bloom's Taxonomy distribution (Remember, Understand, Apply, Analyze)
+- **Quizzes:** Bloom's Taxonomy distribution (Remember, Understand, Apply, Analyze, Evaluate)
 - **Problems:** Comprehensive coverage with step-by-step solutions
 - **MicroSims:** Interactive p5.js simulations with responsive design
 
