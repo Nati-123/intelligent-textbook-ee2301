@@ -105,6 +105,24 @@ nav:
       - Problems: unit10-sequential-design/problems.md
       - Challenge: unit10-sequential-design/challenge.md
       - References: unit10-sequential-design/references.md
+    - Unit 11 - Programmable Logic Devices:
+      - Content: unit11-programmable-logic/index.md
+      - Quiz: unit11-programmable-logic/quiz.md
+      - Problems: unit11-programmable-logic/problems.md
+      - Challenge: unit11-programmable-logic/challenge.md
+      - References: unit11-programmable-logic/references.md
+    - Unit 12 - Introduction to VHDL:
+      - Content: unit12-vhdl/index.md
+      - Quiz: unit12-vhdl/quiz.md
+      - Problems: unit12-vhdl/problems.md
+      - Challenge: unit12-vhdl/challenge.md
+      - References: unit12-vhdl/references.md
+    - Unit 13 - System Integration:
+      - Content: unit13-system-integration/index.md
+      - Quiz: unit13-system-integration/quiz.md
+      - Problems: unit13-system-integration/problems.md
+      - Challenge: unit13-system-integration/challenge.md
+      - References: unit13-system-integration/references.md
   - MicroSims:
     - Overview: sims/index.md
     - Course Structure Tree: sims/course-structure-tree/index.md

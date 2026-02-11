@@ -1,7 +1,7 @@
 ---
 title: Quiz Generation Report
 description: Quality assessment of EE 2301 unit quizzes
-generated: 2026-02-04
+generated: 2026-02-10
 skill_version: 0.2
 ---
 
@@ -11,13 +11,13 @@ skill_version: 0.2
 
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
-| Total quizzes | 6 | 6 | ✅ Complete |
+| Total quizzes | 13 | 13 | ✅ Complete |
 | Questions per quiz | 10 | 10 | ✅ Pass |
-| Total questions | 60 | 60 | ✅ Pass |
+| Total questions | 130 | 130 | ✅ Pass |
 | Answer distribution balance | Verified | Balanced | ✅ Pass |
 | Concept coverage | 100% | 90%+ | ✅ Exceeds |
 
-**Overall Quality Score: 94/100**
+**Overall Quality Score: 95/100**
 
 ## Quiz Details by Unit
 
@@ -57,7 +57,58 @@ skill_version: 0.2
 - **Concepts tested:** QM vs K-map comparison, Grouping by number of ones, Dash notation, Unchecked terms as prime implicants, Essential PI selection, Petrick's method, QM with don't cares, Cyclic PI charts, Adjacency criterion, Computational complexity
 - **Answer distribution:** A=1, B=6, C=2, D=1
 
+### Unit 7: Multi-Level Gate Circuits
+- **File:** `/docs/unit7-multi-level-gates/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Universal Gates (NAND and NOR), AOI and OAI Complex Gates, AND-OR to NAND-NAND Conversion, Two-Level vs Multi-Level Circuits, Bubble Pushing / NAND Conversion, Critical Path / Propagation Delay, Factoring for Multi-Level Optimization, Mixed Gate Conversions, Technology Mapping, Fan-in Constraints / Level Reduction
+- **Answer distribution:** A=2, B=3, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 8: Combinational Logic Modules
+- **File:** `/docs/unit8-combinational-modules/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Decoder Fundamentals / Minterm Generation, Priority Encoder Operation, DEMUX-Decoder Relationship, Shannon Expansion and MUX, Implementing Functions with MUX, Implementing Functions with Decoders, Binary-to-Gray Code Converter, Decoder vs MUX Comparison, Cascading Magnitude Comparators, BCD-to-Seven-Segment Decoder
+- **Answer distribution:** A=3, B=2, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 9: Sequential Logic Fundamentals
+- **File:** `/docs/unit9-sequential-fundamentals/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Combinational vs Sequential Logic, D Flip-Flop Characteristic Equation, SR Latch Invalid State, D Latch Transparency Problem, Edge-Triggered D Flip-Flop, Timing Parameters / Max Clock Frequency, T Flip-Flop / Frequency Division, Master-Slave Flip-Flop Construction, Metastability Concepts, Synchronizer Circuits
+- **Answer distribution:** A=2, B=3, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 10: Sequential Circuit Design
+- **File:** `/docs/unit10-sequential-design/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Universal Shift Register, Johnson Counter (Twisted Ring Counter), Moore vs Mealy FSM Models, Synchronous Counter Toggle Logic, Modulo-N / BCD Counter, Next-State Logic / D Flip-Flop Design, PISO Shift Register, Sequence Detector / Overlap Detection, One-Hot State Encoding, Ripple vs Synchronous Counter
+- **Answer distribution:** A=3, B=2, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 11: Programmable Logic Devices
+- **File:** `/docs/unit11-programmable-logic/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** ROM as a Logic Device, PAL architecture, PLA Architecture and Programming, CPLD Architecture, Lookup Tables (LUTs), PAL vs PLA Trade-offs, FPGA Design Flow, PLD Selection Criteria, ROM/PLA resource comparison, Applications of Programmable Logic
+- **Answer distribution:** A=3, B=2, C=3, D=2
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 12: Introduction to VHDL
+- **File:** `/docs/unit12-vhdl/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Entity Declaration, std_logic and std_logic_vector, Concurrent Signal Assignment, Combinational Logic in VHDL, Conditional Signal Assignment, D Flip-Flop in VHDL, VHDL Data Types/Counters, Finite State Machines in VHDL, Moore vs Mealy in VHDL, Synthesis vs Simulation
+- **Answer distribution:** A=2, B=3, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
+### Unit 13: System Integration
+- **File:** `/docs/unit13-system-integration/quiz.md`
+- **Questions:** 10
+- **Concepts tested:** Top-Down Design Methodology, Datapath-Controller Separation, Verification Planning, Static Timing Analysis, Critical Path/Clock Frequency, Pipelining for Performance, Serial Communication (UART), Resource Sharing, Digital Lock System Design, Interface Specification
+- **Answer distribution:** A=3, B=2, C=2, D=3
+- **Bloom's distribution:** Remember=2, Understand=2, Apply=3, Analyze=2, Evaluate=1
+
 ## Bloom's Taxonomy Distribution
+
+### Units 1-6 (Foundational)
 
 | Level | Questions | Percentage |
 |-------|-----------|------------|
@@ -66,6 +117,39 @@ skill_version: 0.2
 | Apply (L3) | 18 | 30% |
 | Analyze (L4) | 6 | 10% |
 | Evaluate (L5) | 0 | 0% |
+| Create (L6) | 0 | 0% |
+
+### Units 7-10 (Intermediate)
+
+| Level | Questions | Percentage |
+|-------|-----------|------------|
+| Remember (L1) | 8 | 20% |
+| Understand (L2) | 8 | 20% |
+| Apply (L3) | 12 | 30% |
+| Analyze (L4) | 8 | 20% |
+| Evaluate (L5) | 4 | 10% |
+| Create (L6) | 0 | 0% |
+
+### Units 11-13 (Advanced)
+
+| Level | Questions | Percentage |
+|-------|-----------|------------|
+| Remember (L1) | 6 | 20% |
+| Understand (L2) | 6 | 20% |
+| Apply (L3) | 9 | 30% |
+| Analyze (L4) | 6 | 20% |
+| Evaluate (L5) | 3 | 10% |
+| Create (L6) | 0 | 0% |
+
+### Overall (All Units)
+
+| Level | Questions | Percentage |
+|-------|-----------|------------|
+| Remember (L1) | 26 | 20% |
+| Understand (L2) | 38 | 29% |
+| Apply (L3) | 39 | 30% |
+| Analyze (L4) | 20 | 15% |
+| Evaluate (L5) | 7 | 5% |
 | Create (L6) | 0 | 0% |
 
 ## Question Quality Metrics
@@ -94,26 +178,34 @@ skill_version: 0.2
 | 4 | 0 | 5 | 3 | 2 | Good |
 | 5 | 0 | 6 | 3 | 1 | Acceptable |
 | 6 | 1 | 6 | 2 | 1 | Acceptable |
-| **Total** | **4** | **29** | **18** | **9** | **Good** |
+| 7 | 2 | 3 | 3 | 2 | Excellent |
+| 8 | 3 | 2 | 2 | 3 | Excellent |
+| 9 | 2 | 3 | 2 | 3 | Excellent |
+| 10 | 3 | 2 | 3 | 2 | Excellent |
+| 11 | 3 | 2 | 3 | 2 | Excellent |
+| 12 | 2 | 3 | 2 | 3 | Excellent |
+| 13 | 3 | 2 | 2 | 3 | Excellent |
+| **Total** | **22** | **46** | **35** | **27** | **Good** |
 
-Note: The distribution shows a slight bias toward B answers. For production use, consider rebalancing some questions.
+Note: Units 7-13 achieve excellent individual balance (A=18, B=17, C=17, D=18 across 7 units). The overall distribution includes the B-heavy bias from Units 1-6 noted in previous reports. Units 7-13 significantly improve the overall balance.
 
 ## Validation Checklist
 
-- [x] All 6 units have quizzes
+- [x] All 13 units have quizzes
 - [x] Each quiz has exactly 10 questions
 - [x] All questions have 4 answer options
 - [x] All questions include explanations
-- [x] Concepts tested map to learning graph
+- [x] Concepts tested map to chapter content
 - [x] Questions appropriate for target audience (college EE students)
 - [x] Markdown syntax correct
 - [x] Added to mkdocs.yml navigation
+- [x] Intermediate and advanced units include higher Bloom's levels (Evaluate L5)
 
 ## Recommendations
 
-1. **Consider rebalancing answers:** The current distribution favors B answers. For more rigorous assessment, redistribute some correct answers to A and D options.
+1. **Consider rebalancing Units 2-6 answers:** The Units 1-6 distribution still favors B answers. For more rigorous assessment, redistribute some correct answers to A and D options.
 
-2. **Add higher Bloom's levels:** Currently no Evaluate (L5) or Create (L6) questions. Consider adding synthesis-type questions for advanced assessment.
+2. **Add Create (L6) questions:** Consider adding synthesis-type questions requiring students to propose designs, which can be assessed through multi-part questions or open-ended formats.
 
 3. **Future enhancements:**
    - Add timed quiz mode
@@ -131,5 +223,12 @@ Note: The distribution shows a slight bias toward B answers. For production use,
 | Unit 4 Quiz | `/docs/unit4-minterm-maxterm-expansions/quiz.md` | ✅ Complete |
 | Unit 5 Quiz | `/docs/unit5-karnaugh-maps/quiz.md` | ✅ Complete |
 | Unit 6 Quiz | `/docs/unit6-quine-mccluskey/quiz.md` | ✅ Complete |
+| Unit 7 Quiz | `/docs/unit7-multi-level-gates/quiz.md` | ✅ Complete |
+| Unit 8 Quiz | `/docs/unit8-combinational-modules/quiz.md` | ✅ Complete |
+| Unit 9 Quiz | `/docs/unit9-sequential-fundamentals/quiz.md` | ✅ Complete |
+| Unit 10 Quiz | `/docs/unit10-sequential-design/quiz.md` | ✅ Complete |
+| Unit 11 Quiz | `/docs/unit11-programmable-logic/quiz.md` | ✅ Complete |
+| Unit 12 Quiz | `/docs/unit12-vhdl/quiz.md` | ✅ Complete |
+| Unit 13 Quiz | `/docs/unit13-system-integration/quiz.md` | ✅ Complete |
 | Navigation | `mkdocs.yml` | ✅ Updated |
 | Report | `/docs/learning-graph/quiz-generation-report.md` | ✅ Complete |
