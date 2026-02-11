@@ -132,6 +132,45 @@ Interactive educational simulations for learning digital system design.
 | [FSM Designer](fsm-designer/index.md) | L2-L4 Analyze | Moore state machine simulator |
 | [Sequence Detector Demo](sequence-detector-demo/index.md) | L3-L4 Analyze | "101" pattern detector |
 
+## Unit 11: Programmable Logic Devices
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Programmable Connections](programmable-connections/index.md) | L2 Understand | Compare fuse, antifuse, SRAM, and flash connection technologies |
+| [ROM Architecture](rom-architecture/index.md) | L2 Understand | ROM structure with address decoder and OR-plane output array |
+| [PLA Architecture](pla-architecture/index.md) | L3 Apply | Interactive PLA with programmable AND and OR arrays |
+| [PLA vs PAL Comparison](pla-vs-pal/index.md) | L4 Analyze | Side-by-side comparison of PLA and PAL architectures |
+| [CPLD Architecture](cpld-architecture/index.md) | L2 Understand | CPLD block diagram with function blocks and interconnect matrix |
+| [LUT Explorer](lut-explorer/index.md) | L3 Apply | 4-input lookup table implementing any Boolean function |
+| [CLB Architecture](clb-architecture/index.md) | L4 Analyze | FPGA Configurable Logic Block internal architecture |
+| [FPGA Configuration Flow](fpga-config-flow/index.md) | L2 Understand | Compare SRAM-based and flash-based FPGA configuration |
+| [FPGA Design Flow](fpga-design-flow/index.md) | L1 Remember | Complete 10-step FPGA design flow with feedback loops |
+| [PLD Selection Tree](pld-selection-tree/index.md) | L5 Evaluate | Interactive decision tree for PLD selection |
+| [PLA Programming Walkthrough](pla-programming-walkthrough/index.md) | L3 Apply | Step-by-step PLA programming walkthrough |
+
+## Unit 12: VHDL
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Entity-Architecture Explorer](entity-architecture/index.md) | L2 Understand | Visualize VHDL entity declarations and architecture bodies |
+| [VHDL Modeling Styles](vhdl-modeling-styles/index.md) | L4 Analyze | Compare dataflow, structural, and behavioral modeling |
+| [VHDL Flip-Flop Patterns](vhdl-flipflop-patterns/index.md) | L3 Apply | DFF variant VHDL patterns with timing diagrams |
+| [VHDL FSM Mapper](vhdl-fsm-mapper/index.md) | L4 Analyze | Cross-highlight between VHDL FSM code and state diagram |
+| [VHDL Synthesis Inference](vhdl-synthesis-inference/index.md) | L2 Understand | Code patterns mapped to inferred hardware |
+| [VHDL FSM Walkthrough](vhdl-fsm-walkthrough/index.md) | L3 Apply | Step-by-step VHDL FSM design walkthrough |
+
+## Unit 13: System Integration
+
+| MicroSim | Bloom Level | Description |
+|----------|-------------|-------------|
+| [Top-Down Design Flow](top-down-design-flow/index.md) | L2 Understand | 6-step top-down design methodology with verification feedback |
+| [Datapath-Controller Interaction](datapath-controller/index.md) | L4 Analyze | Interactive datapath with FSM controller and clock stepping |
+| [Timing Analysis Visualizer](timing-analysis-visualizer/index.md) | L3 Apply | Critical path delays and maximum clock frequency calculation |
+| [Digital Lock System](digital-lock-system/index.md) | L6 Create | Complete digital lock with keypad, FSM, and lockout |
+| [UART Transmitter](uart-transmitter/index.md) | L3 Apply | UART serial transmission with shift register and waveform |
+| [Course Integration Map](course-integration-map/index.md) | L5 Evaluate | Force-directed graph of all 13 course units |
+| [Datapath-Controller Walkthrough](datapath-controller-walkthrough/index.md) | L3 Apply | Step-by-step datapath-controller design walkthrough |
+
 ## Summary Statistics
 
 | Unit | Count | Bloom Levels |
@@ -147,7 +186,10 @@ Interactive educational simulations for learning digital system design.
 | Unit 8: Combinational Modules | 5 | L2-L3 |
 | Unit 9: Sequential Fundamentals | 4 | L2-L4 |
 | Unit 10: Sequential Design | 4 | L2-L4 |
-| **Total** | **70** | **L2-L6** |
+| Unit 11: Programmable Logic | 11 | L1-L5 |
+| Unit 12: VHDL | 6 | L2-L4 |
+| Unit 13: System Integration | 7 | L2-L6 |
+| **Total** | **94** | **L1-L6** |
 
 ## About MicroSims
 

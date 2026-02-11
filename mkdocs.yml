@@ -201,10 +201,31 @@ nav:
       - Sequence Detector Demo: sims/sequence-detector-demo/index.md
       - Shift Register Walkthrough: sims/shift-register-walkthrough/index.md
     - Unit 11 - Programmable Logic:
+      - Programmable Connections: sims/programmable-connections/index.md
+      - ROM Architecture: sims/rom-architecture/index.md
+      - PLA Architecture: sims/pla-architecture/index.md
+      - PLA vs PAL Comparison: sims/pla-vs-pal/index.md
+      - CPLD Architecture: sims/cpld-architecture/index.md
+      - LUT Explorer: sims/lut-explorer/index.md
+      - CLB Architecture: sims/clb-architecture/index.md
+      - FPGA Configuration Flow: sims/fpga-config-flow/index.md
+      - FPGA Design Flow: sims/fpga-design-flow/index.md
+      - PLD Selection Tree: sims/pld-selection-tree/index.md
       - PLA Programming Walkthrough: sims/pla-programming-walkthrough/index.md
     - Unit 12 - VHDL:
+      - Entity-Architecture Explorer: sims/entity-architecture/index.md
+      - VHDL Modeling Styles: sims/vhdl-modeling-styles/index.md
+      - VHDL Flip-Flop Patterns: sims/vhdl-flipflop-patterns/index.md
+      - VHDL FSM Mapper: sims/vhdl-fsm-mapper/index.md
+      - VHDL Synthesis Inference: sims/vhdl-synthesis-inference/index.md
       - VHDL FSM Walkthrough: sims/vhdl-fsm-walkthrough/index.md
     - Unit 13 - System Integration:
+      - Top-Down Design Flow: sims/top-down-design-flow/index.md
+      - Datapath-Controller Interaction: sims/datapath-controller/index.md
+      - Timing Analysis Visualizer: sims/timing-analysis-visualizer/index.md
+      - Digital Lock System: sims/digital-lock-system/index.md
+      - UART Transmitter: sims/uart-transmitter/index.md
+      - Course Integration Map: sims/course-integration-map/index.md
       - Datapath-Controller Walkthrough: sims/datapath-controller-walkthrough/index.md
   - Learning Graph:
     - Overview: learning-graph/index.md

@@ -1,0 +1,448 @@
+// PLA Architecture MicroSim
+// Interactive PLA with programmable AND and OR arrays
+
+let containerWidth;
+let canvasWidth = 400;
+let drawHeight = 500;
+let controlHeight = 50;
+let canvasHeight = drawHeight + controlHeight;
+
+// 3 inputs: A, B, C
+let inputs = [0, 0, 0];
+let inputLabels = ['A', 'B', 'C'];
+
+// AND array: 4 product terms x 6 columns (A, A', B, B', C, C')
+// 0 = not connected, 1 = connected
+let andArray = [
+  [1, 0, 1, 0, 0, 0], // P0: A AND B
+  [0, 0, 0, 0, 1, 0], // P1: C
+  [1, 0, 0, 0, 1, 0], // P2: A AND C
+  [0, 0, 0, 0, 0, 0]  // P3: (empty)
+];
+
+// OR array: 4 product terms x 2 outputs
+let orArray = [
+  [1, 0], // P0 -> F0
+  [1, 1], // P1 -> F0, F1
+  [0, 1], // P2 -> F1
+  [0, 0]  // P3 -> (none)
+];
+
+let numProducts = 4;
+let numInputCols = 6; // A, A', B, B', C, C'
+let numOutputs = 2;
+
+// Layout
+let andStartX, andStartY, andCellW, andCellH;
+let orStartX, orStartY, orCellW, orCellH;
+let evaluated = false;
+let productResults = [0, 0, 0, 0];
+let outputResults = [0, 0];
+
+// Button
+let evalButton;
+
+function setup() {
+  updateCanvasSize();
+  const canvas = createCanvas(containerWidth, canvasHeight);
+  var mainElement = document.querySelector('main');
+  canvas.parent(mainElement);
+  describe('Interactive PLA with programmable AND and OR arrays. Configure product terms and outputs.', LABEL);
+
+  evalButton = createButton('Evaluate');
+  evalButton.parent(mainElement);
+  evalButton.style('font-size', '14px');
+  evalButton.style('padding', '8px 24px');
+  evalButton.style('margin', '5px');
+  evalButton.style('cursor', 'pointer');
+  evalButton.style('border', 'none');
+  evalButton.style('border-radius', '4px');
+  evalButton.style('background-color', '#4CAF50');
+  evalButton.style('color', 'white');
+  evalButton.mousePressed(evaluatePLA);
+}
+
+function draw() {
+  updateCanvasSize();
+  background(245);
+
+  // Title
+  fill(50);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(18);
+  text('PLA Architecture', canvasWidth / 2, 18);
+
+  // Compute layout
+  let margin = 15;
+  let inputToggleH = 40;
+  let topY = 40;
+
+  // Input toggles
+  drawInputToggles(topY);
+
+  // AND array area
+  andCellW = 30;
+  andCellH = 32;
+  let andArrayW = numInputCols * andCellW;
+  let andArrayH = numProducts * andCellH;
+
+  // OR array area
+  orCellW = 36;
+  orCellH = andCellH;
+  let orArrayW = numOutputs * orCellW;
+
+  // Center both arrays
+  let totalW = andArrayW + 50 + orArrayW;
+  let startX = (canvasWidth - totalW) / 2;
+
+  andStartX = startX;
+  andStartY = topY + inputToggleH + 40;
+
+  orStartX = andStartX + andArrayW + 50;
+  orStartY = andStartY;
+
+  // Draw AND array
+  drawANDArray();
+
+  // Draw OR array
+  drawORArray();
+
+  // Draw product term lines connecting AND to OR
+  drawProductLines();
+
+  // Draw input column labels
+  drawColumnLabels();
+
+  // Draw output labels and values
+  drawOutputLabels();
+
+  // Info text
+  fill(100);
+  noStroke();
+  textSize(12);
+  textAlign(CENTER, CENTER);
+  let infoY = andStartY + numProducts * andCellH + 70;
+  text('Click crosspoints to program | Click inputs to toggle', canvasWidth / 2, infoY);
+
+  if (evaluated) {
+    fill(50);
+    textSize(13);
+    textStyle(BOLD);
+    let resultStr = 'F0 = ' + outputResults[0] + '    F1 = ' + outputResults[1];
+    text(resultStr, canvasWidth / 2, infoY + 20);
+    textStyle(NORMAL);
+  }
+}
+
+function drawInputToggles(topY) {
+  let spacing = 70;
+  let startX = canvasWidth / 2 - spacing;
+
+  for (let i = 0; i < 3; i++) {
+    let x = startX + i * spacing;
+    let y = topY + 15;
+    let isOne = inputs[i] === 1;
+
+    // Circle toggle
+    fill(isOne ? '#4CAF50' : '#ccc');
+    stroke(isOne ? '#388E3C' : '#999');
+    strokeWeight(2);
+    ellipse(x, y, 30, 30);
+
+    // Label and value
+    fill(isOne ? 255 : 60);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    textStyle(BOLD);
+    text(inputLabels[i] + '=' + inputs[i], x, y);
+    textStyle(NORMAL);
+  }
+}
+
+function drawColumnLabels() {
+  let colLabels = ['A', "A'", 'B', "B'", 'C', "C'"];
+
+  fill(80);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+
+  // AND array column labels
+  for (let c = 0; c < numInputCols; c++) {
+    let x = andStartX + c * andCellW + andCellW / 2;
+    text(colLabels[c], x, andStartY - 15);
+  }
+
+  // AND array label
+  fill('#9C27B0');
+  textSize(12);
+  text('AND Array (Programmable)', andStartX + (numInputCols * andCellW) / 2, andStartY - 32);
+
+  // OR array column labels
+  fill(80);
+  textSize(11);
+  for (let c = 0; c < numOutputs; c++) {
+    let x = orStartX + c * orCellW + orCellW / 2;
+    text('F' + c, x, orStartY - 15);
+  }
+
+  // OR array label
+  fill('#FF5722');
+  textSize(12);
+  text('OR Array (Programmable)', orStartX + (numOutputs * orCellW) / 2, orStartY - 32);
+
+  textStyle(NORMAL);
+
+  // Product term labels
+  fill(80);
+  textSize(11);
+  textAlign(RIGHT, CENTER);
+  for (let r = 0; r < numProducts; r++) {
+    let y = andStartY + r * andCellH + andCellH / 2;
+    text('P' + r, andStartX - 8, y);
+  }
+}
+
+function drawANDArray() {
+  // Grid background
+  fill(255);
+  stroke(200);
+  strokeWeight(1);
+  rect(andStartX, andStartY, numInputCols * andCellW, numProducts * andCellH);
+
+  // Vertical input lines
+  for (let c = 0; c < numInputCols; c++) {
+    let x = andStartX + c * andCellW + andCellW / 2;
+    stroke(220);
+    strokeWeight(1);
+    line(x, andStartY, x, andStartY + numProducts * andCellH);
+  }
+
+  // Horizontal product term lines
+  for (let r = 0; r < numProducts; r++) {
+    let y = andStartY + r * andCellH + andCellH / 2;
+    let isActive = evaluated && productResults[r] === 1;
+    stroke(isActive ? '#4CAF50' : 220);
+    strokeWeight(isActive ? 2 : 1);
+    line(andStartX, y, andStartX + numInputCols * andCellW, y);
+  }
+
+  // Crosspoints
+  for (let r = 0; r < numProducts; r++) {
+    for (let c = 0; c < numInputCols; c++) {
+      let cx = andStartX + c * andCellW + andCellW / 2;
+      let cy = andStartY + r * andCellH + andCellH / 2;
+      let isConn = andArray[r][c];
+      let isActive = evaluated && productResults[r] === 1;
+
+      if (isConn) {
+        fill(isActive ? '#4CAF50' : '#9C27B0');
+        noStroke();
+        ellipse(cx, cy, 12, 12);
+      } else {
+        noFill();
+        stroke(210);
+        strokeWeight(1);
+        ellipse(cx, cy, 8, 8);
+      }
+    }
+  }
+}
+
+function drawORArray() {
+  // Grid background
+  fill(255);
+  stroke(200);
+  strokeWeight(1);
+  rect(orStartX, orStartY, numOutputs * orCellW, numProducts * orCellH);
+
+  // Vertical output lines
+  for (let c = 0; c < numOutputs; c++) {
+    let x = orStartX + c * orCellW + orCellW / 2;
+    stroke(220);
+    strokeWeight(1);
+    line(x, orStartY, x, orStartY + numProducts * orCellH);
+  }
+
+  // Horizontal product term lines
+  for (let r = 0; r < numProducts; r++) {
+    let y = orStartY + r * orCellH + orCellH / 2;
+    let isActive = evaluated && productResults[r] === 1;
+    stroke(isActive ? '#4CAF50' : 220);
+    strokeWeight(isActive ? 2 : 1);
+    line(orStartX, y, orStartX + numOutputs * orCellW, y);
+  }
+
+  // Crosspoints
+  for (let r = 0; r < numProducts; r++) {
+    for (let c = 0; c < numOutputs; c++) {
+      let cx = orStartX + c * orCellW + orCellW / 2;
+      let cy = orStartY + r * orCellH + orCellH / 2;
+      let isConn = orArray[r][c];
+      let isActive = evaluated && productResults[r] === 1 && isConn;
+
+      if (isConn) {
+        fill(isActive ? '#4CAF50' : '#FF5722');
+        noStroke();
+        ellipse(cx, cy, 12, 12);
+      } else {
+        noFill();
+        stroke(210);
+        strokeWeight(1);
+        ellipse(cx, cy, 8, 8);
+      }
+    }
+  }
+}
+
+function drawProductLines() {
+  // Lines from AND array outputs to OR array inputs
+  for (let r = 0; r < numProducts; r++) {
+    let y = andStartY + r * andCellH + andCellH / 2;
+    let x1 = andStartX + numInputCols * andCellW;
+    let x2 = orStartX;
+    let isActive = evaluated && productResults[r] === 1;
+
+    stroke(isActive ? '#4CAF50' : '#ddd');
+    strokeWeight(isActive ? 2.5 : 1);
+    // Arrow-like connector
+    line(x1, y, x2, y);
+
+    // Small arrow head
+    if (isActive) {
+      fill('#4CAF50');
+      noStroke();
+      triangle(x2 - 2, y - 4, x2 - 2, y + 4, x2 + 3, y);
+    }
+  }
+}
+
+function drawOutputLabels() {
+  let outputY = orStartY + numProducts * orCellH + 20;
+
+  for (let c = 0; c < numOutputs; c++) {
+    let x = orStartX + c * orCellW + orCellW / 2;
+    let val = evaluated ? outputResults[c] : '-';
+
+    // Output box
+    if (evaluated) {
+      fill(outputResults[c] ? '#4CAF50' : '#eee');
+      stroke(outputResults[c] ? '#388E3C' : '#ccc');
+    } else {
+      fill('#eee');
+      stroke('#ccc');
+    }
+    strokeWeight(1.5);
+    rect(x - 14, outputY - 14, 28, 28, 4);
+
+    // Value
+    fill(evaluated && outputResults[c] ? 255 : 100);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    textStyle(BOLD);
+    text(val.toString(), x, outputY);
+    textStyle(NORMAL);
+
+    // Line from array to output
+    stroke(evaluated && outputResults[c] ? '#4CAF50' : '#ddd');
+    strokeWeight(evaluated && outputResults[c] ? 2 : 1);
+    line(x, orStartY + numProducts * orCellH, x, outputY - 15);
+  }
+}
+
+function evaluatePLA() {
+  evaluated = true;
+
+  // Get literal values: A, A', B, B', C, C'
+  let literals = [
+    inputs[0],
+    1 - inputs[0],
+    inputs[1],
+    1 - inputs[1],
+    inputs[2],
+    1 - inputs[2]
+  ];
+
+  // Evaluate each product term
+  for (let r = 0; r < numProducts; r++) {
+    let hasAnyConnection = false;
+    let result = 1;
+    for (let c = 0; c < numInputCols; c++) {
+      if (andArray[r][c]) {
+        hasAnyConnection = true;
+        result = result & literals[c];
+      }
+    }
+    // If no connections, product term is 0 (not configured)
+    productResults[r] = hasAnyConnection ? result : 0;
+  }
+
+  // Evaluate each output (OR of connected product terms)
+  for (let c = 0; c < numOutputs; c++) {
+    let result = 0;
+    for (let r = 0; r < numProducts; r++) {
+      if (orArray[r][c]) {
+        result = result | productResults[r];
+      }
+    }
+    outputResults[c] = result;
+  }
+}
+
+function mousePressed() {
+  // Check input toggles
+  let spacing = 70;
+  let startX = canvasWidth / 2 - spacing;
+  let topY = 40;
+
+  for (let i = 0; i < 3; i++) {
+    let x = startX + i * spacing;
+    let y = topY + 15;
+    if (dist(mouseX, mouseY, x, y) < 18) {
+      inputs[i] = 1 - inputs[i];
+      evaluated = false;
+      return;
+    }
+  }
+
+  // Check AND array clicks
+  for (let r = 0; r < numProducts; r++) {
+    for (let c = 0; c < numInputCols; c++) {
+      let cx = andStartX + c * andCellW + andCellW / 2;
+      let cy = andStartY + r * andCellH + andCellH / 2;
+      if (dist(mouseX, mouseY, cx, cy) < andCellW / 2) {
+        andArray[r][c] = andArray[r][c] ? 0 : 1;
+        evaluated = false;
+        return;
+      }
+    }
+  }
+
+  // Check OR array clicks
+  for (let r = 0; r < numProducts; r++) {
+    for (let c = 0; c < numOutputs; c++) {
+      let cx = orStartX + c * orCellW + orCellW / 2;
+      let cy = orStartY + r * orCellH + orCellH / 2;
+      if (dist(mouseX, mouseY, cx, cy) < orCellW / 2) {
+        orArray[r][c] = orArray[r][c] ? 0 : 1;
+        evaluated = false;
+        return;
+      }
+    }
+  }
+}
+
+function windowResized() {
+  updateCanvasSize();
+  resizeCanvas(containerWidth, canvasHeight);
+}
+
+function updateCanvasSize() {
+  const container = document.querySelector('main').getBoundingClientRect();
+  containerWidth = Math.floor(container.width);
+  canvasWidth = containerWidth;
+}
