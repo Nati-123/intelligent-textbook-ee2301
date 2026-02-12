@@ -51,7 +51,7 @@ Students should have completed or have equivalent knowledge in:
 
 This course provides a comprehensive introduction to the fundamentals of digital system design. Students will learn how digital circuits process information using binary number systems and Boolean algebra. The course covers the mathematical foundations, analysis techniques, and design methodologies essential for creating both combinational and sequential digital logic circuits.
 
-Topics progress from number representations through Boolean algebra to systematic methods for designing and simplifying logic circuits. Students will gain hands-on experience with truth tables, logic gates, Karnaugh maps, the Quine-McCluskey method, multi-level gate implementations, combinational modules, and sequential circuit design including latches, flip-flops, registers, counters, and finite state machines.
+Topics progress from number representations through Boolean algebra to systematic methods for designing and simplifying logic circuits. Students will gain hands-on experience with truth tables, logic gates, Karnaugh maps, the Quine-McCluskey method, multi-level gate implementations, combinational modules, and sequential circuit design including latches, flip-flops, registers, counters, and finite state machines. The course culminates with programmable logic devices, introduction to VHDL hardware description language, and system integration projects that bring together all concepts into complete digital system designs.
 
 ---
 
@@ -139,6 +139,42 @@ Topics progress from number representations through Boolean algebra to systemati
 - State diagram and state table development
 - FSM design methodology and implementation
 
+### Unit 11: Programmable Logic Devices
+
+- Fixed logic vs programmable logic
+- ROM as a logic device (PROM, EPROM, EEPROM, Flash)
+- Programmable Logic Array (PLA) architecture
+- Programmable Array Logic (PAL) architecture
+- PLA vs PAL trade-offs
+- Complex PLD (CPLD) architecture and macrocells
+- Field-Programmable Gate Array (FPGA) concepts
+- Lookup tables (LUTs) and configurable logic blocks (CLBs)
+- FPGA design flow and technology mapping
+
+### Unit 12: Introduction to VHDL
+
+- Entity declarations and architecture bodies
+- Ports, port modes, and VHDL data types (std_logic, std_logic_vector)
+- Signal declaration and assignment
+- Concurrent, conditional, and selected signal assignment
+- Structural, behavioral, and dataflow modeling
+- Process statements and sensitivity lists
+- Combinational and sequential logic in VHDL
+- D flip-flops, registers, counters, and FSMs in VHDL
+- Testbench fundamentals and simulation
+
+### Unit 13: System Integration and Design Projects
+
+- Top-down design methodology and system partitioning
+- Datapath and control unit separation
+- Datapath-controller integration
+- Verification planning and testbench architecture
+- Static timing analysis and critical path identification
+- Setup and hold time budgeting
+- Design trade-offs: area vs speed vs power
+- System-level design examples (digital lock, ALU, vending machine controller)
+- From specification to silicon
+
 ---
 
 ## Learning Outcomes
@@ -151,6 +187,8 @@ Upon successful completion of this course, students will be able to:
 - List the basic Boolean operators and their symbols
 - Identify the components of a Karnaugh map
 - Recall the characteristics of common flip-flop types (SR, D, JK, T)
+- Name the major programmable logic device families (ROM, PLA, PAL, CPLD, FPGA)
+- List the basic VHDL design units (entity, architecture)
 
 ### Understand
 
@@ -159,6 +197,10 @@ Upon successful completion of this course, students will be able to:
 - Summarize DeMorgan's theorems and their applications
 - Explain the difference between combinational and sequential circuits
 - Describe the operation of multiplexers, decoders, and encoders
+- Explain the differences between PLA, PAL, CPLD, and FPGA architectures
+- Describe how lookup tables (LUTs) implement Boolean functions in FPGAs
+- Explain the distinction between concurrent and sequential statements in VHDL
+- Describe the top-down design methodology for digital systems
 
 ### Apply
 
@@ -169,6 +211,9 @@ Upon successful completion of this course, students will be able to:
 - Apply the Quine-McCluskey method to minimize Boolean functions
 - Convert circuits to NAND-only or NOR-only implementations
 - Interpret timing diagrams for sequential circuits
+- Write VHDL entity declarations and architecture bodies for combinational circuits
+- Implement flip-flops, registers, and counters in VHDL
+- Write VHDL testbenches for simulation and verification
 
 ### Analyze
 
@@ -177,6 +222,9 @@ Upon successful completion of this course, students will be able to:
 - Examine logic circuits to identify optimization opportunities
 - Analyze timing constraints including setup and hold times
 - Distinguish between Mealy and Moore state machine models
+- Compare programmable logic device families and their trade-offs
+- Analyze critical paths and determine maximum clock frequency
+- Partition digital systems into datapath and control unit components
 
 ### Evaluate
 
@@ -184,6 +232,8 @@ Upon successful completion of this course, students will be able to:
 - Critique circuit designs for minimality and correctness
 - Judge when to use K-maps versus Quine-McCluskey method
 - Evaluate trade-offs between gate count and propagation delay
+- Select appropriate programmable logic devices for given design requirements
+- Evaluate design trade-offs between area, speed, and power
 
 ### Create
 
@@ -192,6 +242,9 @@ Upon successful completion of this course, students will be able to:
 - Develop digital circuits for arithmetic operations (adders, subtractors)
 - Design registers and counters for specific applications
 - Create finite state machines from behavioral specifications
+- Describe complete digital systems in VHDL
+- Design and implement integrated digital systems (digital lock, ALU, vending machine controller)
+- Develop verification plans and testbenches for digital designs
 
 ---
 
