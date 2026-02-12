@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 8: Combinational Logic Modules
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit introduces medium-scale integration (MSI) combinational logic modules that serve as fundamental building blocks in digital system design. Multiplexers, demultiplexers, encoders, and decoders perform essential data routing and code conversion functions. Students will learn the internal structure and operation of these modules, understand their role in implementing arbitrary Boolean functions, and apply them to practical design problems including memory addressing, data bus management, and code translation.

@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 7: Multi-Level Gate Circuits
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit explores the implementation of Boolean functions using multi-level gate circuits, with particular emphasis on NAND and NOR gate implementations. While two-level AND-OR or OR-AND circuits provide straightforward realizations of Boolean expressions, practical considerations often favor implementations using only NAND gates or only NOR gates due to their universal nature and manufacturing advantages. Students will learn systematic methods for converting SOP and POS expressions to NAND-only and NOR-only implementations, analyze propagation delays in multi-level circuits, and optimize circuits for gate count, literal count, and timing performance.

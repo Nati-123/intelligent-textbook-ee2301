@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 1 — Number Systems
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 Number systems form the mathematical foundation of digital system design, providing the essential framework for representing and manipulating information in electronic circuits. This unit introduces the four primary number systems used in computing—decimal, binary, octal, and hexadecimal—and establishes the concepts of positional notation that underpin all digital arithmetic operations. Students will master conversion techniques between bases, perform binary arithmetic, and understand the critical distinction between signed and unsigned number representations. The unit culminates with two's complement arithmetic, the dominant method used in modern processors for handling negative numbers, along with techniques for detecting arithmetic overflow conditions.

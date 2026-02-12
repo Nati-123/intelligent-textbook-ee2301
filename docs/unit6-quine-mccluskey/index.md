@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 6: Quine-McCluskey Method
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algorithm for minimizing Boolean functions. While Karnaugh maps provide an intuitive visual approach for functions with up to five variables, the QM method offers a rigorous, algorithmic procedure suitable for functions with any number of variables. The method can be easily programmed for computer implementation, making it the foundation for modern logic minimization tools. Students will learn to construct implicant tables, systematically combine minterms, generate prime implicant charts, and determine minimum covers using techniques including Petrick's method.

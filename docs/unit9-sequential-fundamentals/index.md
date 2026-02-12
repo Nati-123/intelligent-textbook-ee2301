@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 9: Sequential Logic Fundamentals
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit introduces sequential logic circuits, which differ fundamentally from combinational circuits by incorporating memory. Sequential circuits have outputs that depend not only on current inputs but also on the history of past inputs—they remember their state. Students will learn the operation of basic memory elements including latches and flip-flops, understand the critical role of clock signals in synchronous design, analyze timing requirements, and interpret timing diagrams. These concepts form the foundation for registers, counters, and finite state machines covered in the next unit.

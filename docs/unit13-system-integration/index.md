@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 13: System Integration and Design Projects
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This capstone unit brings together every concept from the course—number systems, Boolean algebra, combinational logic, sequential circuits, programmable devices, and VHDL—into complete, integrated digital system designs. Students will learn the top-down design methodology for managing complexity, master systematic verification techniques including testbench design and timing analysis, and apply their skills to realistic design projects. The unit emphasizes the engineering judgment needed to make design trade-offs (speed vs area vs power), partition systems into manageable subsystems, and verify that all parts work together correctly. By completing this unit, students will have the skills to design, describe, simulate, and implement non-trivial digital systems on programmable logic devices.

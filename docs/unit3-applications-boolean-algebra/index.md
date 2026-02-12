@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 3 — Applications of Boolean Algebra
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit bridges Boolean algebra theory with practical digital circuit design, demonstrating how to translate real-world problems into working logic circuits. Students will learn systematic methods for converting English specifications into Boolean equations and truth tables, then implementing these as combinational logic circuits. The unit covers essential arithmetic circuits—half adders, full adders, and subtractors—that form the foundation of computer arithmetic units. Additional applications include magnitude comparators for decision-making circuits, parity generators/checkers for error detection, code converters for translating between number representations, and seven-segment display decoders for human-readable output. The concept of incompletely specified functions introduces don't care conditions that enable more efficient circuit implementations.

@@ -135,6 +135,16 @@
   padding-bottom: 0.5rem;
 }
 
+/* Video Overview Placeholder */
+.md-typeset .video-overview {
+  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  border-left: 4px solid #5c6bc0;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  margin: 1rem 0 1.5rem 0;
+  font-size: 0.95rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .md-typeset .hero {

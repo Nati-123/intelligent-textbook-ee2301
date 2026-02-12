@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 12: Introduction to VHDL
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit introduces VHDL (VHSIC Hardware Description Language) as a formal method for describing, simulating, and synthesizing digital circuits. Rather than drawing schematics, designers write VHDL code that precisely specifies circuit behavior and structure, enabling automated synthesis into real hardware. Students will learn the fundamental elements of VHDL—entities, architectures, signals, data types, and concurrent/sequential statements—and apply them to implement the combinational and sequential circuits studied in Units 1 through 10. The unit emphasizes the critical distinction between hardware description (where all statements execute concurrently) and software programming (where statements execute sequentially), helping students develop the mindset needed for effective hardware design.

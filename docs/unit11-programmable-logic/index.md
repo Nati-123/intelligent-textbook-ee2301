@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 11: Programmable Logic Devices
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit bridges the gap between designing logic circuits on paper and implementing them in real hardware. Students will explore the family of programmable logic devices (PLDs) that allow designers to configure hardware functionality after manufacturing. Beginning with read-only memories (ROMs) used as combinational logic generators, the unit progresses through simple PLDs (SPLDs) such as PALs and PLAs, then advances to complex PLDs (CPLDs) and field-programmable gate arrays (FPGAs). Students will understand how each device architecture maps Boolean functions to programmable hardware, compare the trade-offs among device families, and appreciate how modern FPGAs implement the combinational and sequential circuits studied in prior units using lookup tables and configurable logic blocks.

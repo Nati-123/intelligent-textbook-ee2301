@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 4 — Minterm and Maxterm Expansions
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 This unit introduces the canonical forms for representing Boolean functions—the most complete and unambiguous way to express any logic function. Canonical forms use minterms (for Sum of Products) or maxterms (for Product of Sums) to create expressions where every variable appears exactly once in every term. Students will learn to derive canonical expressions directly from truth tables, convert between minterm and maxterm representations, and use compact notations (Σ and Π) for efficient specification. The unit also covers the Shannon expansion theorem, which provides a systematic method for decomposing functions, and explores how don't care conditions are represented in canonical form. These concepts establish the foundation for the systematic simplification techniques covered in Unit 5 (Karnaugh Maps).

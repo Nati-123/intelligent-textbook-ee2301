@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 5 — Karnaugh Maps
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 Karnaugh maps (K-maps) provide a powerful graphical method for simplifying Boolean functions, transforming the abstract process of algebraic manipulation into visual pattern recognition. Developed by Maurice Karnaugh in 1953, this technique exploits the adjacency properties of Gray code ordering to identify opportunities for variable elimination. This unit covers K-map construction for 2, 3, 4, and 5 variables, teaching students to recognize valid groupings that lead to simpler expressions. The concepts of implicants, prime implicants, and essential prime implicants formalize the simplification process, enabling systematic derivation of minimal Sum of Products (SOP) and Product of Sums (POS) expressions. Students will learn to handle don't care conditions, recognize when multiple minimal solutions exist, and understand the limitations of K-maps for larger functions.

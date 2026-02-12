@@ -8,6 +8,10 @@ version: 0.03
 
 # Unit 2 — Boolean Algebra
 
+<div class="video-overview" markdown>
+**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
+</div>
+
 ## Summary
 
 Boolean Algebra provides the mathematical foundation for digital logic design, enabling engineers to describe, analyze, and simplify digital circuits using algebraic methods. Developed by mathematician George Boole in the mid-19th century, this algebraic system operates on binary values and forms the theoretical basis for all modern computing. This unit introduces the fundamental Boolean operations (AND, OR, NOT), their physical implementation as logic gates, and the derived operations (NAND, NOR, XOR, XNOR) that expand design possibilities. Students will master the essential Boolean theorems and identities that enable systematic simplification of logic expressions, reducing circuit complexity and cost. The unit establishes Sum of Products (SOP) and Product of Sums (POS) as standard forms for representing Boolean functions.
