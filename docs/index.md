@@ -61,7 +61,7 @@ hide:
 </div>
 
 <div class="cover-circuit cover-circuit-bottom">
-  <img src="images/circuit-hero.svg" alt="" class="circuit-svg circuit-flipped">
+  <img src="images/circuit-bottom.svg" alt="State machine, multiplexer, truth table, and decoder" class="circuit-svg-alt">
 </div>
 
 </div>
