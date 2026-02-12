@@ -41,8 +41,8 @@ extra_javascript:
   - javascripts/tts-reader.js
 
 nav:
-  - Cover: cover.md
-  - Home: index.md
+  - Cover: index.md
+  - Home: home.md
   - Course Description: course-description.md
   - FAQ: faq.md
   - Glossary: glossary.md
