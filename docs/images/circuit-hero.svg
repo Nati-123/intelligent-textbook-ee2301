@@ -1,99 +1,182 @@
-<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
-  <!-- Circuit traces - colorful -->
-  <g stroke-width="1.5" fill="none">
-    <path d="M0,40 H120 L140,60 H240" stroke="rgba(255,183,77,0.5)"/>
-    <path d="M0,100 H80 L100,80 H200 L220,100 H340" stroke="rgba(129,212,250,0.5)"/>
-    <path d="M0,170 H60 L80,150 H170" stroke="rgba(186,104,200,0.5)"/>
-    <path d="M460,40 H560 L575,55" stroke="rgba(129,212,250,0.5)"/>
-    <path d="M510,100 H620 L640,120 H800" stroke="rgba(255,183,77,0.5)"/>
-    <path d="M430,170 H520" stroke="rgba(186,104,200,0.5)"/>
-    <path d="M310,70 L340,100" stroke="rgba(77,208,225,0.4)" stroke-dasharray="4,4"/>
-    <path d="M415,100 L460,70" stroke="rgba(77,208,225,0.4)" stroke-dasharray="4,4"/>
-    <path d="M240,150 L340,120" stroke="rgba(186,104,200,0.4)" stroke-dasharray="4,4"/>
-    <path d="M510,100 L520,110" stroke="rgba(255,183,77,0.4)" stroke-dasharray="4,4"/>
-    <path d="M700,80 H800" stroke="rgba(129,212,250,0.4)"/>
-    <path d="M700,170 H800" stroke="rgba(186,104,200,0.4)"/>
+<svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Glow filters for each gate color -->
+    <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.22  0 0 0 0 0.74  0 0 0 0 0.97  0 0 0 0.5 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-yellow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.98  0 0 0 0 0.80  0 0 0 0 0.08  0 0 0 0.5 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-pink" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.96  0 0 0 0 0.45  0 0 0 0 0.71  0 0 0 0.5 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-amber" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.96  0 0 0 0 0.62  0 0 0 0 0.04  0 0 0 0.5 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.29  0 0 0 0 0.87  0 0 0 0 0.50  0 0 0 0.5 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Binary stream background - very subtle -->
+  <g font-family="'Courier New', monospace" font-size="11" letter-spacing="3">
+    <text x="15" y="18" fill="rgba(56,189,248,0.06)">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 0 1 1</text>
+    <text x="520" y="18" fill="rgba(250,204,21,0.06)">0 1 1 0 1 0 1 1 0 0 1 0 1 1 0 1</text>
+    <text x="30" y="195" fill="rgba(244,114,182,0.06)">0 0 1 0 1 1 0 1 1 0 0 1 0 1 1 0 1 0</text>
+    <text x="550" y="195" fill="rgba(74,222,128,0.06)">1 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0</text>
+    <text x="250" y="105" fill="rgba(56,189,248,0.04)">1 0 0 1 1 0 1 0 1 1 0 0 1</text>
   </g>
 
-  <!-- AND gate - bright yellow-green -->
-  <g transform="translate(240,35)" fill="none" stroke="rgba(255,235,59,0.95)" stroke-width="2.5">
-    <path d="M0,0 H20 Q50,0 50,25 Q50,50 20,50 H0 Z"/>
-    <line x1="-18" y1="12" x2="0" y2="12"/>
-    <line x1="-18" y1="38" x2="0" y2="38"/>
-    <line x1="50" y1="25" x2="70" y2="25"/>
+  <!-- PCB traces - clean 45-degree routing -->
+  <g stroke-width="1.5" fill="none" stroke-linecap="round">
+    <!-- Left-side input traces -->
+    <path d="M0,45 H100 L115,60 H190" stroke="rgba(250,204,21,0.35)"/>
+    <path d="M0,75 H80 L95,60 H190" stroke="rgba(250,204,21,0.25)"/>
+    <path d="M0,100 H60 L80,80 H160 L180,100 H280" stroke="rgba(56,189,248,0.35)"/>
+    <path d="M0,130 H50 L70,110 H160 L180,130 H280" stroke="rgba(56,189,248,0.25)"/>
+    <path d="M0,160 H40 L55,145 H115" stroke="rgba(244,114,182,0.35)"/>
+    <!-- Mid-section signal paths -->
+    <path d="M260,55 L280,75" stroke="rgba(250,204,21,0.2)" stroke-dasharray="4,6"/>
+    <path d="M345,100 L380,75" stroke="rgba(56,189,248,0.2)" stroke-dasharray="4,6"/>
+    <path d="M185,148 L280,120" stroke="rgba(244,114,182,0.2)" stroke-dasharray="4,6"/>
+    <!-- Right-side output traces -->
+    <path d="M500,50 H560 L575,65 H620" stroke="rgba(56,189,248,0.3)"/>
+    <path d="M500,100 H540" stroke="rgba(245,158,11,0.35)"/>
+    <path d="M540,100 H620 L640,120 H700" stroke="rgba(245,158,11,0.25)"/>
+    <path d="M700,120 L720,100 H760" stroke="rgba(245,158,11,0.2)"/>
+    <!-- Far-right traces to edge -->
+    <path d="M870,55 H1000" stroke="rgba(74,222,128,0.25)"/>
+    <path d="M870,85 H920 L940,105 H1000" stroke="rgba(56,189,248,0.2)"/>
+    <path d="M760,155 H840 L860,175 H1000" stroke="rgba(244,114,182,0.2)"/>
   </g>
-  <text x="260" y="100" fill="rgba(255,235,59,0.6)" font-size="10" font-family="monospace" text-anchor="middle">AND</text>
 
-  <!-- OR gate - bright cyan -->
-  <g transform="translate(340,75)" fill="none" stroke="rgba(77,208,225,0.95)" stroke-width="2.5">
-    <path d="M0,0 Q15,25 0,50 Q25,50 40,50 Q60,45 65,25 Q60,5 40,0 Q25,0 0,0 Z"/>
-    <line x1="-18" y1="12" x2="8" y2="12"/>
-    <line x1="-18" y1="38" x2="8" y2="38"/>
-    <line x1="65" y1="25" x2="83" y2="25"/>
+  <!-- Junction dots -->
+  <g fill="rgba(56,189,248,0.4)">
+    <circle cx="160" cy="100" r="2"/>
+    <circle cx="540" cy="100" r="2"/>
+    <circle cx="620" cy="120" r="2"/>
   </g>
-  <text x="372" y="140" fill="rgba(77,208,225,0.6)" font-size="10" font-family="monospace" text-anchor="middle">OR</text>
 
-  <!-- NOT gate - bright magenta/pink -->
-  <g transform="translate(170,130)" fill="none" stroke="rgba(244,143,177,0.95)" stroke-width="2.5">
-    <polygon points="0,0 40,17 0,34"/>
-    <circle cx="46" cy="17" r="5"/>
-    <line x1="-18" y1="17" x2="0" y2="17"/>
-    <line x1="51" y1="17" x2="70" y2="17"/>
+  <!-- AND gate - warm yellow with glow -->
+  <g transform="translate(190,30)" filter="url(#glow-yellow)">
+    <g fill="none" stroke="#facc15" stroke-width="2">
+      <path d="M0,0 H22 Q55,0 55,28 Q55,55 22,55 H0 Z"/>
+      <line x1="-20" y1="15" x2="0" y2="15"/>
+      <line x1="-20" y1="40" x2="0" y2="40"/>
+      <line x1="55" y1="28" x2="75" y2="28"/>
+    </g>
+    <text x="22" y="33" fill="rgba(250,204,21,0.7)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle">AND</text>
   </g>
-  <text x="200" y="182" fill="rgba(244,143,177,0.6)" font-size="10" font-family="monospace" text-anchor="middle">NOT</text>
 
-  <!-- D Flip-Flop - bright orange -->
-  <g transform="translate(430,20)" fill="none" stroke="rgba(255,183,77,0.95)" stroke-width="2.5">
-    <rect x="0" y="0" width="70" height="80" rx="4"/>
-    <text x="12" y="25" fill="rgba(255,183,77,1)" font-size="13" font-family="monospace" font-weight="bold">D</text>
-    <text x="48" y="25" fill="rgba(255,183,77,1)" font-size="13" font-family="monospace" font-weight="bold">Q</text>
-    <line x1="10" y1="35" x2="60" y2="35" stroke="rgba(255,183,77,0.5)"/>
-    <text x="20" y="58" fill="rgba(255,183,77,0.85)" font-size="11" font-family="monospace">CLK</text>
-    <polygon points="0,62 10,67 0,72" fill="rgba(255,183,77,0.7)" stroke="none"/>
-    <line x1="-18" y1="20" x2="0" y2="20"/>
-    <line x1="70" y1="20" x2="88" y2="20"/>
-    <line x1="-18" y1="67" x2="0" y2="67"/>
+  <!-- OR gate - signal cyan with glow -->
+  <g transform="translate(280,73)" filter="url(#glow-cyan)">
+    <g fill="none" stroke="#38bdf8" stroke-width="2">
+      <path d="M0,0 Q18,27 0,55 Q28,55 45,55 Q65,48 72,28 Q65,7 45,0 Q28,0 0,0 Z"/>
+      <line x1="-20" y1="14" x2="10" y2="14"/>
+      <line x1="-20" y1="41" x2="10" y2="41"/>
+      <line x1="72" y1="28" x2="92" y2="28"/>
+    </g>
+    <text x="32" y="33" fill="rgba(56,189,248,0.7)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle">OR</text>
   </g>
-  <text x="465" y="118" fill="rgba(255,183,77,0.6)" font-size="10" font-family="monospace" text-anchor="middle">FLIP-FLOP</text>
 
-  <!-- IC Chip - colorful -->
-  <g transform="translate(540,125)">
-    <!-- Chip body with gradient feel -->
-    <rect x="0" y="0" width="90" height="60" rx="3" fill="rgba(20,20,40,0.85)" stroke="rgba(129,212,250,0.8)" stroke-width="2"/>
+  <!-- NOT gate - rose pink with glow -->
+  <g transform="translate(115,125)" filter="url(#glow-pink)">
+    <g fill="none" stroke="#f472b6" stroke-width="2">
+      <polygon points="0,0 45,20 0,40"/>
+      <circle cx="51" cy="20" r="5"/>
+      <line x1="-20" y1="20" x2="0" y2="20"/>
+      <line x1="56" y1="20" x2="76" y2="20"/>
+    </g>
+    <text x="20" y="56" fill="rgba(244,114,182,0.7)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle">NOT</text>
+  </g>
+
+  <!-- D Flip-Flop - amber/gold with glow -->
+  <g transform="translate(420,20)" filter="url(#glow-amber)">
+    <g fill="none" stroke="#f59e0b" stroke-width="2">
+      <rect x="0" y="0" width="80" height="90" rx="4"/>
+      <line x1="12" y1="38" x2="68" y2="38" stroke-opacity="0.4"/>
+    </g>
+    <!-- Pin labels -->
+    <text x="14" y="25" fill="#f59e0b" font-size="14" font-family="'Courier New', monospace" font-weight="bold">D</text>
+    <text x="56" y="25" fill="#f59e0b" font-size="14" font-family="'Courier New', monospace" font-weight="bold">Q</text>
+    <text x="56" y="78" fill="rgba(245,158,11,0.6)" font-size="10" font-family="'Courier New', monospace">Q'</text>
+    <text x="22" y="63" fill="rgba(245,158,11,0.8)" font-size="10" font-family="'Courier New', monospace">CLK</text>
+    <!-- Clock triangle -->
+    <polygon points="0,70 12,76 0,82" fill="rgba(245,158,11,0.6)" stroke="none"/>
+    <!-- Input/output pins -->
+    <g stroke="#f59e0b" stroke-width="1.5">
+      <line x1="-20" y1="20" x2="0" y2="20"/>
+      <line x1="80" y1="20" x2="100" y2="20"/>
+      <line x1="-20" y1="76" x2="0" y2="76"/>
+      <line x1="80" y1="76" x2="100" y2="76"/>
+    </g>
+    <text x="40" y="-8" fill="rgba(245,158,11,0.5)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle">FLIP-FLOP</text>
+  </g>
+
+  <!-- IC Chip - professional DIP package -->
+  <g transform="translate(560,110)">
+    <rect x="0" y="0" width="100" height="65" rx="3" fill="rgba(10,22,40,0.9)" stroke="rgba(56,189,248,0.6)" stroke-width="1.5"/>
     <!-- Notch -->
-    <circle cx="0" cy="30" r="6" fill="none" stroke="rgba(129,212,250,0.5)" stroke-width="1.5"/>
-    <!-- Chip label -->
-    <text x="45" y="28" fill="rgba(77,208,225,1)" font-size="10" font-family="monospace" text-anchor="middle" font-weight="bold">EE2301</text>
-    <text x="45" y="42" fill="rgba(186,104,200,0.9)" font-size="7" font-family="monospace" text-anchor="middle">DIGITAL</text>
-    <text x="45" y="52" fill="rgba(186,104,200,0.9)" font-size="7" font-family="monospace" text-anchor="middle">LOGIC</text>
-    <!-- Left pins - colorful -->
-    <line x1="-12" y1="12" x2="0" y2="12" stroke="rgba(255,235,59,0.8)" stroke-width="2"/>
-    <line x1="-12" y1="24" x2="0" y2="24" stroke="rgba(77,208,225,0.8)" stroke-width="2"/>
-    <line x1="-12" y1="36" x2="0" y2="36" stroke="rgba(244,143,177,0.8)" stroke-width="2"/>
-    <line x1="-12" y1="48" x2="0" y2="48" stroke="rgba(255,183,77,0.8)" stroke-width="2"/>
-    <!-- Right pins - colorful -->
-    <line x1="90" y1="12" x2="102" y2="12" stroke="rgba(255,235,59,0.8)" stroke-width="2"/>
-    <line x1="90" y1="24" x2="102" y2="24" stroke="rgba(77,208,225,0.8)" stroke-width="2"/>
-    <line x1="90" y1="36" x2="102" y2="36" stroke="rgba(244,143,177,0.8)" stroke-width="2"/>
-    <line x1="90" y1="48" x2="102" y2="48" stroke="rgba(255,183,77,0.8)" stroke-width="2"/>
-    <!-- Pin traces -->
-    <line x1="102" y1="12" x2="130" y2="12" stroke="rgba(255,235,59,0.4)" stroke-width="1.5"/>
-    <line x1="102" y1="48" x2="130" y2="48" stroke="rgba(255,183,77,0.4)" stroke-width="1.5"/>
-    <line x1="-12" y1="12" x2="-30" y2="12" stroke="rgba(255,235,59,0.4)" stroke-width="1.5"/>
-    <line x1="-12" y1="48" x2="-30" y2="48" stroke="rgba(255,183,77,0.4)" stroke-width="1.5"/>
+    <path d="M0,26 Q8,32 0,38" fill="none" stroke="rgba(56,189,248,0.4)" stroke-width="1.5"/>
+    <!-- Chip labels -->
+    <text x="50" y="28" fill="#38bdf8" font-size="11" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">EE2301</text>
+    <text x="50" y="42" fill="rgba(244,114,182,0.7)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle" letter-spacing="2">DIGITAL LOGIC</text>
+    <text x="50" y="55" fill="rgba(148,163,184,0.5)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle">UMN-TC</text>
+    <!-- Left pins -->
+    <line x1="-14" y1="13" x2="0" y2="13" stroke="rgba(250,204,21,0.6)" stroke-width="2"/>
+    <line x1="-14" y1="26" x2="0" y2="26" stroke="rgba(56,189,248,0.6)" stroke-width="2"/>
+    <line x1="-14" y1="39" x2="0" y2="39" stroke="rgba(244,114,182,0.6)" stroke-width="2"/>
+    <line x1="-14" y1="52" x2="0" y2="52" stroke="rgba(245,158,11,0.6)" stroke-width="2"/>
+    <!-- Right pins -->
+    <line x1="100" y1="13" x2="114" y2="13" stroke="rgba(250,204,21,0.6)" stroke-width="2"/>
+    <line x1="100" y1="26" x2="114" y2="26" stroke="rgba(56,189,248,0.6)" stroke-width="2"/>
+    <line x1="100" y1="39" x2="114" y2="39" stroke="rgba(244,114,182,0.6)" stroke-width="2"/>
+    <line x1="100" y1="52" x2="114" y2="52" stroke="rgba(245,158,11,0.6)" stroke-width="2"/>
+    <!-- Pin traces extending outward -->
+    <line x1="114" y1="13" x2="140" y2="13" stroke="rgba(250,204,21,0.25)" stroke-width="1.5"/>
+    <line x1="114" y1="52" x2="140" y2="52" stroke="rgba(245,158,11,0.25)" stroke-width="1.5"/>
+    <line x1="-14" y1="13" x2="-35" y2="13" stroke="rgba(250,204,21,0.25)" stroke-width="1.5"/>
+    <line x1="-14" y1="52" x2="-35" y2="52" stroke="rgba(245,158,11,0.25)" stroke-width="1.5"/>
   </g>
 
-  <!-- Binary stream decorations - colorful -->
-  <text font-size="13" font-family="monospace">
-    <tspan x="30" y="22" fill="rgba(77,208,225,0.15)">1 0 1 1 0 0 1 0</tspan>
-    <tspan x="640" y="210" fill="rgba(244,143,177,0.15)">0 1 1 0 1 0 0 1</tspan>
-    <tspan x="640" y="22" fill="rgba(255,235,59,0.15)">1 1 0 1 0 1 1 0</tspan>
-    <tspan x="80" y="210" fill="rgba(186,104,200,0.15)">0 0 1 0 1 1 0 1</tspan>
-  </text>
-
-  <!-- Clock waveform - bright green -->
-  <g transform="translate(680,40)" stroke="rgba(129,199,132,0.6)" stroke-width="2" fill="none">
-    <polyline points="0,30 0,0 15,0 15,30 30,30 30,0 45,0 45,30 60,30 60,0 75,0 75,30 90,30 90,0 105,0 105,30"/>
+  <!-- Clock waveform - logic green with glow -->
+  <g transform="translate(760,30)" filter="url(#glow-green)">
+    <polyline points="0,35 0,5 18,5 18,35 36,35 36,5 54,5 54,35 72,35 72,5 90,5 90,35 108,35 108,5 120,5"
+      stroke="#4ade80" stroke-width="1.8" fill="none" stroke-linejoin="miter"/>
+    <text x="60" y="52" fill="rgba(74,222,128,0.6)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle">CLK</text>
   </g>
-  <text x="732" y="85" fill="rgba(129,199,132,0.5)" font-size="9" font-family="monospace" text-anchor="middle">CLK</text>
+
+  <!-- Timing diagram fragment - bottom right -->
+  <g transform="translate(760,100)" opacity="0.4">
+    <polyline points="0,0 0,20 25,20 25,0 50,0 50,20 60,20" stroke="#38bdf8" stroke-width="1.2" fill="none"/>
+    <polyline points="0,30 15,30 15,50 40,50 40,30 60,30" stroke="#f59e0b" stroke-width="1.2" fill="none"/>
+    <text x="0" y="-5" fill="rgba(56,189,248,0.5)" font-size="7" font-family="'Courier New', monospace">D</text>
+    <text x="0" y="25" fill="rgba(245,158,11,0.5)" font-size="7" font-family="'Courier New', monospace">Q</text>
+  </g>
+
+  <!-- Ground/VCC symbols - far left -->
+  <g transform="translate(15,85)" stroke="rgba(148,163,184,0.2)" stroke-width="1.2" fill="none">
+    <line x1="0" y1="0" x2="0" y2="12"/>
+    <line x1="-8" y1="12" x2="8" y2="12"/>
+    <line x1="-5" y1="16" x2="5" y2="16"/>
+    <line x1="-2" y1="20" x2="2" y2="20"/>
+  </g>
+  <text x="15" y="80" fill="rgba(148,163,184,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">GND</text>
+
+  <!-- VCC symbol - far left top -->
+  <g transform="translate(15,35)" stroke="rgba(148,163,184,0.2)" stroke-width="1.2" fill="none">
+    <line x1="0" y1="10" x2="0" y2="0"/>
+    <line x1="-6" y1="0" x2="6" y2="0"/>
+  </g>
+  <text x="15" y="30" fill="rgba(148,163,184,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">VCC</text>
 </svg>

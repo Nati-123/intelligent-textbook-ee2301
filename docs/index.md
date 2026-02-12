@@ -9,7 +9,7 @@ hide:
 <div class="cover-page" markdown>
 
 <div class="cover-circuit">
-  <img src="images/circuit-hero.svg" alt="Digital circuit schematic with logic gates, flip-flop, and multiplexer" class="circuit-svg">
+  <img src="images/circuit-hero.svg" alt="Digital circuit schematic with logic gates, flip-flop, and IC chip" class="circuit-svg">
 </div>
 
 <div class="cover-content" markdown>
