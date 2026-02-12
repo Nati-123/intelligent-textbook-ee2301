@@ -6,58 +6,7 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
 <div class="hero" markdown>
 
 <div class="hero-circuit">
-  <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" class="circuit-svg">
-    <!-- Circuit traces -->
-    <g stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none">
-      <path d="M0,40 H120 L140,60 H250"/>
-      <path d="M0,100 H80 L100,80 H200 L220,100 H350"/>
-      <path d="M0,160 H60 L80,140 H180"/>
-      <path d="M450,40 H580 L600,60 H720 L740,40 H800"/>
-      <path d="M500,100 H620 L640,120 H800"/>
-      <path d="M420,160 H560 L580,140 H700 L720,160 H800"/>
-      <path d="M250,60 V100" stroke-dasharray="4,4"/>
-      <path d="M580,60 V140" stroke-dasharray="4,4"/>
-    </g>
-    <!-- AND gate -->
-    <g transform="translate(250,45)" fill="none" stroke="rgba(255,235,59,0.6)" stroke-width="2">
-      <path d="M0,0 H20 Q45,0 45,25 Q45,50 20,50 H0 Z"/>
-      <line x1="-15" y1="12" x2="0" y2="12"/>
-      <line x1="-15" y1="38" x2="0" y2="38"/>
-      <line x1="45" y1="25" x2="60" y2="25"/>
-    </g>
-    <!-- OR gate -->
-    <g transform="translate(350,75)" fill="none" stroke="rgba(255,235,59,0.6)" stroke-width="2">
-      <path d="M0,0 Q10,0 20,0 Q45,0 50,25 Q45,50 20,50 Q10,50 0,50 Q15,25 0,0 Z"/>
-      <line x1="-15" y1="12" x2="5" y2="12"/>
-      <line x1="-15" y1="38" x2="5" y2="38"/>
-      <line x1="50" y1="25" x2="65" y2="25"/>
-    </g>
-    <!-- NOT gate (triangle + bubble) -->
-    <g transform="translate(180,125)" fill="none" stroke="rgba(255,235,59,0.6)" stroke-width="2">
-      <polygon points="0,0 35,15 0,30"/>
-      <circle cx="40" cy="15" r="5"/>
-      <line x1="-15" y1="15" x2="0" y2="15"/>
-      <line x1="45" y1="15" x2="60" y2="15"/>
-    </g>
-    <!-- Flip-flop box -->
-    <g transform="translate(420,30)" fill="none" stroke="rgba(100,181,246,0.6)" stroke-width="2">
-      <rect x="0" y="0" width="60" height="70" rx="3"/>
-      <text x="30" y="22" fill="rgba(100,181,246,0.7)" font-size="10" text-anchor="middle" font-family="monospace">D</text>
-      <text x="30" y="42" fill="rgba(100,181,246,0.7)" font-size="10" text-anchor="middle" font-family="monospace">FF</text>
-      <text x="30" y="62" fill="rgba(100,181,246,0.7)" font-size="10" text-anchor="middle" font-family="monospace">Q</text>
-      <polygon points="0,55 8,60 0,65" fill="rgba(100,181,246,0.4)"/>
-      <line x1="-15" y1="20" x2="0" y2="20"/>
-      <line x1="60" y1="20" x2="75" y2="20"/>
-      <line x1="-15" y1="60" x2="0" y2="60"/>
-    </g>
-    <!-- Binary stream decorations -->
-    <text fill="rgba(255,255,255,0.08)" font-size="14" font-family="monospace">
-      <tspan x="50" y="30">1 0 1 1 0 0 1 0</tspan>
-      <tspan x="520" y="170">0 1 1 0 1 0 0 1</tspan>
-      <tspan x="620" y="30">1 1 0 1 0 1 1 0</tspan>
-      <tspan x="100" y="190">0 0 1 0 1 1 0 1</tspan>
-    </text>
-  </svg>
+  <img src="images/circuit-hero.svg" alt="Digital circuit schematic with logic gates, flip-flop, and multiplexer" class="circuit-svg">
 </div>
 
 # Digital System Design
