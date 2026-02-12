@@ -95,13 +95,13 @@
 
 .md-typeset .cover-institution {
   font-size: 0.95rem !important;
-  color: rgba(200,215,235,0.6) !important;
+  color: rgba(210,225,245,0.8) !important;
   margin-top: 0.5rem !important;
 }
 
 .md-typeset .cover-description {
   font-size: 0.95rem !important;
-  color: rgba(200,215,235,0.5) !important;
+  color: rgba(210,225,245,0.7) !important;
   margin-top: 1.2rem !important;
 }
 
