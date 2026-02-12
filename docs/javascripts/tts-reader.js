@@ -32,19 +32,15 @@
   }
 
   function getOverviewText(details) {
-    var paragraphs = details.querySelectorAll('p');
-    var text = '';
-    for (var i = 0; i < paragraphs.length; i++) {
-      text += paragraphs[i].textContent + ' ';
+    // Get all text content, then remove the summary text
+    var fullText = details.textContent || '';
+    var summary = details.querySelector('summary');
+    if (summary) {
+      fullText = fullText.replace(summary.textContent, '');
     }
-    var items = details.querySelectorAll('ol li');
-    if (items.length > 0) {
-      text += 'Key Takeaways. ';
-      for (var j = 0; j < items.length; j++) {
-        text += (j + 1) + '. ' + items[j].textContent + '. ';
-      }
-    }
-    return text.trim();
+    // Clean up whitespace
+    fullText = fullText.replace(/\s+/g, ' ').trim();
+    return fullText;
   }
 
   function updateButton(btn, state) {
