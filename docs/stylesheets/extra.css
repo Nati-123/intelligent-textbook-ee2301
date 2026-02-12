@@ -1,6 +1,6 @@
 /* ===== FULL-PAGE COVER ===== */
 .md-typeset .cover-page {
-  background: radial-gradient(ellipse at 50% 0%, #0f2b4d 0%, #0B1E3C 50%, #071428 100%);
+  background: radial-gradient(ellipse at 50% -10%, #132f54 0%, #0B1E3C 40%, #081830 70%, #050e1e 100%);
   color: #ffffff;
   margin: -1rem -0.8rem 0 -0.8rem;
   padding: 0;
@@ -60,18 +60,17 @@
   margin-bottom: 0.3rem;
   letter-spacing: 2px;
   line-height: 1.15;
-  text-shadow: 0 0 30px rgba(0,191,255,0.25);
+  text-shadow: 0 1px 12px rgba(0,191,255,0.12);
 }
 
 .md-typeset .cover-page h2 {
-  color: #00BFFF !important;
+  color: #7ec8e3 !important;
   font-size: 1.4rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 0;
   margin-bottom: 0.5rem;
   border-bottom: none;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 15px rgba(0,191,255,0.2);
+  letter-spacing: 1px;
 }
 
 .md-typeset .cover-page p {
@@ -89,21 +88,20 @@
 .md-typeset .cover-page hr {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,191,255,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0,191,255,0.2), transparent);
   margin: 1.2rem auto;
   width: 40%;
-  box-shadow: 0 0 8px rgba(0,191,255,0.15);
 }
 
 .md-typeset .cover-institution {
   font-size: 0.95rem !important;
-  color: rgba(255,255,255,0.45) !important;
+  color: rgba(200,215,235,0.6) !important;
   margin-top: 0.5rem !important;
 }
 
 .md-typeset .cover-description {
   font-size: 0.95rem !important;
-  color: rgba(255,255,255,0.4) !important;
+  color: rgba(200,215,235,0.5) !important;
   margin-top: 1.2rem !important;
 }
 
@@ -123,14 +121,14 @@
 .md-typeset .stat-number {
   font-size: 2.4rem;
   font-weight: 700;
-  color: #00BFFF;
+  color: #4db8db;
   line-height: 1.1;
-  text-shadow: 0 0 20px rgba(0,191,255,0.35);
+  text-shadow: 0 0 10px rgba(0,191,255,0.15);
 }
 
 .md-typeset .stat-label {
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(200,215,235,0.4);
   text-transform: uppercase;
   letter-spacing: 2.5px;
   margin-top: 0.3rem;
@@ -168,7 +166,7 @@
   color: #0B1E3C;
   border: 1px solid #00BFFF;
   font-weight: 600;
-  box-shadow: 0 0 20px rgba(0,191,255,0.25);
+  box-shadow: 0 0 12px rgba(0,191,255,0.15);
 }
 
 .md-typeset .cover-buttons .md-button--primary:hover {
