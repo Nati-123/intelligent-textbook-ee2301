@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 5 — Karnaugh Maps
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 5, where we learn one of the most elegant tools in a digital designer's toolkit — the Karnaugh map, or K-map. If Boolean algebra gives you the rules and canonical forms give you the starting point, the K-map gives you a visual method to find the simplest possible expression quickly and reliably.
+
+A Karnaugh map is a grid that rearranges truth table rows so that physically adjacent cells differ by exactly one variable. This arrangement relies on Gray code ordering. When two adjacent cells both contain a one, the variable that changes between them cancels out. That is the core insight: adjacency on the map corresponds directly to algebraic simplification.
+
+Your goal is to circle rectangular groups of ones, where every group must contain a power-of-two number of cells. Groups can wrap around the edges because the K-map is logically a torus. Each group corresponds to a simplified product term.
+
+A prime implicant is a group that cannot be made any larger. An essential prime implicant covers at least one minterm not covered by any other prime implicant — you must include it in your final expression. The strategy is to identify all essential prime implicants first, then cover any remaining minterms with the fewest additional prime implicants.
+
+Don't care conditions once again prove invaluable. Because don't cares can be treated as either one or zero, you can include them in your groups to make those groups larger, producing fewer literals and a simpler circuit.
+
+**Key Takeaways**
+
+1. Gray code ordering on the K-map ensures that adjacent cells differ by one variable, so grouping adjacent ones directly eliminates variables from the expression.
+2. Prime implicants and essential prime implicants guide you toward the minimal expression — always identify essentials first, then cover the rest.
+3. Don't care conditions can be included in groups to create larger groupings, leading to simpler, more efficient circuit implementations.
+
+</details>
 
 ## Summary
 

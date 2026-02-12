@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 12: Introduction to VHDL
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 12, where you will learn VHDL — the hardware description language that bridges the gap between a design on paper and a working circuit on an FPGA. If you have programmed in software before, VHDL will feel both familiar and strange, because it describes hardware that operates in parallel, not software that runs step by step.
+
+Every VHDL design begins with two essential pieces. The entity declaration defines the interface — the ports that connect your component to the outside world. The architecture body describes what the component actually does internally.
+
+One of the most important concepts in VHDL is the distinction between concurrent and sequential statements. Concurrent statements all execute simultaneously, modeling the parallel nature of real hardware. Sequential statements appear inside process blocks and execute in order. A process is triggered whenever a signal in its sensitivity list changes.
+
+VHDL supports three modeling styles: structural (connecting components like a schematic), dataflow (concurrent signal assignments), and behavioral (processes with if-then-else and case statements). Implementing finite state machines in VHDL is a particularly important skill — you define states using an enumerated type and use a case statement for transitions.
+
+Finally, testbenches let you generate stimulus for your design and verify correct behavior in simulation before committing to hardware.
+
+**Key Takeaways**
+
+1. Every VHDL design consists of an entity declaration that defines the interface and an architecture body that describes the behavior, using the std_logic type to represent real-world signal conditions.
+2. Concurrent statements model parallel hardware while sequential statements inside process blocks model step-by-step behavior — understanding this distinction is essential for writing correct VHDL.
+3. Testbenches allow you to verify designs in simulation before synthesis, and modeling finite state machines in VHDL connects directly to the FSM design techniques from earlier units.
+
+</details>
 
 ## Summary
 

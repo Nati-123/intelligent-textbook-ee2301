@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 7: Multi-Level Gate Circuits
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 7, where we move from the idealized world of AND-OR circuits into the practical reality of how digital logic is actually built. In real integrated circuits, the gates of choice are NAND and NOR. Understanding why — and learning how to convert your designs accordingly — is the focus of this unit.
+
+NAND and NOR gates are called universal gates because each one can implement any Boolean function. You can build AND, OR, and NOT from NANDs alone, or from NORs alone. This universality matters because NAND and NOR gates are cheaper, faster, and smaller at the transistor level.
+
+A two-level SOP circuit transforms directly into a NAND-NAND circuit. The trick is that by De Morgan's theorem, the inversions cancel at the internal connections. The same logic applies to POS expressions, which convert to NOR-NOR circuits.
+
+For more complex, multi-level circuits, we use bubble pushing. The idea is to push inversion bubbles through the circuit, converting each gate's type as you go, until every gate is either a NAND or a NOR. You start at the output and work backward, applying De Morgan's theorem at each level.
+
+Multi-level circuits introduce additional propagation delay because signals pass through more gate stages. The longest path from input to output — the critical path — determines maximum operating speed. Designers constantly balance gate count, literal count, and delay.
+
+**Key Takeaways**
+
+1. NAND and NOR are universal gates — each can implement any Boolean function — and they are the preferred building blocks in real integrated circuits due to their efficiency at the transistor level.
+2. SOP expressions convert to NAND-NAND circuits and POS expressions convert to NOR-NOR circuits through systematic application of De Morgan's theorem and the bubble pushing technique.
+3. Multi-level circuit design involves balancing gate count, literal count, and propagation delay along the critical path to meet area, power, and speed constraints.
+
+</details>
 
 ## Summary
 

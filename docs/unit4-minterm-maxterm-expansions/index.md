@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 4 — Minterm and Maxterm Expansions
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 4, where we formalize something you have already been doing intuitively — writing Boolean functions in their most complete and unambiguous form. These canonical representations, built from minterms and maxterms, give you a precise language for describing any Boolean function.
+
+A minterm is an AND term that includes every variable in the function, either in its true form or its complemented form. Each row of a truth table where the output is one corresponds to exactly one minterm. When you OR all of those minterms together, you get the canonical Sum of Products, written compactly using Sigma notation.
+
+Maxterms work in the complementary direction. A maxterm is an OR term that includes every variable. Each row where the output is zero corresponds to one maxterm. When you AND all of those maxterms together, you get the canonical Product of Sums, written with Pi notation. Converting between the two canonical forms is simply a matter of swapping the indices.
+
+We also revisit the Shannon expansion theorem, which shows that any Boolean function can be decomposed around a chosen variable into two smaller sub-functions. This decomposition underpins the structure of multiplexers, binary decision diagrams, and many synthesis algorithms used by modern design tools.
+
+Finally, don't care conditions make a return appearance. In canonical form, don't care minterms are listed separately, preserving the freedom to assign them during later minimization.
+
+**Key Takeaways**
+
+1. Minterms and maxterms provide a canonical, unambiguous way to represent any Boolean function as a Sum of Products or Product of Sums.
+2. Sigma and Pi notations offer a compact shorthand that maps directly to truth table rows, making conversion between forms quick and mechanical.
+3. The Shannon expansion theorem decomposes functions around a variable, forming the basis for multiplexer design and modern synthesis algorithms.
+
+</details>
 
 ## Summary
 

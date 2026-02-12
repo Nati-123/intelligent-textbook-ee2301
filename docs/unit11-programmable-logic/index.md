@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 11: Programmable Logic Devices
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 11. So far, you have been designing digital circuits on paper and in simulation. Now, we explore the devices that let you bring those designs into the physical world — programmable logic devices, or PLDs.
+
+ROM can implement any combinational function by treating address lines as inputs and stored data as outputs. From this foundation, PAL devices contain a programmable AND array feeding a fixed OR array, while PLAs offer both programmable AND and programmable OR arrays for more flexibility.
+
+As designs grew more complex, CPLDs emerged — multiple PLD-like blocks connected through a programmable interconnect, with each block featuring a macrocell that includes flip-flops and output control. CPLDs offer predictable timing, making them well-suited for timing-critical glue logic.
+
+The real revolution came with FPGAs. Instead of AND-OR arrays, FPGAs use lookup tables — small memories that can implement any function of their input variables. These sit inside configurable logic blocks (CLBs), which also contain flip-flops and carry logic. Thousands or millions of these blocks are connected by a rich programmable routing network.
+
+The FPGA design flow — describing your circuit in a hardware description language, synthesizing, placing and routing, and downloading the configuration — will become central to your practice.
+
+**Key Takeaways**
+
+1. ROM, PAL, and PLA devices implement combinational logic using programmable arrays of connections, evolving from brute-force lookup to efficient sum-of-products architectures.
+2. CPLDs group multiple PLD blocks with a predictable interconnect, while FPGAs use lookup tables within configurable logic blocks to achieve massive flexibility and capacity.
+3. The FPGA design flow — from HDL description through synthesis, place-and-route, and device programming — is the modern pathway for turning digital designs into working hardware.
+
+</details>
 
 ## Summary
 

@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 8: Combinational Logic Modules
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 8, where we move beyond individual gates and start working with combinational logic modules — the medium-scale building blocks that make complex digital systems practical to design.
+
+We will begin with the multiplexer, or MUX, one of the most versatile modules in digital design. A multiplexer selects one of several input signals and routes it to a single output, controlled by selection lines. Interestingly, a MUX can also implement arbitrary Boolean functions — a single eight-to-one MUX can replace an entire network of gates for any three-variable function.
+
+Working in the opposite direction, we have the demultiplexer, or DEMUX, which takes a single input and routes it to one of many outputs. Together, MUX and DEMUX form the foundation of data routing in everything from communication systems to memory buses.
+
+Next, we explore encoders and decoders. An encoder converts one active input line into a compact binary code. Priority encoders report only the highest-priority active input. Decoders do the reverse, taking a binary code and activating exactly one output line — essential for address decoding in memory systems.
+
+We will also cover magnitude comparators, which determine whether one binary number is greater than, less than, or equal to another, and code converters, particularly the conversion between standard binary and Gray code.
+
+**Key Takeaways**
+
+1. Multiplexers and demultiplexers are fundamental data-routing components, and a MUX can implement any Boolean function of its select variables.
+2. Encoders compress information into binary codes while decoders expand binary codes to activate individual lines — both are essential for address decoding and priority arbitration.
+3. Magnitude comparators and code converters such as Binary-to-Gray round out a practical toolkit of combinational modules used throughout real digital systems.
+
+</details>
 
 ## Summary
 

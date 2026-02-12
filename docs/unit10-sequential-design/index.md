@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 10: Sequential Circuit Design
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 10, where we take the flip-flops from the previous unit and put them to work in complete sequential circuits — circuits that count, shift data, and make decisions over time.
+
+We begin with registers — groups of flip-flops working together to store multi-bit data. Shift registers move data one bit at a time in several configurations: serial-in serial-out, serial-in parallel-out, parallel-in serial-out, and the universal shift register that combines all capabilities.
+
+Next, we tackle counters. Ripple counters are simple but suffer from cumulative delays. Synchronous counters solve this by clocking every flip-flop simultaneously. You will design up-counters, down-counters, modulo-N counters, BCD counters, ring counters, and Johnson counters.
+
+The highlight of this unit is the finite state machine, or FSM. There are two models: Moore machines, where outputs depend only on the current state, and Mealy machines, where outputs depend on both the current state and inputs. Mealy machines can respond faster, but Moore machines are often simpler to design.
+
+You will express FSM behavior using state diagrams and state tables, choose a state encoding, and follow a systematic design procedure. As a practical application, we design sequence detectors — circuits that monitor a stream of bits and signal when a particular pattern appears.
+
+**Key Takeaways**
+
+1. Registers and shift registers store and move multi-bit data, providing the essential storage and data-transfer building blocks used in processors and communication interfaces.
+2. Synchronous counters overcome the speed limitations of ripple counters, and specialized types such as modulo-N, BCD, ring, and Johnson counters serve a wide range of applications.
+3. Finite state machines — in both Moore and Mealy forms — provide a systematic methodology for designing sequential circuits that follow a defined sequence of states.
+
+</details>
 
 ## Summary
 

@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 9: Sequential Logic Fundamentals
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 9. Up to this point, every circuit we have studied has been combinational. Now, we cross a fundamental threshold into sequential logic, where circuits can remember. This is the unit where digital design truly comes alive.
+
+A sequential circuit's output depends not only on its current inputs but also on its history — its stored state. Without memory, there are no counters, no registers, no processors, and no stored programs.
+
+We start with the SR latch, built from two cross-coupled NOR or NAND gates. The SR latch can hold a single bit but has a forbidden input condition. The D latch solves this but introduces transparency — when the enable signal is high, the output follows the input continuously.
+
+This brings us to the clock signal and edge-triggered D flip-flops, which respond only at the precise moment of a clock edge, eliminating the transparency problem. Most flip-flops use a master-slave construction internally. Beyond the D flip-flop, we also meet the JK flip-flop, which adds the ability to toggle, and the T flip-flop, dedicated to toggling.
+
+We close by examining critical timing parameters: setup time, hold time, and clock-to-Q delay. When these requirements are violated, the flip-flop can enter metastability — a condition every digital designer must learn to respect and avoid.
+
+**Key Takeaways**
+
+1. Sequential circuits differ from combinational circuits because they have memory — their outputs depend on both current inputs and stored state, which is the foundation of all computing.
+2. Edge-triggered D flip-flops, built using master-slave construction, solve the transparency problem of latches and enable reliable synchronous design driven by a clock signal.
+3. Timing parameters such as setup time, hold time, and clock-to-Q delay must be respected to avoid metastability, which is a critical concern in all real-world sequential designs.
+
+</details>
 
 ## Summary
 

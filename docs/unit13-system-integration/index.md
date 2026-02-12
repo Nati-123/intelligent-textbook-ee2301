@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 13: System Integration and Design Projects
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 13, the capstone of this course. Everything you have learned — from Boolean algebra and logic gates through sequential design, programmable devices, and VHDL — comes together here as we tackle complete system integration and real design projects.
+
+The starting point is top-down design methodology. Instead of jumping straight to gates and flip-flops, you begin with a high-level block diagram, then progressively refine each block until you reach the implementation level. A critical part is the separation of a design into a datapath and a control unit. The datapath contains registers, arithmetic units, and buses that process data. The control unit is a finite state machine that generates the signals telling the datapath what to do and when.
+
+Once your design is described in VHDL, verification becomes paramount. You will write testbenches that systematically exercise your design. Static timing analysis helps you identify the critical path — the longest delay path — which determines the maximum operating frequency.
+
+Real-world design always involves trade-offs. Making a circuit faster often requires more area or consumes more power. These trade-offs determine whether your product meets its battery life target, fits in its package, or stays within budget.
+
+To make all of this concrete, we work through several real-world examples, including a digital combination lock, an arithmetic logic unit, a UART serial communication controller, and a vending machine controller.
+
+**Key Takeaways**
+
+1. Top-down design methodology and the separation of datapath from control unit are the standard approaches for managing complexity in real digital systems.
+2. Verification through testbenches and static timing analysis of the critical path are essential steps that ensure a design is both functionally correct and fast enough.
+3. Real-world digital design requires navigating trade-offs among speed, area, and power, and capstone projects bring all course concepts together into practical, complete systems.
+
+</details>
 
 ## Summary
 

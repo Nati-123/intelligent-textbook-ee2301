@@ -8,9 +8,24 @@ version: 0.03
 
 # Unit 6: Quine-McCluskey Method
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 6, where we tackle Boolean minimization from a completely different angle. Karnaugh maps are wonderful for small problems, but the Quine-McCluskey method replaces visual pattern recognition with a systematic, tabular algorithm that works for any number of variables — and that a computer can execute.
+
+The method proceeds in two phases. In the first phase, you list every minterm and group them by the number of ones in their binary representation. Then you compare minterms in adjacent groups, looking for pairs that differ in exactly one bit position. When you find such a pair, you combine them into a new implicant, replacing the differing bit with a dash. This combining process repeats until no further combinations are possible. Every implicant never checked off is a prime implicant.
+
+The second phase determines which prime implicants to include in the final expression. You construct a prime implicant chart — a table with prime implicants as rows and original minterms as columns. If any column has only a single mark, the corresponding prime implicant is essential. You select all essentials first, then for remaining coverage, Petrick's method finds the minimum number of additional prime implicants needed.
+
+The real power of Quine-McCluskey is its suitability for automation. Every step follows deterministic rules that translate directly into code. Modern logic synthesis tools use algorithms descended from this method to optimize circuits with thousands of variables.
+
+**Key Takeaways**
+
+1. The Quine-McCluskey method systematically finds all prime implicants through iterative pairwise combination of minterms, organized by the number of ones in their binary form.
+2. A prime implicant chart identifies essential prime implicants, and Petrick's method resolves any remaining coverage when essentials alone are not sufficient.
+3. The algorithm's deterministic, tabular nature makes it ideal for computer implementation, enabling minimization of functions with far more variables than K-maps can handle.
+
+</details>
 
 ## Summary
 

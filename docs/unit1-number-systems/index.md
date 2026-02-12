@@ -8,9 +8,24 @@ version: 0.03
 
 # Unit 1 — Number Systems
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 1 of Digital System Design, where we explore the number systems that form the mathematical backbone of every digital device you use. You already think in decimal every day — base ten, with digits zero through nine — but computers speak an entirely different language. Understanding how to move between that familiar world and the world of ones and zeros is where your journey into digital design truly begins.
+
+Let's start with the big idea: positional notation. In any number system, the value of a digit depends on its position. In decimal, the number 365 means three hundreds, six tens, and five ones. The same principle applies in binary, octal, and hexadecimal — only the base changes. Binary uses base two with just the digits zero and one. Octal uses base eight with digits zero through seven. And hexadecimal uses base sixteen, borrowing the letters A through F to represent values ten through fifteen.
+
+So how do you convert between them? The key techniques are repeated division for converting from decimal to another base, and weighted expansion for converting back to decimal. With a little practice, you will also learn shortcut groupings — every three binary digits map neatly to one octal digit, and every four binary digits map to one hexadecimal digit.
+
+Once you are comfortable moving between bases, we turn to binary arithmetic — addition, subtraction, and the critical concept of signed versus unsigned representation. Two's complement lets us represent both positive and negative integers using a fixed number of bits, and the beauty is that the same addition circuitry works for both signed and unsigned values.
+
+**Key Takeaways**
+
+1. Positional notation is the unifying principle behind decimal, binary, octal, and hexadecimal — only the base differs.
+2. Conversion techniques such as repeated division, weighted expansion, and binary-to-hex grouping are essential everyday skills in digital design.
+3. Two's complement representation enables signed arithmetic with the same hardware used for unsigned addition, and overflow detection tells you when a result has exceeded the available bit width.
+
+</details>
 
 ## Summary
 

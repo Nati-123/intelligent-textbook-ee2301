@@ -8,9 +8,26 @@ version: 0.03
 
 # Unit 3 — Applications of Boolean Algebra
 
-<div class="video-overview" markdown>
-**Video Overview:** *AI-narrated overview of this unit with animated slides — coming soon.*
-</div>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 3, where Boolean algebra leaves the chalkboard and enters the real world. Now it is time to use the rules and identities to design actual digital circuits, starting from plain English descriptions and ending with hardware that performs useful work.
+
+The first skill you will develop is translating a word problem into a Boolean equation and a truth table. Real specifications map to identifying inputs, defining outputs, filling in the truth table row by row, and writing the Boolean expression. This translation step is where engineering judgment meets mathematical precision.
+
+With that process in hand, we move on to essential building blocks. The half adder takes two single-bit inputs and produces a sum and a carry. The full adder extends that idea by accepting a carry-in from a previous stage, making it possible to chain adders together for multi-bit arithmetic. Magnitude comparators tell you whether one binary number is greater than, less than, or equal to another.
+
+We then explore parity generators and checkers for error detection, code converters that translate between different binary codes, and seven-segment display decoders that convert a four-bit binary value into the signals that light up a numeric display.
+
+Throughout these designs, you will encounter don't care conditions — input combinations that can never occur or whose output does not matter. Don't cares give you freedom during simplification, and that flexibility often makes the difference between a good design and a great one.
+
+**Key Takeaways**
+
+1. Translating English specifications into truth tables and Boolean equations is the essential first step in any digital design workflow.
+2. Building blocks like adders, comparators, parity checkers, and display decoders are reusable components that appear throughout digital systems.
+3. Don't care conditions provide valuable flexibility during simplification, often enabling significantly smaller and faster circuits.
+
+</details>
 
 ## Summary
 
