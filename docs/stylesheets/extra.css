@@ -1,7 +1,7 @@
 /* ===== FULL-PAGE COVER ===== */
 .md-typeset .cover-page {
-  background: linear-gradient(135deg, #00b4d8 0%, #48bfe3 25%, #90e0ef 50%, #ade8f4 75%, #caf0f8 100%);
-  color: #1a1a2e;
+  background: radial-gradient(ellipse at 50% 0%, #0f2b4d 0%, #0B1E3C 50%, #071428 100%);
+  color: #ffffff;
   margin: -1rem -0.8rem 0 -0.8rem;
   padding: 0;
   border-radius: 0;
@@ -35,14 +35,14 @@
 
 .md-typeset .cover-circuit-bottom .circuit-svg.circuit-flipped {
   transform: scaleY(-1) scaleX(-1);
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .md-typeset .cover-circuit-bottom .circuit-svg-alt {
   width: 100%;
   max-height: 180px;
   display: block;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 /* Cover content area */
@@ -60,48 +60,50 @@
   margin-bottom: 0.3rem;
   letter-spacing: 2px;
   line-height: 1.15;
-  text-shadow: 0 2px 8px rgba(0,50,100,0.3);
+  text-shadow: 0 0 30px rgba(0,191,255,0.25);
 }
 
 .md-typeset .cover-page h2 {
-  color: rgba(255,255,255,0.85) !important;
+  color: #00BFFF !important;
   font-size: 1.4rem;
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 0.5rem;
   border-bottom: none;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 15px rgba(0,191,255,0.2);
 }
 
 .md-typeset .cover-page p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.7);
   font-size: 1.05rem;
   margin: 0.4rem 0;
   line-height: 1.6;
 }
 
 .md-typeset .cover-page strong {
-  color: #ffffff;
+  color: rgba(255,255,255,0.9);
   font-weight: 600;
 }
 
 .md-typeset .cover-page hr {
   border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), rgba(255,220,100,0.5), transparent);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,191,255,0.4), transparent);
   margin: 1.2rem auto;
   width: 40%;
+  box-shadow: 0 0 8px rgba(0,191,255,0.15);
 }
 
 .md-typeset .cover-institution {
   font-size: 0.95rem !important;
-  color: rgba(255,255,255,0.7) !important;
+  color: rgba(255,255,255,0.45) !important;
   margin-top: 0.5rem !important;
 }
 
 .md-typeset .cover-description {
   font-size: 0.95rem !important;
-  color: rgba(255,255,255,0.65) !important;
+  color: rgba(255,255,255,0.4) !important;
   margin-top: 1.2rem !important;
 }
 
@@ -121,16 +123,14 @@
 .md-typeset .stat-number {
   font-size: 2.4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, #ffe066);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #00BFFF;
   line-height: 1.1;
+  text-shadow: 0 0 20px rgba(0,191,255,0.35);
 }
 
 .md-typeset .stat-label {
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.35);
   text-transform: uppercase;
   letter-spacing: 2.5px;
   margin-top: 0.3rem;
@@ -147,8 +147,8 @@
 
 .md-typeset .cover-buttons .md-button {
   background: transparent;
-  color: rgba(255,255,255,0.9);
-  border: 2px solid rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,191,255,0.25);
   padding: 0.75rem 1.6rem;
   font-weight: 500;
   font-size: 0.9rem;
@@ -157,21 +157,24 @@
 }
 
 .md-typeset .cover-buttons .md-button:hover {
-  border-color: #ffffff;
+  border-color: rgba(0,191,255,0.6);
   color: #ffffff;
-  background: rgba(255,255,255,0.15);
+  background: rgba(0,191,255,0.08);
+  box-shadow: 0 0 15px rgba(0,191,255,0.1);
 }
 
 .md-typeset .cover-buttons .md-button--primary {
-  background: #ffffff;
-  color: #0077b6;
-  border: 2px solid #ffffff;
+  background: #00BFFF;
+  color: #0B1E3C;
+  border: 1px solid #00BFFF;
   font-weight: 600;
+  box-shadow: 0 0 20px rgba(0,191,255,0.25);
 }
 
 .md-typeset .cover-buttons .md-button--primary:hover {
-  background: rgba(255,255,255,0.9);
-  color: #005f8a;
+  background: #33ccff;
+  border-color: #33ccff;
+  box-shadow: 0 0 30px rgba(0,191,255,0.4);
 }
 
 /* ===== FEATURE CARDS ===== */
