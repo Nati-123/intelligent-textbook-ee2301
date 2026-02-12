@@ -3,26 +3,7 @@ title: Home
 description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
 ---
 
-<div class="hero" markdown>
-
-<div class="hero-circuit">
-  <img src="images/circuit-hero.svg" alt="Digital circuit schematic with logic gates, flip-flop, and multiplexer" class="circuit-svg">
-</div>
-
-# Digital System Design
-
-## An Intelligent Interactive Textbook
-
-**EE 2301 — Introduction to Digital System Design**
-
-<p class="subtitle">University of Minnesota — Twin Cities<br>Department of Electrical & Computer Engineering</p>
-
-
-</div>
-
----
-
-## Welcome
+## Welcome to Digital System Design
 
 This is an **AI-assisted intelligent interactive textbook** for sophomore and junior-level Electrical and Computer Engineering students. Built using MkDocs Material and Claude Code, it provides modern, accessible learning materials covering the complete fundamentals of digital logic design.
 
