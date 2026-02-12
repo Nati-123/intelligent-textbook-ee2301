@@ -1,5 +1,9 @@
 # Buffer Gate with Truth Table
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive buffer gate demonstration showing the triangle gate symbol (without inversion bubble), a clickable input, and a complete truth table with the current state highlighted.
 
 ## Learning Objective

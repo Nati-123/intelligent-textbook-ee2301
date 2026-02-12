@@ -1,5 +1,9 @@
 # AND Gate with Truth Table
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive AND gate demonstration showing the gate symbol, clickable inputs, and a complete truth table with the current state highlighted.
 
 ## Learning Objective

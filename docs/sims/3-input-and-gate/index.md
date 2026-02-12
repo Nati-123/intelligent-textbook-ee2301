@@ -1,5 +1,9 @@
 # 3-Input AND Gate
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive 3-input AND gate demonstration with an 8-row truth table showing that the output is 1 only when all three inputs are 1.
 
 ## Learning Objective

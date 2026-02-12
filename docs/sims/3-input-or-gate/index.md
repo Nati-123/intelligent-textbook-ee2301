@@ -1,5 +1,9 @@
 # 3-Input OR Gate
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive 3-input OR gate demonstration with an 8-row truth table showing that the output is 1 when any input is 1.
 
 ## Learning Objective

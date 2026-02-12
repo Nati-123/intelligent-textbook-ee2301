@@ -1,5 +1,9 @@
 # NAND Gate with Truth Table
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive NAND gate demonstration showing the AND-shaped gate symbol with inversion bubble, clickable inputs, and a complete truth table with the current state highlighted.
 
 ## Learning Objective

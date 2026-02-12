@@ -1,5 +1,9 @@
 # 3-Input XOR Gate
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive 3-input XOR gate demonstration with an 8-row truth table showing that the output is 1 when an odd number of inputs are 1.
 
 ## Learning Objective

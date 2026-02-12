@@ -1,5 +1,9 @@
 # Tri-State Buffer with Truth Table
 
+<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+
+[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+
 Interactive tri-state buffer demonstration showing the buffer gate symbol with an enable control input, clickable inputs, and a truth table that includes the high-impedance (Z) output state.
 
 ## Learning Objective
