@@ -136,12 +136,26 @@ nav:
       - Number Systems Concept Map: sims/number-systems-concept-map/index.md
       - Base Conversion Walkthrough: sims/base-conversion-walkthrough/index.md
     - Unit 2 - Boolean Algebra:
+      - AND Gate Truth Table: sims/and-gate-truth-table/index.md
+      - OR Gate Truth Table: sims/or-gate-truth-table/index.md
+      - NOT Gate Truth Table: sims/not-gate-truth-table/index.md
+      - Buffer Gate Truth Table: sims/buffer-gate-truth-table/index.md
+      - Tri-State Buffer Truth Table: sims/tri-state-buffer-truth-table/index.md
+      - NAND Gate Truth Table: sims/nand-gate-truth-table/index.md
+      - NOR Gate Truth Table: sims/nor-gate-truth-table/index.md
+      - XOR Gate Truth Table: sims/xor-gate-truth-table/index.md
+      - XNOR Gate Truth Table: sims/xnor-gate-truth-table/index.md
       - Logic Gate Simulator: sims/logic-gate-simulator/index.md
       - Boolean Operations Visualizer: sims/boolean-operations-visualizer/index.md
       - Truth Table Generator: sims/truth-table-generator/index.md
       - Boolean Laws Explorer: sims/boolean-laws-explorer/index.md
       - De Morgan's Theorem Visualizer: sims/demorgans-theorem-visualizer/index.md
       - Boolean Simplification Tutor: sims/boolean-simplification-tutor/index.md
+      - 3-Input AND Gate: sims/3-input-and-gate/index.md
+      - 3-Input OR Gate: sims/3-input-or-gate/index.md
+      - 3-Input NAND Gate: sims/3-input-nand-gate/index.md
+      - 3-Input NOR Gate: sims/3-input-nor-gate/index.md
+      - 3-Input XOR Gate: sims/3-input-xor-gate/index.md
       - Gate Cascade Simulator: sims/gate-cascade-simulator/index.md
       - Circuit Analysis & Synthesis: sims/circuit-analysis-synthesis/index.md
       - Boolean Proof Walkthrough: sims/boolean-proof-walkthrough/index.md
