@@ -17,11 +17,6 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
 
 <p class="subtitle">University of Minnesota — Twin Cities<br>Department of Electrical & Computer Engineering</p>
 
-<div class="hero-buttons">
-  <a href="unit1-number-systems/" class="md-button md-button--primary">Get Started</a>
-  <a href="sims/" class="md-button">Explore MicroSims</a>
-  <a href="glossary/" class="md-button">View Glossary</a>
-</div>
 
 </div>
 
