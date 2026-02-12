@@ -1,6 +1,6 @@
 /* Cover Page Hero Section */
 .md-typeset .hero {
-  background: linear-gradient(135deg, #1a237e 0%, #0d1b3e 40%, #0a1628 100%);
+  background: linear-gradient(135deg, #1565c0 0%, #6a1b9a 35%, #00838f 70%, #1565c0 100%);
   color: white;
   padding: 0 2rem 3rem 2rem;
   border-radius: 12px;
@@ -96,7 +96,7 @@
 }
 
 .md-typeset .feature-card {
-  background: linear-gradient(145deg, #f5f5f5, #ffffff);
+  background: linear-gradient(145deg, #ffffff, #f8f9ff);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -104,10 +104,24 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.md-typeset .feature-card:nth-child(1) { border-left-color: #1565c0; }
+.md-typeset .feature-card:nth-child(2) { border-left-color: #6a1b9a; }
+.md-typeset .feature-card:nth-child(3) { border-left-color: #00838f; }
+.md-typeset .feature-card:nth-child(4) { border-left-color: #e65100; }
+.md-typeset .feature-card:nth-child(5) { border-left-color: #2e7d32; }
+.md-typeset .feature-card:nth-child(6) { border-left-color: #c62828; }
+
 .md-typeset .feature-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
+
+.md-typeset .feature-card:nth-child(1):hover { box-shadow: 0 8px 24px rgba(21, 101, 192, 0.2); }
+.md-typeset .feature-card:nth-child(2):hover { box-shadow: 0 8px 24px rgba(106, 27, 154, 0.2); }
+.md-typeset .feature-card:nth-child(3):hover { box-shadow: 0 8px 24px rgba(0, 131, 143, 0.2); }
+.md-typeset .feature-card:nth-child(4):hover { box-shadow: 0 8px 24px rgba(230, 81, 0, 0.2); }
+.md-typeset .feature-card:nth-child(5):hover { box-shadow: 0 8px 24px rgba(46, 125, 50, 0.2); }
+.md-typeset .feature-card:nth-child(6):hover { box-shadow: 0 8px 24px rgba(198, 40, 40, 0.2); }
 
 .md-typeset .feature-card h3 {
   color: #1a237e;
@@ -123,17 +137,31 @@
 
 /* Unit Cards */
 .md-typeset .unit-section {
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #fafafa, #f0f4ff);
+  border-radius: 10px;
   padding: 1.5rem;
   margin: 1rem 0;
+  border-left: 4px solid #3949ab;
+  transition: border-color 0.3s;
 }
+
+.md-typeset .unit-section:nth-child(1) { border-left-color: #1565c0; }
+.md-typeset .unit-section:nth-child(2) { border-left-color: #6a1b9a; }
+.md-typeset .unit-section:nth-child(3) { border-left-color: #00838f; }
+.md-typeset .unit-section:nth-child(4) { border-left-color: #e65100; }
+.md-typeset .unit-section:nth-child(5) { border-left-color: #2e7d32; }
 
 .md-typeset .unit-section h3 {
   color: #3949ab;
-  border-bottom: 2px solid #3949ab;
+  border-bottom: 2px solid currentColor;
   padding-bottom: 0.5rem;
 }
+
+.md-typeset .unit-section:nth-child(1) h3 { color: #1565c0; }
+.md-typeset .unit-section:nth-child(2) h3 { color: #6a1b9a; }
+.md-typeset .unit-section:nth-child(3) h3 { color: #00838f; }
+.md-typeset .unit-section:nth-child(4) h3 { color: #e65100; }
+.md-typeset .unit-section:nth-child(5) h3 { color: #2e7d32; }
 
 /* Unit Overview Collapsible */
 .md-typeset details.video-overview {
