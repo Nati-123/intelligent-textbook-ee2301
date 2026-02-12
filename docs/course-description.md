@@ -10,9 +10,9 @@ quality_score: 95
 
 Interactive map showing all 13 units and their prerequisite relationships. Click a unit to see its connections, drag nodes to rearrange.
 
-<iframe src="sims/course-integration-map/main.html" height="560px" width="100%" scrolling="no"></iframe>
+<iframe src="../sims/course-integration-map/main.html" height="560px" width="100%" scrolling="no"></iframe>
 
-[View Fullscreen](./sims/course-integration-map/main.html){ .md-button .md-button--primary }
+[View Fullscreen](../sims/course-integration-map/main.html){ .md-button .md-button--primary }
 
 ---
 
