@@ -1,112 +1,117 @@
 <svg viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg">
-  <!-- All elements in a single monochrome teal/white palette for clean, professional look -->
 
   <!-- Subtle binary background -->
-  <text font-family="'Courier New', monospace" font-size="10" letter-spacing="4" fill="rgba(255,255,255,0.04)">
-    <tspan x="20" y="16">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 0</tspan>
-    <tspan x="540" y="16">0 1 1 0 1 0 1 1 0 0 1 0 1 1</tspan>
-    <tspan x="30" y="172">0 0 1 0 1 1 0 1 1 0 0 1 0 1 1 0</tspan>
-    <tspan x="560" y="172">1 1 0 1 0 1 0 0 1 1 0 1 0 1</tspan>
+  <text font-family="'Courier New', monospace" font-size="10" letter-spacing="4">
+    <tspan x="20" y="16" fill="rgba(100,180,255,0.05)">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 0</tspan>
+    <tspan x="540" y="16" fill="rgba(255,180,100,0.05)">0 1 1 0 1 0 1 1 0 0 1 0 1 1</tspan>
+    <tspan x="30" y="172" fill="rgba(180,130,255,0.05)">0 0 1 0 1 1 0 1 1 0 0 1 0 1 1 0</tspan>
+    <tspan x="560" y="172" fill="rgba(100,220,180,0.05)">1 1 0 1 0 1 0 0 1 1 0 1 0 1</tspan>
   </text>
 
-  <!-- PCB traces - clean monochrome -->
-  <g stroke-width="1.2" fill="none" stroke="rgba(255,255,255,0.12)" stroke-linecap="round">
-    <path d="M0,40 H110 L130,60 H200"/>
-    <path d="M0,70 H90 L110,60 H200"/>
-    <path d="M0,95 H70 L85,80 H170 L185,95 H290"/>
-    <path d="M0,125 H60 L75,110 H170 L185,125 H290"/>
-    <path d="M0,150 H50 L65,138 H130"/>
-    <path d="M275,55 L290,70" stroke-dasharray="3,5"/>
-    <path d="M360,95 L395,72" stroke-dasharray="3,5"/>
-    <path d="M200,142 L290,115" stroke-dasharray="3,5"/>
-    <path d="M510,45 H580 L595,60"/>
-    <path d="M510,95 H560 L580,110 H680"/>
-    <path d="M680,110 L700,95 H760"/>
-    <path d="M860,50 H1000"/>
-    <path d="M860,80 H930 L950,100 H1000"/>
-    <path d="M700,150 H800 L820,165 H1000"/>
+  <!-- PCB traces - tinted to match nearby gates -->
+  <g stroke-width="1.2" fill="none" stroke-linecap="round">
+    <!-- To AND gate - gold -->
+    <path d="M0,40 H110 L130,60 H200" stroke="rgba(255,200,60,0.2)"/>
+    <path d="M0,70 H90 L110,60 H200" stroke="rgba(255,200,60,0.15)"/>
+    <!-- To OR gate - sky blue -->
+    <path d="M0,95 H70 L85,80 H170 L185,95 H290" stroke="rgba(100,180,255,0.2)"/>
+    <path d="M0,125 H60 L75,110 H170 L185,125 H290" stroke="rgba(100,180,255,0.15)"/>
+    <!-- To NOT gate - rose -->
+    <path d="M0,150 H50 L65,138 H130" stroke="rgba(255,120,160,0.2)"/>
+    <!-- Signal paths - mixed -->
+    <path d="M275,55 L290,70" stroke="rgba(255,200,60,0.12)" stroke-dasharray="3,5"/>
+    <path d="M360,95 L395,72" stroke="rgba(100,180,255,0.12)" stroke-dasharray="3,5"/>
+    <path d="M200,142 L290,115" stroke="rgba(255,120,160,0.12)" stroke-dasharray="3,5"/>
+    <!-- From flip-flop - amber -->
+    <path d="M510,45 H580 L595,60" stroke="rgba(255,160,60,0.2)"/>
+    <path d="M510,95 H560 L580,110 H680" stroke="rgba(255,160,60,0.15)"/>
+    <path d="M680,110 L700,95 H760" stroke="rgba(255,160,60,0.1)"/>
+    <!-- Right side - green -->
+    <path d="M860,50 H1000" stroke="rgba(100,220,160,0.18)"/>
+    <path d="M860,80 H930 L950,100 H1000" stroke="rgba(100,180,255,0.15)"/>
+    <path d="M700,150 H800 L820,165 H1000" stroke="rgba(180,130,255,0.15)"/>
   </g>
 
   <!-- Junction dots -->
-  <g fill="rgba(255,255,255,0.2)">
-    <circle cx="170" cy="95" r="1.5"/>
-    <circle cx="560" cy="95" r="1.5"/>
+  <g>
+    <circle cx="170" cy="95" r="1.5" fill="rgba(100,180,255,0.3)"/>
+    <circle cx="560" cy="95" r="1.5" fill="rgba(255,160,60,0.3)"/>
   </g>
 
-  <!-- AND gate -->
-  <g transform="translate(200,33)" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8">
+  <!-- AND gate - warm gold -->
+  <g transform="translate(200,33)" fill="none" stroke="rgba(255,200,60,0.7)" stroke-width="1.8">
     <path d="M0,0 H22 Q52,0 52,27 Q52,54 22,54 H0 Z"/>
     <line x1="-18" y1="14" x2="0" y2="14"/>
     <line x1="-18" y1="40" x2="0" y2="40"/>
     <line x1="52" y1="27" x2="70" y2="27"/>
   </g>
-  <text x="222" y="100" fill="rgba(255,255,255,0.25)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">AND</text>
+  <text x="222" y="100" fill="rgba(255,200,60,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">AND</text>
 
-  <!-- OR gate -->
-  <g transform="translate(290,68)" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8">
+  <!-- OR gate - sky blue -->
+  <g transform="translate(290,68)" fill="none" stroke="rgba(100,180,255,0.7)" stroke-width="1.8">
     <path d="M0,0 Q16,27 0,54 Q26,54 42,54 Q64,47 70,27 Q64,7 42,0 Q26,0 0,0 Z"/>
     <line x1="-18" y1="14" x2="9" y2="14"/>
     <line x1="-18" y1="40" x2="9" y2="40"/>
     <line x1="70" y1="27" x2="88" y2="27"/>
   </g>
-  <text x="325" y="136" fill="rgba(255,255,255,0.25)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">OR</text>
+  <text x="325" y="136" fill="rgba(100,180,255,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">OR</text>
 
-  <!-- NOT gate -->
-  <g transform="translate(130,118)" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8">
+  <!-- NOT gate - soft rose -->
+  <g transform="translate(130,118)" fill="none" stroke="rgba(255,120,160,0.7)" stroke-width="1.8">
     <polygon points="0,0 42,18 0,36"/>
     <circle cx="48" cy="18" r="4.5"/>
     <line x1="-18" y1="18" x2="0" y2="18"/>
     <line x1="53" y1="18" x2="70" y2="18"/>
   </g>
-  <text x="162" y="170" fill="rgba(255,255,255,0.25)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">NOT</text>
+  <text x="162" y="170" fill="rgba(255,120,160,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">NOT</text>
 
-  <!-- D Flip-Flop -->
-  <g transform="translate(430,18)" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8">
+  <!-- D Flip-Flop - warm amber -->
+  <g transform="translate(430,18)" fill="none" stroke="rgba(255,160,60,0.65)" stroke-width="1.8">
     <rect x="0" y="0" width="76" height="85" rx="3"/>
     <line x1="12" y1="36" x2="64" y2="36" stroke-opacity="0.3"/>
   </g>
-  <text x="444" y="38" fill="rgba(255,255,255,0.5)" font-size="13" font-family="'Courier New', monospace" font-weight="bold">D</text>
-  <text x="488" y="38" fill="rgba(255,255,255,0.5)" font-size="13" font-family="'Courier New', monospace" font-weight="bold">Q</text>
-  <text x="452" y="78" fill="rgba(255,255,255,0.4)" font-size="9" font-family="'Courier New', monospace">CLK</text>
-  <polygon points="430,82 440,87 430,92" fill="rgba(255,255,255,0.35)" stroke="none"/>
-  <g stroke="rgba(255,255,255,0.4)" stroke-width="1.5">
+  <text x="444" y="38" fill="rgba(255,160,60,0.6)" font-size="13" font-family="'Courier New', monospace" font-weight="bold">D</text>
+  <text x="488" y="38" fill="rgba(255,160,60,0.6)" font-size="13" font-family="'Courier New', monospace" font-weight="bold">Q</text>
+  <text x="452" y="78" fill="rgba(255,160,60,0.45)" font-size="9" font-family="'Courier New', monospace">CLK</text>
+  <polygon points="430,82 440,87 430,92" fill="rgba(255,160,60,0.4)" stroke="none"/>
+  <g stroke="rgba(255,160,60,0.45)" stroke-width="1.5">
     <line x1="412" y1="38" x2="430" y2="38"/>
     <line x1="506" y1="38" x2="524" y2="38"/>
     <line x1="412" y1="87" x2="430" y2="87"/>
     <line x1="506" y1="87" x2="524" y2="87"/>
   </g>
-  <text x="468" y="118" fill="rgba(255,255,255,0.2)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">FLIP-FLOP</text>
+  <text x="468" y="118" fill="rgba(255,160,60,0.25)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">FLIP-FLOP</text>
 
-  <!-- IC Chip -->
+  <!-- IC Chip - cool teal -->
   <g transform="translate(580,105)">
-    <rect x="0" y="0" width="95" height="60" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-    <path d="M0,24 Q7,30 0,36" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
-    <text x="48" y="27" fill="rgba(255,255,255,0.6)" font-size="10" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">EE 2301</text>
-    <text x="48" y="42" fill="rgba(255,255,255,0.3)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle" letter-spacing="1.5">DIGITAL LOGIC</text>
-    <!-- Pins -->
-    <g stroke="rgba(255,255,255,0.3)" stroke-width="1.5">
-      <line x1="-12" y1="12" x2="0" y2="12"/>
-      <line x1="-12" y1="24" x2="0" y2="24"/>
-      <line x1="-12" y1="36" x2="0" y2="36"/>
-      <line x1="-12" y1="48" x2="0" y2="48"/>
-      <line x1="95" y1="12" x2="107" y2="12"/>
-      <line x1="95" y1="24" x2="107" y2="24"/>
-      <line x1="95" y1="36" x2="107" y2="36"/>
-      <line x1="95" y1="48" x2="107" y2="48"/>
+    <rect x="0" y="0" width="95" height="60" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(100,220,200,0.45)" stroke-width="1.5"/>
+    <path d="M0,24 Q7,30 0,36" fill="none" stroke="rgba(100,220,200,0.3)" stroke-width="1.2"/>
+    <text x="48" y="27" fill="rgba(100,220,200,0.7)" font-size="10" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">EE 2301</text>
+    <text x="48" y="42" fill="rgba(180,130,255,0.45)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle" letter-spacing="1.5">DIGITAL LOGIC</text>
+    <!-- Pins - alternating colors -->
+    <g stroke-width="1.5">
+      <line x1="-12" y1="12" x2="0" y2="12" stroke="rgba(255,200,60,0.4)"/>
+      <line x1="-12" y1="24" x2="0" y2="24" stroke="rgba(100,180,255,0.4)"/>
+      <line x1="-12" y1="36" x2="0" y2="36" stroke="rgba(255,120,160,0.4)"/>
+      <line x1="-12" y1="48" x2="0" y2="48" stroke="rgba(255,160,60,0.4)"/>
+      <line x1="95" y1="12" x2="107" y2="12" stroke="rgba(255,200,60,0.4)"/>
+      <line x1="95" y1="24" x2="107" y2="24" stroke="rgba(100,180,255,0.4)"/>
+      <line x1="95" y1="36" x2="107" y2="36" stroke="rgba(255,120,160,0.4)"/>
+      <line x1="95" y1="48" x2="107" y2="48" stroke="rgba(255,160,60,0.4)"/>
     </g>
   </g>
 
-  <!-- Clock waveform -->
-  <g transform="translate(760,28)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none">
+  <!-- Clock waveform - soft green -->
+  <g transform="translate(760,28)" stroke="rgba(100,220,160,0.5)" stroke-width="1.5" fill="none">
     <polyline points="0,32 0,4 16,4 16,32 32,32 32,4 48,4 48,32 64,32 64,4 80,4 80,32 96,32 96,4 112,4 112,32"/>
   </g>
-  <text x="816" y="75" fill="rgba(255,255,255,0.25)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">CLK</text>
+  <text x="816" y="75" fill="rgba(100,220,160,0.3)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">CLK</text>
 
-  <!-- Timing diagram -->
-  <g transform="translate(760,95)" opacity="0.3">
-    <polyline points="0,0 0,18 22,18 22,0 44,0 44,18 55,18" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/>
-    <polyline points="0,28 12,28 12,46 36,46 36,28 55,28" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/>
-    <text x="-8" y="5" fill="rgba(255,255,255,0.5)" font-size="7" font-family="'Courier New', monospace">D</text>
-    <text x="-8" y="33" fill="rgba(255,255,255,0.5)" font-size="7" font-family="'Courier New', monospace">Q</text>
+  <!-- Timing diagram - blue and amber -->
+  <g transform="translate(760,95)" opacity="0.35">
+    <polyline points="0,0 0,18 22,18 22,0 44,0 44,18 55,18" stroke="rgba(100,180,255,0.6)" stroke-width="1.2" fill="none"/>
+    <polyline points="0,28 12,28 12,46 36,46 36,28 55,28" stroke="rgba(255,160,60,0.6)" stroke-width="1.2" fill="none"/>
+    <text x="-8" y="5" fill="rgba(100,180,255,0.6)" font-size="7" font-family="'Courier New', monospace">D</text>
+    <text x="-8" y="33" fill="rgba(255,160,60,0.6)" font-size="7" font-family="'Courier New', monospace">Q</text>
   </g>
 </svg>
