@@ -43,11 +43,11 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | FAQs | 63 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments |
 | Diagrams | 96 | Visual learning aids |
-| Equations | 3,882 | LaTeX expressions (inline and display) |
+| Equations | 4,406 | LaTeX expressions (inline and display) |
 | MicroSims | 103 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 222,449 | Across all markdown files |
-| Links | 379 | Hyperlinks in markdown format |
-| Equivalent Pages | 965 | Estimated pages (250 words/page + visuals) |
+| Total Words | 193,971 | Across all markdown files |
+| Links | 383 | Hyperlinks in markdown format |
+| Equivalent Pages | 851 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
