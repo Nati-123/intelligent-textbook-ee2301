@@ -1,19 +1,22 @@
 /* Cover Page Hero Section */
 .md-typeset .hero {
-  background: linear-gradient(135deg, #3949ab 0%, #1a237e 50%, #0d47a1 100%);
+  background: linear-gradient(135deg, #1a237e 0%, #0d1b3e 40%, #0a1628 100%);
   color: white;
-  padding: 3rem 2rem;
+  padding: 0 2rem 3rem 2rem;
   border-radius: 12px;
   margin: -1rem -0.8rem 2rem -0.8rem;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
 }
 
 .md-typeset .hero h1 {
   color: white !important;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
 }
 
 .md-typeset .hero h2 {
@@ -32,45 +35,25 @@
 
 .md-typeset .hero .subtitle {
   font-style: italic;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .md-typeset .hero hr {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
   margin: 1.5rem auto;
   width: 60%;
 }
 
-/* Stats Cards in Hero */
-.md-typeset .hero-stats {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
+/* Circuit Diagram in Hero */
+.md-typeset .hero-circuit {
+  margin: 0 -2rem;
+  padding: 1rem 0 0 0;
 }
 
-.md-typeset .hero-stats .stat {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  min-width: 120px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.md-typeset .hero-stats .stat-number {
-  font-size: 2rem;
-  font-weight: 700;
+.md-typeset .hero-circuit .circuit-svg {
+  width: 100%;
+  max-height: 180px;
   display: block;
-  color: #ffeb3b;
-}
-
-.md-typeset .hero-stats .stat-label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 /* Call to Action Buttons */
@@ -155,7 +138,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .md-typeset .hero {
-    padding: 2rem 1rem;
+    padding: 0 1rem 2rem 1rem;
     margin: -0.5rem -0.4rem 1.5rem -0.4rem;
   }
 
@@ -167,12 +150,11 @@
     font-size: 1.2rem;
   }
 
-  .md-typeset .hero-stats .stat {
-    min-width: 100px;
-    padding: 0.8rem 1rem;
+  .md-typeset .hero-circuit {
+    margin: 0 -1rem;
   }
 
-  .md-typeset .hero-stats .stat-number {
-    font-size: 1.5rem;
+  .md-typeset .hero-circuit .circuit-svg {
+    max-height: 120px;
   }
 }
