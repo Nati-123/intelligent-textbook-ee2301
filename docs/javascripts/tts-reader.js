@@ -178,24 +178,25 @@
     init();
   }
 
-  // MkDocs Material instant loading support
-  var defined = false;
-  try { defined = typeof document$ !== 'undefined' && document$; } catch(e) {}
+  // Run immediately — script is at bottom of <body>, DOM is ready
+  startup();
 
-  if (defined) {
-    document$.subscribe(function () {
+  // Support MkDocs Material instant loading (page navigation without full reload)
+  // Listen for content changes via location observable
+  if (window.location$ && typeof window.location$.subscribe === 'function') {
+    window.location$.subscribe(function () {
       stopAll();
-      startup();
+      setTimeout(startup, 100);
     });
   } else {
-    // Fallback: run on DOMContentLoaded and also on load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startup);
-    } else {
-      startup();
-    }
-    window.addEventListener('load', function () {
-      startup();
-    });
+    // Fallback: detect URL changes for instant loading
+    var lastUrl = location.href;
+    new MutationObserver(function () {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        stopAll();
+        setTimeout(startup, 200);
+      }
+    }).observe(document.querySelector('body'), { childList: true, subtree: true });
   }
 })();
