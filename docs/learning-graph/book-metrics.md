@@ -10,19 +10,19 @@ This file contains overall metrics for the intelligent textbook.
 | FAQs | 63 | [FAQ](../faq.md) | Frequently asked questions |
 | Quiz Questions | 130 | - | Questions across all units |
 | Diagrams | 96 | - | Level 4 headers starting with '#### Diagram:' |
-| Equations | 3,882 | - | LaTeX expressions (inline and display) |
+| Equations | 4406 | - | LaTeX expressions (inline and display) |
 | MicroSims | 103 | [Simulations](../sims/index.md) | Interactive MicroSims |
-| Total Words | 222,449 | - | Words in all markdown files |
-| Links | 379 | - | Hyperlinks in markdown format |
-| Equivalent Pages | 965 | - | Estimated pages (250 words/page + visuals) |
+| Total Words | 193,971 | - | Words in all markdown files |
+| Links | 383 | - | Hyperlinks in markdown format |
+| Equivalent Pages | 851 | - | Estimated pages (250 words/page + visuals) |
 
 ## Metrics Explanation
 
-- **Units**: Count of unit directories containing index.md files
+- **Chapters**: Count of chapter directories containing index.md files
 - **Concepts**: Number of rows in learning-graph.csv
 - **Glossary Terms**: H4 headers in glossary.md
 - **FAQs**: H3 headers in faq.md
-- **Quiz Questions**: Numbered question headers in quiz.md files across all units
+- **Quiz Questions**: H4 headers with numbered questions (e.g., '#### 1.') or H2 headers in quiz.md files
 - **Diagrams**: H4 headers starting with '#### Diagram:'
 - **Equations**: LaTeX expressions using $ and $$ delimiters
 - **MicroSims**: Directories in docs/sims/ with index.md files
