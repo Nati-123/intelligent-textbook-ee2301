@@ -17,7 +17,7 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
 
 <div class="hero-stats">
   <div class="stat">
-    <span class="stat-number">10</span>
+    <span class="stat-number">13</span>
     <span class="stat-label">Units</span>
   </div>
   <div class="stat">
@@ -25,7 +25,7 @@ description: AI-assisted interactive textbook for EE 2301 - Introduction to Digi
     <span class="stat-label">Concepts</span>
   </div>
   <div class="stat">
-    <span class="stat-number">55</span>
+    <span class="stat-number">103</span>
     <span class="stat-label">MicroSims</span>
   </div>
   <div class="stat">
@@ -107,11 +107,23 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 
 </div>
 
+<div class="unit-section" markdown>
+
+### Part V: Advanced Topics
+
+| Unit | Topic | Key Concepts |
+|:----:|-------|--------------|
+| 11 | [Programmable Logic Devices](unit11-programmable-logic/index.md) | ROM, PLA, PAL, CPLD, FPGA, LUTs |
+| 12 | [Introduction to VHDL](unit12-vhdl/index.md) | Entities, architectures, behavioral modeling |
+| 13 | [System Integration](unit13-system-integration/index.md) | Top-down design, datapath-controller, timing analysis |
+
+</div>
+
 ---
 
 ## Interactive MicroSims
 
-Explore digital logic concepts through **55 interactive simulations**:
+Explore digital logic concepts through **103 interactive simulations**:
 
 <div class="feature-grid" markdown>
 
@@ -155,6 +167,26 @@ Flip-Flops, Counters, Shift Registers, FSMs
 
 </div>
 
+<div class="feature-card" markdown>
+
+### :material-memory: Programmable Logic & VHDL
+
+FPGAs, PLDs, VHDL Modeling, Testbenches
+
+[:octicons-arrow-right-24: View MicroSims](sims/index.md#unit-11-programmable-logic-devices)
+
+</div>
+
+<div class="feature-card" markdown>
+
+### :material-cog-sync: System Integration
+
+Datapath-Controller, Timing Analysis, Digital Lock
+
+[:octicons-arrow-right-24: View MicroSims](sims/index.md#unit-13-system-integration-and-design-projects)
+
+</div>
+
 </div>
 
 [Explore All MicroSims :material-arrow-right:](sims/index.md){ .md-button .md-button--primary }
@@ -179,7 +211,7 @@ Flip-Flops, Counters, Shift Registers, FSMs
 
     - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
     - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
-    - :material-play-box: **Interactive Simulations** — 55 p5.js MicroSims you can run in your browser
+    - :material-play-box: **Interactive Simulations** — 103 p5.js MicroSims you can run in your browser
     - :material-pencil: **Practice Problems** — 200 end-of-unit problems with detailed solutions
     - :material-checkbox-marked: **Self-Assessment** — 108 quiz questions with detailed explanations
     - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
