@@ -47,15 +47,18 @@
     if (!btn) return;
     var icon = btn.querySelector('.tts-icon');
     var label = btn.querySelector('.tts-label');
+    var controls = btn.closest('.tts-controls');
     if (state === 'playing') {
       icon.textContent = '\u23F8';
       label.textContent = 'Pause';
+      if (controls) controls.classList.add('tts-active');
     } else if (state === 'paused') {
       icon.textContent = '\u25B6';
       label.textContent = 'Resume';
     } else {
       icon.textContent = '\u25B6';
       label.textContent = 'Listen to Overview';
+      if (controls) controls.classList.remove('tts-active');
     }
   }
 
