@@ -24,60 +24,59 @@
     details.dataset.ttsSentencesWrapped = 'true';
 
     var summary = details.querySelector('summary');
-    var allNodes = details.querySelectorAll('p, li');
-    var contentNodes = [];
-    for (var i = 0; i < allNodes.length; i++) {
-      if (!summary || !summary.contains(allNodes[i])) {
-        contentNodes.push(allNodes[i]);
+
+    // Walk ALL text nodes inside details, skipping summary content
+    var walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (summary && summary.contains(node)) return NodeFilter.FILTER_REJECT;
+        if (!node.textContent.trim()) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
       }
+    }, false);
+
+    var textNodes = [];
+    var tn;
+    while (tn = walker.nextNode()) {
+      textNodes.push(tn);
     }
 
     var sentenceIndex = 0;
 
-    for (var n = 0; n < contentNodes.length; n++) {
-      var walker = document.createTreeWalker(contentNodes[n], NodeFilter.SHOW_TEXT, null, false);
-      var textNodes = [];
-      var tn;
-      while (tn = walker.nextNode()) {
-        if (tn.textContent.trim()) textNodes.push(tn);
+    for (var t = 0; t < textNodes.length; t++) {
+      var text = textNodes[t].textContent;
+      var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
+      var matchedLength = sentences.join('').length;
+      var remaining = text.substring(matchedLength).trim();
+
+      // Text with no sentence endings — wrap whole thing
+      if (!sentences.length) {
+        if (!remaining) continue;
+        var solo = document.createElement('span');
+        solo.className = 'tts-sentence';
+        solo.dataset.idx = sentenceIndex++;
+        solo.textContent = remaining;
+        textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
+        continue;
       }
 
-      for (var t = 0; t < textNodes.length; t++) {
-        var text = textNodes[t].textContent;
-        var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
-        var matchedLength = sentences.join('').length;
-        var remaining = text.substring(matchedLength).trim();
-
-        // Text with no sentence endings — wrap whole thing
-        if (!sentences.length) {
-          if (!remaining) continue;
-          var solo = document.createElement('span');
-          solo.className = 'tts-sentence';
-          solo.dataset.idx = sentenceIndex++;
-          solo.textContent = remaining;
-          textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
-          continue;
-        }
-
-        var fragment = document.createDocumentFragment();
-        for (var s = 0; s < sentences.length; s++) {
-          var span = document.createElement('span');
-          span.className = 'tts-sentence';
-          span.dataset.idx = sentenceIndex++;
-          span.textContent = sentences[s];
-          fragment.appendChild(span);
-        }
-
-        if (remaining) {
-          var rSpan = document.createElement('span');
-          rSpan.className = 'tts-sentence';
-          rSpan.dataset.idx = sentenceIndex++;
-          rSpan.textContent = ' ' + remaining;
-          fragment.appendChild(rSpan);
-        }
-
-        textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
+      var fragment = document.createDocumentFragment();
+      for (var s = 0; s < sentences.length; s++) {
+        var span = document.createElement('span');
+        span.className = 'tts-sentence';
+        span.dataset.idx = sentenceIndex++;
+        span.textContent = sentences[s];
+        fragment.appendChild(span);
       }
+
+      if (remaining) {
+        var rSpan = document.createElement('span');
+        rSpan.className = 'tts-sentence';
+        rSpan.dataset.idx = sentenceIndex++;
+        rSpan.textContent = ' ' + remaining;
+        fragment.appendChild(rSpan);
+      }
+
+      textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
     }
   }
 
