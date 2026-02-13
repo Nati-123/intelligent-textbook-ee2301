@@ -24,56 +24,23 @@
     details.dataset.ttsSentencesWrapped = 'true';
 
     try {
-      var summary = details.querySelector('summary');
+      // The content inside <details> is raw text (no <p> tags).
+      // Use innerHTML replacement — simple, reliable.
+      var html = details.innerHTML;
+      var cut = html.indexOf('</summary>');
+      if (cut < 0) return;
+      cut += '</summary>'.length;
 
-      // Collect all text nodes inside details, excluding summary
-      var walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, null, false);
-      var textNodes = [];
-      var tn;
-      while (tn = walker.nextNode()) {
-        if (summary && summary.contains(tn)) continue;
-        if (!tn.textContent.trim()) continue;
-        textNodes.push(tn);
-      }
+      var before = html.substring(0, cut);
+      var content = html.substring(cut);
 
-      var sentenceIndex = 0;
+      var idx = 0;
+      var wrapped = content.replace(/([^.!?]*[.!?]+)/g, function (match) {
+        return '<span class="tts-sentence" data-idx="' + (idx++) + '">' + match + '</span>';
+      });
 
-      for (var t = 0; t < textNodes.length; t++) {
-        var text = textNodes[t].textContent;
-        var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
-        var matchedLength = sentences.join('').length;
-        var remaining = text.substring(matchedLength).trim();
-
-        // Text with no sentence endings — wrap whole thing
-        if (!sentences.length) {
-          if (!remaining) continue;
-          var solo = document.createElement('span');
-          solo.className = 'tts-sentence';
-          solo.dataset.idx = sentenceIndex++;
-          solo.textContent = remaining;
-          textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
-          continue;
-        }
-
-        var fragment = document.createDocumentFragment();
-        for (var s = 0; s < sentences.length; s++) {
-          var span = document.createElement('span');
-          span.className = 'tts-sentence';
-          span.dataset.idx = sentenceIndex++;
-          span.textContent = sentences[s];
-          fragment.appendChild(span);
-        }
-
-        if (remaining) {
-          var rSpan = document.createElement('span');
-          rSpan.className = 'tts-sentence';
-          rSpan.dataset.idx = sentenceIndex++;
-          rSpan.textContent = ' ' + remaining;
-          fragment.appendChild(rSpan);
-        }
-
-        textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
-      }
+      if (idx === 0) return; // nothing matched
+      details.innerHTML = before + wrapped;
     } catch (e) {
       // Sentence wrapping failed — playback still works via fallback
     }
