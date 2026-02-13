@@ -1,7 +1,8 @@
 /**
  * Text-to-Speech Reader for Unit Overviews
  * Uses the Web Speech API for browser-native narration.
- * Supports sentence-level highlighting during playback.
+ * Supports sentence-level highlighting, auto-scroll, click-to-jump,
+ * progress UI, and active reading indicator.
  */
 (function () {
   'use strict';
@@ -17,6 +18,18 @@
   var currentBtn = null;
   var currentDetails = null;
 
+  /* New global state */
+  var currentUtterance = null;
+  var currentProgressBar = null;
+  var currentProgressLabel = null;
+  var userInteracting = false;
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Track mousedown/mouseup to suppress auto-scroll */
+  document.addEventListener('mousedown', function () { userInteracting = true; });
+  document.addEventListener('mouseup', function () { userInteracting = false; });
+
   /* ---- Sentence wrapping ---- */
 
   function wrapSentences(details) {
@@ -24,8 +37,6 @@
     details.dataset.ttsSentencesWrapped = 'true';
 
     try {
-      // The content inside <details> is raw text (no <p> tags).
-      // Use innerHTML replacement — simple, reliable.
       var html = details.innerHTML;
       var cut = html.indexOf('</summary>');
       if (cut < 0) return;
@@ -39,7 +50,7 @@
         return '<span class="tts-sentence" data-idx="' + (idx++) + '">' + match + '</span>';
       });
 
-      if (idx === 0) return; // nothing matched
+      if (idx === 0) return;
       details.innerHTML = before + wrapped;
     } catch (e) {
       // Sentence wrapping failed — playback still works via fallback
@@ -104,7 +115,17 @@
     return result;
   }
 
-  /* ---- Highlighting ---- */
+  /* ---- Visibility check for auto-scroll ---- */
+
+  function isElementVisible(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  /* ---- Highlighting + auto-scroll ---- */
 
   function highlightChunk() {
     if (!currentDetails || chunkIndex >= chunkMap.length) return;
@@ -114,6 +135,19 @@
       var span = currentDetails.querySelector('.tts-sentence[data-idx="' + indices[i] + '"]');
       if (span) span.classList.add('tts-reading');
     }
+
+    updateProgress();
+
+    /* Auto-scroll */
+    var firstHighlighted = currentDetails.querySelector('.tts-sentence.tts-reading');
+    if (firstHighlighted && !isElementVisible(firstHighlighted)) {
+      if (!userInteracting && !window.getSelection().toString()) {
+        firstHighlighted.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: prefersReducedMotion ? 'nearest' : 'center'
+        });
+      }
+    }
   }
 
   function clearHighlights() {
@@ -121,6 +155,28 @@
     var reading = currentDetails.querySelectorAll('.tts-sentence.tts-reading');
     for (var i = 0; i < reading.length; i++) {
       reading[i].classList.remove('tts-reading');
+    }
+  }
+
+  /* ---- Progress UI ---- */
+
+  function updateProgress() {
+    if (!currentProgressBar || !currentProgressLabel) return;
+    currentProgressBar.value = chunkIndex;
+    var pct = chunks.length > 1
+      ? (chunkIndex / (chunks.length - 1)) * 100
+      : 100;
+    currentProgressBar.style.setProperty('--tts-fill', pct + '%');
+    currentProgressLabel.textContent = (chunkIndex + 1) + ' / ' + chunks.length;
+  }
+
+  function resetProgress() {
+    if (currentProgressBar) {
+      currentProgressBar.value = 0;
+      currentProgressBar.style.setProperty('--tts-fill', '0%');
+    }
+    if (currentProgressLabel) {
+      currentProgressLabel.textContent = '';
     }
   }
 
@@ -158,8 +214,10 @@
     var utterance = new SpeechSynthesisUtterance(chunks[chunkIndex]);
     utterance.lang = 'en-US';
     utterance.rate = 0.95;
+    currentUtterance = utterance;
 
     utterance.onend = function () {
+      if (currentUtterance !== utterance) return;
       chunkIndex++;
       if (playing && !paused) {
         speakNextChunk();
@@ -167,48 +225,77 @@
     };
 
     utterance.onerror = function () {
+      if (currentUtterance !== utterance) return;
       stopSpeaking();
     };
 
     synth.speak(utterance);
   }
 
+  /* ---- Jump to chunk ---- */
+
+  function jumpToChunk(targetChunk) {
+    currentUtterance = null;
+    synth.cancel();
+    chunkIndex = targetChunk;
+    playing = true;
+    paused = false;
+    updateButton(currentBtn, 'playing');
+    speakNextChunk();
+  }
+
   function stopSpeaking() {
+    currentUtterance = null;
     synth.cancel();
     clearHighlights();
+    resetProgress();
     playing = false;
     paused = false;
     chunks = [];
     chunkIndex = 0;
     chunkMap = [];
     updateButton(currentBtn, 'idle');
+    if (currentDetails) {
+      currentDetails.classList.remove('tts-details-active');
+    }
     currentBtn = null;
     currentDetails = null;
+    currentProgressBar = null;
+    currentProgressLabel = null;
   }
 
-  function startSpeaking(btn, details) {
+  function startSpeaking(btn, details, startChunk) {
     stopSpeaking();
     details.open = true;
 
-    // Try sentence-span approach first (enables highlighting)
     var result = buildChunksFromSpans(details);
 
     if (result.chunks.length) {
       chunks = result.chunks;
       chunkMap = result.map;
     } else {
-      // Fallback: raw text extraction (no highlighting)
       var text = getOverviewText(details);
       if (!text) return;
       chunks = splitIntoChunks(text);
       chunkMap = [];
     }
 
-    chunkIndex = 0;
+    chunkIndex = startChunk || 0;
     playing = true;
     paused = false;
     currentBtn = btn;
     currentDetails = details;
+
+    /* Set up progress UI refs */
+    currentProgressBar = details._ttsProgress || null;
+    currentProgressLabel = details._ttsLabel || null;
+    if (currentProgressBar) {
+      currentProgressBar.max = chunks.length - 1;
+    }
+
+    /* Active reading indicator */
+    details.classList.add('tts-details-active');
+
     updateButton(btn, 'playing');
     speakNextChunk();
   }
@@ -233,7 +320,6 @@
     if (details.getAttribute('data-tts-ready')) return;
     details.setAttribute('data-tts-ready', 'true');
 
-    // Wrap sentences for highlighting and hover (non-blocking)
     wrapSentences(details);
 
     var container = document.createElement('div');
@@ -257,9 +343,76 @@
       stopSpeaking();
     });
 
+    /* Progress bar */
+    var progressWrap = document.createElement('div');
+    progressWrap.className = 'tts-progress-wrap';
+
+    var progressBar = document.createElement('input');
+    progressBar.type = 'range';
+    progressBar.className = 'tts-progress';
+    progressBar.min = 0;
+    progressBar.value = 0;
+    progressBar.setAttribute('aria-label', 'Reading progress');
+
+    var progressLabel = document.createElement('span');
+    progressLabel.className = 'tts-progress-label';
+
+    progressWrap.appendChild(progressBar);
+    progressWrap.appendChild(progressLabel);
+
+    /* Store refs on details element */
+    details._ttsProgress = progressBar;
+    details._ttsLabel = progressLabel;
+    details._ttsPlayBtn = playBtn;
+
+    /* Progress bar input → jump to chunk */
+    progressBar.addEventListener('input', function () {
+      if (!playing || currentDetails !== details) return;
+      var target = parseInt(progressBar.value, 10);
+      if (target >= 0 && target < chunks.length) {
+        jumpToChunk(target);
+      }
+    });
+
     container.appendChild(playBtn);
     container.appendChild(stopBtn);
+    container.appendChild(progressWrap);
     details.parentNode.insertBefore(container, details);
+
+    /* Click-to-jump: delegated handler on details */
+    details.addEventListener('click', function (e) {
+      var sentenceEl = e.target.closest('.tts-sentence');
+      if (!sentenceEl) return;
+      var idx = parseInt(sentenceEl.dataset.idx, 10);
+      if (isNaN(idx)) return;
+
+      /* Find the chunk containing this sentence index */
+      var targetChunkMap = chunkMap.length ? chunkMap : null;
+      if (!targetChunkMap) {
+        /* Build chunk map if not currently playing this details */
+        var result = buildChunksFromSpans(details);
+        if (result.map.length) targetChunkMap = result.map;
+      }
+      if (!targetChunkMap) return;
+
+      var targetChunkIdx = -1;
+      for (var c = 0; c < targetChunkMap.length; c++) {
+        for (var s = 0; s < targetChunkMap[c].length; s++) {
+          if (targetChunkMap[c][s] === idx) {
+            targetChunkIdx = c;
+            break;
+          }
+        }
+        if (targetChunkIdx >= 0) break;
+      }
+      if (targetChunkIdx < 0) return;
+
+      if (playing && currentDetails === details) {
+        jumpToChunk(targetChunkIdx);
+      } else {
+        startSpeaking(playBtn, details, targetChunkIdx);
+      }
+    });
   }
 
   function init() {
