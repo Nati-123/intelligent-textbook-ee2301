@@ -369,6 +369,21 @@
   font-size: 0.85rem;
 }
 
+/* ===== SENTENCE HIGHLIGHTING ===== */
+.md-typeset details.video-overview .tts-sentence {
+  border-radius: 2px;
+  padding: 1px 2px;
+  transition: background-color 0.3s ease;
+}
+
+.md-typeset details.video-overview .tts-sentence:hover {
+  background-color: rgba(92, 107, 192, 0.08);
+}
+
+.md-typeset details.video-overview .tts-sentence.tts-reading {
+  background-color: rgba(0, 191, 255, 0.12);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .md-typeset .cover-page {

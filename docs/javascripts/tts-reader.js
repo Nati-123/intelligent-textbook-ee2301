@@ -1,6 +1,7 @@
 /**
  * Text-to-Speech Reader for Unit Overviews
  * Uses the Web Speech API for browser-native narration.
+ * Supports sentence-level highlighting during playback.
  */
 (function () {
   'use strict';
@@ -12,36 +13,126 @@
   var paused = false;
   var chunks = [];
   var chunkIndex = 0;
+  var chunkMap = [];
   var currentBtn = null;
+  var currentDetails = null;
 
-  // Split text into sentences to avoid Chrome's ~15s cutoff bug
-  function splitIntoChunks(text) {
-    var sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-    var result = [];
-    var current = '';
-    for (var i = 0; i < sentences.length; i++) {
-      if ((current + sentences[i]).length > 200) {
-        if (current) result.push(current.trim());
-        current = sentences[i];
-      } else {
-        current += sentences[i];
+  /* ---- Sentence wrapping ---- */
+
+  function wrapSentences(details) {
+    if (details.dataset.ttsSentencesWrapped) return;
+    details.dataset.ttsSentencesWrapped = 'true';
+
+    var summary = details.querySelector('summary');
+    var allNodes = details.querySelectorAll('p, li');
+    var contentNodes = [];
+    for (var i = 0; i < allNodes.length; i++) {
+      if (!summary || !summary.contains(allNodes[i])) {
+        contentNodes.push(allNodes[i]);
       }
     }
-    if (current.trim()) result.push(current.trim());
+
+    var sentenceIndex = 0;
+
+    for (var n = 0; n < contentNodes.length; n++) {
+      var walker = document.createTreeWalker(contentNodes[n], NodeFilter.SHOW_TEXT, null, false);
+      var textNodes = [];
+      var tn;
+      while (tn = walker.nextNode()) {
+        if (tn.textContent.trim()) textNodes.push(tn);
+      }
+
+      for (var t = 0; t < textNodes.length; t++) {
+        var text = textNodes[t].textContent;
+        var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
+        var matchedLength = sentences.join('').length;
+        var remaining = text.substring(matchedLength).trim();
+
+        // Text with no sentence endings — wrap whole thing
+        if (!sentences.length) {
+          if (!remaining) continue;
+          var solo = document.createElement('span');
+          solo.className = 'tts-sentence';
+          solo.dataset.idx = sentenceIndex++;
+          solo.textContent = remaining;
+          textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
+          continue;
+        }
+
+        var fragment = document.createDocumentFragment();
+        for (var s = 0; s < sentences.length; s++) {
+          var span = document.createElement('span');
+          span.className = 'tts-sentence';
+          span.dataset.idx = sentenceIndex++;
+          span.textContent = sentences[s];
+          fragment.appendChild(span);
+        }
+
+        if (remaining) {
+          var rSpan = document.createElement('span');
+          rSpan.className = 'tts-sentence';
+          rSpan.dataset.idx = sentenceIndex++;
+          rSpan.textContent = ' ' + remaining;
+          fragment.appendChild(rSpan);
+        }
+
+        textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
+      }
+    }
+  }
+
+  /* ---- Chunk building from sentence spans ---- */
+
+  function buildChunksFromDetails(details) {
+    var spans = details.querySelectorAll('.tts-sentence');
+    var result = { chunks: [], map: [] };
+    var current = '';
+    var currentIndices = [];
+
+    for (var i = 0; i < spans.length; i++) {
+      var text = spans[i].textContent.trim();
+      if (!text) continue;
+
+      if ((current + ' ' + text).length > 200 && current) {
+        result.chunks.push(current.trim());
+        result.map.push(currentIndices.slice());
+        current = text;
+        currentIndices = [parseInt(spans[i].dataset.idx, 10)];
+      } else {
+        current += (current ? ' ' : '') + text;
+        currentIndices.push(parseInt(spans[i].dataset.idx, 10));
+      }
+    }
+
+    if (current.trim()) {
+      result.chunks.push(current.trim());
+      result.map.push(currentIndices.slice());
+    }
+
     return result;
   }
 
-  function getOverviewText(details) {
-    // Get all text content, then remove the summary text
-    var fullText = details.textContent || '';
-    var summary = details.querySelector('summary');
-    if (summary) {
-      fullText = fullText.replace(summary.textContent, '');
+  /* ---- Highlighting ---- */
+
+  function highlightChunk() {
+    if (!currentDetails || chunkIndex >= chunkMap.length) return;
+    clearHighlights();
+    var indices = chunkMap[chunkIndex];
+    for (var i = 0; i < indices.length; i++) {
+      var span = currentDetails.querySelector('.tts-sentence[data-idx="' + indices[i] + '"]');
+      if (span) span.classList.add('tts-reading');
     }
-    // Clean up whitespace
-    fullText = fullText.replace(/\s+/g, ' ').trim();
-    return fullText;
   }
+
+  function clearHighlights() {
+    if (!currentDetails) return;
+    var reading = currentDetails.querySelectorAll('.tts-sentence.tts-reading');
+    for (var i = 0; i < reading.length; i++) {
+      reading[i].classList.remove('tts-reading');
+    }
+  }
+
+  /* ---- Button state ---- */
 
   function updateButton(btn, state) {
     if (!btn) return;
@@ -62,11 +153,16 @@
     }
   }
 
+  /* ---- Speaking ---- */
+
   function speakNextChunk() {
     if (chunkIndex >= chunks.length) {
       stopSpeaking();
       return;
     }
+
+    highlightChunk();
+
     var utterance = new SpeechSynthesisUtterance(chunks[chunkIndex]);
     utterance.lang = 'en-US';
     utterance.rate = 0.95;
@@ -87,26 +183,31 @@
 
   function stopSpeaking() {
     synth.cancel();
+    clearHighlights();
     playing = false;
     paused = false;
     chunks = [];
     chunkIndex = 0;
+    chunkMap = [];
     updateButton(currentBtn, 'idle');
     currentBtn = null;
+    currentDetails = null;
   }
 
   function startSpeaking(btn, details) {
     stopSpeaking();
     details.open = true;
 
-    var text = getOverviewText(details);
-    if (!text) return;
+    var result = buildChunksFromDetails(details);
+    if (!result.chunks.length) return;
 
-    chunks = splitIntoChunks(text);
+    chunks = result.chunks;
+    chunkMap = result.map;
     chunkIndex = 0;
     playing = true;
     paused = false;
     currentBtn = btn;
+    currentDetails = details;
     updateButton(btn, 'playing');
     speakNextChunk();
   }
@@ -125,9 +226,14 @@
     }
   }
 
+  /* ---- Controls setup ---- */
+
   function addControls(details) {
     if (details.getAttribute('data-tts-ready')) return;
     details.setAttribute('data-tts-ready', 'true');
+
+    // Wrap sentences for highlighting and hover
+    wrapSentences(details);
 
     var container = document.createElement('div');
     container.className = 'tts-controls';
