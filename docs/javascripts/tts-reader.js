@@ -23,66 +23,65 @@
     if (details.dataset.ttsSentencesWrapped) return;
     details.dataset.ttsSentencesWrapped = 'true';
 
-    var summary = details.querySelector('summary');
+    try {
+      var summary = details.querySelector('summary');
 
-    // Walk ALL text nodes inside details, skipping summary content
-    var walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (node) {
-        if (summary && summary.contains(node)) return NodeFilter.FILTER_REJECT;
-        if (!node.textContent.trim()) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    }, false);
-
-    var textNodes = [];
-    var tn;
-    while (tn = walker.nextNode()) {
-      textNodes.push(tn);
-    }
-
-    var sentenceIndex = 0;
-
-    for (var t = 0; t < textNodes.length; t++) {
-      var text = textNodes[t].textContent;
-      var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
-      var matchedLength = sentences.join('').length;
-      var remaining = text.substring(matchedLength).trim();
-
-      // Text with no sentence endings — wrap whole thing
-      if (!sentences.length) {
-        if (!remaining) continue;
-        var solo = document.createElement('span');
-        solo.className = 'tts-sentence';
-        solo.dataset.idx = sentenceIndex++;
-        solo.textContent = remaining;
-        textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
-        continue;
+      // Collect all text nodes inside details, excluding summary
+      var walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, null, false);
+      var textNodes = [];
+      var tn;
+      while (tn = walker.nextNode()) {
+        if (summary && summary.contains(tn)) continue;
+        if (!tn.textContent.trim()) continue;
+        textNodes.push(tn);
       }
 
-      var fragment = document.createDocumentFragment();
-      for (var s = 0; s < sentences.length; s++) {
-        var span = document.createElement('span');
-        span.className = 'tts-sentence';
-        span.dataset.idx = sentenceIndex++;
-        span.textContent = sentences[s];
-        fragment.appendChild(span);
-      }
+      var sentenceIndex = 0;
 
-      if (remaining) {
-        var rSpan = document.createElement('span');
-        rSpan.className = 'tts-sentence';
-        rSpan.dataset.idx = sentenceIndex++;
-        rSpan.textContent = ' ' + remaining;
-        fragment.appendChild(rSpan);
-      }
+      for (var t = 0; t < textNodes.length; t++) {
+        var text = textNodes[t].textContent;
+        var sentences = text.match(/[^.!?]*[.!?]+/g) || [];
+        var matchedLength = sentences.join('').length;
+        var remaining = text.substring(matchedLength).trim();
 
-      textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
+        // Text with no sentence endings — wrap whole thing
+        if (!sentences.length) {
+          if (!remaining) continue;
+          var solo = document.createElement('span');
+          solo.className = 'tts-sentence';
+          solo.dataset.idx = sentenceIndex++;
+          solo.textContent = remaining;
+          textNodes[t].parentNode.replaceChild(solo, textNodes[t]);
+          continue;
+        }
+
+        var fragment = document.createDocumentFragment();
+        for (var s = 0; s < sentences.length; s++) {
+          var span = document.createElement('span');
+          span.className = 'tts-sentence';
+          span.dataset.idx = sentenceIndex++;
+          span.textContent = sentences[s];
+          fragment.appendChild(span);
+        }
+
+        if (remaining) {
+          var rSpan = document.createElement('span');
+          rSpan.className = 'tts-sentence';
+          rSpan.dataset.idx = sentenceIndex++;
+          rSpan.textContent = ' ' + remaining;
+          fragment.appendChild(rSpan);
+        }
+
+        textNodes[t].parentNode.replaceChild(fragment, textNodes[t]);
+      }
+    } catch (e) {
+      // Sentence wrapping failed — playback still works via fallback
     }
   }
 
   /* ---- Chunk building from sentence spans ---- */
 
-  function buildChunksFromDetails(details) {
+  function buildChunksFromSpans(details) {
     var spans = details.querySelectorAll('.tts-sentence');
     var result = { chunks: [], map: [] };
     var current = '';
@@ -108,6 +107,33 @@
       result.map.push(currentIndices.slice());
     }
 
+    return result;
+  }
+
+  /* ---- Fallback text extraction (no highlighting) ---- */
+
+  function getOverviewText(details) {
+    var fullText = details.textContent || '';
+    var summary = details.querySelector('summary');
+    if (summary) {
+      fullText = fullText.replace(summary.textContent, '');
+    }
+    return fullText.replace(/\s+/g, ' ').trim();
+  }
+
+  function splitIntoChunks(text) {
+    var sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    var result = [];
+    var current = '';
+    for (var i = 0; i < sentences.length; i++) {
+      if ((current + sentences[i]).length > 200) {
+        if (current) result.push(current.trim());
+        current = sentences[i];
+      } else {
+        current += sentences[i];
+      }
+    }
+    if (current.trim()) result.push(current.trim());
     return result;
   }
 
@@ -197,11 +223,20 @@
     stopSpeaking();
     details.open = true;
 
-    var result = buildChunksFromDetails(details);
-    if (!result.chunks.length) return;
+    // Try sentence-span approach first (enables highlighting)
+    var result = buildChunksFromSpans(details);
 
-    chunks = result.chunks;
-    chunkMap = result.map;
+    if (result.chunks.length) {
+      chunks = result.chunks;
+      chunkMap = result.map;
+    } else {
+      // Fallback: raw text extraction (no highlighting)
+      var text = getOverviewText(details);
+      if (!text) return;
+      chunks = splitIntoChunks(text);
+      chunkMap = [];
+    }
+
     chunkIndex = 0;
     playing = true;
     paused = false;
@@ -231,7 +266,7 @@
     if (details.getAttribute('data-tts-ready')) return;
     details.setAttribute('data-tts-ready', 'true');
 
-    // Wrap sentences for highlighting and hover
+    // Wrap sentences for highlighting and hover (non-blocking)
     wrapSentences(details);
 
     var container = document.createElement('div');
