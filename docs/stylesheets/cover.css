@@ -1,0 +1,87 @@
+/* ===== COVER PAGE REFINEMENTS ===== */
+/* Scoped to .cover-page — does not affect any other pages. */
+
+/* 1. Reduce hero vertical height/padding ~10-15% */
+.md-typeset .cover-page {
+  min-height: 80vh;
+}
+
+.md-typeset .cover-content {
+  padding: 2rem 2rem 1rem 2rem;
+}
+
+.md-typeset .cover-stats {
+  margin: 2rem 0 1.2rem 0;
+}
+
+.md-typeset .cover-buttons {
+  margin-top: 2rem;
+}
+
+/* 2. Stronger subtitle — weight 500, slightly brighter */
+.md-typeset .cover-page h2 {
+  font-weight: 500;
+  color: #90d8f4 !important;
+}
+
+/* 3 & 4. Circuit artwork: slightly more visible + subtle breathing glow */
+@keyframes circuit-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 191, 255, 0.08)) brightness(1.06);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.22)) brightness(1.12);
+  }
+}
+
+@keyframes circuit-glow-bottom {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 191, 255, 0.06));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(0, 191, 255, 0.18));
+  }
+}
+
+.md-typeset .cover-circuit .circuit-svg {
+  animation: circuit-glow 5s ease-in-out infinite;
+}
+
+.md-typeset .cover-circuit-bottom .circuit-svg-alt {
+  opacity: 0.73;
+  animation: circuit-glow-bottom 5s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion — keep brightness, disable animation */
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .cover-circuit .circuit-svg {
+    animation: none;
+    filter: brightness(1.06);
+  }
+  .md-typeset .cover-circuit-bottom .circuit-svg-alt {
+    animation: none;
+  }
+}
+
+/* 5. Professional button hover — slight lift + soft glow */
+.md-typeset .cover-buttons .md-button {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease,
+              color 0.25s ease, border-color 0.25s ease;
+}
+
+.md-typeset .cover-buttons .md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(0, 191, 255, 0.18);
+}
+
+.md-typeset .cover-buttons .md-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 191, 255, 0.4);
+}
+
+/* Responsive: match reduced padding at mobile */
+@media (max-width: 768px) {
+  .md-typeset .cover-content {
+    padding: 1.2rem 1rem 0.8rem 1rem;
+  }
+}
