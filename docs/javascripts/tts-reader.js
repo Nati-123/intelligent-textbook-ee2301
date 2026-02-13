@@ -25,6 +25,25 @@
   var userInteracting = false;
   var prefersReducedMotion = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var keepAliveTimer = null;
+
+  /* Chrome bug workaround: synth silently dies after ~15 s unless poked */
+  function startKeepAlive() {
+    stopKeepAlive();
+    keepAliveTimer = setInterval(function () {
+      if (synth.speaking && !synth.paused) {
+        synth.pause();
+        synth.resume();
+      }
+    }, 5000);
+  }
+
+  function stopKeepAlive() {
+    if (keepAliveTimer) {
+      clearInterval(keepAliveTimer);
+      keepAliveTimer = null;
+    }
+  }
 
   /* Track mousedown/mouseup to suppress auto-scroll */
   document.addEventListener('mousedown', function () { userInteracting = true; });
@@ -245,6 +264,7 @@
   }
 
   function stopSpeaking() {
+    stopKeepAlive();
     currentUtterance = null;
     synth.cancel();
     clearHighlights();
@@ -297,6 +317,7 @@
     details.classList.add('tts-details-active');
 
     updateButton(btn, 'playing');
+    startKeepAlive();
     speakNextChunk();
   }
 
