@@ -512,11 +512,31 @@
       return el.innerHTML;
     }
 
+    // -- Nav link (Fullscreen in iframe, Close in fullscreen) --
+    var navBar = document.createElement("div");
+    navBar.style.cssText = "display:flex;justify-content:flex-end;padding:4px 8px;";
+    var navLink = document.createElement("a");
+    navLink.style.cssText = "font-size:11px;font-weight:bold;color:#2980b9;";
+    if (window.self !== window.top) {
+      navLink.href = "main.html";
+      navLink.target = "_blank";
+      navLink.textContent = "Fullscreen";
+    } else {
+      navLink.href = "#";
+      navLink.textContent = "Close";
+      navLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.close();
+      });
+    }
+    navBar.appendChild(navLink);
+
     // -- Assemble --
     var ul = document.createElement("ul");
     ul.appendChild(buildNode(tree, 0, null));
     treeDiv.appendChild(ul);
 
+    root.appendChild(navBar);
     root.appendChild(treeDiv);
     root.appendChild(panel);
 
