@@ -1,18 +1,18 @@
 ---
 title: Hierarchical ALU Design
-description: Animated visualization of hierarchical system decomposition for an 8-bit calculator
-quality_score: 85
+description: Interactive tree explorer showing hierarchical decomposition of an 8-bit calculator with details panel
+quality_score: 90
 ---
 
 # Hierarchical ALU Design
 
-<iframe src="main.html" height="700px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="580px" width="100%" scrolling="no"></iframe>
 
 [Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
 ## Description
 
-An animated step-by-step visualization showing how an 8-bit calculator system is decomposed into a hierarchy of modules — from the top-level system down to individual gate-level primitives. Each level reveals new sub-components, demonstrating how complexity is managed through hierarchical design.
+An interactive hierarchical tree showing how an 8-bit calculator system decomposes into modules — from the top-level system down to gate-level primitives. Click any module to select it, expand/collapse its children, and view detailed information in the side panel including key points, inputs/outputs, and examples.
 
 ## Learning Objectives
 
@@ -24,10 +24,10 @@ An animated step-by-step visualization showing how an 8-bit calculator system is
 
 ## How to Use
 
-1. Press **Play** (or spacebar) to animate the hierarchy building step by step
-2. Use **arrow keys** or buttons to step forward/backward
-3. **Hover** over any module to see its description
-4. Click the **progress bar** to jump to any step
+1. **Click** any module to select it and see details in the right panel
+2. **Click** parent nodes to expand or collapse their children
+3. The **blue path** highlights the ancestor chain from selected node to root
+4. On mobile, tap a node to see its tooltip; details appear below the tree
 
 ## Key Concepts
 
