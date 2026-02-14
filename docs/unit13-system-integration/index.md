@@ -177,9 +177,9 @@ Hierarchy is the primary tool for managing complexity. A hierarchical design con
 
 ### Example: Hierarchical ALU Design
 
-<iframe src="../sims/hierarchical-alu-design/main.html" height="700px" width="100%" scrolling="no" style="border:1px solid #ddd; border-radius:8px;"></iframe>
+<iframe src="../sims/hierarchical-alu-design/main.html" height="520px" width="100%" scrolling="no" style="border:1px solid #ddd; border-radius:8px;"></iframe>
 
-*Press Play or spacebar to animate the hierarchy. Hover over modules for descriptions.*
+*Click any node to expand or collapse its children. Hover for descriptions.*
 
 Each leaf module is simple enough to design with the techniques from prior units. Integration assembles them structurally.
 
