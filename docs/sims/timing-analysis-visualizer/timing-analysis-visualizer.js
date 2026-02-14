@@ -3,8 +3,8 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
-let controlHeight = 50;
+let drawHeight = 430;
+let controlHeight = 0;
 let canvasHeight = drawHeight + controlHeight;
 
 // Delay parameters (in nanoseconds)
@@ -26,7 +26,6 @@ let params = [
 
 // Button bounds for hit detection
 let paramBtns = []; // [{minus, plus, val}]
-let _resetBtn;
 
 // Colors
 const COLOR_CRITICAL = '#E91E63';
@@ -50,8 +49,42 @@ function setParamValue(i, v) {
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
+
+  // --- DOM flex control bar (above canvas) ---
+  var bar = document.createElement('div');
+  bar.className = 'ta-controls';
+  mainElement.appendChild(bar);
+
+  // Reset button
+  var rstBtn = document.createElement('button');
+  rstBtn.className = 'ta-controls__btn ta-controls__btn--reset';
+  rstBtn.textContent = 'Reset Defaults';
+  rstBtn.addEventListener('click', function() {
+    andDelay = 3;
+    orDelay = 4;
+    routingDelay = 1;
+  });
+  bar.appendChild(rstBtn);
+
+  // Fullscreen / Close link (pushed to right)
+  var navLink = document.createElement('a');
+  navLink.style.cssText = 'margin-left:auto;font-size:11px;font-weight:bold;color:#5C6BC0;';
+  if (window.self !== window.top) {
+    navLink.href = 'main.html';
+    navLink.target = '_blank';
+    navLink.textContent = 'Fullscreen';
+  } else {
+    navLink.href = '#';
+    navLink.textContent = 'Close';
+    navLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.close();
+    });
+  }
+  bar.appendChild(navLink);
+
+  const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('Timing analysis visualizer showing critical path delays, gate delays, and maximum clock frequency', LABEL);
 }
@@ -71,16 +104,14 @@ function draw() {
   drawParamControls();
   drawCalculations(path1Delay, path2Delay, criticalPath, tMin, fMax);
   drawTimingDiagram(tMin, criticalPath);
-  drawControls();
 
-  // Hand cursor on hover
+  // Hand cursor on hover for +/- buttons
   let hovering = false;
   for (let i = 0; i < paramBtns.length; i++) {
     let b = paramBtns[i];
     if (b && b.minus && isInside(mouseX, mouseY, b.minus)) hovering = true;
     if (b && b.plus && isInside(mouseX, mouseY, b.plus)) hovering = true;
   }
-  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
   cursor(hovering ? HAND : ARROW);
 }
 
@@ -473,33 +504,6 @@ function drawBrace(x1, x2, y, label) {
   text(label, cx, y + 2);
 }
 
-function drawControls() {
-  // Control area background
-  fill(230);
-  noStroke();
-  rect(0, drawHeight, canvasWidth, controlHeight);
-
-  // Reset button
-  let btnW = 100;
-  let btnH = 34;
-  let btnX = canvasWidth / 2 - btnW / 2;
-  let btnY = drawHeight + 8;
-
-  _resetBtn = { x: btnX, y: btnY, w: btnW, h: btnH };
-  fill(COLOR_GATE);
-  stroke('#303F9F');
-  strokeWeight(2);
-  rect(btnX, btnY, btnW, btnH, 5);
-
-  fill(255);
-  noStroke();
-  textSize(13);
-  textStyle(BOLD);
-  textAlign(CENTER, CENTER);
-  text("Reset Defaults", btnX + btnW / 2, btnY + btnH / 2);
-  textStyle(NORMAL);
-}
-
 function mousePressed() {
   // Check param +/- buttons
   for (let i = 0; i < paramBtns.length; i++) {
@@ -516,14 +520,6 @@ function mousePressed() {
       setParamValue(i, val + step);
       return;
     }
-  }
-
-  // Check Reset button
-  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) {
-    andDelay = 3;
-    orDelay = 4;
-    routingDelay = 1;
-    return;
   }
 }
 
