@@ -479,202 +479,188 @@ function drawCalculations(path1, path2, critical, tMin, fMax) {
 }
 
 // renderWaveform(ct, tMin, criticalPath)
-// THE ONLY function that determines CLK level, Data level, shading,
-// annotations, and marker position. Everything depends on ct (currentTime).
+// Draws 4 signals (CLK, AND_out, OR_out, FF_in) progressively up to ct.
+// All transitions and shading are computed purely from currentTime.
 function renderWaveform(ct, tMin, criticalPath) {
-  let tdY = 280;
-  let tdX = 20;
-  let tdW = canvasWidth - 40;
-  let diagramY = tdY + 28;
-  let sigH = 25;
-  let gap = 35;
+  let tdY = 278;
+  let tdX = 58;
+  let tdW = canvasWidth - 72;
+  let sigStartY = tdY + 30;
+  let sigH = 16;
+  let sigGap = 10;
   let timeScale = tdW / (tMin * 1.1);
-  let bottomY = diagramY + gap + sigH * 2 + 10;
 
-  // Timing boundaries (all in ns)
-  let tCqEnd = tCQ;
-  let tDataValid = tCQ + criticalPath;
-  let tSetupStart = tMin - tSetup;
+  // Propagation boundaries (ns)
+  let tAnd = andDelay;
+  let tAndOr = andDelay + orDelay;
+  let tComb = criticalPath;                // AND + OR + routing
+  let tSetupBegin = tMin - tSetup;
 
-  // Pixel positions for boundaries
-  let cqEndPx = tdX + tCqEnd * timeScale;
-  let dataValidPx = tdX + tDataValid * timeScale;
-  let setupStartPx = tdX + tSetupStart * timeScale;
-  let tMinPx = tdX + tMin * timeScale;
-  let cursorPx = constrain(tdX + ct * timeScale, tdX, tdX + tdW);
+  // Signal definitions
+  let signals = [
+    { name: "CLK",     type: "clock", color: COLOR_GATE },
+    { name: "AND_out", type: "prop",  color: COLOR_GATE,     tChange: tAnd },
+    { name: "OR_out",  type: "prop",  color: COLOR_TIMING,   tChange: tAndOr },
+    { name: "FF_in",   type: "prop",  color: COLOR_CRITICAL, tChange: tComb }
+  ];
 
-  // Store waveform bounds for click detection
-  waveformBounds = { x: tdX, y: tdY, w: tdW, h: bottomY - tdY + 20 };
+  let bottomY = sigStartY + signals.length * (sigH + sigGap) - sigGap + 2;
+
+  waveformBounds = { x: 0, y: tdY, w: canvasWidth, h: bottomY - tdY + 25 };
   hoverRegions = [];
 
-  // Title
+  // ── Title & hint ──
   fill(50); noStroke();
   textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
   text("Timing Diagram", canvasWidth / 2, tdY);
   textStyle(NORMAL);
 
-  // Hint text
   fill(140); textSize(9); textAlign(CENTER, TOP);
   text(showDetails
-    ? "Click waveform to toggle details. Hover markers for values."
-    : "Click waveform to show details.", canvasWidth / 2, tdY + 14);
+    ? "Click waveform to hide details \u2022 Hover regions for info"
+    : "Click waveform to show details", canvasWidth / 2, tdY + 14);
 
-  // Waveform background
-  fill(252); stroke(showDetails ? 220 : 235); strokeWeight(1);
-  rect(tdX - 2, diagramY - 4, tdW + 4, bottomY - diagramY + 8, 4);
+  // ── Background ──
+  fill(252); stroke(220); strokeWeight(1);
+  rect(tdX - 2, sigStartY - 4, tdW + 4, bottomY - sigStartY + 8, 4);
 
-  // Time axis
+  // ── Delay shading bands (detail mode, grow with ct) ──
+  if (showDetails && ct > 0) {
+    let sT = sigStartY - 2;
+    let sH = bottomY - sT + 4;
+    let bands = [
+      { t0: 0,           t1: tAnd,        c: [200, 220, 255, 70],
+        label: "AND Delay",     value: andDelay + " ns",
+        desc: "AND gate propagation delay" },
+      { t0: tAnd,        t1: tAndOr,      c: [255, 230, 190, 70],
+        label: "OR Delay",      value: orDelay + " ns",
+        desc: "OR gate propagation delay" },
+      { t0: tAndOr,      t1: tComb,       c: [255, 210, 220, 70],
+        label: "Routing Delay", value: routingDelay.toFixed(1) + " ns",
+        desc: "Wire routing delay to flip-flop" },
+      { t0: tComb,       t1: tSetupBegin, c: [200, 240, 200, 70],
+        label: "Slack",         value: max(0, tSetupBegin - tComb).toFixed(1) + " ns",
+        desc: "Timing margin \u2014 data valid and stable" },
+      { t0: tSetupBegin, t1: tMin,        c: [255, 245, 190, 90],
+        label: "Setup Time",    value: tSetup + " ns",
+        desc: "Data must be stable before next clock edge" }
+    ];
+
+    for (let b of bands) {
+      if (b.t1 <= b.t0) continue;
+      if (ct <= b.t0) continue;
+      let drawT1 = min(b.t1, ct);
+      fill(b.c[0], b.c[1], b.c[2], b.c[3]); noStroke();
+      rect(tdX + b.t0 * timeScale, sT, (drawT1 - b.t0) * timeScale, sH);
+
+      if (ct >= b.t1) {
+        hoverRegions.push({
+          x: tdX + b.t0 * timeScale, y: sT,
+          w: (b.t1 - b.t0) * timeScale, h: sH,
+          label: b.label, value: b.value, desc: b.desc
+        });
+      }
+    }
+  }
+
+  // ── Time axis & grid ──
   stroke(150); strokeWeight(1);
   line(tdX, bottomY, tdX + tdW, bottomY);
 
-  // Time grid markers
   fill(100); noStroke(); textSize(8); textAlign(CENTER, TOP);
   for (let t = 0; t <= tMin * 1.05; t += 2) {
     let x = tdX + t * timeScale;
     if (x <= tdX + tdW) {
-      stroke(220); strokeWeight(0.5);
-      line(x, diagramY, x, bottomY);
+      stroke(230); strokeWeight(0.5);
+      line(x, sigStartY, x, bottomY);
       fill(100); noStroke();
-      text(t.toFixed(0) + "ns", x, bottomY + 2);
+      text(t + "ns", x, bottomY + 3);
     }
   }
 
-  // ── CLK waveform (computed from ct) ──
-  drawSignalLabel("CLK", tdX - 5, diagramY + sigH / 2);
-  if (ct > 0) {
-    stroke(COLOR_GATE); strokeWeight(2); noFill();
-    beginShape();
-    for (let t = 0; t <= ct; t += 0.05) {
-      let x = tdX + t * timeScale;
-      let phase = (t % tMin) / tMin;
-      let level = phase < 0.5 ? 1 : 0;
-      vertex(x, diagramY + (1 - level) * sigH);
-    }
-    // Final point at exact ct
-    let finalPhase = (ct % tMin) / tMin;
-    let finalLevel = finalPhase < 0.5 ? 1 : 0;
-    vertex(cursorPx, diagramY + (1 - finalLevel) * sigH);
-    endShape();
-  }
+  // ── Draw signals ──
+  for (let s = 0; s < signals.length; s++) {
+    let sig = signals[s];
+    let y = sigStartY + s * (sigH + sigGap);
 
-  // ── Data waveform (computed from ct) ──
-  let dataY = diagramY + gap;
-  drawSignalLabel("Data", tdX - 5, dataY + sigH / 2);
+    drawSignalLabel(sig.name, tdX - 5, y + sigH / 2);
 
-  // Data signal logic: at t=0 data is low (invalid).
-  // 0 → tCQ:        data stays low (old value, FF hasn't output yet)
-  // tCQ:             rising transition (FF outputs new data)
-  // tCQ → tDataValid: data is changing/propagating (shown as high/transitioning)
-  // tDataValid → tMin: data is stable and valid (high)
-  if (ct > 0) {
-    stroke(COLOR_TIMING); strokeWeight(2); noFill();
+    if (ct <= 0) continue;
 
-    // Phase 1: data low from t=0 to t=tCQ (or ct if ct < tCQ)
-    let phase1End = min(tCqEnd, ct);
-    let phase1EndPx = tdX + phase1End * timeScale;
-    line(tdX, dataY + sigH, phase1EndPx, dataY + sigH);
+    let drawEnd = min(ct, tMin * 1.05);
 
-    // Phase 2: rising edge at t=tCQ
-    if (ct > tCqEnd) {
-      let riseEndPx = tdX + min(tCqEnd + 0.3, ct) * timeScale;
-      line(cqEndPx, dataY + sigH, riseEndPx, dataY);
-    }
+    if (sig.type === "clock") {
+      // CLK: starts high at t=0, square wave with period = tMin
+      stroke(sig.color); strokeWeight(2); noFill();
+      let half = tMin / 2;
+      let hY = y;
+      let lY = y + sigH;
 
-    // Phase 3: data high from tCQ+0.3 to ct (or tMin)
-    if (ct > tCqEnd + 0.3) {
-      let highStartPx = tdX + (tCqEnd + 0.3) * timeScale;
-      let highEndPx = tdX + min(ct, tMin) * timeScale;
-      line(highStartPx, dataY, highEndPx, dataY);
-    }
-  }
+      if (drawEnd <= half) {
+        line(tdX, hY, tdX + drawEnd * timeScale, hY);
+      } else if (drawEnd <= tMin) {
+        line(tdX, hY, tdX + half * timeScale, hY);
+        line(tdX + half * timeScale, hY, tdX + half * timeScale, lY);
+        line(tdX + half * timeScale, lY, tdX + drawEnd * timeScale, lY);
+      } else {
+        line(tdX, hY, tdX + half * timeScale, hY);
+        line(tdX + half * timeScale, hY, tdX + half * timeScale, lY);
+        line(tdX + half * timeScale, lY, tdX + tMin * timeScale, lY);
+        line(tdX + tMin * timeScale, lY, tdX + tMin * timeScale, hY);
+        line(tdX + tMin * timeScale, hY, tdX + drawEnd * timeScale, hY);
+      }
+    } else {
+      // Propagation signal: low until tChange, rising edge, then high
+      stroke(sig.color); strokeWeight(2); noFill();
+      let tChange = sig.tChange;
+      let rise = 0.3;
 
-  // ── Detail shading (computed from ct) ──
-  if (showDetails && ct > 0) {
-    // t_cq region (pink) — grows from 0 to tCQ
-    let cqShadeEnd = min(tCqEnd, ct);
-    if (cqShadeEnd > 0) {
-      fill(255, 235, 238, 150); noStroke();
-      rect(tdX, dataY, cqShadeEnd * timeScale, sigH);
-    }
-
-    // Data valid region (green) — from tDataValid to min(tSetupStart, ct)
-    if (ct > tDataValid) {
-      let validEnd = min(tSetupStart, ct);
-      if (validEnd > tDataValid) {
-        fill(200, 230, 201, 150); noStroke();
-        rect(dataValidPx, dataY, (validEnd - tDataValid) * timeScale, sigH);
+      if (drawEnd <= tChange) {
+        line(tdX, y + sigH, tdX + drawEnd * timeScale, y + sigH);
+      } else {
+        line(tdX, y + sigH, tdX + tChange * timeScale, y + sigH);
+        let riseEnd = min(tChange + rise, drawEnd);
+        line(tdX + tChange * timeScale, y + sigH, tdX + riseEnd * timeScale, y);
+        if (drawEnd > tChange + rise) {
+          line(tdX + (tChange + rise) * timeScale, y, tdX + drawEnd * timeScale, y);
+        }
       }
     }
+  }
 
-    // Setup region (orange) — from tSetupStart to min(tMin, ct)
-    if (ct > tSetupStart) {
-      let suEnd = min(tMin, ct);
-      fill(255, 243, 224, 150); noStroke();
-      rect(setupStartPx, dataY, (suEnd - tSetupStart) * timeScale, sigH);
+  // ── Delay boundary markers (detail mode) ──
+  if (showDetails) {
+    let boundaries = [
+      { t: tAnd,        color: COLOR_GATE },
+      { t: tAndOr,      color: COLOR_TIMING },
+      { t: tComb,       color: COLOR_CRITICAL },
+      { t: tSetupBegin, color: COLOR_FF },
+      { t: tMin,        color: COLOR_FF }
+    ];
+
+    for (let b of boundaries) {
+      if (ct >= b.t) {
+        let bx = tdX + b.t * timeScale;
+        stroke(b.color); strokeWeight(1);
+        drawingContext.setLineDash([3, 3]);
+        line(bx, sigStartY - 2, bx, bottomY + 2);
+        drawingContext.setLineDash([]);
+      }
     }
   }
 
-  // ── Cursor line (always at ct) ──
+  // ── Time cursor ──
   if (ct > 0) {
-    stroke(COLOR_CRITICAL); strokeWeight(1.5);
+    let cursorPx = constrain(tdX + ct * timeScale, tdX, tdX + tdW);
+    stroke(COLOR_CRITICAL); strokeWeight(2);
     drawingContext.setLineDash([4, 3]);
-    line(cursorPx, diagramY - 4, cursorPx, bottomY);
+    line(cursorPx, sigStartY - 4, cursorPx, bottomY + 2);
     drawingContext.setLineDash([]);
 
     fill(COLOR_CRITICAL); noStroke();
     textSize(9); textStyle(BOLD); textAlign(CENTER, BOTTOM);
-    text(ct.toFixed(1) + " ns", cursorPx, diagramY - 5);
+    text(ct.toFixed(1) + " ns", cursorPx, sigStartY - 5);
     textStyle(NORMAL);
-  }
-
-  // ── Annotations (appear when ct passes each boundary) ──
-  if (showDetails) {
-    let braceH = 18;
-
-    if (ct >= tCqEnd) {
-      fill(COLOR_CRITICAL); noStroke();
-      drawBrace(tdX, cqEndPx, dataY + sigH + 12, "t_cq = " + tCQ + "ns");
-      hoverRegions.push({
-        x: tdX, y: dataY + sigH + 4, w: cqEndPx - tdX, h: braceH,
-        label: "t_cq", value: tCQ.toFixed(1) + " ns",
-        desc: "Clock-to-Q: delay from clock edge to FF output changing"
-      });
-    }
-
-    if (ct >= tDataValid) {
-      fill(COLOR_CRITICAL); noStroke();
-      drawBrace(cqEndPx, dataValidPx, dataY + sigH + 12, "critical path = " + criticalPath.toFixed(1) + "ns");
-      hoverRegions.push({
-        x: cqEndPx, y: dataY + sigH + 4, w: dataValidPx - cqEndPx, h: braceH,
-        label: "Critical Path", value: criticalPath.toFixed(1) + " ns",
-        desc: "Longest combinational delay through gates + routing"
-      });
-    }
-
-    if (ct >= tMin) {
-      fill(COLOR_TIMING); noStroke();
-      drawBrace(setupStartPx, tMinPx, dataY + sigH + 12, "t_setup = " + tSetup + "ns");
-      hoverRegions.push({
-        x: setupStartPx, y: dataY + sigH + 4, w: tMinPx - setupStartPx, h: braceH,
-        label: "t_setup", value: tSetup.toFixed(1) + " ns",
-        desc: "Setup time: data must be stable before next clock edge"
-      });
-
-      // Next clock edge marker
-      stroke(COLOR_FF); strokeWeight(1.5);
-      drawingContext.setLineDash([3, 3]);
-      line(tMinPx, diagramY, tMinPx, dataY + sigH + 20);
-      drawingContext.setLineDash([]);
-
-      fill(COLOR_FF); noStroke();
-      textSize(8); textAlign(CENTER, TOP);
-      text("next edge", tMinPx, dataY + sigH + 22);
-      hoverRegions.push({
-        x: tMinPx - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
-        label: "Next Edge", value: tMin.toFixed(1) + " ns",
-        desc: "Next rising clock edge — defines minimum clock period"
-      });
-    }
   }
 }
 
