@@ -193,8 +193,8 @@ function positionDOMElements() {
 
 function drawFSM(areaWidth) {
   let centerX = areaWidth / 2;
-  let centerY = 180;
-  let radius = 65;
+  let centerY = 150;
+  let radius = 55;
 
   // State positions in a diamond layout
   let statePos = [
@@ -267,7 +267,7 @@ function drawFSM(areaWidth) {
   }
 
   // Current state info box
-  let infoY = 290;
+  let infoY = 245;
   fill(255);
   stroke(COLOR_FSM);
   strokeWeight(1);
@@ -329,12 +329,12 @@ function drawDatapath(dpX, dpWidth) {
 
   // Register A
   let regAX = cx - 50;
-  let regAY = 50;
+  let regAY = 40;
   drawRegister(regAX, regAY, regW, regH, "Reg A", regA, controlSignals.load_A);
 
   // Register B
   let regBX = cx + 50;
-  let regBY = 50;
+  let regBY = 40;
   drawRegister(regBX, regBY, regW, regH, "Reg B", regB, controlSignals.load_B);
 
   // Input labels
@@ -371,14 +371,14 @@ function drawDatapath(dpX, dpWidth) {
   let wireColor = aluActive ? COLOR_ACTIVE : COLOR_WIRE;
   stroke(wireColor);
   strokeWeight(aluActive ? 2.5 : 1.5);
-  line(regAX, regAY + regH / 2, regAX, 160);
-  line(regBX, regBY + regH / 2, regBX, 160);
+  line(regAX, regAY + regH / 2, regAX, 130);
+  line(regBX, regBY + regH / 2, regBX, 130);
 
   // ALU (trapezoid)
   let aluX = cx;
-  let aluY = 200;
+  let aluY = 170;
   let aluW = 80;
-  let aluH = 60;
+  let aluH = 50;
 
   fill(aluActive ? '#C8E6C9' : '#E0E0E0');
   stroke(aluActive ? COLOR_ACTIVE : COLOR_WIRE);
@@ -406,13 +406,13 @@ function drawDatapath(dpX, dpWidth) {
   // Wires into ALU
   stroke(wireColor);
   strokeWeight(1.5);
-  line(regAX, 160, aluX - 20, aluY - aluH / 2);
-  line(regBX, 160, aluX + 20, aluY - aluH / 2);
+  line(regAX, 130, aluX - 20, aluY - aluH / 2);
+  line(regBX, 130, aluX + 20, aluY - aluH / 2);
 
   // ALU output wire
   let aluOutY = aluY + aluH / 2;
   stroke(aluActive ? COLOR_ACTIVE : COLOR_WIRE);
-  line(aluX, aluOutY, aluX, aluOutY + 30);
+  line(aluX, aluOutY, aluX, aluOutY + 20);
 
   // ALU output value
   if (aluActive || currentState === DONE) {
@@ -420,11 +420,11 @@ function drawDatapath(dpX, dpWidth) {
     noStroke();
     textSize(11);
     textAlign(LEFT, CENTER);
-    text("= " + aluOutput, aluX + 10, aluOutY + 15);
+    text("= " + aluOutput, aluX + 10, aluOutY + 10);
   }
 
   // MUX
-  let muxY = aluOutY + 40;
+  let muxY = aluOutY + 25;
   let muxW = 40;
   let muxH = 35;
 
@@ -450,10 +450,10 @@ function drawDatapath(dpX, dpWidth) {
   // Wire from ALU to MUX
   stroke(controlSignals.mux_sel === "ALU" ? COLOR_ACTIVE : COLOR_WIRE);
   strokeWeight(1.5);
-  line(aluX, aluOutY + 30, aluX, muxY);
+  line(aluX, aluOutY + 20, aluX, muxY);
 
   // Wire from MUX to Result register
-  let resultY = muxY + muxH + 40;
+  let resultY = muxY + muxH + 30;
   stroke(controlSignals.load_result ? COLOR_ACTIVE : COLOR_WIRE);
   strokeWeight(controlSignals.load_result ? 2.5 : 1.5);
   line(aluX, muxY + muxH, aluX, resultY - regH / 2);
@@ -504,7 +504,7 @@ function drawRegister(x, y, w, h, label, value, active) {
 }
 
 function drawControlSignals(fsmWidth, dpX) {
-  let sigY = 400;
+  let sigY = 350;
   let sigX = fsmWidth + 10;
 
   fill(50);
