@@ -55,15 +55,16 @@ const COLOR_INACTIVE = '#BDBDBD';
 function setup() {
   reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
-  canvas.parent(mainElement);
-  describe('Datapath-controller interaction showing FSM states and data flow through registers, MUX, and ALU', LABEL);
 
-  // --- DOM flex control bar ---
+  // --- DOM flex control bar (above canvas) ---
   var bar = document.createElement('div');
   bar.className = 'dp-controls';
   mainElement.appendChild(bar);
+
+  const canvas = createCanvas(containerWidth, canvasHeight);
+  canvas.parent(mainElement);
+  describe('Datapath-controller interaction showing FSM states and data flow through registers, MUX, and ALU', LABEL);
 
   // CLK button
   var clkBtn = document.createElement('button');
