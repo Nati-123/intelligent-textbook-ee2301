@@ -592,8 +592,8 @@ function renderWaveform(ct, tMin, criticalPath, maxTime) {
   let tdX = 58;
   let tdW = canvasWidth - 72;
   let sigStartY = tdY + 30;
-  let sigH = 16;
-  let sigGap = 10;
+  let sigH = 14;
+  let sigGap = 8;
   let timeScale = tdW / maxTime;
 
   // Propagation boundaries (ns)
@@ -607,7 +607,8 @@ function renderWaveform(ct, tMin, criticalPath, maxTime) {
     { name: "CLK",     type: "clock", color: COLOR_GATE },
     { name: "AND_out", type: "prop",  color: COLOR_GATE,     tChange: tAnd },
     { name: "OR_out",  type: "prop",  color: COLOR_TIMING,   tChange: tAndOr },
-    { name: "FF_in",   type: "prop",  color: COLOR_CRITICAL, tChange: tComb }
+    { name: "FF_in",   type: "prop",  color: COLOR_CRITICAL, tChange: tComb },
+    { name: "FF_out",  type: "prop",  color: COLOR_FF,       tChange: tMin }
   ];
 
   let bottomY = sigStartY + signals.length * (sigH + sigGap) - sigGap + 2;
