@@ -171,18 +171,20 @@ function positionDOMElements() {
 
   let y = rect.top + drawHeight + 12;
   let clkW = 58;
-  let sp = 8;
+  let itemWidths = clkW + 70 + 70 + 90 + 50 + 70;
+  let gaps = 6;
+  let sp = Math.max(6, Math.min(16, (canvasWidth - itemWidths - 16) / gaps));
 
-  // Input A field: after CLK button + label "A"
+  // Input A field: after CLK button + gap + "A" label
   let aX = rect.left + 8 + clkW + sp + 16;
   inputAField.position(aX, y + 1);
 
-  // Input B field: after A field + label "B"
-  let bX = aX + 56 + sp + 16;
+  // Input B field: after A group + gap + "B" label
+  let bX = rect.left + 8 + clkW + sp + 70 + sp + 16;
   inputBField.position(bX, y + 1);
 
-  // ALU op dropdown: after B field + label "Op"
-  let opX = bX + 56 + sp + 22;
+  // ALU op dropdown: after B group + gap + "Op" label
+  let opX = rect.left + 8 + clkW + sp + 70 + sp + 70 + sp + 22;
   opSelect.position(opX, y);
 }
 
@@ -340,22 +342,24 @@ function drawDatapath(dpX, dpWidth) {
   text("In: " + inputA, regAX, regAY - regH / 2 - 2);
   text("In: " + inputB, regBX, regBY - regH / 2 - 2);
 
-  // Input flow arrows (visible when loading)
+  // Input flow arrows (visible when loading) with subtle pulse
   if (controlSignals.load_A) {
-    stroke(COLOR_ACTIVE);
+    let pulseA = reducedMotion ? 1 : 0.6 + 0.4 * sin(millis() * 0.008);
+    stroke(76, 175, 80, pulseA * 255);
     strokeWeight(2.5);
     let ay = regAY - regH / 2;
     line(regAX, ay - 14, regAX, ay);
-    fill(COLOR_ACTIVE);
+    fill(76, 175, 80, pulseA * 255);
     noStroke();
     triangle(regAX, ay, regAX - 4, ay - 6, regAX + 4, ay - 6);
   }
   if (controlSignals.load_B) {
-    stroke(COLOR_ACTIVE);
+    let pulseB = reducedMotion ? 1 : 0.6 + 0.4 * sin(millis() * 0.008);
+    stroke(76, 175, 80, pulseB * 255);
     strokeWeight(2.5);
     let by = regBY - regH / 2;
     line(regBX, by - 14, regBX, by);
-    fill(COLOR_ACTIVE);
+    fill(76, 175, 80, pulseB * 255);
     noStroke();
     triangle(regBX, by, regBX - 4, by - 6, regBX + 4, by - 6);
   }
@@ -393,7 +397,8 @@ function drawDatapath(dpX, dpWidth) {
   textSize(10);
   textStyle(NORMAL);
   let opSymbol = selectedOp === "ADD" ? '+' : '-';
-  text(aluActive ? "A " + opSymbol + " B" : "---", aluX, aluY + 15);
+  fill(aluActive ? '#2E7D32' : 180);
+  text(aluActive ? "A " + opSymbol + " B" : "ALU idle", aluX, aluY + 15);
 
   // Wires into ALU
   stroke(wireColor);
@@ -420,12 +425,13 @@ function drawDatapath(dpX, dpWidth) {
   let muxW = 40;
   let muxH = 35;
 
-  fill(controlSignals.mux_sel === "ALU" ? '#C8E6C9' : '#E0E0E0');
-  stroke(controlSignals.mux_sel === "ALU" ? COLOR_ACTIVE : COLOR_WIRE);
-  strokeWeight(1.5);
+  let muxActive = controlSignals.mux_sel === "ALU";
+  fill(muxActive ? '#C8E6C9' : '#EEEEEE');
+  stroke(muxActive ? COLOR_ACTIVE : COLOR_INACTIVE);
+  strokeWeight(muxActive ? 1.5 : 1);
   rect(aluX - muxW / 2, muxY, muxW, muxH, 3);
 
-  fill(controlSignals.mux_sel === "ALU" ? '#2E7D32' : 100);
+  fill(muxActive ? '#2E7D32' : 180);
   noStroke();
   textSize(10);
   textStyle(BOLD);
@@ -539,14 +545,19 @@ function drawControls() {
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   let btnH = 34;
-  let sp = 8;
   let y = drawHeight + 10;
-  let x = 8;
 
+  // Measure fixed-width items: CLK(58) + A-label+field(70) + B-label+field(70) + Op-label+dropdown(90) + Reset(50) + State(70)
+  let clkW = 58, rstW = 50, stateW = 70;
+  let itemWidths = clkW + 70 + 70 + 90 + rstW + stateW; // 408
+  let gaps = 6; // number of gaps between 7 items
+  let sp = max(6, (canvasWidth - itemWidths - 16) / gaps);
+  sp = min(sp, 16);
+
+  let x = 8;
   textAlign(CENTER, CENTER);
 
   // Clock button
-  let clkW = 58;
   _clockBtn = { x: x, y: y, w: clkW, h: btnH };
   fill(COLOR_FSM);
   stroke('#303F9F');
@@ -570,7 +581,7 @@ function drawControls() {
   textStyle(NORMAL);
 
   // Label "B" before input field
-  x += 56 + sp;
+  x += 70 + sp;
   fill(80);
   noStroke();
   textAlign(LEFT, CENTER);
@@ -580,7 +591,7 @@ function drawControls() {
   textStyle(NORMAL);
 
   // Label "Op" before dropdown
-  x += 56 + sp;
+  x += 70 + sp;
   fill(80);
   noStroke();
   textAlign(LEFT, CENTER);
@@ -589,9 +600,8 @@ function drawControls() {
   text('Op', x, y + btnH / 2);
   textStyle(NORMAL);
 
-  // Reset button (after the dropdown)
-  x += 22 + 70 + sp + 12;
-  let rstW = 50;
+  // Reset button
+  x += 90 + sp;
   _resetBtn = { x: x, y: y, w: rstW, h: btnH };
   fill('#F44336');
   stroke('#C62828');
@@ -605,8 +615,7 @@ function drawControls() {
   textStyle(NORMAL);
 
   // State display
-  x += rstW + sp + 8;
-  let stateW = 70;
+  x += rstW + sp;
   fill(currentState === DONE ? COLOR_ACTIVE : COLOR_FSM);
   stroke(currentState === DONE ? '#388E3C' : '#303F9F');
   strokeWeight(2);
