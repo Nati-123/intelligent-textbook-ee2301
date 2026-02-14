@@ -156,14 +156,23 @@ function setup() {
   stateDisplay.textContent = stateNames[currentState];
   bar.appendChild(stateDisplay);
 
-  // Back link (pushed to right)
-  var backLink = document.createElement('a');
-  backLink.href = '.';
-  backLink.textContent = 'Back to Docs';
-  backLink.style.marginLeft = 'auto';
-  backLink.style.fontSize = '11px';
-  backLink.style.color = '#5C6BC0';
-  bar.appendChild(backLink);
+  // Fullscreen / Back link (pushed to right)
+  var navLink = document.createElement('a');
+  navLink.style.marginLeft = 'auto';
+  navLink.style.fontSize = '11px';
+  navLink.style.fontWeight = 'bold';
+  navLink.style.color = '#5C6BC0';
+  if (window.self !== window.top) {
+    // Inside iframe — show fullscreen button
+    navLink.href = 'main.html';
+    navLink.target = '_blank';
+    navLink.textContent = 'Fullscreen';
+  } else {
+    // Fullscreen mode — show back link
+    navLink.href = '.';
+    navLink.textContent = 'Back to Docs';
+  }
+  bar.appendChild(navLink);
 }
 
 function draw() {
