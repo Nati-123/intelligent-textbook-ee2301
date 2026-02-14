@@ -42,6 +42,12 @@ let inputAField, inputBField, opSelect;
 // Button bounds
 let _clockBtn, _resetBtn;
 
+// Transition glow tracking
+let lastTransition = -1;
+let transitionTime = 0;
+let reducedMotion = false;
+let resultLoaded = false;
+
 // Colors
 const COLOR_FSM = '#5C6BC0';
 const COLOR_DATAPATH = '#FF7043';
@@ -50,6 +56,7 @@ const COLOR_WIRE = '#666';
 const COLOR_INACTIVE = '#BDBDBD';
 
 function setup() {
+  reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   updateCanvasSize();
   const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
@@ -213,6 +220,28 @@ function drawFSM(areaWidth) {
          cpx, cpy - 30, cpx, cpy + 10,
          toIdle.x - stateRadius * 0.7, toIdle.y + stateRadius * 0.3);
 
+  // Glow on the just-taken transition arrow
+  if (!reducedMotion && lastTransition >= 0) {
+    let glowT = (millis() - transitionTime) / 300;
+    if (glowT < 1) {
+      let glowA = (1 - glowT) * 160;
+      stroke(76, 175, 80, glowA);
+      strokeWeight(7);
+      noFill();
+      if (lastTransition < 3) {
+        let gFrom = statePos[lastTransition];
+        let gTo = statePos[lastTransition + 1];
+        let gAng = atan2(gTo.y - gFrom.y, gTo.x - gFrom.x);
+        line(gFrom.x + cos(gAng) * stateRadius, gFrom.y + sin(gAng) * stateRadius,
+             gTo.x - cos(gAng) * stateRadius, gTo.y - sin(gAng) * stateRadius);
+      } else {
+        bezier(fromDone.x - stateRadius * 0.7, fromDone.y - stateRadius * 0.7,
+               cpx, cpy - 30, cpx, cpy + 10,
+               toIdle.x - stateRadius * 0.7, toIdle.y + stateRadius * 0.3);
+      }
+    }
+  }
+
   // Draw state circles
   for (let i = 0; i < 4; i++) {
     let pos = statePos[i];
@@ -311,10 +340,30 @@ function drawDatapath(dpX, dpWidth) {
   text("In: " + inputA, regAX, regAY - regH / 2 - 2);
   text("In: " + inputB, regBX, regBY - regH / 2 - 2);
 
+  // Input flow arrows (visible when loading)
+  if (controlSignals.load_A) {
+    stroke(COLOR_ACTIVE);
+    strokeWeight(2.5);
+    let ay = regAY - regH / 2;
+    line(regAX, ay - 14, regAX, ay);
+    fill(COLOR_ACTIVE);
+    noStroke();
+    triangle(regAX, ay, regAX - 4, ay - 6, regAX + 4, ay - 6);
+  }
+  if (controlSignals.load_B) {
+    stroke(COLOR_ACTIVE);
+    strokeWeight(2.5);
+    let by = regBY - regH / 2;
+    line(regBX, by - 14, regBX, by);
+    fill(COLOR_ACTIVE);
+    noStroke();
+    triangle(regBX, by, regBX - 4, by - 6, regBX + 4, by - 6);
+  }
+
   // Wires from registers down to ALU
   let wireColor = aluActive ? COLOR_ACTIVE : COLOR_WIRE;
   stroke(wireColor);
-  strokeWeight(1.5);
+  strokeWeight(aluActive ? 2.5 : 1.5);
   line(regAX, regAY + regH / 2, regAX, 160);
   line(regBX, regBY + regH / 2, regBX, 160);
 
@@ -397,13 +446,24 @@ function drawDatapath(dpX, dpWidth) {
   // Wire from MUX to Result register
   let resultY = muxY + muxH + 40;
   stroke(controlSignals.load_result ? COLOR_ACTIVE : COLOR_WIRE);
+  strokeWeight(controlSignals.load_result ? 2.5 : 1.5);
   line(aluX, muxY + muxH, aluX, resultY - regH / 2);
 
   // Result register
-  drawRegister(aluX, resultY, regW + 10, regH, "Result", regResult, controlSignals.load_result);
+  let resultDisplay = resultLoaded ? regResult : "\u2014";
+  drawRegister(aluX, resultY, regW + 10, regH, "Result", resultDisplay, controlSignals.load_result);
+
+  // "Not updated" hint when result hasn't been computed yet
+  if (!resultLoaded) {
+    fill(180);
+    noStroke();
+    textSize(9);
+    textAlign(CENTER, TOP);
+    text("Result not updated", aluX, resultY + regH / 2 + 3);
+  }
 
   // Final output label
-  if (currentState === DONE) {
+  if (currentState === DONE && resultLoaded) {
     fill(COLOR_ACTIVE);
     noStroke();
     textSize(14);
@@ -567,6 +627,9 @@ function advanceClock() {
   if (!isNaN(vb)) inputB = vb;
   selectedOp = opSelect.value();
 
+  lastTransition = currentState;
+  transitionTime = millis();
+
   switch (currentState) {
     case IDLE:
       currentState = LOAD;
@@ -597,6 +660,7 @@ function advanceClock() {
       controlSignals.mux_sel = "ALU";
       controlSignals.load_result = true;
       regResult = aluOutput;
+      resultLoaded = true;
       break;
 
     case DONE:
@@ -616,6 +680,8 @@ function resetSystem() {
   controlSignals.alu_op = "NOP";
   controlSignals.mux_sel = "INPUT";
   controlSignals.load_result = false;
+  lastTransition = -1;
+  resultLoaded = false;
 }
 
 function mousePressed() {
