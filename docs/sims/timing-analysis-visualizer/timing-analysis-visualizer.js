@@ -90,30 +90,53 @@ function setup() {
   timeGrp.className = 'ta-controls__group';
   bar.appendChild(timeGrp);
 
-  timeLabel = document.createElement('span');
-  timeLabel.className = 'ta-controls__label';
-  timeLabel.textContent = 't = 0.0 ns';
-  timeGrp.appendChild(timeLabel);
+  var timeLbl = document.createElement('span');
+  timeLbl.className = 'ta-controls__label';
+  timeLbl.textContent = 'Time (ns)';
+  timeGrp.appendChild(timeLbl);
 
   timeSlider = document.createElement('input');
   timeSlider.type = 'range';
   timeSlider.className = 'ta-controls__slider';
   timeSlider.min = '0';
   timeSlider.max = '1000';
+  timeSlider.step = '1';
   timeSlider.value = '0';
   timeSlider.addEventListener('input', function() {
     var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
-    timeCursor = (parseFloat(this.value) / 1000) * tMax * 1.2;
+    timeCursor = Math.round((parseFloat(this.value) / 1000) * tMax * 1.2 * 10) / 10;
     timePlaying = false;
     playBtn.textContent = 'Play';
     playBtn.className = 'ta-controls__btn ta-controls__btn--play';
   });
   timeGrp.appendChild(timeSlider);
 
-  // Reset button
+  // Time value display
+  timeLabel = document.createElement('span');
+  timeLabel.className = 'ta-controls__label';
+  timeLabel.style.minWidth = '52px';
+  timeLabel.textContent = '0.0 ns';
+  timeGrp.appendChild(timeLabel);
+
+  // Reset Time button
+  var rstTimeBtn = document.createElement('button');
+  rstTimeBtn.className = 'ta-controls__btn ta-controls__btn--reset';
+  rstTimeBtn.textContent = 't=0';
+  rstTimeBtn.style.fontSize = '11px';
+  rstTimeBtn.style.padding = '0 8px';
+  rstTimeBtn.addEventListener('click', function() {
+    timeCursor = 0;
+    timePlaying = false;
+    playBtn.textContent = 'Play';
+    playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+  });
+  bar.appendChild(rstTimeBtn);
+
+  // Reset Defaults button
   var rstBtn = document.createElement('button');
   rstBtn.className = 'ta-controls__btn ta-controls__btn--reset';
   rstBtn.textContent = 'Reset';
+  rstBtn.style.fontSize = '11px';
   rstBtn.addEventListener('click', function() {
     andDelay = 3;
     orDelay = 4;
@@ -175,7 +198,7 @@ function draw() {
     timeSlider.value = String((timeCursor / tEnd) * 1000);
   }
   if (timeLabel) {
-    timeLabel.textContent = 't = ' + timeCursor.toFixed(1) + ' ns';
+    timeLabel.textContent = timeCursor.toFixed(1) + ' ns';
   }
 
   drawCircuitDiagram(criticalPath);
