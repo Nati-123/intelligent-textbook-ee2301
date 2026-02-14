@@ -155,6 +155,15 @@ function setup() {
   stateDisplay.className = 'dp-controls__state';
   stateDisplay.textContent = stateNames[currentState];
   bar.appendChild(stateDisplay);
+
+  // Back link (pushed to right)
+  var backLink = document.createElement('a');
+  backLink.href = '.';
+  backLink.textContent = 'Back to Docs';
+  backLink.style.marginLeft = 'auto';
+  backLink.style.fontSize = '11px';
+  backLink.style.color = '#5C6BC0';
+  bar.appendChild(backLink);
 }
 
 function draw() {
