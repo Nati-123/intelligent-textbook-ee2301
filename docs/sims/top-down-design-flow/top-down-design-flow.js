@@ -3,8 +3,8 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 500;
-let controlHeight = 50;
+let drawHeight = 460;
+let controlHeight = 0;
 let canvasHeight = drawHeight + controlHeight;
 
 // Design step definitions
@@ -54,10 +54,55 @@ const COLOR_FORWARD = '#2196F3';
 const COLOR_FEEDBACK = '#E91E63';
 const COLOR_ANIMATE_DOT = '#4CAF50';
 
+let animBtn;
+
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
+
+  // --- DOM flex control bar (above canvas) ---
+  var bar = document.createElement('div');
+  bar.className = 'td-controls';
+  mainElement.appendChild(bar);
+
+  // Animate/Stop button
+  animBtn = document.createElement('button');
+  animBtn.className = 'td-controls__btn td-controls__btn--anim';
+  animBtn.textContent = 'Animate';
+  animBtn.addEventListener('click', function() {
+    if (animating) {
+      animating = false;
+      animBtn.textContent = 'Animate';
+      animBtn.className = 'td-controls__btn td-controls__btn--anim';
+    } else {
+      animating = true;
+      animStep = 0;
+      animProgress = 0;
+      selectedStep = 0;
+      animBtn.textContent = 'Stop';
+      animBtn.className = 'td-controls__btn td-controls__btn--stop';
+    }
+  });
+  bar.appendChild(animBtn);
+
+  // Fullscreen / Close link (pushed to right)
+  var navLink = document.createElement('a');
+  navLink.style.cssText = 'margin-left:auto;font-size:11px;font-weight:bold;color:#5C6BC0;';
+  if (window.self !== window.top) {
+    navLink.href = 'main.html';
+    navLink.target = '_blank';
+    navLink.textContent = 'Fullscreen';
+  } else {
+    navLink.href = '#';
+    navLink.textContent = 'Close';
+    navLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.close();
+    });
+  }
+  bar.appendChild(navLink);
+
+  const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('Interactive top-down design flow with 6 hierarchical steps and verification feedback loops', LABEL);
   textAlign(CENTER, CENTER);
@@ -262,6 +307,10 @@ function draw() {
         animating = false;
         animStep = 0;
         animProgress = 0;
+        if (animBtn) {
+          animBtn.textContent = 'Animate';
+          animBtn.className = 'td-controls__btn td-controls__btn--anim';
+        }
       }
     }
 
@@ -282,59 +331,9 @@ function draw() {
     }
   }
 
-  // Draw control bar
-  drawControls();
-}
-
-function drawControls() {
-  // Control area background
-  fill(230);
-  noStroke();
-  rect(0, drawHeight, canvasWidth, controlHeight);
-
-  // Animate button
-  let btnX = canvasWidth / 2 - 50;
-  let btnY = drawHeight + 10;
-  let btnW = 100;
-  let btnH = 30;
-
-  let isHover = mouseX > btnX && mouseX < btnX + btnW &&
-                mouseY > btnY && mouseY < btnY + btnH;
-
-  fill(animating ? '#F44336' : (isHover ? '#45a049' : COLOR_ANIMATE_DOT));
-  stroke(animating ? '#C62828' : '#388E3C');
-  strokeWeight(1);
-  rect(btnX, btnY, btnW, btnH, 5);
-
-  fill(255);
-  noStroke();
-  textSize(13);
-  textAlign(CENTER, CENTER);
-  textStyle(BOLD);
-  text(animating ? "Stop" : "Animate", btnX + btnW / 2, btnY + btnH / 2);
-  textStyle(NORMAL);
 }
 
 function mousePressed() {
-  // Check Animate/Stop button
-  let btnX = canvasWidth / 2 - 50;
-  let btnY = drawHeight + 10;
-  let btnW = 100;
-  let btnH = 30;
-
-  if (mouseX > btnX && mouseX < btnX + btnW &&
-      mouseY > btnY && mouseY < btnY + btnH) {
-    if (animating) {
-      animating = false;
-    } else {
-      animating = true;
-      animStep = 0;
-      animProgress = 0;
-      selectedStep = 0;
-    }
-    return;
-  }
-
   // Check step clicks
   if (this._stepPositions) {
     for (let sp of this._stepPositions) {
