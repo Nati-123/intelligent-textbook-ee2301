@@ -109,8 +109,23 @@ function setup() {
   timeInput.value = '0.0';
   timeInput.style.cssText = 'width:55px;height:28px;text-align:center;font-size:12px;border:2px solid #5C6BC0;border-radius:4px;';
   timeInput.addEventListener('change', function() {
+    var val = parseFloat(this.value) || 0;
+    if (val < 0) val = 0;
+    // Auto-expand range dropdown if typed value exceeds current range
     var maxT = getMaxTime();
-    timeCursor = constrain(parseFloat(this.value) || 0, 0, maxT);
+    if (val > maxT) {
+      var presets = [5, 10, 20, 50, 100];
+      for (var pi = 0; pi < presets.length; pi++) {
+        if (presets[pi] >= val) {
+          viewRange = presets[pi];
+          viewSelect.value = String(presets[pi]);
+          break;
+        }
+      }
+      if (val > 100) { viewRange = 100; viewSelect.value = '100'; val = 100; }
+      maxT = getMaxTime();
+    }
+    timeCursor = constrain(val, 0, maxT);
     this.value = timeCursor.toFixed(1);
     timePlaying = false;
     playBtn.textContent = 'Play';
@@ -308,14 +323,15 @@ function drawCircuitDiagram(criticalPath) {
   let ffW = 40;
   let ffH = 45;
 
-  // Input labels
-  fill(80);
-  textSize(10);
+  // Input labels with live values
+  let inputVal = timeCursor > 0 ? 1 : 0;
+  textSize(9);
   textAlign(RIGHT, CENTER);
-  text("A", and1X - gateW / 2 - 20, and1Y - 6);
-  text("B", and1X - gateW / 2 - 20, and1Y + 6);
-  text("C", and2X - gateW / 2 - 20, and2Y - 6);
-  text("D", and2X - gateW / 2 - 20, and2Y + 6);
+  fill(inputVal ? COLOR_PATH : '#999');
+  text("A=" + inputVal, and1X - gateW / 2 - 5, and1Y - 6);
+  text("B=" + inputVal, and1X - gateW / 2 - 5, and1Y + 6);
+  text("C=" + inputVal, and2X - gateW / 2 - 5, and2Y - 6);
+  text("D=" + inputVal, and2X - gateW / 2 - 5, and2Y + 6);
 
   // Input wires
   stroke(COLOR_PATH);
@@ -414,59 +430,38 @@ function drawCircuitDiagram(criticalPath) {
   text(andDelay + "ns", and2X, and2Y + gateH / 2 + 2);
   text(orDelay + "ns", orX, orY + gateH / 2 + 2);
 
-  // Gate IO labels with current values
-  let inputVal = timeCursor > 0 ? 1 : 0;
+  // Intermediate signal labels with live values
   let x1Val = timeCursor >= andDelay ? 1 : 0;
   let x2Val = timeCursor >= andDelay ? 1 : 0;
   let yVal = timeCursor >= (andDelay + orDelay) ? 1 : 0;
   let dVal = timeCursor >= (andDelay + orDelay + routingDelay) ? 1 : 0;
-  let qVal = 0;
 
   textSize(8);
   textStyle(BOLD);
 
-  // Input values
-  textAlign(RIGHT, CENTER);
-  fill(inputVal ? COLOR_PATH : '#999');
-  text("=" + inputVal, and1X - gateW / 2 - 21, and1Y - 6);
-  text("=" + inputVal, and1X - gateW / 2 - 21, and1Y + 6);
-  text("=" + inputVal, and2X - gateW / 2 - 21, and2Y - 6);
-  text("=" + inputVal, and2X - gateW / 2 - 21, and2Y + 6);
-
-  // X1 label (AND1 output wire midpoint)
-  let x1MidX = (and1X + gateW / 2 + orX - gateW / 2) / 2;
-  let x1MidY = (and1Y + orY - 8) / 2;
-  textAlign(CENTER, BOTTOM);
+  // X1 (AND1→OR wire, placed above wire near AND1 output)
+  textAlign(LEFT, BOTTOM);
   fill(x1Val ? COLOR_PATH : '#999');
-  text("X1=" + x1Val, x1MidX, x1MidY - 3);
+  text("X1=" + x1Val, and1X + gateW / 2 + 4, and1Y - 2);
 
-  // X2 label (AND2 output wire midpoint)
-  let x2MidX = (and2X + gateW / 2 + orX - gateW / 2) / 2;
-  let x2MidY = (and2Y + orY + 8) / 2;
-  textAlign(CENTER, TOP);
+  // X2 (AND2→OR wire, placed below wire near AND2 output)
+  textAlign(LEFT, TOP);
   fill(x2Val ? COLOR_PATH : '#999');
-  text("X2=" + x2Val, x2MidX, x2MidY + 3);
+  text("X2=" + x2Val, and2X + gateW / 2 + 4, and2Y + 4);
 
-  // Y label (OR output wire midpoint)
-  let yMidX = (orX + gateW / 2 + ffX - ffW / 2) / 2;
-  let yMidY = (orY + ffY + ffH / 2 - 15) / 2;
-  textAlign(CENTER, BOTTOM);
+  // Y (OR→FF wire, placed below the routing label)
+  textAlign(CENTER, TOP);
   fill(yVal ? COLOR_PATH : '#999');
-  text("Y=" + yVal, yMidX, yMidY - 5);
+  text("Y=" + yVal, (orX + gateW / 2 + ffX - ffW / 2) / 2, orY + 4);
 
-  // D label (FF input)
-  textAlign(RIGHT, CENTER);
-  fill(dVal ? COLOR_PATH : '#999');
-  text("D=" + dVal, ffX - ffW / 2 - 3, ffY + ffH / 2 - 15 + 7);
-
-  // Q label (FF output)
+  // Q (FF output)
   stroke(COLOR_FF);
   strokeWeight(1.5);
   line(ffX + ffW / 2, ffY + 7, ffX + ffW / 2 + 15, ffY + 7);
   textAlign(LEFT, CENTER);
-  fill(qVal ? COLOR_PATH : '#999');
+  fill(dVal ? COLOR_PATH : '#999');
   noStroke();
-  text("Q=" + qVal, ffX + ffW / 2 + 17, ffY + 7);
+  text("Q=" + dVal, ffX + ffW / 2 + 17, ffY + 7);
 
   textStyle(NORMAL);
 }
