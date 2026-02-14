@@ -75,7 +75,7 @@ function setup() {
     if (timePlaying) {
       // If at end, restart from 0
       var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
-      if (timeCursor >= tMax * 1.2) timeCursor = 0;
+      if (timeCursor >= tMax) timeCursor = 0;
       playBtn.textContent = 'Pause';
       playBtn.className = 'ta-controls__btn ta-controls__btn--pause';
     } else {
@@ -104,7 +104,7 @@ function setup() {
   timeSlider.value = '0';
   timeSlider.addEventListener('input', function() {
     var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
-    timeCursor = Math.round((parseFloat(this.value) / 1000) * tMax * 1.2 * 10) / 10;
+    timeCursor = Math.round((parseFloat(this.value) / 1000) * tMax * 10) / 10;
     timePlaying = false;
     playBtn.textContent = 'Play';
     playBtn.className = 'ta-controls__btn ta-controls__btn--play';
@@ -181,10 +181,10 @@ function draw() {
   let tMin = tCQ + criticalPath + tSetup;
   let fMax = 1000 / tMin; // Convert to MHz
 
-  // Auto-advance time cursor
-  let tEnd = tMin * 1.2;
+  // Auto-advance time cursor (stops at T_min)
+  let tEnd = tMin;
   if (timePlaying) {
-    timeCursor += 0.08;
+    timeCursor += 0.06;
     if (timeCursor >= tEnd) {
       timeCursor = tEnd;
       timePlaying = false;
@@ -192,6 +192,8 @@ function draw() {
       playBtn.className = 'ta-controls__btn ta-controls__btn--play';
     }
   }
+  // Clamp cursor to valid range
+  timeCursor = constrain(timeCursor, 0, tEnd);
 
   // Sync slider and label
   if (timeSlider) {
@@ -204,7 +206,7 @@ function draw() {
   drawCircuitDiagram(criticalPath);
   drawParamControls();
   drawCalculations(path1Delay, path2Delay, criticalPath, tMin, fMax);
-  drawTimingDiagram(tMin, criticalPath);
+  renderWaveform(timeCursor, tMin, criticalPath);
 
   // Draw tooltip if hovering a region
   drawTooltip();
@@ -476,223 +478,199 @@ function drawCalculations(path1, path2, critical, tMin, fMax) {
   textStyle(NORMAL);
 }
 
-function drawTimingDiagram(tMin, criticalPath) {
+// renderWaveform(ct, tMin, criticalPath)
+// THE ONLY function that determines CLK level, Data level, shading,
+// annotations, and marker position. Everything depends on ct (currentTime).
+function renderWaveform(ct, tMin, criticalPath) {
   let tdY = 280;
-  let tdH = 140;
   let tdX = 20;
   let tdW = canvasWidth - 40;
+  let diagramY = tdY + 28;
+  let sigH = 25;
+  let gap = 35;
+  let timeScale = tdW / (tMin * 1.1);
+  let bottomY = diagramY + gap + sigH * 2 + 10;
+
+  // Timing boundaries (all in ns)
+  let tCqEnd = tCQ;
+  let tDataValid = tCQ + criticalPath;
+  let tSetupStart = tMin - tSetup;
+
+  // Pixel positions for boundaries
+  let cqEndPx = tdX + tCqEnd * timeScale;
+  let dataValidPx = tdX + tDataValid * timeScale;
+  let setupStartPx = tdX + tSetupStart * timeScale;
+  let tMinPx = tdX + tMin * timeScale;
+  let cursorPx = constrain(tdX + ct * timeScale, tdX, tdX + tdW);
 
   // Store waveform bounds for click detection
-  waveformBounds = { x: tdX, y: tdY, w: tdW, h: tdH };
-
-  // Reset hover regions each frame
+  waveformBounds = { x: tdX, y: tdY, w: tdW, h: bottomY - tdY + 20 };
   hoverRegions = [];
 
   // Title
-  fill(50);
-  noStroke();
-  textSize(12);
-  textStyle(BOLD);
-  textAlign(CENTER, TOP);
+  fill(50); noStroke();
+  textSize(12); textStyle(BOLD); textAlign(CENTER, TOP);
   text("Timing Diagram", canvasWidth / 2, tdY);
   textStyle(NORMAL);
 
   // Hint text
-  fill(140);
-  textSize(9);
-  textAlign(CENTER, TOP);
+  fill(140); textSize(9); textAlign(CENTER, TOP);
   text(showDetails
-    ? "Click waveform to hide details. Hover markers for values."
+    ? "Click waveform to toggle details. Hover markers for values."
     : "Click waveform to show details.", canvasWidth / 2, tdY + 14);
 
-  let diagramY = tdY + 28;
-  let sigH = 25;
-  let gap = 35;
-  let timeScale = tdW / (tMin * 1.3);
-
-  // Waveform background (subtle border to show clickable area)
-  fill(252);
-  stroke(showDetails ? 220 : 235);
-  strokeWeight(1);
-  rect(tdX - 2, diagramY - 4, tdW + 4, gap + sigH * 2 + 20, 4);
+  // Waveform background
+  fill(252); stroke(showDetails ? 220 : 235); strokeWeight(1);
+  rect(tdX - 2, diagramY - 4, tdW + 4, bottomY - diagramY + 8, 4);
 
   // Time axis
-  stroke(150);
-  strokeWeight(1);
-  line(tdX, diagramY + gap + sigH * 2 + 10, tdX + tdW, diagramY + gap + sigH * 2 + 10);
+  stroke(150); strokeWeight(1);
+  line(tdX, bottomY, tdX + tdW, bottomY);
 
-  // Time markers
-  fill(100);
-  noStroke();
-  textSize(8);
-  textAlign(CENTER, TOP);
-  for (let t = 0; t <= tMin * 1.2; t += 2) {
+  // Time grid markers
+  fill(100); noStroke(); textSize(8); textAlign(CENTER, TOP);
+  for (let t = 0; t <= tMin * 1.05; t += 2) {
     let x = tdX + t * timeScale;
-    if (x < tdX + tdW) {
-      stroke(220);
-      strokeWeight(0.5);
-      line(x, diagramY, x, diagramY + gap + sigH * 2 + 10);
-      fill(100);
-      noStroke();
-      text(t.toFixed(0) + "ns", x, diagramY + gap + sigH * 2 + 12);
+    if (x <= tdX + tdW) {
+      stroke(220); strokeWeight(0.5);
+      line(x, diagramY, x, bottomY);
+      fill(100); noStroke();
+      text(t.toFixed(0) + "ns", x, bottomY + 2);
     }
   }
 
-  // Cursor pixel position
-  let cursorPx = tdX + timeCursor * timeScale;
-
-  // CLK signal (clipped to cursor)
+  // ── CLK waveform (computed from ct) ──
   drawSignalLabel("CLK", tdX - 5, diagramY + sigH / 2);
-  stroke(COLOR_GATE);
-  strokeWeight(2);
-  noFill();
-  let clkPeriod = tMin;
-  beginShape();
-  for (let t = 0; t < tMin * 1.2; t += 0.1) {
-    if (t > timeCursor) break;
-    let x = tdX + t * timeScale;
-    let phase = (t % clkPeriod) / clkPeriod;
-    let level = phase < 0.5 ? 1 : 0;
-    vertex(x, diagramY + (1 - level) * sigH);
+  if (ct > 0) {
+    stroke(COLOR_GATE); strokeWeight(2); noFill();
+    beginShape();
+    for (let t = 0; t <= ct; t += 0.05) {
+      let x = tdX + t * timeScale;
+      let phase = (t % tMin) / tMin;
+      let level = phase < 0.5 ? 1 : 0;
+      vertex(x, diagramY + (1 - level) * sigH);
+    }
+    // Final point at exact ct
+    let finalPhase = (ct % tMin) / tMin;
+    let finalLevel = finalPhase < 0.5 ? 1 : 0;
+    vertex(cursorPx, diagramY + (1 - finalLevel) * sigH);
+    endShape();
   }
-  endShape();
 
-  // Data valid signal
+  // ── Data waveform (computed from ct) ──
   let dataY = diagramY + gap;
   drawSignalLabel("Data", tdX - 5, dataY + sigH / 2);
 
-  let cqEndX = tdX + tCQ * timeScale;
-  let dataValidX = cqEndX + criticalPath * timeScale;
-  let setupStartX = tdX + (tMin - tSetup) * timeScale;
+  // Data signal logic: at t=0 data is low (invalid).
+  // 0 → tCQ:        data stays low (old value, FF hasn't output yet)
+  // tCQ:             rising transition (FF outputs new data)
+  // tCQ → tDataValid: data is changing/propagating (shown as high/transitioning)
+  // tDataValid → tMin: data is stable and valid (high)
+  if (ct > 0) {
+    stroke(COLOR_TIMING); strokeWeight(2); noFill();
 
-  if (showDetails) {
-    // t_cq region shading (only if cursor reached it)
-    if (timeCursor > 0) {
-      let cqW = min(tCQ, timeCursor) * timeScale;
-      fill(255, 235, 238, 150);
-      noStroke();
-      rect(tdX, dataY, cqW, sigH);
+    // Phase 1: data low from t=0 to t=tCQ (or ct if ct < tCQ)
+    let phase1End = min(tCqEnd, ct);
+    let phase1EndPx = tdX + phase1End * timeScale;
+    line(tdX, dataY + sigH, phase1EndPx, dataY + sigH);
+
+    // Phase 2: rising edge at t=tCQ
+    if (ct > tCqEnd) {
+      let riseEndPx = tdX + min(tCqEnd + 0.3, ct) * timeScale;
+      line(cqEndPx, dataY + sigH, riseEndPx, dataY);
     }
 
-    // Data valid shading
-    let cpEnd = tCQ + criticalPath;
-    if (timeCursor > cpEnd) {
-      let validEndT = min(tMin - tSetup, timeCursor);
-      let validStartPx = dataValidX;
-      let validEndPx = tdX + validEndT * timeScale;
-      if (validEndPx > validStartPx) {
-        fill(200, 230, 201, 150);
-        noStroke();
-        rect(validStartPx, dataY, validEndPx - validStartPx, sigH);
+    // Phase 3: data high from tCQ+0.3 to ct (or tMin)
+    if (ct > tCqEnd + 0.3) {
+      let highStartPx = tdX + (tCqEnd + 0.3) * timeScale;
+      let highEndPx = tdX + min(ct, tMin) * timeScale;
+      line(highStartPx, dataY, highEndPx, dataY);
+    }
+  }
+
+  // ── Detail shading (computed from ct) ──
+  if (showDetails && ct > 0) {
+    // t_cq region (pink) — grows from 0 to tCQ
+    let cqShadeEnd = min(tCqEnd, ct);
+    if (cqShadeEnd > 0) {
+      fill(255, 235, 238, 150); noStroke();
+      rect(tdX, dataY, cqShadeEnd * timeScale, sigH);
+    }
+
+    // Data valid region (green) — from tDataValid to min(tSetupStart, ct)
+    if (ct > tDataValid) {
+      let validEnd = min(tSetupStart, ct);
+      if (validEnd > tDataValid) {
+        fill(200, 230, 201, 150); noStroke();
+        rect(dataValidPx, dataY, (validEnd - tDataValid) * timeScale, sigH);
       }
     }
 
-    // Setup time region shading
-    if (timeCursor > tMin - tSetup) {
-      let suStartPx = setupStartX;
-      let suEndPx = min(cursorPx, setupStartX + tSetup * timeScale);
-      fill(255, 243, 224, 150);
-      noStroke();
-      rect(suStartPx, dataY, suEndPx - suStartPx, sigH);
+    // Setup region (orange) — from tSetupStart to min(tMin, ct)
+    if (ct > tSetupStart) {
+      let suEnd = min(tMin, ct);
+      fill(255, 243, 224, 150); noStroke();
+      rect(setupStartPx, dataY, (suEnd - tSetupStart) * timeScale, sigH);
     }
   }
 
-  // Data transition (clipped to cursor)
-  stroke(COLOR_TIMING);
-  strokeWeight(2);
-  noFill();
-  if (timeCursor > 0) {
-    let lineEndX = min(cqEndX, cursorPx);
-    line(tdX, dataY + sigH, lineEndX, dataY + sigH);
-  }
-  if (timeCursor > tCQ) {
-    let transEndX = min(cqEndX + 3, cursorPx);
-    line(cqEndX, dataY + sigH, transEndX, dataY);
-  }
-  if (timeCursor > tCQ + 0.1) {
-    let dataEndX = min(dataValidX, cursorPx);
-    line(cqEndX + 3, dataY, dataEndX, dataY);
-  }
-
-  // Time cursor vertical line
-  if (timeCursor > 0 && cursorPx <= tdX + tdW) {
-    stroke(COLOR_CRITICAL);
-    strokeWeight(1.5);
+  // ── Cursor line (always at ct) ──
+  if (ct > 0) {
+    stroke(COLOR_CRITICAL); strokeWeight(1.5);
     drawingContext.setLineDash([4, 3]);
-    line(cursorPx, diagramY - 4, cursorPx, diagramY + gap + sigH * 2 + 10);
+    line(cursorPx, diagramY - 4, cursorPx, bottomY);
     drawingContext.setLineDash([]);
 
-    // Cursor time label
-    fill(COLOR_CRITICAL);
-    noStroke();
-    textSize(9);
-    textStyle(BOLD);
-    textAlign(CENTER, BOTTOM);
-    text(timeCursor.toFixed(1) + "ns", cursorPx, diagramY - 5);
+    fill(COLOR_CRITICAL); noStroke();
+    textSize(9); textStyle(BOLD); textAlign(CENTER, BOTTOM);
+    text(ct.toFixed(1) + " ns", cursorPx, diagramY - 5);
     textStyle(NORMAL);
   }
 
+  // ── Annotations (appear when ct passes each boundary) ──
   if (showDetails) {
-    // Annotations with braces (only show when cursor has passed them)
-    textSize(8);
-    textAlign(CENTER, BOTTOM);
-
-    if (timeCursor >= tCQ) {
-      fill(COLOR_CRITICAL);
-      noStroke();
-      drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
-    }
-    if (timeCursor >= tCQ + criticalPath) {
-      fill(COLOR_CRITICAL);
-      noStroke();
-      drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
-    }
-    if (timeCursor >= tMin) {
-      fill(COLOR_TIMING);
-      noStroke();
-      drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
-    }
-
-    // Next clock edge (show when cursor reaches it)
-    let nextClkX = tdX + tMin * timeScale;
-    if (timeCursor >= tMin) {
-      stroke(COLOR_FF);
-      strokeWeight(1.5);
-      drawingContext.setLineDash([3, 3]);
-      line(nextClkX, diagramY, nextClkX, dataY + sigH + 20);
-      drawingContext.setLineDash([]);
-
-      fill(COLOR_FF);
-      noStroke();
-      textSize(8);
-      textAlign(CENTER, TOP);
-      text("next edge", nextClkX, dataY + sigH + 22);
-    }
-
-    // Register hover regions for tooltips (only for visible annotations)
     let braceH = 18;
-    if (timeCursor >= tCQ) {
+
+    if (ct >= tCqEnd) {
+      fill(COLOR_CRITICAL); noStroke();
+      drawBrace(tdX, cqEndPx, dataY + sigH + 12, "t_cq = " + tCQ + "ns");
       hoverRegions.push({
-        x: tdX, y: dataY + sigH + 4, w: cqEndX - tdX, h: braceH,
+        x: tdX, y: dataY + sigH + 4, w: cqEndPx - tdX, h: braceH,
         label: "t_cq", value: tCQ.toFixed(1) + " ns",
         desc: "Clock-to-Q: delay from clock edge to FF output changing"
       });
     }
-    if (timeCursor >= tCQ + criticalPath) {
+
+    if (ct >= tDataValid) {
+      fill(COLOR_CRITICAL); noStroke();
+      drawBrace(cqEndPx, dataValidPx, dataY + sigH + 12, "critical path = " + criticalPath.toFixed(1) + "ns");
       hoverRegions.push({
-        x: cqEndX, y: dataY + sigH + 4, w: dataValidX - cqEndX, h: braceH,
+        x: cqEndPx, y: dataY + sigH + 4, w: dataValidPx - cqEndPx, h: braceH,
         label: "Critical Path", value: criticalPath.toFixed(1) + " ns",
         desc: "Longest combinational delay through gates + routing"
       });
     }
-    if (timeCursor >= tMin) {
+
+    if (ct >= tMin) {
+      fill(COLOR_TIMING); noStroke();
+      drawBrace(setupStartPx, tMinPx, dataY + sigH + 12, "t_setup = " + tSetup + "ns");
       hoverRegions.push({
-        x: setupStartX, y: dataY + sigH + 4, w: tSetup * timeScale, h: braceH,
+        x: setupStartPx, y: dataY + sigH + 4, w: tMinPx - setupStartPx, h: braceH,
         label: "t_setup", value: tSetup.toFixed(1) + " ns",
         desc: "Setup time: data must be stable before next clock edge"
       });
+
+      // Next clock edge marker
+      stroke(COLOR_FF); strokeWeight(1.5);
+      drawingContext.setLineDash([3, 3]);
+      line(tMinPx, diagramY, tMinPx, dataY + sigH + 20);
+      drawingContext.setLineDash([]);
+
+      fill(COLOR_FF); noStroke();
+      textSize(8); textAlign(CENTER, TOP);
+      text("next edge", tMinPx, dataY + sigH + 22);
       hoverRegions.push({
-        x: nextClkX - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
+        x: tMinPx - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
         label: "Next Edge", value: tMin.toFixed(1) + " ns",
         desc: "Next rising clock edge — defines minimum clock period"
       });
