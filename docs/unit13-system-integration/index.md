@@ -177,26 +177,9 @@ Hierarchy is the primary tool for managing complexity. A hierarchical design con
 
 ### Example: Hierarchical ALU Design
 
-```
-System: 8-bit Calculator
-├── Datapath
-│   ├── 8-bit ALU
-│   │   ├── 8-bit Adder
-│   │   │   ├── Full Adder (×8, ripple carry)
-│   │   │   │   └── Half Adder (×2)
-│   │   ├── 8-bit Subtractor (uses adder + complement)
-│   │   ├── 8-bit AND unit
-│   │   ├── 8-bit OR unit
-│   │   └── Result MUX (4:1, 8-bit)
-│   ├── Register File (4 registers × 8 bits)
-│   └── Status Register (Zero, Carry, Negative, Overflow)
-├── Control Unit (FSM)
-│   ├── Instruction Decoder
-│   └── Sequence Controller
-└── I/O Interface
-    ├── Input Register
-    └── Output Register with Display Driver
-```
+<iframe src="../sims/hierarchical-alu-design/main.html" height="700px" width="100%" scrolling="no" style="border:1px solid #ddd; border-radius:8px;"></iframe>
+
+*Press Play or spacebar to animate the hierarchy. Hover over modules for descriptions.*
 
 Each leaf module is simple enough to design with the techniques from prior units. Integration assembles them structurally.
 
