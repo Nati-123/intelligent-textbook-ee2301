@@ -242,8 +242,8 @@
   var PREFIX = "#alu-hierarchy";
   var css = '\
 /* layout: tree + panel side by side */\n\
-' + PREFIX + ' { font-family: "Segoe UI", system-ui, Arial, sans-serif; display: flex; gap: 20px; min-height: 360px; }\n\
-' + PREFIX + ' .alu-h__tree { flex: 1 1 55%; min-width: 0; overflow-x: auto; }\n\
+' + PREFIX + ' { font-family: "Segoe UI", system-ui, Arial, sans-serif; display: flex; gap: 20px; height: calc(100vh - 60px); min-height: 360px; }\n\
+' + PREFIX + ' .alu-h__tree { flex: 1 1 55%; min-width: 0; overflow-x: auto; overflow-y: auto; padding-bottom: 80px; }\n\
 ' + PREFIX + ' .alu-h__panel { flex: 0 0 280px; max-width: 320px; background: #f4f6f8; border: 1px solid #e0e4e8; border-radius: 10px; padding: 18px 16px; align-self: flex-start; position: sticky; top: 12px; transition: opacity 150ms; }\n\
 ' + PREFIX + ' .alu-h__panel--empty { opacity: .5; }\n\
 ' + PREFIX + ' .alu-h__panel-title { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: #2c3e50; }\n\
