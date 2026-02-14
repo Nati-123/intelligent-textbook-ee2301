@@ -35,7 +35,8 @@ let waveformBounds = null;      // {x,y,w,h} for click detection
 // Time cursor state
 let timeCursor = 0;             // current time position in ns (0 = start)
 let timePlaying = false;        // auto-advance mode
-let timeSlider, timeLabel, playBtn;
+let viewRange = 0;              // 0 = auto (T_min), or specific ns value
+let timeSlider, timeInput, playBtn, viewSelect;
 
 // Colors
 const COLOR_CRITICAL = '#E91E63';
@@ -57,6 +58,12 @@ function setParamValue(i, v) {
   else routingDelay = v;
 }
 
+function getMaxTime() {
+  if (viewRange > 0) return viewRange;
+  var t = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
+  return t * 1.1;
+}
+
 function setup() {
   updateCanvasSize();
   var mainElement = document.querySelector('main');
@@ -73,9 +80,9 @@ function setup() {
   playBtn.addEventListener('click', function() {
     timePlaying = !timePlaying;
     if (timePlaying) {
-      // If at end, restart from 0
-      var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
-      if (timeCursor >= tMax) timeCursor = 0;
+      var tMinL = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
+      var maxT = getMaxTime();
+      if (timeCursor >= Math.min(tMinL, maxT)) timeCursor = 0;
       playBtn.textContent = 'Pause';
       playBtn.className = 'ta-controls__btn ta-controls__btn--pause';
     } else {
@@ -85,7 +92,7 @@ function setup() {
   });
   bar.appendChild(playBtn);
 
-  // Time slider group
+  // Time input group
   var timeGrp = document.createElement('div');
   timeGrp.className = 'ta-controls__group';
   bar.appendChild(timeGrp);
@@ -95,6 +102,25 @@ function setup() {
   timeLbl.textContent = 'Time (ns)';
   timeGrp.appendChild(timeLbl);
 
+  timeInput = document.createElement('input');
+  timeInput.type = 'number';
+  timeInput.min = '0';
+  timeInput.step = '0.1';
+  timeInput.value = '0.0';
+  timeInput.style.cssText = 'width:55px;height:28px;text-align:center;font-size:12px;border:2px solid #5C6BC0;border-radius:4px;';
+  timeInput.addEventListener('change', function() {
+    var maxT = getMaxTime();
+    timeCursor = constrain(parseFloat(this.value) || 0, 0, maxT);
+    this.value = timeCursor.toFixed(1);
+    timePlaying = false;
+    playBtn.textContent = 'Play';
+    playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+  });
+  timeInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') this.blur();
+  });
+  timeGrp.appendChild(timeInput);
+
   timeSlider = document.createElement('input');
   timeSlider.type = 'range';
   timeSlider.className = 'ta-controls__slider';
@@ -103,20 +129,46 @@ function setup() {
   timeSlider.step = '1';
   timeSlider.value = '0';
   timeSlider.addEventListener('input', function() {
-    var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
-    timeCursor = Math.round((parseFloat(this.value) / 1000) * tMax * 10) / 10;
+    var maxT = getMaxTime();
+    timeCursor = Math.round((parseFloat(this.value) / 1000) * maxT * 10) / 10;
     timePlaying = false;
     playBtn.textContent = 'Play';
     playBtn.className = 'ta-controls__btn ta-controls__btn--play';
   });
   timeGrp.appendChild(timeSlider);
 
-  // Time value display
-  timeLabel = document.createElement('span');
-  timeLabel.className = 'ta-controls__label';
-  timeLabel.style.minWidth = '52px';
-  timeLabel.textContent = '0.0 ns';
-  timeGrp.appendChild(timeLabel);
+  // View range dropdown
+  var rangeGrp = document.createElement('div');
+  rangeGrp.className = 'ta-controls__group';
+  bar.appendChild(rangeGrp);
+
+  var rangeLbl = document.createElement('span');
+  rangeLbl.className = 'ta-controls__label';
+  rangeLbl.textContent = 'Range';
+  rangeGrp.appendChild(rangeLbl);
+
+  viewSelect = document.createElement('select');
+  viewSelect.style.cssText = 'height:30px;font-size:12px;border-radius:4px;border:2px solid #5C6BC0;padding:0 4px;';
+  var rangeOpts = [
+    { value: '0', text: 'Auto (T_min)' },
+    { value: '5', text: '5 ns' },
+    { value: '10', text: '10 ns' },
+    { value: '20', text: '20 ns' },
+    { value: '50', text: '50 ns' },
+    { value: '100', text: '100 ns' }
+  ];
+  for (var ri = 0; ri < rangeOpts.length; ri++) {
+    var o = document.createElement('option');
+    o.value = rangeOpts[ri].value;
+    o.textContent = rangeOpts[ri].text;
+    viewSelect.appendChild(o);
+  }
+  viewSelect.addEventListener('change', function() {
+    viewRange = parseFloat(this.value);
+    var maxT = getMaxTime();
+    timeCursor = constrain(timeCursor, 0, maxT);
+  });
+  rangeGrp.appendChild(viewSelect);
 
   // Reset Time button
   var rstTimeBtn = document.createElement('button');
@@ -181,8 +233,11 @@ function draw() {
   let tMin = tCQ + criticalPath + tSetup;
   let fMax = 1000 / tMin; // Convert to MHz
 
-  // Auto-advance time cursor (stops at T_min)
-  let tEnd = tMin;
+  // Compute visible time range
+  let maxTime = getMaxTime();
+
+  // Auto-advance time cursor
+  let tEnd = Math.min(tMin, maxTime);
   if (timePlaying) {
     timeCursor += 0.06;
     if (timeCursor >= tEnd) {
@@ -192,21 +247,21 @@ function draw() {
       playBtn.className = 'ta-controls__btn ta-controls__btn--play';
     }
   }
-  // Clamp cursor to valid range
-  timeCursor = constrain(timeCursor, 0, tEnd);
+  timeCursor = constrain(timeCursor, 0, maxTime);
 
-  // Sync slider and label
+  // Sync slider and numeric input
   if (timeSlider) {
-    timeSlider.value = String((timeCursor / tEnd) * 1000);
+    timeSlider.value = String((timeCursor / maxTime) * 1000);
   }
-  if (timeLabel) {
-    timeLabel.textContent = timeCursor.toFixed(1) + ' ns';
+  if (timeInput && document.activeElement !== timeInput) {
+    timeInput.value = timeCursor.toFixed(1);
+    timeInput.max = maxTime.toFixed(1);
   }
 
   drawCircuitDiagram(criticalPath);
   drawParamControls();
   drawCalculations(path1Delay, path2Delay, criticalPath, tMin, fMax);
-  renderWaveform(timeCursor, tMin, criticalPath);
+  renderWaveform(timeCursor, tMin, criticalPath, maxTime);
 
   // Draw tooltip if hovering a region
   drawTooltip();
@@ -358,6 +413,62 @@ function drawCircuitDiagram(criticalPath) {
   text(andDelay + "ns", and1X, and1Y + gateH / 2 + 2);
   text(andDelay + "ns", and2X, and2Y + gateH / 2 + 2);
   text(orDelay + "ns", orX, orY + gateH / 2 + 2);
+
+  // Gate IO labels with current values
+  let inputVal = timeCursor > 0 ? 1 : 0;
+  let x1Val = timeCursor >= andDelay ? 1 : 0;
+  let x2Val = timeCursor >= andDelay ? 1 : 0;
+  let yVal = timeCursor >= (andDelay + orDelay) ? 1 : 0;
+  let dVal = timeCursor >= (andDelay + orDelay + routingDelay) ? 1 : 0;
+  let qVal = 0;
+
+  textSize(8);
+  textStyle(BOLD);
+
+  // Input values
+  textAlign(RIGHT, CENTER);
+  fill(inputVal ? COLOR_PATH : '#999');
+  text("=" + inputVal, and1X - gateW / 2 - 21, and1Y - 6);
+  text("=" + inputVal, and1X - gateW / 2 - 21, and1Y + 6);
+  text("=" + inputVal, and2X - gateW / 2 - 21, and2Y - 6);
+  text("=" + inputVal, and2X - gateW / 2 - 21, and2Y + 6);
+
+  // X1 label (AND1 output wire midpoint)
+  let x1MidX = (and1X + gateW / 2 + orX - gateW / 2) / 2;
+  let x1MidY = (and1Y + orY - 8) / 2;
+  textAlign(CENTER, BOTTOM);
+  fill(x1Val ? COLOR_PATH : '#999');
+  text("X1=" + x1Val, x1MidX, x1MidY - 3);
+
+  // X2 label (AND2 output wire midpoint)
+  let x2MidX = (and2X + gateW / 2 + orX - gateW / 2) / 2;
+  let x2MidY = (and2Y + orY + 8) / 2;
+  textAlign(CENTER, TOP);
+  fill(x2Val ? COLOR_PATH : '#999');
+  text("X2=" + x2Val, x2MidX, x2MidY + 3);
+
+  // Y label (OR output wire midpoint)
+  let yMidX = (orX + gateW / 2 + ffX - ffW / 2) / 2;
+  let yMidY = (orY + ffY + ffH / 2 - 15) / 2;
+  textAlign(CENTER, BOTTOM);
+  fill(yVal ? COLOR_PATH : '#999');
+  text("Y=" + yVal, yMidX, yMidY - 5);
+
+  // D label (FF input)
+  textAlign(RIGHT, CENTER);
+  fill(dVal ? COLOR_PATH : '#999');
+  text("D=" + dVal, ffX - ffW / 2 - 3, ffY + ffH / 2 - 15 + 7);
+
+  // Q label (FF output)
+  stroke(COLOR_FF);
+  strokeWeight(1.5);
+  line(ffX + ffW / 2, ffY + 7, ffX + ffW / 2 + 15, ffY + 7);
+  textAlign(LEFT, CENTER);
+  fill(qVal ? COLOR_PATH : '#999');
+  noStroke();
+  text("Q=" + qVal, ffX + ffW / 2 + 17, ffY + 7);
+
+  textStyle(NORMAL);
 }
 
 function drawParamControls() {
@@ -481,14 +592,14 @@ function drawCalculations(path1, path2, critical, tMin, fMax) {
 // renderWaveform(ct, tMin, criticalPath)
 // Draws 4 signals (CLK, AND_out, OR_out, FF_in) progressively up to ct.
 // All transitions and shading are computed purely from currentTime.
-function renderWaveform(ct, tMin, criticalPath) {
+function renderWaveform(ct, tMin, criticalPath, maxTime) {
   let tdY = 278;
   let tdX = 58;
   let tdW = canvasWidth - 72;
   let sigStartY = tdY + 30;
   let sigH = 16;
   let sigGap = 10;
-  let timeScale = tdW / (tMin * 1.1);
+  let timeScale = tdW / maxTime;
 
   // Propagation boundaries (ns)
   let tAnd = andDelay;
@@ -567,8 +678,9 @@ function renderWaveform(ct, tMin, criticalPath) {
   stroke(150); strokeWeight(1);
   line(tdX, bottomY, tdX + tdW, bottomY);
 
+  let gridStep = maxTime <= 12 ? 1 : maxTime <= 25 ? 2 : maxTime <= 60 ? 5 : 10;
   fill(100); noStroke(); textSize(8); textAlign(CENTER, TOP);
-  for (let t = 0; t <= tMin * 1.05; t += 2) {
+  for (let t = 0; t <= maxTime; t += gridStep) {
     let x = tdX + t * timeScale;
     if (x <= tdX + tdW) {
       stroke(230); strokeWeight(0.5);
@@ -587,7 +699,7 @@ function renderWaveform(ct, tMin, criticalPath) {
 
     if (ct <= 0) continue;
 
-    let drawEnd = min(ct, tMin * 1.05);
+    let drawEnd = min(ct, maxTime);
 
     if (sig.type === "clock") {
       // CLK: starts high at t=0, square wave with period = tMin
@@ -595,19 +707,30 @@ function renderWaveform(ct, tMin, criticalPath) {
       let half = tMin / 2;
       let hY = y;
       let lY = y + sigH;
+      let period = 0;
 
-      if (drawEnd <= half) {
-        line(tdX, hY, tdX + drawEnd * timeScale, hY);
-      } else if (drawEnd <= tMin) {
-        line(tdX, hY, tdX + half * timeScale, hY);
-        line(tdX + half * timeScale, hY, tdX + half * timeScale, lY);
-        line(tdX + half * timeScale, lY, tdX + drawEnd * timeScale, lY);
-      } else {
-        line(tdX, hY, tdX + half * timeScale, hY);
-        line(tdX + half * timeScale, hY, tdX + half * timeScale, lY);
-        line(tdX + half * timeScale, lY, tdX + tMin * timeScale, lY);
-        line(tdX + tMin * timeScale, lY, tdX + tMin * timeScale, hY);
-        line(tdX + tMin * timeScale, hY, tdX + drawEnd * timeScale, hY);
+      while (period * tMin < drawEnd) {
+        let pStart = period * tMin;
+        let highEnd = pStart + half;
+        let lowEnd = pStart + tMin;
+
+        // High phase
+        if (pStart < drawEnd) {
+          let he = min(highEnd, drawEnd);
+          line(tdX + pStart * timeScale, hY, tdX + he * timeScale, hY);
+          if (he < drawEnd && he === highEnd) {
+            line(tdX + he * timeScale, hY, tdX + he * timeScale, lY);
+          }
+        }
+        // Low phase
+        if (highEnd < drawEnd) {
+          let le = min(lowEnd, drawEnd);
+          line(tdX + highEnd * timeScale, lY, tdX + le * timeScale, lY);
+          if (le < drawEnd && le === lowEnd) {
+            line(tdX + le * timeScale, lY, tdX + le * timeScale, hY);
+          }
+        }
+        period++;
       }
     } else {
       // Propagation signal: low until tChange, rising edge, then high
@@ -639,7 +762,7 @@ function renderWaveform(ct, tMin, criticalPath) {
     ];
 
     for (let b of boundaries) {
-      if (ct >= b.t) {
+      if (ct >= b.t && b.t <= maxTime) {
         let bx = tdX + b.t * timeScale;
         stroke(b.color); strokeWeight(1);
         drawingContext.setLineDash([3, 3]);
