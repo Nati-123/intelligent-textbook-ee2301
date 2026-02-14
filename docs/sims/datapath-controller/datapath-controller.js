@@ -168,9 +168,13 @@ function setup() {
     navLink.target = '_blank';
     navLink.textContent = 'Fullscreen';
   } else {
-    // Fullscreen mode — show back link
-    navLink.href = '.';
-    navLink.textContent = 'Back to Docs';
+    // Fullscreen mode — close tab to return to original page
+    navLink.href = '#';
+    navLink.textContent = 'Close';
+    navLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.close();
+    });
   }
   bar.appendChild(navLink);
 }
