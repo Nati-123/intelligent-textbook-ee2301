@@ -8,6 +8,13 @@
     <style>
         body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
         main { position: relative; overflow: hidden; }
+        .dp-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 10px 12px; background: #e6e6eb; }
+        .dp-controls__group { display: flex; align-items: center; gap: 4px; }
+        .dp-controls__label { font-weight: bold; font-size: 12px; color: #444; }
+        .dp-controls__btn { height: 34px; border-radius: 5px; font-weight: bold; color: #fff; cursor: pointer; padding: 0 14px; border: 2px solid; }
+        .dp-controls__btn--clk { background: #5C6BC0; border-color: #303F9F; font-size: 13px; }
+        .dp-controls__btn--reset { background: #F44336; border-color: #C62828; font-size: 11px; min-width: 50px; }
+        .dp-controls__state { display: inline-block; padding: 5px 12px; border-radius: 5px; border: 2px solid #303F9F; background: #5C6BC0; color: #fff; font-weight: bold; font-size: 11px; text-align: center; min-width: 56px; }
     </style>
     <script src="datapath-controller.js"></script>
 </head>

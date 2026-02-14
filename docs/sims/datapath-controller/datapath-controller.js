@@ -4,7 +4,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 500;
-let controlHeight = 55;
+let controlHeight = 0;
 let canvasHeight = drawHeight + controlHeight;
 
 // FSM states
@@ -37,10 +37,7 @@ let controlSignals = {
 };
 
 // DOM elements
-let inputAField, inputBField, opSelect;
-
-// Button bounds
-let _clockBtn, _resetBtn;
+let inputAField, inputBField, opSelect, stateDisplay;
 
 // Transition glow tracking
 let lastTransition = -1;
@@ -63,8 +60,25 @@ function setup() {
   canvas.parent(mainElement);
   describe('Datapath-controller interaction showing FSM states and data flow through registers, MUX, and ALU', LABEL);
 
-  // Create Input A number field
+  // --- DOM flex control bar ---
+  var bar = document.createElement('div');
+  bar.className = 'dp-controls';
+  mainElement.appendChild(bar);
+
+  // CLK button
+  var clkBtn = document.createElement('button');
+  clkBtn.className = 'dp-controls__btn dp-controls__btn--clk';
+  clkBtn.textContent = 'CLK';
+  clkBtn.addEventListener('click', function() { advanceClock(); });
+  bar.appendChild(clkBtn);
+
+  // A group
+  var aGrp = document.createElement('div');
+  aGrp.className = 'dp-controls__group';
+  aGrp.innerHTML = '<span class="dp-controls__label">A</span>';
+  bar.appendChild(aGrp);
   inputAField = createInput(String(inputA), 'number');
+  inputAField.parent(aGrp);
   inputAField.style('width', '50px');
   inputAField.style('height', '28px');
   inputAField.style('font-size', '14px');
@@ -74,8 +88,6 @@ function setup() {
   inputAField.style('border-radius', '4px');
   inputAField.style('background', '#FFF3E0');
   inputAField.style('color', '#BF360C');
-  inputAField.style('position', 'fixed');
-  inputAField.style('z-index', '10');
   inputAField.attribute('min', '-999');
   inputAField.attribute('max', '999');
   inputAField.input(function() {
@@ -83,8 +95,13 @@ function setup() {
     if (!isNaN(v)) inputA = v;
   });
 
-  // Create Input B number field
+  // B group
+  var bGrp = document.createElement('div');
+  bGrp.className = 'dp-controls__group';
+  bGrp.innerHTML = '<span class="dp-controls__label">B</span>';
+  bar.appendChild(bGrp);
   inputBField = createInput(String(inputB), 'number');
+  inputBField.parent(bGrp);
   inputBField.style('width', '50px');
   inputBField.style('height', '28px');
   inputBField.style('font-size', '14px');
@@ -94,8 +111,6 @@ function setup() {
   inputBField.style('border-radius', '4px');
   inputBField.style('background', '#FFF3E0');
   inputBField.style('color', '#BF360C');
-  inputBField.style('position', 'fixed');
-  inputBField.style('z-index', '10');
   inputBField.attribute('min', '-999');
   inputBField.attribute('max', '999');
   inputBField.input(function() {
@@ -103,8 +118,13 @@ function setup() {
     if (!isNaN(v)) inputB = v;
   });
 
-  // Create ALU operation dropdown
+  // Op group
+  var opGrp = document.createElement('div');
+  opGrp.className = 'dp-controls__group';
+  opGrp.innerHTML = '<span class="dp-controls__label">Op</span>';
+  bar.appendChild(opGrp);
   opSelect = createSelect();
+  opSelect.parent(opGrp);
   opSelect.option('ADD');
   opSelect.option('SUB');
   opSelect.selected('ADD');
@@ -118,11 +138,22 @@ function setup() {
   opSelect.style('background', '#E8F5E9');
   opSelect.style('color', '#1B5E20');
   opSelect.style('cursor', 'pointer');
-  opSelect.style('position', 'fixed');
-  opSelect.style('z-index', '10');
   opSelect.changed(function() {
     selectedOp = this.value();
   });
+
+  // Reset button
+  var rstBtn = document.createElement('button');
+  rstBtn.className = 'dp-controls__btn dp-controls__btn--reset';
+  rstBtn.textContent = 'Reset';
+  rstBtn.addEventListener('click', function() { resetSystem(); });
+  bar.appendChild(rstBtn);
+
+  // State display
+  stateDisplay = document.createElement('span');
+  stateDisplay.className = 'dp-controls__state';
+  stateDisplay.textContent = stateNames[currentState];
+  bar.appendChild(stateDisplay);
 }
 
 function draw() {
@@ -153,39 +184,10 @@ function draw() {
   drawDatapath(dpAreaX, dpAreaWidth);
   drawControlSignals(fsmAreaWidth, dpAreaX);
   drawControls();
-
-  // Position DOM elements over the control area
-  positionDOMElements();
-
-  // Hand cursor on hover
-  let hovering = false;
-  if (_clockBtn && isInside(mouseX, mouseY, _clockBtn)) hovering = true;
-  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) hovering = true;
-  cursor(hovering ? HAND : ARROW);
 }
 
 function positionDOMElements() {
-  let cnv = document.querySelector('canvas');
-  if (!cnv) return;
-  let rect = cnv.getBoundingClientRect();
-
-  let y = rect.top + drawHeight + 12;
-  let clkW = 58;
-  let itemWidths = clkW + 70 + 70 + 90 + 50 + 70;
-  let gaps = 6;
-  let sp = Math.max(6, Math.min(16, (canvasWidth - itemWidths - 16) / gaps));
-
-  // Input A field: after CLK button + gap + "A" label
-  let aX = rect.left + 8 + clkW + sp + 16;
-  inputAField.position(aX, y + 1);
-
-  // Input B field: after A group + gap + "B" label
-  let bX = rect.left + 8 + clkW + sp + 70 + sp + 16;
-  inputBField.position(bX, y + 1);
-
-  // ALU op dropdown: after B group + gap + "Op" label
-  let opX = rect.left + 8 + clkW + sp + 70 + sp + 70 + sp + 22;
-  opSelect.position(opX, y);
+  // Flex container handles layout; no manual positioning needed.
 }
 
 function drawFSM(areaWidth) {
@@ -539,93 +541,12 @@ function drawControlSignals(fsmWidth, dpX) {
 }
 
 function drawControls() {
-  // Control area background
-  fill(230);
-  noStroke();
-  rect(0, drawHeight, canvasWidth, controlHeight);
-
-  let btnH = 34;
-  let y = drawHeight + 10;
-
-  // Measure fixed-width items: CLK(58) + A-label+field(70) + B-label+field(70) + Op-label+dropdown(90) + Reset(50) + State(70)
-  let clkW = 58, rstW = 50, stateW = 70;
-  let itemWidths = clkW + 70 + 70 + 90 + rstW + stateW; // 408
-  let gaps = 6; // number of gaps between 7 items
-  let sp = max(6, (canvasWidth - itemWidths - 16) / gaps);
-  sp = min(sp, 16);
-
-  let x = 8;
-  textAlign(CENTER, CENTER);
-
-  // Clock button
-  _clockBtn = { x: x, y: y, w: clkW, h: btnH };
-  fill(COLOR_FSM);
-  stroke('#303F9F');
-  strokeWeight(2);
-  rect(x, y, clkW, btnH, 5);
-  fill(255);
-  noStroke();
-  textStyle(BOLD);
-  textSize(13);
-  text('CLK', x + clkW / 2, y + btnH / 2);
-  textStyle(NORMAL);
-
-  // Label "A" before input field
-  x += clkW + sp;
-  fill(80);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text('A', x, y + btnH / 2);
-  textStyle(NORMAL);
-
-  // Label "B" before input field
-  x += 70 + sp;
-  fill(80);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text('B', x, y + btnH / 2);
-  textStyle(NORMAL);
-
-  // Label "Op" before dropdown
-  x += 70 + sp;
-  fill(80);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(11);
-  textStyle(BOLD);
-  text('Op', x, y + btnH / 2);
-  textStyle(NORMAL);
-
-  // Reset button
-  x += 90 + sp;
-  _resetBtn = { x: x, y: y, w: rstW, h: btnH };
-  fill('#F44336');
-  stroke('#C62828');
-  strokeWeight(2);
-  rect(x, y, rstW, btnH, 5);
-  fill(255);
-  noStroke();
-  textSize(11);
-  textStyle(BOLD);
-  text('Reset', x + rstW / 2, y + btnH / 2);
-  textStyle(NORMAL);
-
-  // State display
-  x += rstW + sp;
-  fill(currentState === DONE ? COLOR_ACTIVE : COLOR_FSM);
-  stroke(currentState === DONE ? '#388E3C' : '#303F9F');
-  strokeWeight(2);
-  rect(x, y + 2, stateW, btnH - 4, 5);
-  fill(255);
-  noStroke();
-  textSize(11);
-  textStyle(BOLD);
-  text(stateNames[currentState], x + stateW / 2, y + btnH / 2);
-  textStyle(NORMAL);
+  // Update DOM state badge
+  if (stateDisplay) {
+    stateDisplay.textContent = stateNames[currentState];
+    stateDisplay.style.background = currentState === DONE ? COLOR_ACTIVE : COLOR_FSM;
+    stateDisplay.style.borderColor = currentState === DONE ? '#388E3C' : '#303F9F';
+  }
 }
 
 function advanceClock() {
@@ -691,22 +612,6 @@ function resetSystem() {
   controlSignals.load_result = false;
   lastTransition = -1;
   resultLoaded = false;
-}
-
-function mousePressed() {
-  if (_clockBtn && isInside(mouseX, mouseY, _clockBtn)) {
-    advanceClock();
-    return;
-  }
-
-  if (_resetBtn && isInside(mouseX, mouseY, _resetBtn)) {
-    resetSystem();
-    return;
-  }
-}
-
-function isInside(mx, my, bounds) {
-  return mx > bounds.x && mx < bounds.x + bounds.w && my > bounds.y && my < bounds.y + bounds.h;
 }
 
 function windowResized() {
