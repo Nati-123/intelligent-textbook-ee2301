@@ -45,6 +45,7 @@ let selectedStep = -1;       // Currently selected step index (-1 = none)
 let animating = false;       // Whether animation is running
 let animStep = 0;            // Current animation step
 let animProgress = 0;        // Animation progress within a step (0-1)
+let animDirection = 1;       // 1 = forward (down), -1 = backward (up feedback)
 let animDotY = 0;            // Y position of animated dot
 
 // Colors
@@ -78,6 +79,7 @@ function setup() {
       animating = true;
       animStep = 0;
       animProgress = 0;
+      animDirection = 1;
       selectedStep = 0;
       animBtn.textContent = 'Stop';
       animBtn.className = 'td-controls__btn td-controls__btn--stop';
@@ -302,33 +304,45 @@ function draw() {
     animProgress += 0.02;
     if (animProgress >= 1) {
       animProgress = 0;
-      animStep++;
-      if (animStep >= steps.length) {
-        animating = false;
-        animStep = 0;
-        animProgress = 0;
-        if (animBtn) {
-          animBtn.textContent = 'Animate';
-          animBtn.className = 'td-controls__btn td-controls__btn--anim';
+      if (animDirection === 1) {
+        // Forward: move to next step
+        animStep++;
+        if (animStep >= steps.length - 1) {
+          // Reached bottom — switch to backward (feedback)
+          animDirection = -1;
+        }
+      } else {
+        // Backward: move up one step
+        animStep--;
+        if (animStep <= 0) {
+          // Reached top — switch to forward again
+          animDirection = 1;
         }
       }
     }
 
-    if (animating) {
-      // Draw animated green dot
-      let currentY = startY + animStep * (boxH + gapY) + boxH / 2;
-      let nextY = (animStep < steps.length - 1)
-        ? startY + (animStep + 1) * (boxH + gapY) + boxH / 2
-        : currentY;
-      let dotY = lerp(currentY, nextY, animProgress);
+    // Draw animated dot
+    let currentY = startY + animStep * (boxH + gapY) + boxH / 2;
+    let nextStep = animStep + animDirection;
+    nextStep = constrain(nextStep, 0, steps.length - 1);
+    let nextY = startY + nextStep * (boxH + gapY) + boxH / 2;
+    let dotY = lerp(currentY, nextY, animProgress);
 
+    if (animDirection === 1) {
+      // Forward dot on right side (green)
       fill(COLOR_ANIMATE_DOT);
       noStroke();
       ellipse(flowX + boxW / 2 + 15, dotY, 14, 14);
-
-      // Highlight current step during animation
-      selectedStep = animStep;
+    } else {
+      // Feedback dot on left side (pink)
+      let feedbackX = flowX - boxW / 2 - 25;
+      fill(COLOR_FEEDBACK);
+      noStroke();
+      ellipse(feedbackX - 10, dotY, 14, 14);
     }
+
+    // Highlight current step during animation
+    selectedStep = animStep;
   }
 
 }
