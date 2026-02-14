@@ -27,6 +27,11 @@ let params = [
 // Button bounds for hit detection
 let paramBtns = []; // [{minus, plus, val}]
 
+// Waveform interaction state
+let showDetails = true;        // true = detailed view with annotations
+let hoverRegions = [];          // [{x,y,w,h,label,value,desc}]
+let waveformBounds = null;      // {x,y,w,h} for click detection
+
 // Colors
 const COLOR_CRITICAL = '#E91E63';
 const COLOR_PATH = '#4CAF50';
@@ -105,12 +110,19 @@ function draw() {
   drawCalculations(path1Delay, path2Delay, criticalPath, tMin, fMax);
   drawTimingDiagram(tMin, criticalPath);
 
-  // Hand cursor on hover for +/- buttons
+  // Draw tooltip if hovering a region
+  drawTooltip();
+
+  // Hand cursor on hover for +/- buttons or waveform area
   let hovering = false;
   for (let i = 0; i < paramBtns.length; i++) {
     let b = paramBtns[i];
     if (b && b.minus && isInside(mouseX, mouseY, b.minus)) hovering = true;
     if (b && b.plus && isInside(mouseX, mouseY, b.plus)) hovering = true;
+  }
+  if (waveformBounds && isInside(mouseX, mouseY, waveformBounds)) hovering = true;
+  for (let i = 0; i < hoverRegions.length; i++) {
+    if (isInside(mouseX, mouseY, hoverRegions[i])) hovering = true;
   }
   cursor(hovering ? HAND : ARROW);
 }
@@ -370,9 +382,15 @@ function drawCalculations(path1, path2, critical, tMin, fMax) {
 
 function drawTimingDiagram(tMin, criticalPath) {
   let tdY = 280;
-  let tdH = 160;
+  let tdH = 140;
   let tdX = 20;
   let tdW = canvasWidth - 40;
+
+  // Store waveform bounds for click detection
+  waveformBounds = { x: tdX, y: tdY, w: tdW, h: tdH };
+
+  // Reset hover regions each frame
+  hoverRegions = [];
 
   // Title
   fill(50);
@@ -383,15 +401,29 @@ function drawTimingDiagram(tMin, criticalPath) {
   text("Timing Diagram", canvasWidth / 2, tdY);
   textStyle(NORMAL);
 
-  let diagramY = tdY + 18;
+  // Hint text
+  fill(140);
+  textSize(9);
+  textAlign(CENTER, TOP);
+  text(showDetails
+    ? "Click waveform to hide details. Hover markers for values."
+    : "Click waveform to show details.", canvasWidth / 2, tdY + 14);
+
+  let diagramY = tdY + 28;
   let sigH = 25;
   let gap = 35;
   let timeScale = tdW / (tMin * 1.3);
 
+  // Waveform background (subtle border to show clickable area)
+  fill(252);
+  stroke(showDetails ? 220 : 235);
+  strokeWeight(1);
+  rect(tdX - 2, diagramY - 4, tdW + 4, gap + sigH * 2 + 20, 4);
+
   // Time axis
   stroke(150);
   strokeWeight(1);
-  line(tdX, diagramY + gap * 3 + sigH + 10, tdX + tdW, diagramY + gap * 3 + sigH + 10);
+  line(tdX, diagramY + gap + sigH * 2 + 10, tdX + tdW, diagramY + gap + sigH * 2 + 10);
 
   // Time markers
   fill(100);
@@ -403,10 +435,10 @@ function drawTimingDiagram(tMin, criticalPath) {
     if (x < tdX + tdW) {
       stroke(220);
       strokeWeight(0.5);
-      line(x, diagramY, x, diagramY + gap * 3 + sigH + 10);
+      line(x, diagramY, x, diagramY + gap + sigH * 2 + 10);
       fill(100);
       noStroke();
-      text(t.toFixed(0) + "ns", x, diagramY + gap * 3 + sigH + 12);
+      text(t.toFixed(0) + "ns", x, diagramY + gap + sigH * 2 + 12);
     }
   }
 
@@ -429,55 +461,117 @@ function drawTimingDiagram(tMin, criticalPath) {
   let dataY = diagramY + gap;
   drawSignalLabel("Data", tdX - 5, dataY + sigH / 2);
 
-  // t_cq region
   let cqEndX = tdX + tCQ * timeScale;
-  fill(255, 235, 238, 150);
-  noStroke();
-  rect(tdX, dataY, tCQ * timeScale, sigH);
+  let dataValidX = cqEndX + criticalPath * timeScale;
+  let setupStartX = tdX + (tMin - tSetup) * timeScale;
 
-  // Data transition
+  if (showDetails) {
+    // t_cq region shading
+    fill(255, 235, 238, 150);
+    noStroke();
+    rect(tdX, dataY, tCQ * timeScale, sigH);
+
+    // Data valid shading
+    fill(200, 230, 201, 150);
+    noStroke();
+    rect(dataValidX, dataY, setupStartX - dataValidX, sigH);
+
+    // Setup time region shading
+    fill(255, 243, 224, 150);
+    noStroke();
+    rect(setupStartX, dataY, tSetup * timeScale, sigH);
+  }
+
+  // Data transition (always shown)
   stroke(COLOR_TIMING);
   strokeWeight(2);
   noFill();
   line(tdX, dataY + sigH, cqEndX, dataY + sigH);
   line(cqEndX, dataY + sigH, cqEndX + 3, dataY);
-  let dataValidX = cqEndX + criticalPath * timeScale;
   line(cqEndX + 3, dataY, dataValidX, dataY);
 
-  // Data valid shading
-  let setupStartX = tdX + (tMin - tSetup) * timeScale;
-  fill(200, 230, 201, 150);
-  noStroke();
-  rect(dataValidX, dataY, setupStartX - dataValidX, sigH);
+  if (showDetails) {
+    // Annotations with braces
+    fill(COLOR_CRITICAL);
+    noStroke();
+    textSize(8);
+    textAlign(CENTER, BOTTOM);
+    drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
+    drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
+    fill(COLOR_TIMING);
+    drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
 
-  // Setup time region
-  fill(255, 243, 224, 150);
-  noStroke();
-  rect(setupStartX, dataY, tSetup * timeScale, sigH);
+    // Next clock edge
+    let nextClkX = tdX + tMin * timeScale;
+    stroke(COLOR_FF);
+    strokeWeight(1.5);
+    drawingContext.setLineDash([3, 3]);
+    line(nextClkX, diagramY, nextClkX, dataY + sigH + 20);
+    drawingContext.setLineDash([]);
 
-  // Annotations
-  fill(COLOR_CRITICAL);
-  noStroke();
-  textSize(8);
-  textAlign(CENTER, BOTTOM);
-  drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
-  drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
-  fill(COLOR_TIMING);
-  drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
+    fill(COLOR_FF);
+    noStroke();
+    textSize(8);
+    textAlign(CENTER, TOP);
+    text("next edge", nextClkX, dataY + sigH + 22);
 
-  // Next clock edge
-  let nextClkX = tdX + tMin * timeScale;
-  stroke(COLOR_FF);
-  strokeWeight(1.5);
-  drawingContext.setLineDash([3, 3]);
-  line(nextClkX, diagramY, nextClkX, dataY + sigH + 20);
-  drawingContext.setLineDash([]);
+    // Register hover regions for tooltips
+    let braceH = 18;
+    hoverRegions.push({
+      x: tdX, y: dataY + sigH + 4, w: cqEndX - tdX, h: braceH,
+      label: "t_cq", value: tCQ.toFixed(1) + " ns",
+      desc: "Clock-to-Q: delay from clock edge to FF output changing"
+    });
+    hoverRegions.push({
+      x: cqEndX, y: dataY + sigH + 4, w: dataValidX - cqEndX, h: braceH,
+      label: "Critical Path", value: criticalPath.toFixed(1) + " ns",
+      desc: "Longest combinational delay through gates + routing"
+    });
+    hoverRegions.push({
+      x: setupStartX, y: dataY + sigH + 4, w: tSetup * timeScale, h: braceH,
+      label: "t_setup", value: tSetup.toFixed(1) + " ns",
+      desc: "Setup time: data must be stable before next clock edge"
+    });
+    hoverRegions.push({
+      x: nextClkX - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
+      label: "Next Edge", value: tMin.toFixed(1) + " ns",
+      desc: "Next rising clock edge — defines minimum clock period"
+    });
+  }
+}
 
-  fill(COLOR_FF);
-  noStroke();
-  textSize(8);
-  textAlign(CENTER, TOP);
-  text("next edge", nextClkX, dataY + sigH + 22);
+function drawTooltip() {
+  if (!showDetails) return;
+  for (let i = 0; i < hoverRegions.length; i++) {
+    let r = hoverRegions[i];
+    if (isInside(mouseX, mouseY, r)) {
+      let tipW = 200;
+      let tipH = 38;
+      let tx = mouseX + 12;
+      let ty = mouseY - tipH - 6;
+      // Keep tooltip on screen
+      if (tx + tipW > canvasWidth - 4) tx = mouseX - tipW - 12;
+      if (ty < 4) ty = mouseY + 16;
+
+      fill(44, 62, 80, 240);
+      noStroke();
+      rect(tx, ty, tipW, tipH, 5);
+      // Arrow nub
+      triangle(mouseX, mouseY - 2, mouseX - 5, ty + tipH, mouseX + 5, ty + tipH);
+
+      fill(255);
+      noStroke();
+      textSize(11);
+      textStyle(BOLD);
+      textAlign(LEFT, TOP);
+      text(r.label + " = " + r.value, tx + 8, ty + 5);
+      textStyle(NORMAL);
+      textSize(9);
+      fill(200);
+      text(r.desc, tx + 8, ty + 21);
+      break;
+    }
+  }
 }
 
 function drawSignalLabel(label, x, y) {
@@ -505,6 +599,12 @@ function drawBrace(x1, x2, y, label) {
 }
 
 function mousePressed() {
+  // Check waveform click to toggle details
+  if (waveformBounds && isInside(mouseX, mouseY, waveformBounds)) {
+    showDetails = !showDetails;
+    return;
+  }
+
   // Check param +/- buttons
   for (let i = 0; i < paramBtns.length; i++) {
     let b = paramBtns[i];
