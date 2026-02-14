@@ -489,36 +489,53 @@ This example integrates concepts from across the course into a complete system.
 
 ### Architecture
 
-The system follows a **datapath-controller** architecture, separating data-processing hardware (combinational and sequential) from decision-making logic (FSM). Data flows from the input interface through the comparison datapath, under the direction of the control unit, to the output interface.
+The digital combination lock employs a **datapath-controller** architecture. The controller — a five-state finite state machine (FSM) — orchestrates all sequencing decisions, while the datapath performs digit storage, comparison, and counting under the controller's direction. Four subsystems are organized in a pipeline from input conditioning through output indication.
 
-```
-Digital Combination Lock
-│
-├── Input Interface
-│   ├── Debouncer               (sequential – removes mechanical bounce)
-│   ├── Enter Edge Detector     (sequential – produces single-cycle pulse)
-│   └── BCD Input Register      (sequential – 4-bit reg, latches digit on Enter)
-│
-├── Comparison Datapath
-│   ├── Combination ROM         (combinational – stores 4-digit code, addressed by Digit Counter)
-│   ├── BCD Comparator          (combinational – compares entered digit with ROM output)
-│   ├── Digit Counter           (sequential – 2-bit counter, tracks position 0–3)
-│   └── Attempt Counter         (sequential – 2-bit counter, tracks failed attempts 0–3)
-│
-├── Control Unit (FSM)
-│   ├── States: IDLE → WAIT_DIGIT → CHECK → UNLOCK or LOCKOUT
-│   ├── Inputs:  enter_pulse, match, digit_done, max_attempts, timeout
-│   ├── Outputs: load_digit, inc_digit_ctr, clr_digit_ctr, inc_attempt,
-│   │            clr_attempt, start_timer, unlock_en, lockout_en
-│   └── Lockout Timer           (sequential – down-counter, 30-second timeout)
-│
-└── Output Interface
-    ├── Unlock Signal Register  (sequential – latched HIGH on successful entry)
-    ├── Progress Display        (combinational – decodes digit counter to "_ _ _ _")
-    └── Status LEDs             (combinational – Green=unlocked, Red=locked, Flashing=lockout)
-```
+#### Input Subsystem
 
-**Data flow:** When the user presses a digit and hits Enter, the debounced edge triggers the FSM to transition from WAIT_DIGIT to CHECK. The FSM asserts `load_digit`, latching the BCD value into the input register. The comparator then evaluates the entered digit against the ROM value at the current digit position. If the digits match, the FSM asserts `inc_digit_ctr` and returns to WAIT_DIGIT; after all four digits match, it enters UNLOCK. A mismatch increments the attempt counter; three failures activate the lockout timer and the LOCKOUT state.
+The input subsystem conditions raw external signals into clean, synchronous events for the datapath and controller.
+
+| Block | Type | Function |
+|---|---|---|
+| Debouncer | Sequential | Filters mechanical switch bounce using a shift-register majority detector |
+| Edge Detector | Sequential | Converts the debounced Enter signal into a single-clock-cycle pulse (`enter_pulse`) |
+| BCD Input Register | Sequential | 4-bit register; latches the current BCD digit when the controller asserts `load_digit` |
+
+#### Datapath
+
+The datapath contains both combinational comparison logic and sequential counters. The controller drives all counter enables and clears.
+
+| Block | Type | Function |
+|---|---|---|
+| Combination ROM | Combinational | 4 &times; 4-bit look-up table storing the correct code; addressed by `digit_count` |
+| BCD Comparator | Combinational | Produces `match = 1` when the input register equals the ROM output at the current address |
+| Digit Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_digit_ctr`, cleared by `clr_digit_ctr` |
+| Attempt Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_attempt`, cleared by `clr_attempt` |
+
+#### Control Unit (FSM)
+
+The controller is a Mealy/Moore hybrid FSM with five states. It reads status signals from the datapath and issues control signals in return.
+
+**States:** &ensp; IDLE &rarr; WAIT_DIGIT &rarr; CHECK &rarr; UNLOCK &ensp;or&ensp; LOCKOUT
+
+| Signal Direction | Signals |
+|---|---|
+| **Inputs** (from datapath/input) | `enter_pulse`, `match`, `digit_done` (digit counter = 3), `max_attempts` (attempt counter = 3), `timeout` |
+| **Outputs** (to datapath/output) | `load_digit`, `inc_digit_ctr`, `clr_digit_ctr`, `inc_attempt`, `clr_attempt`, `start_timer`, `unlock_en`, `lockout_en` |
+
+The FSM also contains a **Lockout Timer** — a sequential down-counter that generates `timeout` after 30 seconds, returning the system from LOCKOUT to IDLE.
+
+#### Output Subsystem
+
+| Block | Type | Function |
+|---|---|---|
+| Unlock Register | Sequential | SR latch; set by `unlock_en`, cleared on reset |
+| Progress Display | Combinational | Decodes `digit_count` to show entered positions (e.g., "3 7 _ _") |
+| Status LEDs | Combinational | Green = unlocked, Red = locked, Flashing Red = lockout active |
+
+#### System Operation
+
+On power-up the FSM enters IDLE and clears all counters. When the user presses a BCD digit and hits Enter, the edge detector produces `enter_pulse`, advancing the FSM to CHECK. The controller asserts `load_digit`, latching the digit into the input register. The comparator evaluates the latched digit against the ROM value at the address selected by the digit counter and drives `match` accordingly. On a match the FSM asserts `inc_digit_ctr` and returns to WAIT_DIGIT; once the digit counter reaches 3 (`digit_done`), the FSM transitions to UNLOCK and asserts `unlock_en`. On a mismatch the FSM asserts `inc_attempt` and `clr_digit_ctr`, restarting the sequence. If the attempt counter saturates (`max_attempts`), the FSM enters LOCKOUT, asserts `start_timer`, and waits for `timeout` before returning to IDLE.
 
 #### Diagram: Digital Lock System Architecture
 
