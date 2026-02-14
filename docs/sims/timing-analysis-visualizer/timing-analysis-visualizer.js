@@ -32,6 +32,11 @@ let showDetails = true;        // true = detailed view with annotations
 let hoverRegions = [];          // [{x,y,w,h,label,value,desc}]
 let waveformBounds = null;      // {x,y,w,h} for click detection
 
+// Time cursor state
+let timeCursor = 0;             // current time position in ns (0 = start)
+let timePlaying = false;        // auto-advance mode
+let timeSlider, timeLabel, playBtn;
+
 // Colors
 const COLOR_CRITICAL = '#E91E63';
 const COLOR_PATH = '#4CAF50';
@@ -61,14 +66,62 @@ function setup() {
   bar.className = 'ta-controls';
   mainElement.appendChild(bar);
 
+  // Play/Pause button
+  playBtn = document.createElement('button');
+  playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+  playBtn.textContent = 'Play';
+  playBtn.addEventListener('click', function() {
+    timePlaying = !timePlaying;
+    if (timePlaying) {
+      // If at end, restart from 0
+      var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
+      if (timeCursor >= tMax * 1.2) timeCursor = 0;
+      playBtn.textContent = 'Pause';
+      playBtn.className = 'ta-controls__btn ta-controls__btn--pause';
+    } else {
+      playBtn.textContent = 'Play';
+      playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+    }
+  });
+  bar.appendChild(playBtn);
+
+  // Time slider group
+  var timeGrp = document.createElement('div');
+  timeGrp.className = 'ta-controls__group';
+  bar.appendChild(timeGrp);
+
+  timeLabel = document.createElement('span');
+  timeLabel.className = 'ta-controls__label';
+  timeLabel.textContent = 't = 0.0 ns';
+  timeGrp.appendChild(timeLabel);
+
+  timeSlider = document.createElement('input');
+  timeSlider.type = 'range';
+  timeSlider.className = 'ta-controls__slider';
+  timeSlider.min = '0';
+  timeSlider.max = '1000';
+  timeSlider.value = '0';
+  timeSlider.addEventListener('input', function() {
+    var tMax = tCQ + (andDelay + orDelay + routingDelay) + tSetup;
+    timeCursor = (parseFloat(this.value) / 1000) * tMax * 1.2;
+    timePlaying = false;
+    playBtn.textContent = 'Play';
+    playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+  });
+  timeGrp.appendChild(timeSlider);
+
   // Reset button
   var rstBtn = document.createElement('button');
   rstBtn.className = 'ta-controls__btn ta-controls__btn--reset';
-  rstBtn.textContent = 'Reset Defaults';
+  rstBtn.textContent = 'Reset';
   rstBtn.addEventListener('click', function() {
     andDelay = 3;
     orDelay = 4;
     routingDelay = 1;
+    timeCursor = 0;
+    timePlaying = false;
+    playBtn.textContent = 'Play';
+    playBtn.className = 'ta-controls__btn ta-controls__btn--play';
   });
   bar.appendChild(rstBtn);
 
@@ -104,6 +157,26 @@ function draw() {
   let criticalPath = Math.max(path1Delay, path2Delay);
   let tMin = tCQ + criticalPath + tSetup;
   let fMax = 1000 / tMin; // Convert to MHz
+
+  // Auto-advance time cursor
+  let tEnd = tMin * 1.2;
+  if (timePlaying) {
+    timeCursor += 0.08;
+    if (timeCursor >= tEnd) {
+      timeCursor = tEnd;
+      timePlaying = false;
+      playBtn.textContent = 'Play';
+      playBtn.className = 'ta-controls__btn ta-controls__btn--play';
+    }
+  }
+
+  // Sync slider and label
+  if (timeSlider) {
+    timeSlider.value = String((timeCursor / tEnd) * 1000);
+  }
+  if (timeLabel) {
+    timeLabel.textContent = 't = ' + timeCursor.toFixed(1) + ' ns';
+  }
 
   drawCircuitDiagram(criticalPath);
   drawParamControls();
@@ -442,7 +515,10 @@ function drawTimingDiagram(tMin, criticalPath) {
     }
   }
 
-  // CLK signal
+  // Cursor pixel position
+  let cursorPx = tdX + timeCursor * timeScale;
+
+  // CLK signal (clipped to cursor)
   drawSignalLabel("CLK", tdX - 5, diagramY + sigH / 2);
   stroke(COLOR_GATE);
   strokeWeight(2);
@@ -450,6 +526,7 @@ function drawTimingDiagram(tMin, criticalPath) {
   let clkPeriod = tMin;
   beginShape();
   for (let t = 0; t < tMin * 1.2; t += 0.1) {
+    if (t > timeCursor) break;
     let x = tdX + t * timeScale;
     let phase = (t % clkPeriod) / clkPeriod;
     let level = phase < 0.5 ? 1 : 0;
@@ -466,77 +543,137 @@ function drawTimingDiagram(tMin, criticalPath) {
   let setupStartX = tdX + (tMin - tSetup) * timeScale;
 
   if (showDetails) {
-    // t_cq region shading
-    fill(255, 235, 238, 150);
-    noStroke();
-    rect(tdX, dataY, tCQ * timeScale, sigH);
+    // t_cq region shading (only if cursor reached it)
+    if (timeCursor > 0) {
+      let cqW = min(tCQ, timeCursor) * timeScale;
+      fill(255, 235, 238, 150);
+      noStroke();
+      rect(tdX, dataY, cqW, sigH);
+    }
 
     // Data valid shading
-    fill(200, 230, 201, 150);
-    noStroke();
-    rect(dataValidX, dataY, setupStartX - dataValidX, sigH);
+    let cpEnd = tCQ + criticalPath;
+    if (timeCursor > cpEnd) {
+      let validEndT = min(tMin - tSetup, timeCursor);
+      let validStartPx = dataValidX;
+      let validEndPx = tdX + validEndT * timeScale;
+      if (validEndPx > validStartPx) {
+        fill(200, 230, 201, 150);
+        noStroke();
+        rect(validStartPx, dataY, validEndPx - validStartPx, sigH);
+      }
+    }
 
     // Setup time region shading
-    fill(255, 243, 224, 150);
-    noStroke();
-    rect(setupStartX, dataY, tSetup * timeScale, sigH);
+    if (timeCursor > tMin - tSetup) {
+      let suStartPx = setupStartX;
+      let suEndPx = min(cursorPx, setupStartX + tSetup * timeScale);
+      fill(255, 243, 224, 150);
+      noStroke();
+      rect(suStartPx, dataY, suEndPx - suStartPx, sigH);
+    }
   }
 
-  // Data transition (always shown)
+  // Data transition (clipped to cursor)
   stroke(COLOR_TIMING);
   strokeWeight(2);
   noFill();
-  line(tdX, dataY + sigH, cqEndX, dataY + sigH);
-  line(cqEndX, dataY + sigH, cqEndX + 3, dataY);
-  line(cqEndX + 3, dataY, dataValidX, dataY);
+  if (timeCursor > 0) {
+    let lineEndX = min(cqEndX, cursorPx);
+    line(tdX, dataY + sigH, lineEndX, dataY + sigH);
+  }
+  if (timeCursor > tCQ) {
+    let transEndX = min(cqEndX + 3, cursorPx);
+    line(cqEndX, dataY + sigH, transEndX, dataY);
+  }
+  if (timeCursor > tCQ + 0.1) {
+    let dataEndX = min(dataValidX, cursorPx);
+    line(cqEndX + 3, dataY, dataEndX, dataY);
+  }
 
-  if (showDetails) {
-    // Annotations with braces
-    fill(COLOR_CRITICAL);
-    noStroke();
-    textSize(8);
-    textAlign(CENTER, BOTTOM);
-    drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
-    drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
-    fill(COLOR_TIMING);
-    drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
-
-    // Next clock edge
-    let nextClkX = tdX + tMin * timeScale;
-    stroke(COLOR_FF);
+  // Time cursor vertical line
+  if (timeCursor > 0 && cursorPx <= tdX + tdW) {
+    stroke(COLOR_CRITICAL);
     strokeWeight(1.5);
-    drawingContext.setLineDash([3, 3]);
-    line(nextClkX, diagramY, nextClkX, dataY + sigH + 20);
+    drawingContext.setLineDash([4, 3]);
+    line(cursorPx, diagramY - 4, cursorPx, diagramY + gap + sigH * 2 + 10);
     drawingContext.setLineDash([]);
 
-    fill(COLOR_FF);
+    // Cursor time label
+    fill(COLOR_CRITICAL);
     noStroke();
-    textSize(8);
-    textAlign(CENTER, TOP);
-    text("next edge", nextClkX, dataY + sigH + 22);
+    textSize(9);
+    textStyle(BOLD);
+    textAlign(CENTER, BOTTOM);
+    text(timeCursor.toFixed(1) + "ns", cursorPx, diagramY - 5);
+    textStyle(NORMAL);
+  }
 
-    // Register hover regions for tooltips
+  if (showDetails) {
+    // Annotations with braces (only show when cursor has passed them)
+    textSize(8);
+    textAlign(CENTER, BOTTOM);
+
+    if (timeCursor >= tCQ) {
+      fill(COLOR_CRITICAL);
+      noStroke();
+      drawBrace(tdX, cqEndX, dataY + sigH + 12, "t_cq");
+    }
+    if (timeCursor >= tCQ + criticalPath) {
+      fill(COLOR_CRITICAL);
+      noStroke();
+      drawBrace(cqEndX, dataValidX, dataY + sigH + 12, "critical path");
+    }
+    if (timeCursor >= tMin) {
+      fill(COLOR_TIMING);
+      noStroke();
+      drawBrace(setupStartX, setupStartX + tSetup * timeScale, dataY + sigH + 12, "t_setup");
+    }
+
+    // Next clock edge (show when cursor reaches it)
+    let nextClkX = tdX + tMin * timeScale;
+    if (timeCursor >= tMin) {
+      stroke(COLOR_FF);
+      strokeWeight(1.5);
+      drawingContext.setLineDash([3, 3]);
+      line(nextClkX, diagramY, nextClkX, dataY + sigH + 20);
+      drawingContext.setLineDash([]);
+
+      fill(COLOR_FF);
+      noStroke();
+      textSize(8);
+      textAlign(CENTER, TOP);
+      text("next edge", nextClkX, dataY + sigH + 22);
+    }
+
+    // Register hover regions for tooltips (only for visible annotations)
     let braceH = 18;
-    hoverRegions.push({
-      x: tdX, y: dataY + sigH + 4, w: cqEndX - tdX, h: braceH,
-      label: "t_cq", value: tCQ.toFixed(1) + " ns",
-      desc: "Clock-to-Q: delay from clock edge to FF output changing"
-    });
-    hoverRegions.push({
-      x: cqEndX, y: dataY + sigH + 4, w: dataValidX - cqEndX, h: braceH,
-      label: "Critical Path", value: criticalPath.toFixed(1) + " ns",
-      desc: "Longest combinational delay through gates + routing"
-    });
-    hoverRegions.push({
-      x: setupStartX, y: dataY + sigH + 4, w: tSetup * timeScale, h: braceH,
-      label: "t_setup", value: tSetup.toFixed(1) + " ns",
-      desc: "Setup time: data must be stable before next clock edge"
-    });
-    hoverRegions.push({
-      x: nextClkX - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
-      label: "Next Edge", value: tMin.toFixed(1) + " ns",
-      desc: "Next rising clock edge — defines minimum clock period"
-    });
+    if (timeCursor >= tCQ) {
+      hoverRegions.push({
+        x: tdX, y: dataY + sigH + 4, w: cqEndX - tdX, h: braceH,
+        label: "t_cq", value: tCQ.toFixed(1) + " ns",
+        desc: "Clock-to-Q: delay from clock edge to FF output changing"
+      });
+    }
+    if (timeCursor >= tCQ + criticalPath) {
+      hoverRegions.push({
+        x: cqEndX, y: dataY + sigH + 4, w: dataValidX - cqEndX, h: braceH,
+        label: "Critical Path", value: criticalPath.toFixed(1) + " ns",
+        desc: "Longest combinational delay through gates + routing"
+      });
+    }
+    if (timeCursor >= tMin) {
+      hoverRegions.push({
+        x: setupStartX, y: dataY + sigH + 4, w: tSetup * timeScale, h: braceH,
+        label: "t_setup", value: tSetup.toFixed(1) + " ns",
+        desc: "Setup time: data must be stable before next clock edge"
+      });
+      hoverRegions.push({
+        x: nextClkX - 12, y: diagramY, w: 24, h: dataY + sigH + 30 - diagramY,
+        label: "Next Edge", value: tMin.toFixed(1) + " ns",
+        desc: "Next rising clock edge — defines minimum clock period"
+      });
+    }
   }
 }
 
