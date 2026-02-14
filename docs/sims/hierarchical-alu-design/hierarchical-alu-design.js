@@ -1,5 +1,5 @@
 // Hierarchical ALU Design — Interactive Tree with Details Panel
-// No external libraries. All CSS scoped under .alu-hierarchy.
+// No external libraries. All CSS scoped under #alu-hierarchy.
 // Supports multiple instances per page.
 
 (function () {
@@ -239,90 +239,90 @@
   };
 
   // ── Scoped CSS ─────────────────────────────────────────────
-  var PREFIX = ".alu-hierarchy";
+  var PREFIX = "#alu-hierarchy";
   var css = '\
 /* layout: tree + panel side by side */\n\
 ' + PREFIX + ' { font-family: "Segoe UI", system-ui, Arial, sans-serif; display: flex; gap: 20px; min-height: 360px; }\n\
-' + PREFIX + '__tree { flex: 1 1 55%; min-width: 0; overflow-x: auto; }\n\
-' + PREFIX + '__panel { flex: 0 0 280px; max-width: 320px; background: #f4f6f8; border: 1px solid #e0e4e8; border-radius: 10px; padding: 18px 16px; align-self: flex-start; position: sticky; top: 12px; transition: opacity .25s, transform .25s; }\n\
-' + PREFIX + '__panel--empty { opacity: .5; }\n\
-' + PREFIX + '__panel-title { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: #2c3e50; }\n\
-' + PREFIX + '__panel-type { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 8px; }\n\
-' + PREFIX + '__panel-desc { font-size: 13px; color: #555; margin: 0 0 10px; line-height: 1.45; }\n\
-' + PREFIX + '__panel-section { margin: 0 0 10px; }\n\
-' + PREFIX + '__panel-section h4 { margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: #8e99a4; }\n\
-' + PREFIX + '__panel-section ul { margin: 0; padding-left: 16px; font-size: 12px; color: #444; line-height: 1.5; }\n\
-' + PREFIX + '__panel-section p { margin: 0; font-size: 12px; color: #444; line-height: 1.5; }\n\
-' + PREFIX + '__panel-section code { background: #e8ecef; padding: 1px 5px; border-radius: 3px; font-size: 11px; }\n\
+' + PREFIX + ' .alu-h__tree { flex: 1 1 55%; min-width: 0; overflow-x: auto; }\n\
+' + PREFIX + ' .alu-h__panel { flex: 0 0 280px; max-width: 320px; background: #f4f6f8; border: 1px solid #e0e4e8; border-radius: 10px; padding: 18px 16px; align-self: flex-start; position: sticky; top: 12px; transition: opacity 150ms; }\n\
+' + PREFIX + ' .alu-h__panel--empty { opacity: .5; }\n\
+' + PREFIX + ' .alu-h__panel-title { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: #2c3e50; }\n\
+' + PREFIX + ' .alu-h__panel-type { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 8px; }\n\
+' + PREFIX + ' .alu-h__panel-desc { font-size: 13px; color: #555; margin: 0 0 10px; line-height: 1.45; }\n\
+' + PREFIX + ' .alu-h__panel-section { margin: 0 0 10px; }\n\
+' + PREFIX + ' .alu-h__panel-section h4 { margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: #8e99a4; }\n\
+' + PREFIX + ' .alu-h__panel-section ul { margin: 0; padding-left: 16px; font-size: 12px; color: #444; line-height: 1.5; }\n\
+' + PREFIX + ' .alu-h__panel-section p { margin: 0; font-size: 12px; color: #444; line-height: 1.5; }\n\
+' + PREFIX + ' .alu-h__panel-section code { background: #e8ecef; padding: 1px 5px; border-radius: 3px; font-size: 11px; }\n\
 \n\
 /* tree list reset */\n\
-' + PREFIX + '__tree ul { list-style: none; margin: 0; padding-left: 24px; }\n\
-' + PREFIX + '__tree > ul { padding-left: 0; }\n\
+' + PREFIX + ' .alu-h__tree ul { list-style: none; margin: 0; padding-left: 24px; }\n\
+' + PREFIX + ' .alu-h__tree > ul { padding-left: 0; }\n\
 \n\
 /* guide lines */\n\
-' + PREFIX + '__tree li { position: relative; }\n\
-' + PREFIX + '__tree li::before { content: ""; position: absolute; left: -12px; top: 0; bottom: 0; width: 2px; background: #e0e4e8; transition: background .3s; }\n\
-' + PREFIX + '__tree > ul > li::before { display: none; }\n\
-' + PREFIX + '__tree li::after  { content: ""; position: absolute; left: -12px; top: 20px; width: 12px; height: 2px; background: #e0e4e8; transition: background .3s; }\n\
-' + PREFIX + '__tree > ul > li::after { display: none; }\n\
+' + PREFIX + ' .alu-h__tree li { position: relative; }\n\
+' + PREFIX + ' .alu-h__tree li::before { content: ""; position: absolute; left: -12px; top: 0; bottom: 0; width: 2px; background: #e0e4e8; transition: background 150ms; }\n\
+' + PREFIX + ' .alu-h__tree > ul > li::before { display: none; }\n\
+' + PREFIX + ' .alu-h__tree li::after  { content: ""; position: absolute; left: -12px; top: 20px; width: 12px; height: 2px; background: #e0e4e8; transition: background 150ms; }\n\
+' + PREFIX + ' .alu-h__tree > ul > li::after { display: none; }\n\
 \n\
 /* highlighted path guide lines */\n\
-' + PREFIX + '__tree li.alu-h--path::before,\n\
-' + PREFIX + '__tree li.alu-h--path::after { background: #3498db; }\n\
+' + PREFIX + ' .alu-h__tree li.active-path::before,\n\
+' + PREFIX + ' .alu-h__tree li.active-path::after { background: #3498db; }\n\
 \n\
 /* row */\n\
-' + PREFIX + '__row { display: flex; align-items: center; gap: 7px; padding: 5px 8px; border-radius: 7px; cursor: pointer; transition: background .2s, box-shadow .25s; position: relative; }\n\
-' + PREFIX + '__row:hover { background: rgba(52,152,219,.07); }\n\
+' + PREFIX + ' .alu-h__row { display: flex; align-items: center; gap: 7px; padding: 5px 8px; border-radius: 7px; cursor: pointer; transition: background 150ms, box-shadow 150ms; position: relative; }\n\
+' + PREFIX + ' .alu-h__row:hover { background: rgba(52,152,219,.07); }\n\
 \n\
 /* selected row */\n\
-' + PREFIX + '__row.alu-h--selected { background: rgba(52,152,219,.1); box-shadow: 0 0 0 2px #3498db, 0 0 8px rgba(52,152,219,.25); border-radius: 7px; }\n\
+' + PREFIX + ' .alu-h__row.active-node { background: rgba(52,152,219,.1); box-shadow: 0 0 0 2px #3498db, 0 0 8px rgba(52,152,219,.25); border-radius: 7px; }\n\
 \n\
 /* ancestor-on-path row */\n\
-' + PREFIX + '__row.alu-h--ancestor { background: rgba(52,152,219,.04); box-shadow: inset 3px 0 0 #3498db; }\n\
+' + PREFIX + ' .alu-h__row.active-path { background: rgba(52,152,219,.04); box-shadow: inset 3px 0 0 #3498db; }\n\
 \n\
 /* arrow */\n\
-' + PREFIX + '__arrow { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-size: 11px; transition: transform .3s cubic-bezier(.4,0,.2,1); color: #95a5a6; flex-shrink: 0; }\n\
-' + PREFIX + '__arrow--exp { transform: rotate(90deg); }\n\
-' + PREFIX + '__arrow--none { visibility: hidden; }\n\
+' + PREFIX + ' .alu-h__arrow { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-size: 11px; transition: transform 150ms ease; color: #95a5a6; flex-shrink: 0; }\n\
+' + PREFIX + ' .alu-h__arrow--exp { transform: rotate(90deg); }\n\
+' + PREFIX + ' .alu-h__arrow--none { visibility: hidden; }\n\
 \n\
 /* badge */\n\
-' + PREFIX + '__badge { display: inline-block; padding: 3px 9px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; letter-spacing: .2px; transition: box-shadow .2s; }\n\
-' + PREFIX + '__row:hover ' + PREFIX + '__badge,\n\
-' + PREFIX + '__row.alu-h--selected ' + PREFIX + '__badge { box-shadow: 0 1px 4px rgba(0,0,0,.18); }\n\
+' + PREFIX + ' .alu-h__badge { display: inline-block; padding: 3px 9px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; letter-spacing: .2px; transition: box-shadow 150ms; }\n\
+' + PREFIX + ' .alu-h__row:hover .alu-h__badge,\n\
+' + PREFIX + ' .alu-h__row.active-node .alu-h__badge { box-shadow: 0 1px 4px rgba(0,0,0,.18); }\n\
 \n\
 /* level label */\n\
-' + PREFIX + '__lvl { font-size: 9px; color: #b8c2cc; font-weight: 600; flex-shrink: 0; width: 66px; text-align: right; }\n\
+' + PREFIX + ' .alu-h__lvl { font-size: 9px; color: #b8c2cc; font-weight: 600; flex-shrink: 0; width: 66px; text-align: right; }\n\
 \n\
 /* inline desc (desktop only) */\n\
-' + PREFIX + '__hint { font-size: 11px; color: #95a5a6; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n\
+' + PREFIX + ' .alu-h__hint { font-size: 11px; color: #95a5a6; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n\
 \n\
 /* collapse animation */\n\
-' + PREFIX + '__kids { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1), opacity .25s; opacity: 1; }\n\
-' + PREFIX + '__kids--shut { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }\n\
-' + PREFIX + '__kids > div { overflow: hidden; }\n\
+' + PREFIX + ' .alu-h__kids { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 150ms ease, opacity 150ms; opacity: 1; }\n\
+' + PREFIX + ' .alu-h__kids--shut { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }\n\
+' + PREFIX + ' .alu-h__kids > div { overflow: hidden; }\n\
 \n\
 /* mobile tooltip */\n\
-' + PREFIX + '__tip { display: none; position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); background: #2c3e50; color: #fff; font-size: 11px; padding: 5px 10px; border-radius: 6px; white-space: nowrap; z-index: 10; pointer-events: none; }\n\
-' + PREFIX + '__tip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -4px; border: 4px solid transparent; border-top-color: #2c3e50; }\n\
-' + PREFIX + '__row.alu-h--tipped ' + PREFIX + '__tip { display: block; }\n\
+' + PREFIX + ' .alu-h__tip { display: none; position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); background: #2c3e50; color: #fff; font-size: 11px; padding: 5px 10px; border-radius: 6px; white-space: nowrap; z-index: 10; pointer-events: none; }\n\
+' + PREFIX + ' .alu-h__tip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -4px; border: 4px solid transparent; border-top-color: #2c3e50; }\n\
+' + PREFIX + ' .alu-h__row.alu-h--tipped .alu-h__tip { display: block; }\n\
 \n\
 /* type colours */\n\
-' + PREFIX + '__badge--system   { background: #2980b9; }\n\
-' + PREFIX + '__badge--datapath { background: #27ae60; }\n\
-' + PREFIX + '__badge--control  { background: #c0392b; }\n\
-' + PREFIX + '__badge--io       { background: #8e44ad; }\n\
-' + PREFIX + '__badge--alu      { background: #2c3e50; }\n\
-' + PREFIX + '__badge--adder    { background: #16a085; }\n\
-' + PREFIX + '__badge--leaf     { background: #f39c12; }\n\
-' + PREFIX + '__badge--register { background: #34495e; }\n\
-' + PREFIX + '__badge--gate     { background: #e67e22; }\n\
+' + PREFIX + ' .alu-h__badge--system   { background: #2980b9; }\n\
+' + PREFIX + ' .alu-h__badge--datapath { background: #27ae60; }\n\
+' + PREFIX + ' .alu-h__badge--control  { background: #c0392b; }\n\
+' + PREFIX + ' .alu-h__badge--io       { background: #8e44ad; }\n\
+' + PREFIX + ' .alu-h__badge--alu      { background: #2c3e50; }\n\
+' + PREFIX + ' .alu-h__badge--adder    { background: #16a085; }\n\
+' + PREFIX + ' .alu-h__badge--leaf     { background: #f39c12; }\n\
+' + PREFIX + ' .alu-h__badge--register { background: #34495e; }\n\
+' + PREFIX + ' .alu-h__badge--gate     { background: #e67e22; }\n\
 \n\
 /* responsive: stack on narrow */\n\
 @media (max-width: 680px) {\n\
   ' + PREFIX + ' { flex-direction: column; }\n\
-  ' + PREFIX + '__panel { flex: none; max-width: 100%; position: static; }\n\
-  ' + PREFIX + '__hint { display: none; }\n\
-  ' + PREFIX + '__lvl { width: auto; text-align: left; }\n\
+  ' + PREFIX + ' .alu-h__panel { flex: none; max-width: 100%; position: static; }\n\
+  ' + PREFIX + ' .alu-h__hint { display: none; }\n\
+  ' + PREFIX + ' .alu-h__lvl { width: auto; text-align: left; }\n\
 }\n\
 ';
 
@@ -352,12 +352,12 @@
 
     // -- Panel element --
     var panel = document.createElement("div");
-    panel.className = "alu-hierarchy__panel alu-hierarchy__panel--empty";
+    panel.className = "alu-h__panel alu-h__panel--empty";
     panel.innerHTML = '<p style="font-size:13px;color:#8e99a4;text-align:center;margin:40px 0;">Click a module<br>to see details</p>';
 
     // -- Tree container --
     var treeDiv = document.createElement("div");
-    treeDiv.className = "alu-hierarchy__tree";
+    treeDiv.className = "alu-h__tree";
 
     // -- Build nodes recursively --
     function buildNode(data, depth, parentLi) {
@@ -368,35 +368,35 @@
 
       // row
       var row = document.createElement("div");
-      row.className = "alu-hierarchy__row";
+      row.className = "alu-h__row";
 
       // level
       var lvl = document.createElement("span");
-      lvl.className = "alu-hierarchy__lvl";
+      lvl.className = "alu-h__lvl";
       lvl.textContent = LEVEL_NAMES[depth] || ("L" + depth);
       row.appendChild(lvl);
 
       // arrow
       var arrow = document.createElement("span");
-      arrow.className = "alu-hierarchy__arrow" + (hasKids ? " alu-hierarchy__arrow--exp" : " alu-hierarchy__arrow--none");
+      arrow.className = "alu-h__arrow" + (hasKids ? " alu-h__arrow--exp" : " alu-h__arrow--none");
       arrow.textContent = "\u25b6";
       row.appendChild(arrow);
 
       // badge
       var badge = document.createElement("span");
-      badge.className = "alu-hierarchy__badge alu-hierarchy__badge--" + data.type;
+      badge.className = "alu-h__badge alu-h__badge--" + data.type;
       badge.textContent = data.label;
       row.appendChild(badge);
 
       // inline desc
       var hint = document.createElement("span");
-      hint.className = "alu-hierarchy__hint";
+      hint.className = "alu-h__hint";
       hint.textContent = "\u2014 " + data.desc.split(".")[0];
       row.appendChild(hint);
 
       // mobile tooltip
       var tip = document.createElement("span");
-      tip.className = "alu-hierarchy__tip";
+      tip.className = "alu-h__tip";
       tip.textContent = data.desc.split(".")[0];
       row.appendChild(tip);
 
@@ -406,7 +406,7 @@
       var wrapper = null;
       if (hasKids) {
         wrapper = document.createElement("div");
-        wrapper.className = "alu-hierarchy__kids";
+        wrapper.className = "alu-h__kids";
         var inner = document.createElement("div");
         var ul = document.createElement("ul");
         for (var i = 0; i < data.children.length; i++) {
@@ -432,9 +432,9 @@
 
         // expand / collapse
         if (hasKids) {
-          var shut = wrapper.classList.toggle("alu-hierarchy__kids--shut");
-          if (shut) arrow.classList.remove("alu-hierarchy__arrow--exp");
-          else arrow.classList.add("alu-hierarchy__arrow--exp");
+          var shut = wrapper.classList.toggle("alu-h__kids--shut");
+          if (shut) arrow.classList.remove("alu-h__arrow--exp");
+          else arrow.classList.add("alu-h__arrow--exp");
         }
 
         // select
@@ -447,25 +447,25 @@
     // -- Selection + path highlighting --
     function selectNode(li) {
       // clear old selection + path
-      var oldSel = treeDiv.querySelectorAll(".alu-h--selected, .alu-h--ancestor, .alu-h--path");
+      var oldSel = treeDiv.querySelectorAll(".active-node, .active-path");
       for (var i = 0; i < oldSel.length; i++) {
-        oldSel[i].classList.remove("alu-h--selected", "alu-h--ancestor", "alu-h--path");
+        oldSel[i].classList.remove("active-node", "active-path");
       }
 
       selectedLi = li;
-      var row = li.querySelector(":scope > .alu-hierarchy__row");
-      row.classList.add("alu-h--selected");
+      var row = li.querySelector(":scope > .alu-h__row");
+      row.classList.add("active-node");
 
       // walk up to root and highlight ancestors + guide-line path
       var cur = li._parentNodeLi;
       while (cur) {
-        cur.classList.add("alu-h--path");
-        var aRow = cur.querySelector(":scope > .alu-hierarchy__row");
-        if (aRow) aRow.classList.add("alu-h--ancestor");
+        cur.classList.add("active-path");
+        var aRow = cur.querySelector(":scope > .alu-h__row");
+        if (aRow) aRow.classList.add("active-path");
         cur = cur._parentNodeLi;
       }
       // the selected li itself gets path class for its own guide lines
-      li.classList.add("alu-h--path");
+      li.classList.add("active-path");
 
       // update panel
       renderPanel(li._nodeData);
@@ -473,35 +473,35 @@
 
     // -- Details panel rendering --
     function renderPanel(d) {
-      panel.classList.remove("alu-hierarchy__panel--empty");
+      panel.classList.remove("alu-h__panel--empty");
       var h = '';
-      h += '<div class="alu-hierarchy__panel-type" style="background:' + (TYPE_BG[d.type] || "#777") + '">' + d.type + '</div>';
-      h += '<h3 class="alu-hierarchy__panel-title">' + esc(d.label) + '</h3>';
-      h += '<p class="alu-hierarchy__panel-desc">' + esc(d.desc) + '</p>';
+      h += '<div class="alu-h__panel-type" style="background:' + (TYPE_BG[d.type] || "#777") + '">' + d.type + '</div>';
+      h += '<h3 class="alu-h__panel-title">' + esc(d.label) + '</h3>';
+      h += '<p class="alu-h__panel-desc">' + esc(d.desc) + '</p>';
 
       // key points
       if (d.points && d.points.length) {
-        h += '<div class="alu-hierarchy__panel-section"><h4>Key Points</h4><ul>';
+        h += '<div class="alu-h__panel-section"><h4>Key Points</h4><ul>';
         for (var i = 0; i < d.points.length; i++) h += '<li>' + esc(d.points[i]) + '</li>';
         h += '</ul></div>';
       }
 
       // inputs / outputs
       if (d.inputs) {
-        h += '<div class="alu-hierarchy__panel-section"><h4>Inputs</h4><p><code>' + esc(d.inputs) + '</code></p></div>';
+        h += '<div class="alu-h__panel-section"><h4>Inputs</h4><p><code>' + esc(d.inputs) + '</code></p></div>';
       }
       if (d.outputs) {
-        h += '<div class="alu-hierarchy__panel-section"><h4>Outputs</h4><p><code>' + esc(d.outputs) + '</code></p></div>';
+        h += '<div class="alu-h__panel-section"><h4>Outputs</h4><p><code>' + esc(d.outputs) + '</code></p></div>';
       }
 
       // example
       if (d.example) {
-        h += '<div class="alu-hierarchy__panel-section"><h4>Example</h4><p>' + esc(d.example) + '</p></div>';
+        h += '<div class="alu-h__panel-section"><h4>Example</h4><p>' + esc(d.example) + '</p></div>';
       }
 
       // anchor link
       var anchor = d.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, "");
-      h += '<div class="alu-hierarchy__panel-section"><h4>Link</h4><p><a href="#' + anchor + '" style="color:#2980b9;font-size:12px">#' + anchor + '</a></p></div>';
+      h += '<div class="alu-h__panel-section"><h4>Link</h4><p><a href="#' + anchor + '" style="color:#2980b9;font-size:12px">#' + anchor + '</a></p></div>';
 
       panel.innerHTML = h;
     }
@@ -529,9 +529,9 @@
     });
   }
 
-  // ── Mount all .alu-hierarchy containers on the page ────────
+  // ── Mount all #alu-hierarchy containers on the page ────────
   function mount() {
-    var roots = document.querySelectorAll(".alu-hierarchy");
+    var roots = document.querySelectorAll("#alu-hierarchy");
     for (var i = 0; i < roots.length; i++) {
       if (!roots[i].dataset.init) {
         roots[i].dataset.init = "1";
