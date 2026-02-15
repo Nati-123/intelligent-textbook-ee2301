@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UART Transceiver MicroSim</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        main { position: relative; }
+        .uart-controls {
+            display: flex; align-items: center; gap: 8px;
+            flex-wrap: wrap; padding: 8px 10px; background: #e6e6eb;
+        }
+        .uart-btn {
+            height: 30px; border-radius: 5px; font-weight: bold;
+            color: #fff; cursor: pointer; padding: 0 10px;
+            border: 2px solid; font-size: 12px;
+        }
+        .uart-btn--tx    { background: #4CAF50; border-color: #2E7D32; }
+        .uart-btn--step  { background: #2196F3; border-color: #1565C0; }
+        .uart-btn--fine  { background: #00897B; border-color: #004D40; }
+        .uart-btn--auto  { background: #FF9800; border-color: #E65100; }
+        .uart-btn--reset { background: #F44336; border-color: #C62828; }
+        .uart-btn--par {
+            background: #78909C; border-color: #546E7A;
+            height: 26px; font-size: 11px; padding: 0 8px;
+        }
+        .uart-btn--par-active {
+            background: #5C6BC0; border-color: #3949AB;
+        }
+        .uart-par-group {
+            display: flex; align-items: center; gap: 4px;
+            margin-left: 6px;
+        }
+        .uart-par-label {
+            font-size: 11px; font-weight: bold; color: #555;
+        }
+        .uart-mismatch-group {
+            display: flex; align-items: center; gap: 4px;
+            margin-left: 6px;
+        }
+        .uart-mismatch-label {
+            font-size: 11px; font-weight: bold; color: #555;
+        }
+        .uart-mismatch-slider {
+            width: 80px; height: 4px; cursor: pointer;
+        }
+        .uart-mismatch-val {
+            font-size: 11px; font-weight: bold; color: #FF5722;
+            min-width: 40px;
+        }
+    </style>
+    <script src="uart-transceiver.js"></script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>

@@ -243,6 +243,7 @@ nav:
       - Timing Analysis Visualizer: sims/timing-analysis-visualizer/index.md
       - Digital Lock System: sims/digital-lock-system/index.md
       - UART Transmitter: sims/uart-transmitter/index.md
+      - UART Transceiver: sims/uart-transceiver/index.md
       - Course Integration Map: sims/course-integration-map/index.md
       - Datapath-Controller Walkthrough: sims/datapath-controller-walkthrough/index.md
   - Learning Graph:
