@@ -5,8 +5,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 1450;
-let controlHeight = 0;
-let canvasHeight = drawHeight + controlHeight;
+let canvasHeight = drawHeight;
 
 // ── TX FSM States ──
 const TX_IDLE  = 0;
@@ -1679,10 +1678,18 @@ function mousePressed() {
   }
 }
 
-function windowResized() { updateCanvasSize(); resizeCanvas(containerWidth, canvasHeight); }
+function windowResized() {
+  updateCanvasSize();
+  resizeCanvas(containerWidth, canvasHeight);
+  // Sync iframe height if embedded
+  if (window.self !== window.top) {
+    try { window.frameElement.style.height = document.body.scrollHeight + 'px'; } catch(e) {}
+  }
+}
 
 function updateCanvasSize() {
   var c = document.querySelector('main').getBoundingClientRect();
   containerWidth = Math.floor(c.width);
   canvasWidth = containerWidth;
+  canvasHeight = drawHeight;
 }

@@ -6,8 +6,9 @@
     <title>UART Transceiver MicroSim</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        main { position: relative; }
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; overflow-x: hidden; overflow-y: auto; }
+        main { position: relative; overflow: visible; }
+        main canvas { display: block; }
         .uart-controls {
             display: flex; align-items: center; gap: 8px;
             flex-wrap: wrap; padding: 8px 10px; background: #e6e6eb;
