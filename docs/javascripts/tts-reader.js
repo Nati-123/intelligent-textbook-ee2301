@@ -27,15 +27,17 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var keepAliveTimer = null;
 
-  /* Chrome bug workaround: synth silently dies after ~15 s unless poked */
+  /* Chrome bug workaround: synth silently dies after ~15 s unless poked.
+     Use a 10 s interval (safely under 15 s) and separate pause/resume
+     into different ticks so the browser can process each correctly. */
   function startKeepAlive() {
     stopKeepAlive();
     keepAliveTimer = setInterval(function () {
       if (synth.speaking && !synth.paused) {
         synth.pause();
-        synth.resume();
+        setTimeout(function () { synth.resume(); }, 50);
       }
-    }, 5000);
+    }, 10000);
   }
 
   function stopKeepAlive() {
@@ -243,8 +245,13 @@
       }
     };
 
-    utterance.onerror = function () {
+    utterance.onerror = function (e) {
       if (currentUtterance !== utterance) return;
+      /* Ignore "interrupted" errors caused by the keep-alive pause/resume
+         and "canceled" errors from normal stop/restart flows. Only stop
+         playback on real failures (network, audio-hardware, etc.). */
+      var err = e && e.error;
+      if (err === 'interrupted' || err === 'canceled') return;
       stopSpeaking();
     };
 
