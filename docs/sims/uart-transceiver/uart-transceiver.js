@@ -4,7 +4,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 1450;
+let drawHeight = 1600;
 let canvasHeight = drawHeight;
 
 // ── TX FSM States ──
@@ -65,7 +65,7 @@ let rxBaudAccum = 0; // fractional accumulator for mismatch
 
 // ── Waveform ──
 let waveHistory = [];
-let maxWaveEntries = 14;
+let maxWaveEntries = 18;
 
 // ── Auto-run ──
 let autoRunning = false;
@@ -293,7 +293,7 @@ function draw() {
   var totalFixed = titleH + clkH + txFsmH + txCtrlH + txDpH + txDataH + txIoH +
                    wireH + rxFsmH + rxCtrlH + rxDpH + rxIoH + legendH + 28;
   var wfH = drawHeight - totalFixed;
-  if (wfH < 100) wfH = 100;
+  if (wfH < 500) wfH = 500;
 
   var y = m;
   var yTitle = y;        y += titleH;
