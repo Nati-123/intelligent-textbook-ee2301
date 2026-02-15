@@ -1,0 +1,86 @@
+{
+  "FOUND": {
+    "classifierName": "Foundation Concepts",
+    "color": "LightCoral",
+    "font": {
+      "color": "black"
+    }
+  },
+  "NUMSYS": {
+    "classifierName": "Number Systems",
+    "color": "PeachPuff",
+    "font": {
+      "color": "black"
+    }
+  },
+  "CONV": {
+    "classifierName": "Number Conversions",
+    "color": "LightYellow",
+    "font": {
+      "color": "black"
+    }
+  },
+  "ARITH": {
+    "classifierName": "Binary Arithmetic",
+    "color": "PaleGreen",
+    "font": {
+      "color": "black"
+    }
+  },
+  "BOOLF": {
+    "classifierName": "Boolean Fundamentals",
+    "color": "PowderBlue",
+    "font": {
+      "color": "black"
+    }
+  },
+  "GATES": {
+    "classifierName": "Logic Gates",
+    "color": "Thistle",
+    "font": {
+      "color": "black"
+    }
+  },
+  "THEOR": {
+    "classifierName": "Boolean Theorems",
+    "color": "LightSteelBlue",
+    "font": {
+      "color": "black"
+    }
+  },
+  "FORMS": {
+    "classifierName": "Boolean Forms",
+    "color": "Lavender",
+    "font": {
+      "color": "black"
+    }
+  },
+  "COMB": {
+    "classifierName": "Combinational Circuits",
+    "color": "MistyRose",
+    "font": {
+      "color": "black"
+    }
+  },
+  "ACIR": {
+    "classifierName": "Arithmetic Circuits",
+    "color": "Honeydew",
+    "font": {
+      "color": "black"
+    }
+  },
+  "CANON": {
+    "classifierName": "Canonical Forms",
+    "color": "LavenderBlush",
+    "font": {
+      "color": "black"
+    }
+  },
+  "KMAP": {
+    "classifierName": "Karnaugh Maps",
+    "color": "Aquamarine",
+    "font": {
+      "color": "black"
+    }
+  }
+}
