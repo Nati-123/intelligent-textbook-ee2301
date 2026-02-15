@@ -5,7 +5,7 @@ quality_score: 95
 ---
 # UART Transceiver
 
-<iframe src="main.html" height="1050px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="1240px" width="100%" scrolling="no"></iframe>
 
 [Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
