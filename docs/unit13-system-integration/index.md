@@ -809,17 +809,46 @@ A vending machine controller is a classic FSM design problem that exercises many
 
 ### State Diagram
 
-The FSM tracks the accumulated amount:
+The FSM tracks the accumulated amount. Each coin input triggers a transition to a higher state. When the total reaches or exceeds 30¢, the machine dispenses the item, outputs change, and returns to S0.
 
-- **S0** (0¢): Initial state
-- **S5** (5¢): One nickel received
-- **S10** (10¢): Accumulated 10¢
-- **S15** (15¢): Accumulated 15¢
-- **S20** (20¢): Accumulated 20¢
-- **S25** (25¢): Accumulated 25¢
-- **S30+** (≥30¢): Dispense and make change
+```mermaid
+stateDiagram-v2
+    [*] --> S0
 
-Each coin input triggers a transition to a new state. When the accumulated total reaches or exceeds 30¢, the machine dispenses the item and outputs the change amount.
+    S0 : 0¢
+    S5 : 5¢
+    S10 : 10¢
+    S15 : 15¢
+    S20 : 20¢
+    S25 : 25¢
+    S30 : ≥30¢ — DISPENSE
+
+    S0 --> S5 : N (+5¢)
+    S0 --> S10 : D (+10¢)
+    S0 --> S25 : Q (+25¢)
+
+    S5 --> S10 : N (+5¢)
+    S5 --> S15 : D (+10¢)
+    S5 --> S30 : Q (+25¢)
+
+    S10 --> S15 : N (+5¢)
+    S10 --> S20 : D (+10¢)
+    S10 --> S30 : Q (+25¢)
+
+    S15 --> S20 : N (+5¢)
+    S15 --> S25 : D (+10¢)
+    S15 --> S30 : Q (+25¢)
+
+    S20 --> S25 : N (+5¢)
+    S20 --> S30 : D (+10¢)
+    S20 --> S30 : Q (+25¢)
+
+    S25 --> S30 : N (+5¢)
+    S25 --> S30 : D (+10¢)
+    S25 --> S30 : Q (+25¢)
+
+    S30 --> S0 : DISPENSE / reset
+```
 
 This design applies:
 
