@@ -225,7 +225,7 @@ The statement `y <= a and b;` is a **concurrent signal assignment**. The symbol 
 
 #### Diagram: Entity-Architecture Relationship
 
-<iframe src="../sims/entity-architecture/main.html" width="100%" height="450px" scrolling="no"></iframe>
+<iframe src="../sims/entity-architecture/main.html" width="100%" height="1000px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Entity-Architecture Relationship</summary>
