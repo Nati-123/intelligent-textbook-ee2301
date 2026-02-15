@@ -811,44 +811,145 @@ A vending machine controller is a classic FSM design problem that exercises many
 
 The FSM tracks the accumulated amount. Each coin input triggers a transition to a higher state. When the total reaches or exceeds 30¢, the machine dispenses the item, outputs change, and returns to S0.
 
-```mermaid
-stateDiagram-v2
-    [*] --> S0
+<div markdown="0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" style="max-width:100%;height:auto;display:block;margin:0 auto;background:#fafafa;border-radius:8px" font-family="Arial,Helvetica,sans-serif">
+  <defs>
+    <marker id="aN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#1565C0"/></marker>
+    <marker id="aD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#2E7D32"/></marker>
+    <marker id="aQ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#E65100"/></marker>
+    <marker id="aM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#555"/></marker>
+    <marker id="aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#C62828"/></marker>
+    <marker id="aI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1L9,5L0,9z" fill="#333"/></marker>
+  </defs>
 
-    S0 : 0¢
-    S5 : 5¢
-    S10 : 10¢
-    S15 : 15¢
-    S20 : 20¢
-    S25 : 25¢
-    S30 : ≥30¢ — DISPENSE
+  <!-- ══ ROW 1 STATES ══ -->
+  <circle cx="120" cy="85" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="120" y="81" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S0</text>
+  <text x="120" y="97" text-anchor="middle" font-size="11" fill="#555">0¢</text>
 
-    S0 --> S5 : N (+5¢)
-    S0 --> S10 : D (+10¢)
-    S0 --> S25 : Q (+25¢)
+  <circle cx="380" cy="85" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="380" y="81" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S5</text>
+  <text x="380" y="97" text-anchor="middle" font-size="11" fill="#555">5¢</text>
 
-    S5 --> S10 : N (+5¢)
-    S5 --> S15 : D (+10¢)
-    S5 --> S30 : Q (+25¢)
+  <circle cx="640" cy="85" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="640" y="81" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S10</text>
+  <text x="640" y="97" text-anchor="middle" font-size="11" fill="#555">10¢</text>
 
-    S10 --> S15 : N (+5¢)
-    S10 --> S20 : D (+10¢)
-    S10 --> S30 : Q (+25¢)
+  <!-- ══ ROW 2 STATES ══ -->
+  <circle cx="120" cy="285" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="120" y="281" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S15</text>
+  <text x="120" y="297" text-anchor="middle" font-size="11" fill="#555">15¢</text>
 
-    S15 --> S20 : N (+5¢)
-    S15 --> S25 : D (+10¢)
-    S15 --> S30 : Q (+25¢)
+  <circle cx="380" cy="285" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="380" y="281" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S20</text>
+  <text x="380" y="297" text-anchor="middle" font-size="11" fill="#555">20¢</text>
 
-    S20 --> S25 : N (+5¢)
-    S20 --> S30 : D (+10¢)
-    S20 --> S30 : Q (+25¢)
+  <circle cx="640" cy="285" r="32" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2"/>
+  <text x="640" y="281" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">S25</text>
+  <text x="640" y="297" text-anchor="middle" font-size="11" fill="#555">25¢</text>
 
-    S25 --> S30 : N (+5¢)
-    S25 --> S30 : D (+10¢)
-    S25 --> S30 : Q (+25¢)
+  <!-- ══ ROW 3: S30+ (accept state — double circle) ══ -->
+  <circle cx="380" cy="445" r="36" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2.5"/>
+  <circle cx="380" cy="445" r="30" fill="none" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="380" y="440" text-anchor="middle" font-size="14" font-weight="bold" fill="#2E7D32">S30+</text>
+  <text x="380" y="456" text-anchor="middle" font-size="10" fill="#555">≥30¢</text>
 
-    S30 --> S0 : DISPENSE / reset
-```
+  <!-- ══ INITIAL STATE ARROW ══ -->
+  <line x1="48" y1="85" x2="86" y2="85" stroke="#333" stroke-width="2" marker-end="url(#aI)"/>
+  <text x="42" y="78" text-anchor="end" font-size="10" fill="#333" font-style="italic">reset</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  N TRANSITIONS (Blue) — main chain   -->
+  <!-- ══════════════════════════════════════ -->
+  <!-- S0→S5 -->
+  <line x1="152" y1="77" x2="346" y2="77" stroke="#1565C0" stroke-width="2" marker-end="url(#aN)"/>
+  <text x="250" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">N</text>
+
+  <!-- S5→S10 -->
+  <line x1="412" y1="77" x2="606" y2="77" stroke="#1565C0" stroke-width="2" marker-end="url(#aN)"/>
+  <text x="510" y="70" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">N</text>
+
+  <!-- S10→S15 (curve along right margin, through row gap) -->
+  <path d="M 640,117 C 690,190 70,190 120,253" fill="none" stroke="#1565C0" stroke-width="2" marker-end="url(#aN)"/>
+  <text x="695" y="168" font-size="11" font-weight="bold" fill="#1565C0">N</text>
+
+  <!-- S15→S20 -->
+  <line x1="152" y1="277" x2="346" y2="277" stroke="#1565C0" stroke-width="2" marker-end="url(#aN)"/>
+  <text x="250" y="270" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">N</text>
+
+  <!-- S20→S25 -->
+  <line x1="412" y1="277" x2="606" y2="277" stroke="#1565C0" stroke-width="2" marker-end="url(#aN)"/>
+  <text x="510" y="270" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">N</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  D TRANSITIONS (Green) — skip one     -->
+  <!-- ══════════════════════════════════════ -->
+  <!-- S0→S10 (arc above row 1) -->
+  <path d="M 148,60 Q 380,15 612,60" fill="none" stroke="#2E7D32" stroke-width="2" marker-end="url(#aD)"/>
+  <text x="380" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">D</text>
+
+  <!-- S5→S15 (diagonal down-left) -->
+  <line x1="355" y1="110" x2="143" y2="260" stroke="#2E7D32" stroke-width="2" marker-end="url(#aD)"/>
+  <text x="232" y="175" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">D</text>
+
+  <!-- S10→S20 (diagonal down-left) -->
+  <line x1="615" y1="110" x2="403" y2="260" stroke="#2E7D32" stroke-width="2" marker-end="url(#aD)"/>
+  <text x="522" y="175" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">D</text>
+
+  <!-- S15→S25 (arc below row 2) -->
+  <path d="M 148,310 Q 380,355 612,310" fill="none" stroke="#2E7D32" stroke-width="2" marker-end="url(#aD)"/>
+  <text x="380" y="352" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">D</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  Q TRANSITIONS (Orange) — long jumps  -->
+  <!-- ══════════════════════════════════════ -->
+  <!-- S0→S25 (arc high above the diagram) -->
+  <path d="M 132,55 C 250,-30 660,-30 652,255" fill="none" stroke="#E65100" stroke-width="2" marker-end="url(#aQ)"/>
+  <text x="420" y="-5" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">Q</text>
+
+  <!-- S5→S30+ (curve left of S20) -->
+  <path d="M 360,115 C 280,280 310,400 355,418" fill="none" stroke="#E65100" stroke-width="2" marker-end="url(#aQ)"/>
+  <text x="290" y="290" font-size="11" font-weight="bold" fill="#E65100">Q</text>
+
+  <!-- S10→S30+ (curve via right side) -->
+  <path d="M 658,112 C 720,300 500,440 416,443" fill="none" stroke="#E65100" stroke-width="2" marker-end="url(#aQ)"/>
+  <text x="715" y="290" font-size="11" font-weight="bold" fill="#E65100">Q</text>
+
+  <!-- S15→S30+ (diagonal down-right) -->
+  <line x1="142" y1="310" x2="352" y2="422" stroke="#E65100" stroke-width="2" marker-end="url(#aQ)"/>
+  <text x="228" y="375" font-size="11" font-weight="bold" fill="#E65100">Q</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  COMBINED TRANSITIONS to S30+         -->
+  <!-- ══════════════════════════════════════ -->
+  <!-- S20→S30+ (straight down) — D, Q -->
+  <line x1="380" y1="317" x2="380" y2="408" stroke="#555" stroke-width="2.5" marker-end="url(#aM)"/>
+  <text x="398" y="368" font-size="10" font-weight="bold" fill="#555">D / Q</text>
+
+  <!-- S25→S30+ (diagonal down-left) — N, D, Q -->
+  <line x1="616" y1="310" x2="408" y2="425" stroke="#555" stroke-width="2.5" marker-end="url(#aM)"/>
+  <text x="530" y="368" font-size="10" font-weight="bold" fill="#555">N / D / Q</text>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  DISPENSE / RESET (Red dashed)        -->
+  <!-- ══════════════════════════════════════ -->
+  <path d="M 345,450 C 25,470 25,65 88,85" fill="none" stroke="#C62828" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#aR)"/>
+  <text x="18" y="275" font-size="11" font-weight="bold" fill="#C62828" transform="rotate(-90,18,275)">DISPENSE / reset</text>
+
+  <!-- ══ LEGEND ══ -->
+  <rect x="155" y="488" width="450" height="24" rx="4" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <line x1="170" y1="500" x2="195" y2="500" stroke="#1565C0" stroke-width="2.5"/>
+  <text x="200" y="504" font-size="10" font-weight="bold" fill="#1565C0">N (+5¢)</text>
+  <line x1="268" y1="500" x2="293" y2="500" stroke="#2E7D32" stroke-width="2.5"/>
+  <text x="298" y="504" font-size="10" font-weight="bold" fill="#2E7D32">D (+10¢)</text>
+  <line x1="370" y1="500" x2="395" y2="500" stroke="#E65100" stroke-width="2.5"/>
+  <text x="400" y="504" font-size="10" font-weight="bold" fill="#E65100">Q (+25¢)</text>
+  <line x1="472" y1="500" x2="497" y2="500" stroke="#C62828" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="502" y="504" font-size="10" font-weight="bold" fill="#C62828">Reset</text>
+  <line x1="548" y1="500" x2="573" y2="500" stroke="#555" stroke-width="2.5"/>
+  <text x="578" y="504" font-size="10" fill="#555">Combined</text>
+</svg>
+</div>
 
 This design applies:
 
