@@ -69,7 +69,8 @@ const GATES = [
   { name: 'and2',  label: 'AND',  op: function(a,b){ return a & b; }, vhdlOp: 'and',  symbol: 'AND'  },
   { name: 'or2',   label: 'OR',   op: function(a,b){ return a | b; }, vhdlOp: 'or',   symbol: 'OR'   },
   { name: 'nand2', label: 'NAND', op: function(a,b){ return (a & b) ^ 1; }, vhdlOp: 'nand', symbol: 'NAND' },
-  { name: 'xor2',  label: 'XOR',  op: function(a,b){ return a ^ b; }, vhdlOp: 'xor',  symbol: 'XOR'  }
+  { name: 'xor2',  label: 'XOR',  op: function(a,b){ return a ^ b; }, vhdlOp: 'xor',  symbol: 'XOR'  },
+  { name: 'xnor2', label: 'XNOR', op: function(a,b){ return (a ^ b) ^ 1; }, vhdlOp: 'xnor', symbol: 'XNOR' }
 ];
 
 // ── Click targets ──
@@ -888,13 +889,13 @@ function drawGateSymbol(cx, cy, gate) {
     bezierVertex(cx + gw / 3, cy + gh / 4, cx, cy + gh / 2 + 1, cx - gw / 2, cy + gh / 2);
     bezierVertex(cx - gw / 4, cy, cx - gw / 4, cy, cx - gw / 2, cy - gh / 2);
     endShape(CLOSE);
-    if (gate.symbol === 'XOR') {
+    if (gate.symbol === 'XOR' || gate.symbol === 'XNOR') {
       noFill(); stroke(COL_GATE); strokeWeight(2);
       bezier(cx - gw / 2 - 4, cy - gh / 2, cx - gw / 4 - 4, cy, cx - gw / 4 - 4, cy, cx - gw / 2 - 4, cy + gh / 2);
     }
   }
 
-  if (gate.symbol === 'NAND') {
+  if (gate.symbol === 'NAND' || gate.symbol === 'XNOR') {
     fill('#fff'); stroke(COL_GATE); strokeWeight(2);
     ellipse(cx + gw / 2 + 4, cy, 6, 6);
   }
@@ -904,7 +905,8 @@ function drawGateSymbol(cx, cy, gate) {
   textAlign(CENTER, CENTER);
   textSize(7);
   textStyle(BOLD);
-  text(gate.symbol, cx + (gate.symbol === 'NAND' ? -2 : 0), cy);
+  let labelOffset = (gate.symbol === 'NAND' || gate.symbol === 'XNOR') ? -2 : 0;
+  text(gate.symbol, cx + labelOffset, cy);
 }
 
 // ═══════════════════════════════════════════
