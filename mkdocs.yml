@@ -250,6 +250,7 @@ nav:
       - UART Transceiver: sims/uart-transceiver/index.md
       - Course Integration Map: sims/course-integration-map/index.md
       - Datapath-Controller Walkthrough: sims/datapath-controller-walkthrough/index.md
+      - Vending Machine FSM: sims/vending-machine-fsm/index.md
   - Learning Graph:
     - Overview: learning-graph/index.md
     - Concept List: learning-graph/concept-list.md

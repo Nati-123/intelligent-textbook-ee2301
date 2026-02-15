@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vending Machine FSM MicroSim</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <style>
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; overflow-x: hidden; overflow-y: auto; }
+        main { position: relative; overflow: visible; }
+        main canvas { display: block; }
+        .vm-controls {
+            display: flex; align-items: center; gap: 8px;
+            flex-wrap: wrap; padding: 10px 12px; background: #e6e6eb;
+        }
+        .vm-btn {
+            height: 34px; border-radius: 5px; font-weight: bold;
+            color: #fff; cursor: pointer; padding: 0 14px;
+            border: 2px solid; font-size: 13px;
+        }
+        .vm-btn--nickel  { background: #2196F3; border-color: #1565C0; }
+        .vm-btn--dime    { background: #4CAF50; border-color: #2E7D32; }
+        .vm-btn--quarter { background: #FF9800; border-color: #E65100; }
+        .vm-btn--step    { background: #2196F3; border-color: #1565C0; }
+        .vm-btn--auto    { background: #FF9800; border-color: #E65100; }
+        .vm-btn--reset   { background: #F44336; border-color: #C62828; }
+    </style>
+    <script src="vending-machine-fsm.js"></script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>
