@@ -195,7 +195,7 @@ function drawStyleColumn(idx, x, y, w, h, output) {
   // ── Circuit Diagram ──
   let diagY = kcY + kcH + 4;
   let diagH = 130;
-  drawCircuitDiagram(idx, x + 4, diagY, w - 8, diagH, color);
+  drawCircuitDiagram(idx, x + 4, diagY, w - 8, diagH, color, output);
 
   // ── VHDL Code ──
   let codeY = diagY + diagH + 4;
@@ -258,18 +258,18 @@ function drawKeyConcept(idx, x, y, w, h, color) {
 // ═══════════════════════════════════════════
 //  CIRCUIT DIAGRAMS
 // ═══════════════════════════════════════════
-function drawCircuitDiagram(idx, x, y, w, h, color) {
+function drawCircuitDiagram(idx, x, y, w, h, color, output) {
   fill(252);
   stroke(220);
   strokeWeight(1);
   rect(x, y, w, h, 4);
 
-  if (idx === 0) drawDataflowDiagram(x, y, w, h);
-  else if (idx === 1) drawStructuralDiagram(x, y, w, h);
-  else drawBehavioralDiagram(x, y, w, h);
+  if (idx === 0) drawDataflowDiagram(x, y, w, h, output);
+  else if (idx === 1) drawStructuralDiagram(x, y, w, h, output);
+  else drawBehavioralDiagram(x, y, w, h, output);
 }
 
-function drawDataflowDiagram(x, y, w, h) {
+function drawDataflowDiagram(x, y, w, h, output) {
   let cx = x + w / 2;
   let cy = y + h / 2;
 
@@ -314,16 +314,16 @@ function drawDataflowDiagram(x, y, w, h) {
   line(cx + 50, cy, cx + 44, cy + 4);
   noStroke();
 
-  // Output label
-  fill(60);
+  // Output label with value
+  fill(output ? ON_COLOR : OFF_COLOR);
   textAlign(LEFT, CENTER);
   textSize(10);
   textStyle(BOLD);
-  text('Y', cx + 54, cy);
+  text('Y=' + output, cx + 54, cy);
   textStyle(NORMAL);
 }
 
-function drawStructuralDiagram(x, y, w, h) {
+function drawStructuralDiagram(x, y, w, h, output) {
   let cx = x + w / 2;
   let cy = y + h / 2;
   let gW = 30;
@@ -437,15 +437,15 @@ function drawStructuralDiagram(x, y, w, h) {
   line(orX + orW / 2, orY, orX + orW / 2 + 16, orY);
   noStroke();
 
-  fill(60);
+  fill(output ? ON_COLOR : OFF_COLOR);
   textAlign(LEFT, CENTER);
   textSize(10);
   textStyle(BOLD);
-  text('Y', orX + orW / 2 + 20, orY);
+  text('Y=' + output, orX + orW / 2 + 20, orY);
   textStyle(NORMAL);
 }
 
-function drawBehavioralDiagram(x, y, w, h) {
+function drawBehavioralDiagram(x, y, w, h, output) {
   let cx = x + w / 2 - 8;
   let cy = y + h / 2;
 
@@ -493,8 +493,9 @@ function drawBehavioralDiagram(x, y, w, h) {
   textStyle(BOLD);
   text('A,B', x + 5, cy - 15);
   text('Sel', x + 5, cy + 15);
+  fill(output ? ON_COLOR : OFF_COLOR);
   textAlign(LEFT, CENTER);
-  text('Y', cx + 62, cy);
+  text('Y=' + output, cx + 62, cy);
   textStyle(NORMAL);
 
   // Sensitivity list note
