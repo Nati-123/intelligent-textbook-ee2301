@@ -446,7 +446,7 @@ function drawStructuralDiagram(x, y, w, h) {
 }
 
 function drawBehavioralDiagram(x, y, w, h) {
-  let cx = x + w / 2;
+  let cx = x + w / 2 - 8;
   let cy = y + h / 2;
 
   // Process block (larger, more prominent)
@@ -480,10 +480,10 @@ function drawBehavioralDiagram(x, y, w, h) {
   strokeWeight(1);
   line(x + 10, cy - 15, cx - 38, cy - 15);
   line(x + 10, cy + 15, cx - 38, cy + 15);
-  line(cx + 38, cy, x + w - 10, cy);
+  line(cx + 38, cy, x + w - 14, cy);
   // Arrowhead
-  line(x + w - 10, cy, x + w - 16, cy - 4);
-  line(x + w - 10, cy, x + w - 16, cy + 4);
+  line(x + w - 14, cy, x + w - 20, cy - 4);
+  line(x + w - 14, cy, x + w - 20, cy + 4);
   noStroke();
 
   // Labels
