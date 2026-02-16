@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # FSM Designer
 
 An interactive finite state machine simulator showing Moore machine behavior.

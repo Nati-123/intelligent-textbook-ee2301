@@ -1,3 +1,7 @@
+---
+quality_score: 27
+---
+
 # Timing Diagram Analyzer
 
 An interactive tool for analyzing flip-flop timing diagrams and predicting outputs.

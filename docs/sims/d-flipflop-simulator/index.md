@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # D Flip-Flop Simulator
 
 An interactive edge-triggered D flip-flop demonstrating sampling at clock edges.

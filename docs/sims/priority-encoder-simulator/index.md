@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Priority Encoder Simulator
 
 An interactive 4-to-2 priority encoder that encodes the highest-priority active input.

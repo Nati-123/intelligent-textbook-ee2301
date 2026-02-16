@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Course Structure Tree
 
 An interactive tree diagram visualizing the complete structure of the Digital System Design textbook.

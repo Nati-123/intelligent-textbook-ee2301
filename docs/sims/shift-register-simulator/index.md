@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Shift Register Simulator
 
 An interactive 4-bit shift register demonstrating serial and parallel data operations.

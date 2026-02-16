@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Decoder Simulator
 
 An interactive 2-to-4 decoder demonstrating binary to one-hot conversion.

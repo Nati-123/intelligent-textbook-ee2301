@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Multi-Level Circuit Analyzer
 
 Analyze propagation delay and critical paths in multi-level logic circuits.

@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Multiplexer Simulator
 
 An interactive 4-to-1 multiplexer demonstrating data selection based on control signals.

@@ -1,3 +1,7 @@
+---
+quality_score: 27
+---
+
 # SR Latch Simulator
 
 An interactive SR latch demonstrating set, reset, hold, and invalid states.

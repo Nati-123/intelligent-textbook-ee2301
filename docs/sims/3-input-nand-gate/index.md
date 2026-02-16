@@ -1,3 +1,7 @@
+---
+quality_score: 32
+---
+
 # 3-Input NAND Gate
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>

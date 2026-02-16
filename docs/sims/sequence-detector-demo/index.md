@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Sequence Detector Demo
 
 An interactive "101" sequence detector demonstrating pattern recognition in serial data.

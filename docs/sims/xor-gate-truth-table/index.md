@@ -1,3 +1,7 @@
+---
+quality_score: 47
+---
+
 # XOR Gate with Truth Table
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>

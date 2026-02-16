@@ -1,3 +1,7 @@
+---
+quality_score: 27
+---
+
 # Universal Gate Simulator
 
 An interactive demonstration of how NAND and NOR gates can implement any Boolean function.

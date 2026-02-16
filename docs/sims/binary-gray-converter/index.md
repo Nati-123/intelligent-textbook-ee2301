@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Binary-Gray Code Converter
 
 An interactive converter between Binary and Gray code representations.

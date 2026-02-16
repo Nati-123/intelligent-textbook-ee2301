@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Magnitude Comparator
 
 An interactive 4-bit magnitude comparator that determines the relationship between two binary numbers.

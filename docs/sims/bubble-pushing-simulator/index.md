@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Bubble Pushing Simulator
 
 An interactive tool for learning the bubble pushing technique in logic circuit conversion.

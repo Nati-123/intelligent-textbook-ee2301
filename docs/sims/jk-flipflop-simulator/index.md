@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # JK Flip-Flop Simulator
 
 An interactive JK flip-flop demonstrating set, reset, hold, and toggle operations.

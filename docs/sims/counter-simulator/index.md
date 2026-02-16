@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # Counter Simulator
 
 An interactive 4-bit binary counter demonstrating up/down counting.

@@ -1,3 +1,7 @@
+---
+quality_score: 22
+---
+
 # NAND-NOR Converter
 
 Convert Boolean expressions between AND-OR, NAND-only, and NOR-only implementations.
