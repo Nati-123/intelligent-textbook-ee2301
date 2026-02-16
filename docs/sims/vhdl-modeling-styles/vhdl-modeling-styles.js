@@ -308,18 +308,18 @@ function drawDataflowDiagram(x, y, w, h) {
   line(x + 25, cy - 20, cx - 30, cy - 12);
   line(x + 25, cy + 20, cx - 30, cy + 5);
   line(x + 25, cy + 42, cx - 30, cy + 18);
-  line(cx + 30, cy, x + w - 20, cy);
+  line(cx + 30, cy, cx + 50, cy);
   // Arrowhead
-  line(x + w - 20, cy, x + w - 26, cy - 4);
-  line(x + w - 20, cy, x + w - 26, cy + 4);
+  line(cx + 50, cy, cx + 44, cy - 4);
+  line(cx + 50, cy, cx + 44, cy + 4);
   noStroke();
 
   // Output label
   fill(60);
-  textAlign(RIGHT, CENTER);
+  textAlign(LEFT, CENTER);
   textSize(10);
   textStyle(BOLD);
-  text('Y', x + w - 8, cy);
+  text('Y', cx + 54, cy);
   textStyle(NORMAL);
 }
 
@@ -434,14 +434,14 @@ function drawStructuralDiagram(x, y, w, h) {
   line(a1X + gW / 2 + gW / 2, a1Y, orX - orW / 2 + 2, orY - 7);
   line(a2X + gW / 2 + gW / 2, a2Y, orX - orW / 2 + 2, orY + 7);
   strokeWeight(1.5);
-  line(orX + orW / 2, orY, x + w - 14, orY);
+  line(orX + orW / 2, orY, orX + orW / 2 + 16, orY);
   noStroke();
 
   fill(60);
-  textAlign(RIGHT, CENTER);
+  textAlign(LEFT, CENTER);
   textSize(10);
   textStyle(BOLD);
-  text('Y', x + w - 5, orY);
+  text('Y', orX + orW / 2 + 20, orY);
   textStyle(NORMAL);
 }
 
@@ -480,10 +480,10 @@ function drawBehavioralDiagram(x, y, w, h) {
   strokeWeight(1);
   line(x + 10, cy - 15, cx - 38, cy - 15);
   line(x + 10, cy + 15, cx - 38, cy + 15);
-  line(cx + 38, cy, x + w - 14, cy);
+  line(cx + 38, cy, cx + 58, cy);
   // Arrowhead
-  line(x + w - 14, cy, x + w - 20, cy - 4);
-  line(x + w - 14, cy, x + w - 20, cy + 4);
+  line(cx + 58, cy, cx + 52, cy - 4);
+  line(cx + 58, cy, cx + 52, cy + 4);
   noStroke();
 
   // Labels
@@ -493,8 +493,8 @@ function drawBehavioralDiagram(x, y, w, h) {
   textStyle(BOLD);
   text('A,B', x + 5, cy - 15);
   text('Sel', x + 5, cy + 15);
-  textAlign(RIGHT, CENTER);
-  text('Y', x + w - 5, cy);
+  textAlign(LEFT, CENTER);
+  text('Y', cx + 62, cy);
   textStyle(NORMAL);
 
   // Sensitivity list note
