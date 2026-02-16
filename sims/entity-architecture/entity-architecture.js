@@ -66,11 +66,13 @@ const COL_LUT      = '#0277BD';
 
 // ── Gate definitions ──
 const GATES = [
-  { name: 'and2',  label: 'AND',  op: function(a,b){ return a & b; }, vhdlOp: 'and',  symbol: 'AND'  },
-  { name: 'or2',   label: 'OR',   op: function(a,b){ return a | b; }, vhdlOp: 'or',   symbol: 'OR'   },
-  { name: 'nand2', label: 'NAND', op: function(a,b){ return (a & b) ^ 1; }, vhdlOp: 'nand', symbol: 'NAND' },
-  { name: 'xor2',  label: 'XOR',  op: function(a,b){ return a ^ b; }, vhdlOp: 'xor',  symbol: 'XOR'  },
-  { name: 'xnor2', label: 'XNOR', op: function(a,b){ return (a ^ b) ^ 1; }, vhdlOp: 'xnor', symbol: 'XNOR' }
+  { name: 'and2',  label: 'AND',  op: function(a,b){ return a & b; }, vhdlOp: 'and',  symbol: 'AND',  inputs: 2 },
+  { name: 'or2',   label: 'OR',   op: function(a,b){ return a | b; }, vhdlOp: 'or',   symbol: 'OR',   inputs: 2 },
+  { name: 'nand2', label: 'NAND', op: function(a,b){ return (a & b) ^ 1; }, vhdlOp: 'nand', symbol: 'NAND', inputs: 2 },
+  { name: 'nor2',  label: 'NOR',  op: function(a,b){ return (a | b) ^ 1; }, vhdlOp: 'nor',  symbol: 'NOR',  inputs: 2 },
+  { name: 'xor2',  label: 'XOR',  op: function(a,b){ return a ^ b; }, vhdlOp: 'xor',  symbol: 'XOR',  inputs: 2 },
+  { name: 'xnor2', label: 'XNOR', op: function(a,b){ return (a ^ b) ^ 1; }, vhdlOp: 'xnor', symbol: 'XNOR', inputs: 2 },
+  { name: 'not1',  label: 'NOT',  op: function(a,b){ return a ^ 1; }, vhdlOp: 'not',  symbol: 'NOT',  inputs: 1 }
 ];
 
 // ── Click targets ──
@@ -153,8 +155,9 @@ function selectGate(idx) {
     var btn = document.getElementById('gate-btn-' + i);
     if (btn) btn.className = 'ea-btn ea-btn--gate' + (i === idx ? ' ea-btn--gate-active' : '');
   }
+  if (numInputs() === 1) sigB = 0;
   computeOutput();
-  testAllResults = [null, null, null, null];
+  testAllResults = new Array(numCases()).fill(null);
   testAllFilledCount = 0;
 }
 
@@ -164,7 +167,7 @@ function resetAll() {
   waveHistory = [];
   waveTime = 0;
   addWaveEntry();
-  testAllResults = [null, null, null, null];
+  testAllResults = new Array(numCases()).fill(null);
   testAllFilledCount = 0;
   testAllRunning = false;
   animating = false;
@@ -299,12 +302,17 @@ function drawBlockDiagram(x, y, w, h, gate) {
     fill(COL_ACTIVE);
     textSize(8);
     textStyle(BOLD);
-    text(sigA + ' ' + gate.vhdlOp + ' ' + sigB + ' = ' + sigY, cx, cy + 22);
+    let opText = gate.inputs === 1
+      ? gate.vhdlOp + ' ' + sigA + ' = ' + sigY
+      : sigA + ' ' + gate.vhdlOp + ' ' + sigB + ' = ' + sigY;
+    text(opText, cx, cy + 22);
   }
+
+  let is1 = gate.inputs === 1;
 
   // ── Toggle Switch A ──
   let swX = x + 18;
-  let swAY = boxY + boxH * 0.3;
+  let swAY = is1 ? cy : boxY + boxH * 0.3;
   drawToggleSwitch(swX, swAY, 'A', sigA);
   switchABounds = { x: swX - 4, y: swAY - 10, w: 32, h: 20 };
 
@@ -323,23 +331,27 @@ function drawBlockDiagram(x, y, w, h, gate) {
     ellipse(px, swAY, 8, 8);
   }
 
-  // ── Toggle Switch B ──
+  // ── Toggle Switch B (2-input gates only) ──
   let swBY = boxY + boxH * 0.7;
-  drawToggleSwitch(swX, swBY, 'B', sigB);
-  switchBBounds = { x: swX - 4, y: swBY - 10, w: 32, h: 20 };
+  if (!is1) {
+    drawToggleSwitch(swX, swBY, 'B', sigB);
+    switchBBounds = { x: swX - 4, y: swBY - 10, w: 32, h: 20 };
 
-  // Wire B → box
-  let wireBGlow = animating && animPhase === 0 && animChangedInput === 'B';
-  stroke(wireBGlow ? COL_ACTIVE : (sigB ? COL_WIRE_HI : COL_WIRE_LO));
-  strokeWeight(wireBGlow ? 3.5 : (sigB ? 2.5 : 1.5));
-  line(swX + 30, swBY, boxX, swBY);
-  noStroke();
-
-  if (wireBGlow) {
+    // Wire B → box
+    let wireBGlow = animating && animPhase === 0 && animChangedInput === 'B';
+    stroke(wireBGlow ? COL_ACTIVE : (sigB ? COL_WIRE_HI : COL_WIRE_LO));
+    strokeWeight(wireBGlow ? 3.5 : (sigB ? 2.5 : 1.5));
+    line(swX + 30, swBY, boxX, swBY);
     noStroke();
-    fill(COL_ACTIVE);
-    let px = lerp(swX + 30, boxX, animProgress);
-    ellipse(px, swBY, 8, 8);
+
+    if (wireBGlow) {
+      noStroke();
+      fill(COL_ACTIVE);
+      let px = lerp(swX + 30, boxX, animProgress);
+      ellipse(px, swBY, 8, 8);
+    }
+  } else {
+    switchBBounds = null;
   }
 
   // ── Output Y ──
@@ -386,7 +398,7 @@ function drawBlockDiagram(x, y, w, h, gate) {
   textStyle(NORMAL);
   textAlign(CENTER, TOP);
   text('in', (swX + 30 + boxX) / 2, swAY + 6);
-  text('in', (swX + 30 + boxX) / 2, swBY + 6);
+  if (!is1) text('in', (swX + 30 + boxX) / 2, swBY + 6);
   text('out', outX + 15, outY + 6);
 
   // Phase legend at bottom
@@ -451,18 +463,24 @@ function drawEntityCode(x, y, w, h, gate) {
 
   drawBadge(x, y, w, 'INTERFACE', '#82B1FF');
 
+  let portLines = [
+    { tokens: [{ t: '    A ', c: sigA ? COL_INPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'in  ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }, { t: ';', c: COL_PUNCT }], hl: animating && animPhase === 0 && animChangedInput === 'A' }
+  ];
+  if (gate.inputs === 2) {
+    portLines.push({ tokens: [{ t: '    B ', c: sigB ? COL_INPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'in  ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }, { t: ';', c: COL_PUNCT }], hl: animating && animPhase === 0 && animChangedInput === 'B' });
+  }
+  portLines.push({ tokens: [{ t: '    Y ', c: sigY ? COL_OUTPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'out ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }], hl: animating && animPhase === 2 });
+
   let lines = [
     { tokens: [{ t: 'library ', c: COL_KEYWORD }, { t: 'IEEE', c: COL_IDENT }, { t: ';', c: COL_PUNCT }] },
     { tokens: [{ t: 'use ', c: COL_KEYWORD }, { t: 'IEEE.STD_LOGIC_1164.', c: COL_IDENT }, { t: 'all', c: COL_KEYWORD }, { t: ';', c: COL_PUNCT }] },
     { tokens: [] },
     { tokens: [{ t: 'entity ', c: COL_KEYWORD }, { t: gate.name + ' ', c: COL_IDENT }, { t: 'is', c: COL_KEYWORD }] },
-    { tokens: [{ t: '  port ', c: COL_KEYWORD }, { t: '(', c: COL_PUNCT }] },
-    { tokens: [{ t: '    A ', c: sigA ? COL_INPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'in  ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }, { t: ';', c: COL_PUNCT }], hl: animating && animPhase === 0 && animChangedInput === 'A' },
-    { tokens: [{ t: '    B ', c: sigB ? COL_INPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'in  ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }, { t: ';', c: COL_PUNCT }], hl: animating && animPhase === 0 && animChangedInput === 'B' },
-    { tokens: [{ t: '    Y ', c: sigY ? COL_OUTPUT : COL_CODE_TXT }, { t: ': ', c: COL_PUNCT }, { t: 'out ', c: COL_KEYWORD }, { t: 'STD_LOGIC', c: COL_IDENT }], hl: animating && animPhase === 2 },
+    { tokens: [{ t: '  port ', c: COL_KEYWORD }, { t: '(', c: COL_PUNCT }] }
+  ].concat(portLines).concat([
     { tokens: [{ t: '  ', c: COL_CODE_TXT }, { t: ')', c: COL_PUNCT }, { t: ';', c: COL_PUNCT }] },
     { tokens: [{ t: 'end entity ', c: COL_KEYWORD }, { t: gate.name, c: COL_IDENT }, { t: ';', c: COL_PUNCT }] }
-  ];
+  ]);
 
   renderCodeLines(x, y + 20, w, h - 20, lines);
 }
@@ -548,7 +566,7 @@ function drawCodeComparison(x, y, w, h, gate) {
 }
 
 function getBehavioralCode(gate) {
-  let evalStr = 'A ' + gate.vhdlOp + ' B';
+  let evalStr = gate.inputs === 1 ? gate.vhdlOp + ' A' : 'A ' + gate.vhdlOp + ' B';
   let resultComment = ' -- = \'' + sigY + '\'';
   return [
     { tokens: [{ t: 'architecture ', c: COL_KEYWORD }, { t: 'behavioral ', c: COL_IDENT }, { t: 'of ', c: COL_KEYWORD }, { t: gate.name + ' ', c: COL_IDENT }, { t: 'is', c: COL_KEYWORD }] },
@@ -560,12 +578,14 @@ function getBehavioralCode(gate) {
 
 function getStructuralCode(gate) {
   let gc = gate.label.toUpperCase();
+  let compName = gate.inputs === 1 ? gc + '1' : gc + '2';
+  let portList = gate.inputs === 1 ? 'A,Y' : 'A,B,Y';
   return [
     { tokens: [{ t: 'architecture ', c: COL_KEYWORD }, { t: 'structural ', c: COL_IDENT }, { t: 'of ', c: COL_KEYWORD }, { t: gate.name + ' ', c: COL_IDENT }, { t: 'is', c: COL_KEYWORD }] },
-    { tokens: [{ t: '  component ', c: COL_KEYWORD }, { t: gc + '2 ', c: COL_IDENT }, { t: '...', c: COL_COMMENT }] },
+    { tokens: [{ t: '  component ', c: COL_KEYWORD }, { t: compName + ' ', c: COL_IDENT }, { t: '...', c: COL_COMMENT }] },
     { tokens: [{ t: '  end component', c: COL_KEYWORD }, { t: ';', c: COL_PUNCT }] },
     { tokens: [{ t: 'begin', c: COL_KEYWORD }] },
-    { tokens: [{ t: '  U1: ' + gc + '2 ', c: COL_IDENT }, { t: 'port map', c: COL_KEYWORD }, { t: '(', c: COL_PUNCT }, { t: 'A,B,Y', c: COL_IDENT }, { t: ');', c: COL_PUNCT }], hl: animating && animPhase === 1 },
+    { tokens: [{ t: '  U1: ' + compName + ' ', c: COL_IDENT }, { t: 'port map', c: COL_KEYWORD }, { t: '(', c: COL_PUNCT }, { t: portList, c: COL_IDENT }, { t: ');', c: COL_PUNCT }], hl: animating && animPhase === 1 },
     { tokens: [{ t: 'end ', c: COL_KEYWORD }, { t: 'structural', c: COL_IDENT }, { t: ';', c: COL_PUNCT }] }
   ];
 }
@@ -642,7 +662,7 @@ function drawDeltaCycle(x, y, w, h) {
   let startX = x + 15;
 
   let stages = [
-    { label: 'Signal\nChange', desc: 'A or B toggles', color: COL_INPUT },
+    { label: 'Signal\nChange', desc: numInputs() === 1 ? 'A toggles' : 'A or B toggles', color: COL_INPUT },
     { label: 'Logic\nEvaluation', desc: gate().vhdlOp.toUpperCase() + ' computed', color: COL_ACTIVE },
     { label: 'Output\nUpdate', desc: 'Y assigned', color: COL_OUTPUT }
   ];
@@ -738,6 +758,12 @@ function drawDeltaCycle(x, y, w, h) {
 }
 
 function gate() { return GATES[currentComponent]; }
+function numInputs() { return GATES[currentComponent].inputs; }
+function getInputCombos() {
+  if (numInputs() === 1) return [[0,0],[1,0]];
+  return [[0,0],[0,1],[1,0],[1,1]];
+}
+function numCases() { return getInputCombos().length; }
 
 // ═══════════════════════════════════════════
 //  HARDWARE REALIZATION (LUT + Gate)
@@ -767,8 +793,12 @@ function drawHardwareRealization(x, y, w, h, gate) {
   // Gate labels
   fill(sigA ? COL_INPUT : '#999');
   textSize(8); textStyle(BOLD); textAlign(RIGHT, CENTER);
-  text('A=' + sigA, gcx - 30, gcy - 8);
-  text('B=' + sigB, gcx - 30, gcy + 8);
+  if (gate.inputs === 1) {
+    text('A=' + sigA, gcx - 30, gcy);
+  } else {
+    text('A=' + sigA, gcx - 30, gcy - 8);
+    text('B=' + sigB, gcx - 30, gcy + 8);
+  }
   fill(sigY ? COL_OUTPUT : '#999');
   textAlign(LEFT, CENTER);
   text('Y=' + sigY, gcx + 30, gcy);
@@ -799,6 +829,9 @@ function drawHardwareRealization(x, y, w, h, gate) {
   let lutRowH = 14;
 
   // LUT header
+  let is1input = gate.inputs === 1;
+  let lutCols = is1input ? 2 : 3;
+  let lutRows = is1input ? 2 : 4;
   fill(COL_LUT);
   noStroke();
   rect(lutX, lutY, lutW, lutRowH, 3);
@@ -806,19 +839,19 @@ function drawHardwareRealization(x, y, w, h, gate) {
   textAlign(CENTER, CENTER);
   textSize(8);
   textStyle(BOLD);
-  let col3 = lutW / 3;
-  text('A', lutX + col3 / 2, lutY + lutRowH / 2);
-  text('B', lutX + col3 + col3 / 2, lutY + lutRowH / 2);
-  text('LUT', lutX + 2 * col3 + col3 / 2, lutY + lutRowH / 2);
+  let colUnit = lutW / lutCols;
+  text('A', lutX + colUnit / 2, lutY + lutRowH / 2);
+  if (!is1input) text('B', lutX + colUnit + colUnit / 2, lutY + lutRowH / 2);
+  text('LUT', lutX + (lutCols - 1) * colUnit + colUnit / 2, lutY + lutRowH / 2);
 
   // LUT rows
-  let inputs = [[0,0],[0,1],[1,0],[1,1]];
-  for (let r = 0; r < 4; r++) {
-    let a = inputs[r][0];
-    let b = inputs[r][1];
+  let lutInputs = is1input ? [[0,0],[1,0]] : [[0,0],[0,1],[1,0],[1,1]];
+  for (let r = 0; r < lutRows; r++) {
+    let a = lutInputs[r][0];
+    let b = lutInputs[r][1];
     let out = gate.op(a, b);
     let ry = lutY + lutRowH + r * lutRowH;
-    let isCurrent = (a === sigA && b === sigB);
+    let isCurrent = is1input ? (a === sigA) : (a === sigA && b === sigB);
 
     fill(isCurrent ? COL_ACTIVE + '25' : (r % 2 === 0 ? '#F5F5F5' : '#fff'));
     noStroke();
@@ -833,19 +866,19 @@ function drawHardwareRealization(x, y, w, h, gate) {
     textSize(9);
     textStyle(isCurrent ? BOLD : NORMAL);
     textAlign(CENTER, CENTER);
-    text(a, lutX + col3 / 2, ry + lutRowH / 2);
-    text(b, lutX + col3 + col3 / 2, ry + lutRowH / 2);
+    text(a, lutX + colUnit / 2, ry + lutRowH / 2);
+    if (!is1input) text(b, lutX + colUnit + colUnit / 2, ry + lutRowH / 2);
 
     fill(out ? COL_LUT : '#999');
     textStyle(BOLD);
-    text(out, lutX + 2 * col3 + col3 / 2, ry + lutRowH / 2);
+    text(out, lutX + (lutCols - 1) * colUnit + colUnit / 2, ry + lutRowH / 2);
   }
 
   // LUT border
   stroke(COL_LUT);
   strokeWeight(1);
   noFill();
-  rect(lutX, lutY, lutW, lutRowH * 5, 3);
+  rect(lutX, lutY, lutW, lutRowH * (lutRows + 1), 3);
   noStroke();
 
   // Label
@@ -853,21 +886,29 @@ function drawHardwareRealization(x, y, w, h, gate) {
   textSize(7);
   textStyle(NORMAL);
   textAlign(CENTER, TOP);
-  text('FPGA Look-Up Table', lutX + lutW / 2, lutY + lutRowH * 5 + 4);
+  text('FPGA Look-Up Table', lutX + lutW / 2, lutY + lutRowH * (lutRows + 1) + 4);
 
   // SRAM note
   fill('#999');
   textSize(6);
-  text('4\u00D71 SRAM programmed at config', lutX + lutW / 2, lutY + lutRowH * 5 + 14);
+  let sramNote = is1input ? '2\u00D71 SRAM programmed at config' : '4\u00D71 SRAM programmed at config';
+  text(sramNote, lutX + lutW / 2, lutY + lutRowH * (lutRows + 1) + 14);
 }
 
 function drawGateSymbol(cx, cy, gate) {
   let gw = 26;
   let gh = 20;
 
+  // Input wires
   stroke(sigA ? COL_WIRE_HI : COL_WIRE_LO); strokeWeight(1.5);
-  line(cx - gw - 6, cy - 7, cx - gw / 2, cy - 7);
-  line(cx - gw - 6, cy + 7, cx - gw / 2, cy + 7);
+  if (gate.symbol === 'NOT') {
+    // Single input centered
+    line(cx - gw - 6, cy, cx - gw / 2, cy);
+  } else {
+    line(cx - gw - 6, cy - 7, cx - gw / 2, cy - 7);
+    line(cx - gw - 6, cy + 7, cx - gw / 2, cy + 7);
+  }
+  // Output wire
   stroke(sigY ? COL_WIRE_HI : COL_WIRE_LO);
   line(cx + gw / 2 + 2, cy, cx + gw + 6, cy);
 
@@ -875,7 +916,17 @@ function drawGateSymbol(cx, cy, gate) {
   stroke(COL_GATE);
   strokeWeight(2);
 
-  if (gate.symbol === 'AND' || gate.symbol === 'NAND') {
+  if (gate.symbol === 'NOT') {
+    // Triangle shape
+    beginShape();
+    vertex(cx - gw / 2, cy - gh / 2);
+    vertex(cx + gw / 2 - 2, cy);
+    vertex(cx - gw / 2, cy + gh / 2);
+    endShape(CLOSE);
+    // Output bubble
+    fill('#fff'); stroke(COL_GATE); strokeWeight(2);
+    ellipse(cx + gw / 2 + 2, cy, 6, 6);
+  } else if (gate.symbol === 'AND' || gate.symbol === 'NAND') {
     beginShape();
     vertex(cx - gw / 2, cy - gh / 2);
     vertex(cx, cy - gh / 2);
@@ -883,6 +934,7 @@ function drawGateSymbol(cx, cy, gate) {
     vertex(cx - gw / 2, cy + gh / 2);
     endShape(CLOSE);
   } else {
+    // OR, NOR, XOR, XNOR body
     beginShape();
     vertex(cx - gw / 2, cy - gh / 2);
     bezierVertex(cx, cy - gh / 2 - 1, cx + gw / 3, cy - gh / 4, cx + gw / 2 + 2, cy);
@@ -895,7 +947,8 @@ function drawGateSymbol(cx, cy, gate) {
     }
   }
 
-  if (gate.symbol === 'NAND' || gate.symbol === 'XNOR') {
+  // Output bubble for NAND, NOR, XNOR
+  if (gate.symbol === 'NAND' || gate.symbol === 'NOR' || gate.symbol === 'XNOR') {
     fill('#fff'); stroke(COL_GATE); strokeWeight(2);
     ellipse(cx + gw / 2 + 4, cy, 6, 6);
   }
@@ -905,7 +958,8 @@ function drawGateSymbol(cx, cy, gate) {
   textAlign(CENTER, CENTER);
   textSize(7);
   textStyle(BOLD);
-  let labelOffset = (gate.symbol === 'NAND' || gate.symbol === 'XNOR') ? -2 : 0;
+  let hasBubble = (gate.symbol === 'NAND' || gate.symbol === 'NOR' || gate.symbol === 'XNOR' || gate.symbol === 'NOT');
+  let labelOffset = hasBubble ? -2 : 0;
   text(gate.symbol, cx + labelOffset, cy);
 }
 
@@ -925,14 +979,18 @@ function drawTruthTable(x, y, w, h, gate) {
   textStyle(BOLD);
   text('Truth Table', x + 6, y + 3);
 
+  let is1 = gate.inputs === 1;
+  let ttInputs = getInputCombos();
+  let ttCount = ttInputs.length;
+
   // Test All status badge
   if (testAllRunning) {
     fill(COL_ACTIVE);
     textAlign(RIGHT, TOP);
     textSize(8);
     textStyle(BOLD);
-    text('Testing ' + (testAllStep + 1) + '/4...', x + w - 6, y + 4);
-  } else if (testAllFilledCount === 4) {
+    text('Testing ' + (testAllStep + 1) + '/' + ttCount + '...', x + w - 6, y + 4);
+  } else if (testAllFilledCount === ttCount) {
     fill(COL_INPUT);
     textAlign(RIGHT, TOP);
     textSize(8);
@@ -942,7 +1000,8 @@ function drawTruthTable(x, y, w, h, gate) {
 
   let tableX = x + 6;
   let tableY = y + 20;
-  let colW = (w - 12) / 3;
+  let numCols = is1 ? 2 : 3;
+  let colW = (w - 12) / numCols;
   let rowH = 20;
 
   // Header
@@ -954,16 +1013,15 @@ function drawTruthTable(x, y, w, h, gate) {
   textSize(10);
   textStyle(BOLD);
   text('A', tableX + colW / 2, tableY + rowH / 2);
-  text('B', tableX + colW + colW / 2, tableY + rowH / 2);
-  text('Y', tableX + 2 * colW + colW / 2, tableY + rowH / 2);
+  if (!is1) text('B', tableX + colW + colW / 2, tableY + rowH / 2);
+  text('Y', tableX + (numCols - 1) * colW + colW / 2, tableY + rowH / 2);
 
-  let inputs = [[0,0],[0,1],[1,0],[1,1]];
-  for (let r = 0; r < 4; r++) {
-    let a = inputs[r][0];
-    let b = inputs[r][1];
+  for (let r = 0; r < ttCount; r++) {
+    let a = ttInputs[r][0];
+    let b = ttInputs[r][1];
     let out = gate.op(a, b);
     let ry = tableY + rowH + r * rowH;
-    let isCurrentRow = (a === sigA && b === sigB);
+    let isCurrentRow = is1 ? (a === sigA) : (a === sigA && b === sigB);
     let isFilled = testAllResults[r] !== null;
 
     // Row background
@@ -1003,32 +1061,38 @@ function drawTruthTable(x, y, w, h, gate) {
     textAlign(CENTER, CENTER);
     text(a, tableX + colW / 2, ry + rowH / 2);
 
-    fill(b ? COL_INPUT : '#999');
-    text(b, tableX + colW + colW / 2, ry + rowH / 2);
+    if (!is1) {
+      fill(b ? COL_INPUT : '#999');
+      text(b, tableX + colW + colW / 2, ry + rowH / 2);
+    }
 
     // Show Y only if filled or current
     if (isFilled || isCurrentRow) {
       fill(out ? COL_OUTPUT : '#999');
       textStyle(BOLD);
-      text(out, tableX + 2 * colW + colW / 2, ry + rowH / 2);
+      text(out, tableX + (numCols - 1) * colW + colW / 2, ry + rowH / 2);
     } else {
       fill('#BDBDBD');
       textStyle(NORMAL);
-      text('?', tableX + 2 * colW + colW / 2, ry + rowH / 2);
+      text('?', tableX + (numCols - 1) * colW + colW / 2, ry + rowH / 2);
     }
   }
 
   // Expression
-  let exprY = tableY + rowH * 5 + 6;
+  let exprY = tableY + rowH * (ttCount + 1) + 6;
   fill('#555');
   textAlign(CENTER, TOP);
   textSize(9);
   textStyle(BOLD);
-  text('Y = A ' + gate.vhdlOp.toUpperCase() + ' B', x + w / 2, exprY);
+  let exprText = is1 ? 'Y = ' + gate.vhdlOp.toUpperCase() + ' A' : 'Y = A ' + gate.vhdlOp.toUpperCase() + ' B';
+  text(exprText, x + w / 2, exprY);
 
   fill(COL_ACTIVE);
   textSize(9);
-  text(sigA + ' ' + gate.vhdlOp.toUpperCase() + ' ' + sigB + ' = ' + sigY, x + w / 2, exprY + 14);
+  let evalText = is1
+    ? gate.vhdlOp.toUpperCase() + ' ' + sigA + ' = ' + sigY
+    : sigA + ' ' + gate.vhdlOp.toUpperCase() + ' ' + sigB + ' = ' + sigY;
+  text(evalText, x + w / 2, exprY + 14);
 }
 
 // ═══════════════════════════════════════════
@@ -1128,11 +1192,9 @@ function drawWaveform(x, y, w, h) {
   let topY = y + 22;
   let botY = y + h - 14;
 
-  let signals = [
-    { name: 'A', key: 'a', color: COL_INPUT },
-    { name: 'B', key: 'b', color: COL_INPUT },
-    { name: 'Y', key: 'y', color: COL_OUTPUT }
-  ];
+  let signals = [{ name: 'A', key: 'a', color: COL_INPUT }];
+  if (numInputs() === 2) signals.push({ name: 'B', key: 'b', color: COL_INPUT });
+  signals.push({ name: 'Y', key: 'y', color: COL_OUTPUT });
 
   let sigCount = signals.length;
   let sigH = min(45, (botY - topY) / sigCount);
@@ -1222,9 +1284,11 @@ function toggleSignal(which) {
   deltaAnimProgress = 0;
 
   // Mark truth table row
-  let inputs = [[0,0],[0,1],[1,0],[1,1]];
-  for (let i = 0; i < 4; i++) {
-    if (inputs[i][0] === sigA && inputs[i][1] === sigB) {
+  let inputs = getInputCombos();
+  let is1 = numInputs() === 1;
+  for (let i = 0; i < inputs.length; i++) {
+    let match = is1 ? (inputs[i][0] === sigA) : (inputs[i][0] === sigA && inputs[i][1] === sigB);
+    if (match) {
       if (testAllResults[i] === null) testAllFilledCount++;
       testAllResults[i] = sigY;
     }
@@ -1246,7 +1310,7 @@ function startTestAll() {
   if (testAllRunning) return;
   testAllRunning = true;
   testAllStep = 0;
-  testAllResults = [null, null, null, null];
+  testAllResults = new Array(numCases()).fill(null);
   testAllFilledCount = 0;
   testAllTimer = millis();
 
@@ -1258,8 +1322,8 @@ function startTestAll() {
 }
 
 function runTestAllStep() {
-  let inputs = [[0,0],[0,1],[1,0],[1,1]];
-  if (testAllStep >= 4) {
+  let inputs = getInputCombos();
+  if (testAllStep >= inputs.length) {
     testAllRunning = false;
     var tb = document.getElementById('test-all-btn');
     if (tb) { tb.textContent = 'Test All Cases'; tb.style.background = '#7B1FA2'; }
@@ -1307,7 +1371,7 @@ function mousePressed() {
     }
   }
 
-  if (switchBBounds) {
+  if (switchBBounds && numInputs() === 2) {
     let b = switchBBounds;
     if (mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h) {
       toggleSignal('B');
