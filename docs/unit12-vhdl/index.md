@@ -461,7 +461,7 @@ end architecture behavioral;
 
 #### Diagram: VHDL Modeling Styles Comparison
 
-<iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="900px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>VHDL Modeling Styles Comparison</summary>
