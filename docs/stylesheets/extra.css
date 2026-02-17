@@ -505,28 +505,39 @@
 
 /* ===== STATIC SIDEBAR: No accordion/dropdown behavior ===== */
 
-/* Force all nested nav sections to always be visible regardless of toggle state */
+/*
+ * MkDocs Material uses grid-template-rows + opacity + visibility to
+ * collapse sections, NOT display:none. Override all three properties
+ * to force every nested nav to stay expanded at all times.
+ */
+
+/* Force all toggle-controlled nav sections to always be visible */
 .md-sidebar .md-nav__toggle ~ .md-nav {
-  display: block !important;
-  height: auto !important;
-  max-height: none !important;
+  grid-template-rows: minmax(0.4rem, 1fr) !important;
   opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Ensure child list overflow is visible */
+.md-sidebar .md-nav__toggle ~ .md-nav > .md-nav__list {
   overflow: visible !important;
 }
 
-/* Also force section-style items to stay open */
+/* Also force section/nested items to stay open */
 .md-sidebar .md-nav__item--section > .md-nav,
 .md-sidebar .md-nav__item--nested > .md-nav {
-  display: block !important;
-  height: auto !important;
-  max-height: none !important;
+  grid-template-rows: minmax(0.4rem, 1fr) !important;
   opacity: 1 !important;
-  overflow: visible !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-/* Hide expand/collapse arrow indicators */
-.md-sidebar .md-nav__item--nested > .md-nav__link::after,
-.md-sidebar .md-nav__item--nested > .md-nav__link .md-nav__icon {
+/* Hide expand/collapse arrow icons on section headers */
+.md-sidebar .md-nav__item--nested > .md-nav__link .md-nav__icon,
+.md-sidebar .md-nav__item--section > .md-nav__link .md-nav__icon {
   display: none !important;
 }
 
