@@ -532,7 +532,14 @@
   cursor: pointer !important;
 }
 
-/* Hide the TOC (question headings dropdown) on quiz pages */
+/* TOC (section headings): collapsed by default, user clicks to expand */
+#__toc:not(:checked) ~ .md-nav--secondary {
+  grid-template-rows: minmax(0.4rem, 0fr) !important;
+  opacity: 0 !important;
+  visibility: collapse !important;
+}
+
+/* Hide the TOC entirely on quiz pages */
 body.quiz-page .md-nav--secondary {
   display: none !important;
 }
