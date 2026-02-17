@@ -1,6 +1,8 @@
 ---
 title: Unit 2 Quiz - Boolean Algebra
 description: Test your understanding of Boolean operations, logic gates, and Boolean theorems
+hide:
+  - toc
 ---
 
 # Quiz: Boolean Algebra

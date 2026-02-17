@@ -1,6 +1,8 @@
 ---
 title: Unit 11 Quiz - Programmable Logic Devices
 description: Test your understanding of PLDs, ROMs, PALs, PLAs, CPLDs, FPGAs, and configurable logic architectures
+hide:
+  - toc
 ---
 
 # Quiz: Programmable Logic Devices

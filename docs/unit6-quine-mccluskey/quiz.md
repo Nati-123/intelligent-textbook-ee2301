@@ -1,6 +1,8 @@
 ---
 title: Unit 6 Quiz - Quine-McCluskey Method
 description: Test your understanding of the QM algorithm, prime implicant charts, and systematic minimization
+hide:
+  - toc
 ---
 
 # Quiz: Quine-McCluskey Method

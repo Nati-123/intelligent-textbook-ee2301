@@ -509,10 +509,11 @@
  * MkDocs Material uses grid-template-rows + opacity + visibility to
  * collapse sections, NOT display:none. Override all three properties
  * to force every nested nav to stay expanded at all times.
+ * EXCLUDE .md-nav--secondary (TOC) — it should remain collapsible/hidden.
  */
 
-/* Force all toggle-controlled nav sections to always be visible */
-.md-sidebar .md-nav__toggle ~ .md-nav {
+/* Force all toggle-controlled nav sections to always be visible (except TOC) */
+.md-sidebar .md-nav__toggle ~ .md-nav:not(.md-nav--secondary) {
   grid-template-rows: minmax(0.4rem, 1fr) !important;
   opacity: 1 !important;
   visibility: visible !important;
@@ -520,19 +521,29 @@
   transition: none !important;
 }
 
-/* Ensure child list overflow is visible */
-.md-sidebar .md-nav__toggle ~ .md-nav > .md-nav__list {
+/* Ensure child list overflow is visible (except TOC) */
+.md-sidebar .md-nav__toggle ~ .md-nav:not(.md-nav--secondary) > .md-nav__list {
   overflow: visible !important;
 }
 
-/* Also force section/nested items to stay open */
-.md-sidebar .md-nav__item--section > .md-nav,
-.md-sidebar .md-nav__item--nested > .md-nav {
+/* Also force section/nested items to stay open (except TOC) */
+.md-sidebar .md-nav__item--section > .md-nav:not(.md-nav--secondary),
+.md-sidebar .md-nav__item--nested > .md-nav:not(.md-nav--secondary) {
   grid-template-rows: minmax(0.4rem, 1fr) !important;
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
   transition: none !important;
+}
+
+/* Hide the TOC (question headings dropdown) on quiz pages */
+body.quiz-page .md-nav--secondary {
+  display: none !important;
+}
+
+/* Also hide the TOC toggle label on quiz pages */
+body.quiz-page label[for="__toc"] {
+  display: none !important;
 }
 
 /* Hide expand/collapse arrow icons on section headers */
@@ -542,7 +553,7 @@
 }
 
 /* Make section header labels non-toggleable (just visual labels) */
-.md-sidebar label.md-nav__link {
+.md-sidebar label.md-nav__link:not([for="__toc"]) {
   pointer-events: none !important;
   cursor: default !important;
 }

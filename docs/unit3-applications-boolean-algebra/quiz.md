@@ -1,6 +1,8 @@
 ---
 title: Unit 3 Quiz - Applications of Boolean Algebra
 description: Test your understanding of combinational logic, arithmetic circuits, and code converters
+hide:
+  - toc
 ---
 
 # Quiz: Applications of Boolean Algebra

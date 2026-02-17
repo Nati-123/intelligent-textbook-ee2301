@@ -1,6 +1,8 @@
 ---
 title: Unit 10 Quiz - Sequential Circuit Design
 description: Test your understanding of registers, counters, finite state machines, state assignment, and FSM design methodology
+hide:
+  - toc
 ---
 
 # Quiz: Sequential Circuit Design

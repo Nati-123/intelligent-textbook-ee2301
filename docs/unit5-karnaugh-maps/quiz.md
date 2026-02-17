@@ -1,6 +1,8 @@
 ---
 title: Unit 5 Quiz - Karnaugh Maps
 description: Test your understanding of K-map simplification, prime implicants, and grouping rules
+hide:
+  - toc
 ---
 
 # Quiz: Karnaugh Maps

@@ -1,6 +1,8 @@
 ---
 title: Unit 8 Quiz - Combinational Logic Modules
 description: Test your understanding of multiplexers, decoders, encoders, code converters, and comparator circuits
+hide:
+  - toc
 ---
 
 # Quiz: Combinational Logic Modules

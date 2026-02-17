@@ -1,6 +1,8 @@
 ---
 title: Unit 7 Quiz - Multi-Level Gate Circuits
 description: Test your understanding of universal gates, NAND/NOR conversions, bubble pushing, multi-level optimization, and technology mapping
+hide:
+  - toc
 ---
 
 # Quiz: Multi-Level Gate Circuits

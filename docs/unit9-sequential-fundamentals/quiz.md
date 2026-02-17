@@ -1,6 +1,8 @@
 ---
 title: Unit 9 Quiz - Sequential Logic Fundamentals
 description: Test your understanding of latches, flip-flops, timing parameters, metastability, and synchronous design principles
+hide:
+  - toc
 ---
 
 # Quiz: Sequential Logic Fundamentals

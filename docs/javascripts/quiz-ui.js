@@ -1025,30 +1025,15 @@
   }
 
   // =========================================================================
-  //  HIDE SIDEBAR TOC — quiz has its own question navigation
-  // =========================================================================
-  function hideSidebarToc() {
-    // The TOC toggle (#__toc) controls a dropdown of question headings
-    // inside the sidebar. Hide it since the quiz app provides its own nav.
-    var tocToggle = document.getElementById('__toc');
-    if (tocToggle) {
-      tocToggle.checked = false;
-      // Hide the TOC nav element
-      var tocNav = tocToggle.parentNode.querySelector('.md-nav--secondary');
-      if (tocNav) tocNav.style.display = 'none';
-      // Hide the label toggle (the one with the expand arrow)
-      var tocLabel = tocToggle.parentNode.querySelector('label[for="__toc"]');
-      if (tocLabel) tocLabel.style.display = 'none';
-    }
-  }
-
-  // =========================================================================
   //  INIT
   // =========================================================================
   function init() {
     // Clean up previous instance
     if (quizAppEl) { quizAppEl.remove(); quizAppEl = null; }
     if (modeBarEl) { modeBarEl.remove(); modeBarEl = null; }
+
+    // Remove quiz-page class from previous page (instant navigation)
+    document.body.classList.remove('quiz-page');
 
     var hidden = document.querySelector('.quiz-original-content');
     if (hidden) {
@@ -1058,6 +1043,9 @@
     }
 
     if (!isQuizPage()) return;
+
+    // Mark body so CSS can hide the sidebar TOC on quiz pages
+    document.body.classList.add('quiz-page');
 
     var questions = parseQuestions();
     if (questions.length === 0) return;
@@ -1080,9 +1068,6 @@
     originalWrapper.className = 'quiz-original-content';
     while (article.firstChild) originalWrapper.appendChild(article.firstChild);
     article.appendChild(originalWrapper);
-
-    // Hide TOC dropdown in sidebar (quiz UI has its own question nav)
-    hideSidebarToc();
 
     // Build mode bar + quiz app
     var modeBar = buildModeBar();

@@ -1,6 +1,8 @@
 ---
 title: Unit 1 Quiz - Number Systems
 description: Test your understanding of number systems, conversions, and binary arithmetic
+hide:
+  - toc
 ---
 
 # Quiz: Number Systems

@@ -1,6 +1,8 @@
 ---
 title: Unit 13 Quiz - System Integration and Design Projects
 description: Test your understanding of top-down design, verification, timing analysis, pipelining, and system-level digital design
+hide:
+  - toc
 ---
 
 # Quiz: System Integration and Design Projects

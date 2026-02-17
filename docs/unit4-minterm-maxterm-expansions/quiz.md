@@ -1,6 +1,8 @@
 ---
 title: Unit 4 Quiz - Minterm & Maxterm Expansions
 description: Test your understanding of canonical forms, minterms, maxterms, and Shannon expansion
+hide:
+  - toc
 ---
 
 # Quiz: Minterm & Maxterm Expansions

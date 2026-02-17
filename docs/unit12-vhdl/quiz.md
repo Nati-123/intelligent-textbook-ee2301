@@ -1,6 +1,8 @@
 ---
 title: Unit 12 Quiz - Introduction to VHDL
 description: Test your understanding of VHDL entities, architectures, data types, concurrent and sequential statements, and synthesis inference
+hide:
+  - toc
 ---
 
 # Quiz: Introduction to VHDL
