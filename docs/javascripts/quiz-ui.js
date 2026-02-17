@@ -24,8 +24,11 @@
   var contentEl = null;
   var qnumEl = null;
   var conceptEl = null;
+  var progressWrapEl = null;
   var progressBarEl = null;
   var progressFillEl = null;
+  var progressPctEl = null;
+  var bodyWrapEl = null;
   var questionEl = null;
   var choicesEl = null;
   var checkBtn = null;
@@ -33,6 +36,7 @@
   var feedbackEl = null;
   var prevBtn = null;
   var nextBtn = null;
+  var badgeEl = null;
 
   // =========================================================================
   //  DETECTION — is the current page a quiz?
@@ -163,13 +167,8 @@
     state.results = {};
     state.showSummary = false;
     state.activeIndex = 0;
-    // Rebuild nav status indicators
-    var items = navListEl.querySelectorAll('.quiz-nav__item');
-    for (var j = 0; j < items.length; j++) {
-      items[j].classList.remove('quiz-nav__item--correct', 'quiz-nav__item--incorrect');
-      var statusEl = items[j].querySelector('.quiz-nav__status');
-      if (statusEl) { statusEl.className = 'quiz-nav__status'; statusEl.textContent = ''; }
-    }
+    // Reset nav indicators
+    resetNavIndicators();
     updateProgressCount();
     updateProgressBar();
     // Show finish button only in exam mode
@@ -214,7 +213,8 @@
       lbl.textContent = 'Question ' + questions[i].num;
 
       var status = document.createElement('span');
-      status.className = 'quiz-nav__status';
+      status.className = 'quiz-nav__status quiz-nav__status--unanswered';
+      status.innerHTML = '&#9679;'; // small filled circle for unanswered
 
       item.appendChild(num);
       item.appendChild(lbl);
@@ -244,29 +244,50 @@
     conceptEl = document.createElement('span');
     conceptEl.className = 'quiz-content__concept';
 
+    // Completion badge (hidden initially)
+    badgeEl = document.createElement('span');
+    badgeEl.className = 'quiz-badge quiz-badge--complete';
+    badgeEl.innerHTML = '&#10003; Complete';
+    badgeEl.style.display = 'none';
+
     headerRow.appendChild(qnumEl);
+    headerRow.appendChild(badgeEl);
     headerRow.appendChild(conceptEl);
     contentEl.appendChild(headerRow);
 
-    // Progress bar
+    // Progress bar with percentage wrapper
+    progressWrapEl = document.createElement('div');
+    progressWrapEl.className = 'quiz-progress-wrap';
+
     progressBarEl = document.createElement('div');
     progressBarEl.className = 'quiz-progress';
     progressFillEl = document.createElement('div');
     progressFillEl.className = 'quiz-progress__fill';
     progressBarEl.appendChild(progressFillEl);
-    contentEl.appendChild(progressBarEl);
+
+    progressPctEl = document.createElement('span');
+    progressPctEl.className = 'quiz-progress__pct';
+    progressPctEl.textContent = '0%';
+
+    progressWrapEl.appendChild(progressBarEl);
+    progressWrapEl.appendChild(progressPctEl);
+    contentEl.appendChild(progressWrapEl);
+
+    // Body wrapper for slide transition
+    bodyWrapEl = document.createElement('div');
+    bodyWrapEl.className = 'quiz-content__body';
 
     // Question text
     questionEl = document.createElement('div');
     questionEl.className = 'quiz-content__question';
-    contentEl.appendChild(questionEl);
+    bodyWrapEl.appendChild(questionEl);
 
     // Choices container
     choicesEl = document.createElement('div');
     choicesEl.className = 'quiz-content__choices';
     choicesEl.setAttribute('role', 'radiogroup');
     choicesEl.setAttribute('aria-label', 'Answer choices');
-    contentEl.appendChild(choicesEl);
+    bodyWrapEl.appendChild(choicesEl);
 
     // Action buttons row
     var actionsDiv = document.createElement('div');
@@ -284,16 +305,18 @@
 
     actionsDiv.appendChild(checkBtn);
     actionsDiv.appendChild(finishBtn);
-    contentEl.appendChild(actionsDiv);
+    bodyWrapEl.appendChild(actionsDiv);
 
     // Feedback area
     feedbackEl = document.createElement('div');
     feedbackEl.className = 'quiz-content__feedback';
     feedbackEl.setAttribute('aria-live', 'polite');
     feedbackEl.hidden = true;
-    contentEl.appendChild(feedbackEl);
+    bodyWrapEl.appendChild(feedbackEl);
 
-    // Nav buttons
+    contentEl.appendChild(bodyWrapEl);
+
+    // Nav buttons (outside body wrapper so they don't slide)
     var navBtns = document.createElement('div');
     navBtns.className = 'quiz-content__nav-buttons';
 
@@ -315,6 +338,8 @@
     navListEl.addEventListener('click', function (e) {
       var el = e.target.closest('.quiz-nav__item');
       if (!el) return;
+      // Block locked items in exam mode
+      if (el.classList.contains('quiz-nav__item--locked')) return;
       var idx = parseInt(el.getAttribute('data-q'), 10);
       if (state.showSummary) {
         state.showSummary = false;
@@ -341,13 +366,13 @@
 
     state.activeIndex = index;
 
-    // Update nav active state
-    var items = navListEl.querySelectorAll('.quiz-nav__item');
-    for (var i = 0; i < items.length; i++) {
-      items[i].classList.toggle('quiz-nav__item--active', i === index);
-    }
-    if (items[index]) {
-      items[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    // Update nav active state + locking
+    updateNavStates(index);
+
+    // Scroll active nav item into view
+    var activeItem = navListEl.querySelector('.quiz-nav__item--active');
+    if (activeItem) {
+      activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
 
     // Header
@@ -356,6 +381,9 @@
 
     // Progress bar
     updateProgressBar();
+
+    // Trigger slide-in animation by re-adding the body wrapper
+    triggerSlideIn();
 
     // Question text
     questionEl.innerHTML = q.questionHTML;
@@ -440,6 +468,15 @@
     retypeset(contentEl);
   }
 
+  // Trigger CSS slide-in animation on the body wrapper
+  function triggerSlideIn() {
+    if (!bodyWrapEl) return;
+    bodyWrapEl.classList.remove('quiz-content__body');
+    // Force reflow to restart animation
+    void bodyWrapEl.offsetWidth;
+    bodyWrapEl.classList.add('quiz-content__body');
+  }
+
   // =========================================================================
   //  CHECK ANSWER
   // =========================================================================
@@ -468,6 +505,7 @@
 
     updateProgressCount();
     updateProgressBar();
+    updateNavStates(state.activeIndex);
   }
 
   function disableChoices(q, idx) {
@@ -484,6 +522,10 @@
         }
         if (letters[i] === state.answers[idx] && letters[i] !== q.correctLetter) {
           labels[i].classList.add('quiz-choice--incorrect');
+          // Add shake in exam review reveal
+          if (state.showSummary && state.mode === 'exam') {
+            labels[i].classList.add('quiz-choice--shake');
+          }
         }
       }
     } else {
@@ -527,7 +569,7 @@
   }
 
   // =========================================================================
-  //  NAV ITEM STATUS — icons & colors
+  //  NAV ITEM STATUS — icons, colors & locking
   // =========================================================================
   function updateNavItemStatus(idx, isCorrect) {
     var items = navListEl.querySelectorAll('.quiz-nav__item');
@@ -540,6 +582,7 @@
       statusEl.className = 'quiz-nav__status ' +
         (isCorrect ? 'quiz-nav__status--correct' : 'quiz-nav__status--incorrect');
       statusEl.innerHTML = isCorrect ? '&#10003;' : '&#10007;';
+      statusEl.style.color = '';
     }
   }
 
@@ -555,28 +598,100 @@
     }
   }
 
+  // Update active highlight + exam-mode locking
+  function updateNavStates(activeIdx) {
+    var items = navListEl.querySelectorAll('.quiz-nav__item');
+    for (var i = 0; i < items.length; i++) {
+      // Active state
+      items[i].classList.toggle('quiz-nav__item--active', i === activeIdx);
+
+      // Exam-mode locking: lock future unanswered questions
+      // Allow: current, answered, and the first unanswered (next to answer)
+      if (state.mode === 'exam' && !state.showSummary) {
+        var isAnswered = !!state.checked[i];
+        var isCurrent = (i === activeIdx);
+        var isNextUnanswered = false;
+
+        // Find the first unanswered question index
+        if (!isAnswered && !isCurrent) {
+          var firstUnanswered = -1;
+          for (var j = 0; j < state.questions.length; j++) {
+            if (!state.checked[j]) { firstUnanswered = j; break; }
+          }
+          isNextUnanswered = (i === firstUnanswered);
+        }
+
+        if (isAnswered || isCurrent || isNextUnanswered) {
+          items[i].classList.remove('quiz-nav__item--locked');
+        } else {
+          items[i].classList.add('quiz-nav__item--locked');
+        }
+      } else {
+        // Practice mode or review: no locking
+        items[i].classList.remove('quiz-nav__item--locked');
+      }
+    }
+  }
+
+  // Reset all nav indicators to unanswered state
+  function resetNavIndicators() {
+    var items = navListEl.querySelectorAll('.quiz-nav__item');
+    for (var j = 0; j < items.length; j++) {
+      items[j].classList.remove('quiz-nav__item--correct', 'quiz-nav__item--incorrect', 'quiz-nav__item--locked');
+      var statusEl = items[j].querySelector('.quiz-nav__status');
+      if (statusEl) {
+        statusEl.className = 'quiz-nav__status quiz-nav__status--unanswered';
+        statusEl.innerHTML = '&#9679;';
+        statusEl.style.color = '';
+      }
+    }
+  }
+
   // =========================================================================
-  //  PROGRESS — text counter + animated bar
+  //  PROGRESS — text counter + animated bar + percentage
   // =========================================================================
-  function updateProgressCount() {
+  function getAnsweredCount() {
     var count = 0;
     for (var key in state.checked) {
       if (state.checked[key]) count++;
     }
+    return count;
+  }
+
+  function updateProgressCount() {
+    var count = getAnsweredCount();
     navProgressEl.textContent = count + ' / ' + state.questions.length + ' answered';
   }
 
   function updateProgressBar() {
-    var count = 0;
-    for (var key in state.checked) {
-      if (state.checked[key]) count++;
-    }
-    var pct = (count / state.questions.length) * 100;
+    var count = getAnsweredCount();
+    var total = state.questions.length;
+    var pct = total > 0 ? Math.round((count / total) * 100) : 0;
+
     progressFillEl.style.width = pct + '%';
+
+    // Update percentage text
+    if (progressPctEl) {
+      progressPctEl.textContent = pct + '%';
+      progressPctEl.classList.toggle('quiz-progress__pct--complete', pct >= 100);
+    }
+
     if (pct >= 100) {
       progressFillEl.classList.add('quiz-progress__fill--complete');
     } else {
       progressFillEl.classList.remove('quiz-progress__fill--complete');
+    }
+
+    // Show/hide completion badge
+    updateCompletionBadge(count >= total && total > 0);
+  }
+
+  function updateCompletionBadge(isComplete) {
+    if (!badgeEl) return;
+    if (isComplete) {
+      badgeEl.style.display = '';
+    } else {
+      badgeEl.style.display = 'none';
     }
   }
 
@@ -592,6 +707,11 @@
         if (state.checked[k]) {
           updateNavItemStatus(k, state.results[k]);
         }
+      }
+      // Remove all locking in review
+      var items = navListEl.querySelectorAll('.quiz-nav__item');
+      for (var m = 0; m < items.length; m++) {
+        items[m].classList.remove('quiz-nav__item--locked');
       }
     }
 
@@ -667,7 +787,6 @@
       var el = e.target.closest('.quiz-summary__review-item');
       if (!el) return;
       var idx = parseInt(el.getAttribute('data-q'), 10);
-      state.showSummary = false;
       rebuildContentPanel();
       renderQuestion(idx);
     });
@@ -684,13 +803,7 @@
       state.checked = {};
       state.results = {};
       state.showSummary = false;
-      // Reset nav indicators
-      var items = navListEl.querySelectorAll('.quiz-nav__item');
-      for (var n = 0; n < items.length; n++) {
-        items[n].classList.remove('quiz-nav__item--correct', 'quiz-nav__item--incorrect');
-        var s = items[n].querySelector('.quiz-nav__status');
-        if (s) { s.className = 'quiz-nav__status'; s.textContent = ''; s.style.color = ''; }
-      }
+      resetNavIndicators();
       updateProgressCount();
       rebuildContentPanel();
       renderQuestion(0);
@@ -700,9 +813,7 @@
     reviewBtn.className = 'quiz-btn quiz-btn--review';
     reviewBtn.textContent = 'Review Answers';
     reviewBtn.addEventListener('click', function () {
-      state.showSummary = false; // keep results revealed
-      // But mark showSummary-like state for feedback display
-      state.showSummary = true;
+      // Keep showSummary true so feedback is visible in review
       rebuildContentPanel();
       renderQuestion(0);
     });
@@ -736,27 +847,43 @@
     qnumEl.className = 'quiz-content__qnum';
     conceptEl = document.createElement('span');
     conceptEl.className = 'quiz-content__concept';
+    badgeEl = document.createElement('span');
+    badgeEl.className = 'quiz-badge quiz-badge--complete';
+    badgeEl.innerHTML = '&#10003; Complete';
+    badgeEl.style.display = 'none';
     headerRow.appendChild(qnumEl);
+    headerRow.appendChild(badgeEl);
     headerRow.appendChild(conceptEl);
     contentEl.appendChild(headerRow);
 
-    // Progress bar
+    // Progress bar with percentage
+    progressWrapEl = document.createElement('div');
+    progressWrapEl.className = 'quiz-progress-wrap';
     progressBarEl = document.createElement('div');
     progressBarEl.className = 'quiz-progress';
     progressFillEl = document.createElement('div');
     progressFillEl.className = 'quiz-progress__fill';
     progressBarEl.appendChild(progressFillEl);
-    contentEl.appendChild(progressBarEl);
+    progressPctEl = document.createElement('span');
+    progressPctEl.className = 'quiz-progress__pct';
+    progressPctEl.textContent = '0%';
+    progressWrapEl.appendChild(progressBarEl);
+    progressWrapEl.appendChild(progressPctEl);
+    contentEl.appendChild(progressWrapEl);
+
+    // Body wrapper
+    bodyWrapEl = document.createElement('div');
+    bodyWrapEl.className = 'quiz-content__body';
 
     questionEl = document.createElement('div');
     questionEl.className = 'quiz-content__question';
-    contentEl.appendChild(questionEl);
+    bodyWrapEl.appendChild(questionEl);
 
     choicesEl = document.createElement('div');
     choicesEl.className = 'quiz-content__choices';
     choicesEl.setAttribute('role', 'radiogroup');
     choicesEl.setAttribute('aria-label', 'Answer choices');
-    contentEl.appendChild(choicesEl);
+    bodyWrapEl.appendChild(choicesEl);
 
     var actionsDiv = document.createElement('div');
     actionsDiv.className = 'quiz-content__actions';
@@ -774,13 +901,15 @@
 
     actionsDiv.appendChild(checkBtn);
     actionsDiv.appendChild(finishBtn);
-    contentEl.appendChild(actionsDiv);
+    bodyWrapEl.appendChild(actionsDiv);
 
     feedbackEl = document.createElement('div');
     feedbackEl.className = 'quiz-content__feedback';
     feedbackEl.setAttribute('aria-live', 'polite');
     feedbackEl.hidden = true;
-    contentEl.appendChild(feedbackEl);
+    bodyWrapEl.appendChild(feedbackEl);
+
+    contentEl.appendChild(bodyWrapEl);
 
     var navBtns = document.createElement('div');
     navBtns.className = 'quiz-content__nav-buttons';
@@ -827,6 +956,11 @@
   // =========================================================================
   function goToQuestion(index) {
     if (index < 0 || index >= state.questions.length) return;
+    // In exam mode, block navigation to locked questions
+    if (state.mode === 'exam' && !state.showSummary) {
+      var items = navListEl.querySelectorAll('.quiz-nav__item');
+      if (items[index] && items[index].classList.contains('quiz-nav__item--locked')) return;
+    }
     renderQuestion(index);
   }
 
