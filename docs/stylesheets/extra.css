@@ -503,63 +503,39 @@
   }
 }
 
-/* ===== STATIC SIDEBAR: No accordion/dropdown behavior ===== */
+/* ===== SIDEBAR: Accordion behavior + fixed height ===== */
 
-/*
- * MkDocs Material uses grid-template-rows + opacity + visibility to
- * collapse sections, NOT display:none. Override all three properties
- * to force every nested nav to stay expanded at all times.
- * EXCLUDE .md-nav--secondary (TOC) — it should remain collapsible/hidden.
- */
+/* Fixed-height sidebar with internal scroll */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    height: calc(100vh - 3rem);
+    position: sticky;
+    top: 3rem;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
 
-/* Force all toggle-controlled nav sections to always be visible (except TOC) */
+/* Smooth open/close transitions for accordion */
 .md-sidebar .md-nav__toggle ~ .md-nav:not(.md-nav--secondary) {
-  grid-template-rows: minmax(0.4rem, 1fr) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  transition: none !important;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease, visibility 0s 0.25s;
+}
+.md-sidebar .md-nav__toggle:checked ~ .md-nav:not(.md-nav--secondary),
+.md-sidebar .md-nav__toggle.md-toggle--indeterminate ~ .md-nav:not(.md-nav--secondary) {
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease, visibility 0s;
 }
 
-/* Ensure child list overflow is visible (except TOC) */
-.md-sidebar .md-nav__toggle ~ .md-nav:not(.md-nav--secondary) > .md-nav__list {
-  overflow: visible !important;
-}
-
-/* Also force section/nested items to stay open (except TOC) */
-.md-sidebar .md-nav__item--section > .md-nav:not(.md-nav--secondary),
-.md-sidebar .md-nav__item--nested > .md-nav:not(.md-nav--secondary) {
-  grid-template-rows: minmax(0.4rem, 1fr) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  transition: none !important;
+/* Unit section headers: clickable with pointer cursor */
+.md-sidebar label.md-nav__link {
+  cursor: pointer !important;
 }
 
 /* Hide the TOC (question headings dropdown) on quiz pages */
 body.quiz-page .md-nav--secondary {
   display: none !important;
 }
-
-/* Also hide the TOC toggle label on quiz pages */
 body.quiz-page label[for="__toc"] {
   display: none !important;
-}
-
-/* Hide expand/collapse arrow icons on section headers */
-.md-sidebar .md-nav__item--nested > .md-nav__link .md-nav__icon,
-.md-sidebar .md-nav__item--section > .md-nav__link .md-nav__icon {
-  display: none !important;
-}
-
-/* Make section header labels non-toggleable (just visual labels) */
-.md-sidebar label.md-nav__link:not([for="__toc"]) {
-  pointer-events: none !important;
-  cursor: default !important;
-}
-
-/* Keep actual page links clickable */
-.md-sidebar a.md-nav__link {
-  pointer-events: auto !important;
-  cursor: pointer !important;
 }
