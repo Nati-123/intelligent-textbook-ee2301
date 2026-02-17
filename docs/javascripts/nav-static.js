@@ -61,8 +61,22 @@
       parentToggle.classList.remove('md-toggle--indeterminate');
     }
 
+    // Collapse the TOC (section headings) by default on content pages.
+    // The user can click the "Content" label to expand/collapse it.
+    // On quiz pages, quiz-ui.js hides it entirely via body.quiz-page class.
+    collapseToc();
+
     // Listen for toggle changes to enforce accordion
     attachAccordionListeners(toggles);
+  }
+
+  // Collapse the TOC dropdown so section headings don't expand under Content
+  function collapseToc() {
+    var tocToggle = document.getElementById('__toc');
+    if (tocToggle) {
+      tocToggle.checked = false;
+      tocToggle.classList.remove('md-toggle--indeterminate');
+    }
   }
 
   // Attach change listeners to enforce one-at-a-time behavior
