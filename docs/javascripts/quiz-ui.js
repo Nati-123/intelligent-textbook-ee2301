@@ -1025,6 +1025,24 @@
   }
 
   // =========================================================================
+  //  HIDE SIDEBAR TOC — quiz has its own question navigation
+  // =========================================================================
+  function hideSidebarToc() {
+    // The TOC toggle (#__toc) controls a dropdown of question headings
+    // inside the sidebar. Hide it since the quiz app provides its own nav.
+    var tocToggle = document.getElementById('__toc');
+    if (tocToggle) {
+      tocToggle.checked = false;
+      // Hide the TOC nav element
+      var tocNav = tocToggle.parentNode.querySelector('.md-nav--secondary');
+      if (tocNav) tocNav.style.display = 'none';
+      // Hide the label toggle (the one with the expand arrow)
+      var tocLabel = tocToggle.parentNode.querySelector('label[for="__toc"]');
+      if (tocLabel) tocLabel.style.display = 'none';
+    }
+  }
+
+  // =========================================================================
   //  INIT
   // =========================================================================
   function init() {
@@ -1062,6 +1080,9 @@
     originalWrapper.className = 'quiz-original-content';
     while (article.firstChild) originalWrapper.appendChild(article.firstChild);
     article.appendChild(originalWrapper);
+
+    // Hide TOC dropdown in sidebar (quiz UI has its own question nav)
+    hideSidebarToc();
 
     // Build mode bar + quiz app
     var modeBar = buildModeBar();
