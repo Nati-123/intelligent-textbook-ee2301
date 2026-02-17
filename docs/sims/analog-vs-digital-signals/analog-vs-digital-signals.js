@@ -17,8 +17,25 @@ let showThreshold = true;
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
+
+  // -- Nav bar: Fullscreen (in iframe) / Back to Docs (standalone) --
+  var navBar = document.createElement('div');
+  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
+  var navLink = document.createElement('a');
+  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
+  if (window.self !== window.top) {
+    navLink.href = 'main.html';
+    navLink.target = '_blank';
+    navLink.textContent = '⛶ Fullscreen';
+  } else {
+    navLink.href = 'index.html';
+    navLink.textContent = '← Back to Docs';
+  }
+  navBar.appendChild(navLink);
+  mainElement.appendChild(navBar);
+
+  const canvas = createCanvas(containerWidth, containerHeight);
   canvas.parent(mainElement);
 
   // Noise slider
