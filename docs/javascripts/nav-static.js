@@ -3,6 +3,12 @@
 
   // =========================================================================
   //  SIDEBAR ACCORDION — only one unit section open at a time
+  //  Also collapses the TOC (section headings) under "Content" by default.
+  //
+  //  navigation.expand is enabled in mkdocs.yml so all units are listed,
+  //  but it adds md-toggle--indeterminate to every toggle, expanding them.
+  //  This script removes that class from non-active units and from #__toc
+  //  to enforce accordion + collapsed TOC behavior.
   // =========================================================================
 
   // Get all unit-level toggle checkboxes (level 2: __nav_6_1, __nav_6_2, etc.)
@@ -11,12 +17,12 @@
     var unitToggles = [];
     for (var i = 0; i < all.length; i++) {
       var toggle = all[i];
-      // Skip the TOC toggle and the top-level "Unit Modules" toggle
+      // Skip the TOC toggle
       if (toggle.id === '__toc') continue;
-      // Unit toggles are inside data-md-level="2" parent navs
+      // Skip toggles that are inside a unit (sub-items within a unit section)
       var parentNav = toggle.closest('nav[data-md-level="2"]');
-      if (parentNav) continue; // This is inside a unit, not a unit toggle itself
-      // Check if it's a unit-level toggle (has a sibling nav with data-md-level="2")
+      if (parentNav) continue;
+      // Unit-level toggles have a sibling nav with data-md-level="2"
       var siblingNav = toggle.parentNode.querySelector('nav[data-md-level="2"]');
       if (siblingNav) {
         unitToggles.push(toggle);
@@ -39,16 +45,15 @@
   // Initialize accordion: expand only the active unit, collapse others
   function initAccordion() {
     var toggles = getUnitToggles();
-    var activeToggleId = null;
 
     // Find the active unit (contains md-nav__item--active)
     for (var i = 0; i < toggles.length; i++) {
       var li = toggles[i].closest('.md-nav__item');
       if (li && li.classList.contains('md-nav__item--active')) {
-        activeToggleId = toggles[i].id;
         toggles[i].checked = true;
         toggles[i].classList.remove('md-toggle--indeterminate');
       } else {
+        // Collapse non-active units: uncheck AND remove indeterminate
         toggles[i].checked = false;
         toggles[i].classList.remove('md-toggle--indeterminate');
       }
@@ -79,11 +84,24 @@
     }
   }
 
+  // Watch the #__toc element for MkDocs Material re-adding md-toggle--indeterminate
+  function watchToc() {
+    var tocToggle = document.getElementById('__toc');
+    if (!tocToggle || tocToggle.dataset.tocWatched) return;
+    tocToggle.dataset.tocWatched = 'true';
+
+    new MutationObserver(function () {
+      if (tocToggle.classList.contains('md-toggle--indeterminate')) {
+        tocToggle.classList.remove('md-toggle--indeterminate');
+        tocToggle.checked = false;
+      }
+    }).observe(tocToggle, { attributes: true, attributeFilter: ['class'] });
+  }
+
   // Attach change listeners to enforce one-at-a-time behavior
   function attachAccordionListeners(toggles) {
     for (var i = 0; i < toggles.length; i++) {
       (function (toggle) {
-        // Remove existing listeners by cloning
         var label = document.querySelector('label[for="' + toggle.id + '"]');
         if (!label || label.dataset.accordionBound) return;
         label.dataset.accordionBound = 'true';
@@ -102,7 +120,10 @@
   // =========================================================================
   function init() {
     // Small delay to let MkDocs Material finish rendering
-    setTimeout(initAccordion, 50);
+    setTimeout(function () {
+      initAccordion();
+      watchToc();
+    }, 50);
   }
 
   // Run on load
@@ -117,7 +138,10 @@
   new MutationObserver(function () {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
-      setTimeout(initAccordion, 200);
+      setTimeout(function () {
+        initAccordion();
+        watchToc();
+      }, 200);
     }
   }).observe(document.body, { childList: true, subtree: true });
 })();
