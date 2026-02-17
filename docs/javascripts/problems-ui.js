@@ -25,6 +25,8 @@
   function initProblemsUI() {
     if (!isProblemsPage()) return;
 
+    document.body.classList.add('problems-page');
+
     var content = document.querySelector('.md-content__inner');
     if (!content) return;
 

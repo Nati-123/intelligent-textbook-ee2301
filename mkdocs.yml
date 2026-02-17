@@ -37,7 +37,7 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
-  - stylesheets/extra.css?v=4
+  - stylesheets/extra.css?v=5
   - stylesheets/audio-player.css
   - stylesheets/quiz.css?v=3
 
@@ -47,7 +47,7 @@ extra_javascript:
   - javascripts/tts-reader.js
   - javascripts/audio-player.js
   - javascripts/quiz-ui.js?v=3
-  - javascripts/problems-ui.js?v=1
+  - javascripts/problems-ui.js?v=2
 
 nav:
   - Cover: index.md

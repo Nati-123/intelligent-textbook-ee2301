@@ -559,10 +559,12 @@
 
 /* ===== SIDEBAR ===== */
 
-/* Hide the TOC entirely on quiz pages */
-body.quiz-page .md-nav--secondary {
+/* Hide the TOC entirely on quiz and problems pages */
+body.quiz-page .md-nav--secondary,
+body.problems-page .md-nav--secondary {
   display: none !important;
 }
-body.quiz-page label[for="__toc"] {
+body.quiz-page label[for="__toc"],
+body.problems-page label[for="__toc"] {
   display: none !important;
 }
