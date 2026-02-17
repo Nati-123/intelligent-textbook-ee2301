@@ -38,7 +38,23 @@
       "Bash(sensible-browser:*)",
       "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 add docs/stylesheets/extra.css)",
       "Bash(git -C /home/kebar/projects/intelligent-textbook-ee2301 commit -m \"$\\(cat <<''EOF''\nRevert pipe separators from navigation tabs\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(/home/kebar/.venv/bin/mkdocs build:*)"
+      "Bash(/home/kebar/.venv/bin/mkdocs build:*)",
+      "Bash(# Simpler approach: count all $ in all .md files under docs/ cat /home/kebar/projects/intelligent-textbook-ee2301/docs/unit*-*/*.md /home/kebar/projects/intelligent-textbook-ee2301/docs/*.md /home/kebar/projects/intelligent-textbook-ee2301/docs/learning-graph/*.md /home/kebar/projects/intelligent-textbook-ee2301/docs/sims/*/index.md)",
+      "Bash(tr:*)",
+      "Bash(curl:*)",
+      "Bash(/home/kebar/.venv/bin/mkdocs gh-deploy:*)",
+      "Bash(powershell.exe -Command \"Start-Process ''https://Nati-123.github.io/intelligent-textbook-ee2301/unit1-number-systems/''\")",
+      "Bash(node -c:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(cat:*)",
+      "Bash(/home/kebar/.local/bin/gh run list --limit 3)",
+      "Bash(mkdocs serve:*)",
+      "Bash(apt list:*)",
+      "Bash(/home/kebar/.local/bin/bk-install-mkdocs:*)",
+      "Bash(/home/kebar/miniconda3/bin/conda tos accept:*)",
+      "Bash(conda activate:*)",
+      "Bash(git fetch:*)"
     ]
   }
 }
