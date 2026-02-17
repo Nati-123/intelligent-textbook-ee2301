@@ -66,14 +66,14 @@
   }
 
   function wrapAnswer(answerP, index, pageType) {
-    // Collect elements from answerP until next section break
-    var elements = [answerP];
+    // Collect all elements from answerP until next section break
+    var allElements = [answerP];
     var next = answerP.nextElementSibling;
 
     while (next) {
       var tag = next.tagName.toLowerCase();
       if (tag === 'hr' || tag === 'h2' || tag === 'h3' || tag === 'h4') break;
-      elements.push(next);
+      allElements.push(next);
       next = next.nextElementSibling;
     }
 
@@ -82,52 +82,86 @@
     wrapper.className = 'solution-wrapper';
     wrapper.dataset.index = index;
 
-    var answerDiv = document.createElement('div');
-    answerDiv.className = 'solution-content';
-    answerDiv.style.display = 'none';
-
-    // Button text differs by page type
-    var showLabel = pageType === 'challenge'
-      ? '<span class="solution-icon">&#9654;</span> Reveal Answer'
-      : '<span class="solution-icon">&#9654;</span> Show Answer';
-    var hideLabel = pageType === 'challenge'
-      ? '<span class="solution-icon solution-icon--open">&#9660;</span> Hide Answer'
-      : '<span class="solution-icon solution-icon--open">&#9660;</span> Hide Answer';
-
-    var btn = document.createElement('button');
-    btn.className = 'solution-toggle';
-    if (pageType === 'challenge') btn.classList.add('solution-toggle--challenge');
-    btn.type = 'button';
-    btn.innerHTML = showLabel;
-    btn.setAttribute('aria-expanded', 'false');
-
-    // Insert
-    answerP.parentNode.insertBefore(wrapper, answerP);
-    wrapper.appendChild(btn);
-    wrapper.appendChild(answerDiv);
-
-    for (var i = 0; i < elements.length; i++) {
-      answerDiv.appendChild(elements[i]);
-    }
-
-    // Toggle
-    btn.addEventListener('click', function () {
-      var isHidden = answerDiv.style.display === 'none';
-      if (isHidden) {
-        answerDiv.style.display = 'block';
-        btn.innerHTML = hideLabel;
-        btn.setAttribute('aria-expanded', 'true');
-        btn.classList.add('solution-toggle--open');
-        if (window.MathJax && MathJax.typesetPromise) {
-          MathJax.typesetPromise([answerDiv]);
-        }
-      } else {
-        answerDiv.style.display = 'none';
-        btn.innerHTML = showLabel;
-        btn.setAttribute('aria-expanded', 'false');
-        btn.classList.remove('solution-toggle--open');
+    // For challenges: only show the first paragraph (final answer),
+    // remove all step paragraphs entirely.
+    // For problems: show everything (full worked solution).
+    if (pageType === 'challenge') {
+      // Remove step paragraphs (everything after the **Answer:** paragraph)
+      for (var r = 1; r < allElements.length; r++) {
+        allElements[r].parentNode.removeChild(allElements[r]);
       }
-    });
+      // Only the answer paragraph goes in the hidden div
+      var answerDiv = document.createElement('div');
+      answerDiv.className = 'solution-content';
+      answerDiv.style.display = 'none';
+
+      var btn = document.createElement('button');
+      btn.className = 'solution-toggle solution-toggle--challenge';
+      btn.type = 'button';
+      btn.innerHTML = '<span class="solution-icon">&#9654;</span> Reveal Answer';
+      btn.setAttribute('aria-expanded', 'false');
+
+      answerP.parentNode.insertBefore(wrapper, answerP);
+      wrapper.appendChild(btn);
+      wrapper.appendChild(answerDiv);
+      answerDiv.appendChild(answerP);
+
+      btn.addEventListener('click', function () {
+        var isHidden = answerDiv.style.display === 'none';
+        if (isHidden) {
+          answerDiv.style.display = 'block';
+          btn.innerHTML = '<span class="solution-icon solution-icon--open">&#9660;</span> Hide Answer';
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('solution-toggle--open');
+          if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise([answerDiv]);
+          }
+        } else {
+          answerDiv.style.display = 'none';
+          btn.innerHTML = '<span class="solution-icon">&#9654;</span> Reveal Answer';
+          btn.setAttribute('aria-expanded', 'false');
+          btn.classList.remove('solution-toggle--open');
+        }
+      });
+
+    } else {
+      // Problems page: show full worked solution
+      var answerDiv = document.createElement('div');
+      answerDiv.className = 'solution-content';
+      answerDiv.style.display = 'none';
+
+      var btn = document.createElement('button');
+      btn.className = 'solution-toggle';
+      btn.type = 'button';
+      btn.innerHTML = '<span class="solution-icon">&#9654;</span> Show Answer';
+      btn.setAttribute('aria-expanded', 'false');
+
+      answerP.parentNode.insertBefore(wrapper, answerP);
+      wrapper.appendChild(btn);
+      wrapper.appendChild(answerDiv);
+
+      for (var i = 0; i < allElements.length; i++) {
+        answerDiv.appendChild(allElements[i]);
+      }
+
+      btn.addEventListener('click', function () {
+        var isHidden = answerDiv.style.display === 'none';
+        if (isHidden) {
+          answerDiv.style.display = 'block';
+          btn.innerHTML = '<span class="solution-icon solution-icon--open">&#9660;</span> Hide Answer';
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('solution-toggle--open');
+          if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise([answerDiv]);
+          }
+        } else {
+          answerDiv.style.display = 'none';
+          btn.innerHTML = '<span class="solution-icon">&#9654;</span> Show Answer';
+          btn.setAttribute('aria-expanded', 'false');
+          btn.classList.remove('solution-toggle--open');
+        }
+      });
+    }
   }
 
   // =========================================================================

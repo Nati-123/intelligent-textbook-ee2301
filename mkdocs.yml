@@ -47,7 +47,7 @@ extra_javascript:
   - javascripts/tts-reader.js
   - javascripts/audio-player.js
   - javascripts/quiz-ui.js?v=3
-  - javascripts/problems-ui.js?v=3
+  - javascripts/problems-ui.js?v=4
 
 nav:
   - Cover: index.md
