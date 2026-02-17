@@ -3,20 +3,22 @@
 
   // =========================================================================
   //  SIDEBAR ACCORDION — only one unit section open at a time
+  //
+  //  navigation.expand is ON so all units are listed in the sidebar.
+  //  It adds md-toggle--indeterminate to every toggle (acts like :checked).
+  //  This script strips that class from non-active units to enforce accordion
+  //  and from #__toc so the TOC stays collapsed by default.
   // =========================================================================
 
-  // Get all unit-level toggle checkboxes (level 2: __nav_6_1, __nav_6_2, etc.)
+  // Get all unit-level toggle checkboxes (__nav_6_1 … __nav_6_13)
   function getUnitToggles() {
     var all = document.querySelectorAll('.md-sidebar .md-nav__toggle');
     var unitToggles = [];
     for (var i = 0; i < all.length; i++) {
       var toggle = all[i];
-      // Skip the TOC toggle and the top-level "Unit Modules" toggle
       if (toggle.id === '__toc') continue;
-      // Unit toggles are inside data-md-level="2" parent navs
       var parentNav = toggle.closest('nav[data-md-level="2"]');
-      if (parentNav) continue; // This is inside a unit, not a unit toggle itself
-      // Check if it's a unit-level toggle (has a sibling nav with data-md-level="2")
+      if (parentNav) continue;
       var siblingNav = toggle.parentNode.querySelector('nav[data-md-level="2"]');
       if (siblingNav) {
         unitToggles.push(toggle);
@@ -25,13 +27,18 @@
     return unitToggles;
   }
 
+  // Collapse a toggle: uncheck + strip indeterminate
+  function collapseToggle(toggle) {
+    toggle.checked = false;
+    toggle.classList.remove('md-toggle--indeterminate');
+  }
+
   // Close all unit sections except the given one
   function closeOtherUnits(keepOpenId) {
     var toggles = getUnitToggles();
     for (var i = 0; i < toggles.length; i++) {
       if (toggles[i].id !== keepOpenId) {
-        toggles[i].checked = false;
-        toggles[i].classList.remove('md-toggle--indeterminate');
+        collapseToggle(toggles[i]);
       }
     }
   }
@@ -39,51 +46,80 @@
   // Initialize accordion: expand only the active unit, collapse others
   function initAccordion() {
     var toggles = getUnitToggles();
-    var activeToggleId = null;
 
-    // Find the active unit (contains md-nav__item--active)
     for (var i = 0; i < toggles.length; i++) {
       var li = toggles[i].closest('.md-nav__item');
       if (li && li.classList.contains('md-nav__item--active')) {
-        activeToggleId = toggles[i].id;
         toggles[i].checked = true;
         toggles[i].classList.remove('md-toggle--indeterminate');
       } else {
-        toggles[i].checked = false;
-        toggles[i].classList.remove('md-toggle--indeterminate');
+        collapseToggle(toggles[i]);
       }
     }
 
-    // Keep the "Unit Modules" parent always open
+    // Keep "Unit Modules" parent always open
     var parentToggle = document.getElementById('__nav_6');
     if (parentToggle) {
       parentToggle.checked = true;
       parentToggle.classList.remove('md-toggle--indeterminate');
     }
 
-    // Collapse the TOC (section headings) by default on content pages.
-    // The user can click the "Content" label to expand/collapse it.
-    // On quiz pages, quiz-ui.js hides it entirely via body.quiz-page class.
-    collapseToc();
-
-    // Listen for toggle changes to enforce accordion
-    attachAccordionListeners(toggles);
-  }
-
-  // Collapse the TOC dropdown so section headings don't expand under Content
-  function collapseToc() {
+    // Collapse the TOC by default (CSS handles the visual override,
+    // but we also strip the class for consistency)
     var tocToggle = document.getElementById('__toc');
     if (tocToggle) {
       tocToggle.checked = false;
       tocToggle.classList.remove('md-toggle--indeterminate');
     }
+
+    attachAccordionListeners(toggles);
+    watchForIndeterminate(toggles);
+  }
+
+  // Watch all managed toggles for MkDocs Material re-adding md-toggle--indeterminate
+  function watchForIndeterminate(toggles) {
+    // Already set up watchers
+    if (document.body.dataset.accordionWatched) return;
+    document.body.dataset.accordionWatched = 'true';
+
+    // Build a set of toggle IDs we manage (units + toc)
+    var managedIds = {};
+    for (var i = 0; i < toggles.length; i++) {
+      managedIds[toggles[i].id] = true;
+    }
+    managedIds['__toc'] = true;
+
+    // Single observer on the sidebar watches for class changes
+    var sidebar = document.querySelector('.md-sidebar--primary');
+    if (!sidebar) return;
+
+    new MutationObserver(function (mutations) {
+      for (var m = 0; m < mutations.length; m++) {
+        var target = mutations[m].target;
+        if (target.id && managedIds[target.id] &&
+            target.classList.contains('md-toggle--indeterminate')) {
+          // Only allow indeterminate on active unit toggle
+          var li = target.closest('.md-nav__item');
+          var isActive = li && li.classList.contains('md-nav__item--active');
+          if (!isActive) {
+            target.classList.remove('md-toggle--indeterminate');
+            if (target.id !== '__toc') {
+              target.checked = false;
+            }
+          }
+        }
+      }
+    }).observe(sidebar, {
+      attributes: true,
+      attributeFilter: ['class'],
+      subtree: true
+    });
   }
 
   // Attach change listeners to enforce one-at-a-time behavior
   function attachAccordionListeners(toggles) {
     for (var i = 0; i < toggles.length; i++) {
       (function (toggle) {
-        // Remove existing listeners by cloning
         var label = document.querySelector('label[for="' + toggle.id + '"]');
         if (!label || label.dataset.accordionBound) return;
         label.dataset.accordionBound = 'true';
@@ -101,11 +137,9 @@
   //  INIT
   // =========================================================================
   function init() {
-    // Small delay to let MkDocs Material finish rendering
     setTimeout(initAccordion, 50);
   }
 
-  // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
@@ -117,6 +151,7 @@
   new MutationObserver(function () {
     if (location.href !== lastUrl) {
       lastUrl = location.href;
+      document.body.removeAttribute('data-accordion-watched');
       setTimeout(initAccordion, 200);
     }
   }).observe(document.body, { childList: true, subtree: true });
