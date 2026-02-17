@@ -37,17 +37,17 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/extra.css?v=2
   - stylesheets/audio-player.css
-  - stylesheets/quiz.css
+  - stylesheets/quiz.css?v=2
 
 extra_javascript:
-  - javascripts/nav-static.js
+  - javascripts/nav-static.js?v=2
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/tts-reader.js
   - javascripts/audio-player.js
-  - javascripts/quiz-ui.js
+  - javascripts/quiz-ui.js?v=2
 
 nav:
   - Cover: index.md
