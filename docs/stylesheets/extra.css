@@ -502,3 +502,42 @@
     font-size: 0.85rem;
   }
 }
+
+/* ===== STATIC SIDEBAR: No accordion/dropdown behavior ===== */
+
+/* Force all nested nav sections to always be visible regardless of toggle state */
+.md-sidebar .md-nav__toggle ~ .md-nav {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+/* Also force section-style items to stay open */
+.md-sidebar .md-nav__item--section > .md-nav,
+.md-sidebar .md-nav__item--nested > .md-nav {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+/* Hide expand/collapse arrow indicators */
+.md-sidebar .md-nav__item--nested > .md-nav__link::after,
+.md-sidebar .md-nav__item--nested > .md-nav__link .md-nav__icon {
+  display: none !important;
+}
+
+/* Make section header labels non-toggleable (just visual labels) */
+.md-sidebar label.md-nav__link {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Keep actual page links clickable */
+.md-sidebar a.md-nav__link {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
