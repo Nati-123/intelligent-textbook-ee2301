@@ -559,12 +559,25 @@
 
 /* ===== SIDEBAR ===== */
 
-/* Hide the TOC entirely on quiz and problems pages */
+/* Challenge page: orange accent for Reveal Answer button */
+.solution-toggle--challenge {
+  border-color: #e65100;
+  color: #e65100;
+}
+.solution-toggle--challenge:hover,
+.solution-toggle--challenge.solution-toggle--open {
+  background: #e65100;
+  color: #fff;
+}
+
+/* Hide the TOC entirely on quiz, problems, and challenge pages */
 body.quiz-page .md-nav--secondary,
-body.problems-page .md-nav--secondary {
+body.problems-page .md-nav--secondary,
+body.challenge-page .md-nav--secondary {
   display: none !important;
 }
 body.quiz-page label[for="__toc"],
-body.problems-page label[for="__toc"] {
+body.problems-page label[for="__toc"],
+body.challenge-page label[for="__toc"] {
   display: none !important;
 }
