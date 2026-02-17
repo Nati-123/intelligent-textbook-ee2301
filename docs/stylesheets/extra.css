@@ -503,6 +503,60 @@
   }
 }
 
+/* ===== PROBLEMS PAGE: Show/Hide Answer toggle ===== */
+
+.solution-wrapper {
+  margin: 0.75rem 0 0.5rem;
+}
+
+.solution-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border: 2px solid var(--md-primary-fg-color, #3f51b5);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--md-primary-fg-color, #3f51b5);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.solution-toggle:hover {
+  background: var(--md-primary-fg-color, #3f51b5);
+  color: #fff;
+}
+
+.solution-toggle:active {
+  transform: scale(0.97);
+}
+
+.solution-toggle--open {
+  background: var(--md-primary-fg-color, #3f51b5);
+  color: #fff;
+}
+
+.solution-icon {
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+.solution-content {
+  margin-top: 0.75rem;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--md-primary-fg-color, #3f51b5);
+  background: rgba(63, 81, 181, 0.04);
+  border-radius: 0 6px 6px 0;
+  animation: solutionSlideIn 0.3s ease;
+}
+
+@keyframes solutionSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ===== SIDEBAR ===== */
 
 /* Hide the TOC entirely on quiz pages */
