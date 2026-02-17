@@ -6,8 +6,8 @@
   //
   //  navigation.expand is ON so all units are listed in the sidebar.
   //  It adds md-toggle--indeterminate to every toggle (acts like :checked).
-  //  This script strips that class from non-active units to enforce accordion
-  //  and from #__toc so the TOC stays collapsed by default.
+  //  This script strips that class from non-active units to enforce accordion.
+  //  The TOC (section headings under Content) is left alone so it stays visible.
   // =========================================================================
 
   // Get all unit-level toggle checkboxes (__nav_6_1 … __nav_6_13)
@@ -64,32 +64,21 @@
       parentToggle.classList.remove('md-toggle--indeterminate');
     }
 
-    // Collapse the TOC by default (CSS handles the visual override,
-    // but we also strip the class for consistency)
-    var tocToggle = document.getElementById('__toc');
-    if (tocToggle) {
-      tocToggle.checked = false;
-      tocToggle.classList.remove('md-toggle--indeterminate');
-    }
-
     attachAccordionListeners(toggles);
     watchForIndeterminate(toggles);
   }
 
-  // Watch all managed toggles for MkDocs Material re-adding md-toggle--indeterminate
+  // Watch unit toggles for MkDocs Material re-adding md-toggle--indeterminate
   function watchForIndeterminate(toggles) {
-    // Already set up watchers
     if (document.body.dataset.accordionWatched) return;
     document.body.dataset.accordionWatched = 'true';
 
-    // Build a set of toggle IDs we manage (units + toc)
+    // Only manage unit toggles (not #__toc)
     var managedIds = {};
     for (var i = 0; i < toggles.length; i++) {
       managedIds[toggles[i].id] = true;
     }
-    managedIds['__toc'] = true;
 
-    // Single observer on the sidebar watches for class changes
     var sidebar = document.querySelector('.md-sidebar--primary');
     if (!sidebar) return;
 
@@ -98,14 +87,11 @@
         var target = mutations[m].target;
         if (target.id && managedIds[target.id] &&
             target.classList.contains('md-toggle--indeterminate')) {
-          // Only allow indeterminate on active unit toggle
           var li = target.closest('.md-nav__item');
           var isActive = li && li.classList.contains('md-nav__item--active');
           if (!isActive) {
             target.classList.remove('md-toggle--indeterminate');
-            if (target.id !== '__toc') {
-              target.checked = false;
-            }
+            target.checked = false;
           }
         }
       }

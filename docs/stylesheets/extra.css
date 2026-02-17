@@ -532,22 +532,6 @@
   cursor: pointer !important;
 }
 
-/* TOC (section headings): collapsed by default, user clicks to expand.
-   navigation.expand adds md-toggle--indeterminate which acts like :checked,
-   so we must override BOTH the unchecked AND indeterminate states. */
-#__toc:not(:checked) ~ .md-nav--secondary,
-#__toc.md-toggle--indeterminate ~ .md-nav--secondary {
-  grid-template-rows: minmax(0.4rem, 0fr) !important;
-  opacity: 0 !important;
-  visibility: collapse !important;
-}
-/* Only show TOC when explicitly checked (user clicked to expand) */
-#__toc:checked ~ .md-nav--secondary {
-  grid-template-rows: 1fr !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
 /* Hide the TOC entirely on quiz pages */
 body.quiz-page .md-nav--secondary {
   display: none !important;
