@@ -16,6 +16,8 @@
   function getPageType() {
     var content = document.querySelector('.md-content');
     if (!content) return null;
+    // Skip quiz pages — they have .upper-alpha choice lists and **Answer:**
+    if (content.querySelector('.upper-alpha')) return null;
     var strongs = content.querySelectorAll('strong');
     var hasSolution = false;
     var hasAnswer = false;

@@ -91,6 +91,11 @@
       if (answerP) {
         var strongs = answerP.querySelectorAll('strong');
         if (strongs.length >= 2) correctLetter = strongs[1].textContent.trim();
+        // Fallback: extract letter from text "The correct answer is X"
+        if (!correctLetter || !/^[A-D]$/.test(correctLetter)) {
+          var m = answerP.textContent.match(/correct answer is\s+([A-D])\b/i);
+          if (m) correctLetter = m[1].toUpperCase();
+        }
       }
 
       var choices = [];
