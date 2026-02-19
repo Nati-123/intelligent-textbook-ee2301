@@ -59,27 +59,49 @@ function draw() {
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
-  fill('white');
-  stroke('silver');
-  strokeWeight(1);
+  fill(243, 245, 250);
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill(colors.text);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
   textSize(18);
-  text('4-Input LUT Explorer', canvasWidth / 2, 10);
+  text('4-Input LUT Explorer', canvasWidth / 2, 18);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 80, 30, canvasWidth / 2 + 80, 30);
 
   // Compute current address from input bits
   let currentAddress = inputBits[0] * 8 + inputBits[1] * 4 + inputBits[2] * 2 + inputBits[3];
   let outputValue = lutCells[currentAddress];
 
-  // Subtitle
-  textSize(12);
-  fill('#666');
+  // Readout panel
   let addrStr = inputBits[0].toString() + inputBits[1].toString() + inputBits[2].toString() + inputBits[3].toString();
-  text('Address: ' + addrStr + ' (cell ' + currentAddress + ') = ' + outputValue + '   |   Function: ' + currentPreset, canvasWidth / 2, 34);
+  let panelW = 320;
+  let panelX = (canvasWidth - panelW) / 2;
+  let panelY = 36;
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(panelX, panelY, panelW, 22, 8);
+  // Accent line
+  noStroke();
+  fill(33, 150, 243);
+  rect(panelX, panelY + 4, 4, 14, 2, 0, 0, 2);
+  // Readout text
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  fill(33, 150, 243);
+  text('Addr: ' + addrStr + ' (cell ' + currentAddress + ')', panelX + 14, panelY + 11);
+  fill(76, 175, 80);
+  text('= ' + outputValue, panelX + 160, panelY + 11);
+  fill(120);
+  text('|  Function: ' + currentPreset, panelX + 185, panelY + 11);
 
   // Draw input toggles
   drawInputToggles();
@@ -97,11 +119,38 @@ function draw() {
   drawPresetButtons();
 
   // Instructions in control area
-  fill(colors.text);
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
   noStroke();
+  rect(12, drawHeight + 3, instrW, 18, 8);
+  fill(100);
   textAlign(CENTER, CENTER);
-  textSize(11);
-  text('Click inputs to toggle | Click SRAM cells to set values | Select preset functions below', canvasWidth / 2, drawHeight + 12);
+  textSize(10);
+  text('Click inputs to toggle  |  Click SRAM cells to set values  |  Select preset functions below', canvasWidth / 2, drawHeight + 12);
+
+  // Cursor management
+  let overInteractive = false;
+  // Check input toggles
+  for (let i = 0; i < 4; i++) {
+    let iy = 90 + i * 55;
+    if (dist(mouseX, mouseY, 50, iy) < 22) overInteractive = true;
+  }
+  // Check SRAM cells
+  let gx = 120, gy = 65, cs = 40, hs = 30;
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      let cx = gx + hs + c * cs;
+      let cy = gy + hs + r * cs;
+      if (mouseX >= cx && mouseX <= cx + cs && mouseY >= cy && mouseY <= cy + cs) overInteractive = true;
+    }
+  }
+  // Check preset buttons
+  let bW = (canvasWidth - 20) / presetNames.length;
+  for (let i = 0; i < presetNames.length; i++) {
+    let bx = 10 + i * bW;
+    if (mouseX >= bx && mouseX <= bx + bW - 4 && mouseY >= drawHeight + 28 && mouseY <= drawHeight + 46) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 // Draw the 4 input toggle circles on the left
@@ -190,17 +239,22 @@ function drawSramGrid(currentAddress) {
       let isCurrentAddr = cellIndex === currentAddress;
       let cellVal = lutCells[cellIndex];
 
-      // Cell background
+      // Cell background with glow on active cell
       if (isCurrentAddr) {
+        // Glow ring
+        noStroke();
+        fill(255, 193, 7, 50);
+        rect(x - 3, y - 3, cellSize + 6, cellSize + 6, 7);
         fill(colors.highlight);
         stroke('#F57F17');
-        strokeWeight(3);
+        strokeWeight(2.5);
+        rect(x, y, cellSize, cellSize, 5);
       } else {
         fill(cellVal === 1 ? '#C8E6C9' : 'white');
         stroke(colors.cellBorder);
         strokeWeight(1);
+        rect(x, y, cellSize, cellSize, 3);
       }
-      rect(x, y, cellSize, cellSize);
 
       // Cell value
       fill(cellVal === 1 ? '#2E7D32' : '#999');
@@ -312,16 +366,24 @@ function drawPresetButtons() {
     let x = startX + i * btnW;
     let isActive = currentPreset === presetNames[i];
 
-    fill(isActive ? colors.header : '#E0E0E0');
-    stroke(isActive ? '#1565C0' : '#BDBDBD');
+    if (isActive) {
+      // Glow behind active button
+      noStroke();
+      fill(33, 150, 243, 30);
+      rect(x - 1, btnY - 1, btnW - 2, btnH + 2, 6);
+    }
+    fill(isActive ? colors.header : '#E8E8E8');
+    stroke(isActive ? '#1565C0' : '#CACACA');
     strokeWeight(1);
-    rect(x, btnY, btnW - 4, btnH, 4);
+    rect(x, btnY, btnW - 4, btnH, 5);
 
     fill(isActive ? 'white' : colors.text);
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(10);
+    textStyle(isActive ? BOLD : NORMAL);
     text(presetNames[i], x + (btnW - 4) / 2, btnY + btnH / 2);
+    textStyle(NORMAL);
   }
 }
 

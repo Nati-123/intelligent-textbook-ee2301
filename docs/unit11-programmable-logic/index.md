@@ -527,7 +527,7 @@ A LUT-4 works exactly like the ROM described in Section 11.3, but with only 4 ad
 
 #### Diagram: 4-Input LUT Structure and Operation
 
-<iframe src="../sims/lut-explorer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/lut-explorer/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>4-Input LUT Structure and Operation</summary>
