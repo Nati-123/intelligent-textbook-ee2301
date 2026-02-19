@@ -444,7 +444,7 @@ A CPLD consists of:
 
 #### Diagram: CPLD Architecture Block Diagram
 
-<iframe src="../sims/cpld-architecture/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/cpld-architecture/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>CPLD Architecture Block Diagram</summary>

@@ -5,9 +5,7 @@ quality_score: 85
 ---
 # CPLD Architecture
 
-<iframe src="main.html" height="550px" width="100%" scrolling="no"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="640px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ## Description
 

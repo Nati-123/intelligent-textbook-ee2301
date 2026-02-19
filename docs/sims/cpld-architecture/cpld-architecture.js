@@ -84,7 +84,15 @@ function draw() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
+  textStyle(BOLD);
   text('CPLD Architecture', canvasWidth / 2, 18);
+  textStyle(NORMAL);
+
+  // Title underline
+  stroke(220);
+  strokeWeight(1);
+  let titleW = min(textWidth('CPLD Architecture') + 60, canvasWidth - 40);
+  line(canvasWidth / 2 - titleW / 2, 32, canvasWidth / 2 + titleW / 2, 32);
 
   // Compute positions based on canvas size
   computePositions();
@@ -128,13 +136,15 @@ function draw() {
   }
   cursor(hovering ? HAND : ARROW);
 
-  // Control area
-  fill(100);
+  // Instruction area with styled background
+  fill(243, 245, 250);
   noStroke();
+  rect(12, drawHeight + 6, canvasWidth - 24, controlHeight - 12, 8);
+  fill(130);
   textSize(11);
   textAlign(CENTER, CENTER);
-  text('Click components for details | Click bit boxes to enable/disable',
-       canvasWidth / 2, drawHeight + 25);
+  text('Click components for details  |  Click bit boxes to enable/disable',
+       canvasWidth / 2, drawHeight + controlHeight / 2);
 }
 
 function computePositions() {
@@ -226,7 +236,7 @@ function drawMatrix() {
   fill(255, 240, 235);
   if (isSelected) {
     stroke(matrixColor);
-    strokeWeight(3);
+    strokeWeight(2.5);
   } else {
     stroke(matrixColor);
     strokeWeight(1.5);
@@ -272,7 +282,7 @@ function drawFunctionBlocks() {
     fill(enabled ? color(235, 237, 255) : color(235, 235, 235));
     if (isSelected) {
       stroke(fbColor);
-      strokeWeight(3);
+      strokeWeight(2.5);
     } else {
       stroke(enabled ? fbColor : color(180));
       strokeWeight(1.5);
@@ -465,10 +475,10 @@ function drawInfoPanel() {
   let panelW = canvasWidth - 20;
 
   // Panel background
-  fill(255);
-  stroke(200);
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
   strokeWeight(1);
-  rect(panelX, panelY, panelW, panelH, 6);
+  rect(panelX, panelY, panelW, panelH, 8);
 
   if (selectedType === COMP_NONE) {
     fill(150);
@@ -488,33 +498,47 @@ function drawInfoPanel() {
     detail = ioDetail;
   }
 
-  // Title
-  let titleColor;
-  if (selectedType === COMP_FB) titleColor = fbColor;
-  else if (selectedType === COMP_MATRIX) titleColor = matrixColor;
-  else titleColor = ioColor;
+  // Accent color based on component type
+  let accentColor;
+  if (selectedType === COMP_FB) accentColor = fbColor;
+  else if (selectedType === COMP_MATRIX) accentColor = matrixColor;
+  else accentColor = ioColor;
 
-  fill(titleColor);
+  // Accent line
+  noStroke();
+  fill(accentColor);
+  rect(panelX + 10, panelY, 3, panelH, 2);
+
+  // Title
+  fill(accentColor);
   noStroke();
   textAlign(LEFT, TOP);
   textSize(14);
   textStyle(BOLD);
-  text(detail.title, panelX + 12, panelY + 10);
+  text(detail.title, panelX + 22, panelY + 10);
   textStyle(NORMAL);
 
   // Description
   fill(80);
   textSize(11);
   textAlign(LEFT, TOP);
-  // Word wrap the description
-  let descX = panelX + 12;
+  let descX = panelX + 22;
   let descY = panelY + 30;
-  let maxW = panelW - 24;
+  let maxW = panelW - 34;
   text(detail.desc, descX, descY, maxW, 40);
 
-  // Features as tags
+  // Features as tags with component-colored backgrounds
   let tagY = panelY + 72;
-  let tagX = panelX + 12;
+  let tagX = panelX + 22;
+
+  let tagBg, tagBorder;
+  if (selectedType === COMP_FB) {
+    tagBg = color(235, 237, 255); tagBorder = color(200, 205, 230);
+  } else if (selectedType === COMP_MATRIX) {
+    tagBg = color(255, 240, 235); tagBorder = color(230, 210, 200);
+  } else {
+    tagBg = color(225, 245, 225); tagBorder = color(200, 225, 200);
+  }
 
   for (let i = 0; i < detail.features.length; i++) {
     let feat = detail.features[i];
@@ -522,13 +546,13 @@ function drawInfoPanel() {
 
     // Check if tag fits on current line
     if (tagX + tw > panelX + panelW - 12) {
-      tagX = panelX + 12;
+      tagX = panelX + 22;
       tagY += 22;
     }
 
     // Tag background
-    fill(240, 240, 255);
-    stroke(200);
+    fill(tagBg);
+    stroke(tagBorder);
     strokeWeight(1);
     rect(tagX, tagY, tw, 18, 9);
 
