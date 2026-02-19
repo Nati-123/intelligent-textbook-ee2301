@@ -230,11 +230,28 @@ function draw() {
   // ── Title ──
   fill(COL_ENTITY);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
-  text('VHDL Entity–Architecture: ' + gate.label + ' Gate', canvasWidth / 2, y);
-  y += 20;
+  text('VHDL Entity–Architecture: ' + gate.label + ' Gate', canvasWidth / 2, y + 8);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(210);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 120, y + 18, canvasWidth / 2 + 120, y + 18);
+  y += 22;
+
+  // Cursor management for toggle switches
+  let overToggle = false;
+  if (switchABounds) {
+    let b = switchABounds;
+    if (mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h) overToggle = true;
+  }
+  if (switchBBounds && numInputs() === 2) {
+    let b = switchBBounds;
+    if (mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h) overToggle = true;
+  }
+  cursor(overToggle ? HAND : ARROW);
 
   // ── Layout ──
   let halfW = (canvasWidth - 3 * m) / 2;
