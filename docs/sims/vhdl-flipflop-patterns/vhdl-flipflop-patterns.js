@@ -113,7 +113,7 @@ function setup() {
 
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
-  describe('Interactive VHDL flip-flop pattern explorer with timing diagrams for DFF variants', LABEL);
+  describe('VHDL Flip-Flop Patterns');
   resetHistory();
 }
 
