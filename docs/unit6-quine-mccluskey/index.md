@@ -127,7 +127,7 @@ This insight dramatically reduces the number of comparisons needed, from $\binom
 
 #### Diagram: QM Grouping Visualization
 
-<iframe src="../sims/qm-grouping-visualization/main.html" width="100%" height="532px" scrolling="no"></iframe>
+<iframe src="../sims/qm-grouping-visualization/main.html" width="100%" height="532px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>QM Grouping Visualization Specification</summary>
@@ -247,7 +247,7 @@ The implicant table organizes the systematic combination process. Let us work th
 
 #### Diagram: QM Combination Process Simulator
 
-<iframe src="../sims/qm-combination-simulator/main.html" width="100%" height="582px" scrolling="no"></iframe>
+<iframe src="../sims/qm-combination-simulator/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>QM Combination Process Simulator Specification</summary>
@@ -430,7 +430,7 @@ The first solution has 3 prime implicants, making it the minimum cover.
 
 #### Diagram: Prime Implicant Chart Interactive
 
-<iframe src="../sims/pi-chart-interactive/main.html" width="100%" height="582px" scrolling="no"></iframe>
+<iframe src="../sims/pi-chart-interactive/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Prime Implicant Chart Interactive Specification</summary>
@@ -569,7 +569,7 @@ Despite its complexity, the QM method remains important because:
 
 #### Diagram: QM Complexity Visualization
 
-<iframe src="../sims/qm-complexity-chart/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/qm-complexity-chart/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>QM Complexity Visualization Specification</summary>
@@ -766,7 +766,7 @@ All solutions have 4 product terms and 8 literals.
 
 #### Diagram: Complete QM Method Walkthrough
 
-<iframe src="../sims/qm-complete-walkthrough/main.html" width="100%" height="652px" scrolling="no"></iframe>
+<iframe src="../sims/qm-complete-walkthrough/main.html" width="100%" height="652px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Complete QM Method Walkthrough Specification</summary>
@@ -971,7 +971,7 @@ The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean 
 
 Step through the Quine-McCluskey algorithm with grouping, combining, and PI chart:
 
-<iframe src="../sims/qm-method-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/qm-method-walkthrough/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
