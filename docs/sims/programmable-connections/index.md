@@ -5,9 +5,7 @@ quality_score: 85
 ---
 # Programmable Connections
 
-<iframe src="main.html" height="500px" width="100%" scrolling="no"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="550px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ## Description
 
