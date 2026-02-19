@@ -117,7 +117,7 @@ The top-down approach decomposes a complex problem into progressively smaller, m
 
 #### Diagram: Top-Down Design Flow
 
-<iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Top-Down Design Flow</summary>
@@ -177,7 +177,7 @@ Hierarchy is the primary tool for managing complexity. A hierarchical design con
 
 ### Example: Hierarchical ALU Design
 
-<iframe src="../sims/hierarchical-alu-design/main.html" height="580px" width="100%" scrolling="no" style="border:1px solid #ddd; border-radius:8px;"></iframe>
+<iframe src="../sims/hierarchical-alu-design/main.html" height="580px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 *Click any module to select it, expand/collapse children, and view details in the side panel.*
 

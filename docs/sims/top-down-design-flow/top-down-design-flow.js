@@ -88,30 +88,10 @@ function setup() {
   });
   bar.appendChild(animBtn);
 
-  // Fullscreen / Exit (expand iframe only)
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'margin-left:auto;font-size:11px;font-weight:bold;color:#5C6BC0;cursor:pointer;text-decoration:none;';
-  navLink.textContent = '⛶ Fullscreen';
-  var _isFs = false, _iframe = window.frameElement, _origSt = _iframe ? _iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (_iframe) {
-      if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;'; navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
-      else { _iframe.style.cssText = _origSt; navLink.textContent = '⛶ Fullscreen'; setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
-      _isFs = !_isFs;
-    }
-  });
-  bar.appendChild(navLink);
-
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('Interactive top-down design flow with 6 hierarchical steps and verification feedback loops', LABEL);
   textAlign(CENTER, CENTER);
-
-  // Resize after nav bar is in DOM so canvas height accounts for it
-  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {
@@ -129,13 +109,16 @@ function draw() {
   let infoW = canvasWidth * 0.42;      // Width of info panel
 
   // Draw title
-  fill(50);
+  fill('#212121');
   noStroke();
   textSize(15);
   textStyle(BOLD);
   textAlign(CENTER, TOP);
   text("Top-Down Design Flow", flowX, 5);
   textStyle(NORMAL);
+  stroke(220); strokeWeight(1);
+  line(flowX - 80, 22, flowX + 80, 22);
+  noStroke();
 
   // Store step positions for click detection
   let stepPositions = [];
@@ -349,6 +332,16 @@ function draw() {
     selectedStep = animStep;
   }
 
+  // Cursor management
+  let overInteractive = false;
+  if (this._stepPositions) {
+    for (let sp of this._stepPositions) {
+      if (mouseX > sp.x && mouseX < sp.x + sp.w && mouseY > sp.y && mouseY < sp.y + sp.h) {
+        overInteractive = true; break;
+      }
+    }
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function mousePressed() {

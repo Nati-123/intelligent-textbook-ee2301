@@ -124,32 +124,6 @@ function setup() {
   resetBtn.addEventListener('click', function() { resetAll(); });
   bar.appendChild(resetBtn);
 
-  // Fullscreen link (expand iframe only)
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'margin-left:auto;font-size:11px;font-weight:bold;color:#5C6BC0;cursor:pointer;text-decoration:none;';
-  navLink.textContent = '⛶ Fullscreen';
-  var _isFs = false;
-  var _iframe = window.frameElement;
-  var _origStyle = _iframe ? _iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (_iframe) {
-      if (!_isFs) {
-        _origStyle = _iframe.style.cssText;
-        _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;';
-        navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      } else {
-        _iframe.style.cssText = _origStyle;
-        navLink.textContent = '⛶ Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      }
-      _isFs = !_isFs;
-    }
-  });
-  bar.appendChild(navLink);
-
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainEl);
   describe('VHDL Entity-Architecture Explorer');

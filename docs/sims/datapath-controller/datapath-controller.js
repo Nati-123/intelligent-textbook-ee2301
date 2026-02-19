@@ -157,30 +157,27 @@ function setup() {
   stateDisplay.textContent = stateNames[currentState];
   bar.appendChild(stateDisplay);
 
-  // Fullscreen / Exit (expand iframe only)
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'margin-left:auto;font-size:11px;font-weight:bold;color:#5C6BC0;cursor:pointer;text-decoration:none;';
-  navLink.textContent = '⛶ Fullscreen';
-  var _isFs = false, _iframe = window.frameElement, _origSt = _iframe ? _iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (_iframe) {
-      if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;'; navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
-      else { _iframe.style.cssText = _origSt; navLink.textContent = '⛶ Fullscreen'; setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
-      _isFs = !_isFs;
-    }
-  });
-  bar.appendChild(navLink);
+  const canvas2 = canvas; // keep reference
 
-  // Resize after nav bar is in DOM so canvas height accounts for it
+  // Resize after controls bar is in DOM so canvas height accounts for it
   setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {
   updateCanvasSize();
   background(245);
+
+  // Title
+  fill('#212121');
+  noStroke();
+  textSize(14);
+  textStyle(BOLD);
+  textAlign(CENTER, TOP);
+  text("Datapath-Controller Interaction", canvasWidth / 2, 3);
+  textStyle(NORMAL);
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 110, 18, canvasWidth / 2 + 110, 18);
+  noStroke();
 
   // Layout
   let fsmAreaWidth = canvasWidth * 0.38;
@@ -190,16 +187,16 @@ function draw() {
   // Section divider
   stroke(200);
   strokeWeight(1);
-  line(fsmAreaWidth, 0, fsmAreaWidth, drawHeight);
+  line(fsmAreaWidth, 24, fsmAreaWidth, drawHeight);
 
   // Draw section titles
   fill(50);
   noStroke();
-  textSize(14);
+  textSize(12);
   textStyle(BOLD);
   textAlign(CENTER, TOP);
-  text("Controller (FSM)", fsmAreaWidth / 2, 8);
-  text("Datapath", dpAreaX + dpAreaWidth / 2, 8);
+  text("Controller (FSM)", fsmAreaWidth / 2, 24);
+  text("Datapath", dpAreaX + dpAreaWidth / 2, 24);
   textStyle(NORMAL);
 
   drawFSM(fsmAreaWidth);
