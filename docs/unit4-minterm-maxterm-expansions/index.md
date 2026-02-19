@@ -162,7 +162,7 @@ Each minterm equals 1 for exactly one input combination and 0 for all others. Th
 
 #### Diagram: Minterm Visualizer
 
-<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Minterm Visualizer</summary>
@@ -317,7 +317,7 @@ Both expressions represent the same function F!
 
 #### Diagram: Minterm/Maxterm Converter
 
-<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Canonical Form Generator</summary>
@@ -515,7 +515,7 @@ $$= A + BC$$
 
 #### Diagram: SOP-POS Converter
 
-<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>SOP-POS Converter</summary>
@@ -671,7 +671,7 @@ The reconstructed expression $AB + \overline{A}C$ appears different from the ori
 
 #### Diagram: Shannon Expansion Explorer
 
-<iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Shannon Expansion Explorer</summary>
@@ -814,7 +814,7 @@ This unit established canonical forms as the foundation for systematic Boolean f
 
 Step through expanding a Boolean expression into canonical minterm form:
 
-<iframe src="../sims/minterm-expansion-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<iframe src="../sims/minterm-expansion-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
