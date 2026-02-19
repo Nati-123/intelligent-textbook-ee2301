@@ -121,60 +121,86 @@ function setup() {
 
 function draw() {
   updateCanvasSize();
-  background(255);
+  // Background
+  fill('#f5f5f5');
+  noStroke();
+  rect(0, 0, canvasWidth, drawHeight);
+  // Control area
+  fill(243, 245, 250);
+  noStroke();
+  rect(0, drawHeight, canvasWidth, controlHeight);
 
   let step = steps[currentStep];
   let margin = 15;
   let w = canvasWidth - 2 * margin;
 
-  // Title bar
-  fill(TITLE_BG);
+  // Title
+  fill('#212121');
   noStroke();
-  rect(margin, margin, w, 40, 5);
-  fill(255);
   textAlign(CENTER, CENTER);
-  textSize(15);
   textStyle(BOLD);
-  text(step.title, canvasWidth / 2, margin + 20);
-
-  // Step indicator
-  fill(100);
-  textSize(12);
+  textSize(16);
+  text('PLA Programming Walkthrough', canvasWidth / 2, margin + 8);
   textStyle(NORMAL);
-  textAlign(RIGHT, TOP);
-  text('Step ' + (currentStep + 1) + ' of ' + totalSteps, canvasWidth - margin - 5, margin + 50);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 105, margin + 19, canvasWidth / 2 + 105, margin + 19);
+
+  // Step readout panel
+  let rpW = Math.min(canvasWidth - 30, 380);
+  let rpX = (canvasWidth - rpW) / 2;
+  let rpY = margin + 24;
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(rpX, rpY, rpW, 22, 8);
+  noStroke();
+  fill(92, 107, 192);
+  rect(rpX, rpY + 4, 4, 14, 2, 0, 0, 2);
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  fill(92, 107, 192);
+  text(step.title, rpX + 14, rpY + 11);
+  textStyle(NORMAL);
+  fill(150);
+  textAlign(RIGHT, CENTER);
+  textSize(10);
+  text((currentStep + 1) + ' / ' + totalSteps, rpX + rpW - 8, rpY + 11);
 
   // Progress bar
-  let progY = margin + 48;
-  fill(220);
-  rect(margin, progY, w, 6, 3);
+  let progY = rpY + 26;
+  fill(230);
+  noStroke();
+  rect(margin, progY, w, 4, 2);
   fill(TITLE_BG);
-  rect(margin, progY, w * (currentStep + 1) / totalSteps, 6, 3);
+  rect(margin, progY, w * (currentStep + 1) / totalSteps, 4, 2);
 
   // Rule label
   fill(HIGHLIGHT);
   noStroke();
-  let ruleY = margin + 65;
+  let ruleY = progY + 10;
   textSize(11);
   textStyle(BOLD);
   let rw = textWidth(step.rule) + 20;
   rw = max(rw, 100);
-  rect(canvasWidth / 2 - rw / 2, ruleY, rw, 24, 12);
+  rect(canvasWidth / 2 - rw / 2, ruleY, rw, 22, 11);
   fill(255);
   textAlign(CENTER, CENTER);
-  text(step.rule, canvasWidth / 2, ruleY + 12);
+  text(step.rule, canvasWidth / 2, ruleY + 11);
 
   // Measure description
   let descLines = step.desc.split('\n');
   let descHeight = descLines.length * 15 + 10;
 
   // Visual area
-  let visY = ruleY + 40;
+  let visY = ruleY + 28;
   let visH = drawHeight - visY - descHeight - 12;
   fill(STEP_BG);
-  stroke(200);
+  stroke(210, 215, 225);
   strokeWeight(1);
-  rect(margin, visY, w, visH, 5);
+  rect(margin, visY, w, visH, 8);
   noStroke();
 
   if (step.visual === 'intro') {
@@ -407,9 +433,13 @@ function drawPLAGrid(mx, vy, w, vh, activeAndRow, showOrPlane, testInput) {
       rect(cellX, cellY, cellW, cellH);
       noStroke();
 
-      // Crosspoint dot
+      // Crosspoint dot with glow on active
       if (showDot) {
         let dotColor = testInput ? (litVals[c] ? WIRE_ON : '#EF5350') : (r === activeAndRow ? ACTIVE_COLOR : AND_COLOR);
+        if (r === activeAndRow && !testInput) {
+          fill(red(color(dotColor)), green(color(dotColor)), blue(color(dotColor)), 50);
+          ellipse(cellX + cellW / 2, cellY + cellH / 2, 20, 20);
+        }
         fill(dotColor);
         ellipse(cellX + cellW / 2, cellY + cellH / 2, 12, 12);
       }
@@ -465,6 +495,10 @@ function drawPLAGrid(mx, vy, w, vh, activeAndRow, showOrPlane, testInput) {
 
         if (showDot) {
           let dotColor = testInput ? (termVals[r] ? WIRE_ON : '#BDBDBD') : OR_COLOR;
+          if (!testInput) {
+            fill(red(color(dotColor)), green(color(dotColor)), blue(color(dotColor)), 50);
+            ellipse(cellX + cellW / 2, cellY + cellH / 2, 20, 20);
+          }
           fill(dotColor);
           ellipse(cellX + cellW / 2, cellY + cellH / 2, 12, 12);
         }
@@ -559,39 +593,70 @@ function drawResult(mx, vy, w, vh) {
 }
 
 function drawButtons() {
-  let btnY = drawHeight + 48;
+  // Styled instruction area
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
+  noStroke();
+  rect(12, drawHeight + 4, instrW, 16, 8);
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text('Step through the PLA programming process  |  Reset to start over', canvasWidth / 2, drawHeight + 12);
+
+  let btnY = drawHeight + 28;
   let btnW = 90;
-  let btnH = 34;
+  let btnH = 28;
   let gap = 10;
-  let totalW = btnW * 3 + gap * 2;
-  let startX = (canvasWidth - totalW) / 2;
+  let totalBtnW = btnW * 3 + gap * 2;
+  let startX = (canvasWidth - totalBtnW) / 2;
 
   let prevEnabled = currentStep > 0;
-  fill(prevEnabled ? '#1976D2' : '#BDBDBD');
+  if (prevEnabled) {
+    noStroke();
+    fill(25, 118, 210, 25);
+    rect(startX - 1, btnY - 1, btnW + 2, btnH + 2, 7);
+  }
+  fill(prevEnabled ? '#1976D2' : '#CACACA');
   noStroke();
-  rect(startX, btnY, btnW, btnH, 5);
+  rect(startX, btnY, btnW, btnH, 6);
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(14);
+  textSize(13);
   textStyle(BOLD);
   text('\u2190 Previous', startX + btnW / 2, btnY + btnH / 2);
 
   fill('#757575');
-  rect(startX + btnW + gap, btnY, btnW, btnH, 5);
+  rect(startX + btnW + gap, btnY, btnW, btnH, 6);
   fill(255);
   text('Reset', startX + btnW + gap + btnW / 2, btnY + btnH / 2);
 
   let nextEnabled = currentStep < totalSteps - 1;
-  fill(nextEnabled ? '#388E3C' : '#BDBDBD');
-  rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
+  if (nextEnabled) {
+    noStroke();
+    fill(56, 142, 60, 25);
+    rect(startX + 2 * (btnW + gap) - 1, btnY - 1, btnW + 2, btnH + 2, 7);
+  }
+  fill(nextEnabled ? '#388E3C' : '#CACACA');
+  noStroke();
+  rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 6);
   fill(255);
   text('Next \u2192', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Cursor management
+  let overInteractive = false;
+  if (mouseY >= btnY && mouseY <= btnY + btnH) {
+    if (mouseX >= startX && mouseX <= startX + btnW && prevEnabled) overInteractive = true;
+    if (mouseX >= startX + btnW + gap && mouseX <= startX + 2 * btnW + gap) overInteractive = true;
+    if (mouseX >= startX + 2 * (btnW + gap) && mouseX <= startX + 2 * (btnW + gap) + btnW && nextEnabled) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function mousePressed() {
-  let btnY = drawHeight + 48;
+  let btnY = drawHeight + 28;
   let btnW = 90;
-  let btnH = 34;
+  let btnH = 28;
   let gap = 10;
   let totalW = btnW * 3 + gap * 2;
   let startX = (canvasWidth - totalW) / 2;

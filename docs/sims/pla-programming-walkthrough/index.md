@@ -6,9 +6,7 @@ quality_score: 85
 
 # PLA Programming Walkthrough
 
-<iframe src="main.html" height="620px" width="100%" scrolling="no"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="590px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ## Description
 
