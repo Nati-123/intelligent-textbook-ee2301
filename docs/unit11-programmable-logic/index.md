@@ -765,7 +765,7 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 
 #### Diagram: FPGA Design Flow
 
-<iframe src="../sims/fpga-design-flow/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/fpga-design-flow/main.html" width="100%" height="620px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>FPGA Design Flow</summary>

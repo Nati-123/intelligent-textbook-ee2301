@@ -64,17 +64,22 @@ function draw() {
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
-  fill('white');
-  stroke('silver');
-  strokeWeight(1);
+  fill(243, 245, 250);
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill(colors.text);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
   textSize(18);
-  text('FPGA Design Flow', canvasWidth / 2, 8);
+  text('FPGA Design Flow', canvasWidth / 2, 16);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 72, 28, canvasWidth / 2 + 72, 28);
 
   // Calculate step positions (zigzag layout: 2 columns)
   let stepPositions = calculateStepPositions();
@@ -224,15 +229,18 @@ function drawStepBoxes(positions) {
     let isSelected = selectedStep === i;
     let isAnimStep = animating && Math.floor(animDot) === i;
 
-    // Box color
+    // Box color with glow on selected/animated
     if (isSelected || isAnimStep) {
+      noStroke();
+      fill(255, 193, 7, 50);
+      rect(pos.x - 3, pos.y - 3, pos.w + 6, pos.h + 6, 11);
       fill(colors.active);
       stroke('#F57F17');
-      strokeWeight(3);
+      strokeWeight(2.5);
     } else {
       fill(colors.step);
       stroke('#3949AB');
-      strokeWeight(2);
+      strokeWeight(1.5);
     }
     rect(pos.x, pos.y, pos.w, pos.h, 8);
 
@@ -288,39 +296,72 @@ function drawInfoPanel() {
   let panelY = drawHeight - 90;
   let panelH = 80;
 
-  fill(255, 255, 255, 240);
-  stroke('#C5CAE9');
-  strokeWeight(2);
-  rect(15, panelY, canvasWidth - 30, panelH, 6);
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(15, panelY, canvasWidth - 30, panelH, 8);
 
   if (selectedStep >= 0) {
-    // Step title
-    fill(colors.step);
+    // Accent line
     noStroke();
-    textAlign(LEFT, TOP);
-    textSize(12);
-    text('Step ' + (selectedStep + 1) + ': ' + steps[selectedStep].label.replace('\n', ' '), 25, panelY + 8);
+    fill(92, 107, 192);
+    rect(15, panelY + 10, 4, panelH - 20, 2, 0, 0, 2);
+
+    // Step tag
+    let tagText = 'Step ' + (selectedStep + 1);
+    fill(92, 107, 192);
+    noStroke();
+    rect(27, panelY + 7, textWidth(tagText) + 16, 16, 4);
+    fill(255);
+    textAlign(LEFT, CENTER);
+    textSize(10);
+    textStyle(BOLD);
+    text(tagText, 33, panelY + 15);
+    textStyle(NORMAL);
+
+    // Step name
+    fill(colors.text);
+    textSize(11);
+    textStyle(BOLD);
+    text(steps[selectedStep].label.replace('\n', ' '), 27 + textWidth(tagText) + 22, panelY + 15);
+    textStyle(NORMAL);
 
     // Description
     fill(colors.text);
+    textAlign(LEFT, TOP);
     textSize(10);
-    text(steps[selectedStep].desc, 25, panelY + 26, canvasWidth - 50, panelH - 34);
+    text(steps[selectedStep].desc, 27, panelY + 28, canvasWidth - 54, panelH - 36);
   } else {
-    fill('#999');
+    fill(180);
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(12);
+    textSize(11);
     text('Click any step to see its description', canvasWidth / 2, panelY + panelH / 2);
   }
 }
 
 function drawControlButtons() {
-  let btnY = drawHeight + 15;
+  // Styled instruction area
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
+  noStroke();
+  rect(12, drawHeight + 4, instrW, 16, 8);
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text('Click steps to inspect  |  Animate to watch the full flow', canvasWidth / 2, drawHeight + 12);
+
+  let btnY = drawHeight + 26;
   let btnW = 80;
-  let btnH = 24;
+  let btnH = 22;
 
   // Animate button
   let animX = canvasWidth / 2 - btnW / 2;
+  if (!animating) {
+    noStroke();
+    fill(92, 107, 192, 30);
+    rect(animX - 1, btnY - 1, btnW + 2, btnH + 2, 6);
+  }
   fill(animating ? colors.active : colors.step);
   stroke(animating ? '#F57F17' : '#3949AB');
   strokeWeight(1);
@@ -328,8 +369,23 @@ function drawControlButtons() {
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
+  textSize(11);
+  textStyle(BOLD);
   text(animating ? 'Running...' : 'Animate', animX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Cursor management
+  let overInteractive = false;
+  // Check step boxes
+  let positions = calculateStepPositions();
+  for (let pos of positions) {
+    if (mouseX >= pos.x && mouseX <= pos.x + pos.w &&
+        mouseY >= pos.y && mouseY <= pos.y + pos.h) overInteractive = true;
+  }
+  // Check animate button
+  if (mouseX >= animX && mouseX <= animX + btnW &&
+      mouseY >= btnY && mouseY <= btnY + btnH) overInteractive = true;
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function setLineDash(list) {
@@ -348,9 +404,9 @@ function mousePressed() {
   }
 
   // Check animate button click
-  let btnY = drawHeight + 15;
+  let btnY = drawHeight + 26;
   let btnW = 80;
-  let btnH = 24;
+  let btnH = 22;
   let animX = canvasWidth / 2 - btnW / 2;
   if (mouseX >= animX && mouseX <= animX + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
     if (!animating) {
