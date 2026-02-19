@@ -23,20 +23,18 @@ function setup() {
   var navBar = document.createElement('div');
   navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
   var navLink = document.createElement('a');
-  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
+  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
   if (window.self !== window.top) {
-    // In iframe: navigate parent to sim page (replaces unit page)
-    navLink.href = 'main.html';
-    navLink.target = '_top';
+    var parentUrl = '';
+    try { parentUrl = window.parent.location.href; } catch(e) {}
+    navLink.href = 'main.html' + (parentUrl ? '?back=' + encodeURIComponent(parentUrl) : '');
+    navLink.target = '_blank';
     navLink.textContent = '⛶ Fullscreen';
   } else {
-    // Standalone: go back to the unit page via browser history
-    navLink.href = '#';
+    var params = new URLSearchParams(window.location.search);
+    var backUrl = params.get('back');
+    navLink.href = backUrl || 'index.html';
     navLink.textContent = '← Back to Docs';
-    navLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.history.back();
-    });
   }
   navBar.appendChild(navLink);
   mainElement.appendChild(navBar);
