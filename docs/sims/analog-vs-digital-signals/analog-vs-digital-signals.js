@@ -19,23 +19,24 @@ function setup() {
   updateCanvasSize();
   var mainElement = document.querySelector('main');
 
-  // -- Nav bar: Fullscreen (in iframe) / Back to Docs (standalone) --
+  // -- Nav bar: Fullscreen / Exit Fullscreen toggle --
   var navBar = document.createElement('div');
   navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
   var navLink = document.createElement('a');
-  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
-  if (window.self !== window.top) {
-    navLink.href = 'main.html';
-    navLink.target = '_top';
-    navLink.textContent = '⛶ Fullscreen';
-  } else {
-    navLink.href = '#';
-    navLink.textContent = '← Back to Docs';
-    navLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.history.back();
-    });
-  }
+  navLink.href = '#';
+  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
+  navLink.textContent = '⛶ Fullscreen';
+  navLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(function() {});
+    } else {
+      document.exitFullscreen();
+    }
+  });
+  document.addEventListener('fullscreenchange', function() {
+    navLink.textContent = document.fullscreenElement ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
+  });
   navBar.appendChild(navLink);
   mainElement.appendChild(navBar);
 
