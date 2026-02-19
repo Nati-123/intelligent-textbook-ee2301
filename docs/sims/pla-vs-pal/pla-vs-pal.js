@@ -68,13 +68,21 @@ function draw() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
+  textStyle(BOLD);
   text('PLA vs PAL Comparison', canvasWidth / 2, 18);
+  textStyle(NORMAL);
+
+  // Title underline
+  stroke(220);
+  strokeWeight(1);
+  let titleW = min(textWidth('PLA vs PAL Comparison') + 60, canvasWidth - 40);
+  line(canvasWidth / 2 - titleW / 2, 32, canvasWidth / 2 + titleW / 2, 32);
 
   // Divider
-  stroke(180);
-  strokeWeight(2);
+  stroke(200);
+  strokeWeight(1);
   let midX = canvasWidth / 2;
-  line(midX, 35, midX, drawHeight - 5);
+  line(midX, 40, midX, drawHeight - 5);
 
   // Draw shared input toggles
   drawInputToggles();
@@ -124,18 +132,32 @@ function draw() {
   }
   cursor(hovering ? HAND : ARROW);
 
-  // Bottom comparison text
-  fill(80);
+  // Comparison badges
   noStroke();
+  fill(248, 244, 252);
+  rect(10, drawHeight + 4, midX - 15, 20, 6);
+  fill('#9C27B0');
   textSize(11);
+  textStyle(BOLD);
   textAlign(CENTER, CENTER);
-  let bottomY = drawHeight + 5;
-  text('PLA: More flexible, slower', canvasWidth / 4, bottomY);
-  text('PAL: Less flexible, faster', canvasWidth * 3 / 4, bottomY);
+  text('PLA: More flexible, slower', canvasWidth / 4, drawHeight + 14);
+  textStyle(NORMAL);
 
-  fill(100);
+  fill(248, 244, 240);
+  noStroke();
+  rect(midX + 5, drawHeight + 4, midX - 15, 20, 6);
+  fill('#795548');
+  textStyle(BOLD);
+  text('PAL: Less flexible, faster', canvasWidth * 3 / 4, drawHeight + 14);
+  textStyle(NORMAL);
+
+  // Instruction area
+  fill(243, 245, 250);
+  noStroke();
+  rect(12, drawHeight + 28, canvasWidth - 24, 18, 6);
+  fill(130);
   textSize(11);
-  text('Click inputs to toggle | Click bit boxes in programmable arrays', canvasWidth / 2, bottomY + 20);
+  text('Click inputs to toggle  |  Click bit boxes in programmable arrays', canvasWidth / 2, drawHeight + 37);
 }
 
 function drawInputToggles() {
@@ -169,10 +191,10 @@ function drawSide(startX, width, title, andColor, orColor,
   let gap = 24; // gap between AND and OR arrays
 
   // Side title
-  fill(50);
+  fill(40);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
+  textSize(13);
   textStyle(BOLD);
   text(title, startX + width / 2, 75);
   textStyle(NORMAL);
@@ -224,11 +246,11 @@ function drawSide(startX, width, title, andColor, orColor,
     text('P' + r, andX - 6, y);
   }
 
-  // Draw AND array grid
-  fill(255);
+  // Draw AND array grid with subtle purple tint
+  fill(250, 248, 255);
   stroke(200);
   strokeWeight(1);
-  rect(andX, andY, andW, andH);
+  rect(andX, andY, andW, andH, 4);
 
   // Vertical lines (bright purple)
   for (let c = 0; c < numInputCols; c++) {
@@ -248,18 +270,25 @@ function drawSide(startX, width, title, andColor, orColor,
 
     for (let c = 0; c < numInputCols; c++) {
       let cx = andX + c * cellW + cellW / 2;
-      let boxW = 18;
-      let boxH = 16;
+      let boxW = 20;
+      let boxH = 18;
+
+      // Glow on active connected boxes
+      if (andArr[r][c] && isActive) {
+        noStroke();
+        fill(76, 175, 80, 45);
+        rect(cx - boxW / 2 - 2, y - boxH / 2 - 2, boxW + 4, boxH + 4, 7);
+      }
 
       if (andArr[r][c]) {
         fill(isActive ? '#4CAF50' : andColor);
         stroke(isActive ? '#388E3C' : '#7B1FA2');
       } else {
-        fill(240);
-        stroke(210);
+        fill(242);
+        stroke(215);
       }
       strokeWeight(1.5);
-      rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 3);
+      rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 4);
 
       fill(andArr[r][c] ? 255 : 180);
       noStroke();
@@ -271,11 +300,11 @@ function drawSide(startX, width, title, andColor, orColor,
     }
   }
 
-  // Draw OR array grid
-  fill(orProgrammable ? 255 : 245);
+  // Draw OR array grid with subtle tint
+  fill(orProgrammable ? color(255, 251, 248) : color(248, 246, 244));
   stroke(200);
   strokeWeight(1);
-  rect(orX, orY, orW, orH);
+  rect(orX, orY, orW, orH, 4);
 
   if (!orProgrammable) {
     // Hatching to show fixed
@@ -321,23 +350,30 @@ function drawSide(startX, width, title, andColor, orColor,
 
     for (let c = 0; c < numOutputs; c++) {
       let cx = orX + c * orCellW + orCellW / 2;
-      let boxW = 20;
-      let boxH = 16;
+      let boxW = 22;
+      let boxH = 18;
       let dotActive = isActive && orArr[r][c];
+
+      // Glow on active connected boxes
+      if (dotActive) {
+        noStroke();
+        fill(76, 175, 80, 45);
+        rect(cx - boxW / 2 - 2, y - boxH / 2 - 2, boxW + 4, boxH + 4, 7);
+      }
 
       if (orArr[r][c]) {
         fill(dotActive ? '#4CAF50' : orColor);
         stroke(dotActive ? '#388E3C' : (orProgrammable ? '#D84315' : '#5D4037'));
       } else {
-        fill(240);
-        stroke(210);
+        fill(242);
+        stroke(215);
       }
       strokeWeight(1.5);
       if (orProgrammable) {
-        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 3);
+        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 4);
       } else {
-        // Fixed connections shown as squares with sharp corners
-        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 1);
+        // Fixed connections shown as squares with subtle corners
+        rect(cx - boxW / 2, y - boxH / 2, boxW, boxH, 2);
       }
 
       fill(orArr[r][c] ? 255 : 180);
@@ -372,16 +408,16 @@ function drawSide(startX, width, title, andColor, orColor,
     // Line from OR array to output box
     stroke(val ? '#00E676' : '#FFAB91');
     strokeWeight(val ? 2.5 : 1.5);
-    line(x, orY + orH, x, outY - 18);
+    line(x, orY + orH, x, outY - 15);
 
-    // Output box
-    fill(val ? '#4CAF50' : '#eee');
-    stroke(val ? '#388E3C' : '#ccc');
-    strokeWeight(2);
-    rect(x - 16, outY - 16, 32, 32, 6);
+    // Output box — styled to match project bit toggle pattern
+    fill(val ? '#4CAF50' : 225);
+    stroke(val ? '#388E3C' : 180);
+    strokeWeight(1.5);
+    rect(x - 14, outY - 14, 28, 28, 5);
 
     // Output value
-    fill(val ? 255 : 100);
+    fill(val ? 255 : 110);
     noStroke();
     textSize(15);
     textStyle(BOLD);
@@ -390,11 +426,9 @@ function drawSide(startX, width, title, andColor, orColor,
     textStyle(NORMAL);
 
     // Output label below box
-    fill(80);
-    textSize(11);
-    textStyle(BOLD);
-    text('F' + c, x, outY + 24);
-    textStyle(NORMAL);
+    fill(140);
+    textSize(10);
+    text('F' + c, x, outY + 22);
   }
 }
 

@@ -365,7 +365,7 @@ Some PAL outputs are registered (include a flip-flop), enabling sequential logic
 
 #### Diagram: PLA vs PAL Architecture Comparison
 
-<iframe src="../sims/pla-vs-pal/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/pla-vs-pal/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>PLA vs PAL Architecture Comparison</summary>
