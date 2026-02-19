@@ -52,13 +52,16 @@ function setup() {
   evalButton = createButton('Evaluate');
   evalButton.parent(mainElement);
   evalButton.style('font-size', '14px');
+  evalButton.style('font-weight', '500');
   evalButton.style('padding', '8px 24px');
-  evalButton.style('margin', '5px');
+  evalButton.style('margin', '8px');
   evalButton.style('cursor', 'pointer');
   evalButton.style('border', 'none');
-  evalButton.style('border-radius', '4px');
+  evalButton.style('border-radius', '6px');
   evalButton.style('background-color', '#4CAF50');
   evalButton.style('color', 'white');
+  evalButton.style('box-shadow', '0 1px 3px rgba(0,0,0,0.15)');
+  evalButton.style('transition', 'background-color 0.2s, box-shadow 0.2s');
   evalButton.mousePressed(evaluatePLA);
 }
 
@@ -71,12 +74,25 @@ function draw() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
+  textStyle(BOLD);
   text('PLA Architecture', canvasWidth / 2, 18);
+  textStyle(NORMAL);
+
+  // Subtitle
+  textSize(12);
+  fill(120);
+  text('Programmable AND Array + Programmable OR Array', canvasWidth / 2, 38);
+
+  // Title underline
+  stroke(220);
+  strokeWeight(1);
+  let titleW = min(textWidth('PLA Architecture') + 60, canvasWidth - 40);
+  line(canvasWidth / 2 - titleW / 2, 50, canvasWidth / 2 + titleW / 2, 50);
 
   // Compute layout
   let margin = 15;
   let inputToggleH = 40;
-  let topY = 40;
+  let topY = 55;
 
   // Input toggles
   drawInputToggles(topY);
@@ -151,22 +167,56 @@ function draw() {
   }
   cursor(hovering ? HAND : ARROW);
 
-  // Info text
-  fill(100);
-  noStroke();
-  textSize(12);
-  textAlign(CENTER, CENTER);
-  let infoY = andStartY + numProducts * andCellH + 70;
-  text('Click boxes to toggle bits | Click inputs to toggle', canvasWidth / 2, infoY);
+  // Readout panel for evaluation results
+  let readoutY = andStartY + numProducts * andCellH + 65;
+  let readoutH = 40;
+  let readoutW = min(canvasWidth - 24, 400);
+  let readoutX = (canvasWidth - readoutW) / 2;
 
   if (evaluated) {
-    fill(50);
+    // Panel background
+    fill(247, 249, 252);
+    stroke(210, 215, 225);
+    strokeWeight(1);
+    rect(readoutX, readoutY, readoutW, readoutH, 8);
+
+    // Accent line
+    noStroke();
+    fill('#4CAF50');
+    rect(readoutX + 10, readoutY, 3, readoutH, 2);
+
+    // Input values
+    let labelX = readoutX + 22;
+    let labelCY = readoutY + readoutH / 2;
+
+    textAlign(LEFT, CENTER);
     textSize(13);
     textStyle(BOLD);
-    let resultStr = 'F0 = ' + outputResults[0] + '    F1 = ' + outputResults[1];
-    text(resultStr, canvasWidth / 2, infoY + 20);
+    fill('#2196F3');
+    let inputStr = 'A=' + inputs[0] + '  B=' + inputs[1] + '  C=' + inputs[2];
+    text(inputStr, labelX, labelCY);
+
+    let seg1W = textWidth(inputStr);
+    textStyle(NORMAL);
+    fill(160);
+    textSize(12);
+    text('|', labelX + seg1W + 8, labelCY);
+
+    // Output values
+    textStyle(BOLD);
+    fill('#4CAF50');
+    text('F0 = ' + outputResults[0] + '   F1 = ' + outputResults[1], labelX + seg1W + 22, labelCY);
     textStyle(NORMAL);
   }
+
+  // Instruction area with styled background
+  fill(243, 245, 250);
+  noStroke();
+  rect(12, drawHeight + 6, canvasWidth - 24, controlHeight - 12, 8);
+  fill(130);
+  textSize(12);
+  textAlign(CENTER, CENTER);
+  text('Click boxes to toggle connections  |  Click inputs to toggle values', canvasWidth / 2, drawHeight + controlHeight / 2);
 }
 
 function drawInputToggles(topY) {
@@ -241,11 +291,11 @@ function drawColumnLabels() {
 }
 
 function drawANDArray() {
-  // Grid background
-  fill(255);
+  // Grid background with subtle purple tint
+  fill(250, 248, 255);
   stroke(200);
   strokeWeight(1);
-  rect(andStartX, andStartY, numInputCols * andCellW, numProducts * andCellH);
+  rect(andStartX, andStartY, numInputCols * andCellW, numProducts * andCellH, 4);
 
   // Vertical input lines
   for (let c = 0; c < numInputCols; c++) {
@@ -271,24 +321,31 @@ function drawANDArray() {
       let cy = andStartY + r * andCellH + andCellH / 2;
       let isConn = andArray[r][c];
       let isActive = evaluated && productResults[r] === 1;
-      let boxW = 22;
-      let boxH = 18;
+      let boxW = 24;
+      let boxH = 20;
+
+      // Glow ring on active connected boxes
+      if (isConn && isActive) {
+        noStroke();
+        fill(76, 175, 80, 45);
+        rect(cx - boxW / 2 - 3, cy - boxH / 2 - 3, boxW + 6, boxH + 6, 7);
+      }
 
       // Box background
       if (isConn) {
         fill(isActive ? '#4CAF50' : '#9C27B0');
         stroke(isActive ? '#388E3C' : '#7B1FA2');
       } else {
-        fill(240);
-        stroke(210);
+        fill(242);
+        stroke(215);
       }
       strokeWeight(1.5);
-      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 3);
+      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 5);
 
       // Bit value
       fill(isConn ? 255 : 180);
       noStroke();
-      textSize(11);
+      textSize(12);
       textAlign(CENTER, CENTER);
       textStyle(BOLD);
       text(isConn ? '1' : '0', cx, cy);
@@ -298,11 +355,11 @@ function drawANDArray() {
 }
 
 function drawORArray() {
-  // Grid background
-  fill(255);
+  // Grid background with subtle orange tint
+  fill(255, 251, 248);
   stroke(200);
   strokeWeight(1);
-  rect(orStartX, orStartY, numOutputs * orCellW, numProducts * orCellH);
+  rect(orStartX, orStartY, numOutputs * orCellW, numProducts * orCellH, 4);
 
   // Vertical output lines
   for (let c = 0; c < numOutputs; c++) {
@@ -328,24 +385,31 @@ function drawORArray() {
       let cy = orStartY + r * orCellH + orCellH / 2;
       let isConn = orArray[r][c];
       let isActive = evaluated && productResults[r] === 1 && isConn;
-      let boxW = 22;
-      let boxH = 18;
+      let boxW = 24;
+      let boxH = 20;
+
+      // Glow ring on active connected boxes
+      if (isActive) {
+        noStroke();
+        fill(76, 175, 80, 45);
+        rect(cx - boxW / 2 - 3, cy - boxH / 2 - 3, boxW + 6, boxH + 6, 7);
+      }
 
       // Box background
       if (isConn) {
         fill(isActive ? '#4CAF50' : '#FF5722');
         stroke(isActive ? '#388E3C' : '#D84315');
       } else {
-        fill(240);
-        stroke(210);
+        fill(242);
+        stroke(215);
       }
       strokeWeight(1.5);
-      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 3);
+      rect(cx - boxW / 2, cy - boxH / 2, boxW, boxH, 5);
 
       // Bit value
       fill(isConn ? 255 : 180);
       noStroke();
-      textSize(11);
+      textSize(12);
       textAlign(CENTER, CENTER);
       textStyle(BOLD);
       text(isConn ? '1' : '0', cx, cy);
@@ -375,36 +439,37 @@ function drawProductLines() {
 }
 
 function drawOutputLabels() {
-  let outputY = orStartY + numProducts * orCellH + 20;
+  let outputY = orStartY + numProducts * orCellH + 25;
 
   for (let c = 0; c < numOutputs; c++) {
     let x = orStartX + c * orCellW + orCellW / 2;
     let val = evaluated ? outputResults[c] : '-';
+    let isHigh = evaluated && outputResults[c];
 
-    // Output box
-    if (evaluated) {
-      fill(outputResults[c] ? '#4CAF50' : '#eee');
-      stroke(outputResults[c] ? '#388E3C' : '#ccc');
-    } else {
-      fill('#eee');
-      stroke('#ccc');
-    }
+    // Line from array to output box
+    stroke(isHigh ? '#00E676' : '#FF8A65');
+    strokeWeight(isHigh ? 2.5 : 1.5);
+    line(x, orStartY + numProducts * orCellH, x, outputY - 15);
+
+    // Output value box — styled to match project bit toggle pattern
+    fill(isHigh ? '#4CAF50' : 225);
+    stroke(isHigh ? '#388E3C' : 180);
     strokeWeight(1.5);
-    rect(x - 14, outputY - 14, 28, 28, 4);
+    rect(x - 14, outputY - 14, 28, 28, 5);
 
     // Value
-    fill(evaluated && outputResults[c] ? 255 : 100);
+    fill(isHigh ? 255 : 110);
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(14);
+    textSize(15);
     textStyle(BOLD);
     text(val.toString(), x, outputY);
     textStyle(NORMAL);
 
-    // Line from array to output
-    stroke(evaluated && outputResults[c] ? '#00E676' : '#FF8A65');
-    strokeWeight(evaluated && outputResults[c] ? 2.5 : 1.5);
-    line(x, orStartY + numProducts * orCellH, x, outputY - 15);
+    // Column label below box
+    fill(140);
+    textSize(10);
+    text('F' + c, x, outputY + 22);
   }
 }
 
@@ -451,7 +516,7 @@ function mousePressed() {
   // Check input toggles
   let spacing = 70;
   let startX = canvasWidth / 2 - spacing;
-  let topY = 40;
+  let topY = 55;
 
   for (let i = 0; i < 3; i++) {
     let x = startX + i * spacing;

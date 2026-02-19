@@ -259,7 +259,7 @@ The PLA consists of:
 
 #### Diagram: PLA Architecture and Programming
 
-<iframe src="../sims/pla-architecture/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/pla-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>PLA Architecture and Programming</summary>
