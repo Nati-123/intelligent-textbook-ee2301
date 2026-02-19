@@ -56,6 +56,7 @@ let technologies = [
 ];
 
 let selectedIndex = 0;
+let hoveredIndex = -1;
 let toggleButton;
 
 function setup() {
@@ -69,13 +70,16 @@ function setup() {
   toggleButton = createButton('Toggle Connection');
   toggleButton.parent(mainElement);
   toggleButton.style('font-size', '14px');
-  toggleButton.style('padding', '8px 20px');
-  toggleButton.style('margin', '5px');
+  toggleButton.style('font-weight', '500');
+  toggleButton.style('padding', '8px 24px');
+  toggleButton.style('margin', '8px');
   toggleButton.style('cursor', 'pointer');
   toggleButton.style('border', 'none');
-  toggleButton.style('border-radius', '4px');
+  toggleButton.style('border-radius', '6px');
   toggleButton.style('background-color', technologies[selectedIndex].color);
   toggleButton.style('color', 'white');
+  toggleButton.style('box-shadow', '0 1px 3px rgba(0,0,0,0.15)');
+  toggleButton.style('transition', 'background-color 0.2s, box-shadow 0.2s');
   toggleButton.mousePressed(toggleConnection);
 }
 
@@ -88,13 +92,35 @@ function draw() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
+  textStyle(BOLD);
   text('Programmable Connection Technologies', canvasWidth / 2, 20);
+  textStyle(NORMAL);
+
+  // Subtle title underline
+  stroke(220);
+  strokeWeight(1);
+  let titleW = min(textWidth('Programmable Connection Technologies') + 20, canvasWidth - 40);
+  line(canvasWidth / 2 - titleW / 2, 34, canvasWidth / 2 + titleW / 2, 34);
 
   // Draw 2x2 grid of panels
-  let panelMargin = 10;
+  let panelMargin = 12;
   let panelW = (canvasWidth - panelMargin * 3) / 2;
-  let panelH = (drawHeight - 90 - panelMargin * 3) / 2;
+  let panelH = (drawHeight - 100 - panelMargin * 3) / 2;
   let startY = 45;
+
+  // Determine hovered panel
+  hoveredIndex = -1;
+  for (let i = 0; i < 4; i++) {
+    let col = i % 2;
+    let row = Math.floor(i / 2);
+    let px = panelMargin + col * (panelW + panelMargin);
+    let py = startY + row * (panelH + panelMargin);
+    if (mouseX >= px && mouseX <= px + panelW &&
+        mouseY >= py && mouseY <= py + panelH) {
+      hoveredIndex = i;
+      break;
+    }
+  }
 
   for (let i = 0; i < 4; i++) {
     let col = i % 2;
@@ -105,49 +131,98 @@ function draw() {
     drawPanel(i, px, py, panelW, panelH);
   }
 
-  // Change cursor to pointer when hovering over bit boxes
-  let overBitBox = false;
-  for (let i = 0; i < 4; i++) {
-    let bb = technologies[i]._bitBox;
-    if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
-        mouseY >= bb.y && mouseY <= bb.y + bb.h) {
-      overBitBox = true;
-      break;
+  // Change cursor to pointer when hovering over panels or bit boxes
+  let overInteractive = hoveredIndex >= 0;
+  if (!overInteractive) {
+    for (let i = 0; i < 4; i++) {
+      let bb = technologies[i]._bitBox;
+      if (bb && mouseX >= bb.x && mouseX <= bb.x + bb.w &&
+          mouseY >= bb.y && mouseY <= bb.y + bb.h) {
+        overInteractive = true;
+        break;
+      }
     }
   }
-  cursor(overBitBox ? HAND : ARROW);
+  cursor(overInteractive ? HAND : ARROW);
 
   // Info bar at bottom
   let tech = technologies[selectedIndex];
-  let infoY = drawHeight - 40;
-  fill(255);
-  stroke(200);
+  let infoY = drawHeight - 50;
+  let infoH = 44;
+  let infoX = panelMargin;
+  let infoW = canvasWidth - panelMargin * 2;
+
+  // Info bar background
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
   strokeWeight(1);
-  rect(5, infoY, canvasWidth - 10, 35, 5);
+  rect(infoX, infoY, infoW, infoH, 8);
+
+  // Colored accent line at top of info bar
+  noStroke();
+  fill(tech.color);
+  rect(infoX + 12, infoY, 3, infoH, 2);
+
+  // Tech name in accent color
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  textStyle(BOLD);
+  fill(tech.color);
+  let labelX = infoX + 24;
+  let labelY = infoY + infoH / 2;
+  text(tech.name, labelX, labelY);
+
+  // Separator and details
+  let nameW = textWidth(tech.name);
+  textStyle(NORMAL);
+  fill(160);
+  textSize(12);
+  let detailX = labelX + nameW + 10;
+  text('|', detailX, labelY);
+  detailX += 14;
+
+  let stateLabel = tech.programmed ? tech.programmedState : tech.defaultState;
+  fill(80);
+  text('State: ' + stateLabel, detailX, labelY);
+  detailX += textWidth('State: ' + stateLabel) + 10;
+
+  fill(160);
+  text('|', detailX, labelY);
+  detailX += 14;
 
   fill(80);
-  noStroke();
-  textSize(12);
-  textAlign(CENTER, CENTER);
-  let stateLabel = tech.programmed ? tech.programmedState : tech.defaultState;
-  text(
-    tech.name + '  |  State: ' + stateLabel +
-    '  |  ' + tech.volatility +
-    '  |  ' + tech.reprogrammable,
-    canvasWidth / 2, infoY + 17
-  );
+  text(tech.volatility, detailX, labelY);
+  detailX += textWidth(tech.volatility) + 10;
+
+  fill(160);
+  text('|', detailX, labelY);
+  detailX += 14;
+
+  fill(80);
+  text(tech.reprogrammable, detailX, labelY);
 }
 
 function drawPanel(index, px, py, pw, ph) {
   let tech = technologies[index];
   let isSelected = (index === selectedIndex);
 
-  // Panel background
+  // Panel shadow for hover/selected
+  let isHovered = (index === hoveredIndex);
+  if (isSelected || isHovered) {
+    noStroke();
+    fill(0, 0, 0, isSelected ? 20 : 12);
+    rect(px + 2, py + 2, pw, ph, 8);
+  }
+
+  // Panel background with standardized border
   if (isSelected) {
     stroke(tech.color);
-    strokeWeight(3);
+    strokeWeight(2.5);
+  } else if (isHovered) {
+    stroke(180);
+    strokeWeight(1.5);
   } else {
-    stroke(200);
+    stroke(215);
     strokeWeight(1);
   }
   fill(255);
@@ -398,9 +473,9 @@ function mousePressed() {
   }
 
   // Check which panel was clicked
-  let panelMargin = 10;
+  let panelMargin = 12;
   let panelW = (canvasWidth - panelMargin * 3) / 2;
-  let panelH = (drawHeight - 90 - panelMargin * 3) / 2;
+  let panelH = (drawHeight - 100 - panelMargin * 3) / 2;
   let startY = 45;
 
   for (let i = 0; i < 4; i++) {
