@@ -107,34 +107,55 @@ function draw() {
   let margin = 15;
   let w = canvasWidth - 2 * margin;
 
-  // Title bar
-  fill(TITLE_BG);
+  // Title
+  fill('#212121');
   noStroke();
-  rect(margin, margin, w, 40, 5);
-  fill(255);
   textAlign(CENTER, CENTER);
-  textSize(15);
+  textSize(16);
   textStyle(BOLD);
-  text(step.title, canvasWidth / 2, margin + 20);
-
-  // Step indicator
-  fill(100);
-  textSize(12);
+  text('VHDL FSM Walkthrough', canvasWidth / 2, margin + 8);
   textStyle(NORMAL);
-  textAlign(RIGHT, TOP);
-  text('Step ' + (currentStep + 1) + ' of ' + totalSteps, canvasWidth - margin - 5, margin + 50);
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 90, margin + 19, canvasWidth / 2 + 90, margin + 19);
+  noStroke();
+
+  // Step readout panel
+  let rpX = margin;
+  let rpW = w;
+  let rpY = margin + 24;
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(rpX, rpY, rpW, 22, 8);
+  // Accent line
+  fill(33, 150, 243);
+  noStroke();
+  rect(rpX + 6, rpY + 5, 4, 12, 2);
+  // Step title text
+  fill('#333');
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text(step.title, rpX + 16, rpY + 11);
+  textStyle(NORMAL);
+  // Step counter
+  fill(120);
+  textSize(10);
+  textAlign(RIGHT, CENTER);
+  text((currentStep + 1) + ' / ' + totalSteps, rpX + rpW - 8, rpY + 11);
 
   // Progress bar
-  let progY = margin + 48;
-  fill(220);
-  rect(margin, progY, w, 6, 3);
+  let progY = margin + 50;
+  fill(230);
+  noStroke();
+  rect(margin, progY, w, 4, 2);
   fill(TITLE_BG);
-  rect(margin, progY, w * (currentStep + 1) / totalSteps, 6, 3);
+  rect(margin, progY, w * (currentStep + 1) / totalSteps, 4, 2);
 
   // Rule label
   fill(HIGHLIGHT);
   noStroke();
-  let ruleY = margin + 65;
+  let ruleY = margin + 58;
   textSize(11);
   textStyle(BOLD);
   let rw = textWidth(step.rule) + 20;
@@ -188,6 +209,21 @@ function draw() {
   }
 
   drawButtons();
+
+  // Cursor management
+  let btnY = drawHeight + 48;
+  let btnW = 90;
+  let btnH = 34;
+  let gap2 = 10;
+  let totalBW = btnW * 3 + gap2 * 2;
+  let startBX = (canvasWidth - totalBW) / 2;
+  let overInteractive = false;
+  if (mouseY >= btnY && mouseY <= btnY + btnH) {
+    if (mouseX >= startBX && mouseX <= startBX + btnW) overInteractive = true;
+    if (mouseX >= startBX + btnW + gap2 && mouseX <= startBX + 2 * btnW + gap2) overInteractive = true;
+    if (mouseX >= startBX + 2 * (btnW + gap2) && mouseX <= startBX + 2 * (btnW + gap2) + btnW) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function drawIntro(mx, vy, w, vh) {

@@ -6,13 +6,14 @@
     <title>VHDL Synthesis Inference MicroSim</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; height: 100%; overflow: hidden; }
+        body { display: flex; flex-direction: column; }
+        main { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+        main canvas { display: block; }
     </style>
     <script src="vhdl-synthesis-inference.js"></script>
 </head>
 <body>
     <main></main>
-    <br/>
-    <a href=".">Back to Documentation</a>
 </body>
 </html>

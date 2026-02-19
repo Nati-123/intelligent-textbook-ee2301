@@ -89,43 +89,10 @@ let clockBtn, dBtn, rstBtn, enBtn, _resetBtn;
 function setup() {
   updateCanvasSize();
   var mainElement = document.querySelector('main');
-
-  // -- Nav bar: Fullscreen / Exit Fullscreen (expand iframe only) --
-  var navBar = document.createElement('div');
-  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
-  navLink.textContent = '⛶ Fullscreen';
-  var isFullscreen = false;
-  var iframe = window.frameElement;
-  var origStyle = iframe ? iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (iframe) {
-      if (!isFullscreen) {
-        origStyle = iframe.style.cssText;
-        iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;';
-        navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      } else {
-        iframe.style.cssText = origStyle;
-        navLink.textContent = '⛶ Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      }
-      isFullscreen = !isFullscreen;
-    }
-  });
-  navBar.appendChild(navLink);
-  mainElement.appendChild(navBar);
-
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('VHDL Flip-Flop Patterns');
   resetHistory();
-
-  // Resize after nav bar is in DOM so canvas height accounts for it
-  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function resetHistory() {
@@ -141,6 +108,18 @@ function resetHistory() {
 function draw() {
   updateCanvasSize();
   background(245);
+
+  // Title
+  fill('#212121');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('VHDL Flip-Flop Patterns', canvasWidth / 2, 12);
+  textStyle(NORMAL);
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 90, 23, canvasWidth / 2 + 90, 23);
+  noStroke();
 
   // Draw tabs
   drawTabs();
@@ -169,8 +148,8 @@ function draw() {
 
 function drawTabs() {
   let tabW = (canvasWidth - 20) / 4;
-  let tabH = 30;
-  let y = 5;
+  let tabH = 28;
+  let y = 28;
 
   textAlign(CENTER, CENTER);
   textSize(12);
@@ -195,9 +174,9 @@ function drawTabs() {
 
 function drawCodeSection() {
   let codeX = 10;
-  let codeY = 40;
+  let codeY = 58;
   let codeW = canvasWidth - 20;
-  let codeH = 140;
+  let codeH = 130;
 
   // Background
   fill(CODE_BG);
@@ -283,7 +262,7 @@ function getActiveLines() {
 
 function drawTimingDiagram() {
   let diagX = 60;
-  let diagY = 190;
+  let diagY = 198;
   let diagW = canvasWidth - 80;
   let diagH = 220;
   let signalH = 35;

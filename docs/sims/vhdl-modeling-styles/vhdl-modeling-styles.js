@@ -36,43 +36,10 @@ let colHeaders = [];
 function setup() {
   updateCanvasSize();
   var mainEl = document.querySelector('main');
-
-  // -- Nav bar: Fullscreen / Exit Fullscreen (expand iframe only) --
-  var navBar = document.createElement('div');
-  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
-  navLink.textContent = '⛶ Fullscreen';
-  var isFullscreen = false;
-  var iframe = window.frameElement;
-  var origStyle = iframe ? iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (iframe) {
-      if (!isFullscreen) {
-        origStyle = iframe.style.cssText;
-        iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;';
-        navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      } else {
-        iframe.style.cssText = origStyle;
-        navLink.textContent = '⛶ Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      }
-      isFullscreen = !isFullscreen;
-    }
-  });
-  navBar.appendChild(navLink);
-  mainEl.appendChild(navBar);
-
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainEl);
   describe('VHDL Modeling Styles Comparison');
   textFont('monospace');
-
-  // Resize after nav bar is in DOM so canvas height accounts for it
-  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {
@@ -83,17 +50,18 @@ function draw() {
   let m = 8;
   let y = 0;
 
-  // ── Title bar ──
-  fill('#37474F');
+  // ── Title ──
+  fill('#212121');
   noStroke();
-  rect(0, 0, canvasWidth, 28);
-  fill('#fff');
   textAlign(CENTER, CENTER);
-  textSize(13);
+  textSize(14);
   textStyle(BOLD);
-  text('VHDL Modeling Styles: 2-to-1 MUX', canvasWidth / 2, 14);
+  text('VHDL Modeling Styles: 2-to-1 MUX', canvasWidth / 2, 12);
   textStyle(NORMAL);
-  y = 32;
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 120, 23, canvasWidth / 2 + 120, 23);
+  noStroke();
+  y = 28;
 
   // ── Input toggles ──
   drawInputToggles(m, y, output);
@@ -116,6 +84,16 @@ function draw() {
 
   drawSynthesisResult(m, y, leftW, botH, output);
   drawAbstractionGuide(m + leftW + colGap, y, rightW, botH);
+
+  // Cursor management
+  let overInteractive = false;
+  if (btnA && isInside(mouseX, mouseY, btnA)) overInteractive = true;
+  if (btnB && isInside(mouseX, mouseY, btnB)) overInteractive = true;
+  if (btnSel && isInside(mouseX, mouseY, btnSel)) overInteractive = true;
+  for (let i = 0; i < colHeaders.length; i++) {
+    if (colHeaders[i] && isInside(mouseX, mouseY, colHeaders[i])) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 // ═══════════════════════════════════════════

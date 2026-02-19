@@ -461,7 +461,7 @@ end architecture behavioral;
 
 #### Diagram: VHDL Modeling Styles Comparison
 
-<iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="910px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="910px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>VHDL Modeling Styles Comparison</summary>
@@ -752,7 +752,7 @@ The synchronous reset is **not** in the sensitivity list—it is evaluated only 
 
 #### Diagram: VHDL Flip-Flop Patterns
 
-<iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="570px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="570px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>VHDL Flip-Flop Patterns</summary>
@@ -980,7 +980,7 @@ end architecture rtl;
 
 #### Diagram: FSM VHDL Code-to-State Diagram Mapper
 
-<iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="640px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>FSM VHDL Code-to-State Diagram Mapper</summary>
@@ -1119,7 +1119,7 @@ The synthesis tool reads the VHDL code and infers hardware structures:
 
 #### Diagram: VHDL Code to Hardware Inference
 
-<iframe src="../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>VHDL Code to Hardware Inference</summary>
@@ -1271,4 +1271,4 @@ This example integrates:
 
 Design a VHDL finite state machine step-by-step, from state diagram to complete VHDL code:
 
-<iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>

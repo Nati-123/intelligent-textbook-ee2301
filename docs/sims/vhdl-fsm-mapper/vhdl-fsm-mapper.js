@@ -89,63 +89,57 @@ let codeLineRects = []; // {x, y, w, h, lineIdx} for click detection
 function setup() {
   updateCanvasSize();
   var mainElement = document.querySelector('main');
-
-  // -- Nav bar: Fullscreen / Exit Fullscreen (expand iframe only) --
-  var navBar = document.createElement('div');
-  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
-  var navLink = document.createElement('a');
-  navLink.href = '#';
-  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
-  navLink.textContent = '⛶ Fullscreen';
-  var isFullscreen = false;
-  var iframe = window.frameElement;
-  var origStyle = iframe ? iframe.style.cssText : '';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (iframe) {
-      if (!isFullscreen) {
-        origStyle = iframe.style.cssText;
-        iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;';
-        navLink.textContent = '✕ Exit Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      } else {
-        iframe.style.cssText = origStyle;
-        navLink.textContent = '⛶ Fullscreen';
-        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
-      }
-      isFullscreen = !isFullscreen;
-    }
-  });
-  navBar.appendChild(navLink);
-  mainElement.appendChild(navBar);
-
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('VHDL FSM Mapper');
-
-  // Resize after nav bar is in DOM so canvas height accounts for it
-  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {
   updateCanvasSize();
   background(245);
 
+  // Title
+  fill('#212121');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('VHDL FSM Mapper', canvasWidth / 2, 12);
+  textStyle(NORMAL);
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 70, 23, canvasWidth / 2 + 70, 23);
+  noStroke();
+
   let dividerX = canvasWidth * 0.42;
 
   // Left side: State diagram
-  drawStateDiagram(10, 10, dividerX - 20, drawHeight - 20);
+  drawStateDiagram(10, 28, dividerX - 20, drawHeight - 38);
 
   // Divider line
   stroke(200);
   strokeWeight(1);
-  line(dividerX, 10, dividerX, drawHeight - 10);
+  line(dividerX, 28, dividerX, drawHeight - 10);
 
   // Right side: VHDL code
-  drawCodePanel(dividerX + 5, 10, canvasWidth - dividerX - 15, drawHeight - 20);
+  drawCodePanel(dividerX + 5, 28, canvasWidth - dividerX - 15, drawHeight - 38);
 
   // Bottom controls
   drawControls();
+
+  // Cursor management
+  let overInteractive = false;
+  if (stepBtn && isInside(mouseX, mouseY, stepBtn)) overInteractive = true;
+  if (startBtn && isInside(mouseX, mouseY, startBtn)) overInteractive = true;
+  if (doneBtn && isInside(mouseX, mouseY, doneBtn)) overInteractive = true;
+  if (resetBtn && isInside(mouseX, mouseY, resetBtn)) overInteractive = true;
+  for (let i = 0; i < stateCircles.length; i++) {
+    let sc = stateCircles[i];
+    if (sc && dist(mouseX, mouseY, sc.x, sc.y) < sc.r) overInteractive = true;
+  }
+  for (let cl of codeLineRects) {
+    if (isInside(mouseX, mouseY, cl)) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function drawStateDiagram(x, y, w, h) {

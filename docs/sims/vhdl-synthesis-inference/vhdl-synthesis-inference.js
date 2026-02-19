@@ -112,6 +112,18 @@ function draw() {
   updateCanvasSize();
   background(245);
 
+  // Title
+  fill('#212121');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  textStyle(BOLD);
+  text('VHDL Synthesis Inference', canvasWidth / 2, 12);
+  textStyle(NORMAL);
+  stroke(220); strokeWeight(1);
+  line(canvasWidth / 2 - 90, 23, canvasWidth / 2 + 90, 23);
+  noStroke();
+
   // Draw pattern selector buttons
   drawPatternButtons();
 
@@ -119,7 +131,7 @@ function draw() {
 
   // Split layout
   let dividerX = canvasWidth * 0.45;
-  let contentY = 55;
+  let contentY = 68;
   let contentH = drawHeight - contentY - 60;
 
   // Left: VHDL code
@@ -130,11 +142,19 @@ function draw() {
 
   // Bottom: Explanation
   drawExplanation(10, drawHeight - 55, canvasWidth - 20, 50, pat);
+
+  // Cursor management
+  let overInteractive = false;
+  for (let i = 0; i < patternButtons.length; i++) {
+    let b = patternButtons[i];
+    if (b && mouseX > b.x && mouseX < b.x + b.w && mouseY > b.y && mouseY < b.y + b.h) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function drawPatternButtons() {
   let btnH = 26;
-  let y = 10;
+  let y = 28;
   let spacing = 6;
   let names = patterns.map(p => p.name);
 
