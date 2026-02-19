@@ -166,7 +166,7 @@ function setup() {
     e.preventDefault();
     if (_iframe) {
       if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;'; navLink.textContent = '✕ Exit Fullscreen'; }
-      else { _iframe.style.cssText = _origSt; navLink.textContent = '⛶ Fullscreen'; }
+      else { _iframe.style.cssText = _origSt; navLink.textContent = '⛶ Fullscreen'; setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
       _isFs = !_isFs;
     }
   });

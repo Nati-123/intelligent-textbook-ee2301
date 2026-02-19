@@ -141,6 +141,7 @@ function setup() {
       } else {
         _iframe.style.cssText = _origStyle;
         navLink.textContent = '⛶ Fullscreen';
+        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
       }
       _isFs = !_isFs;
     }

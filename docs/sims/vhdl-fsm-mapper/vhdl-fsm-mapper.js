@@ -109,6 +109,7 @@ function setup() {
       } else {
         iframe.style.cssText = origStyle;
         navLink.textContent = '⛶ Fullscreen';
+        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
       }
       isFullscreen = !isFullscreen;
     }
