@@ -167,7 +167,7 @@ The complement of 0 is 1, and the complement of 1 is 0. This operation is fundam
 
 #### Diagram: Boolean Operations Visualizer
 
-<iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Boolean Operations Visualizer</summary>
@@ -235,31 +235,31 @@ The **AND gate** implements the AND operation, producing a HIGH output only when
 
 #### Diagram: AND Gate with Truth Table
 
-<iframe src="../sims/and-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/and-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **OR gate** implements the OR operation, producing a HIGH output when any input is HIGH. Its shape features a curved left edge (concave) and a pointed right edge.
 
 #### Diagram: OR Gate with Truth Table
 
-<iframe src="../sims/or-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/or-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **NOT gate** (also called an **inverter**) implements the NOT operation, inverting its single input. It is drawn as a triangle with a small circle (bubble) at the output indicating inversion.
 
 #### Diagram: NOT Gate with Truth Table
 
-<iframe src="../sims/not-gate-truth-table/main.html" width="100%" height="390px" scrolling="no"></iframe>
+<iframe src="../sims/not-gate-truth-table/main.html" width="100%" height="390px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **buffer gate** passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
 
 #### Diagram: Buffer Gate with Truth Table
 
-<iframe src="../sims/buffer-gate-truth-table/main.html" width="100%" height="390px" scrolling="no"></iframe>
+<iframe src="../sims/buffer-gate-truth-table/main.html" width="100%" height="390px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **tri-state buffer** adds an **enable (EN)** control input to the standard buffer. When enabled (EN = 1), the output follows the input. When disabled (EN = 0), the output enters a **high-impedance (Z)** state—effectively disconnecting from the circuit. Tri-state buffers are essential for allowing multiple devices to share a common data bus without signal conflicts.
 
 #### Diagram: Tri-State Buffer with Truth Table
 
-<iframe src="../sims/tri-state-buffer-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/tri-state-buffer-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ### Derived Gates
 
@@ -271,7 +271,7 @@ $$F = \overline{A \cdot B}$$
 
 #### Diagram: NAND Gate with Truth Table
 
-<iframe src="../sims/nand-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/nand-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **NOR gate** (NOT-OR) produces the complement of OR: output is HIGH only when all inputs are LOW.
 
@@ -279,7 +279,7 @@ $$F = \overline{A + B}$$
 
 #### Diagram: NOR Gate with Truth Table
 
-<iframe src="../sims/nor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/nor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **XOR gate** (exclusive OR) produces a HIGH output when inputs differ (odd number of 1s).
 
@@ -287,7 +287,7 @@ $$F = A \oplus B = A\overline{B} + \overline{A}B$$
 
 #### Diagram: XOR Gate with Truth Table
 
-<iframe src="../sims/xor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/xor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The **XNOR gate** (exclusive NOR) produces a HIGH output when inputs are the same (equality detector).
 
@@ -295,7 +295,7 @@ $$F = \overline{A \oplus B} = AB + \overline{A}\overline{B}$$
 
 #### Diagram: XNOR Gate with Truth Table
 
-<iframe src="../sims/xnor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no"></iframe>
+<iframe src="../sims/xnor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 | A | B | NAND | NOR | XOR | XNOR |
 |---|---|------|-----|-----|------|
@@ -316,7 +316,7 @@ To implement basic operations using only NAND gates:
 
 #### Diagram: Logic Gate Simulator
 
-<iframe src="../sims/logic-gate-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/logic-gate-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Logic Gate Symbol Reference</summary>
@@ -410,7 +410,7 @@ A **sum term** is a single literal or OR of literals: $A$, $A+B$, $\overline{A}+
 
 #### Diagram: Truth Table Generator
 
-<iframe src="../sims/truth-table-generator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/truth-table-generator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Truth Table Generator</summary>
@@ -543,7 +543,7 @@ The consensus term ($BC$ or $B+C$) is redundant because it's covered by the othe
 
 #### Diagram: Boolean Laws Interactive Proof
 
-<iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Boolean Laws Interactive Proof</summary>
@@ -653,7 +653,7 @@ For example, the dual of $A + 0 = A$ is $A \cdot 1 = A$, and both are valid. The
 
 #### Diagram: DeMorgan's Theorem Visualizer
 
-<iframe src="../sims/demorgans-theorem-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/demorgans-theorem-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>DeMorgan's Theorem Visualizer</summary>
@@ -762,7 +762,7 @@ $$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
 
 #### Diagram: Boolean Simplification Tutor
 
-<iframe src="../sims/boolean-simplification-tutor/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-simplification-tutor/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Boolean Simplification Tutor</summary>
@@ -930,23 +930,23 @@ Logic gates can accept more than two inputs. **Multiple input gates** extend nat
 
 #### Diagram: 3-Input AND Gate
 
-<iframe src="../sims/3-input-and-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/3-input-and-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 #### Diagram: 3-Input OR Gate
 
-<iframe src="../sims/3-input-or-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/3-input-or-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 #### Diagram: 3-Input NAND Gate
 
-<iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 #### Diagram: 3-Input NOR Gate
 
-<iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 #### Diagram: 3-Input XOR Gate
 
-<iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 The associative property guarantees that $(A \cdot B) \cdot C = A \cdot (B \cdot C)$, allowing gates to be extended to any number of inputs.
 
@@ -973,7 +973,7 @@ When designs exceed these limits, buffer gates provide signal restoration and cu
 
 #### Diagram: Gate Cascading and Fan-Out Simulator
 
-<iframe src="../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Gate Cascading and Fan-Out Simulator</summary>
@@ -1065,7 +1065,7 @@ Required gates:
 
 #### Diagram: Circuit Analysis and Synthesis Tool
 
-<iframe src="../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<iframe src="../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Circuit Analysis and Synthesis Tool</summary>
@@ -1180,7 +1180,7 @@ This unit established the mathematical foundation of Boolean algebra for digital
 
 Step through a complete Boolean algebra proof with each law identified:
 
-<iframe src="../sims/boolean-proof-walkthrough/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/boolean-proof-walkthrough/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
