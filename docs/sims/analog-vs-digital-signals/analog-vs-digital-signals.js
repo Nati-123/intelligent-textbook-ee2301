@@ -25,16 +25,16 @@ function setup() {
   var navLink = document.createElement('a');
   navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
   if (window.self !== window.top) {
-    var parentUrl = '';
-    try { parentUrl = window.parent.location.href; } catch(e) {}
-    navLink.href = 'main.html' + (parentUrl ? '?back=' + encodeURIComponent(parentUrl) : '');
-    navLink.target = '_blank';
+    navLink.href = 'main.html';
+    navLink.target = '_top';
     navLink.textContent = '⛶ Fullscreen';
   } else {
-    var params = new URLSearchParams(window.location.search);
-    var backUrl = params.get('back');
-    navLink.href = backUrl || 'index.html';
+    navLink.href = '#';
     navLink.textContent = '← Back to Docs';
+    navLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.history.back();
+    });
   }
   navBar.appendChild(navLink);
   mainElement.appendChild(navBar);
