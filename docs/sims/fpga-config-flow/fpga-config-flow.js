@@ -69,17 +69,22 @@ function draw() {
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
-  fill('white');
-  stroke('silver');
-  strokeWeight(1);
+  fill(243, 245, 250);
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill(colors.text);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
   textSize(18);
-  text('FPGA Configuration Flow', canvasWidth / 2, 8);
+  text('FPGA Configuration Flow', canvasWidth / 2, 16);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 90, 28, canvasWidth / 2 + 90, 28);
 
   // Draw tabs
   drawTabs();
@@ -107,27 +112,41 @@ function drawTabs() {
 
   // SRAM tab
   let isSram = activeTab === 'sram';
-  fill(isSram ? colors.sram : '#E0E0E0');
-  stroke(isSram ? '#1565C0' : '#BDBDBD');
+  if (isSram) {
+    noStroke();
+    fill(33, 150, 243, 30);
+    rect(tabStartX - 1, tabY - 1, tabW + 2, tabH + 2, 7, 7, 0, 0);
+  }
+  fill(isSram ? colors.sram : '#E8E8E8');
+  stroke(isSram ? '#1565C0' : '#CACACA');
   strokeWeight(isSram ? 2 : 1);
   rect(tabStartX, tabY, tabW, tabH, 6, 6, 0, 0);
   fill(isSram ? 'white' : colors.text);
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(12);
+  textStyle(isSram ? BOLD : NORMAL);
   text('SRAM-Based', tabStartX + tabW / 2, tabY + tabH / 2);
+  textStyle(NORMAL);
 
   // Flash tab
   let isFlash = activeTab === 'flash';
-  fill(isFlash ? colors.flash : '#E0E0E0');
-  stroke(isFlash ? '#2E7D32' : '#BDBDBD');
+  if (isFlash) {
+    noStroke();
+    fill(76, 175, 80, 30);
+    rect(tabStartX + tabW - 1, tabY - 1, tabW + 2, tabH + 2, 7, 7, 0, 0);
+  }
+  fill(isFlash ? colors.flash : '#E8E8E8');
+  stroke(isFlash ? '#2E7D32' : '#CACACA');
   strokeWeight(isFlash ? 2 : 1);
   rect(tabStartX + tabW, tabY, tabW, tabH, 6, 6, 0, 0);
   fill(isFlash ? 'white' : colors.text);
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(12);
+  textStyle(isFlash ? BOLD : NORMAL);
   text('Flash-Based', tabStartX + tabW + tabW / 2, tabY + tabH / 2);
+  textStyle(NORMAL);
 }
 
 function drawFlowchart(steps, currentStep) {
@@ -147,18 +166,21 @@ function drawFlowchart(steps, currentStep) {
     let isActive = i === currentStep;
     let isPending = i > currentStep;
 
-    // Step box
+    // Step box with glow on active
     if (isActive) {
+      noStroke();
+      fill(255, 193, 7, 50);
+      rect(x - 3, y - 3, stepW + 6, stepH + 6, 11);
       fill(colors.active);
       stroke('#F57F17');
-      strokeWeight(3);
+      strokeWeight(2.5);
     } else if (isDone) {
       fill(accentColor);
       stroke(activeTab === 'sram' ? '#1565C0' : '#2E7D32');
-      strokeWeight(2);
+      strokeWeight(1.5);
     } else {
       fill(colors.pending);
-      stroke('#BDBDBD');
+      stroke('#CACACA');
       strokeWeight(1);
     }
     rect(x, y, stepW, stepH, 8);
@@ -207,21 +229,38 @@ function drawStepDescription(steps, currentStep) {
   let accentColor = activeTab === 'sram' ? colors.sram : colors.flash;
 
   // Description box
-  fill('white');
-  stroke(accentColor);
-  strokeWeight(2);
-  rect(20, descY, canvasWidth - 40, descH, 6);
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(20, descY, canvasWidth - 40, descH, 8);
+
+  // Accent line
+  noStroke();
+  fill(accentColor);
+  rect(20, descY + 8, 4, descH - 16, 2, 0, 0, 2);
+
+  // Step label tag
+  let stepInfo = steps[currentStep];
+  let tagText = stepInfo.label;
+  fill(accentColor);
+  noStroke();
+  rect(32, descY + 5, textWidth(tagText) + 16, 15, 4);
+  fill(255);
+  textAlign(LEFT, CENTER);
+  textSize(10);
+  textStyle(BOLD);
+  text(tagText, 38, descY + 12);
+  textStyle(NORMAL);
 
   // Description text
   fill(colors.text);
   noStroke();
   textAlign(LEFT, TOP);
   textSize(11);
-  let stepInfo = steps[currentStep];
-  text(stepInfo.desc, 30, descY + 8, canvasWidth - 60, descH - 16);
+  text(stepInfo.desc, 32, descY + 24, canvasWidth - 64, descH - 28);
 
   // Step indicator
-  fill(accentColor);
+  fill(150);
   textAlign(RIGHT, TOP);
   textSize(10);
   text('Step ' + (currentStep + 1) + '/' + steps.length, canvasWidth - 30, descY + descH + 5);
@@ -232,47 +271,60 @@ function drawComparisonTable() {
   let tableX = 30;
   let colW = (canvasWidth - 60) / 3;
   let rowH = 24;
+  let totalH = rowH * (comparisonData.length + 1);
 
   // Table title
   fill(colors.text);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(13);
+  textStyle(BOLD);
+  textSize(12);
   text('Comparison', canvasWidth / 2, tableY - 10);
+  textStyle(NORMAL);
+
+  // Table background with rounded corners
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(tableX, tableY, colW * 3, totalH, 6);
 
   // Header row
   fill('#E8EAF6');
-  stroke('#C5CAE9');
-  strokeWeight(1);
-  rect(tableX, tableY, colW, rowH);
-  rect(tableX + colW, tableY, colW, rowH);
-  rect(tableX + colW * 2, tableY, colW, rowH);
+  noStroke();
+  rect(tableX, tableY, colW * 3, rowH, 6, 6, 0, 0);
 
   fill(colors.text);
   noStroke();
   textSize(11);
+  textStyle(BOLD);
   textAlign(CENTER, CENTER);
   text('Property', tableX + colW / 2, tableY + rowH / 2);
   fill(colors.sram);
   text('SRAM', tableX + colW * 1.5, tableY + rowH / 2);
   fill(colors.flash);
   text('Flash', tableX + colW * 2.5, tableY + rowH / 2);
+  textStyle(NORMAL);
 
   // Data rows
   for (let i = 0; i < comparisonData.length; i++) {
     let y = tableY + rowH * (i + 1);
     let row = comparisonData[i];
+    let isLast = i === comparisonData.length - 1;
+
+    // Row separator
+    stroke(225);
+    strokeWeight(0.5);
+    line(tableX + 6, y, tableX + colW * 3 - 6, y);
 
     // Highlight active tab column
-    fill('white');
-    stroke('#E0E0E0');
-    rect(tableX, y, colW, rowH);
-
-    fill(activeTab === 'sram' ? '#E3F2FD' : 'white');
-    rect(tableX + colW, y, colW, rowH);
-
-    fill(activeTab === 'flash' ? '#E8F5E9' : 'white');
-    rect(tableX + colW * 2, y, colW, rowH);
+    noStroke();
+    if (activeTab === 'sram') {
+      fill(227, 242, 253, 150);
+      rect(tableX + colW, y, colW, rowH, 0, 0, isLast ? 0 : 0, isLast ? 0 : 0);
+    } else {
+      fill(232, 245, 233, 150);
+      rect(tableX + colW * 2, y, colW, rowH, 0, 0, isLast ? 6 : 0, isLast ? 0 : 0);
+    }
 
     fill(colors.text);
     noStroke();
@@ -285,9 +337,19 @@ function drawComparisonTable() {
 }
 
 function drawControlButtons() {
-  let btnY = drawHeight + 18;
+  // Styled instruction area
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
+  noStroke();
+  rect(12, drawHeight + 4, instrW, 16, 8);
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text('Select tab to compare  |  Step through each configuration flow', canvasWidth / 2, drawHeight + 12);
+
+  let btnY = drawHeight + 26;
   let btnW = 80;
-  let btnH = 24;
+  let btnH = 22;
 
   // Next button
   let nextX = canvasWidth / 2 + 10;
@@ -296,14 +358,16 @@ function drawControlButtons() {
   let canAdvance = currentStep < steps.length - 1;
 
   fill(canAdvance ? (activeTab === 'sram' ? colors.sram : colors.flash) : '#E0E0E0');
-  stroke(canAdvance ? '#333' : '#BDBDBD');
+  stroke(canAdvance ? '#333' : '#CACACA');
   strokeWeight(1);
   rect(nextX, btnY, btnW, btnH, 5);
   fill(canAdvance ? 'white' : '#999');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
+  textSize(11);
+  textStyle(BOLD);
   text('Next Step', nextX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
 
   // Reset button
   let resetX = canvasWidth / 2 - btnW - 10;
@@ -314,8 +378,24 @@ function drawControlButtons() {
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
+  textSize(11);
+  textStyle(BOLD);
   text('Reset', resetX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Cursor management
+  let overInteractive = false;
+  // Check tabs
+  let tabW = 120, tabH = 28, tabY = 35;
+  let tabStartX = canvasWidth / 2 - tabW;
+  if (mouseY >= tabY && mouseY <= tabY + tabH &&
+      mouseX >= tabStartX && mouseX <= tabStartX + tabW * 2) overInteractive = true;
+  // Check buttons
+  if (mouseY >= btnY && mouseY <= btnY + btnH) {
+    if (mouseX >= nextX && mouseX <= nextX + btnW) overInteractive = true;
+    if (mouseX >= resetX && mouseX <= resetX + btnW) overInteractive = true;
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function mousePressed() {
@@ -337,9 +417,9 @@ function mousePressed() {
   }
 
   // Check control button clicks
-  let btnY = drawHeight + 18;
+  let btnY = drawHeight + 26;
   let btnW = 80;
-  let btnH = 24;
+  let btnH = 22;
 
   // Next button
   let nextX = canvasWidth / 2 + 10;
