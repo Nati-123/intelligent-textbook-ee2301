@@ -5,9 +5,7 @@ quality_score: 95
 ---
 # Entity-Architecture RTL Teaching Module
 
-<iframe src="main.html" height="1580px" width="100%" style="min-height:1580px; overflow:visible; border:none;"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="1580px" width="100%" style="min-height:1580px; overflow:visible; border:none;border-radius:8px;"></iframe>
 
 ## Description
 

@@ -5,9 +5,7 @@ quality_score: 95
 ---
 # UART Transmitter
 
-<iframe src="main.html" height="820px" width="100%" scrolling="no"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="850px" width="100%" scrolling="no" style="border:none;border-radius:8px;"></iframe>
 
 ## Description
 

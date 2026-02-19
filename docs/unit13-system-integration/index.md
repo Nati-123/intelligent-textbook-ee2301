@@ -752,7 +752,7 @@ This design combines:
 
 #### Diagram: UART Transmission Protocol and Architecture
 
-<iframe src="../sims/uart-transmitter/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/uart-transmitter/main.html" width="100%" height="850px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>UART Transmission Protocol and Architecture</summary>
@@ -811,7 +811,7 @@ A vending machine controller is a classic FSM design problem that exercises many
 
 The FSM tracks the accumulated amount. Insert coins using the buttons below, then press **Step (Clock)** to advance the FSM one cycle at a time. Watch the state transitions, control signals, and datapath operations update in real time. When the total reaches or exceeds 30¢, the machine dispenses the item, outputs change, and returns to IDLE.
 
-<iframe src="../sims/vending-machine-fsm/main.html" width="100%" height="1100px" scrolling="no" style="border:none;border-radius:8px;"></iframe>
+<iframe src="../sims/vending-machine-fsm/main.html" width="100%" height="1140px" scrolling="no" style="border:none;border-radius:8px;"></iframe>
 
 This design applies:
 
@@ -896,4 +896,4 @@ Each path builds directly on the foundation established in this course: Boolean 
 
 Design a datapath-controller system step-by-step, connecting registers, ALU, and MUX with an FSM controller:
 
-<iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="1010px" scrolling="no"></iframe>

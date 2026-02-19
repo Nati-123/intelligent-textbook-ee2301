@@ -6,9 +6,7 @@ quality_score: 85
 
 # Analog vs Digital Signals
 
-<iframe src="main.html" height="450px" width="100%" scrolling="no"></iframe>
-
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="480px" width="100%" scrolling="no" style="border:none;border-radius:8px;"></iframe>
 
 ## Description
 
