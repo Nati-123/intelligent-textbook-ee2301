@@ -980,7 +980,7 @@ end architecture rtl;
 
 #### Diagram: FSM VHDL Code-to-State Diagram Mapper
 
-<iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="580px" scrolling="no" allowfullscreen></iframe>
 
 <details markdown="1">
 <summary>FSM VHDL Code-to-State Diagram Mapper</summary>

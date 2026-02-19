@@ -87,10 +87,32 @@ let codeLineRects = []; // {x, y, w, h, lineIdx} for click detection
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
+
+  // -- Nav bar: Fullscreen / Exit Fullscreen toggle --
+  var navBar = document.createElement('div');
+  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
+  var navLink = document.createElement('a');
+  navLink.href = '#';
+  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
+  navLink.textContent = '⛶ Fullscreen';
+  navLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(function() {});
+    } else {
+      document.exitFullscreen();
+    }
+  });
+  document.addEventListener('fullscreenchange', function() {
+    navLink.textContent = document.fullscreenElement ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
+  });
+  navBar.appendChild(navLink);
+  mainElement.appendChild(navBar);
+
+  const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
-  describe('Interactive VHDL FSM mapper showing cross-highlighting between state diagram and code', LABEL);
+  describe('VHDL FSM Mapper');
 }
 
 function draw() {
