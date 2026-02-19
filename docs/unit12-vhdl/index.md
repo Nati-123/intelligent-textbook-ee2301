@@ -752,7 +752,7 @@ The synchronous reset is **not** in the sensitivity list—it is evaluated only 
 
 #### Diagram: VHDL Flip-Flop Patterns
 
-<iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="570px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>VHDL Flip-Flop Patterns</summary>
