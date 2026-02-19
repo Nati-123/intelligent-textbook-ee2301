@@ -512,23 +512,22 @@
       return el.innerHTML;
     }
 
-    // -- Nav link (Fullscreen in iframe, Close in fullscreen) --
+    // -- Nav link: Fullscreen / Exit (expand iframe only) --
     var navBar = document.createElement("div");
     navBar.style.cssText = "display:flex;justify-content:flex-end;padding:4px 8px;";
     var navLink = document.createElement("a");
-    navLink.style.cssText = "font-size:11px;font-weight:bold;color:#2980b9;";
-    if (window.self !== window.top) {
-      navLink.href = "main.html";
-      navLink.target = "_blank";
-      navLink.textContent = "Fullscreen";
-    } else {
-      navLink.href = "#";
-      navLink.textContent = "Close";
-      navLink.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.close();
-      });
-    }
+    navLink.href = "#";
+    navLink.style.cssText = "font-size:11px;font-weight:bold;color:#2980b9;cursor:pointer;text-decoration:none;";
+    navLink.textContent = "⛶ Fullscreen";
+    var _isFs = false, _iframe = window.frameElement, _origSt = _iframe ? _iframe.style.cssText : "";
+    navLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      if (_iframe) {
+        if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;"; navLink.textContent = "✕ Exit Fullscreen"; }
+        else { _iframe.style.cssText = _origSt; navLink.textContent = "⛶ Fullscreen"; }
+        _isFs = !_isFs;
+      }
+    });
     navBar.appendChild(navLink);
 
     // -- Assemble --
