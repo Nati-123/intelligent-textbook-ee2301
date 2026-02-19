@@ -25,11 +25,17 @@ function setup() {
   var navLink = document.createElement('a');
   navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
   if (window.self !== window.top) {
-    navLink.href = 'main.html';
+    // Embedded in iframe: open fullscreen and pass parent URL so we can return
+    var parentUrl = '';
+    try { parentUrl = window.parent.location.href; } catch(e) {}
+    navLink.href = 'main.html' + (parentUrl ? '?back=' + encodeURIComponent(parentUrl) : '');
     navLink.target = '_blank';
     navLink.textContent = '⛶ Fullscreen';
   } else {
-    navLink.href = 'index.html';
+    // Standalone: return to the unit page if we know it, otherwise sim index
+    var params = new URLSearchParams(window.location.search);
+    var backUrl = params.get('back');
+    navLink.href = backUrl || 'index.html';
     navLink.textContent = '← Back to Docs';
   }
   navBar.appendChild(navLink);
