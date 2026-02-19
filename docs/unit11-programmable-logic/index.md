@@ -598,7 +598,7 @@ The versatility of CLBs means that the same physical hardware can implement comb
 
 #### Diagram: CLB Internal Architecture
 
-<iframe src="../sims/clb-architecture/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/clb-architecture/main.html" width="100%" height="630px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>CLB Internal Architecture</summary>

@@ -75,22 +75,46 @@ function draw() {
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
-  fill('white');
-  stroke('silver');
-  strokeWeight(1);
+  fill(243, 245, 250);
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill(colors.text);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
   textSize(18);
-  text('CLB Architecture', canvasWidth / 2, 8);
+  text('CLB Architecture', canvasWidth / 2, 16);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 70, 28, canvasWidth / 2 + 70, 28);
 
-  // Subtitle
-  textSize(11);
-  fill('#666');
-  text('Click components to inspect | Click MUX to toggle bypass', canvasWidth / 2, 30);
+  // Readout panel
+  let modeA = muxABypass ? 'Combinational' : 'Registered';
+  let modeB = muxBBypass ? 'Combinational' : 'Registered';
+  let rpW = 300;
+  let rpX = (canvasWidth - rpW) / 2;
+  let rpY = 33;
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(rpX, rpY, rpW, 20, 8);
+  // Accent line
+  noStroke();
+  fill(92, 107, 192);
+  rect(rpX, rpY + 3, 4, 14, 2, 0, 0, 2);
+  // Readout text
+  textAlign(LEFT, CENTER);
+  textSize(10);
+  fill(92, 107, 192);
+  text('Out-A: ' + modeA, rpX + 14, rpY + 10);
+  fill(120);
+  text('|', rpX + 120, rpY + 10);
+  fill(255, 152, 0);
+  text('Out-B: ' + modeB, rpX + 132, rpY + 10);
 
   // Scale factor for responsive layout
   let scale = Math.min(canvasWidth / 520, 1.0);
@@ -156,17 +180,20 @@ function draw() {
   }
   cursor(hovering ? HAND : ARROW);
 
-  // Control area text
-  fill(colors.text);
+  // Styled instruction area
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
   noStroke();
+  rect(12, drawHeight + 4, instrW, 18, 8);
+  fill(100);
   textAlign(CENTER, CENTER);
-  textSize(11);
-  let modeA = muxABypass ? 'Combinational' : 'Registered';
-  let modeB = muxBBypass ? 'Combinational' : 'Registered';
-  text('Output A: ' + modeA + '   |   Output B: ' + modeB, canvasWidth / 2, drawHeight + 15);
   textSize(10);
-  fill('#999');
-  text('Click components to inspect | Click MUX bit box to toggle mode', canvasWidth / 2, drawHeight + 35);
+  text('Click components to inspect  |  Click MUX bit box to toggle mode', canvasWidth / 2, drawHeight + 13);
+
+  // Mode indicators
+  fill(80);
+  textSize(10);
+  text('Output A: ' + (muxABypass ? 'Combinational' : 'Registered') + '   |   Output B: ' + (muxBBypass ? 'Combinational' : 'Registered'), canvasWidth / 2, drawHeight + 36);
 }
 
 function drawWires(scale) {
@@ -288,9 +315,14 @@ function drawCarryChain(scale) {
   // Carry logic box
   let comp = components[6]; // Carry component
   let isSelected = selectedComponent === 'Carry';
+  if (isSelected) {
+    noStroke();
+    fill(255, 193, 7, 40);
+    rect(comp.x * scale - 3, comp.y - 3, comp.w * scale + 6, comp.h + 6, 9);
+  }
   fill(isSelected ? colors.selected : colors.carry);
   stroke(isSelected ? '#F57F17' : '#2E7D32');
-  strokeWeight(2);
+  strokeWeight(isSelected ? 2.5 : 2);
   rect(comp.x * scale, comp.y, comp.w * scale, comp.h, 6);
 
   fill('white');
@@ -320,9 +352,14 @@ function drawComponent(comp, scale, offsetX) {
   if (comp.type === 'mux') {
     // Trapezoid shape for MUX
     let isBypass = comp.name === 'MUX-A' ? muxABypass : muxBBypass;
+    if (isSelected) {
+      noStroke();
+      fill(255, 193, 7, 40);
+      rect(cx - 3, comp.y - 3, cw + 6, comp.h + 6, 8);
+    }
     fill(fillColor);
     stroke(isSelected ? '#F57F17' : '#BF360C');
-    strokeWeight(2);
+    strokeWeight(isSelected ? 2.5 : 2);
     beginShape();
     vertex(cx, comp.y);
     vertex(cx + cw, comp.y + 15);
@@ -361,9 +398,14 @@ function drawComponent(comp, scale, offsetX) {
     comp._bitBox = { x: boxX + offsetX, y: boxY, w: boxW, h: boxH };
   } else if (comp.type === 'ff') {
     // Rectangle with triangle (clock) for FF
+    if (isSelected) {
+      noStroke();
+      fill(255, 193, 7, 40);
+      rect(cx - 3, comp.y - 3, cw + 6, comp.h + 6, 7);
+    }
     fill(fillColor);
     stroke(isSelected ? '#F57F17' : '#880E4F');
-    strokeWeight(2);
+    strokeWeight(isSelected ? 2.5 : 2);
     rect(cx, comp.y, cw, comp.h, 4);
 
     // Clock triangle at bottom edge
@@ -381,9 +423,14 @@ function drawComponent(comp, scale, offsetX) {
     text('D-FF', cx + cw / 2, comp.y + comp.h / 2 + 12);
   } else if (comp.type === 'lut') {
     // Rounded rectangle for LUT
+    if (isSelected) {
+      noStroke();
+      fill(255, 193, 7, 40);
+      rect(cx - 3, comp.y - 3, cw + 6, comp.h + 6, 11);
+    }
     fill(fillColor);
     stroke(isSelected ? '#F57F17' : '#283593');
-    strokeWeight(2);
+    strokeWeight(isSelected ? 2.5 : 2);
     rect(cx, comp.y, cw, comp.h, 8);
 
     // LUT label
@@ -483,20 +530,42 @@ function drawInfoPanel() {
     let panelY = drawHeight - 65;
     let panelH = 60;
 
-    fill(255, 255, 255, 230);
-    stroke(colors.selected);
-    strokeWeight(2);
-    rect(10, panelY, canvasWidth - 20, panelH, 6);
+    fill(247, 249, 252);
+    stroke(210, 215, 225);
+    strokeWeight(1);
+    rect(10, panelY, canvasWidth - 20, panelH, 8);
+
+    // Accent line colored by component type
+    let comp = components.find(c => c.name === selectedComponent);
+    let accentColor = comp ? colors[comp.type] : colors.selected;
+    noStroke();
+    fill(accentColor);
+    rect(10, panelY + 8, 4, panelH - 16, 2, 0, 0, 2);
+
+    // Component name tag
+    let tagW = textWidth(selectedComponent) + 16;
+    fill(accentColor);
+    rect(22, panelY + 6, max(tagW, 50), 16, 4);
+    fill(255);
+    textAlign(LEFT, CENTER);
+    textSize(10);
+    textStyle(BOLD);
+    text(selectedComponent, 28, panelY + 14);
+    textStyle(NORMAL);
 
     let infoText = componentInfo[selectedComponent] || 'Click a component to see details.';
+    // Remove the component name prefix from info text for cleaner display
+    let cleanText = infoText;
+    let colonIdx = infoText.indexOf(':');
+    if (colonIdx > 0 && colonIdx < 8) cleanText = infoText.substring(colonIdx + 2);
     fill(colors.text);
     noStroke();
     textAlign(LEFT, TOP);
-    textSize(11);
-    text(infoText, 20, panelY + 10, canvasWidth - 40, panelH - 12);
+    textSize(10);
+    text(cleanText, 22, panelY + 26, canvasWidth - 44, panelH - 30);
   } else {
     let panelY = drawHeight - 30;
-    fill('#999');
+    fill(180);
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(11);
