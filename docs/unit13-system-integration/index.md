@@ -859,49 +859,6 @@ The complete journey from idea to working hardware follows a well-defined path. 
 | Implementation | Synthesize, place, route | Units 11, 13 |
 | Hardware test | Program FPGA, test with real signals | Unit 13 |
 
-#### Diagram: Course Concept Integration Map
-
-<iframe src="../sims/course-integration-map/main.html" width="100%" height="550px" scrolling="no"></iframe>
-
-<details markdown="1">
-<summary>Course Concept Integration Map</summary>
-Type: graph-model
-
-Bloom Level: Evaluate (L5)
-Bloom Verb: Assess, justify
-
-Learning Objective: Assess how concepts from all 13 units interconnect and contribute to a complete digital system design, justifying why each foundational topic is necessary for the system integration capstone.
-
-Node types:
-1. Unit nodes (13 circles, one per unit)
-   - Properties: unit number, title, key concepts
-   - Size proportional to number of concepts covered
-
-2. Design phase nodes (10 rectangles, one per design phase)
-   - Properties: phase name, description
-
-Edge types:
-1. "prerequisite" (solid arrows between unit nodes)
-   - Shows which units depend on which
-2. "applies to" (dashed arrows from units to design phases)
-   - Shows which unit knowledge is used in which design phase
-3. "feeds into" (bold arrows between design phases)
-   - Shows the sequential design flow
-
-Layout: Force-directed with units on left, design phases on right
-
-Interactive elements:
-- Click a unit node to highlight all design phases it contributes to
-- Click a design phase to highlight all units that provide relevant skills
-- Hover over edges for relationship descriptions
-- Filter toggle: show/hide prerequisite edges, application edges
-
-Color scheme: Units colored by domain (blue=combinational, purple=sequential, green=implementation), design phases in orange gradient
-Canvas size: 800x550px, responsive
-
-Implementation: vis-network
-</details>
-
 ---
 
 ## 13.17 Career Paths in Digital Design
