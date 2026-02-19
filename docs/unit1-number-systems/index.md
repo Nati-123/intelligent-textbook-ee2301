@@ -103,7 +103,7 @@ The foundation of all digital systems is the **binary number system**, which use
 
 #### Diagram: Analog vs Digital Signal Comparison
 
-<iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="480px" scrolling="no"></iframe>
+<iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="480px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Analog vs Digital Signal Comparison</summary>
@@ -188,7 +188,7 @@ The **hexadecimal number system** (base 16) uses sixteen symbols: 0-9 and A-F (w
 
 #### Diagram: Positional Notation Interactive Explorer
 
-<iframe src="../sims/positional-notation-explorer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/positional-notation-explorer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Positional Notation Interactive Explorer</summary>
@@ -331,7 +331,7 @@ Result: $10111010_2 = \text{BA}_{16}$
 
 #### Diagram: Base Conversion Calculator
 
-<iframe src="../sims/base-converter/main.html" width="100%" height="520px" scrolling="no"></iframe>
+<iframe src="../sims/base-converter/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Base Conversion Calculator</summary>
@@ -461,7 +461,7 @@ Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
 
 #### Diagram: Binary Arithmetic Practice
 
-<iframe src="../sims/binary-arithmetic-practice/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/binary-arithmetic-practice/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Binary Arithmetic Practice</summary>
@@ -576,7 +576,7 @@ Two's complement has a single representation of zero and allows addition and sub
 
 #### Diagram: Signed Number Representation Comparison
 
-<iframe src="../sims/signed-number-comparison/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/signed-number-comparison/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Signed Number Representation Comparison</summary>
@@ -728,7 +728,7 @@ For an n-bit two's complement number:
 
 #### Diagram: Overflow Detection Simulator
 
-<iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Overflow Detection Simulator</summary>
@@ -809,7 +809,7 @@ Number systems and binary arithmetic form the foundation for all digital hardwar
 
 #### Diagram: Number Systems Concept Map
 
-<iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="670px" scrolling="no"></iframe>
+<iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="670px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Number Systems Concept Map</summary>
@@ -894,7 +894,7 @@ This unit established the mathematical foundation for digital system design thro
 
 Step through a complete base conversion problem with animated visuals:
 
-<iframe src="../sims/base-conversion-walkthrough/main.html" width="100%" height="680px" scrolling="no"></iframe>
+<iframe src="../sims/base-conversion-walkthrough/main.html" width="100%" height="680px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 

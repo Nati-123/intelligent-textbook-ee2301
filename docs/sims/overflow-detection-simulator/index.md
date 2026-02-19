@@ -8,7 +8,6 @@ quality_score: 85
 
 <iframe src="main.html" height="600px" width="100%" scrolling="no"></iframe>
 
-[Run Fullscreen](./main.html){ .md-button .md-button--primary }
 
 ## Description
 
