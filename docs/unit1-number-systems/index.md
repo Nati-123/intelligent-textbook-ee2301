@@ -103,7 +103,7 @@ The foundation of all digital systems is the **binary number system**, which use
 
 #### Diagram: Analog vs Digital Signal Comparison
 
-<iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="450px" scrolling="no" allowfullscreen></iframe>
+<iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="450px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Analog vs Digital Signal Comparison</summary>
