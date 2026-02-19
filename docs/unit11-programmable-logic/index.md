@@ -853,7 +853,7 @@ Choosing the right programmable logic device for a project involves evaluating s
 
 #### Diagram: PLD Selection Decision Tree
 
-<iframe src="../sims/pld-selection-tree/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/pld-selection-tree/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>PLD Selection Decision Tree</summary>

@@ -163,22 +163,46 @@ function draw() {
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
-  fill('white');
-  stroke('silver');
-  strokeWeight(1);
+  fill(243, 245, 250);
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill(colors.text);
   noStroke();
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
   textSize(16);
-  text('PLD Selection Decision Tree', canvasWidth / 2, 8);
+  text('PLD Selection Decision Tree', canvasWidth / 2, 14);
+  textStyle(NORMAL);
+  // Decorative underline
+  stroke(220);
+  strokeWeight(1);
+  line(canvasWidth / 2 - 100, 26, canvasWidth / 2 + 100, 26);
 
-  // Subtitle
+  // Readout panel
+  let rpW = 280;
+  let rpX = (canvasWidth - rpW) / 2;
+  let rpY = 31;
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(rpX, rpY, rpW, 18, 8);
+  noStroke();
+  fill(92, 107, 192);
+  rect(rpX, rpY + 3, 4, 12, 2, 0, 0, 2);
+  textAlign(LEFT, CENTER);
   textSize(10);
-  fill('#666');
-  text('Answer questions to find the right device', canvasWidth / 2, 28);
+  fill(92, 107, 192);
+  text('Path: ' + (path.length === 0 ? 'Start' : path.length + ' decision' + (path.length > 1 ? 's' : '')), rpX + 12, rpY + 9);
+  fill(120);
+  if (treeFinished && currentNode.type === 'result') {
+    let dc = colors[currentNode.deviceType] || colors.decision;
+    fill(dc);
+    text('|  Result: ' + currentNode.result, rpX + 130, rpY + 9);
+  } else {
+    text('|  Awaiting input...', rpX + 130, rpY + 9);
+  }
 
   // Draw all edges first
   drawEdges(treeData);
@@ -280,18 +304,21 @@ function drawNodes(node) {
     nodeW = Math.min(140, canvasWidth * 0.28);
     nodeH = 34;
 
-    // Decision node (rounded rect)
+    // Decision node (rounded rect) with glow on current
     if (isCurrent) {
+      noStroke();
+      fill(255, 193, 7, 50);
+      rect(pos.x - nodeW / 2 - 3, pos.y - nodeH / 2 - 3, nodeW + 6, nodeH + 6, 9);
       fill(colors.active);
       stroke('#F57F17');
-      strokeWeight(3);
+      strokeWeight(2.5);
     } else if (isOnPath) {
       fill(colors.decision);
       stroke('#3949AB');
-      strokeWeight(2);
+      strokeWeight(1.5);
     } else {
       fill(colors.pending);
-      stroke('#BDBDBD');
+      stroke('#CACACA');
       strokeWeight(1);
     }
     rect(pos.x - nodeW / 2, pos.y - nodeH / 2, nodeW, nodeH, 6);
@@ -313,16 +340,19 @@ function drawNodes(node) {
 
     let deviceColor = colors[node.deviceType] || colors.decision;
     if (isCurrent) {
+      noStroke();
+      fill(red(color(deviceColor)), green(color(deviceColor)), blue(color(deviceColor)), 50);
+      rect(pos.x - nodeW / 2 - 3, pos.y - nodeH / 2 - 3, nodeW + 6, nodeH + 6, 18);
       fill(deviceColor);
       stroke('#333');
-      strokeWeight(3);
+      strokeWeight(2.5);
     } else if (isOnPath) {
       fill(deviceColor);
       stroke('#333');
-      strokeWeight(2);
+      strokeWeight(1.5);
     } else {
       fill(colors.pending);
-      stroke('#BDBDBD');
+      stroke('#CACACA');
       strokeWeight(1);
     }
     rect(pos.x - nodeW / 2, pos.y - nodeH / 2, nodeW, nodeH, 15);
@@ -356,64 +386,100 @@ function drawDecisionButtons() {
   let btnH = 22;
   let btnY = pos.y + 22;
 
-  // Yes button
+  // Yes button with subtle glow
   let yesX = pos.x - btnW - 8;
+  noStroke();
+  fill(76, 175, 80, 30);
+  rect(yesX - 1, btnY - 1, btnW + 2, btnH + 2, 6);
   fill(colors.yesBtn);
   stroke('#2E7D32');
   strokeWeight(1);
-  rect(yesX, btnY, btnW, btnH, 4);
+  rect(yesX, btnY, btnW, btnH, 5);
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('Yes', yesX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
 
-  // No button
+  // No button with subtle glow
   let noX = pos.x + 8;
+  noStroke();
+  fill(244, 67, 54, 30);
+  rect(noX - 1, btnY - 1, btnW + 2, btnH + 2, 6);
   fill(colors.noBtn);
   stroke('#C62828');
   strokeWeight(1);
-  rect(noX, btnY, btnW, btnH, 4);
+  rect(noX, btnY, btnW, btnH, 5);
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('No', noX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
 }
 
 function drawInfoPanel() {
   let panelY = drawHeight - 70;
   let panelH = 60;
 
-  fill(255, 255, 255, 240);
-  stroke('#C5CAE9');
-  strokeWeight(2);
-  rect(15, panelY, canvasWidth - 30, panelH, 6);
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(15, panelY, canvasWidth - 30, panelH, 8);
 
   if (treeFinished && currentNode.type === 'result') {
-    // Show result info
     let deviceColor = colors[currentNode.deviceType] || colors.decision;
-    fill(deviceColor);
+    // Accent line
     noStroke();
+    fill(deviceColor);
+    rect(15, panelY + 8, 4, panelH - 16, 2, 0, 0, 2);
+
+    // Tag
+    let tagText = currentNode.result;
+    fill(deviceColor);
+    rect(27, panelY + 5, textWidth(tagText) + 16, 15, 4);
+    fill(255);
+    textAlign(LEFT, CENTER);
+    textSize(10);
+    textStyle(BOLD);
+    text(tagText, 33, panelY + 12);
+    textStyle(NORMAL);
+
+    // Description
+    fill(colors.text);
     textAlign(LEFT, TOP);
-    textSize(12);
-    text('Recommendation: ' + currentNode.result, 25, panelY + 6);
+    textSize(10);
+    text(currentNode.detail, 27, panelY + 24, canvasWidth - 54, panelH - 30);
+  } else if (currentNode.type === 'decision') {
+    // Accent line
+    noStroke();
+    fill(92, 107, 192);
+    rect(15, panelY + 8, 4, panelH - 16, 2, 0, 0, 2);
+
+    // Question tag
+    let tagText = 'Question';
+    fill(92, 107, 192);
+    rect(27, panelY + 5, textWidth(tagText) + 16, 15, 4);
+    fill(255);
+    textAlign(LEFT, CENTER);
+    textSize(10);
+    textStyle(BOLD);
+    text(tagText, 33, panelY + 12);
+    textStyle(NORMAL);
 
     fill(colors.text);
-    textSize(10);
-    text(currentNode.detail, 25, panelY + 22, canvasWidth - 50, panelH - 28);
-  } else if (currentNode.type === 'decision') {
-    fill(colors.decision);
-    noStroke();
-    textAlign(LEFT, TOP);
-    textSize(12);
-    text('Question: ' + currentNode.question, 25, panelY + 8);
+    textSize(11);
+    text(currentNode.question, 27 + textWidth(tagText) + 22, panelY + 12);
 
-    fill('#666');
+    fill(150);
+    textAlign(LEFT, TOP);
     textSize(10);
-    text('Click Yes or No to proceed through the decision tree.', 25, panelY + 28);
+    text('Click Yes or No to proceed through the decision tree.', 27, panelY + 28);
   } else {
-    fill('#999');
+    fill(180);
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(11);
@@ -422,10 +488,20 @@ function drawInfoPanel() {
 }
 
 function drawResetButton() {
+  // Styled instruction area
+  let instrW = canvasWidth - 24;
+  fill(235, 237, 242);
+  noStroke();
+  rect(12, drawHeight + 4, instrW, 16, 8);
+  fill(100);
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text('Answer Yes/No at each decision  |  Reset to start over', canvasWidth / 2, drawHeight + 12);
+
   let btnW = 65;
-  let btnH = 22;
+  let btnH = 20;
   let btnX = canvasWidth / 2 - btnW / 2;
-  let btnY = drawHeight + 14;
+  let btnY = drawHeight + 26;
 
   fill('#FF5722');
   stroke('#BF360C');
@@ -435,7 +511,29 @@ function drawResetButton() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('Reset', btnX + btnW / 2, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Cursor management
+  let overInteractive = false;
+  // Check reset button
+  if (mouseX >= btnX && mouseX <= btnX + btnW &&
+      mouseY >= btnY && mouseY <= btnY + btnH) overInteractive = true;
+  // Check Yes/No buttons
+  if (!treeFinished && currentNode.type === 'decision') {
+    let pos = nodePositions[currentNode.id];
+    if (pos) {
+      let dbW = 50, dbH = 22, dbY = pos.y + 22;
+      let yX = pos.x - dbW - 8;
+      let nX = pos.x + 8;
+      if (mouseY >= dbY && mouseY <= dbY + dbH) {
+        if (mouseX >= yX && mouseX <= yX + dbW) overInteractive = true;
+        if (mouseX >= nX && mouseX <= nX + dbW) overInteractive = true;
+      }
+    }
+  }
+  cursor(overInteractive ? HAND : ARROW);
 }
 
 function mousePressed() {
@@ -469,9 +567,9 @@ function mousePressed() {
 
   // Check reset button
   let resetW = 65;
-  let resetH = 22;
+  let resetH = 20;
   let resetX = canvasWidth / 2 - resetW / 2;
-  let resetY = drawHeight + 14;
+  let resetY = drawHeight + 26;
   if (mouseX >= resetX && mouseX <= resetX + resetW && mouseY >= resetY && mouseY <= resetY + resetH) {
     path = [];
     currentNode = treeData;
