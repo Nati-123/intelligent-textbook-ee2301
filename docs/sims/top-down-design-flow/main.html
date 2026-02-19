@@ -6,8 +6,10 @@
     <title>Top-Down Design Flow MicroSim</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        main { position: relative; }
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; height: 100%; overflow: hidden; }
+        body { display: flex; flex-direction: column; }
+        main { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+        main canvas { display: block; }
         .td-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 10px 12px; background: #e6e6eb; }
         .td-controls__btn { height: 34px; border-radius: 5px; font-weight: bold; color: #fff; cursor: pointer; padding: 0 14px; border: 2px solid; font-size: 13px; }
         .td-controls__btn--anim { background: #4CAF50; border-color: #388E3C; }

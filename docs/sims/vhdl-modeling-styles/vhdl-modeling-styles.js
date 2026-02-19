@@ -6,6 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 880;
+let minDrawHeight = 880;
 let controlHeight = 0;
 let canvasHeight = drawHeight;
 
@@ -53,6 +54,7 @@ function setup() {
         origStyle = iframe.style.cssText;
         iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;';
         navLink.textContent = '✕ Exit Fullscreen';
+        setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100);
       } else {
         iframe.style.cssText = origStyle;
         navLink.textContent = '⛶ Fullscreen';
@@ -894,8 +896,17 @@ function windowResized() {
 }
 
 function updateCanvasSize() {
-  var container = document.querySelector('main').getBoundingClientRect();
-  containerWidth = Math.floor(container.width);
+  var mainEl = document.querySelector('main');
+  containerWidth = Math.floor(mainEl.getBoundingClientRect().width);
   canvasWidth = containerWidth;
-  canvasHeight = drawHeight;
+
+  var availableHeight = window.innerHeight;
+  var children = mainEl.children;
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].tagName !== 'CANVAS') {
+      availableHeight -= children[i].offsetHeight;
+    }
+  }
+  drawHeight = Math.max(minDrawHeight, availableHeight - controlHeight);
+  canvasHeight = drawHeight + controlHeight;
 }

@@ -5,6 +5,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 760;
+let minDrawHeight = 760;
 let controlHeight = 0;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -109,7 +110,7 @@ function setup() {
   navLink.addEventListener('click', function(e) {
     e.preventDefault();
     if (_iframe) {
-      if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;'; navLink.textContent = '✕ Exit Fullscreen'; }
+      if (!_isFs) { _origSt = _iframe.style.cssText; _iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;border:none;background:#fff;'; navLink.textContent = '✕ Exit Fullscreen'; setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
       else { _iframe.style.cssText = _origSt; navLink.textContent = '⛶ Fullscreen'; setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 100); }
       _isFs = !_isFs;
     }
@@ -1099,7 +1100,17 @@ function mousePressed() {
 function windowResized() { updateCanvasSize(); resizeCanvas(containerWidth, canvasHeight); }
 
 function updateCanvasSize() {
-  var c = document.querySelector('main').getBoundingClientRect();
-  containerWidth = Math.floor(c.width);
+  var mainEl = document.querySelector('main');
+  containerWidth = Math.floor(mainEl.getBoundingClientRect().width);
   canvasWidth = containerWidth;
+
+  var availableHeight = window.innerHeight;
+  var children = mainEl.children;
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].tagName !== 'CANVAS') {
+      availableHeight -= children[i].offsetHeight;
+    }
+  }
+  drawHeight = Math.max(minDrawHeight, availableHeight - controlHeight);
+  canvasHeight = drawHeight + controlHeight;
 }
