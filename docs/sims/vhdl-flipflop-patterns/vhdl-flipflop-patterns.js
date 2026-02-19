@@ -89,25 +89,25 @@ function setup() {
   updateCanvasSize();
   var mainElement = document.querySelector('main');
 
-  // -- Nav bar: Fullscreen toggle --
+  // -- Nav bar: Fullscreen (in iframe) / Back to Docs (standalone) --
   var navBar = document.createElement('div');
   navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
   var navLink = document.createElement('a');
-  navLink.href = '#';
   navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;cursor:pointer;';
-  navLink.textContent = '⛶ Fullscreen';
-  navLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    var el = document.documentElement;
-    if (!document.fullscreenElement) {
-      el.requestFullscreen().catch(function() {});
-    } else {
-      document.exitFullscreen();
-    }
-  });
-  document.addEventListener('fullscreenchange', function() {
-    navLink.textContent = document.fullscreenElement ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
-  });
+  if (window.self !== window.top) {
+    // In iframe: navigate parent to sim page (replaces unit page)
+    navLink.href = 'main.html';
+    navLink.target = '_top';
+    navLink.textContent = '⛶ Fullscreen';
+  } else {
+    // Standalone: go back to the unit page via browser history
+    navLink.href = '#';
+    navLink.textContent = '← Back to Docs';
+    navLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.history.back();
+    });
+  }
   navBar.appendChild(navLink);
   mainElement.appendChild(navBar);
 
