@@ -87,8 +87,25 @@ let clockBtn, dBtn, rstBtn, enBtn, _resetBtn;
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
+
+  // -- Nav bar: Fullscreen (in iframe) / Back to Docs (standalone) --
+  var navBar = document.createElement('div');
+  navBar.style.cssText = 'display:flex;justify-content:flex-end;padding:4px 8px;background:#37474F;';
+  var navLink = document.createElement('a');
+  navLink.style.cssText = 'font-size:12px;font-weight:bold;color:#80CBC4;text-decoration:none;';
+  if (window.self !== window.top) {
+    navLink.href = 'main.html';
+    navLink.target = '_blank';
+    navLink.textContent = '⛶ Fullscreen';
+  } else {
+    navLink.href = 'index.html';
+    navLink.textContent = '← Back to Docs';
+  }
+  navBar.appendChild(navLink);
+  mainElement.appendChild(navBar);
+
+  const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('Interactive VHDL flip-flop pattern explorer with timing diagrams for DFF variants', LABEL);
   resetHistory();
