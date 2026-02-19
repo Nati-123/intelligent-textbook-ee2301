@@ -130,10 +130,7 @@ A **switching function** is the formal name for a Boolean function that describe
 
 #### Diagram: Design Flow Visualization
 
-<iframe src="../sims/boolean-operations-visualizer/main.html"
-        width="100%"
-        height="500"
-        scrolling="no"></iframe>
+<iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Design Flow Visualization</summary>
@@ -228,7 +225,7 @@ A **control signal** selects between different operating modes, such as choosing
 
 #### Diagram: Word Problem Translator
 
-<iframe src="../sims/word-problem-translator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/word-problem-translator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Word Problem Translator</summary>
@@ -346,7 +343,7 @@ For an n-bit ripple carry adder:
 
 #### Diagram: Binary Adder Visualizer
 
-<iframe src="../sims/binary-adder-visualizer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/binary-adder-visualizer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Binary Adder Simulator</summary>
@@ -479,7 +476,7 @@ $$A - B = A + \overline{B} + 1$$
 
 #### Diagram: Adder-Subtractor Circuit Builder
 
-<iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="700px" scrolling="no"></iframe>
+<iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Adder-Subtractor Circuit Builder</summary>
@@ -580,7 +577,7 @@ The less-than output is: $L = \overline{G} \cdot \overline{E}$ (or derive symmet
 
 Try the interactive magnitude comparator below — set the A and B inputs and observe the G, E, L outputs:
 
-<iframe src="../sims/magnitude-comparator/main.html" width="100%" height="640px" scrolling="no"></iframe>
+<iframe src="../sims/magnitude-comparator/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
@@ -628,7 +625,7 @@ If the result is 0, parity is correct (even number of 1s). If the result is 1, a
 
 #### Diagram: Parity Generator/Checker Simulator
 
-<iframe src="../sims/parity-circuit-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="../sims/parity-circuit-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Parity Generator/Checker Simulator</summary>
@@ -751,7 +748,7 @@ This requires multipliers and adders, making the circuit significantly more comp
 
 #### Diagram: Code Converter Demonstrator
 
-<iframe src="../sims/code-converter-demo/main.html" width="100%" height="700px" scrolling="no"></iframe>
+<iframe src="../sims/code-converter-demo/main.html" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Code Converter Demonstrator</summary>
@@ -862,7 +859,7 @@ This can be simplified using Boolean algebra or K-maps (covered in Unit 5).
 
 #### Diagram: Seven-Segment Decoder Simulator
 
-<iframe src="../sims/seven-segment-decoder/main.html?v=6" width="100%" height="700px" scrolling="no"></iframe>
+<iframe src="../sims/seven-segment-decoder/main.html?v=6" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Seven-Segment Decoder Simulator</summary>
@@ -974,7 +971,7 @@ K-maps (Unit 5) provide a systematic visual method for exploiting don't cares op
 
 #### Diagram: Don't Care Optimizer
 
-<iframe src="../sims/dont-care-optimizer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/dont-care-optimizer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Don't Care Optimizer</summary>
@@ -1072,7 +1069,7 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 Step through the complete design of a full adder from truth table to gate circuit:
 
-<iframe src="../sims/full-adder-walkthrough/main.html" width="100%" height="640px" scrolling="no"></iframe>
+<iframe src="../sims/full-adder-walkthrough/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
