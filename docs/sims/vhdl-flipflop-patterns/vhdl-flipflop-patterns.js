@@ -123,6 +123,9 @@ function setup() {
   canvas.parent(mainElement);
   describe('VHDL Flip-Flop Patterns');
   resetHistory();
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function resetHistory() {

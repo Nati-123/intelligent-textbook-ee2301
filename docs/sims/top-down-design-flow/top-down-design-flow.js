@@ -109,6 +109,9 @@ function setup() {
   canvas.parent(mainElement);
   describe('Interactive top-down design flow with 6 hierarchical steps and verification feedback loops', LABEL);
   textAlign(CENTER, CENTER);
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {

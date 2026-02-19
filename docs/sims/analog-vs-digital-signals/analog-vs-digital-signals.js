@@ -59,6 +59,9 @@ function setup() {
   positionUIElements();
 
   describe('Comparison of analog and digital signal representations with noise visualization', LABEL);
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function positionUIElements() {

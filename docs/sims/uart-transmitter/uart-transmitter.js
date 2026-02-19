@@ -122,6 +122,9 @@ function setup() {
   describe('UART transmitter RTL block diagram with FSM, datapath, shift register, and multi-signal waveform', LABEL);
 
   resetSystem();
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 // ═══════════════════════════════════════════

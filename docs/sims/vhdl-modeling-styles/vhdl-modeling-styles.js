@@ -70,6 +70,9 @@ function setup() {
   canvas.parent(mainEl);
   describe('VHDL Modeling Styles Comparison');
   textFont('monospace');
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {

@@ -111,6 +111,9 @@ function setup() {
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainEl);
   describe('Digital lock RTL block diagram with FSM, sequential/combinational datapath, clk/rst, and interactive keypad', LABEL);
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 // ═══════════════════════════════════════════

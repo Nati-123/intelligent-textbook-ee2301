@@ -153,6 +153,9 @@ function setup() {
   describe('Vending machine FSM saturation model with Moore controller, accumulator datapath, and timing diagram', LABEL);
 
   resetSystem();
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 // ═══════════════════════════════════════════

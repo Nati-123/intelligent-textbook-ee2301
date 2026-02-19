@@ -236,6 +236,9 @@ function setup() {
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('Timing analysis visualizer showing critical path delays, gate delays, and maximum clock frequency', LABEL);
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {

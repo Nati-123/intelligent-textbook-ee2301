@@ -122,6 +122,9 @@ function setup() {
   const canvas = createCanvas(containerWidth, canvasHeight);
   canvas.parent(mainElement);
   describe('VHDL FSM Mapper');
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function draw() {

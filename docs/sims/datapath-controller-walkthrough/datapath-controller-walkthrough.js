@@ -137,6 +137,9 @@ function setup() {
   describe('ALU datapath-controller RTL block diagram with Moore FSM, registers, ALU, control bus, and timing diagram', LABEL);
 
   resetSystem();
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 // ═══════════════════════════════════════════

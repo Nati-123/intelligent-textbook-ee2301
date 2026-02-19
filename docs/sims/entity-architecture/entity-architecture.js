@@ -157,6 +157,9 @@ function setup() {
   textFont('monospace');
   computeOutput();
   addWaveEntry();
+
+  // Resize after nav bar is in DOM so canvas height accounts for it
+  setTimeout(function() { window.dispatchEvent(new Event('resize')); }, 50);
 }
 
 function addSep(bar) {
