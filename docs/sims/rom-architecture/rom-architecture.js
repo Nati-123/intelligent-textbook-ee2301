@@ -57,33 +57,39 @@ function draw() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(18);
+  textStyle(BOLD);
   text('ROM Architecture', canvasWidth / 2, 20);
+  textStyle(NORMAL);
 
-  textSize(13);
-  fill(100);
+  // Subtitle
+  textSize(12);
+  fill(120);
   text('Fixed AND Array (Decoder) + Programmable OR Array', canvasWidth / 2, 40);
+
+  // Title underline
+  stroke(220);
+  strokeWeight(1);
+  let titleW = min(textWidth('ROM Architecture') + 60, canvasWidth - 40);
+  line(canvasWidth / 2 - titleW / 2, 52, canvasWidth / 2 + titleW / 2, 52);
 
   // Compute active word line
   let activeWord = addressBits[0] * 4 + addressBits[1] * 2 + addressBits[2];
 
-  // Layout calculations
-  let leftMargin = 20;
+  // Centered layout calculations
   let inputAreaW = 70;
-  decoderX = leftMargin + inputAreaW + 10;
-  decoderW = 70;
+  let inputGap = 10;
+  decoderW = 80;
   decoderH = numRows * cellSize + 20;
+  let decoderArrayGap = 45;
+  let totalContentW = inputAreaW + inputGap + decoderW + decoderArrayGap + numCols * cellSize;
+  let layoutX = max(15, (canvasWidth - totalContentW) / 2);
+
+  let leftMargin = layoutX;
+  decoderX = layoutX + inputAreaW + inputGap;
   let decoderY = 80;
 
-  arrayStartX = decoderX + decoderW + 40;
+  arrayStartX = decoderX + decoderW + decoderArrayGap;
   arrayStartY = decoderY + 10;
-
-  // Ensure array fits in canvas
-  let arrayEndX = arrayStartX + numCols * cellSize + 60;
-  if (arrayEndX > canvasWidth - 10) {
-    let shift = arrayEndX - (canvasWidth - 10);
-    arrayStartX -= shift / 2;
-    decoderX -= shift / 2;
-  }
 
   // Draw address input labels and toggles
   drawAddressInputs(leftMargin, decoderY, inputAreaW);
@@ -100,12 +106,40 @@ function draw() {
   // Draw output values
   drawOutputs(activeWord);
 
-  // Control area label
-  fill(100);
+  // Cursor management
+  let overInteractive = false;
+  let spacing = decoderH / 4;
+  for (let i = 0; i < 3; i++) {
+    let y = decoderY + spacing * (i + 1);
+    let cx = leftMargin + 45;
+    if (dist(mouseX, mouseY, cx, y) < 15) {
+      overInteractive = true;
+      break;
+    }
+  }
+  if (!overInteractive) {
+    for (let r = 0; r < numRows; r++) {
+      for (let c = 0; c < numCols; c++) {
+        let cx = arrayStartX + c * cellSize + cellSize / 2;
+        let cy = arrayStartY + r * cellSize + cellSize / 2;
+        if (dist(mouseX, mouseY, cx, cy) < cellSize / 2) {
+          overInteractive = true;
+          break;
+        }
+      }
+      if (overInteractive) break;
+    }
+  }
+  cursor(overInteractive ? HAND : ARROW);
+
+  // Instruction area with styled background
+  fill(243, 245, 250);
   noStroke();
+  rect(12, drawHeight + 6, canvasWidth - 24, controlHeight - 12, 8);
+  fill(130);
   textSize(12);
   textAlign(CENTER, CENTER);
-  text('Click address inputs to change | Click OR array dots to program ROM', canvasWidth / 2, drawHeight + 25);
+  text('Click address inputs to change  |  Click OR array dots to program ROM', canvasWidth / 2, drawHeight + controlHeight / 2);
 }
 
 function drawAddressInputs(x, startY, w) {
@@ -147,20 +181,25 @@ function drawAddressInputs(x, startY, w) {
 }
 
 function drawDecoder(x, y, w, h, activeWord) {
+  // Shadow
+  noStroke();
+  fill(0, 0, 0, 15);
+  rect(x + 2, y + 2, w, h, 8);
+
   // Decoder block
-  fill(230, 240, 255);
+  fill(232, 240, 255);
   stroke('#2196F3');
   strokeWeight(2);
-  rect(x, y, w, h, 5);
+  rect(x, y, w, h, 8);
 
   // Label
   fill('#2196F3');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(11);
+  textSize(12);
   textStyle(BOLD);
-  text('3-to-8', x + w / 2, y + h / 2 - 8);
-  text('Decoder', x + w / 2, y + h / 2 + 8);
+  text('3-to-8', x + w / 2, y + h / 2 - 9);
+  text('Decoder', x + w / 2, y + h / 2 + 9);
   textStyle(NORMAL);
 
   // Word line labels on right side of decoder
@@ -168,11 +207,13 @@ function drawDecoder(x, y, w, h, activeWord) {
     let wy = arrayStartY + r * cellSize + cellSize / 2;
     let isActive = (r === activeWord);
 
-    fill(isActive ? '#4CAF50' : 150);
+    fill(isActive ? '#4CAF50' : 160);
     noStroke();
     textAlign(LEFT, CENTER);
     textSize(10);
-    text(r.toString(), x + w + 3, wy);
+    textStyle(isActive ? BOLD : NORMAL);
+    text(r.toString(), x + w + 4, wy);
+    textStyle(NORMAL);
   }
 }
 
@@ -188,10 +229,17 @@ function drawWordLines(decoderY, activeWord) {
 }
 
 function drawORArray(activeWord) {
-  // Column headers (output labels)
-  fill(80);
+  // OR array label
+  fill('#2196F3');
   noStroke();
   textAlign(CENTER, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text('OR Array', arrayStartX + (numCols * cellSize) / 2, arrayStartY - 32);
+  textStyle(NORMAL);
+
+  // Column headers (output labels)
+  fill(70);
   textSize(12);
   textStyle(BOLD);
   for (let c = 0; c < numCols; c++) {
@@ -200,15 +248,16 @@ function drawORArray(activeWord) {
   }
   textStyle(NORMAL);
 
-  // OR array label
-  fill('#2196F3');
-  textSize(11);
-  text('OR Array', arrayStartX + (numCols * cellSize) / 2, arrayStartY - 32);
+  // Array background
+  fill(252, 253, 255);
+  stroke(200);
+  strokeWeight(1);
+  rect(arrayStartX, arrayStartY, numCols * cellSize, numRows * cellSize, 3);
 
   // Vertical output lines
   for (let c = 0; c < numCols; c++) {
     let cx = arrayStartX + c * cellSize + cellSize / 2;
-    stroke('#ddd');
+    stroke(225);
     strokeWeight(1);
     line(cx, arrayStartY, cx, arrayStartY + numRows * cellSize);
   }
@@ -220,91 +269,125 @@ function drawORArray(activeWord) {
 
     // Horizontal word line through array
     stroke(isActive ? '#4CAF50' : '#eee');
-    strokeWeight(isActive ? 2 : 0.5);
+    strokeWeight(isActive ? 2.5 : 0.5);
     line(arrayStartX, wy, arrayStartX + numCols * cellSize, wy);
 
     for (let c = 0; c < numCols; c++) {
       let cx = arrayStartX + c * cellSize + cellSize / 2;
       let hasConnection = orArray[r][c];
 
-      if (hasConnection) {
-        // Connection dot
-        let dotColor;
-        if (isActive) {
-          dotColor = color('#4CAF50');
-        } else {
-          dotColor = color(100);
-        }
-        fill(dotColor);
+      if (hasConnection && isActive) {
+        // Active connection: glow ring + solid dot
+        noStroke();
+        fill(76, 175, 80, 50);
+        ellipse(cx, wy, 20, 20);
+        fill('#4CAF50');
+        ellipse(cx, wy, 12, 12);
+      } else if (hasConnection) {
+        // Inactive connection dot
+        fill(90);
         noStroke();
         ellipse(cx, wy, 10, 10);
       } else {
-        // Empty crosspoint (light ring)
+        // Empty crosspoint (subtle ring)
         noFill();
-        stroke(220);
+        stroke(215);
         strokeWeight(1);
         ellipse(cx, wy, 8, 8);
       }
     }
   }
-
-  // Array border
-  noFill();
-  stroke(180);
-  strokeWeight(1);
-  rect(arrayStartX, arrayStartY, numCols * cellSize, numRows * cellSize);
 }
 
 function drawOutputs(activeWord) {
-  let outputY = arrayStartY + numRows * cellSize + 25;
-
-  fill(80);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(12);
-  text('Outputs:', arrayStartX - 30, outputY);
+  let outputY = arrayStartY + numRows * cellSize + 30;
 
   for (let c = 0; c < numCols; c++) {
     let cx = arrayStartX + c * cellSize + cellSize / 2;
     let val = orArray[activeWord][c] ? 1 : 0;
 
-    // Output value box
-    fill(val ? '#4CAF50' : '#eee');
-    stroke(val ? '#388E3C' : '#ccc');
-    strokeWeight(1.5);
-    rect(cx - 13, outputY - 13, 26, 26, 4);
+    // Line from array to output box
+    stroke(val ? '#4CAF50' : '#ddd');
+    strokeWeight(val ? 2 : 1);
+    line(cx, arrayStartY + numRows * cellSize, cx, outputY - 15);
 
-    // Value
-    fill(val ? 255 : 120);
+    // Output value box — styled to match project bit toggle boxes
+    fill(val ? '#4CAF50' : 225);
+    stroke(val ? '#388E3C' : 180);
+    strokeWeight(1.5);
+    rect(cx - 14, outputY - 14, 28, 28, 5);
+
+    // Value text
+    fill(val ? 255 : 110);
     noStroke();
-    textSize(14);
+    textSize(15);
+    textAlign(CENTER, CENTER);
     textStyle(BOLD);
     text(val, cx, outputY);
     textStyle(NORMAL);
 
-    // Line from array to output
-    stroke(val ? '#4CAF50' : '#ddd');
-    strokeWeight(val ? 2 : 1);
-    line(cx, arrayStartY + numRows * cellSize, cx, outputY - 14);
+    // Column label below box
+    fill(140);
+    textSize(10);
+    text('O' + (numCols - 1 - c), cx, outputY + 22);
   }
 
-  // Show binary address
+  // Readout info panel
   let addrStr = addressBits[0].toString() + addressBits[1].toString() + addressBits[2].toString();
   let dataStr = '';
   for (let c = 0; c < numCols; c++) {
     dataStr += orArray[activeWord][c] ? '1' : '0';
   }
-  fill(80);
+
+  let panelY = outputY + 40;
+  let panelH = 40;
+  let panelW = min(canvasWidth - 24, 380);
+  let panelX = (canvasWidth - panelW) / 2;
+
+  // Panel background
+  fill(247, 249, 252);
+  stroke(210, 215, 225);
+  strokeWeight(1);
+  rect(panelX, panelY, panelW, panelH, 8);
+
+  // Accent line
+  noStroke();
+  fill('#2196F3');
+  rect(panelX + 10, panelY, 3, panelH, 2);
+
+  // Readout text segments
+  let labelX = panelX + 22;
+  let labelCY = panelY + panelH / 2;
+
+  textAlign(LEFT, CENTER);
   textSize(13);
+  textStyle(BOLD);
+  fill('#2196F3');
+  text('Addr: ' + addrStr, labelX, labelCY);
+
+  let seg1W = textWidth('Addr: ' + addrStr);
   textStyle(NORMAL);
-  textAlign(CENTER, CENTER);
-  text('Address: ' + addrStr + ' (Word ' + activeWord + ')  =>  Data: ' + dataStr,
-    canvasWidth / 2, outputY + 30);
+  fill(160);
+  textSize(12);
+  text('|', labelX + seg1W + 8, labelCY);
+
+  fill(80);
+  text('Word ' + activeWord, labelX + seg1W + 22, labelCY);
+
+  let seg2X = labelX + seg1W + 22;
+  let seg2W = textWidth('Word ' + activeWord);
+  fill(160);
+  text('|', seg2X + seg2W + 8, labelCY);
+
+  textStyle(BOLD);
+  fill('#4CAF50');
+  text('Data: ' + dataStr, seg2X + seg2W + 22, labelCY);
+  textStyle(NORMAL);
 }
 
 function mousePressed() {
   // Check address input clicks
-  let leftMargin = 20;
+  let leftMargin = decoderX - 80; // inputAreaW + inputGap
   let spacing = decoderH / 4;
   let decoderY = 80;
 

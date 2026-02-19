@@ -185,7 +185,7 @@ Because the decoder generates **all** minterms, no minimization is needed. The t
 
 #### Diagram: ROM Internal Architecture
 
-<iframe src="../sims/rom-architecture/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<iframe src="../sims/rom-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>ROM Internal Architecture</summary>
