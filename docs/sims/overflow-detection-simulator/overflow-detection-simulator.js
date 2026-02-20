@@ -5,7 +5,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 420;
+let drawHeight = 445;
 let controlHeight = 130;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
@@ -68,7 +68,7 @@ function draw() {
   noStroke();
   textAlign(CENTER, TOP);
   textSize(20);
-  text('Overflow Detection (4-bit Two\'s Complement)', canvasWidth / 2, 10);
+  text('Overflow Detection (4-bit Two\'s Complement)', canvasWidth / 2, 15);
 
   // Calculate result
   let result, hasOverflow;
@@ -90,12 +90,12 @@ function draw() {
   fill('#999');
   textAlign(CENTER, TOP);
   textSize(10);
-  text('Click bits to toggle', canvasWidth / 2, 38);
+  text('Click bits to toggle', canvasWidth / 2, 58);
 
   // Set pointer cursor when hovering over clickable operand bits
   let hBitWidth = 35;
   let hStartX = canvasWidth / 2 - 80;
-  let bitRows = [40, 75]; // y positions of operand A and B bit rows
+  let bitRows = [60, 95]; // y positions of operand A and B bit rows
   let overBit = false;
   for (let r = 0; r < bitRows.length; r++) {
     if (mouseY >= bitRows[r] && mouseY <= bitRows[r] + 30) {
@@ -126,7 +126,7 @@ function draw() {
 }
 
 function drawOperation(result, hasOverflow) {
-  let y = 55;
+  let y = 75;
   let x = canvasWidth / 2 - 80;
 
   // Binary representations
@@ -198,7 +198,7 @@ function drawBinary(binary, x, y, color) {
 }
 
 function drawExplanation(result, hasOverflow) {
-  let y = 260;
+  let y = 280;
   fill(240);
   stroke('silver');
   strokeWeight(1);
@@ -279,11 +279,11 @@ function mousePressed() {
   let bitWidth = 35;
   let x = canvasWidth / 2 - 80;
 
-  // Row A bits: drawBinary called with y=55, rect top = 55-15 = 40
-  // Row B bits: drawBinary called with y=90, rect top = 90-15 = 75
+  // Row A bits: drawBinary called with y=75, rect top = 75-15 = 60
+  // Row B bits: drawBinary called with y=110, rect top = 110-15 = 95
   let rows = [
-    { bitY: 40, currentValue: valueA },
-    { bitY: 75, currentValue: valueB }
+    { bitY: 60, currentValue: valueA },
+    { bitY: 95, currentValue: valueB }
   ];
 
   for (let r = 0; r < rows.length; r++) {
