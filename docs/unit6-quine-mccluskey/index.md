@@ -6,6 +6,8 @@ date: 2026-02-04 19:45:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 6: Quine-McCluskey Method
 
 <details class="video-overview">
@@ -976,3 +978,5 @@ Step through the Quine-McCluskey algorithm with grouping, combining, and PI char
 ---
 
 [See Annotated References](./references.md)
+
+</div>

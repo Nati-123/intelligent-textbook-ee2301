@@ -3,6 +3,8 @@ title: Unit 6 Problems - Quine-McCluskey Method
 description: Practice problems for the Quine-McCluskey tabular minimization method
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Quine-McCluskey Method
 
 Work through these problems to reinforce your understanding of the QM algorithm and prime implicant selection.
@@ -845,3 +847,5 @@ A digital system has 6 inputs (A, B, C, D, E, F). Explain why the Quine-McCluske
 | D | QM with Don't Cares | 3 |
 | E | Applications | 2 |
 | **Total** | | **20** |
+
+</div>

@@ -3,6 +3,8 @@ title: Unit 6 Challenge - Quine-McCluskey Method
 description: Challenge problems for Quine-McCluskey method — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Quine-McCluskey Method
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -171,4 +173,6 @@ $m_{11}$ covered by $P_3$ or $P_4$.
 
 1. $F = \overline{A}\,\overline{B}\,C + \overline{A}\,C\,D + A\,\overline{C}\,D + \overline{B}\,C\,D$
 2. $F = \overline{A}\,\overline{B}\,C + \overline{A}\,C\,D + A\,\overline{C}\,D + A\,\overline{B}\,D$
+
+</div>
 

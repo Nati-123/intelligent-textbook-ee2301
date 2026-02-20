@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Quine-McCluskey Method
 
 Test your understanding of the Quine-McCluskey algorithm, implicant tables, prime implicant charts, and minimum cover selection with these questions.
@@ -175,3 +177,5 @@ Test your understanding of the Quine-McCluskey algorithm, implicant tables, prim
 | 8 | C | Cyclic Prime Implicant Charts |
 | 9 | D | Adjacency Criterion |
 | 10 | B | Computational Complexity |
+
+</div>
