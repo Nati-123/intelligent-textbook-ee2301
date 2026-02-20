@@ -90,7 +90,7 @@ function draw() {
   fill('#999');
   textAlign(CENTER, TOP);
   textSize(10);
-  text('Click bits to toggle', canvasWidth / 2, 58);
+  text('Click bits to toggle', canvasWidth / 2, 42);
 
   // Set pointer cursor when hovering over clickable operand bits
   let hBitWidth = 35;
