@@ -3,6 +3,8 @@ title: Unit 1 Problems - Number Systems
 description: Practice problems for number systems, base conversions, and binary arithmetic
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Number Systems
 
 Work through these problems to reinforce your understanding of number systems and conversions.
@@ -436,3 +438,5 @@ c) Using offset binary (offset = 40, scale = 0.5):
 | D | Fractional Numbers | 2 |
 | E | Applications | 5 |
 | **Total** | | **20** |
+
+</div>

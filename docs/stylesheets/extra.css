@@ -562,6 +562,47 @@
   box-shadow: 0 2px 6px rgba(90, 62, 237, 0.2);
 }
 
+/* ===== PRACTICE PROBLEMS STYLING ===== */
+.problems-styled h1 {
+  color: #D4A017 !important;
+  font-weight: 800;
+  border-bottom: 3px solid #D4A017;
+  padding-bottom: 0.4rem;
+}
+
+.problems-styled h2 {
+  color: #D4A017 !important;
+  border-left: 4px solid #D4A017;
+  padding-left: 0.7rem;
+  margin-top: 2.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.problems-styled h3 {
+  color: #5A3EED !important;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1.5px solid #E0D6FF;
+}
+
+.problems-styled hr {
+  border: none;
+  height: 1px;
+  background: #E0D6FF;
+  margin: 2rem 0;
+}
+
+.problems-styled strong {
+  color: #5A3EED;
+}
+
+.problems-styled code {
+  color: #5A3EED;
+}
+
 /* ===== TABLE STYLING (Global) ===== */
 .md-typeset table:not([class]) {
   border-collapse: collapse;

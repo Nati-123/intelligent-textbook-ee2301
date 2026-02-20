@@ -3,6 +3,8 @@ title: Unit 1 Challenge - Number Systems
 description: Challenge problems for number systems — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Number Systems
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -72,4 +74,6 @@ Perform the following addition using BCD (Binary-Coded Decimal) arithmetic: $879
 BCD result: $0001\ 0100\ 0110\ 0101_{BCD} = 1465_{10}$
 
 Verification: $879 + 586 = 1465$ ✓
+
+</div>
 
