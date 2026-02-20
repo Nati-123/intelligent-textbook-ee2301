@@ -510,17 +510,6 @@ Note: The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary 
 
 The consensus term ($BC$ or $B+C$) is redundant because it's covered by the other terms.
 
-| Law | OR Form | AND Form |
-|-----|---------|----------|
-| Identity | $A + 0 = A$ | $A \cdot 1 = A$ |
-| Null | $A + 1 = 1$ | $A \cdot 0 = 0$ |
-| Idempotent | $A + A = A$ | $A \cdot A = A$ |
-| Complement | $A + \overline{A} = 1$ | $A \cdot \overline{A} = 0$ |
-| Commutative | $A + B = B + A$ | $A \cdot B = B \cdot A$ |
-| Associative | $(A+B)+C = A+(B+C)$ | $(AB)C = A(BC)$ |
-| Distributive | $A + BC = (A+B)(A+C)$ | $A(B+C) = AB + AC$ |
-| Absorption | $A + AB = A$ | $A(A+B) = A$ |
-
 #### Diagram: Boolean Laws Interactive Proof
 
 <iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
