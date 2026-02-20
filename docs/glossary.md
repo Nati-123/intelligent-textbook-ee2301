@@ -3,6 +3,8 @@ title: Glossary of Terms
 description: Comprehensive glossary for EE 2301 Introduction to Digital System Design
 ---
 
+<div class="problems-styled" markdown>
+
 # Glossary of Terms
 
 This glossary contains 225 terms used in the Introduction to Digital System Design course (EE 2301). Definitions follow ISO 11179 metadata registry standards.
@@ -1356,3 +1358,5 @@ A logic gate that outputs 1 when inputs are equal (both 0 or both 1); the comple
 A logic gate that outputs 1 when inputs differ (one is 0 and one is 1); exclusive OR.
 
 **Example:** A 2-input XOR with A=1, B=0 outputs 1; A=1, B=1 outputs 0.
+
+</div>
