@@ -3,6 +3,8 @@ title: Unit 9 Problems - Sequential Logic Fundamentals
 description: Practice problems for latches, flip-flops, timing diagrams, and sequential circuits
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Sequential Logic Fundamentals
 
 Work through these problems to reinforce your understanding of memory elements and sequential circuit timing.
@@ -908,3 +910,5 @@ If starting from any other state, cycles through: 01 → 10 → 11 → 01...
 | D | Timing Diagrams | 3 |
 | E | Circuit Analysis | 2 |
 | **Total** | | **20** |
+
+</div>

@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Sequential Logic Fundamentals
 
 Test your understanding of sequential circuits, SR latches, D latches, flip-flop types, timing parameters, metastability, and synchronous design with these questions.
@@ -175,3 +177,5 @@ Test your understanding of sequential circuits, SR latches, D latches, flip-flop
 | 8 | C | Master-Slave Flip-Flop Construction |
 | 9 | C | Metastability Concepts |
 | 10 | D | Synchronizer Circuits |
+
+</div>

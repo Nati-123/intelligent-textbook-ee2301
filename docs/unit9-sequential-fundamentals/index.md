@@ -6,6 +6,8 @@ date: 2026-02-05 17:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 9: Sequential Logic Fundamentals
 
 <details class="video-overview">
@@ -1070,3 +1072,5 @@ These memory elements are the building blocks for registers, counters, and finit
 Step through a D flip-flop timing diagram trace with clock edge analysis:
 
 <iframe src="../sims/flipflop-timing-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+
+</div>

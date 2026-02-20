@@ -3,6 +3,8 @@ title: Unit 9 Challenge - Sequential Logic Fundamentals
 description: Challenge problems for sequential logic fundamentals — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Sequential Logic Fundamentals
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -177,4 +179,6 @@ In this specific case, the final answer is **$Q = 1$**, which happens to be corr
 **The "ones catching" problem:** The master latch is transparent while CLK is high, so any glitch during this time can corrupt the stored value. The master may "catch" a 1 that shouldn't be there (or lose one that should).
 
 **Edge-triggered design:** Only samples $J$ and $K$ at the clock edge instant. Noise during the high phase of CLK has **no effect** on the output. The edge-triggered flip-flop would reliably output $Q = 1$ based on the values at the triggering edge.
+
+</div>
 
