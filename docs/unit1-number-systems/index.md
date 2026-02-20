@@ -463,6 +463,24 @@ In practice, digital systems typically perform subtraction using two's complemen
 
 **Binary division** uses the same long division algorithm as decimal division, but comparisons and subtractions are simpler with only 0 and 1 as possible quotient digits.
 
+!!! example "Example: Divide $1111_2 \div 11_2$"
+
+    ```
+              1 0 1              ← quotient
+          ---------
+    1 1 ) 1 1 1 1
+          1 1                    ← 11 goes into 11 once
+          -----
+            0 1 1                ← 01 < 11, quotient bit = 0; bring down
+              1 1                ← 11 goes into 11 once
+            -----
+                0                ← remainder
+    ```
+
+    Result: $1111_2 \div 11_2 = 101_2$ remainder $0$ &ensp;(15 ÷ 3 = 5 in decimal)
+
+    Verify: $101_2 \times 11_2 = 1111_2$ ✓
+
 #### Diagram: Binary Arithmetic Practice
 
 <iframe src="../sims/binary-arithmetic-practice/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
