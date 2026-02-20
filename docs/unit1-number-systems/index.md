@@ -159,17 +159,17 @@ where $d_i$ represents the digit at position $i$, $n$ is the number of integer d
 
 The **decimal number system** (base 10) uses ten symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. Each position represents a power of 10, with the rightmost integer position being $10^0 = 1$.
 
-**Example:** The decimal number 472 expands as:
+!!! example "Example: Decimal positional expansion"
 
-$$472_{10} = 4 \times 10^2 + 7 \times 10^1 + 2 \times 10^0 = 400 + 70 + 2$$
+    $$472_{10} = 4 \times 10^2 + 7 \times 10^1 + 2 \times 10^0 = 400 + 70 + 2$$
 
 ### The Binary Number System
 
 The **binary number system** (base 2) uses only two symbols: 0 and 1. This maps directly to the two voltage states in digital circuits, making binary the native language of computers. Each position represents a power of 2.
 
-**Example:** The binary number $1011_2$ converts to decimal as:
+!!! example "Example: Binary to decimal conversion"
 
-$$1011_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10}$$
+    $$1011_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10}$$
 
 ### The Octal Number System
 
@@ -281,17 +281,17 @@ Converting between number systems is a fundamental skill in digital design. Diff
 
 The **repeated division method** converts decimal integers to binary by repeatedly dividing by 2 and recording the remainders. The binary result is formed by reading the remainders from last to first.
 
-**Example: Convert $19_{10}$ to binary**
+!!! example "Example: Convert $19_{10}$ to binary"
 
-| Step | Quotient | ÷ 2 | Remainder |
-|------|----------|-----|-----------|
-| 1 | 19 | 9 | 1 (LSB) |
-| 2 | 9 | 4 | 1 |
-| 3 | 4 | 2 | 0 |
-| 4 | 2 | 1 | 0 |
-| 5 | 1 | 0 | 1 (MSB) |
+    | Step | Quotient | ÷ 2 | Remainder |
+    |------|----------|-----|-----------|
+    | 1 | 19 | 9 | 1 (LSB) |
+    | 2 | 9 | 4 | 1 |
+    | 3 | 4 | 2 | 0 |
+    | 4 | 2 | 1 | 0 |
+    | 5 | 1 | 0 | 1 (MSB) |
 
-Reading remainders bottom-to-top: $19_{10} = 10011_2$
+    Reading remainders bottom-to-top: $19_{10} = 10011_2$
 
 ### Binary to Decimal Conversion
 
@@ -325,11 +325,11 @@ Because 8 = 2³ and 16 = 2⁴, direct conversions between binary and octal/hexad
 - **Binary ↔ Octal:** Group binary digits in sets of 3 (from the radix point outward), converting each group to its octal equivalent
 - **Binary ↔ Hexadecimal:** Group binary digits in sets of 4, converting each group to its hex equivalent
 
-**Example: Convert $10111010_2$ to hexadecimal**
+!!! example "Example: Convert $10111010_2$ to hexadecimal"
 
-Group in fours: $1011 \ 1010$
-Convert each group: $\text{B} \ \text{A}$
-Result: $10111010_2 = \text{BA}_{16}$
+    Group in fours: $1011 \ 1010$
+    Convert each group: $\text{B} \ \text{A}$
+    Result: $10111010_2 = \text{BA}_{16}$
 
 #### Diagram: Base Conversion Calculator
 
@@ -405,17 +405,17 @@ Digital computers perform all arithmetic in binary. Understanding binary arithme
 - $1 + 1 = 10$ (0 with carry 1)
 - $1 + 1 + 1 = 11$ (1 with carry 1)
 
-**Example: Add $1011_2 + 1101_2$**
+!!! example "Example: Add $1011_2 + 1101_2$"
 
-```
-    1 1 1 1    (carries)
-      1 0 1 1
-    + 1 1 0 1
-    ---------
-    1 1 0 0 0
-```
+    ```
+        1 1 1 1    (carries)
+          1 0 1 1
+        + 1 1 0 1
+        ---------
+        1 1 0 0 0
+    ```
 
-Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
+    Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
 
 ### Binary Subtraction
 
@@ -426,16 +426,16 @@ Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
 - $1 - 1 = 0$
 - $0 - 1 = 1$ with borrow
 
-**Example: Subtract $1101_2 - 1001_2$**
+!!! example "Example: Subtract $1101_2 - 1001_2$"
 
-```
-      1 1 0 1
-    - 1 0 0 1
-    ---------
-      0 1 0 0
-```
+    ```
+          1 1 0 1
+        - 1 0 0 1
+        ---------
+          0 1 0 0
+    ```
 
-Result: $1101_2 - 1001_2 = 0100_2$ (13 - 9 = 4 in decimal)
+    Result: $1101_2 - 1001_2 = 0100_2$ (13 - 9 = 4 in decimal)
 
 In practice, digital systems typically perform subtraction using two's complement addition, eliminating the need for separate subtraction hardware.
 
@@ -443,19 +443,19 @@ In practice, digital systems typically perform subtraction using two's complemen
 
 **Binary multiplication** is simpler than decimal multiplication because each partial product is either 0 (multiplied by 0) or the multiplicand itself (multiplied by 1), shifted appropriately.
 
-**Example: Multiply $101_2 \times 11_2$**
+!!! example "Example: Multiply $101_2 \times 11_2$"
 
-```
-        1 0 1
-      ×   1 1
-      -------
-        1 0 1    (101 × 1)
-      1 0 1      (101 × 1, shifted left)
-      -------
-      1 1 1 1
-```
+    ```
+            1 0 1
+          ×   1 1
+          -------
+            1 0 1    (101 × 1)
+          1 0 1      (101 × 1, shifted left)
+          -------
+          1 1 1 1
+    ```
 
-Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
+    Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
 
 ### Binary Division
 
@@ -543,9 +543,10 @@ Digital systems must represent both positive and negative numbers. Several encod
 
 In **sign-magnitude** representation, the MSB indicates the sign (0 = positive, 1 = negative), and the remaining bits represent the magnitude. This mirrors how humans write signed numbers.
 
-**Example (4-bit sign-magnitude):**
-- $+5 = 0101$
-- $-5 = 1101$
+!!! example "Example: 4-bit sign-magnitude"
+
+    - $+5 = 0101$
+    - $-5 = 1101$
 
 Sign-magnitude has two representations of zero ($+0 = 0000$, $-0 = 1000$), which complicates hardware design. Addition and subtraction require separate logic, making this representation inefficient for arithmetic circuits.
 
@@ -553,9 +554,10 @@ Sign-magnitude has two representations of zero ($+0 = 0000$, $-0 = 1000$), which
 
 **One's complement** represents negative numbers by inverting all bits of the positive equivalent. The MSB still indicates sign.
 
-**Example (4-bit one's complement):**
-- $+5 = 0101$
-- $-5 = 1010$ (invert all bits of 0101)
+!!! example "Example: 4-bit one's complement"
+
+    - $+5 = 0101$
+    - $-5 = 1010$ (invert all bits of 0101)
 
 One's complement also has two zeros ($+0 = 0000$, $-0 = 1111$) and requires end-around carry for correct addition results.
 
@@ -563,9 +565,10 @@ One's complement also has two zeros ($+0 = 0000$, $-0 = 1111$) and requires end-
 
 **Two's complement** is the dominant representation in modern digital systems. To find the two's complement of a number, invert all bits and add 1. Alternatively, find the one's complement and add 1.
 
-**Example (4-bit two's complement):**
-- $+5 = 0101$
-- $-5$: Invert $0101 \rightarrow 1010$, add 1 $\rightarrow 1011$
+!!! example "Example: 4-bit two's complement"
+
+    - $+5 = 0101$
+    - $-5$: Invert $0101 \rightarrow 1010$, add 1 $\rightarrow 1011$
 
 Two's complement has a single representation of zero and allows addition and subtraction to use the same hardware. The range for n-bit two's complement is $-2^{n-1}$ to $2^{n-1} - 1$.
 
@@ -645,20 +648,20 @@ Two's complement enables addition and subtraction using identical hardware, whic
 
 **Two's complement addition** works identically to unsigned binary addition. The key insight is that the representation automatically handles signed arithmetic—simply add the bit patterns and discard any carry out of the MSB.
 
-**Example: Add $5 + (-3)$ in 4-bit two's complement**
+!!! example "Example: Add $5 + (-3)$ in 4-bit two's complement"
 
-- $+5 = 0101$
-- $-3 = 1101$ (two's complement of 3)
+    - $+5 = 0101$
+    - $-3 = 1101$ (two's complement of 3)
 
-```
-    1 1 1      (carries)
-      0 1 0 1
-    + 1 1 0 1
-    ---------
-    1 0 0 1 0
-```
+    ```
+        1 1 1      (carries)
+          0 1 0 1
+        + 1 1 0 1
+        ---------
+        1 0 0 1 0
+    ```
 
-Discard the carry: Result = $0010 = +2$ ✓
+    Discard the carry: Result = $0010 = +2$ ✓
 
 ### Two's Complement Subtraction
 
@@ -666,21 +669,21 @@ Discard the carry: Result = $0010 = +2$ ✓
 
 $$A - B = A + (-B) = A + \overline{B} + 1$$
 
-**Example: Calculate $3 - 5$ in 4-bit two's complement**
+!!! example "Example: Calculate $3 - 5$ in 4-bit two's complement"
 
-- $+3 = 0011$
-- $+5 = 0101$, so $-5 = 1011$
-- $3 + (-5) = 0011 + 1011 = 1110 = -2$ ✓
+    - $+3 = 0011$
+    - $+5 = 0101$, so $-5 = 1011$
+    - $3 + (-5) = 0011 + 1011 = 1110 = -2$ ✓
 
 ### Sign Extension
 
 When operations require operands of different bit widths, **sign extension** preserves the numerical value by replicating the sign bit. For positive numbers (MSB = 0), extend with 0s; for negative numbers (MSB = 1), extend with 1s.
 
-**Example: Extend 4-bit $1101$ (-3) to 8 bits**
+!!! example "Example: Extend 4-bit $1101$ (-3) to 8 bits"
 
-$$1101 \rightarrow 11111101$$
+    $$1101 \rightarrow 11111101$$
 
-Both represent $-3$ in two's complement.
+    Both represent $-3$ in two's complement.
 
 ---
 
@@ -699,23 +702,23 @@ Mathematically, overflow is detected when the carry into the MSB differs from th
 
 $$\text{Overflow} = C_{in,MSB} \oplus C_{out,MSB}$$
 
-**Example: Add $+7 + (+3)$ in 4-bit two's complement**
+!!! example "Example: Add $+7 + (+3)$ in 4-bit two's complement"
 
-- $+7 = 0111$
-- $+3 = 0011$
+    - $+7 = 0111$
+    - $+3 = 0011$
 
-```
-    0 1 1 1    (carries: Cin to MSB = 1)
-      0 1 1 1
-    + 0 0 1 1
-    ---------
-      1 0 1 0  (Cout from MSB = 0)
-```
+    ```
+        0 1 1 1    (carries: Cin to MSB = 1)
+          0 1 1 1
+        + 0 0 1 1
+        ---------
+          1 0 1 0  (Cout from MSB = 0)
+    ```
 
-Result: $1010 = -6$ (incorrect!)
-Overflow detected: $C_{in} = 1$, $C_{out} = 0$, so $1 \oplus 0 = 1$ (overflow)
+    Result: $1010 = -6$ (incorrect!)
+    Overflow detected: $C_{in} = 1$, $C_{out} = 0$, so $1 \oplus 0 = 1$ (overflow)
 
-The correct result (+10) cannot be represented in 4 bits, which can only hold -8 to +7.
+    The correct result (+10) cannot be represented in 4 bits, which can only hold -8 to +7.
 
 ### Range of Signed Numbers
 
