@@ -4,6 +4,8 @@ description: A detailed course description for EE 2301 Introduction to Digital S
 quality_score: 95
 ---
 
+<div class="unit1-styled" markdown>
+
 # Course Description
 
 ## Course Map
@@ -275,3 +277,5 @@ This intelligent textbook provides:
 - Interactive MicroSims for visualizing logic operations
 - Auto-generated practice problems with instant feedback
 - Visual learning aids including truth tables, logic diagrams, and K-maps
+
+</div>
