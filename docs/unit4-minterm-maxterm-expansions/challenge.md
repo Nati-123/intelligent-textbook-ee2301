@@ -3,6 +3,8 @@ title: Unit 4 Challenge - Minterm & Maxterm Expansions
 description: Challenge problems for minterm and maxterm expansions — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Minterm & Maxterm Expansions
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -107,4 +109,6 @@ $G = \sum m(0, 1, 2, 5, 6, 7) = \overline{A}\,\overline{B} + B + \overline{C}$
 Simplified: $G = \overline{A}\,\overline{B} + \overline{B}\,\overline{C} + A\,B + B\,C$
 
 Further simplified: $G = \overline{B}\,\overline{C} + \overline{A}\,\overline{B} + AB + BC$
+
+</div>
 

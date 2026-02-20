@@ -6,6 +6,8 @@ date: 2026-02-04 17:45:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 4 — Minterm and Maxterm Expansions
 
 <details class="video-overview">
@@ -819,3 +821,5 @@ Step through expanding a Boolean expression into canonical minterm form:
 ---
 
 [See Annotated References](./references.md)
+
+</div>

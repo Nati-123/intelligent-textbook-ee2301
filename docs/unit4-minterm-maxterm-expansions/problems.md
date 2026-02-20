@@ -3,6 +3,8 @@ title: Unit 4 Problems - Minterm & Maxterm Expansions
 description: Practice problems for canonical forms, SOP, POS, and cofactors
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Minterm & Maxterm Expansions
 
 Work through these problems to reinforce your understanding of canonical forms.
@@ -478,3 +480,5 @@ MUX connections:
 | C | Shannon's Expansion | 5 |
 | D | Function Implementation | 5 |
 | **Total** | | **20** |
+
+</div>

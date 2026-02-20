@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Minterm & Maxterm Expansions
 
 Test your understanding of canonical forms, minterm and maxterm representations, notation, and Shannon expansion with these questions.
@@ -175,3 +177,5 @@ Test your understanding of canonical forms, minterm and maxterm representations,
 | 8 | B | On-Set, Off-Set, DC-Set |
 | 9 | C | Literal Count / Expression Cost |
 | 10 | D | Maxterm Construction |
+
+</div>
