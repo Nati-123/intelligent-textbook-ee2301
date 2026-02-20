@@ -3,6 +3,8 @@ title: Home
 description: AI-assisted interactive textbook for EE 2301 - Introduction to Digital System Design
 ---
 
+<div class="unit1-styled" markdown>
+
 ## Welcome to Digital System Design
 
 This is an **AI-assisted intelligent interactive textbook** for sophomore and junior-level Electrical and Computer Engineering students. Built using MkDocs Material and Claude Code, it provides modern, accessible learning materials covering the complete fundamentals of digital logic design.
@@ -221,5 +223,7 @@ University of Minnesota — Twin Cities
 Department of Electrical & Computer Engineering
 
 *An AI-assisted intelligent textbook demonstrating how AI can augment educational content creation while maintaining pedagogical quality.*
+
+</div>
 
 </div>
