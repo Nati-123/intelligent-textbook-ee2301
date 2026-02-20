@@ -503,6 +503,29 @@
   }
 }
 
+/* ===== UNIT 1 HEADING THEME (Purple & Gold) ===== */
+.unit1-styled h2 {
+  color: #6A5BFF !important;
+  border-bottom: 3px solid #6A5BFF;
+  padding-bottom: 0.4rem;
+  margin-top: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.unit1-styled h3 {
+  color: #DFAF26 !important;
+  border-left: 4px solid #DFAF26;
+  padding-left: 0.7rem;
+  margin-top: 1.6rem;
+  font-weight: 600;
+}
+
+.unit1-styled h4 {
+  color: #555;
+  font-weight: 600;
+}
+
 /* ===== PROBLEMS PAGE: Show/Hide Answer toggle ===== */
 
 .solution-wrapper {

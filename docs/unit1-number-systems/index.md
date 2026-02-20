@@ -27,6 +27,8 @@ Once you are comfortable moving between bases, we turn to binary arithmetic — 
 
 </details>
 
+<div class="unit1-styled" markdown>
+
 ## Summary
 
 Number systems form the mathematical foundation of digital system design, providing the essential framework for representing and manipulating information in electronic circuits. This unit introduces the four primary number systems used in computing—decimal, binary, octal, and hexadecimal—and establishes the concepts of positional notation that underpin all digital arithmetic operations. Students will master conversion techniques between bases, perform binary arithmetic, and understand the critical distinction between signed and unsigned number representations. The unit culminates with two's complement arithmetic, the dominant method used in modern processors for handling negative numbers, along with techniques for detecting arithmetic overflow conditions.
@@ -904,3 +906,5 @@ Step through a complete base conversion problem with animated visuals:
 ---
 
 [See Annotated References](./references.md)
+
+</div>
