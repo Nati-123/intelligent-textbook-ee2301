@@ -512,7 +512,7 @@ The consensus term ($BC$ or $B+C$) is redundant because it's covered by the othe
 
 #### Diagram: Boolean Laws Interactive Proof
 
-<iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Boolean Laws Interactive Proof</summary>
