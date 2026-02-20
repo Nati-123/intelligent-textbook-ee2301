@@ -517,6 +517,24 @@
   color: #222222;
 }
 
+/* ===== MATH / EQUATIONS (Global) ===== */
+.md-typeset .MathJax {
+  color: #222222 !important;
+}
+
+.md-typeset .MathJax_Display,
+.md-typeset mjx-container[display="true"] {
+  text-align: center !important;
+  margin: 1.2rem 0 !important;
+}
+
+.md-typeset .MathJax .mjx-mtd-num,
+.md-typeset mjx-container .mjx-mtd-num,
+.md-typeset .MathJax .mjx-eqn-number,
+.md-typeset mjx-container .mjx-eqn-number {
+  color: #5A3EED !important;
+}
+
 /* ===== UNIT 1 HEADING THEME (Purple & Gold) ===== */
 .unit1-styled h2 {
   color: #D4A017 !important;
