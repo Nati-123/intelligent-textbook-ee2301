@@ -3,6 +3,8 @@ title: Unit 2 Challenge - Boolean Algebra
 description: Challenge problems for Boolean algebra — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Boolean Algebra
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -75,4 +77,6 @@ $$F = \overline{A}\,\overline{B}\,\overline{C}\,D + \overline{A}\,\overline{B}\,
 **Answer:** $F = \overline{B}\,D + A\overline{C}\,D$
 
 This can also be written as: $F = D(\overline{B} + A\overline{C})$
+
+</div>
 

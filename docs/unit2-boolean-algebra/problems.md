@@ -3,6 +3,8 @@ title: Unit 2 Problems - Boolean Algebra
 description: Practice problems for Boolean algebra, logic gates, and theorems
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Boolean Algebra
 
 Work through these problems to reinforce your understanding of Boolean algebra and logic gates.
@@ -477,3 +479,5 @@ Gate count: 1 NOT + 1 AND (3-input) = **2 gates**
 | D | Circuit Analysis | 4 |
 | E | Word Problems | 5 |
 | **Total** | | **20** |
+
+</div>

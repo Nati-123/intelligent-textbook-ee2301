@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Boolean Algebra
 
 Test your understanding of Boolean algebra operations, logic gates, theorems, and simplification techniques with these questions.
@@ -175,3 +177,5 @@ Test your understanding of Boolean algebra operations, logic gates, theorems, an
 | 8 | C | Product Term / SOP Form |
 | 9 | B | Fan-In and Fan-Out |
 | 10 | D | Consensus Theorem |
+
+</div>

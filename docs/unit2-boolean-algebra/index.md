@@ -29,6 +29,8 @@ Finally, we introduce Sum of Products (SOP) and Product of Sums (POS) — two st
 
 </details>
 
+<div class="unit1-styled" markdown>
+
 ## Summary
 
 Boolean Algebra provides the mathematical foundation for digital logic design, enabling engineers to describe, analyze, and simplify digital circuits using algebraic methods. Developed by mathematician George Boole in the mid-19th century, this algebraic system operates on binary values and forms the theoretical basis for all modern computing. This unit introduces the fundamental Boolean operations (AND, OR, NOT), their physical implementation as logic gates, and the derived operations (NAND, NOR, XOR, XNOR) that expand design possibilities. Students will master the essential Boolean theorems and identities that enable systematic simplification of logic expressions, reducing circuit complexity and cost. The unit establishes Sum of Products (SOP) and Product of Sums (POS) as standard forms for representing Boolean functions.
@@ -389,16 +391,16 @@ A **Boolean expression** is an algebraic formula using Boolean variables, consta
 
 A **logic function** is a mapping from input combinations to output values. The function $F(A, B, C)$ takes three Boolean inputs and produces one Boolean output. Multiple expressions can represent the same logic function—a key insight for circuit simplification.
 
-**Example:** Express the truth table as a Boolean function.
+!!! example "Example: Express the truth table as a Boolean function"
 
-| A | B | F |
-|---|---|---|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
+    | A | B | F |
+    |---|---|---|
+    | 0 | 0 | 0 |
+    | 0 | 1 | 1 |
+    | 1 | 0 | 1 |
+    | 1 | 1 | 0 |
 
-This is the XOR function: $F = A \oplus B = \overline{A}B + A\overline{B}$
+    This is the XOR function: $F = A \oplus B = \overline{A}B + A\overline{B}$
 
 ### Boolean Expression Terminology
 
@@ -725,40 +727,40 @@ Implementation: p5.js with responsive canvas
 
 ### Worked Examples
 
-**Example 1:** Simplify $F = AB + A\overline{B}$
+!!! example "Example 1: Simplify $F = AB + A\overline{B}$"
 
-$$F = AB + A\overline{B}$$
-$$= A(B + \overline{B})$$ (factor out $A$)
-$$= A \cdot 1$$ (complement law)
-$$= A$$ (identity law)
+    $$F = AB + A\overline{B}$$
+    $$= A(B + \overline{B})$$ (factor out $A$)
+    $$= A \cdot 1$$ (complement law)
+    $$= A$$ (identity law)
 
-**Example 2:** Simplify $F = A + AB$
+!!! example "Example 2: Simplify $F = A + AB$"
 
-$$F = A + AB$$
-$$= A \cdot 1 + AB$$ (identity law)
-$$= A(1 + B)$$ (factor out $A$)
-$$= A \cdot 1$$ (null law: $1 + B = 1$)
-$$= A$$ (identity law)
+    $$F = A + AB$$
+    $$= A \cdot 1 + AB$$ (identity law)
+    $$= A(1 + B)$$ (factor out $A$)
+    $$= A \cdot 1$$ (null law: $1 + B = 1$)
+    $$= A$$ (identity law)
 
-This is the absorption law.
+    This is the absorption law.
 
-**Example 3:** Simplify $F = (A + B)(A + \overline{B})$
+!!! example "Example 3: Simplify $F = (A + B)(A + \overline{B})$"
 
-$$F = (A + B)(A + \overline{B})$$
-$$= A \cdot A + A\overline{B} + AB + B\overline{B}$$ (expand)
-$$= A + A\overline{B} + AB + 0$$ (idempotent, complement)
-$$= A + A(\overline{B} + B)$$ (factor)
-$$= A + A \cdot 1$$ (complement)
-$$= A + A = A$$ (idempotent)
+    $$F = (A + B)(A + \overline{B})$$
+    $$= A \cdot A + A\overline{B} + AB + B\overline{B}$$ (expand)
+    $$= A + A\overline{B} + AB + 0$$ (idempotent, complement)
+    $$= A + A(\overline{B} + B)$$ (factor)
+    $$= A + A \cdot 1$$ (complement)
+    $$= A + A = A$$ (idempotent)
 
-**Example 4:** Simplify $F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$
+!!! example "Example 4: Simplify $F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$"
 
-$$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
-$$= \overline{A}(B + C) + \overline{B}\overline{C}$$ (factor out $\overline{A}$)
+    $$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
+    $$= \overline{A}(B + C) + \overline{B}\overline{C}$$ (factor out $\overline{A}$)
 
-The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
+    The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
 
-$$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
+    $$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
 
 #### Diagram: Boolean Simplification Tutor
 
@@ -900,11 +902,11 @@ The truth table method is often more straightforward for complex expressions.
 3. **AND** — evaluated before OR
 4. **OR** — lowest precedence
 
-**Example:** Evaluate $A + B \cdot \overline{C}$ when $A=1$, $B=1$, $C=0$
+!!! example "Example: Evaluate $A + B \cdot \overline{C}$ when $A=1$, $B=1$, $C=0$"
 
-1. First, NOT: $\overline{C} = \overline{0} = 1$
-2. Then, AND: $B \cdot \overline{C} = 1 \cdot 1 = 1$
-3. Finally, OR: $A + 1 = 1 + 1 = 1$
+    1. First, NOT: $\overline{C} = \overline{0} = 1$
+    2. Then, AND: $B \cdot \overline{C} = 1 \cdot 1 = 1$
+    3. Finally, OR: $A + 1 = 1 + 1 = 1$
 
 **Parentheses in Boolean** expressions are used to override default precedence:
 
@@ -1041,11 +1043,12 @@ Boolean algebra bridges the gap between circuit diagrams and mathematical expres
 3. Substitute intermediate expressions to get the final output
 4. Simplify if desired
 
-**Example:** Analyze this circuit:
-- Gate 1 (AND): receives inputs A and B, output = AB
-- Gate 2 (NOT): receives input C, output = $\overline{C}$
-- Gate 3 (OR): receives Gate 1 and Gate 2 outputs
-- Final output: $F = AB + \overline{C}$
+!!! example "Example: Analyze this circuit"
+
+    - Gate 1 (AND): receives inputs A and B, output = AB
+    - Gate 2 (NOT): receives input C, output = $\overline{C}$
+    - Gate 3 (OR): receives Gate 1 and Gate 2 outputs
+    - Final output: $F = AB + \overline{C}$
 
 ### Circuit Synthesis Procedure
 
@@ -1054,14 +1057,14 @@ Boolean algebra bridges the gap between circuit diagrams and mathematical expres
 3. Connect inputs to appropriate gates
 4. Connect gate outputs according to expression structure
 
-**Example:** Synthesize $F = A\overline{B} + BC$
+!!! example "Example: Synthesize $F = A\overline{B} + BC$"
 
-Required gates:
+    Required gates:
 
-- NOT gate for $\overline{B}$
-- AND gate for $A\overline{B}$
-- AND gate for $BC$
-- OR gate for final sum
+    - NOT gate for $\overline{B}$
+    - AND gate for $A\overline{B}$
+    - AND gate for $BC$
+    - OR gate for final sum
 
 #### Diagram: Circuit Analysis and Synthesis Tool
 
@@ -1185,3 +1188,5 @@ Step through a complete Boolean algebra proof with each law identified:
 ---
 
 [See Annotated References](./references.md)
+
+</div>
