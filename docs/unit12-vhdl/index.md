@@ -6,6 +6,8 @@ date: 2026-02-10 14:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 12: Introduction to VHDL
 
 <details class="video-overview">
@@ -1272,3 +1274,5 @@ This example integrates:
 Design a VHDL finite state machine step-by-step, from state diagram to complete VHDL code:
 
 <iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+
+</div>

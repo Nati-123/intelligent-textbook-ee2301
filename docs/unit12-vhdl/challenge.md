@@ -3,6 +3,8 @@ title: Unit 12 Challenge - Introduction to VHDL
 description: Challenge problems for VHDL — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Introduction to VHDL
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -532,4 +534,6 @@ end architecture sim;
 - **Clean termination:** `sim_done` flag stops the clock process; `wait;` stops the stimulus process
 - **Setup/hold margin:** `wait for 1 ns` after clock edge allows outputs to settle before checking
 - **Non-synthesizable constructs used:** `wait for`, `wait until`, `assert...report`, `severity`, `integer'image()` -- all are valid for testbenches
+
+</div>
 

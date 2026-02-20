@@ -3,6 +3,8 @@ title: Unit 12 Problems - Introduction to VHDL
 description: Practice problems for VHDL entities, architectures, modeling styles, and synthesis
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Introduction to VHDL
 
 Work through these problems to reinforce your understanding of VHDL entities, architectures, concurrent and sequential statements, and synthesis inference.
@@ -1434,3 +1436,5 @@ end process;
 | D | Sequential Logic in VHDL | 4 |
 | E | Testbenches and Synthesis | 4 |
 | **Total** | | **20** |
+
+</div>

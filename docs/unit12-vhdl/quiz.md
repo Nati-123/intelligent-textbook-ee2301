@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Introduction to VHDL
 
 Test your understanding of VHDL fundamentals including design units, data types, modeling styles, process statements, and synthesis patterns with these questions.
@@ -175,3 +177,5 @@ Test your understanding of VHDL fundamentals including design units, data types,
 | 8 | C | Finite State Machines in VHDL |
 | 9 | B | Moore vs Mealy in VHDL |
 | 10 | D | Synthesis vs Simulation |
+
+</div>
