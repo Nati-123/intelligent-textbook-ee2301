@@ -1,3 +1,5 @@
+<div class="problems-styled" markdown>
+
 # Frequently Asked Questions
 
 This FAQ addresses common questions about the Introduction to Digital System Design course (EE 2301). Questions are organized by category to help you find answers quickly.
@@ -523,3 +525,5 @@ Digital system design concepts apply to:
 - [Glossary](glossary.md) - 225 term definitions with examples
 - [MicroSims](sims/index.md) - Interactive simulations
 - [Book Metrics](learning-graph/book-metrics.md) - Content statistics
+
+</div>
