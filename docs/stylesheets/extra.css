@@ -685,6 +685,15 @@
 }
 
 /* ===== UNIT 1 HEADING THEME (Purple & Gold) ===== */
+.unit1-styled h1 {
+  color: #5A3EED !important;
+  font-weight: 800;
+  border-bottom: 2px solid #5A3EED;
+  padding-bottom: 0.4rem;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
 .unit1-styled h2 {
   color: #D4A017 !important;
   border-bottom: none;

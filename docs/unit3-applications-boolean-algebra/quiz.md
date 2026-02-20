@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Applications of Boolean Algebra
 
 Test your understanding of combinational logic design, arithmetic circuits, comparators, parity circuits, and code converters with these questions.
@@ -182,3 +184,5 @@ Gray code result: 1111. This can be verified: adjacent binary values 1001 and 10
 | 8 | A | Half Subtractor |
 | 9 | D | Binary to Gray Code Converter |
 | 10 | C | Magnitude Comparator |
+
+</div>

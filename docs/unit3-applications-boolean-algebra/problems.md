@@ -3,6 +3,8 @@ title: Unit 3 Problems - Applications of Boolean Algebra
 description: Practice problems for adders, subtractors, comparators, and decoders
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Applications of Boolean Algebra
 
 Work through these problems to reinforce your understanding of combinational circuit applications.
@@ -488,3 +490,5 @@ This creates **odd parity** (total 1s including parity bit is odd).
 | D | Decoders/Encoders | 4 |
 | E | Applications | 3 |
 | **Total** | | **20** |
+
+</div>

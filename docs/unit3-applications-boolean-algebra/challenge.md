@@ -3,6 +3,8 @@ title: Unit 3 Challenge - Applications of Boolean Algebra
 description: Challenge problems for applications of Boolean algebra — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Applications of Boolean Algebra
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -122,4 +124,6 @@ Simplest forms: $F_3 = A B + \overline{B}\,C + \overline{A}\,B\,\overline{C}$
 Shared term $\overline{A}\,\overline{B}$ appears in both $F_1$ and $F_2$.
 
 **Total: 8 AND gates, 3 OR gates, 3 inverters = 14 gates**
+
+</div>
 

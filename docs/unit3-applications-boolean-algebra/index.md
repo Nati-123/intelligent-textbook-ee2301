@@ -6,6 +6,8 @@ date: 2026-02-04 17:30:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 3 — Applications of Boolean Algebra
 
 <details class="video-overview">
@@ -1074,3 +1076,5 @@ Step through the complete design of a full adder from truth table to gate circui
 ---
 
 [See Annotated References](./references.md)
+
+</div>
