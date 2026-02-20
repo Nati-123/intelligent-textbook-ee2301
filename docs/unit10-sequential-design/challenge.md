@@ -3,6 +3,8 @@ title: Unit 10 Challenge - Sequential Circuit Design
 description: Challenge problems for sequential circuit design — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Sequential Circuit Design
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -190,4 +192,6 @@ Design both a Mealy and Moore FSM that outputs $Z = 1$ whenever the input sequen
 | Output depends on | Current state + input | Current state only |
 
 The Mealy machine detects the sequence one clock cycle earlier than the Moore machine, but its output may have glitches since it depends on the input combinationally.
+
+</div>
 

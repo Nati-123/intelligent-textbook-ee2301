@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Sequential Circuit Design
 
 Test your understanding of shift registers, counter architectures, Moore and Mealy machines, state assignment strategies, and the FSM design procedure with these questions.
@@ -175,3 +177,5 @@ Test your understanding of shift registers, counter architectures, Moore and Mea
 | 8 | A | Sequence Detector / Overlap Detection |
 | 9 | B | One-Hot State Encoding |
 | 10 | D | Ripple vs Synchronous Counter |
+
+</div>

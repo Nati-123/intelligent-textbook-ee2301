@@ -3,6 +3,8 @@ title: Unit 10 Problems - Sequential Circuit Design
 description: Practice problems for registers, counters, and finite state machines
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Sequential Circuit Design
 
 Work through these problems to reinforce your understanding of registers, counters, and FSM design.
@@ -1223,3 +1225,5 @@ CLK ──────┴───────────────
 | D | Design Problems | 2 |
 | E | Analysis Problems | 3 |
 | **Total** | | **20** |
+
+</div>

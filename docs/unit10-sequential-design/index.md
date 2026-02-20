@@ -6,6 +6,8 @@ date: 2026-02-05 18:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 10: Sequential Circuit Design
 
 <details class="video-overview">
@@ -1208,3 +1210,5 @@ These techniques, combined with the combinational design methods from earlier un
 Step through a 4-bit shift register loading serial data one bit at a time:
 
 <iframe src="../sims/shift-register-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+
+</div>
