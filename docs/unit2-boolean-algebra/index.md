@@ -493,17 +493,11 @@ Boolean algebra follows a set of fundamental theorems and identities that enable
 
 ### Algebraic Laws
 
-**Commutative Law:** Order of operands does not affect the result.
-
-$$A + B = B + A \qquad A \cdot B = B \cdot A$$
-
-**Associative Law:** Grouping of operands does not affect the result.
-
-$$(A + B) + C = A + (B + C) \qquad (A \cdot B) \cdot C = A \cdot (B \cdot C)$$
-
-**Distributive Law:** Distribution of one operation over another.
-
-$$A \cdot (B + C) = A \cdot B + A \cdot C \qquad A + (B \cdot C) = (A + B) \cdot (A + C)$$
+| Law Name | Description | Equations |
+|:---------|:------------|:---------:|
+| **Commutative Law** | Order of operands does not affect the result | $A + B = B + A \qquad A \cdot B = B \cdot A$ |
+| **Associative Law** | Grouping of operands does not affect the result | $(A + B) + C = A + (B + C) \qquad (A \cdot B) \cdot C = A \cdot (B \cdot C)$ |
+| **Distributive Law** | Distribution of one operation over another | $A \cdot (B + C) = A \cdot B + A \cdot C \qquad A + (B \cdot C) = (A + B) \cdot (A + C)$ |
 
 Note: The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary algebra!
 
