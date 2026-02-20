@@ -562,6 +562,35 @@
   box-shadow: 0 2px 6px rgba(90, 62, 237, 0.2);
 }
 
+/* ===== CODE / STEP-BY-STEP BLOCKS (Global) ===== */
+.md-typeset pre {
+  background: #F7F7F8 !important;
+  border-left: 4px solid #5A3EED;
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+}
+
+.md-typeset code {
+  background: #F3F0FA;
+  color: #222;
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+.md-typeset pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.md-typeset ol {
+  padding-left: 1.4rem;
+}
+
+.md-typeset ol li {
+  margin-bottom: 0.5rem;
+}
+
 /* ===== PRACTICE PROBLEMS STYLING ===== */
 .problems-styled h1 {
   color: #D4A017 !important;
