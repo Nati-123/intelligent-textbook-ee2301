@@ -3,6 +3,8 @@ title: MicroSims
 description: Interactive simulations for learning digital system design concepts
 ---
 
+<div class="unit1-styled" markdown>
+
 # MicroSims
 
 Interactive educational simulations for learning digital system design.
@@ -216,3 +218,5 @@ MicroSims can be:
 1. **Viewed inline** in textbook chapters via iframe embedding
 2. **Opened fullscreen** using the "View Fullscreen" button
 3. **Embedded** in other websites using the provided iframe code
+
+</div>
