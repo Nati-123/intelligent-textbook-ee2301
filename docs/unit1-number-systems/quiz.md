@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Number Systems
 
 Test your understanding of digital number systems, base conversions, signed representations, and binary arithmetic with these questions.
@@ -175,3 +177,5 @@ Test your understanding of digital number systems, base conversions, signed repr
 | 8 | B | Binary Subtraction |
 | 9 | C | Sign Extension |
 | 10 | D | Octal to Decimal Conversion |
+
+</div>
