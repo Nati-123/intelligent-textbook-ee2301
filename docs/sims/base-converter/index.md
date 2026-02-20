@@ -7,9 +7,7 @@ quality_score: 85
 
 # Base Converter
 
-<iframe src="main.html" height="510px" width="100%" scrolling="no"></iframe>
-
-[Run the Base Converter Fullscreen](./main.html){ .md-button .md-button--primary }
+<iframe src="main.html" height="450px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ## Description
 
