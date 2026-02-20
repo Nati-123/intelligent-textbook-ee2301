@@ -6,7 +6,7 @@
 // Canvas dimensions — canvas is visual area only; controls are HTML below
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 385;
+let drawHeight = 315;
 let canvasHeight = drawHeight;
 
 // Margins
@@ -129,14 +129,14 @@ function draw() {
   textAlign(CENTER, CENTER);
   textSize(18);
   textStyle(BOLD);
-  text('Base Converter', canvasWidth / 2, 20);
+  text('Base Converter', canvasWidth / 2, 16);
   let titleW = min(textWidth('Base Converter') + 20, canvasWidth - 40);
   textStyle(NORMAL);
 
   // Title underline
   stroke(220);
   strokeWeight(1);
-  line(canvasWidth / 2 - titleW / 2, 35, canvasWidth / 2 + titleW / 2, 35);
+  line(canvasWidth / 2 - titleW / 2, 30, canvasWidth / 2 + titleW / 2, 30);
   noStroke();
 
   // Draw results or error
@@ -151,10 +151,10 @@ function draw() {
 // ─── Result cards ───────────────────────────────────────────────────
 
 function drawResults() {
-  let startY = 50;
-  let boxHeight = 42;
+  let startY = 38;
+  let boxHeight = 36;
   let boxWidth = canvasWidth - 2 * margin;
-  let spacing = 5;
+  let spacing = 3;
 
   let bases = [
     { base: 2, name: 'Binary (2)', key: 'base2', prefix: '0B' },
@@ -194,7 +194,7 @@ function drawResults() {
     // Accent bar (inside card, offset from edge)
     noStroke();
     fill(accent);
-    rect(margin + 7, y + 6, 3, boxHeight - 12, 2);
+    rect(margin + 7, y + 5, 3, boxHeight - 10, 2);
 
     // Label
     fill(isInput ? '#1565c0' : (isCustom ? '#e65100' : '#666'));
@@ -203,7 +203,7 @@ function drawResults() {
     textSize(11);
     textStyle(NORMAL);
     let labelSuffix = isInput ? ' (input)' : (isCustom ? ' (output)' : '');
-    text(bases[i].name + labelSuffix, margin + 17, y + 13);
+    text(bases[i].name + labelSuffix, margin + 17, y + 11);
 
     // Value
     fill(40);
@@ -211,7 +211,7 @@ function drawResults() {
     textStyle(BOLD);
     textFont('monospace');
     let displayValue = bases[i].prefix + (results[bases[i].key] || '—');
-    text(displayValue, margin + 17, y + 30);
+    text(displayValue, margin + 17, y + 26);
     textFont('sans-serif');
     textStyle(NORMAL);
   }
@@ -220,9 +220,9 @@ function drawResults() {
 // ─── Conversion steps panel ─────────────────────────────────────────
 
 function drawConversionSteps() {
-  let startY = 292;
+  let startY = 236;
   let panelW = canvasWidth - 2 * margin;
-  let panelH = 78;
+  let panelH = 68;
 
   // Panel shadow
   noStroke();
@@ -238,28 +238,28 @@ function drawConversionSteps() {
   // Accent bar
   noStroke();
   fill('#2196F3');
-  rect(margin + 8, startY + 8, 3, panelH - 16, 2);
+  rect(margin + 8, startY + 6, 3, panelH - 12, 2);
 
   // Title
   fill(80);
   textAlign(LEFT, TOP);
   textSize(12);
   textStyle(BOLD);
-  text('Conversion Steps', margin + 18, startY + 10);
+  text('Conversion Steps', margin + 18, startY + 8);
   textStyle(NORMAL);
 
   // Steps
   textSize(11);
   fill('#444');
   if (conversionSteps.length > 0) {
-    let stepY = startY + 28;
+    let stepY = startY + 24;
     for (let i = 0; i < Math.min(conversionSteps.length, 3); i++) {
       text(conversionSteps[i], margin + 18, stepY);
-      stepY += 16;
+      stepY += 14;
     }
   } else {
     fill(160);
-    text('Enter a number above to see steps', margin + 18, startY + 38);
+    text('Enter a number above to see steps', margin + 18, startY + 32);
   }
 }
 
