@@ -30,7 +30,7 @@ No prior knowledge of digital logic or Boolean algebra is assumed—the course b
 
 ### How is this textbook organized?
 
-The textbook is organized into six units that build progressively:
+The textbook is organized into thirteen units that build progressively:
 
 1. **Unit 1 - Number Systems**: Binary, octal, hexadecimal representations and arithmetic
 2. **Unit 2 - Boolean Algebra**: Logic operations, gates, and algebraic theorems
@@ -38,19 +38,26 @@ The textbook is organized into six units that build progressively:
 4. **Unit 4 - Minterm & Maxterm Expansions**: Canonical forms (SOP/POS)
 5. **Unit 5 - Karnaugh Maps**: Visual simplification method
 6. **Unit 6 - Quine-McCluskey Method**: Algorithmic minimization
+7. **Unit 7 - Multi-Level Gate Circuits**: NAND/NOR conversions, bubble pushing, propagation delay
+8. **Unit 8 - Combinational Logic Modules**: MUX, decoders, encoders, comparators
+9. **Unit 9 - Sequential Logic Fundamentals**: Latches, flip-flops, timing parameters
+10. **Unit 10 - Sequential Circuit Design**: Registers, counters, finite state machines
+11. **Unit 11 - Programmable Logic Devices**: ROM, PLA, PAL, CPLD, FPGA
+12. **Unit 12 - Introduction to VHDL**: Hardware description language for digital design
+13. **Unit 13 - System Integration**: Top-down design, datapath-controller, verification
 
-Each unit includes content, worked examples, diagrams, and a quiz.
+Each unit includes content, worked examples, diagrams, a quiz, practice problems, and a challenge.
 
 ### What learning resources are available?
 
 The textbook provides multiple learning resources:
 
-- **225 concepts** organized in a learning graph
-- **225 glossary terms** with definitions and examples
-- **60 quiz questions** (10 per unit) with detailed explanations
-- **5 interactive MicroSims** for hands-on practice
-- **37 diagrams** illustrating key concepts
-- **821 equations** in LaTeX format
+- **200 concepts** organized in a learning graph
+- **398 glossary terms** with definitions and examples
+- **130 quiz questions** (10 per unit) with detailed explanations
+- **106 interactive MicroSims** for hands-on practice
+- **95 diagrams** illustrating key concepts
+- **4,402 equations** in LaTeX format
 
 See the [Glossary](glossary.md) for term definitions.
 
@@ -505,7 +512,142 @@ All Boolean theorems have set theory equivalents.
 
 **Sequential**: Output depends on current inputs AND past history (state). Has memory elements (flip-flops). Examples: counters, registers, finite state machines.
 
-This course focuses on combinational logic; sequential circuits are covered in advanced courses.
+Sequential circuits are covered in detail in [Unit 9](unit9-sequential-fundamentals/index.md) and [Unit 10](unit10-sequential-design/index.md).
+
+### What is a flip-flop and how does it differ from a latch?
+
+A **latch** is level-sensitive: its output follows the input whenever the enable signal is active (transparent mode). A **flip-flop** is edge-triggered: it samples the input only at the instant of a clock edge (rising or falling) and ignores input changes at all other times. Flip-flops provide predictable, single-sample-per-cycle behavior essential for synchronous design.
+
+- **D latch**: Q follows D while Enable = 1; holds when Enable = 0
+- **D flip-flop**: Q captures D only at the rising clock edge
+
+See [Unit 9](unit9-sequential-fundamentals/index.md) for complete coverage.
+
+### What is a finite state machine (FSM)?
+
+A finite state machine is a sequential circuit with a finite number of states, transitions between states driven by inputs, and outputs determined by the current state (Moore) or state and inputs (Mealy). FSMs are used to model control logic for systems like traffic lights, vending machines, and protocol handlers.
+
+- **Moore machine**: Output depends only on the current state
+- **Mealy machine**: Output depends on both the current state and current input
+
+See [Unit 10](unit10-sequential-design/index.md) for FSM design methodology.
+
+### What is the difference between a Moore and Mealy machine?
+
+Both are finite state machine models:
+
+- **Moore**: Outputs are associated with states. Output changes only at clock edges when the state transitions. Generally requires more states but produces glitch-free outputs.
+- **Mealy**: Outputs are associated with transitions. Output can change asynchronously when inputs change during a clock cycle. Uses fewer states but outputs may glitch.
+
+For the same behavior, a Mealy machine typically produces output one clock cycle earlier than a Moore machine. See [Unit 10](unit10-sequential-design/index.md).
+
+### What is an FPGA and why is it important?
+
+A Field-Programmable Gate Array (FPGA) is an integrated circuit containing an array of configurable logic blocks (CLBs), programmable interconnects, and I/O blocks that can be programmed by the end user to implement virtually any digital circuit. FPGAs are important because they:
+
+- Allow rapid prototyping without custom chip fabrication
+- Can be reprogrammed for different designs
+- Bridge the gap between software simulation and ASIC production
+- Are used in telecommunications, aerospace, automotive, and data centers
+
+See [Unit 11](unit11-programmable-logic/index.md) for PLD architectures.
+
+### What is VHDL and how is it used?
+
+VHDL (VHSIC Hardware Description Language) is an IEEE-standard language used to describe, simulate, and synthesize digital circuits. A VHDL design consists of:
+
+- **Entity declaration**: Defines the external interface (ports and their types)
+- **Architecture body**: Describes the internal implementation (behavioral, dataflow, or structural)
+
+VHDL supports three modeling styles: behavioral (algorithmic), dataflow (concurrent signal assignments), and structural (component instantiation). See [Unit 12](unit12-vhdl/index.md).
+
+### What is Shannon expansion and when is it used?
+
+Shannon expansion (also called the expansion theorem) expresses a Boolean function in terms of its cofactors with respect to a variable:
+
+F = x · F_x + x' · F_x'
+
+where F_x is the cofactor obtained by setting x = 1. This technique is used for:
+
+- Implementing functions with multiplexers (MUX-based design)
+- Decomposing complex functions into simpler subfunctions
+- Binary decision diagram (BDD) construction
+
+See [Unit 4](unit4-minterm-maxterm-expansions/index.md) for details.
+
+### What is an entered variable K-map?
+
+An entered variable K-map reduces the map size by entering variables or expressions into cells instead of just 0s and 1s. A function of n variables can be represented on an (n-1)-variable map by entering the remaining variable in the cells.
+
+For example, a 5-variable function can be plotted on a 4-variable K-map with the fifth variable entered in cells. This technique is particularly useful for functions with more than 4 variables where standard K-maps become unwieldy.
+
+See [Unit 5](unit5-karnaugh-maps/index.md).
+
+### How does a parity checker work?
+
+A parity checker verifies whether received data has the correct parity:
+
+- **Even parity**: Total number of 1-bits (data + parity bit) should be even
+- **Odd parity**: Total number of 1-bits should be odd
+
+The checker XORs all received bits (including the parity bit). If the result is 0 for even parity (or 1 for odd parity), no error is detected. A non-zero result indicates a single-bit error occurred during transmission.
+
+See [Unit 3](unit3-applications-boolean-algebra/index.md).
+
+### What is the consensus theorem used for?
+
+The consensus theorem states that AB + A'C + BC = AB + A'C, meaning the term BC is redundant. It is used to:
+
+- Simplify Boolean expressions by identifying and removing consensus (redundant) terms
+- Verify K-map results algebraically
+- Recognize optimization opportunities in multi-level circuits
+
+The dual form is: (A+B)(A'+C)(B+C) = (A+B)(A'+C). See [Unit 2](unit2-boolean-algebra/index.md).
+
+### What are the IEEE standard gate symbols?
+
+IEEE standard symbols (IEEE Std 91) use rectangular blocks with qualifying symbols inside to represent logic functions, as an alternative to the distinctive-shape symbols most students learn first:
+
+- **AND**: Rectangle with `&` symbol
+- **OR**: Rectangle with `≥1` symbol
+- **NOT**: Rectangle with `1` and a triangle/bubble on output
+- **XOR**: Rectangle with `=1` symbol
+
+Both symbol sets are used in industry. See [Unit 2](unit2-boolean-algebra/index.md).
+
+### What is a buffer gate used for?
+
+A buffer gate produces an output identical to its input (Y = A). While it performs no logical transformation, buffers serve important practical purposes:
+
+- **Signal amplification**: Restoring degraded voltage levels
+- **Fan-out management**: Driving multiple gate inputs from a single source
+- **Propagation delay insertion**: Adding controlled delay to timing-critical paths
+- **Isolation**: Preventing loading effects between circuit stages
+
+See [Unit 2](unit2-boolean-algebra/index.md).
+
+### How do I handle fractional numbers in binary?
+
+Fractional binary numbers use a radix point (binary point) to separate integer and fractional parts. Each position to the right of the radix point represents a negative power of 2:
+
+- Position -1: 2^(-1) = 0.5
+- Position -2: 2^(-2) = 0.25
+- Position -3: 2^(-3) = 0.125
+
+**Decimal to binary fraction**: Multiply by 2 repeatedly, recording integer parts. For example, 0.625 → 0.625×2 = 1.25 (1), 0.25×2 = 0.5 (0), 0.5×2 = 1.0 (1), giving 0.101 in binary.
+
+Note: Some decimal fractions (like 0.1) produce infinite repeating binary representations. See [Unit 1](unit1-number-systems/index.md).
+
+### What is static timing analysis?
+
+Static timing analysis (STA) verifies circuit timing by computing worst-case signal propagation delays through all paths without requiring simulation. It checks that:
+
+- **Setup time**: Data arrives at each flip-flop's input early enough before the clock edge
+- **Hold time**: Data remains stable long enough after the clock edge
+
+The maximum clock frequency is determined by: f_max = 1 / (t_cq + t_logic_max + t_setup)
+
+STA is faster and more comprehensive than timing simulation because it analyzes all paths, not just those exercised by test vectors. See [Unit 13](unit13-system-integration/index.md).
 
 ### What are the industry applications of these concepts?
 
@@ -522,7 +664,7 @@ Digital system design concepts apply to:
 ## Resources
 
 - [Course Description](course-description.md) - Full course details and learning outcomes
-- [Glossary](glossary.md) - 225 term definitions with examples
+- [Glossary](glossary.md) - 398 term definitions with examples
 - [MicroSims](sims/index.md) - Interactive simulations
 - [Book Metrics](learning-graph/book-metrics.md) - Content statistics
 
