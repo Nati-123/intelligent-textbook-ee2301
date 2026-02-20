@@ -6,6 +6,8 @@ date: 2026-02-10 14:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 11: Programmable Logic Devices
 
 <details class="video-overview">
@@ -945,3 +947,5 @@ This connection illustrates why the foundational units matter: understanding Boo
 Program a PLA step-by-step by selecting product terms and connecting them to outputs:
 
 <iframe src="../sims/pla-programming-walkthrough/main.html" width="100%" height="590px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+
+</div>

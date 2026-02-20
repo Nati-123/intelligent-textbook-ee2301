@@ -3,6 +3,8 @@ title: Unit 11 Problems - Programmable Logic Devices
 description: Practice problems for ROMs, PLAs, PALs, CPLDs, FPGAs, and design flow
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Programmable Logic Devices
 
 Work through these problems to reinforce your understanding of ROMs, PLAs, PALs, CPLDs, FPGAs, and the programmable logic design flow.
@@ -1265,3 +1267,5 @@ Methods:
 | D | LUT and CLB Design | 4 |
 | E | Design Flow and Device Selection | 4 |
 | **Total** | | **20** |
+
+</div>

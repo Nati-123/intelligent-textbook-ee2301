@@ -3,6 +3,8 @@ title: Unit 11 Challenge - Programmable Logic Devices
 description: Challenge problems for programmable logic devices — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Programmable Logic Devices
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -307,4 +309,6 @@ Justification:
 - **Development:** Standard HDL design flow with free vendor tools.
 
 **Final answer: A small Flash-based CPLD** is the optimal choice, meeting all requirements with margin on speed, capacity, and cost.
+
+</div>
 

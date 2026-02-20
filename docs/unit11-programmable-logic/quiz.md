@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Programmable Logic Devices
 
 Test your understanding of programmable logic device architectures, configuration technologies, and FPGA design concepts with these questions.
@@ -175,3 +177,5 @@ Test your understanding of programmable logic device architectures, configuratio
 | 8 | D | PLD Selection Criteria |
 | 9 | B | ROM / PLA Architecture |
 | 10 | A | Applications of Programmable Logic |
+
+</div>
