@@ -505,11 +505,12 @@
 
 /* ===== UNIT 1 HEADING THEME (Purple & Gold) ===== */
 .unit1-styled h2 {
-  color: #6A5BFF !important;
-  border-bottom: 3px solid #6A5BFF;
-  padding-bottom: 0.4rem;
-  margin-top: 2.2rem;
-  font-weight: 700;
+  color: #5A3EED !important;
+  border-bottom: 2px solid #5A3EED;
+  padding-bottom: 0.35rem;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 800;
   letter-spacing: 0.3px;
 }
 
