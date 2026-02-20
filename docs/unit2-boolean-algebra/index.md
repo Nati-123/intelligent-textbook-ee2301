@@ -6,6 +6,8 @@ date: 2026-02-04 17:15:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 2 — Boolean Algebra
 
 <details class="video-overview">
@@ -28,8 +30,6 @@ Finally, we introduce Sum of Products (SOP) and Product of Sums (POS) — two st
 3. Sum of Products and Product of Sums are standard forms that provide a systematic way to express and manipulate any Boolean function.
 
 </details>
-
-<div class="unit1-styled" markdown>
 
 ## Summary
 

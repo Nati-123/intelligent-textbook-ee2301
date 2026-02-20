@@ -6,6 +6,8 @@ date: 2026-02-04 17:05:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 1 — Number Systems
 
 <details class="video-overview">
@@ -26,8 +28,6 @@ Once you are comfortable moving between bases, we turn to binary arithmetic — 
 3. Two's complement representation enables signed arithmetic with the same hardware used for unsigned addition, and overflow detection tells you when a result has exceeded the available bit width.
 
 </details>
-
-<div class="unit1-styled" markdown>
 
 ## Summary
 
