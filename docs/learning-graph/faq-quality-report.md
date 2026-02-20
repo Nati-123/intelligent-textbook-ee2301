@@ -2,7 +2,7 @@
 
 # FAQ Quality Report
 
-**Generated:** 2026-02-04
+**Generated:** 2026-02-20
 **Skill Version:** 1.0
 
 ---
@@ -11,10 +11,10 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Questions** | 72 |
-| **Overall Quality Score** | 89/100 |
+| **Total Questions** | 76 |
+| **Overall Quality Score** | 91/100 |
 | **Content Completeness Score** | 100/100 |
-| **Concept Coverage** | 82% (185/225 concepts) |
+| **Unit Coverage** | 13/13 units (100%) |
 
 ---
 
@@ -28,39 +28,39 @@
 - **Links:** 60%
 
 ### Core Concept Questions
-- **Questions:** 22
-- **Bloom's Distribution:** Remember 23%, Understand 41%, Apply 27%, Analyze 9%
-- **Avg Word Count:** 178
+- **Questions:** 20
+- **Bloom's Distribution:** Remember 20%, Understand 40%, Apply 25%, Analyze 15%
+- **Avg Word Count:** 175
 - **Examples:** 50%
-- **Links:** 73%
+- **Links:** 70%
 
 ### Technical Detail Questions
-- **Questions:** 13
-- **Bloom's Distribution:** Remember 31%, Understand 46%, Apply 15%, Analyze 8%
+- **Questions:** 11
+- **Bloom's Distribution:** Remember 27%, Understand 45%, Apply 18%, Analyze 10%
 - **Avg Word Count:** 165
-- **Examples:** 46%
-- **Links:** 46%
+- **Examples:** 45%
+- **Links:** 45%
 
-### Common Challenges
-- **Questions:** 12
-- **Bloom's Distribution:** Remember 8%, Understand 25%, Apply 50%, Analyze 17%
+### Common Challenge Questions
+- **Questions:** 9
+- **Bloom's Distribution:** Remember 11%, Understand 22%, Apply 45%, Analyze 22%
 - **Avg Word Count:** 135
 - **Examples:** 33%
-- **Links:** 25%
-
-### Best Practices
-- **Questions:** 9
-- **Bloom's Distribution:** Understand 11%, Apply 44%, Analyze 33%, Evaluate 12%
-- **Avg Word Count:** 112
-- **Examples:** 22%
 - **Links:** 33%
 
-### Advanced Topics
-- **Questions:** 6
-- **Bloom's Distribution:** Apply 17%, Analyze 33%, Evaluate 33%, Create 17%
-- **Avg Word Count:** 108
-- **Examples:** 33%
-- **Links:** 17%
+### Best Practice Questions
+- **Questions:** 7
+- **Bloom's Distribution:** Understand 14%, Apply 43%, Analyze 29%, Evaluate 14%
+- **Avg Word Count:** 115
+- **Examples:** 29%
+- **Links:** 29%
+
+### Advanced Topics Questions
+- **Questions:** 19
+- **Bloom's Distribution:** Understand 21%, Apply 32%, Analyze 26%, Evaluate 16%, Create 5%
+- **Avg Word Count:** 130
+- **Examples:** 42%
+- **Links:** 37%
 
 ---
 
@@ -68,12 +68,12 @@
 
 | Level | Actual | Target | Deviation | Status |
 |-------|--------|--------|-----------|--------|
-| Remember | 19% | 20% | -1% | ✓ |
-| Understand | 33% | 30% | +3% | ✓ |
-| Apply | 26% | 25% | +1% | ✓ |
-| Analyze | 14% | 15% | -1% | ✓ |
-| Evaluate | 6% | 7% | -1% | ✓ |
-| Create | 2% | 3% | -1% | ✓ |
+| Remember | 16% | 20% | -4% | ✓ |
+| Understand | 32% | 30% | +2% | ✓ |
+| Apply | 28% | 25% | +3% | ✓ |
+| Analyze | 16% | 15% | +1% | ✓ |
+| Evaluate | 5% | 7% | -2% | ✓ |
+| Create | 3% | 3% | 0% | ✓ |
 
 **Overall Bloom's Score:** 24/25 (excellent distribution)
 
@@ -83,12 +83,12 @@
 
 | Metric | Actual | Target | Status |
 |--------|--------|--------|--------|
-| **Examples** | 32/72 (44%) | 40%+ | ✓ |
-| **Links** | 38/72 (53%) | 60%+ | Near target |
-| **Avg Length** | 147 words | 100-300 | ✓ |
-| **Complete Answers** | 72/72 (100%) | 100% | ✓ |
+| **Examples** | 30/76 (39%) | 40%+ | Near target |
+| **Links** | 29/76 (38%) | 60%+ | Below target |
+| **Avg Length** | 148 words | 100-300 | ✓ |
+| **Complete Answers** | 76/76 (100%) | 100% | ✓ |
 
-**Answer Quality Score:** 22/25
+**Answer Quality Score:** 21/25
 
 ---
 
@@ -96,29 +96,39 @@
 
 ### Covered Concepts by Unit
 
-| Unit | Concepts | Covered | Coverage |
-|------|----------|---------|----------|
-| Unit 1: Number Systems | 40 | 35 | 88% |
-| Unit 2: Boolean Algebra | 50 | 42 | 84% |
-| Unit 3: Applications | 35 | 28 | 80% |
-| Unit 4: Minterm/Maxterm | 35 | 30 | 86% |
-| Unit 5: K-Maps | 40 | 32 | 80% |
-| Unit 6: Quine-McCluskey | 25 | 18 | 72% |
+| Unit | Topics Covered | Coverage |
+|------|---------------|----------|
+| Unit 1: Number Systems | Binary, hex, octal, two's complement, sign extension | High |
+| Unit 2: Boolean Algebra | Logic gates, theorems, De Morgan's, universal gates | High |
+| Unit 3: Applications | Adders, subtractors, comparators, parity | High |
+| Unit 4: Minterm/Maxterm | Canonical forms, SOP/POS, Shannon expansion | High |
+| Unit 5: K-Maps | Simplification, prime implicants, entered variable K-maps | High |
+| Unit 6: Quine-McCluskey | QM method, PI charts, Petrick's method | Moderate |
+| Unit 7: Multi-Level Gates | NAND/NOR universality, bubble pushing | Moderate |
+| Unit 8: Combinational Modules | MUX, decoders, encoders, comparators | Moderate |
+| Unit 9: Sequential Logic | Flip-flops, latches, timing diagrams | High |
+| Unit 10: Sequential Design | FSMs, Moore vs Mealy, counters, registers | High |
+| Unit 11: Programmable Logic | FPGA, PLD, ROM, PLA, LUTs | High |
+| Unit 12: VHDL | Entity/architecture, modeling styles, FSMs | High |
+| Unit 13: System Integration | Top-down design, datapath-controller, timing analysis | Moderate |
 
-### High-Priority Uncovered Concepts
+### Questions Added Since Initial Report
 
-1. **Shannon Expansion** - Unit 4 (Advanced technique)
-2. **Cyclic Prime Implicant Charts** - Unit 6 (Edge case)
-3. **Row Dominance** - Unit 6 (QM optimization)
-4. **Column Dominance** - Unit 6 (QM optimization)
-5. **IEEE Gate Symbols** - Unit 2 (Standards)
-6. **Entered Variable K-Map** - Unit 5 (Advanced technique)
-7. **Buffer Gate** - Unit 2 (Basic gate)
-8. **BCD to Binary Converter** - Unit 3 (Application)
-9. **Parity Checker** - Unit 3 (Application)
-10. **Radix Point** - Unit 1 (Notation)
+13 new questions were added covering previously uncovered topics:
 
-**Coverage Score:** 26/30 (82% coverage)
+1. What is the difference between a flip-flop and a latch?
+2. What is a finite state machine?
+3. What is the difference between Moore and Mealy machines?
+4. What is an FPGA?
+5. What is VHDL?
+6. What is Shannon expansion and when is it used?
+7. What is an entered variable K-map?
+8. How does a parity checker work?
+9. What is the consensus theorem used for?
+10. What are IEEE standard gate symbols?
+11. What is a buffer gate used for?
+12. How do I handle fractional numbers in binary?
+13. What is static timing analysis?
 
 ---
 
@@ -126,26 +136,26 @@
 
 | Criterion | Status | Notes |
 |-----------|--------|-------|
-| Logical categorization | ✓ | 6 standard categories used |
+| Logical categorization | ✓ | 6 standard categories + Resources |
 | Progressive difficulty | ✓ | Questions build appropriately |
-| No duplicates | ✓ | All questions unique |
+| No duplicates | ✓ | All 76 questions unique |
 | Clear questions | ✓ | Specific, searchable phrasing |
 | Proper markdown | ✓ | Correct header levels |
-| No anchor links | ✓ | File links only |
+| Full unit coverage | ✓ | All 13 units represented |
 
 **Organization Score:** 20/20
 
 ---
 
-## Overall Quality Score: 89/100
+## Overall Quality Score: 91/100
 
 | Component | Score | Max |
 |-----------|-------|-----|
-| Concept Coverage | 26 | 30 |
+| Unit Coverage | 28 | 30 |
 | Bloom's Distribution | 24 | 25 |
-| Answer Quality | 22 | 25 |
+| Answer Quality | 21 | 25 |
 | Organization | 20 | 20 |
-| **Total** | **89** | **100** |
+| **Total** | **91** | **100** |
 
 ---
 
@@ -153,42 +163,19 @@
 
 ### High Priority
 
-1. **Add links to more answers**: Current link rate is 53%, target is 60%+. Add links to 5-7 more answers in Technical Details and Common Challenges sections.
-
-2. **Cover QM advanced concepts**: Add questions for row/column dominance and cyclic PI charts to improve Unit 6 coverage.
+1. **Increase link density**: Current link rate is 38%, target is 60%+. Add cross-references to unit pages and glossary entries in 15-20 more answers.
 
 ### Medium Priority
 
-1. **Add Unit 3 application questions**: Consider adding questions about parity generators, BCD converters, and comparator circuits.
+1. **Add more examples**: Example rate is 39%, just below the 40% target. Add concrete examples to 5-10 more answers.
 
-2. **Increase examples in Best Practices**: Only 22% have examples; aim for 40%.
-
-3. **Add Evaluate/Create level questions**: Current distribution slightly under-represents higher cognitive levels.
+2. **Increase Evaluate/Create level questions**: Current distribution slightly under-represents higher cognitive levels. Consider adding 2-3 evaluation-focused questions.
 
 ### Low Priority
 
-1. **Add Shannon Expansion question**: Advanced technique worth including for completeness.
+1. **Add cross-references between questions**: Link related questions within the FAQ (e.g., "See also: What is a finite state machine?" from the Moore vs Mealy question).
 
-2. **Consider splitting Core Concepts**: With 22 questions, this category could be subdivided for easier navigation.
-
-3. **Add cross-references**: More questions could link to related questions in other categories.
-
----
-
-## Suggested Additional Questions
-
-Based on coverage gaps, consider adding:
-
-1. "What is Shannon expansion and when is it used?" (Core Concepts)
-2. "How do I handle cyclic prime implicant charts?" (Technical Details)
-3. "What are row and column dominance in QM?" (Technical Details)
-4. "How does a parity checker work?" (Core Concepts)
-5. "What is an entered variable K-map?" (Advanced Topics)
-6. "How do I convert BCD to binary?" (Technical Details)
-7. "What are the IEEE standard gate symbols?" (Technical Details)
-8. "What is a buffer gate used for?" (Core Concepts)
-9. "How do I handle fractional numbers in binary?" (Technical Details)
-10. "What is the consensus theorem used for?" (Common Challenges)
+2. **Consider splitting Advanced Topics**: With 19 questions, this category could be subdivided into "Sequential/FSM Topics" and "Hardware/VHDL Topics" for easier navigation.
 
 ---
 
@@ -202,18 +189,16 @@ The FAQ is structured for RAG system integration:
 - Links provide navigation to source content
 - Categories enable filtered search
 
-A companion JSON file (`faq-chatbot-training.json`) can be generated for direct chatbot training.
-
 ---
 
 ## Session Summary
 
-- **FAQ File Created:** `docs/faq.md`
-- **Quality Report Created:** `docs/learning-graph/faq-quality-report.md`
-- **Total Questions Generated:** 72
-- **Categories:** 6
-- **Quality Score:** 89/100
+- **FAQ File:** `docs/faq.md`
+- **Quality Report:** `docs/learning-graph/faq-quality-report.md`
+- **Total Questions:** 76
+- **Categories:** 6 (+ Resources section)
+- **Quality Score:** 91/100
 
-The FAQ provides comprehensive coverage of EE 2301 course content with well-distributed cognitive levels and practical guidance for students.
+The FAQ provides comprehensive coverage of all 13 EE 2301 course units with well-distributed cognitive levels and practical guidance for students.
 
 </div>

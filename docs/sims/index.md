@@ -181,6 +181,9 @@ Interactive educational simulations for learning digital system design.
 | [UART Transmitter](uart-transmitter/index.md) | L3 Apply | UART serial transmission with shift register and waveform |
 | [Course Integration Map](course-integration-map/index.md) | L5 Evaluate | Force-directed graph of all 13 course units |
 | [Datapath-Controller Walkthrough](datapath-controller-walkthrough/index.md) | L3 Apply | Step-by-step datapath-controller design walkthrough |
+| [UART Transceiver](uart-transceiver/index.md) | L4 Analyze | RTL block diagram of UART transceiver with controller-datapath separation and 16x oversampling |
+| [Vending Machine FSM](vending-machine-fsm/index.md) | L4 Analyze | Controller-datapath vending machine with accumulator balance register and 5-state Moore FSM |
+| [Hierarchical ALU Design](hierarchical-alu-design/index.md) | L4 Analyze | Interactive tree showing hierarchical decomposition of an 8-bit calculator |
 
 ## Summary Statistics
 
@@ -199,8 +202,8 @@ Interactive educational simulations for learning digital system design.
 | Unit 10: Sequential Design | 5 | L2-L4 |
 | Unit 11: Programmable Logic | 11 | L1-L5 |
 | Unit 12: VHDL | 6 | L2-L4 |
-| Unit 13: System Integration | 7 | L2-L6 |
-| **Total** | **103** | **L1-L6** |
+| Unit 13: System Integration | 10 | L2-L6 |
+| **Total** | **106** | **L1-L6** |
 
 ## About MicroSims
 

@@ -86,7 +86,7 @@ hide:
 
 <p class="cover-institution">University of Minnesota — Twin Cities<br>Department of Electrical & Computer Engineering</p>
 
-<p class="cover-description">An AI-assisted interactive textbook with 13 units, 103 MicroSims,<br>and 200+ practice problems covering the complete fundamentals of digital logic.</p>
+<p class="cover-description">An AI-assisted interactive textbook with 13 units, 106 MicroSims,<br>and 200+ practice problems covering the complete fundamentals of digital logic.</p>
 
 <div class="cover-stats" markdown>
 
@@ -96,17 +96,17 @@ hide:
 </div>
 
 <div class="stat-item">
-<div class="stat-number">103</div>
+<div class="stat-number">106</div>
 <div class="stat-label">MicroSims</div>
 </div>
 
 <div class="stat-item">
-<div class="stat-number">222K</div>
+<div class="stat-number">224K</div>
 <div class="stat-label">Words</div>
 </div>
 
 <div class="stat-item">
-<div class="stat-number">965</div>
+<div class="stat-number">971</div>
 <div class="stat-label">Pages</div>
 </div>
 

@@ -80,7 +80,7 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 
 ## Interactive MicroSims
 
-Explore digital logic concepts through **103 interactive simulations**:
+Explore digital logic concepts through **106 interactive simulations**:
 
 <div class="feature-grid" markdown>
 
@@ -90,7 +90,7 @@ Explore digital logic concepts through **103 interactive simulations**:
 
 Base Converter, Binary Arithmetic, Overflow Detection
 
-[:octicons-arrow-right-24: View 7 MicroSims](sims/index.md#unit-1-number-systems)
+[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-1-number-systems)
 
 </div>
 
@@ -100,7 +100,7 @@ Base Converter, Binary Arithmetic, Overflow Detection
 
 Logic Gates, Truth Tables, De Morgan's Theorem
 
-[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-2-boolean-algebra)
+[:octicons-arrow-right-24: View 23 MicroSims](sims/index.md#unit-2-boolean-algebra)
 
 </div>
 
@@ -110,7 +110,7 @@ Logic Gates, Truth Tables, De Morgan's Theorem
 
 Adders, K-Maps, MUX, Decoders, Encoders
 
-[:octicons-arrow-right-24: View 26 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
+[:octicons-arrow-right-24: View 9 MicroSims](sims/index.md#unit-3-applications-of-boolean-algebra)
 
 </div>
 
@@ -120,7 +120,7 @@ Adders, K-Maps, MUX, Decoders, Encoders
 
 Flip-Flops, Counters, Shift Registers, FSMs
 
-[:octicons-arrow-right-24: View 8 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
+[:octicons-arrow-right-24: View 5 MicroSims](sims/index.md#unit-9-sequential-logic-fundamentals)
 
 </div>
 
@@ -140,7 +140,7 @@ FPGAs, PLDs, VHDL Modeling, Testbenches
 
 Datapath-Controller, Timing Analysis, Digital Lock
 
-[:octicons-arrow-right-24: View MicroSims](sims/index.md#unit-13-system-integration-and-design-projects)
+[:octicons-arrow-right-24: View 10 MicroSims](sims/index.md#unit-13-system-integration)
 
 </div>
 
@@ -155,8 +155,8 @@ Datapath-Controller, Timing Analysis, Digital Lock
 
 | Resource | Description |
 |----------|-------------|
-| :material-book-alphabet: [Glossary](glossary.md) | 225 terms with ISO 11179 compliant definitions |
-| :material-frequently-asked-questions: [FAQ](faq.md) | 63 frequently asked questions |
+| :material-book-alphabet: [Glossary](glossary.md) | 398 terms with ISO 11179 compliant definitions |
+| :material-frequently-asked-questions: [FAQ](faq.md) | 76 frequently asked questions |
 | :material-graph: [Concept List](learning-graph/concept-list.md) | Complete learning graph with dependencies |
 | :material-chart-bar: [Book Metrics](learning-graph/book-metrics.md) | Detailed textbook statistics |
 
@@ -168,9 +168,9 @@ Datapath-Controller, Timing Analysis, Digital Lock
 
     - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
     - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
-    - :material-play-box: **Interactive Simulations** — 103 p5.js MicroSims you can run in your browser
-    - :material-pencil: **Practice Problems** — 200 end-of-unit problems with detailed solutions
-    - :material-checkbox-marked: **Self-Assessment** — 108 quiz questions with detailed explanations
+    - :material-play-box: **Interactive Simulations** — 106 p5.js MicroSims you can run in your browser
+    - :material-pencil: **Practice Problems** — 200+ end-of-unit problems with detailed solutions
+    - :material-checkbox-marked: **Self-Assessment** — 130 quiz questions with detailed explanations
     - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
     - :material-link-variant: **Curated References** — Wikipedia, textbooks, and online resources
 
