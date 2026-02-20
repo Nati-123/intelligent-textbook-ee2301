@@ -14,7 +14,7 @@ Interactive map showing all 13 units and their prerequisite relationships. Click
 
 <iframe src="../sims/course-integration-map/main.html" height="560px" width="100%" scrolling="no"></iframe>
 
-[View Fullscreen](../sims/course-integration-map/main.html){ .md-button .md-button--primary }
+[View Fullscreen](sims/course-integration-map/main.html){ .md-button .md-button--primary }
 
 ---
 

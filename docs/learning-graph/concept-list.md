@@ -1,8 +1,11 @@
 <div class="unit1-styled" markdown>
 
+
 # Concept List
 
-This document contains 225 concepts for the Introduction to Digital System Design course (EE 2301).
+
+This document contains 410 concepts for the Introduction to Digital System Design course (EE 2301).
+
 
 ## Unit 1: Number Systems (1-40)
 
@@ -246,5 +249,211 @@ This document contains 225 concepts for the Introduction to Digital System Desig
 223. Literal Count Optimization
 224. Gate Count Optimization
 225. Systematic Approach Advantages
+
+## Unit 7: Multi-Level Gate Circuits (226-250)
+
+226. Two-Level vs Multi-Level Circuits
+227. Two-Level Circuit Definition
+228. Multi-Level Circuit Definition
+229. NAND-NAND Realization
+230. NOR-NOR Realization
+231. NAND-NOR Mixed Networks
+232. NOR-NAND Mixed Networks
+233. Bubble Pushing Technique
+234. Gate-Level Transformation
+235. AOI Gate
+236. OAI Gate
+237. AOI-OAI Circuit Forms
+238. Propagation Delay
+239. Gate Delay Model
+240. Critical Path Analysis
+241. Circuit Delay Optimization
+242. Fan-In Constraints
+243. Multi-Level Fan-In Reduction
+244. Factoring Boolean Expressions
+245. Multi-Level Synthesis from SOP
+246. Multi-Level Synthesis from POS
+247. Algebraic Factoring
+248. Common Sub-expression Elimination
+249. Level Reduction Techniques
+250. Multi-Level Cost Analysis
+
+## Unit 8: Combinational Logic Modules (251-275)
+
+251. Multiplexer
+252. 2-to-1 Multiplexer
+253. 4-to-1 Multiplexer
+254. 8-to-1 Multiplexer
+255. MUX Select Lines
+256. MUX Data Lines
+257. MUX Boolean Expression
+258. MUX-Based Function Implementation
+259. Shannon Expansion for MUX
+260. MUX Tree Implementation
+261. Decoder
+262. 2-to-4 Decoder
+263. 3-to-8 Decoder
+264. Decoder with Enable
+265. Decoder Expansion
+266. Decoder-Based Function Implementation
+267. Encoder
+268. Priority Encoder
+269. Priority Encoder Valid Output
+270. Demultiplexer
+271. Magnitude Comparator Module
+272. Cascading Comparators
+273. Tri-State Buffer
+274. Bus Architecture
+275. Cascading Combinational Modules
+
+## Unit 9: Sequential Logic Fundamentals (276-305)
+
+276. Sequential vs Combinational Logic
+277. Memory Element
+278. Feedback Loop
+279. SR Latch (NOR)
+280. SR Latch (NAND)
+281. SR Latch Invalid State
+282. Gated SR Latch
+283. D Latch
+284. Latch Transparency
+285. Clock Signal
+286. Clock Edge
+287. Edge Triggering
+288. Positive Edge Trigger
+289. Negative Edge Trigger
+290. D Flip-Flop
+291. JK Flip-Flop
+292. T Flip-Flop
+293. Master-Slave Flip-Flop
+294. Setup Time
+295. Hold Time
+296. Clock-to-Q Delay
+297. Metastability
+298. Synchronous Logic
+299. Asynchronous Logic
+300. Timing Diagram
+301. Characteristic Table
+302. Excitation Table
+303. State
+304. Next State
+305. State Transition
+
+## Unit 10: Sequential Circuit Design (306-335)
+
+306. Register
+307. Parallel Load Register
+308. Shift Register
+309. SISO Shift Register
+310. SIPO Shift Register
+311. PISO Shift Register
+312. PIPO Shift Register
+313. Binary Up Counter
+314. Binary Down Counter
+315. Up-Down Counter
+316. Modulo-N Counter
+317. Ring Counter
+318. Johnson Counter
+319. Finite State Machine
+320. State Diagram
+321. State Table
+322. Moore Machine
+323. Mealy Machine
+324. State Assignment
+325. Binary State Encoding
+326. One-Hot State Encoding
+327. Gray Code State Encoding
+328. State Minimization
+329. Next-State Logic
+330. Output Logic
+331. FSM Design Procedure
+332. Timing Analysis for Sequential Circuits
+333. Counter Design Using FSM
+334. Shift Register Applications
+335. Sequential Circuit Synthesis
+
+## Unit 11: Programmable Logic Devices (336-365)
+
+336. Programmable Logic Overview
+337. Fuse Technology
+338. Antifuse Technology
+339. SRAM-Based Programming
+340. ROM
+341. PROM
+342. EPROM
+343. EEPROM
+344. PLA
+345. PAL
+346. PLD Selection Criteria
+347. CPLD
+348. Function Block
+349. Interconnect Matrix
+350. FPGA
+351. Configurable Logic Block
+352. Lookup Table
+353. I/O Block
+354. Routing Resources
+355. FPGA Design Flow
+356. Bitstream
+357. Device Programming
+358. In-System Programming
+359. FPGA vs CPLD Comparison
+360. CLB Interconnect
+361. Logic Capacity Metrics
+362. FPGA Timing Analysis
+363. Partial Reconfiguration
+364. Hard vs Soft IP Cores
+365. PLD Design Entry Methods
+
+## Unit 12: Introduction to VHDL (366-395)
+
+366. Hardware Description Language
+367. VHDL History and IEEE 1076
+368. VHDL Design Entity
+369. Entity Declaration
+370. Port Declaration
+371. Port Modes
+372. Architecture Body
+373. Signal Declaration
+374. Concurrent Signal Assignment
+375. Selected Signal Assignment
+376. Conditional Signal Assignment
+377. Dataflow Modeling Style
+378. Process Statement
+379. Sequential Statements
+380. If-Then-Else Statement
+381. Case Statement
+382. Variables vs Signals
+383. Behavioral Modeling Style
+384. Component Declaration
+385. Component Instantiation
+386. Port Map
+387. Generic Map
+388. Structural Modeling Style
+389. std_logic Type
+390. std_logic_vector
+391. VHDL Operators
+392. Type Conversion
+393. Testbench
+394. Assert and Report
+395. VHDL FSM Implementation
+
+## Unit 13: System Integration (396-410)
+
+396. Top-Down Design Methodology
+397. Hierarchical Decomposition
+398. Datapath Design
+399. Controller Design
+400. Datapath-Controller Partitioning
+401. Control Signals
+402. Status Signals
+403. ASM Chart
+404. Timing Budget
+405. Critical Path in System
+406. Pipelining Concept
+407. System Verification
+408. Design for Testability
+409. UART Protocol Basics
+410. System-Level Debugging
 
 </div>

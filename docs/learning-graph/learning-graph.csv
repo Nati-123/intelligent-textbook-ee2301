@@ -199,3 +199,213 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 198,Five Variable Technique,168|197,KMAP
 199,Entered Variable K-Map,161|42,KMAP
 200,K-Map vs Algebraic Method,80|184|185,KMAP
+201,Quine-McCluskey Algorithm,186|181|182,QM
+202,Tabular Minimization Method,201|128,QM
+203,Implicant Table Construction,202|180,QM
+204,Binary Representation of Minterms,128|3,QM
+205,Grouping by Number of Ones,204|203,QM
+206,Adjacency Criterion in QM,205|171,QM
+207,Combining Adjacent Minterms,206|204,QM
+208,Dash Notation for Combined Terms,207,QM
+209,Iterative Combination Process,207|208,QM
+210,Unchecked Terms as Prime Implicants,209|181,QM
+211,Prime Implicant Chart Construction,210|203,QM
+212,Essential Prime Implicants Selection,211|182,QM
+213,Row Dominance,211|212,QM
+214,Column Dominance,211|212,QM
+215,Cyclic Prime Implicant Charts,213|214,QM
+216,Petrick's Method,215|212,QM
+217,Minimal Cover Selection,216|186,QM
+218,QM Method with Don't Cares,201|148,QM
+219,Computational Complexity of QM,201|222,QM
+220,QM versus K-map Comparison,200|201|219,QM
+221,Multi-Output Function Minimization,210|211|217,QM
+222,Computer Implementation of QM,209|210|211,QM
+223,Literal Count Optimization,217|196,QM
+224,Gate Count Optimization,217|195,QM
+225,Systematic Approach Advantages,220|221|224,QM
+226,Two-Level vs Multi-Level Circuits,93|89|91,MLEV
+227,Two-Level Circuit Definition,84|85|93,MLEV
+228,Multi-Level Circuit Definition,226|227|89,MLEV
+229,NAND-NAND Realization,61|56|84,MLEV
+230,NOR-NOR Realization,61|57|85,MLEV
+231,NAND-NOR Mixed Networks,229|230,MLEV
+232,NOR-NAND Mixed Networks,229|230,MLEV
+233,Bubble Pushing Technique,77|78|56|57,MLEV
+234,Gate-Level Transformation,233|229|230,MLEV
+235,AOI Gate,52|53|56,MLEV
+236,OAI Gate,52|53|57,MLEV
+237,AOI-OAI Circuit Forms,235|236|227,MLEV
+238,Propagation Delay,51|93,MLEV
+239,Gate Delay Model,238|51,MLEV
+240,Critical Path Analysis,238|239|228,MLEV
+241,Circuit Delay Optimization,240|195,MLEV
+242,Fan-In Constraints,90|88|228,MLEV
+243,Multi-Level Fan-In Reduction,242|228|89,MLEV
+244,Factoring Boolean Expressions,80|84|85,MLEV
+245,Multi-Level Synthesis from SOP,244|228|84,MLEV
+246,Multi-Level Synthesis from POS,244|228|85,MLEV
+247,Algebraic Factoring,244|80|74,MLEV
+248,Common Sub-expression Elimination,247|228|195,MLEV
+249,Level Reduction Techniques,243|247|240,MLEV
+250,Multi-Level Cost Analysis,249|194|195|241,MLEV
+251,Multiplexer,100|101|91,CMOD
+252,2-to-1 Multiplexer,251|93,CMOD
+253,4-to-1 Multiplexer,252|89,CMOD
+254,8-to-1 Multiplexer,253|89,CMOD
+255,MUX Select Lines,251|101,CMOD
+256,MUX Data Lines,251|100,CMOD
+257,MUX Boolean Expression,252|84,CMOD
+258,MUX-Based Function Implementation,257|95|66,CMOD
+259,Shannon Expansion for MUX,258|155,CMOD
+260,MUX Tree Implementation,254|258|259,CMOD
+261,Decoder,91|93|128,CMOD
+262,2-to-4 Decoder,261|93,CMOD
+263,3-to-8 Decoder,262|89,CMOD
+264,Decoder with Enable,262|100,CMOD
+265,Decoder Expansion,263|264|89,CMOD
+266,Decoder-Based Function Implementation,261|95|134,CMOD
+267,Encoder,261|91,CMOD
+268,Priority Encoder,267|101,CMOD
+269,Priority Encoder Valid Output,268|100,CMOD
+270,Demultiplexer,251|261,CMOD
+271,Magnitude Comparator Module,113|93,CMOD
+272,Cascading Comparators,271|265|90,CMOD
+273,Tri-State Buffer,60|101,CMOD
+274,Bus Architecture,273|90|101,CMOD
+275,Cascading Combinational Modules,265|272|90|89,CMOD
+276,Sequential vs Combinational Logic,91|92,SEQF
+277,Memory Element,276,SEQF
+278,Feedback Loop,51|276,SEQF
+279,SR Latch (NOR),57|278,SEQF
+280,SR Latch (NAND),56|278,SEQF
+281,SR Latch Invalid State,279|280,SEQF
+282,Gated SR Latch,279|100,SEQF
+283,D Latch,282|281,SEQF
+284,Latch Transparency,283,SEQF
+285,Clock Signal,101|276,SEQF
+286,Clock Edge,285,SEQF
+287,Edge Triggering,286,SEQF
+288,Positive Edge Trigger,287,SEQF
+289,Negative Edge Trigger,287,SEQF
+290,D Flip-Flop,283|287,SEQF
+291,JK Flip-Flop,290|281,SEQF
+292,T Flip-Flop,291,SEQF
+293,Master-Slave Flip-Flop,290|286,SEQF
+294,Setup Time,290|285,SEQF
+295,Hold Time,290|285,SEQF
+296,Clock-to-Q Delay,290|238,SEQF
+297,Metastability,294|295,SEQF
+298,Synchronous Logic,285|290,SEQF
+299,Asynchronous Logic,276|277,SEQF
+300,Timing Diagram,285|290,SEQF
+301,Characteristic Table,290|64,SEQF
+302,Excitation Table,301|95,SEQF
+303,State,277|276,SEQF
+304,Next State,303|290,SEQF
+305,State Transition,303|304,SEQF
+306,Register,290|298,SEQD
+307,Parallel Load Register,306|251,SEQD
+308,Shift Register,306|303,SEQD
+309,SISO Shift Register,308,SEQD
+310,SIPO Shift Register,308,SEQD
+311,PISO Shift Register,308|307,SEQD
+312,PIPO Shift Register,308|307,SEQD
+313,Binary Up Counter,306|304,SEQD
+314,Binary Down Counter,313,SEQD
+315,Up-Down Counter,313|314,SEQD
+316,Modulo-N Counter,313|95,SEQD
+317,Ring Counter,308|316,SEQD
+318,Johnson Counter,317,SEQD
+319,Finite State Machine,305|303,SEQD
+320,State Diagram,319|305,SEQD
+321,State Table,319|64,SEQD
+322,Moore Machine,319|320,SEQD
+323,Mealy Machine,319|320,SEQD
+324,State Assignment,321|95,SEQD
+325,Binary State Encoding,324,SEQD
+326,One-Hot State Encoding,324,SEQD
+327,Gray Code State Encoding,324|325,SEQD
+328,State Minimization,321|186,SEQD
+329,Next-State Logic,302|324,SEQD
+330,Output Logic,329|322,SEQD
+331,FSM Design Procedure,320|321|324|329,SEQD
+332,Timing Analysis for Sequential Circuits,296|300|298,SEQD
+333,Counter Design Using FSM,316|331,SEQD
+334,Shift Register Applications,311|312,SEQD
+335,Sequential Circuit Synthesis,331|302|94,SEQD
+336,Programmable Logic Overview,226|228,PLD
+337,Fuse Technology,336,PLD
+338,Antifuse Technology,336,PLD
+339,SRAM-Based Programming,336,PLD
+340,ROM,261|336,PLD
+341,PROM,340|337,PLD
+342,EPROM,341,PLD
+343,EEPROM,342,PLD
+344,PLA,84|336,PLD
+345,PAL,344|337,PLD
+346,PLD Selection Criteria,344|345,PLD
+347,CPLD,345|339,PLD
+348,Function Block,347,PLD
+349,Interconnect Matrix,347|348,PLD
+350,FPGA,339|290,PLD
+351,Configurable Logic Block,350|226,PLD
+352,Lookup Table,351|64,PLD
+353,I/O Block,350|273,PLD
+354,Routing Resources,350|349,PLD
+355,FPGA Design Flow,350|93,PLD
+356,Bitstream,355|339,PLD
+357,Device Programming,356|337,PLD
+358,In-System Programming,357|343,PLD
+359,FPGA vs CPLD Comparison,347|350,PLD
+360,CLB Interconnect,351|354,PLD
+361,Logic Capacity Metrics,350|347,PLD
+362,FPGA Timing Analysis,354|332,PLD
+363,Partial Reconfiguration,356|350,PLD
+364,Hard vs Soft IP Cores,350|355,PLD
+365,PLD Design Entry Methods,344|355|331,PLD
+366,Hardware Description Language,93|91,VHDL
+367,VHDL History and IEEE 1076,366,VHDL
+368,VHDL Design Entity,366|367,VHDL
+369,Entity Declaration,368,VHDL
+370,Port Declaration,369,VHDL
+371,Port Modes,370,VHDL
+372,Architecture Body,368|369,VHDL
+373,Signal Declaration,372|370,VHDL
+374,Concurrent Signal Assignment,373|372,VHDL
+375,Selected Signal Assignment,374|251,VHDL
+376,Conditional Signal Assignment,374,VHDL
+377,Dataflow Modeling Style,374|375|376,VHDL
+378,Process Statement,372|373,VHDL
+379,Sequential Statements,378,VHDL
+380,If-Then-Else Statement,379,VHDL
+381,Case Statement,379,VHDL
+382,Variables vs Signals,373|378,VHDL
+383,Behavioral Modeling Style,378|380|381,VHDL
+384,Component Declaration,368|372,VHDL
+385,Component Instantiation,384,VHDL
+386,Port Map,385|370,VHDL
+387,Generic Map,384|386,VHDL
+388,Structural Modeling Style,385|386,VHDL
+389,std_logic Type,370|371,VHDL
+390,std_logic_vector,389,VHDL
+391,VHDL Operators,373|389,VHDL
+392,Type Conversion,389|390,VHDL
+393,Testbench,366|368|386,VHDL
+394,Assert and Report,393|379,VHDL
+395,VHDL FSM Implementation,319|383|381,VHDL
+396,Top-Down Design Methodology,355|93,SYSI
+397,Hierarchical Decomposition,396|388,SYSI
+398,Datapath Design,306|313|397,SYSI
+399,Controller Design,319|397,SYSI
+400,Datapath-Controller Partitioning,398|399,SYSI
+401,Control Signals,400|101,SYSI
+402,Status Signals,400|101,SYSI
+403,ASM Chart,319|320|321|399,SYSI
+404,Timing Budget,238|294|295,SYSI
+405,Critical Path in System,404|241,SYSI
+406,Pipelining Concept,405|306|285,SYSI
+407,System Verification,393|400,SYSI
+408,Design for Testability,407|348,SYSI
+409,UART Protocol Basics,308|285|384,SYSI
+410,System-Level Debugging,407|408|409,SYSI

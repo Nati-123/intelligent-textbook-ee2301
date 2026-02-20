@@ -2,7 +2,7 @@
 
 # Concept Taxonomy
 
-This document defines the categorical taxonomy for organizing the 200 concepts in the Digital System Design learning graph.
+This document defines the categorical taxonomy for organizing the 410 concepts in the Digital System Design learning graph.
 
 ## Taxonomy Categories
 
@@ -20,6 +20,14 @@ This document defines the categorical taxonomy for organizing the 200 concepts i
 | Arithmetic Circuits | ACIR | Adders, subtractors, comparators, and arithmetic circuit implementations |
 | Canonical Forms | CANON | Minterms, maxterms, canonical SOP/POS, and standard forms |
 | Karnaugh Maps | KMAP | K-map structure, simplification techniques, and optimization methods |
+| Quine-McCluskey Method | QM | Tabular minimization, prime implicant charts, and algorithmic simplification |
+| Multi-Level Circuits | MLEV | Multi-level gate implementations, bubble pushing, timing analysis, and circuit optimization |
+| Combinational Modules | CMOD | Multiplexers, decoders, encoders, and standard combinational building blocks |
+| Sequential Fundamentals | SEQF | Latches, flip-flops, timing parameters, and sequential logic basics |
+| Sequential Design | SEQD | Registers, counters, FSMs, state machines, and sequential circuit design |
+| Programmable Logic | PLD | ROM, PLA, PAL, CPLD, FPGA, and programmable device architectures |
+| VHDL | VHDL | Hardware description language constructs, modeling styles, and simulation |
+| System Integration | SYSI | Top-down design, datapath-controller partitioning, timing budgets, and system-level concepts |
 
 ## Category Descriptions
 
@@ -58,5 +66,29 @@ Minterms, maxterms, canonical SOP and POS forms, sigma and pi notation, don't ca
 
 ### KMAP - Karnaugh Maps
 K-map structure and techniques for visual simplification of Boolean expressions, including grouping rules, prime implicants, and optimization strategies.
+
+### QM - Quine-McCluskey Method
+The tabular method for Boolean function minimization, including implicant tables, prime implicant charts, row/column dominance, Petrick's method, and computational complexity analysis.
+
+### MLEV - Multi-Level Gate Circuits
+Design and analysis of multi-level logic circuits, including NAND/NOR implementations, bubble pushing, AOI/OAI gates, propagation delay, critical path analysis, and factoring techniques.
+
+### CMOD - Combinational Logic Modules
+Standard combinational building blocks including multiplexers, decoders, encoders, priority encoders, demultiplexers, tri-state buffers, and bus architectures.
+
+### SEQF - Sequential Logic Fundamentals
+Introduction to sequential logic including SR/D/JK/T latches and flip-flops, edge triggering, timing parameters (setup time, hold time, clock-to-Q delay), metastability, and timing diagrams.
+
+### SEQD - Sequential Circuit Design
+Design of sequential circuits including registers, shift registers, counters, finite state machines (Moore/Mealy), state encoding, state minimization, and FSM design procedures.
+
+### PLD - Programmable Logic Devices
+Programmable device architectures including ROM, PROM, PLA, PAL, CPLD, and FPGA. Covers programming technologies (fuse, antifuse, SRAM), CLBs, LUTs, and FPGA design flow.
+
+### VHDL - VHDL
+IEEE 1076 hardware description language including entity/architecture structure, signal assignment, process statements, dataflow/structural/behavioral modeling, testbenches, and FSM implementation.
+
+### SYSI - System Integration
+System-level design concepts including top-down methodology, hierarchical decomposition, datapath-controller partitioning, ASM charts, timing budgets, pipelining, verification, and UART protocol.
 
 </div>

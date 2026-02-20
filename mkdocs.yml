@@ -38,14 +38,14 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css?v=16
-  - stylesheets/audio-player.css
+  - stylesheets/audio-player.css?v=1
   - stylesheets/quiz.css?v=3
 
 extra_javascript:
-  - javascripts/mathjax.js
+  - javascripts/mathjax.js?v=1
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  - javascripts/tts-reader.js
-  - javascripts/audio-player.js
+  - javascripts/tts-reader.js?v=1
+  - javascripts/audio-player.js?v=1
   - javascripts/quiz-ui.js?v=3
   - javascripts/problems-ui.js?v=4
   - javascripts/diagram-wrap.js?v=1
@@ -63,78 +63,91 @@ nav:
       - Problems: unit1-number-systems/problems.md
       - Challenge: unit1-number-systems/challenge.md
       - References: unit1-number-systems/references.md
+      - Narration: videos/unit01-narration.md
     - Unit 2 - Boolean Algebra:
       - Content: unit2-boolean-algebra/index.md
       - Quiz: unit2-boolean-algebra/quiz.md
       - Problems: unit2-boolean-algebra/problems.md
       - Challenge: unit2-boolean-algebra/challenge.md
       - References: unit2-boolean-algebra/references.md
+      - Narration: videos/unit02-narration.md
     - Unit 3 - Applications of Boolean Algebra:
       - Content: unit3-applications-boolean-algebra/index.md
       - Quiz: unit3-applications-boolean-algebra/quiz.md
       - Problems: unit3-applications-boolean-algebra/problems.md
       - Challenge: unit3-applications-boolean-algebra/challenge.md
       - References: unit3-applications-boolean-algebra/references.md
+      - Narration: videos/unit03-narration.md
     - Unit 4 - Minterm & Maxterm Expansions:
       - Content: unit4-minterm-maxterm-expansions/index.md
       - Quiz: unit4-minterm-maxterm-expansions/quiz.md
       - Problems: unit4-minterm-maxterm-expansions/problems.md
       - Challenge: unit4-minterm-maxterm-expansions/challenge.md
       - References: unit4-minterm-maxterm-expansions/references.md
+      - Narration: videos/unit04-narration.md
     - Unit 5 - Karnaugh Maps:
       - Content: unit5-karnaugh-maps/index.md
       - Quiz: unit5-karnaugh-maps/quiz.md
       - Problems: unit5-karnaugh-maps/problems.md
       - Challenge: unit5-karnaugh-maps/challenge.md
       - References: unit5-karnaugh-maps/references.md
+      - Narration: videos/unit05-narration.md
     - Unit 6 - Quine-McCluskey Method:
       - Content: unit6-quine-mccluskey/index.md
       - Quiz: unit6-quine-mccluskey/quiz.md
       - Problems: unit6-quine-mccluskey/problems.md
       - Challenge: unit6-quine-mccluskey/challenge.md
       - References: unit6-quine-mccluskey/references.md
+      - Narration: videos/unit06-narration.md
     - Unit 7 - Multi-Level Gate Circuits:
       - Content: unit7-multi-level-gates/index.md
       - Quiz: unit7-multi-level-gates/quiz.md
       - Problems: unit7-multi-level-gates/problems.md
       - Challenge: unit7-multi-level-gates/challenge.md
       - References: unit7-multi-level-gates/references.md
+      - Narration: videos/unit07-narration.md
     - Unit 8 - Combinational Logic Modules:
       - Content: unit8-combinational-modules/index.md
       - Quiz: unit8-combinational-modules/quiz.md
       - Problems: unit8-combinational-modules/problems.md
       - Challenge: unit8-combinational-modules/challenge.md
       - References: unit8-combinational-modules/references.md
+      - Narration: videos/unit08-narration.md
     - Unit 9 - Sequential Logic Fundamentals:
       - Content: unit9-sequential-fundamentals/index.md
       - Quiz: unit9-sequential-fundamentals/quiz.md
       - Problems: unit9-sequential-fundamentals/problems.md
       - Challenge: unit9-sequential-fundamentals/challenge.md
       - References: unit9-sequential-fundamentals/references.md
+      - Narration: videos/unit09-narration.md
     - Unit 10 - Sequential Circuit Design:
       - Content: unit10-sequential-design/index.md
       - Quiz: unit10-sequential-design/quiz.md
       - Problems: unit10-sequential-design/problems.md
       - Challenge: unit10-sequential-design/challenge.md
       - References: unit10-sequential-design/references.md
+      - Narration: videos/unit10-narration.md
     - Unit 11 - Programmable Logic Devices:
       - Content: unit11-programmable-logic/index.md
       - Quiz: unit11-programmable-logic/quiz.md
       - Problems: unit11-programmable-logic/problems.md
       - Challenge: unit11-programmable-logic/challenge.md
       - References: unit11-programmable-logic/references.md
+      - Narration: videos/unit11-narration.md
     - Unit 12 - Introduction to VHDL:
       - Content: unit12-vhdl/index.md
       - Quiz: unit12-vhdl/quiz.md
       - Problems: unit12-vhdl/problems.md
       - Challenge: unit12-vhdl/challenge.md
       - References: unit12-vhdl/references.md
+      - Narration: videos/unit12-narration.md
     - Unit 13 - System Integration:
       - Content: unit13-system-integration/index.md
       - Quiz: unit13-system-integration/quiz.md
       - Problems: unit13-system-integration/problems.md
       - Challenge: unit13-system-integration/challenge.md
       - References: unit13-system-integration/references.md
+      - Narration: videos/unit13-narration.md
   - MicroSims:
     - Overview: sims/index.md
     - Course Structure Tree: sims/course-structure-tree/index.md

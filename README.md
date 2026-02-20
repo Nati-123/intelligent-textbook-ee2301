@@ -38,7 +38,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | Metric | Value | Description |
 |--------|-------|-------------|
 | Units | 13 | Complete course units |
-| Concepts | 200 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
+| Concepts | 410 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
 | Glossary Terms | 398 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
 | FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments |
@@ -116,7 +116,7 @@ The textbook includes **106 interactive MicroSims** organized by unit:
 |----------|-------------|
 | [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 398 terms with ISO 11179 compliant definitions |
 | [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 76 frequently asked questions |
-| [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 200 interconnected concepts with dependencies |
+| [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 410 interconnected concepts with dependencies |
 | [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
 
 ## Getting Started
@@ -173,7 +173,7 @@ intelligent-textbook-ee2301/
 │   ├── unit2-boolean-algebra/         # ... (same structure)
 │   ├── ...                            # Units 3-13 (all with quiz, problems, challenge, references)
 │   ├── learning-graph/
-│   │   ├── concept-list.md            # 200 concepts
+│   │   ├── concept-list.md            # 410 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
 │   └── sims/                          # 106 Interactive MicroSims

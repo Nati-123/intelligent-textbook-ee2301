@@ -7,7 +7,7 @@ Overall metrics for the EE 2301 Introduction to Digital System Design intelligen
 | Metric Name | Value | Link | Notes |
 |-------------|-------|------|-------|
 | Chapters | 13 | [Units](../unit1-number-systems/index.md) | Unit directories with content |
-| Concepts | 200 | [Concept List](./concept-list.md) | Concepts from learning graph |
+| Concepts | 410 | [Concept List](./concept-list.md) | Concepts from learning graph |
 | Glossary Terms | 398 | [Glossary](../glossary.md) | Defined terms |
 | FAQs | 76 | [FAQ](../faq.md) | Frequently asked questions |
 | Quiz Questions | 130 | - | 10 questions per unit × 13 units |
