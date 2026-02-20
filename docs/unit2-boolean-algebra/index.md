@@ -503,14 +503,10 @@ Note: The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary 
 
 ### Advanced Theorems
 
-**Absorption Law:** Eliminates redundant terms.
-
-$$A + A \cdot B = A \qquad A \cdot (A + B) = A$$
-
-**Consensus Theorem:** Eliminates redundant consensus terms.
-
-$$AB + \overline{A}C + BC = AB + \overline{A}C$$
-$$(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$$
+| Theorem Name | Description | Equations |
+|:-------------|:------------|:---------:|
+| **Absorption Law** | Eliminates redundant terms | $A + A \cdot B = A \qquad A \cdot (A + B) = A$ |
+| **Consensus Theorem** | Eliminates redundant consensus terms | $AB + \overline{A}C + BC = AB + \overline{A}C$ <br> $(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$ |
 
 The consensus term ($BC$ or $B+C$) is redundant because it's covered by the other terms.
 
