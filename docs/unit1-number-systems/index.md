@@ -463,33 +463,46 @@ In practice, digital systems typically perform subtraction using two's complemen
 
 **Binary division** uses the same long division algorithm as decimal division, but comparisons and subtractions are simpler with only 0 and 1 as possible quotient digits.
 
-!!! example "Example: Divide $10101_2 \div 11_2$"
+!!! example "Example: Binary division"
 
     ```
-                ↑ ↑ ↑               ← quotient bits placed left → right
-                1 1 1               ← quotient
-            ---------
-      1 1 ) 1 0 1 0 1               ← dividend
-              1 1                    ← step 1: subtract
-            -----
-              1 0                    ← remainder
-                  ↓                  ← bring down 0
-              1 0 0
-                1 1                  ← step 2: subtract
-              -----
-                  1                  ← remainder
-                    ↓                ← bring down 1
+              1 1 1 1 1 0
+            -------------
+      1 0 ) 1 1 1 1 1 0 0
+            1 0
+            ---
+              1
+                ↓
+              1 1
+              1 0
+              ---
+                1
+                  ↓
+                1 1
+                1 0
+                ---
+                  1
+                    ↓
                   1 1
-                  1 1                ← step 3: subtract
+                  1 0
                   ---
-                    0                ← final remainder
+                    1
+                      ↓
+                    1 0
+                    1 0
+                    ---
+                      0
+                        ↓
+                      0 0
+                        0     ← remainder
     ```
 
-    - **Step 1:** $11$ does not fit into $1$ or $10$, but fits into $101$ ($5 \geq 3$). Write quotient bit **1** and subtract: $101 - 11 = 10$.
-    - **Step 2:** Bring down the next bit ($0$) to form $100$. Since $100 \geq 11$ ($4 \geq 3$), write quotient bit **1** and subtract: $100 - 11 = 1$.
-    - **Step 3:** Bring down the last bit ($1$) to form $11$. Since $11 \geq 11$ ($3 \geq 3$), write quotient bit **1** and subtract: $11 - 11 = 0$.
-
-    **Result:** $10101_2 \div 11_2 = 111_2$ remainder $0$ &ensp;($21 \div 3 = 7$ in decimal)
+    | | Binary | Decimal |
+    |---|---|---|
+    | **Dividend** | $1111100_2$ | $124$ |
+    | **Divisor** | $10_2$ | $2$ |
+    | **Quotient** | $111110_2$ | $62$ |
+    | **Remainder** | $0$ | $0$ |
 
 #### Diagram: Binary Arithmetic Practice
 
