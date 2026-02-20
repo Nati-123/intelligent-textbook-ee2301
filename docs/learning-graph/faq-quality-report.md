@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # FAQ Quality Report
 
 **Generated:** 2026-02-04
@@ -213,3 +215,5 @@ A companion JSON file (`faq-chatbot-training.json`) can be generated for direct 
 - **Quality Score:** 89/100
 
 The FAQ provides comprehensive coverage of EE 2301 course content with well-distributed cognitive levels and practical guidance for students.
+
+</div>

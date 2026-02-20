@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Book Metrics
 
 This file contains overall metrics for the intelligent textbook.
@@ -29,3 +31,5 @@ This file contains overall metrics for the intelligent textbook.
 - **Total Words**: All words in markdown files (excluding code blocks and URLs)
 - **Links**: Markdown-formatted links `[text](url)`
 - **Equivalent Pages**: Based on 250 words/page + 0.25 page/diagram + 0.5 page/MicroSim
+
+</div>

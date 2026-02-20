@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Chapter Metrics
 
 This file contains per-unit metrics for the intelligent textbook.
@@ -25,3 +27,5 @@ This file contains per-unit metrics for the intelligent textbook.
 - **Sections**: Count of H2 and H3 headers in the unit index.md
 - **Diagrams**: Count of "#### Diagram:" headers in the unit
 - **Words**: Total word count for all markdown files in the unit directory
+
+</div>

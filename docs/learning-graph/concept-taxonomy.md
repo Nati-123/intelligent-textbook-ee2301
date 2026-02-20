@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Concept Taxonomy
 
 This document defines the categorical taxonomy for organizing the 200 concepts in the Digital System Design learning graph.
@@ -56,3 +58,5 @@ Minterms, maxterms, canonical SOP and POS forms, sigma and pi notation, don't ca
 
 ### KMAP - Karnaugh Maps
 K-map structure and techniques for visual simplification of Boolean expressions, including grouping rules, prime implicants, and optimization strategies.
+
+</div>

@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Learning Graph for Digital System Design
 
 This section contains the learning graph for this textbook. A learning graph is
@@ -92,3 +94,5 @@ over 30% of our concepts.
 - Balance verification
 
 [View the Taxonomy Distribution Report](./taxonomy-distribution.md)
+
+</div>

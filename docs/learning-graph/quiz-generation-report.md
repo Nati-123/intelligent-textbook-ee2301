@@ -5,6 +5,8 @@ generated: 2026-02-10
 skill_version: 0.2
 ---
 
+<div class="unit1-styled" markdown>
+
 # Quiz Generation Report
 
 ## Summary
@@ -238,3 +240,5 @@ All 13 units achieve excellent individual balance. The overall distribution is n
 | Unit 13 Quiz | `/docs/unit13-system-integration/quiz.md` | ✅ Complete |
 | Navigation | `mkdocs.yml` | ✅ Updated |
 | Report | `/docs/learning-graph/quiz-generation-report.md` | ✅ Complete |
+
+</div>

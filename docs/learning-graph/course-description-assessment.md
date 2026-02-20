@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Course Description Quality Assessment
 
 **Assessment Date:** 2026-02-04
@@ -58,3 +60,5 @@ This is comparable to similar digital logic courses at the undergraduate level.
 ## Recommendation
 
 **APPROVED** - The course description quality score of 95/100 exceeds the 70-point threshold. Proceed with learning graph generation.
+
+</div>

@@ -1,3 +1,5 @@
+<div class="unit1-styled" markdown>
+
 # Concept List
 
 This document contains 225 concepts for the Introduction to Digital System Design course (EE 2301).
@@ -244,3 +246,5 @@ This document contains 225 concepts for the Introduction to Digital System Desig
 223. Literal Count Optimization
 224. Gate Count Optimization
 225. Systematic Approach Advantages
+
+</div>

@@ -4,6 +4,8 @@ description: Quality assessment of the EE 2301 glossary following ISO 11179 stan
 generated: 2026-02-04
 ---
 
+<div class="unit1-styled" markdown>
+
 # Glossary Quality Report
 
 ## Summary
@@ -91,3 +93,5 @@ The glossary uses implicit cross-references through shared terminology:
 - [x] Appropriate for target audience (college EE students)
 - [x] Markdown syntax correct
 - [x] Added to mkdocs.yml navigation
+
+</div>
