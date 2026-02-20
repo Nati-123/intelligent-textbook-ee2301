@@ -28,7 +28,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - Original, student-friendly explanations of digital logic concepts
 - Step-by-step derivations and worked examples
 - Visual learning aids (logic diagrams, truth tables, K-maps, timing diagrams)
-- 103 interactive MicroSims for hands-on learning
+- 106 interactive MicroSims for hands-on learning
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
@@ -39,15 +39,15 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 |--------|-------|-------------|
 | Units | 13 | Complete course units |
 | Concepts | 200 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
-| Glossary Terms | 225 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
-| FAQs | 63 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
+| Glossary Terms | 398 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
+| FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments |
-| Diagrams | 96 | Visual learning aids |
-| Equations | 4,406 | LaTeX expressions (inline and display) |
-| MicroSims | 103 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 201,341 | Across all markdown files |
-| Links | 409 | Hyperlinks in markdown format |
-| Equivalent Pages | 880 | Estimated pages (250 words/page + visuals) |
+| Diagrams | 95 | Visual learning aids |
+| Equations | 4,402 | LaTeX expressions (inline and display) |
+| MicroSims | 106 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
+| Total Words | 223,587 | Across all markdown files |
+| Links | 416 | Hyperlinks in markdown format |
+| Equivalent Pages | 971 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -91,7 +91,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 ## Interactive MicroSims
 
-The textbook includes **103 interactive MicroSims** organized by unit:
+The textbook includes **106 interactive MicroSims** organized by unit:
 
 | Unit | MicroSims | Examples |
 |------|-----------|----------|
@@ -114,8 +114,8 @@ The textbook includes **103 interactive MicroSims** organized by unit:
 
 | Resource | Description |
 |----------|-------------|
-| [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 225 terms with ISO 11179 compliant definitions |
-| [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 63 frequently asked questions |
+| [Glossary](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) | 398 terms with ISO 11179 compliant definitions |
+| [FAQ](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) | 76 frequently asked questions |
 | [Learning Graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) | 200 interconnected concepts with dependencies |
 | [Book Metrics](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/book-metrics/) | Detailed analytics and quality reports |
 
@@ -158,8 +158,8 @@ intelligent-textbook-ee2301/
 ├── docs/                              # MkDocs documentation source
 │   ├── index.md                       # Homepage with hero section
 │   ├── course-description.md          # Course info and learning outcomes
-│   ├── glossary.md                    # 225 term glossary
-│   ├── faq.md                         # 63 frequently asked questions
+│   ├── glossary.md                    # 398 term glossary
+│   ├── faq.md                         # 76 frequently asked questions
 │   ├── stylesheets/
 │   │   └── extra.css                  # Custom styling
 │   ├── javascripts/
@@ -176,7 +176,7 @@ intelligent-textbook-ee2301/
 │   │   ├── concept-list.md            # 200 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
-│   └── sims/                          # 103 Interactive MicroSims
+│   └── sims/                          # 106 Interactive MicroSims
 │       ├── index.md                   # MicroSims overview
 │       ├── base-converter/
 │       ├── logic-gate-simulator/
@@ -208,7 +208,7 @@ This textbook is designed for:
 |---------|-------------|
 | AI-Assisted Content | Generated with Claude Code for clarity and consistency |
 | Scaffolded Learning | Concepts build on explicit prerequisites |
-| Interactive MicroSims | 103 p5.js simulations you can run in your browser |
+| Interactive MicroSims | 106 p5.js simulations you can run in your browser |
 | Practice Problems | End-of-unit problems with detailed solutions |
 | Self-Assessment | 130 quiz questions with explanations |
 | Comprehensive Glossary | ISO 11179 compliant terminology |
