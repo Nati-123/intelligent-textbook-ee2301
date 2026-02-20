@@ -6,48 +6,61 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 445;
-let controlHeight = 130;
-let canvasHeight = drawHeight + controlHeight;
-let containerHeight = canvasHeight;
+let canvasHeight = drawHeight;
 
 let aSlider, bSlider;
 let operationSelect;
 let valueA = 3;
 let valueB = 4;
 let operation = 'add';
+let aValueSpan, bValueSpan;
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, containerHeight);
+  const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
-  // Operation selector
+  // --- Control grid (HTML below canvas) ---
+  let controlDiv = createDiv('');
+  controlDiv.parent(mainElement);
+  controlDiv.addClass('control-grid');
+
+  // Row 1: Operation label + select + empty
+  let l1 = createSpan('Operation:');
+  l1.parent(controlDiv);
+
   operationSelect = createSelect();
+  operationSelect.parent(controlDiv);
   operationSelect.option('Addition', 'add');
   operationSelect.option('Subtraction', 'sub');
   operationSelect.changed(() => { operation = operationSelect.value(); });
 
-  // Value A slider
+  createSpan('').parent(controlDiv); // empty 3rd column
+
+  // Row 2: Value A label + slider + value
+  let l2 = createSpan('Value A:');
+  l2.parent(controlDiv);
+
   aSlider = createSlider(-8, 7, 3);
-  aSlider.size(180);
-  aSlider.input(() => { valueA = aSlider.value(); });
+  aSlider.parent(controlDiv);
+  aSlider.input(() => { valueA = aSlider.value(); aValueSpan.html(valueA); });
 
-  // Value B slider
+  aValueSpan = createSpan(String(valueA));
+  aValueSpan.parent(controlDiv);
+
+  // Row 3: Value B label + slider + value
+  let l3 = createSpan('Value B:');
+  l3.parent(controlDiv);
+
   bSlider = createSlider(-8, 7, 4);
-  bSlider.size(180);
-  bSlider.input(() => { valueB = bSlider.value(); });
+  bSlider.parent(controlDiv);
+  bSlider.input(() => { valueB = bSlider.value(); bValueSpan.html(valueB); });
 
-  positionUIElements();
+  bValueSpan = createSpan(String(valueB));
+  bValueSpan.parent(controlDiv);
 
   describe('Overflow detection simulator showing when signed arithmetic overflows', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  operationSelect.position(mainRect.left + 120, mainRect.top + drawHeight + 15);
-  aSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 50);
-  bSlider.position(mainRect.left + 120, mainRect.top + drawHeight + 85);
 }
 
 function draw() {
@@ -58,10 +71,6 @@ function draw() {
   stroke('silver');
   strokeWeight(1);
   rect(0, 0, canvasWidth, drawHeight);
-
-  // Control area
-  fill('white');
-  rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
   fill('black');
@@ -110,19 +119,6 @@ function draw() {
     }
   }
   cursor(overBit ? HAND : ARROW);
-
-  // Control labels
-  fill('black');
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(14);
-  text('Operation:', 20, drawHeight + 27);
-  text('Value A:', 20, drawHeight + 62);
-  text('Value B:', 20, drawHeight + 97);
-
-  textAlign(RIGHT, CENTER);
-  text(valueA, canvasWidth - 30, drawHeight + 62);
-  text(valueB, canvasWidth - 30, drawHeight + 97);
 }
 
 function drawOperation(result, hasOverflow) {
@@ -299,9 +295,11 @@ function mousePressed() {
           if (r === 0) {
             valueA = newValue;
             aSlider.value(valueA);
+            aValueSpan.html(valueA);
           } else {
             valueB = newValue;
             bSlider.value(valueB);
+            bValueSpan.html(valueB);
           }
           return;
         }
@@ -312,8 +310,7 @@ function mousePressed() {
 
 function windowResized() {
   updateCanvasSize();
-  resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
+  resizeCanvas(containerWidth, canvasHeight);
 }
 
 function updateCanvasSize() {

@@ -6,14 +6,64 @@
     <title>Overflow Detection Simulator MicroSim</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        main { display: flex; flex-direction: column; align-items: center; }
+        .control-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 4px 12px;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 20px;
+            box-sizing: border-box;
+        }
+        .control-grid > span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            white-space: nowrap;
+        }
+        .control-grid > span:nth-child(3n+1) {
+            text-align: right;
+        }
+        .control-grid > span:nth-child(3n) {
+            text-align: right;
+            font-weight: 700;
+            color: #333;
+            min-width: 24px;
+        }
+        .control-grid select {
+            font-size: 13px;
+            padding: 4px 8px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .control-grid select:focus {
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33,150,243,0.12);
+        }
+        .control-grid input[type="range"] {
+            width: 100%;
+            accent-color: #2196F3;
+        }
+        .back-link {
+            margin-top: 4px;
+            font-size: 12px;
+        }
     </style>
     <script src="overflow-detection-simulator.js"></script>
     <script src="../fullscreen-toggle.js"></script>
 </head>
 <body>
     <main></main>
-    <br/>
-    <a href=".">Back to Documentation</a>
+    <a href="." class="back-link">Back to Documentation</a>
+    <script>if(window.frameElement)document.querySelector('.back-link').style.display='none';</script>
 </body>
 </html>
