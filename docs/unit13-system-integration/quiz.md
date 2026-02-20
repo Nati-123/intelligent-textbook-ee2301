@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: System Integration and Design Projects
 
 Test your understanding of top-down design methodology, datapath-controller architecture, verification strategies, timing analysis, and system-level trade-offs with these questions.
@@ -175,3 +177,5 @@ Test your understanding of top-down design methodology, datapath-controller arch
 | 8 | B | Resource Sharing and Scheduling |
 | 9 | A | Digital Lock System Design |
 | 10 | D | Interface Specification |
+
+</div>

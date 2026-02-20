@@ -3,6 +3,8 @@ title: Unit 13 Problems - System Integration
 description: Practice problems for top-down design, datapath-controller, timing analysis, and pipelining
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: System Integration
 
 Work through these problems to reinforce your understanding of top-down design, datapath-controller partitioning, timing analysis, pipelining, and system-level design trade-offs.
@@ -1439,3 +1441,5 @@ Final simulation with actual delays, then physical testing.
 | D | Pipelining and Optimization | 4 |
 | E | System Design Problems | 4 |
 | **Total** | | **20** |
+
+</div>

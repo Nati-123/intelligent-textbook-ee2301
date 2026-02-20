@@ -3,6 +3,8 @@ title: Unit 13 Challenge - System Integration
 description: Challenge problems for system integration — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: System Integration
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -402,4 +404,6 @@ Binary-to-BCD conversion for values 0-255: Double-dabble algorithm or lookup ROM
 | 11 | D | 01111101 (125) |
 
 **Total module count:** 10 modules. The main controller FSM has 7 states requiring 3 flip-flops. The coin accumulator is 8 bits. The entire system uses approximately 200-300 gates plus the ROM/register file storage.
+
+</div>
 

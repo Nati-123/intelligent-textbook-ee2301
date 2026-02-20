@@ -6,6 +6,8 @@ date: 2026-02-10 14:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 13: System Integration and Design Projects
 
 <details class="video-overview">
@@ -897,3 +899,5 @@ Each path builds directly on the foundation established in this course: Boolean 
 Design a datapath-controller system step-by-step, connecting registers, ALU, and MUX with an FSM controller:
 
 <iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="1010px" scrolling="no"></iframe>
+
+</div>
