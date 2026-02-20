@@ -162,7 +162,7 @@ function draw() {
   fill('#666');
   textSize(13);
   textAlign(CENTER, TOP);
-  text(law.description, canvasWidth / 2, eqY + 10, canvasWidth - 60);
+  text(law.description, 30, eqY + 10, canvasWidth - 60);
 
   // Draw verification tables
   drawVerificationTables(law, eqY + 60);
