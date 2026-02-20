@@ -3,6 +3,8 @@ title: Unit 7 Problems - Multi-Level Gate Circuits
 description: Practice problems for NAND/NOR implementations and multi-level circuit optimization
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Multi-Level Gate Circuits
 
 Work through these problems to reinforce your understanding of universal gates and multi-level circuit design.
@@ -1012,3 +1014,5 @@ d) **Power Consumption:**
 | D | Bubble Pushing | 4 |
 | E | Multi-Level Optimization | 4 |
 | **Total** | | **20** |
+
+</div>

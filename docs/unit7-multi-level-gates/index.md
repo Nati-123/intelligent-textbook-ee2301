@@ -6,6 +6,8 @@ date: 2026-02-05 14:30:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 7: Multi-Level Gate Circuits
 
 <details class="video-overview">
@@ -1208,3 +1210,5 @@ Step through converting an AND-OR circuit to all-NAND using bubble pushing:
 ---
 
 [See Annotated References](./references.md)
+
+</div>

@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Multi-Level Gate Circuits
 
 Test your understanding of universal gates, circuit conversions, multi-level analysis, propagation delay, factoring techniques, and technology mapping with these questions.
@@ -175,3 +177,5 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 | 8 | B | Mixed Gate Conversions |
 | 9 | B | Technology Mapping |
 | 10 | D | Fan-in Constraints / Level Reduction |
+
+</div>

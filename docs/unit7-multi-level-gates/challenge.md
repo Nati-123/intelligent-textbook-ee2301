@@ -3,6 +3,8 @@ title: Unit 7 Challenge - Multi-Level Gate Circuits
 description: Challenge problems for multi-level gate circuits — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Multi-Level Gate Circuits
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -143,4 +145,6 @@ $F = AB + C + D + E$. Treating $C$, $D$, $E$ as single-literal terms:
 - Gate 5: NAND(Gate 1, $\overline{C}$, $\overline{D}$, $\overline{E}$)
 
 **Total: 5 NAND gates** (1 two-input NAND + 3 inverters + 1 four-input NAND)
+
+</div>
 
