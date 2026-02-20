@@ -483,25 +483,13 @@ Boolean algebra follows a set of fundamental theorems and identities that enable
 
 ### Basic Identities
 
-**Identity Law:** A variable operated with an identity element returns the variable.
-
-$$A + 0 = A \qquad A \cdot 1 = A$$
-
-**Null Law (Dominance):** A variable operated with a dominant element returns the dominant element.
-
-$$A + 1 = 1 \qquad A \cdot 0 = 0$$
-
-**Idempotent Law:** Repeated operation of a variable with itself returns the variable.
-
-$$A + A = A \qquad A \cdot A = A$$
-
-**Involution Law (Double Negation):** Complementing twice returns the original value.
-
-$$\overline{\overline{A}} = A$$
-
-**Complement Law:** A variable operated with its complement produces a constant.
-
-$$A + \overline{A} = 1 \qquad A \cdot \overline{A} = 0$$
+| Law Name | Description | Equations |
+|:---------|:------------|:---------:|
+| **Identity Law** | A variable operated with an identity element returns the variable | $A + 0 = A \qquad A \cdot 1 = A$ |
+| **Null Law (Dominance)** | A variable operated with a dominant element returns the dominant element | $A + 1 = 1 \qquad A \cdot 0 = 0$ |
+| **Idempotent Law** | Repeated operation of a variable with itself returns the variable | $A + A = A \qquad A \cdot A = A$ |
+| **Involution Law** | Complementing twice returns the original value | $\overline{\overline{A}} = A$ |
+| **Complement Law** | A variable operated with its complement produces a constant | $A + \overline{A} = 1 \qquad A \cdot \overline{A} = 0$ |
 
 ### Algebraic Laws
 
