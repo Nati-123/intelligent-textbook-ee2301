@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Karnaugh Maps
 
 Test your understanding of Karnaugh map construction, grouping rules, prime implicants, and simplification techniques with these questions.
@@ -175,3 +177,5 @@ Test your understanding of Karnaugh map construction, grouping rules, prime impl
 | 8 | D | K-Map SOP Simplification |
 | 9 | A | K-Map Limitations |
 | 10 | B | Overlapping Groups |
+
+</div>

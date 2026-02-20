@@ -3,6 +3,8 @@ title: Unit 5 Challenge - Karnaugh Maps
 description: Challenge problems for Karnaugh maps — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Karnaugh Maps
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -121,4 +123,6 @@ Minimum SOP: $F = \overline{B}\,\overline{E} + \overline{B}\,\overline{D} + \ove
 $F = \overline{B}\,\overline{E} + \overline{B}\,D\,\overline{E} + A\,\overline{B}\,D\,E$
 
 More carefully: $F = \overline{B}\,\overline{E} + \overline{D}\,\overline{E} + A\,\overline{B}\,\overline{C}\,D\,E$
+
+</div>
 

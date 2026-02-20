@@ -3,6 +3,8 @@ title: Unit 5 Problems - Karnaugh Maps
 description: Practice problems for K-map simplification and prime implicants
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Karnaugh Maps
 
 Work through these problems to master K-map simplification techniques.
@@ -608,3 +610,5 @@ Factored: **F = AC'(B'D + BD') = AC'(B ⊕ D)**
 | D | Multiple Output Functions | 3 |
 | E | Applications | 2 |
 | **Total** | | **20** |
+
+</div>

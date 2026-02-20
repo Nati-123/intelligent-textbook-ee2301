@@ -6,6 +6,8 @@ date: 2026-02-04 18:00:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 5 — Karnaugh Maps
 
 <details class="video-overview">
@@ -1025,3 +1027,5 @@ Step through K-map simplification of a 4-variable function with grouping and ter
 ---
 
 [See Annotated References](./references.md)
+
+</div>
