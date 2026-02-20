@@ -6,7 +6,7 @@ quality_score: 85
 
 # Overflow Detection Simulator
 
-<iframe src="main.html" height="550px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="main.html" height="580px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 
 ## Description
