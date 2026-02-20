@@ -517,6 +517,31 @@
   color: #222222;
 }
 
+/* ===== TABLE STYLING (Global) ===== */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  border: 1px solid #DDDDDD;
+}
+
+.md-typeset table:not([class]) th {
+  background: #EFE9FF !important;
+  color: #5A3EED !important;
+  font-weight: 700;
+  border-color: #DDDDDD;
+}
+
+.md-typeset table:not([class]) td {
+  border-color: #DDDDDD;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: #F8F5FF;
+}
+
 /* ===== MATH / EQUATIONS (Global) ===== */
 .md-typeset .MathJax {
   color: #222222 !important;
