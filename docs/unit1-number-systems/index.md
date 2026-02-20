@@ -297,20 +297,22 @@ Reading remainders bottom-to-top: $19_{10} = 10011_2$
 
 To convert binary to decimal, multiply each bit by its positional power of 2 and sum the results.
 
-**Example: Convert $10011_2$ to decimal**
+!!! example "Example: Convert $10011_2$ to decimal"
 
-$$10011_2 = 1 \times 2^4 + 0 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0$$
-$$= 16 + 0 + 0 + 2 + 1 = 19_{10}$$
+    $$\begin{aligned}
+    10011_2 &= 1 \times 2^4 + 0 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 \\
+    &= 16 + 0 + 0 + 2 + 1 = 19_{10}
+    \end{aligned}$$
 
 ### Hexadecimal Conversions
 
 **Decimal to hexadecimal** uses repeated division by 16. **Hexadecimal to decimal** uses positional notation with powers of 16.
 
-**Example: Convert $255_{10}$ to hexadecimal**
+!!! example "Example: Convert $255_{10}$ to hexadecimal"
 
-- $255 \div 16 = 15$ remainder $15$ (F)
-- $15 \div 16 = 0$ remainder $15$ (F)
-- Result: $255_{10} = \text{FF}_{16}$
+    - $255 \div 16 = 15$ remainder $15$ (F)
+    - $15 \div 16 = 0$ remainder $15$ (F)
+    - Result: $255_{10} = \text{FF}_{16}$
 
 ### Octal Conversions
 
