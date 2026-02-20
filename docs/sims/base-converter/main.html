@@ -72,12 +72,17 @@
         .ctrl-checkbox input[type="checkbox"] {
             accent-color: #2196F3;
         }
+        .back-link {
+            margin-top: 4px;
+            font-size: 12px;
+        }
     </style>
     <script src="base-converter.js"></script>
     <script src="../fullscreen-toggle.js"></script>
 </head>
 <body>
     <main></main>
-    <a href="." style="margin-top:4px;font-size:12px;">Back to Documentation</a>
+    <a href="." class="back-link">Back to Documentation</a>
+    <script>if(window.frameElement)document.querySelector('.back-link').style.display='none';</script>
 </body>
 </html>
