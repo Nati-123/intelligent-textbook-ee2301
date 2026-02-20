@@ -529,6 +529,41 @@
   font-weight: 600;
 }
 
+/* ===== EXAMPLE ADMONITION BOXES (Global) ===== */
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  background: #F3EDFF !important;
+  border: 2px solid #C8B8FF !important;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #222;
+}
+
+.md-typeset .admonition.example > .admonition-title,
+.md-typeset details.example > summary {
+  background: #E8E0FF !important;
+  border-bottom: 1px solid #C8B8FF;
+  color: #5A3EED !important;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+}
+
+.md-typeset .admonition.example > .admonition-title::before,
+.md-typeset details.example > summary::before {
+  background-color: #5A3EED !important;
+}
+
+.md-typeset .admonition.example p,
+.md-typeset details.example p {
+  color: #222;
+}
+
+.md-typeset .admonition.example .MathJax,
+.md-typeset details.example .MathJax {
+  margin: 0.6rem auto;
+  text-align: center;
+}
+
 /* ===== PROBLEMS PAGE: Show/Hide Answer toggle ===== */
 
 .solution-wrapper {
