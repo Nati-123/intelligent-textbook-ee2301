@@ -3,6 +3,8 @@ title: Unit 8 Problems - Combinational Logic Modules
 description: Practice problems for multiplexers, decoders, encoders, and other combinational building blocks
 ---
 
+<div class="problems-styled" markdown>
+
 # End-of-Unit Problems: Combinational Logic Modules
 
 Work through these problems to reinforce your understanding of MSI combinational building blocks.
@@ -823,3 +825,5 @@ A[7:4], B[7:4] → [COMP2] → (A>B)final, (A=B)final, (A<B)final
 | D | Code Converters | 3 |
 | E | Comparators | 2 |
 | **Total** | | **20** |
+
+</div>

@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<div class="problems-styled" markdown>
+
 # Quiz: Combinational Logic Modules
 
 Test your understanding of multiplexers, decoders, encoders, priority encoders, code converters, and magnitude comparators with these questions.
@@ -189,3 +191,5 @@ Gray code result: 0101. The key property of Gray code is that adjacent values di
 | 8 | B | Decoder vs MUX Comparison |
 | 9 | C | Cascading Magnitude Comparators |
 | 10 | D | BCD-to-Seven-Segment Decoder |
+
+</div>

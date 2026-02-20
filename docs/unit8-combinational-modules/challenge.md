@@ -3,6 +3,8 @@ title: Unit 8 Challenge - Combinational Logic Modules
 description: Challenge problems for combinational logic modules — answers only, no solutions
 ---
 
+<div class="problems-styled" markdown>
+
 # Challenge Problems: Combinational Logic Modules
 
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
@@ -116,4 +118,6 @@ $B_0 = G_3 \oplus G_2 \oplus G_1 \oplus G_0 = B_1 \oplus G_0$
 **Total: 3 XOR gates** (cascaded: each binary bit is XOR of the previous binary bit and the current Gray bit).
 
 Note: The cascaded implementation is simpler (3 gates) but has longer propagation delay. A parallel implementation using the full XOR chains would need $3 + 2 + 1 = 6$ XOR gates but has less delay.
+
+</div>
 

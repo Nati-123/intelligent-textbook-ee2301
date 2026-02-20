@@ -6,6 +6,8 @@ date: 2026-02-05 15:30:00
 version: 0.03
 ---
 
+<div class="unit1-styled" markdown>
+
 # Unit 8: Combinational Logic Modules
 
 <details class="video-overview">
@@ -1149,3 +1151,5 @@ Step through implementing a Boolean function using a 4:1 multiplexer:
 ---
 
 [See Annotated References](./references.md)
+
+</div>
