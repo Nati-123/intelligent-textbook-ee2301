@@ -591,22 +591,23 @@ The complement of a sum equals the product of the complements. In circuit terms:
 
 **Generalized Form:** DeMorgan's theorems extend to any number of variables:
 
-$$\overline{A \cdot B \cdot C \cdot \ldots} = \overline{A} + \overline{B} + \overline{C} + \ldots$$
-$$\overline{A + B + C + \ldots} = \overline{A} \cdot \overline{B} \cdot \overline{C} \cdot \ldots$$
+$$\begin{aligned}
+\overline{A \cdot B \cdot C \cdot \ldots} &= \overline{A} + \overline{B} + \overline{C} + \ldots \\[6pt]
+\overline{A + B + C + \ldots} &= \overline{A} \cdot \overline{B} \cdot \overline{C} \cdot \ldots
+\end{aligned}$$
 
-**Application Example:** Simplify $\overline{\overline{A}B + C}$
+**Application Example:** Simplify $\overline{\overline{A}\,B + C}$
 
-Using DeMorgan's second theorem:
-$$\overline{\overline{A}B + C} = \overline{\overline{A}B} \cdot \overline{C}$$
-
-Using DeMorgan's first theorem on the first term:
-$$= (\overline{\overline{A}} + \overline{B}) \cdot \overline{C}$$
-
-Using involution:
-$$= (A + \overline{B}) \cdot \overline{C}$$
-
-Distributing:
-$$= A\overline{C} + \overline{B}\overline{C}$$
+$$\begin{aligned}
+\overline{\overline{A}\,B + C} &= \overline{\overline{A}\,B} \cdot \overline{C}
+  && \text{(DeMorgan's second theorem)} \\[6pt]
+&= \bigl(\overline{\overline{A}} + \overline{B}\bigr) \cdot \overline{C}
+  && \text{(DeMorgan's first theorem)} \\[6pt]
+&= \bigl(A + \overline{B}\bigr) \cdot \overline{C}
+  && \text{(Involution)} \\[6pt]
+&= A\,\overline{C} + \overline{B}\,\overline{C}
+  && \text{(Distributive law)}
+\end{aligned}$$
 
 ### The Duality Principle
 
