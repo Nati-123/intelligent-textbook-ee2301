@@ -730,7 +730,7 @@ For an n-bit two's complement number:
 
 #### Diagram: Overflow Detection Simulator
 
-<iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="620px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Overflow Detection Simulator</summary>
