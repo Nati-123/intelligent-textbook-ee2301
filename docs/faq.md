@@ -52,7 +52,7 @@ Each unit includes content, worked examples, diagrams, a quiz, practice problems
 
 The textbook provides multiple learning resources:
 
-- **200 concepts** organized in a learning graph
+- **410 concepts** organized in a learning graph
 - **398 glossary terms** with definitions and examples
 - **130 quiz questions** (10 per unit) with detailed explanations
 - **106 interactive MicroSims** for hands-on practice
