@@ -529,6 +529,72 @@
   font-weight: 600;
 }
 
+/* ===== WARNING ADMONITION BOXES (Global) ===== */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  background: #FFEAEA !important;
+  border: 2px solid #FF8A8A !important;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #222;
+}
+
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset details.warning > summary {
+  background: #FFD6D6 !important;
+  border-bottom: 1px solid #FF8A8A;
+  color: #D32F2F !important;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+}
+
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset details.warning > summary::before {
+  background-color: #D32F2F !important;
+}
+
+.md-typeset .admonition.warning p,
+.md-typeset details.warning p {
+  color: #222;
+}
+
+/* ===== NOTE / TIP ADMONITION BOXES (Global) ===== */
+.md-typeset .admonition.note,
+.md-typeset details.note,
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  background: #EEF7FF !important;
+  border: 2px solid #8CC8FF !important;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #222;
+}
+
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary,
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary {
+  background: #DFF0FF !important;
+  border-bottom: 1px solid #8CC8FF;
+  color: #1565C0 !important;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+}
+
+.md-typeset .admonition.note > .admonition-title::before,
+.md-typeset details.note > summary::before,
+.md-typeset .admonition.tip > .admonition-title::before,
+.md-typeset details.tip > summary::before {
+  background-color: #1565C0 !important;
+}
+
+.md-typeset .admonition.note p,
+.md-typeset details.note p,
+.md-typeset .admonition.tip p,
+.md-typeset details.tip p {
+  color: #222;
+}
+
 /* ===== EXAMPLE ADMONITION BOXES (Global) ===== */
 .md-typeset .admonition.example,
 .md-typeset details.example {
