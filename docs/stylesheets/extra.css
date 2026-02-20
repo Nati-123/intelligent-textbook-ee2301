@@ -503,6 +503,20 @@
   }
 }
 
+/* ===== BODY TEXT STYLING (Global) ===== */
+.md-typeset {
+  color: #222222;
+  line-height: 1.6;
+}
+
+.md-typeset p {
+  max-width: 72ch;
+}
+
+.md-typeset strong {
+  color: #222222;
+}
+
 /* ===== UNIT 1 HEADING THEME (Purple & Gold) ===== */
 .unit1-styled h2 {
   color: #D4A017 !important;
