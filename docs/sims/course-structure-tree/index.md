@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="630px" width="100%" scrolling="no"></iframe>
 
-[Run the Course Structure Tree Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive hierarchical tree diagram that visualizes the complete structure of the EE2301 Digital System Design course. It serves as a navigational aid and course overview, helping students understand the organization of all course materials including units, content pages, quizzes, references, MicroSims, and supplemental resources.
