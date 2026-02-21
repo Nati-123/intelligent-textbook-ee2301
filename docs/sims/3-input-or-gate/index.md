@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the 3-Input OR Gate Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of a 3-input OR gate. The simulation displays the standard OR gate symbol with its curved body, three clickable input toggles, and a complete eight-row truth table.
@@ -23,14 +21,6 @@ Key features include:
 - Three clickable toggle buttons for inputs A, B, and C
 - Eight-row truth table with real-time row highlighting
 - Live output display showing the Boolean expression A OR B OR C = Y
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/3-input-or-gate/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the Buffer Gate with Truth Table Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of the buffer gate, a fundamental digital circuit element that passes its input to the output without logical transformation. The simulation displays the standard buffer gate symbol (a triangle without an inversion bubble) with one input (A) and one output (Y), along with a two-row truth table.
@@ -24,14 +22,6 @@ Key features include:
 - Two-row truth table with the current input highlighted
 - Live Boolean expression evaluation
 - Key insight box explaining practical buffer uses
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/buffer-gate-truth-table/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

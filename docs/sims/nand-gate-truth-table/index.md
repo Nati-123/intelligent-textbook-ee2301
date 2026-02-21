@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the NAND Gate with Truth Table Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of the NAND logic gate, which produces the complement of the AND function. The NAND gate is especially important because it is a universal gate -- any Boolean function can be implemented using only NAND gates. The simulation displays the standard NAND gate symbol (AND shape with an inversion bubble) with two inputs (A and B) and one output (Y), along with a complete truth table.
@@ -24,14 +22,6 @@ Key features include:
 - Truth table with the current input combination highlighted
 - Live Boolean expression evaluation
 - Key insight box explaining NAND as a universal gate
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/nand-gate-truth-table/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the Tri-State Buffer with Truth Table Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of the tri-state buffer, a critical component in digital systems that enables shared bus architectures. Unlike standard logic gates that output only 0 or 1, the tri-state buffer has a third output state: high-impedance (Z), which electrically disconnects the output from the bus. The simulation displays the tri-state buffer symbol (triangle with an enable control input from the top) with a data input (A), an enable input (EN), and one output (Y).
@@ -24,14 +22,6 @@ Key features include:
 - Four-row truth table showing Z output when EN = 0
 - High-impedance state displayed in amber color to distinguish from logic levels
 - Key insight box explaining bus sharing and electrical disconnection
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/tri-state-buffer-truth-table/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

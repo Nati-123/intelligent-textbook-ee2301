@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the 3-Input XOR Gate Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of a 3-input XOR gate. The simulation displays the standard XOR gate symbol extended for three inputs, clickable input toggles, and a complete eight-row truth table.
@@ -24,14 +22,6 @@ Key features include:
 - Eight-row truth table with real-time row highlighting
 - Live output display showing the current Boolean evaluation
 - Visual demonstration of the odd-parity detection property
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/3-input-xor-gate/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

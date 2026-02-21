@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the 3-Input AND Gate Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of a 3-input AND gate. The simulation displays the standard AND gate symbol with three inputs (A, B, C), clickable toggle buttons, and a complete eight-row truth table.
@@ -23,14 +21,6 @@ Key features include:
 - Three clickable toggle buttons for inputs A, B, and C
 - Eight-row truth table with real-time row highlighting
 - Live output display showing the Boolean expression A AND B AND C = Y
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/3-input-and-gate/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

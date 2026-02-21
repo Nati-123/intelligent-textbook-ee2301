@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the NOT Gate with Truth Table Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of the NOT gate (also called an inverter), the simplest logic gate with only one input. The simulation displays the standard NOT gate symbol (a triangle with an inversion bubble at the output) with one input (A) and one output (Y), along with a two-row truth table.
@@ -24,14 +22,6 @@ Key features include:
 - Two-row truth table with the current input highlighted
 - Live Boolean expression evaluation
 - Key insight box reinforcing inversion and bubble notation
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/not-gate-truth-table/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

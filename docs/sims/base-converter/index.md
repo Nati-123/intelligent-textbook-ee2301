@@ -21,14 +21,6 @@ Key features:
 - **Two's complement support** for signed 8-bit numbers
 - **Input validation** with helpful error messages
 
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://[your-site]/sims/base-converter/main.html" height="510px" scrolling="no" width="100%"></iframe>
-```
-
 ## How to Use
 
 1. **Enter a number** in the input field

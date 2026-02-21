@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="500px" width="100%" scrolling="no"></iframe>
 
-[Run the Logic Gate Simulator Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive environment for exploring the behavior of fundamental logic gates used in digital circuits. Students can select different gate types, toggle input values, and observe the resulting outputs in real-time. The simulator displays both the gate symbol and the complete truth table for each gate type.
@@ -22,14 +20,6 @@ Key features:
 - **Visual gate symbols**: Standard logic gate shapes with input/output wires
 - **Truth table display**: Complete truth table with current state highlighted
 - **Multiple inputs**: Support for 2 or 3 input gates
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://[your-site]/sims/logic-gate-simulator/main.html" height="500px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 

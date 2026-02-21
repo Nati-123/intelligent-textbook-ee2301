@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
 
-[Run the NOR Gate with Truth Table Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim provides an interactive demonstration of the NOR logic gate, which produces the complement of the OR function. Like NAND, the NOR gate is also a universal gate -- any Boolean function can be implemented using only NOR gates. The simulation displays the standard NOR gate symbol (OR shape with an inversion bubble) with two inputs (A and B) and one output (Y), along with a complete truth table.
@@ -24,14 +22,6 @@ Key features include:
 - Truth table with the current input combination highlighted
 - Live Boolean expression evaluation
 - Key insight box explaining NOR as a universal gate
-
-## Iframe Embedding
-
-You can include this MicroSim on your website using the following `iframe`:
-
-```html
-<iframe src="https://Nati-123.github.io/intelligent-textbook-ee2301/sims/nor-gate-truth-table/main.html" height="480px" scrolling="no" width="100%"></iframe>
-```
 
 ## How to Use
 
