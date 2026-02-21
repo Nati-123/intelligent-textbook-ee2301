@@ -152,31 +152,43 @@ function draw() {
   rect(margin, margin, w, 40, 5);
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(16);
   textStyle(BOLD);
+  let titleSize = 16;
+  textSize(titleSize);
+  while (textWidth(step.title) > w - 20 && titleSize > 11) {
+    titleSize--;
+    textSize(titleSize);
+  }
   text(step.title, canvasWidth / 2, margin + 20);
-
-  // Step indicator
-  fill(100);
-  textSize(12);
-  textStyle(NORMAL);
-  textAlign(RIGHT, TOP);
-  text('Step ' + (currentStep + 1) + ' of ' + totalSteps, canvasWidth - margin - 5, margin + 50);
 
   // Progress bar
   let progY = margin + 48;
   fill(220);
+  noStroke();
   rect(margin, progY, w, 6, 3);
   fill(TITLE_BG);
   rect(margin, progY, w * (currentStep + 1) / totalSteps, 6, 3);
+
+  // Step indicator
+  fill(100);
+  textSize(11);
+  textStyle(NORMAL);
+  textAlign(RIGHT, TOP);
+  text('Step ' + (currentStep + 1) + '/' + totalSteps, canvasWidth - margin - 5, progY + 10);
 
   // Rule label
   fill(HIGHLIGHT);
   noStroke();
   let ruleY = margin + 65;
-  textSize(12);
   textStyle(BOLD);
-  let rw = textWidth(step.rule) + 20;
+  let ruleSize = 12;
+  textSize(ruleSize);
+  let maxRuleW = w - 20;
+  while (textWidth(step.rule) > maxRuleW - 20 && ruleSize > 9) {
+    ruleSize--;
+    textSize(ruleSize);
+  }
+  let rw = min(textWidth(step.rule) + 24, maxRuleW);
   rw = max(rw, 100);
   rect(canvasWidth / 2 - rw / 2, ruleY, rw, 24, 12);
   fill(255);
