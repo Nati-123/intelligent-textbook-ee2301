@@ -58,6 +58,10 @@ let synthesizeExamples = [
       'BC needs AND gate',
       'Combine with OR gate',
       'Result: 2 gates (1 AND, 1 OR)'
+    ],
+    circuit: [
+      { type: 'AND', inputs: ['B', 'C'], id: 'g1' },
+      { type: 'OR', inputs: ['A', 'g1'], id: 'out' }
     ]
   },
   {
@@ -68,6 +72,13 @@ let synthesizeExamples = [
       "Need AND gates for each term",
       'Need OR gate to combine',
       'Result: 5 gates (2 NOT, 2 AND, 1 OR)'
+    ],
+    circuit: [
+      { type: 'NOT', inputs: ['A'], id: "A'" },
+      { type: 'NOT', inputs: ['B'], id: "B'" },
+      { type: 'AND', inputs: ['A', "B'"], id: 'g1' },
+      { type: 'AND', inputs: ["A'", 'B'], id: 'g2' },
+      { type: 'OR', inputs: ['g1', 'g2'], id: 'out' }
     ]
   },
   {
@@ -78,6 +89,9 @@ let synthesizeExamples = [
       'Option 2: Single NOR gate',
       'NOR gate is more efficient',
       'Result: 1 NOR gate'
+    ],
+    circuit: [
+      { type: 'NOR', inputs: ['A', 'B'], id: 'out' }
     ]
   }
 ];
@@ -217,19 +231,87 @@ function drawSynthesisMode() {
     y += 20;
   }
 
-  // Visual representation placeholder
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(2);
-  rect(30, 280, canvasWidth - 60, 100, 5);
+  // Draw synthesized circuit
+  drawSynthesisCircuit(example.circuit, 280);
+}
 
-  fill('#2196f3');
+function drawSynthesisCircuit(circuit, topY) {
+  let boxH = 120;
+
+  // Background
+  fill('#e8f5e9');
+  stroke('#4CAF50');
+  strokeWeight(2);
+  rect(30, topY, canvasWidth - 60, boxH, 5);
+
+  // Label
+  fill('#388E3C');
   noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(12);
-  text('Circuit Implementation', canvasWidth / 2, 310);
-  text('(Visualized based on synthesis steps)', canvasWidth / 2, 330);
-  text(example.steps[example.steps.length - 1], canvasWidth / 2, 355);
+  textAlign(CENTER, TOP);
+  textSize(11);
+  text('Synthesized Circuit', canvasWidth / 2, topY + 5);
+
+  let centerY = topY + boxH / 2 + 8;
+  let startX = 60;
+  let endX = canvasWidth - 60;
+  let gateSpacing = (endX - startX) / (circuit.length + 1);
+
+  for (let i = 0; i < circuit.length; i++) {
+    let gate = circuit[i];
+    let x = startX + (i + 1) * gateSpacing;
+    let y = centerY;
+
+    // Gate box
+    fill('white');
+    stroke('#333');
+    strokeWeight(2);
+    rect(x - 25, y - 18, 50, 36, 5);
+
+    // Gate label
+    fill('#333');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(11);
+    text(gate.type, x, y - 4);
+
+    fill('#999');
+    textSize(8);
+    text(gate.id, x, y + 10);
+
+    // Input labels
+    fill('#666');
+    textSize(9);
+    textAlign(RIGHT, CENTER);
+    if (gate.inputs.length === 1) {
+      text(gate.inputs[0], x - 30, y);
+    } else {
+      text(gate.inputs[0], x - 30, y - 7);
+      text(gate.inputs[1], x - 30, y + 7);
+    }
+  }
+
+  // Connection lines
+  stroke('#999');
+  strokeWeight(1);
+  for (let i = 0; i < circuit.length - 1; i++) {
+    let x1 = startX + (i + 1) * gateSpacing + 25;
+    let x2 = startX + (i + 2) * gateSpacing - 25;
+    line(x1, centerY, x2, centerY);
+  }
+
+  // Output label
+  fill('#4CAF50');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(13);
+  let lastX = startX + circuit.length * gateSpacing + 30;
+  text('F', lastX, centerY);
+
+  // Output line
+  stroke('#4CAF50');
+  strokeWeight(2);
+  let lastGateX = startX + circuit.length * gateSpacing + 25;
+  line(lastGateX, centerY, lastX - 5, centerY);
 }
 
 function drawCircuitDiagram(circuit) {
