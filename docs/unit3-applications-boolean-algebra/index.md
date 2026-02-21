@@ -296,11 +296,11 @@ Binary addition is fundamental to computer arithmetic. Digital systems implement
 A **half adder** adds two single-bit inputs (A and B) and produces two outputs: the **sum bit** (S) and the **carry bit** (C). It is called "half" because it cannot accept a carry-in from a previous stage.
 
 | A | B | Sum (S) | Carry (C) |
-|---|---|---------|-----------|
-| 0 | 0 | 0 | 0 |
-| 0 | 1 | 1 | 0 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 1 |
+|:-:|:-:|:-------:|:---------:|
+| 0 | 0 | 0       | 0         |
+| 0 | 1 | 1       | 0         |
+| 1 | 0 | 1       | 0         |
+| 1 | 1 | 0       | 1         |
 
 From the truth table:
 
@@ -431,16 +431,20 @@ Binary subtraction can be implemented directly with subtractor circuits or by us
 A **half subtractor** subtracts one bit (B) from another (A), producing a **difference bit** (D) and a **borrow bit** ($B_{out}$).
 
 | A | B | Difference (D) | Borrow ($B_{out}$) |
-|---|---|----------------|-------------------|
-| 0 | 0 | 0 | 0 |
-| 0 | 1 | 1 | 1 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 0 |
+|:-:|:-:|:--------------:|:------------------:|
+| 0 | 0 | 0              | 0                  |
+| 0 | 1 | 1              | 1                  |
+| 1 | 0 | 1              | 0                  |
+| 1 | 1 | 0              | 0                  |
 
-The Boolean equations:
+The Boolean equations are:
 
-$$D = A \oplus B$$
-$$B_{out} = \overline{A} \cdot B$$
+$$
+\begin{aligned}
+D      &= A \oplus B \\[6pt]
+B_{out} &= \overline{A} \cdot B
+\end{aligned}
+$$
 
 Note: The difference is identical to the sum in a half adder (XOR), but the borrow differs from carry.
 
@@ -449,20 +453,24 @@ Note: The difference is identical to the sum in a half adder (XOR), but the borr
 A **full subtractor** subtracts B from A while also accounting for a borrow-in ($B_{in}$) from a previous stage.
 
 | A | B | $B_{in}$ | Difference (D) | $B_{out}$ |
-|---|---|----------|----------------|-----------|
-| 0 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 | 1 |
-| 0 | 1 | 0 | 1 | 1 |
-| 0 | 1 | 1 | 0 | 1 |
-| 1 | 0 | 0 | 1 | 0 |
-| 1 | 0 | 1 | 0 | 0 |
-| 1 | 1 | 0 | 0 | 0 |
-| 1 | 1 | 1 | 1 | 1 |
+|:-:|:-:|:--------:|:--------------:|:---------:|
+| 0 | 0 | 0        | 0              | 0         |
+| 0 | 0 | 1        | 1              | 1         |
+| 0 | 1 | 0        | 1              | 1         |
+| 0 | 1 | 1        | 0              | 1         |
+| 1 | 0 | 0        | 1              | 0         |
+| 1 | 0 | 1        | 0              | 0         |
+| 1 | 1 | 0        | 0              | 0         |
+| 1 | 1 | 1        | 1              | 1         |
 
-The Boolean equations:
+The Boolean equations are:
 
-$$D = A \oplus B \oplus B_{in}$$
-$$B_{out} = \overline{A}B + B_{in}(\overline{A \oplus B}) = \overline{A}B + \overline{A}B_{in} + BB_{in}$$
+$$
+\begin{aligned}
+D      &= A \oplus B \oplus B_{in} \\[6pt]
+B_{out} &= \overline{A}\,B + B_{in}\!\left(\overline{A \oplus B}\right) = \overline{A}\,B + \overline{A}\,B_{in} + B\,B_{in}
+\end{aligned}
+$$
 
 ### Adder-Subtractor Circuit
 
