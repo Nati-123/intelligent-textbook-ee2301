@@ -5,10 +5,21 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 420;
+let drawHeight = 410;
 let controlHeight = 80;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
+
+// Theme colors
+const PURPLE = '#6A5BFF';
+const PURPLE_DARK = '#5A3EED';
+const PURPLE_LIGHT = '#7A5CFF';
+const PURPLE_BG = '#F4F0FF';
+const PURPLE_BORDER = '#C9B9FF';
+const GOLD = '#D4A017';
+const GREEN_ON = '#4CAF50';
+const RED_OFF = '#E57373';
+const BLUE_PARITY = '#5C6BC0';
 
 let modeSelect;
 let parityTypeSelect;
@@ -41,34 +52,37 @@ function setup() {
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
   modeSelect.position(mainRect.left + 80, mainRect.top + drawHeight + 15);
-  parityTypeSelect.position(mainRect.left + 230, mainRect.top + drawHeight + 15);
+  parityTypeSelect.position(mainRect.left + 240, mainRect.top + drawHeight + 15);
 }
 
 function draw() {
   updateCanvasSize();
 
-  // Drawing area
-  fill('aliceblue');
-  stroke('silver');
-  strokeWeight(1);
-  rect(0, 0, canvasWidth, drawHeight);
+  // Card background
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(1, 1, canvasWidth - 2, drawHeight - 2, 14);
 
   // Control area
   fill('white');
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(18);
+  textStyle(BOLD);
   text('Parity Circuit Simulator', canvasWidth / 2, 10);
+  textStyle(NORMAL);
 
   // Subtitle
   textSize(12);
-  fill('#666');
+  fill('#555');
   text(parityType.charAt(0).toUpperCase() + parityType.slice(1) + ' Parity ' +
-       (currentMode === 'generate' ? 'Generator' : 'Checker'), canvasWidth / 2, 35);
+       (currentMode === 'generate' ? 'Generator' : 'Checker'), canvasWidth / 2, 33);
 
   // Calculate parity
   let oneCount = dataBits.reduce((a, b) => a + b, 0);
@@ -93,149 +107,188 @@ function draw() {
   drawExplanation(oneCount, expectedParity);
 
   // Control labels
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('Mode:', 20, drawHeight + 27);
-  text('Type:', 180, drawHeight + 27);
+  text('Type:', 190, drawHeight + 27);
+  textStyle(NORMAL);
 
-  fill('#666');
+  fill(PURPLE_LIGHT);
   textSize(10);
   textAlign(CENTER, CENTER);
   text('Click data bits to toggle', canvasWidth / 2, drawHeight + 55);
 }
 
 function drawBitToggles(expectedParity) {
-  let y = 70;
-  let bitW = 45;
-  let spacing = 55;
+  let y = 58;
+  let bitW = 46;
+  let spacing = 56;
   let startX = (canvasWidth - 4 * spacing - bitW) / 2;
 
-  // Data bits
-  fill('#333');
+  // Data bits header
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, BOTTOM);
   textSize(12);
-  text('Data Bits', startX + 2 * spacing, y - 5);
+  textStyle(BOLD);
+  text('Data Bits', startX + 2 * spacing, y - 4);
+  textStyle(NORMAL);
 
   for (let i = 0; i < 4; i++) {
     let x = startX + i * spacing;
 
-    fill(dataBits[i] ? '#4CAF50' : '#f44336');
-    stroke('#333');
-    strokeWeight(2);
-    rect(x, y, bitW, 35, 5);
+    // Subtle shadow on active bits
+    if (dataBits[i]) {
+      drawingContext.shadowColor = 'rgba(76, 175, 80, 0.3)';
+      drawingContext.shadowBlur = 6;
+    } else {
+      drawingContext.shadowColor = 'rgba(229, 115, 115, 0.25)';
+      drawingContext.shadowBlur = 4;
+    }
+
+    fill(dataBits[i] ? GREEN_ON : RED_OFF);
+    stroke(PURPLE_BORDER);
+    strokeWeight(1.5);
+    rect(x, y, bitW, 36, 10);
+
+    drawingContext.shadowBlur = 0;
 
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(16);
-    text(dataBits[i], x + bitW / 2, y + 17);
+    textStyle(BOLD);
+    text(dataBits[i], x + bitW / 2, y + 18);
+    textStyle(NORMAL);
 
-    fill('#666');
-    textSize(9);
-    text('D' + (3 - i), x + bitW / 2, y + 42);
+    // Bit label
+    fill(PURPLE_LIGHT);
+    textSize(10);
+    text('D' + (3 - i), x + bitW / 2, y + 44);
   }
 
-  // Parity bit
+  // Parity bit (check mode only)
   if (currentMode === 'check') {
     let parityX = startX + 4.5 * spacing;
 
-    fill('#333');
+    fill(PURPLE);
     noStroke();
     textAlign(CENTER, BOTTOM);
     textSize(11);
-    text('Parity', parityX + bitW / 2, y - 5);
+    textStyle(BOLD);
+    text('Parity', parityX + bitW / 2, y - 4);
+    textStyle(NORMAL);
 
-    fill(parityBit ? '#2196f3' : '#90caf9');
-    stroke('#1976d2');
-    strokeWeight(2);
-    rect(parityX, y, bitW, 35, 5);
+    drawingContext.shadowColor = 'rgba(92, 107, 192, 0.3)';
+    drawingContext.shadowBlur = 5;
+
+    fill(parityBit ? BLUE_PARITY : '#B3BAE8');
+    stroke(PURPLE_BORDER);
+    strokeWeight(1.5);
+    rect(parityX, y, bitW, 36, 10);
+
+    drawingContext.shadowBlur = 0;
 
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(16);
-    text(parityBit, parityX + bitW / 2, y + 17);
+    textStyle(BOLD);
+    text(parityBit, parityX + bitW / 2, y + 18);
+    textStyle(NORMAL);
 
-    fill('#666');
-    textSize(9);
-    text('P', parityX + bitW / 2, y + 42);
+    fill(PURPLE_LIGHT);
+    textSize(10);
+    text('P', parityX + bitW / 2, y + 44);
   }
 }
 
 function drawGeneratorCircuit(expectedParity) {
-  let circuitY = 140;
+  let circuitY = 128;
   let centerX = canvasWidth / 2;
 
-  // XOR tree
-  fill('#fff3e0');
-  stroke('#ff9800');
-  strokeWeight(2);
-  rect(centerX - 100, circuitY, 200, 80, 8);
+  // XOR tree box — purple themed
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(centerX - 110, circuitY, 220, 85, 14);
 
-  fill('#ff9800');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
-  text('XOR Tree (Parity Generator)', centerX, circuitY + 8);
+  textSize(12);
+  textStyle(BOLD);
+  text('XOR Tree (Parity Generator)', centerX, circuitY + 10);
+  textStyle(NORMAL);
 
-  // XOR gates inside
-  textSize(9);
-  text('D3 ⊕ D2 ⊕ D1 ⊕ D0', centerX, circuitY + 30);
+  // XOR formula
+  fill(PURPLE_DARK);
+  textSize(11);
+  text('D3 \u2295 D2 \u2295 D1 \u2295 D0', centerX, circuitY + 32);
 
   if (parityType === 'odd') {
-    text('(inverted for odd parity)', centerX, circuitY + 45);
+    fill('#888');
+    textSize(9);
+    text('(inverted for odd parity)', centerX, circuitY + 48);
   }
 
   // Result
-  textSize(14);
-  fill(expectedParity ? '#4CAF50' : '#f44336');
-  text('P = ' + expectedParity, centerX, circuitY + 58);
+  textSize(15);
+  textStyle(BOLD);
+  fill(PURPLE_DARK);
+  text('P = ' + expectedParity, centerX, circuitY + 63);
+  textStyle(NORMAL);
 
-  // Output arrow
-  stroke('#4CAF50');
+  // Output arrow — purple
+  stroke(PURPLE_LIGHT);
   strokeWeight(2);
-  line(centerX, circuitY + 80, centerX, circuitY + 100);
-  fill('#4CAF50');
+  line(centerX, circuitY + 85, centerX, circuitY + 103);
+  fill(PURPLE_LIGHT);
   noStroke();
-  triangle(centerX, circuitY + 110, centerX - 8, circuitY + 100, centerX + 8, circuitY + 100);
+  triangle(centerX, circuitY + 112, centerX - 7, circuitY + 103, centerX + 7, circuitY + 103);
 
-  // Transmitted word
-  let wordY = circuitY + 125;
-  fill('#e8f5e9');
-  stroke('#4CAF50');
-  strokeWeight(2);
-  rect(centerX - 80, wordY, 160, 35, 5);
+  // Transmitted word pill
+  let wordY = circuitY + 120;
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(centerX - 90, wordY, 180, 36, 12);
 
-  fill('#4CAF50');
+  fill(PURPLE_DARK);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
+  textSize(13);
+  textStyle(BOLD);
   let word = dataBits.join('') + expectedParity;
-  text('Transmitted: ' + word, centerX, wordY + 17);
+  text('Transmitted: ' + word, centerX, wordY + 18);
+  textStyle(NORMAL);
 }
 
 function drawCheckerCircuit(expectedParity) {
-  let circuitY = 140;
+  let circuitY = 128;
   let centerX = canvasWidth / 2;
 
-  // XOR tree including parity bit
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(2);
-  rect(centerX - 100, circuitY, 200, 80, 8);
+  // XOR tree box — purple themed
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(centerX - 110, circuitY, 220, 85, 14);
 
-  fill('#2196f3');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
-  text('XOR Tree (Parity Checker)', centerX, circuitY + 8);
+  textSize(12);
+  textStyle(BOLD);
+  text('XOR Tree (Parity Checker)', centerX, circuitY + 10);
+  textStyle(NORMAL);
 
-  // XOR gates inside
-  textSize(9);
-  text('D3 ⊕ D2 ⊕ D1 ⊕ D0 ⊕ P', centerX, circuitY + 30);
+  // XOR formula
+  fill(PURPLE_DARK);
+  textSize(11);
+  text('D3 \u2295 D2 \u2295 D1 \u2295 D0 \u2295 P', centerX, circuitY + 32);
 
   // Check result
   let totalOnes = dataBits.reduce((a, b) => a + b, 0) + parityBit;
@@ -247,79 +300,90 @@ function drawCheckerCircuit(expectedParity) {
   }
 
   textSize(12);
+  textStyle(BOLD);
   if (errorDetected) {
-    fill('#f44336');
-    text('Error = 1 (ERROR DETECTED!)', centerX, circuitY + 55);
+    fill('#D32F2F');
+    text('Error = 1 (ERROR DETECTED)', centerX, circuitY + 56);
   } else {
-    fill('#4CAF50');
-    text('Error = 0 (No error)', centerX, circuitY + 55);
-
+    fill(GREEN_ON);
+    text('Error = 0 (No error)', centerX, circuitY + 56);
   }
+  textStyle(NORMAL);
 
-  // Status indicator
+  // Status indicator pill
   let statusY = circuitY + 100;
+
+  drawingContext.shadowColor = errorDetected ? 'rgba(211, 47, 47, 0.25)' : 'rgba(76, 175, 80, 0.25)';
+  drawingContext.shadowBlur = 8;
+
   if (errorDetected) {
-    fill('#ffcdd2');
-    stroke('#f44336');
+    fill('#FFCDD2');
+    stroke('#D32F2F');
   } else {
-    fill('#c8e6c9');
-    stroke('#4CAF50');
+    fill('#C8E6C9');
+    stroke(GREEN_ON);
   }
   strokeWeight(2);
-  rect(centerX - 80, statusY, 160, 40, 5);
+  rect(centerX - 90, statusY, 180, 42, 14);
 
-  fill(errorDetected ? '#f44336' : '#4CAF50');
+  drawingContext.shadowBlur = 0;
+
+  fill(errorDetected ? '#D32F2F' : GREEN_ON);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(14);
-  text(errorDetected ? '⚠ Parity Error!' : '✓ Parity OK', centerX, statusY + 20);
+  textSize(15);
+  textStyle(BOLD);
+  text(errorDetected ? '\u26A0 Parity Error!' : '\u2713 Parity OK', centerX, statusY + 21);
+  textStyle(NORMAL);
 }
 
 function drawExplanation(oneCount, expectedParity) {
-  let y = 310;
+  let y = 298;
 
-  fill('#f5f5f5');
-  stroke('#ccc');
-  strokeWeight(1);
-  rect(25, y, canvasWidth - 50, 100, 5);
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(20, y, canvasWidth - 40, 102, 12);
 
-  fill('#333');
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(11);
-  text('How it Works:', 35, y + 10);
+  textSize(12);
+  textStyle(BOLD);
+  text('How it Works:', 34, y + 10);
+  textStyle(NORMAL);
 
-  fill('#666');
+  fill('#444');
   textSize(10);
   let lineY = y + 28;
 
-  text('• Number of 1s in data: ' + oneCount, 40, lineY);
-  lineY += 15;
+  text('\u2022 Number of 1s in data: ' + oneCount, 38, lineY);
+  lineY += 17;
 
   if (parityType === 'even') {
-    text('• Even parity: Total 1s (including P) must be even', 40, lineY);
-    lineY += 15;
-    text('• P = ' + expectedParity + ' makes total ' + (oneCount + expectedParity) + ' (even)', 40, lineY);
+    text('\u2022 Even parity: Total 1s (including P) must be even', 38, lineY);
+    lineY += 17;
+    text('\u2022 P = ' + expectedParity + ' makes total ' + (oneCount + expectedParity) + ' (even)', 38, lineY);
   } else {
-    text('• Odd parity: Total 1s (including P) must be odd', 40, lineY);
-    lineY += 15;
-    text('• P = ' + expectedParity + ' makes total ' + (oneCount + expectedParity) + ' (odd)', 40, lineY);
+    text('\u2022 Odd parity: Total 1s (including P) must be odd', 38, lineY);
+    lineY += 17;
+    text('\u2022 P = ' + expectedParity + ' makes total ' + (oneCount + expectedParity) + ' (odd)', 38, lineY);
   }
 
-  lineY += 18;
-  text('• Parity detects single-bit errors but cannot correct them', 40, lineY);
+  lineY += 19;
+  text('\u2022 Parity detects single-bit errors but cannot correct them', 38, lineY);
 }
 
 function mousePressed() {
-  let y = 70;
-  let bitW = 45;
-  let spacing = 55;
+  let y = 58;
+  let bitW = 46;
+  let spacing = 56;
   let startX = (canvasWidth - 4 * spacing - bitW) / 2;
 
   // Check data bit clicks
   for (let i = 0; i < 4; i++) {
     let x = startX + i * spacing;
-    if (mouseX >= x && mouseX <= x + bitW && mouseY >= y && mouseY <= y + 35) {
+    if (mouseX >= x && mouseX <= x + bitW && mouseY >= y && mouseY <= y + 36) {
       dataBits[i] = 1 - dataBits[i];
       return;
     }
@@ -328,7 +392,7 @@ function mousePressed() {
   // Check parity bit click (only in check mode)
   if (currentMode === 'check') {
     let parityX = startX + 4.5 * spacing;
-    if (mouseX >= parityX && mouseX <= parityX + bitW && mouseY >= y && mouseY <= y + 35) {
+    if (mouseX >= parityX && mouseX <= parityX + bitW && mouseY >= y && mouseY <= y + 36) {
       parityBit = 1 - parityBit;
     }
   }
