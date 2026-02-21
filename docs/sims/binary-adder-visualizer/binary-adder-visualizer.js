@@ -6,14 +6,23 @@
 // Canvas dimensions
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 470;
+let drawHeight = 430;
 let controlHeight = 80;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
 // Margins
-let margin = 20;
+let margin = 16;
 let defaultTextSize = 14;
+
+// Theme colors
+const PURPLE = '#5A3EED';
+const PURPLE_LIGHT = '#7A5CFF';
+const PURPLE_BG = '#F4F0FF';
+const PURPLE_BORDER = '#C9B9FF';
+const GOLD = '#D4A017';
+const GREEN_ON = '#4CAF50';
+const GRAY_OFF = '#bbb';
 
 // UI Elements
 let modeSelect;
@@ -74,22 +83,25 @@ function draw() {
   updateCanvasSize();
 
   // Draw background
-  fill('aliceblue');
-  stroke('silver');
-  strokeWeight(1);
-  rect(0, 0, canvasWidth, drawHeight);
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(1, 1, canvasWidth - 2, drawHeight - 2, 14);
 
   // Control area
   fill('white');
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(20);
+  textSize(18);
+  textStyle(BOLD);
   let title = mode === 'half' ? 'Half Adder' : (mode === 'full' ? 'Full Adder' : '4-bit Ripple Carry Adder');
-  text(title, canvasWidth / 2, 10);
+  text(title, canvasWidth / 2, 12);
+  textStyle(NORMAL);
 
   // Draw based on mode
   if (mode === 'half') {
@@ -111,28 +123,28 @@ function draw() {
 
 function drawHalfAdder() {
   let centerX = canvasWidth / 2;
-  let centerY = 180;
+  let centerY = 160;
 
   // Draw circuit diagram
   drawHalfAdderCircuit(centerX, centerY, inputA[0], inputB[0]);
 
   // Draw input section
-  drawInputSection(canvasWidth / 2 - 100, 70, 'A', inputA[0], 0, 0);
-  drawInputSection(canvasWidth / 2 + 20, 70, 'B', inputB[0], 0, 1);
+  drawInputSection(canvasWidth / 2 - 100, 55, 'A', inputA[0], 0, 0);
+  drawInputSection(canvasWidth / 2 + 20, 55, 'B', inputB[0], 0, 1);
 
   // Draw output section
   let sum = inputA[0] ^ inputB[0];
   let carry = inputA[0] & inputB[0];
 
-  drawOutputSection(centerX, 340, sum, carry);
+  drawOutputSection(centerX, 290, sum, carry);
 
   // Draw explanation
-  drawHalfAdderExplanation(centerX, 400, inputA[0], inputB[0], sum, carry);
+  drawHalfAdderExplanation(centerX, 350, inputA[0], inputB[0], sum, carry);
 }
 
 function drawHalfAdderCircuit(x, y, a, b) {
   // XOR gate for sum
-  stroke('black');
+  stroke(PURPLE);
   strokeWeight(2);
   fill('white');
 
@@ -157,7 +169,7 @@ function drawHalfAdderCircuit(x, y, a, b) {
   let andX = x + 50;
   let andY = y + 30;
   fill('white');
-  stroke('black');
+  stroke(PURPLE);
   beginShape();
   vertex(andX - 30, andY - 20);
   vertex(andX, andY - 20);
@@ -166,12 +178,12 @@ function drawHalfAdderCircuit(x, y, a, b) {
   endShape(CLOSE);
 
   // Input wires
-  stroke(a ? '#4CAF50' : '#999');
+  stroke(a ? PURPLE : '#ccc');
   strokeWeight(3);
   line(x - 120, y - 40, xorX - 40, xorY - 10);
   line(x - 120, y - 40, andX - 30, andY - 10);
 
-  stroke(b ? '#4CAF50' : '#999');
+  stroke(b ? PURPLE : '#ccc');
   line(x - 120, y + 40, xorX - 40, xorY + 10);
   line(x - 120, y + 40, andX - 30, andY + 10);
 
@@ -179,14 +191,14 @@ function drawHalfAdderCircuit(x, y, a, b) {
   let sum = a ^ b;
   let carry = a & b;
 
-  stroke(sum ? '#4CAF50' : '#999');
+  stroke(sum ? GREEN_ON : '#ccc');
   line(xorX + 30, xorY, x + 120, xorY);
 
-  stroke(carry ? '#4CAF50' : '#999');
+  stroke(carry ? GOLD : '#ccc');
   line(andX + 30, andY, x + 120, andY);
 
   // Labels
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textSize(12);
   textAlign(LEFT, CENTER);
@@ -194,22 +206,25 @@ function drawHalfAdderCircuit(x, y, a, b) {
   text('B = ' + b, x - 140, y + 40);
 
   textAlign(CENTER, CENTER);
+  fill(PURPLE);
   text('XOR', xorX, xorY);
   text('AND', andX, andY);
 
   textAlign(LEFT, CENTER);
+  fill(sum ? GREEN_ON : '#666');
   text('Sum = ' + sum, x + 125, xorY);
+  fill(carry ? GOLD : '#666');
   text('Carry = ' + carry, x + 125, andY);
 }
 
 function drawFullAdder() {
   let centerX = canvasWidth / 2;
-  let centerY = 200;
+  let centerY = 170;
 
   // Draw input section
-  drawInputSection(centerX - 150, 60, 'A', inputA[0], 0, 0);
-  drawInputSection(centerX - 50, 60, 'B', inputB[0], 0, 1);
-  drawInputSection(centerX + 50, 60, 'Cin', carryIn, -1, -1);
+  drawInputSection(centerX - 150, 48, 'A', inputA[0], 0, 0);
+  drawInputSection(centerX - 50, 48, 'B', inputB[0], 0, 1);
+  drawInputSection(centerX + 50, 48, 'Cin', carryIn, -1, -1);
 
   // Calculate outputs
   let sum = inputA[0] ^ inputB[0] ^ carryIn;
@@ -219,56 +234,60 @@ function drawFullAdder() {
   drawFullAdderBlock(centerX, centerY, inputA[0], inputB[0], carryIn, sum, carry);
 
   // Draw output section
-  drawOutputSection(centerX, 340, sum, carry);
+  drawOutputSection(centerX, 290, sum, carry);
 
   // Draw explanation
-  drawFullAdderExplanation(centerX, 410, inputA[0], inputB[0], carryIn, sum, carry);
+  drawFullAdderExplanation(centerX, 355, inputA[0], inputB[0], carryIn, sum, carry);
 }
 
 function drawFullAdderBlock(x, y, a, b, cin, sum, cout) {
-  // Full adder box
+  // Full adder box — enlarged with purple theme
   fill('white');
-  stroke('black');
-  strokeWeight(2);
-  rect(x - 60, y - 40, 120, 80, 10);
+  stroke(PURPLE);
+  strokeWeight(2.5);
+  rect(x - 70, y - 45, 140, 90, 12);
 
   // Label
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(16);
+  textSize(17);
+  textStyle(BOLD);
   text('Full Adder', x, y);
+  textStyle(NORMAL);
 
   // Input wires
-  stroke(a ? '#4CAF50' : '#999');
+  stroke(a ? PURPLE : '#ccc');
   strokeWeight(3);
-  line(x - 40, y - 60, x - 40, y - 40);
+  line(x - 40, y - 65, x - 40, y - 45);
 
-  stroke(b ? '#4CAF50' : '#999');
-  line(x, y - 60, x, y - 40);
+  stroke(b ? PURPLE : '#ccc');
+  line(x, y - 65, x, y - 45);
 
-  stroke(cin ? '#4CAF50' : '#999');
-  line(x + 40, y - 60, x + 40, y - 40);
+  stroke(cin ? PURPLE : '#ccc');
+  line(x + 40, y - 65, x + 40, y - 45);
 
   // Output wires
-  stroke(sum ? '#4CAF50' : '#999');
-  line(x - 20, y + 40, x - 20, y + 70);
+  stroke(sum ? GREEN_ON : '#ccc');
+  line(x - 25, y + 45, x - 25, y + 75);
 
-  stroke(cout ? '#4CAF50' : '#999');
-  line(x + 20, y + 40, x + 20, y + 70);
+  stroke(cout ? GOLD : '#ccc');
+  line(x + 25, y + 45, x + 25, y + 75);
 
   // Labels
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textSize(12);
   textAlign(CENTER, BOTTOM);
-  text('A=' + a, x - 40, y - 62);
-  text('B=' + b, x, y - 62);
-  text('Cin=' + cin, x + 40, y - 62);
+  text('A=' + a, x - 40, y - 67);
+  text('B=' + b, x, y - 67);
+  text('Cin=' + cin, x + 40, y - 67);
 
   textAlign(CENTER, TOP);
-  text('Sum=' + sum, x - 20, y + 72);
-  text('Cout=' + cout, x + 20, y + 72);
+  fill(sum ? GREEN_ON : '#666');
+  text('Sum=' + sum, x - 25, y + 77);
+  fill(cout ? GOLD : '#666');
+  text('Cout=' + cout, x + 25, y + 77);
 }
 
 function drawRippleAdder() {
@@ -277,7 +296,7 @@ function drawRippleAdder() {
   let spacing = (canvasWidth - 120) / 4;
 
   // Title with values
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(14);
@@ -313,46 +332,47 @@ function drawRippleAdder() {
     drawFullAdderSmall(x, y, inputA[i], inputB[i], carries[i], sums[i], carries[i + 1], isActive, i);
   }
 
-  // Draw carry chain
-  stroke('#ff9800');
-  strokeWeight(2);
+  // Draw carry chain — gold arrows
   for (let i = 0; i < 3; i++) {
     let x1 = startX + (3 - i) * spacing + 35;
     let x2 = startX + (3 - i - 1) * spacing - 35;
     let highlighted = currentStep > i;
 
-    stroke(highlighted ? '#4CAF50' : '#ccc');
+    stroke(highlighted ? GOLD : '#ddd');
     strokeWeight(highlighted ? 3 : 2);
     line(x1, y, x2, y);
 
     // Arrow
     if (highlighted) {
-      fill('#4CAF50');
+      fill(GOLD);
       noStroke();
       triangle(x2 + 8, y - 5, x2 + 8, y + 5, x2, y);
     }
   }
 
-  // Draw result
-  fill(240);
-  stroke('silver');
-  strokeWeight(1);
-  rect(margin, 320, canvasWidth - 2 * margin, 60, 5);
+  // Draw result — purple themed card
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(margin, 320, canvasWidth - 2 * margin, 60, 8);
 
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(14);
+  textStyle(BOLD);
   text('Result: ' + carries[4] + sums.slice().reverse().join('') + ' = ' + result, canvasWidth / 2, 340);
+  textStyle(NORMAL);
 
   // Step indicator
   textSize(12);
-  fill('#666');
+  fill(PURPLE_LIGHT);
   if (currentStep >= 0 && currentStep < 4) {
     text('Step ' + (currentStep + 1) + ': Adding bit position ' + currentStep, canvasWidth / 2, 365);
   } else if (currentStep >= 4) {
     text('Complete! Final carry = ' + carries[4], canvasWidth / 2, 365);
   } else {
+    fill('#888');
     text('Click "Step" to begin addition', canvasWidth / 2, 365);
   }
 
@@ -361,49 +381,51 @@ function drawRippleAdder() {
 }
 
 function drawFullAdderSmall(x, y, a, b, cin, sum, cout, isActive, index) {
-  // Box
+  // Box — purple themed states
   if (isActive) {
-    fill('#fff3e0');
-    stroke('#ff9800');
+    fill('#F4F0FF');
+    stroke(GOLD);
     strokeWeight(3);
   } else if (currentStep > index) {
-    fill('#e8f5e9');
-    stroke('#4CAF50');
+    fill('#EDE7F6');
+    stroke(PURPLE_LIGHT);
     strokeWeight(2);
   } else {
     fill('white');
-    stroke('#ccc');
+    stroke(PURPLE_BORDER);
     strokeWeight(1);
   }
-  rect(x - 30, y - 35, 60, 70, 5);
+  rect(x - 30, y - 35, 60, 70, 8);
 
   // Label
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(10);
+  textStyle(BOLD);
   text('FA', x, y - 20);
+  textStyle(NORMAL);
   text('Bit ' + index, x, y - 8);
 
   // Values (shown after processed)
   if (currentStep >= index) {
     textSize(9);
-    fill('#666');
+    fill(PURPLE_LIGHT);
     text('S=' + sum, x, y + 8);
     text('C=' + cout, x, y + 20);
   }
 }
 
 function drawBitToggle(x, y, label, value, bitIndex, inputIndex) {
-  // Button
+  // Button — purple when active
   if (value) {
-    fill('#4CAF50');
+    fill(PURPLE);
   } else {
-    fill('#ccc');
+    fill('#ddd');
   }
-  stroke('#333');
+  stroke(PURPLE_BORDER);
   strokeWeight(1);
-  rect(x - 15, y, 30, 25, 3);
+  rect(x - 15, y, 30, 25, 5);
 
   // Value
   fill('white');
@@ -413,22 +435,22 @@ function drawBitToggle(x, y, label, value, bitIndex, inputIndex) {
   text(value, x, y + 12);
 
   // Label
-  fill('#666');
+  fill(PURPLE_LIGHT);
   textSize(9);
   textAlign(CENTER, BOTTOM);
   text(label, x, y - 2);
 }
 
 function drawInputSection(x, y, label, value, bitIdx, inputIdx) {
-  // Box
+  // Box — purple when active
   if (value) {
-    fill('#4CAF50');
+    fill(PURPLE);
   } else {
-    fill('#ccc');
+    fill('#ddd');
   }
-  stroke('#333');
-  strokeWeight(1);
-  rect(x, y, 60, 40, 5);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(x, y, 60, 40, 8);
 
   // Label and value
   fill('white');
@@ -438,77 +460,90 @@ function drawInputSection(x, y, label, value, bitIdx, inputIdx) {
   text(label + ' = ' + value, x + 30, y + 20);
 
   // Click hint
-  fill('#666');
+  fill(PURPLE_LIGHT);
   textSize(10);
   text('(click)', x + 30, y + 50);
 }
 
 function drawOutputSection(x, y, sum, carry) {
-  // Sum box
-  fill(sum ? '#4CAF50' : '#e0e0e0');
-  stroke('#333');
-  strokeWeight(1);
-  rect(x - 80, y, 70, 35, 5);
+  // Sum box — green when 1
+  fill(sum ? GREEN_ON : '#e8e8e8');
+  stroke(sum ? GREEN_ON : PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(x - 85, y, 75, 38, 8);
 
-  fill(sum ? 'white' : 'black');
+  fill(sum ? 'white' : '#666');
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(14);
-  text('Sum = ' + sum, x - 45, y + 17);
+  textStyle(BOLD);
+  text('Sum = ' + sum, x - 47, y + 19);
+  textStyle(NORMAL);
 
-  // Carry box
-  fill(carry ? '#ff9800' : '#e0e0e0');
-  stroke('#333');
-  strokeWeight(1);
-  rect(x + 10, y, 70, 35, 5);
+  // Carry box — gold when 1
+  fill(carry ? GOLD : '#e8e8e8');
+  stroke(carry ? GOLD : PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(x + 10, y, 75, 38, 8);
 
-  fill(carry ? 'white' : 'black');
+  fill(carry ? 'white' : '#666');
   noStroke();
   textSize(14);
-  text('Carry = ' + carry, x + 45, y + 17);
+  textStyle(BOLD);
+  text('Carry = ' + carry, x + 47, y + 19);
+  textStyle(NORMAL);
 }
 
 function drawHalfAdderExplanation(x, y, a, b, sum, carry) {
-  fill(240);
-  stroke('silver');
-  strokeWeight(1);
-  rect(margin, y, canvasWidth - 2 * margin, 55, 5);
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(margin, y, canvasWidth - 2 * margin, 55, 8);
 
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, TOP);
   textSize(11);
+  textStyle(BOLD);
   text('Equations:', margin + 10, y + 8);
+  textStyle(NORMAL);
+  fill('#444');
   text(`Sum = A XOR B = ${a} XOR ${b} = ${sum}`, margin + 10, y + 22);
   text(`Carry = A AND B = ${a} AND ${b} = ${carry}`, margin + 10, y + 36);
 }
 
 function drawFullAdderExplanation(x, y, a, b, cin, sum, cout) {
-  fill(240);
-  stroke('silver');
-  strokeWeight(1);
-  rect(margin, y, canvasWidth - 2 * margin, 50, 5);
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(margin, y, canvasWidth - 2 * margin, 50, 8);
 
-  fill('black');
+  fill('#444');
   noStroke();
   textAlign(LEFT, TOP);
   textSize(10);
   text(`Sum = A XOR B XOR Cin = ${a} XOR ${b} XOR ${cin} = ${sum}`, margin + 10, y + 8);
   text(`Cout = (A AND B) OR (Cin AND (A XOR B)) = ${cout}`, margin + 10, y + 24);
+  fill(PURPLE);
+  textStyle(BOLD);
   text(`${a} + ${b} + ${cin} = ${a + b + cin} → Sum=${sum}, Carry=${cout}`, margin + 10, y + 38);
+  textStyle(NORMAL);
 }
 
 function drawRippleExplanation(y) {
-  fill(240);
-  stroke('silver');
-  strokeWeight(1);
-  rect(margin, y, canvasWidth - 2 * margin, 55, 5);
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(margin, y, canvasWidth - 2 * margin, 55, 8);
 
-  fill('black');
   noStroke();
   textAlign(LEFT, TOP);
   textSize(10);
+  fill(PURPLE);
+  textStyle(BOLD);
   text('Ripple Carry Adder:', margin + 10, y + 8);
+  textStyle(NORMAL);
+  fill('#444');
   text('• Each full adder adds one bit position (A[i] + B[i] + Carry[i])', margin + 10, y + 22);
   text('• Carry "ripples" from LSB (bit 0) to MSB (bit 3)', margin + 10, y + 36);
 }
@@ -544,30 +579,30 @@ function updateMaxStep() {
 function mousePressed() {
   // Handle input toggles based on mode
   if (mode === 'half') {
-    // A input
+    // A input (drawInputSection at x=canvasWidth/2-100, y=55, w=60, h=40)
     if (mouseX >= canvasWidth / 2 - 100 && mouseX <= canvasWidth / 2 - 40 &&
-        mouseY >= 70 && mouseY <= 120) {
+        mouseY >= 55 && mouseY <= 95) {
       inputA[0] = 1 - inputA[0];
     }
-    // B input
+    // B input (drawInputSection at x=canvasWidth/2+20, y=55, w=60, h=40)
     if (mouseX >= canvasWidth / 2 + 20 && mouseX <= canvasWidth / 2 + 80 &&
-        mouseY >= 70 && mouseY <= 120) {
+        mouseY >= 55 && mouseY <= 95) {
       inputB[0] = 1 - inputB[0];
     }
   } else if (mode === 'full') {
-    // A input
+    // A input (drawInputSection at x=centerX-150, y=48, w=60, h=40)
     if (mouseX >= canvasWidth / 2 - 150 && mouseX <= canvasWidth / 2 - 90 &&
-        mouseY >= 60 && mouseY <= 110) {
+        mouseY >= 48 && mouseY <= 88) {
       inputA[0] = 1 - inputA[0];
     }
-    // B input
+    // B input (drawInputSection at x=centerX-50, y=48, w=60, h=40)
     if (mouseX >= canvasWidth / 2 - 50 && mouseX <= canvasWidth / 2 + 10 &&
-        mouseY >= 60 && mouseY <= 110) {
+        mouseY >= 48 && mouseY <= 88) {
       inputB[0] = 1 - inputB[0];
     }
-    // Cin input
+    // Cin input (drawInputSection at x=centerX+50, y=48, w=60, h=40)
     if (mouseX >= canvasWidth / 2 + 50 && mouseX <= canvasWidth / 2 + 110 &&
-        mouseY >= 60 && mouseY <= 110) {
+        mouseY >= 48 && mouseY <= 88) {
       carryIn = 1 - carryIn;
     }
   } else if (mode === 'ripple') {

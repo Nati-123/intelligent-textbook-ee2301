@@ -13,11 +13,11 @@ let containerHeight = canvasHeight;
 let currentStep = 0;
 let totalSteps;
 
-const TITLE_BG = '#2196F3';
-const STEP_BG = '#E3F2FD';
-const HIGHLIGHT = '#FF9800';
-const RESULT_BG = '#E8F5E9';
-const HIGHLIGHT_ROW = '#FFF3E0';
+const TITLE_BG = '#5A3EED';
+const STEP_BG = '#F4F0FF';
+const HIGHLIGHT = '#D4A017';
+const RESULT_BG = '#EDE7F6';
+const HIGHLIGHT_ROW = '#F4F0FF';
 
 // UI elements
 let presetSelect;
@@ -272,7 +272,7 @@ function setup() {
   // Go button
   goButton = createButton('Go');
   goButton.mousePressed(handleGo);
-  goButton.style('background-color', '#388E3C');
+  goButton.style('background-color', '#5A3EED');
   goButton.style('color', 'white');
   goButton.style('border', 'none');
   goButton.style('padding', '4px 16px');
@@ -307,6 +307,13 @@ function draw() {
   let step = steps[currentStep];
   let margin = 15;
   let w = canvasWidth - 2 * margin;
+
+  // Soft purple card background
+  fill('#F4F0FF');
+  stroke('#C9B9FF');
+  strokeWeight(1.5);
+  rect(margin - 5, margin - 5, w + 10, drawHeight - margin + 5, 14);
+  noStroke();
 
   // Title bar
   fill(TITLE_BG);
@@ -433,12 +440,12 @@ function drawVisual(step, mx, vy, w, vh) {
   }
   else if (step.visual === 'ha-complete') {
     fill(RESULT_BG);
-    stroke('#4CAF50');
+    stroke('#7A5CFF');
     strokeWeight(2);
     rect(mx + 20, vy + 20, w - 40, 50, 8);
     rect(mx + 20, vy + 85, w - 40, 50, 8);
     noStroke();
-    fill('#1B5E20');
+    fill('#3A2499');
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
@@ -474,12 +481,12 @@ function drawVisual(step, mx, vy, w, vh) {
   }
   else if (step.visual === 'fs-complete') {
     fill(RESULT_BG);
-    stroke('#4CAF50');
+    stroke('#7A5CFF');
     strokeWeight(2);
     rect(mx + 20, vy + 20, w - 40, 50, 8);
     rect(mx + 20, vy + 85, w - 40, 50, 8);
     noStroke();
-    fill('#1B5E20');
+    fill('#3A2499');
     textAlign(CENTER, CENTER);
     textSize(18);
     textStyle(BOLD);
@@ -549,11 +556,11 @@ function drawSOPVisual(cx, mx, vy, w, mintermLabel, sopExpr, simplifiedExpr) {
   text('v', cx, vy + 85);
   // Simplified
   fill(RESULT_BG);
-  stroke('#4CAF50');
+  stroke('#7A5CFF');
   strokeWeight(2);
   rect(mx + 40, vy + 100, w - 80, 45, 8);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textSize(22);
   textStyle(BOLD);
   text(simplifiedExpr, cx, vy + 122);
@@ -562,12 +569,12 @@ function drawSOPVisual(cx, mx, vy, w, mintermLabel, sopExpr, simplifiedExpr) {
 function drawCompleteFullAdder(cx, mx, vy, w, vh) {
   // Summary boxes
   fill(RESULT_BG);
-  stroke('#4CAF50');
+  stroke('#7A5CFF');
   strokeWeight(2);
   rect(mx + 20, vy + 20, w - 40, 50, 8);
   rect(mx + 20, vy + 85, w - 40, 50, 8);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(CENTER, CENTER);
   textSize(18);
   textStyle(BOLD);
@@ -662,7 +669,7 @@ function drawSumCircuit(mx, vy, w, vh) {
   line(startX + 5, vy + 40, gateX1 - 20, vy + 40);
   line(startX + 5, vy + 70, gateX1 - 20, vy + 70);
   // Gate 1 box
-  fill('#BBDEFB');
+  fill('#E8E0FF');
   stroke(TITLE_BG);
   rect(gateX1 - 20, vy + 30, 50, 50, 5);
   fill(TITLE_BG);
@@ -680,7 +687,7 @@ function drawSumCircuit(mx, vy, w, vh) {
   line(gateX2 - 30, vy + 110, gateX2 - 20, vy + 85);
 
   // XOR gate 2
-  fill('#BBDEFB');
+  fill('#E8E0FF');
   stroke(TITLE_BG);
   rect(gateX2 - 20, vy + 45, 50, 50, 5);
   fill(TITLE_BG);
@@ -693,7 +700,7 @@ function drawSumCircuit(mx, vy, w, vh) {
   strokeWeight(2);
   line(gateX2 + 30, vy + 70, endX, vy + 70);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14);
   textStyle(BOLD);
@@ -727,7 +734,7 @@ function drawCoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(startX + 5, vy + 25, gateX - 15, vy + 25);
   line(startX + 5, vy + 45, gateX - 15, vy + 45);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 15, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -740,7 +747,7 @@ function drawCoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(startX + 5, vy + 75, gateX - 15, vy + 75);
   line(startX + 5, vy + 95, gateX - 15, vy + 95);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 65, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -753,7 +760,7 @@ function drawCoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(startX + 5, vy + 125, gateX - 15, vy + 125);
   line(startX + 5, vy + 145, gateX - 15, vy + 145);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 115, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -766,9 +773,9 @@ function drawCoutCircuit(mx, vy, w, vh) {
   line(gateX + 30, vy + 135, orX - 15, vy + 100);
 
   // OR gate
-  fill('#C8E6C9'); stroke('#4CAF50');
+  fill('#E8E0FF'); stroke('#7A5CFF');
   rect(orX - 15, vy + 60, 45, 50, 4);
-  fill('#4CAF50'); noStroke();
+  fill('#7A5CFF'); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
   text('OR', orX + 8, vy + 85);
 
@@ -776,7 +783,7 @@ function drawCoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(orX + 30, vy + 85, endX, vy + 85);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14); textStyle(BOLD);
   text('Cout', endX + 5, vy + 85);
@@ -808,7 +815,7 @@ function drawHaSumCircuit(mx, vy, w, vh) {
   line(startX + 5, vy + 85, gateX, vy + 85);
 
   // XOR gate
-  fill('#BBDEFB');
+  fill('#E8E0FF');
   stroke(TITLE_BG);
   rect(gateX, vy + 45, 50, 50, 5);
   fill(TITLE_BG);
@@ -822,7 +829,7 @@ function drawHaSumCircuit(mx, vy, w, vh) {
   strokeWeight(2);
   line(gateX + 50, vy + 70, endX, vy + 70);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14);
   textStyle(BOLD);
@@ -857,7 +864,7 @@ function drawHaCarryCircuit(mx, vy, w, vh) {
   line(startX + 5, vy + 85, gateX, vy + 85);
 
   // AND gate
-  fill('#FFF3E0');
+  fill('#FDF5E0');
   stroke(HIGHLIGHT);
   rect(gateX, vy + 45, 50, 50, 5);
   fill(HIGHLIGHT);
@@ -871,7 +878,7 @@ function drawHaCarryCircuit(mx, vy, w, vh) {
   strokeWeight(2);
   line(gateX + 50, vy + 70, endX, vy + 70);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14);
   textStyle(BOLD);
@@ -906,7 +913,7 @@ function drawFsDiffCircuit(mx, vy, w, vh) {
   strokeWeight(2);
   line(startX + 5, vy + 40, gateX1 - 20, vy + 40);
   line(startX + 5, vy + 70, gateX1 - 20, vy + 70);
-  fill('#BBDEFB');
+  fill('#E8E0FF');
   stroke(TITLE_BG);
   rect(gateX1 - 20, vy + 30, 50, 50, 5);
   fill(TITLE_BG);
@@ -924,7 +931,7 @@ function drawFsDiffCircuit(mx, vy, w, vh) {
   line(gateX2 - 30, vy + 110, gateX2 - 20, vy + 85);
 
   // XOR gate 2
-  fill('#BBDEFB');
+  fill('#E8E0FF');
   stroke(TITLE_BG);
   rect(gateX2 - 20, vy + 45, 50, 50, 5);
   fill(TITLE_BG);
@@ -937,7 +944,7 @@ function drawFsDiffCircuit(mx, vy, w, vh) {
   strokeWeight(2);
   line(gateX2 + 30, vy + 70, endX, vy + 70);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14);
   textStyle(BOLD);
@@ -969,9 +976,9 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(startX + 5, vy + 35, notX - 5, vy + 35);
   // NOT gate
-  fill('#F3E5F5'); stroke('#9C27B0');
+  fill('#E8E0FF'); stroke('#5A3EED');
   rect(notX - 5, vy + 22, 35, 26, 4);
-  fill('#9C27B0'); noStroke();
+  fill('#5A3EED'); noStroke();
   textAlign(CENTER, CENTER); textSize(11);
   text('NOT', notX + 13, vy + 35);
   // Wire from NOT output (A')
@@ -985,7 +992,7 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   line(notOutX, vy + 35, notOutX + 5, vy + 35);
   line(notOutX + 5, vy + 35, gateX - 15, vy + 25);
   line(startX + 5, vy + 55, gateX - 15, vy + 45);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 15, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -999,7 +1006,7 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   line(notOutX + 5, vy + 35, notOutX + 5, vy + 75);
   line(notOutX + 5, vy + 75, gateX - 15, vy + 75);
   line(startX + 5, vy + 105, gateX - 15, vy + 95);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 65, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -1012,7 +1019,7 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(startX + 5, vy + 135, gateX - 15, vy + 125);
   line(startX + 5, vy + 155, gateX - 15, vy + 145);
-  fill('#FFF3E0'); stroke(HIGHLIGHT);
+  fill('#FDF5E0'); stroke(HIGHLIGHT);
   rect(gateX - 15, vy + 115, 45, 40, 4);
   fill(HIGHLIGHT); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
@@ -1025,9 +1032,9 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   line(gateX + 30, vy + 135, orX - 15, vy + 100);
 
   // OR gate
-  fill('#C8E6C9'); stroke('#4CAF50');
+  fill('#E8E0FF'); stroke('#7A5CFF');
   rect(orX - 15, vy + 60, 45, 50, 4);
-  fill('#4CAF50'); noStroke();
+  fill('#7A5CFF'); noStroke();
   textAlign(CENTER, CENTER); textSize(12);
   text('OR', orX + 8, vy + 85);
 
@@ -1035,7 +1042,7 @@ function drawFsBoutCircuit(mx, vy, w, vh) {
   stroke(60); strokeWeight(1.5);
   line(orX + 30, vy + 85, endX, vy + 85);
   noStroke();
-  fill('#1B5E20');
+  fill('#3A2499');
   textAlign(LEFT, CENTER);
   textSize(14); textStyle(BOLD);
   text('Bout', endX + 5, vy + 85);
@@ -1055,23 +1062,23 @@ function drawButtons() {
   let startX = (canvasWidth - totalW) / 2;
 
   let prevEnabled = currentStep > 0;
-  fill(prevEnabled ? '#1976D2' : '#BDBDBD');
+  fill(prevEnabled ? '#5A3EED' : '#BDBDBD');
   noStroke();
-  rect(startX, btnY, btnW, btnH, 5);
+  rect(startX, btnY, btnW, btnH, 8);
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
   text('<- Previous', startX + btnW / 2, btnY + btnH / 2);
 
-  fill('#757575');
-  rect(startX + btnW + gap, btnY, btnW, btnH, 5);
+  fill('#888');
+  rect(startX + btnW + gap, btnY, btnW, btnH, 8);
   fill(255);
   text('Reset', startX + btnW + gap + btnW / 2, btnY + btnH / 2);
 
   let nextEnabled = currentStep < totalSteps - 1;
-  fill(nextEnabled ? '#388E3C' : '#BDBDBD');
-  rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 5);
+  fill(nextEnabled ? '#7A5CFF' : '#BDBDBD');
+  rect(startX + 2 * (btnW + gap), btnY, btnW, btnH, 8);
   fill(255);
   text('Next ->', startX + 2 * (btnW + gap) + btnW / 2, btnY + btnH / 2);
 }
