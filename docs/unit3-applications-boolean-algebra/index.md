@@ -314,20 +314,24 @@ The half adder requires one XOR gate and one AND gate.
 A **full adder** adds three single-bit inputs: A, B, and a carry-in ($C_{in}$) from a previous stage. It produces a sum bit (S) and a carry-out ($C_{out}$).
 
 | A | B | $C_{in}$ | Sum (S) | $C_{out}$ |
-|---|---|----------|---------|-----------|
-| 0 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 | 0 |
-| 0 | 1 | 0 | 1 | 0 |
-| 0 | 1 | 1 | 0 | 1 |
-| 1 | 0 | 0 | 1 | 0 |
-| 1 | 0 | 1 | 0 | 1 |
-| 1 | 1 | 0 | 0 | 1 |
-| 1 | 1 | 1 | 1 | 1 |
+|:-:|:-:|:--------:|:-------:|:---------:|
+| 0 | 0 | 0        | 0       | 0         |
+| 0 | 0 | 1        | 1       | 0         |
+| 0 | 1 | 0        | 1       | 0         |
+| 0 | 1 | 1        | 0       | 1         |
+| 1 | 0 | 0        | 1       | 0         |
+| 1 | 0 | 1        | 0       | 1         |
+| 1 | 1 | 0        | 0       | 1         |
+| 1 | 1 | 1        | 1       | 1         |
 
 The Boolean equations are:
 
-$$S = A \oplus B \oplus C_{in}$$
-$$C_{out} = AB + AC_{in} + BC_{in}$$
+$$
+\begin{aligned}
+S      &= A \oplus B \oplus C_{in} \\[6pt]
+C_{out} &= AB + A\,C_{in} + B\,C_{in}
+\end{aligned}
+$$
 
 A full adder can be built from two half adders and an OR gate, or directly from the Boolean expressions.
 
