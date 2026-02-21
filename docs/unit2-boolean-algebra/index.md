@@ -1112,29 +1112,29 @@ Implementation: p5.js with interactive canvas and DOM elements
 
 ## Summary and Key Takeaways
 
-This unit established the mathematical foundation of Boolean algebra for digital logic design:
+This unit established the axiomatic framework of Boolean algebra as the mathematical basis for combinational logic design.
 
-- **Boolean algebra** operates on binary values (0, 1) using three fundamental operations: AND (·), OR (+), and NOT (overbar).
+- **Boolean algebra** is defined over the binary set $\{0, 1\}$ with three primitive operations: conjunction (AND, $\cdot$), disjunction (OR, $+$), and complementation (NOT, $\overline{\phantom{A}}$).
 
-- **Logic gates** implement Boolean operations in hardware. The basic gates (AND, OR, NOT, Buffer) and derived gates (NAND, NOR, XOR, XNOR) form the building blocks of digital circuits.
+- **Logic gates** provide the physical realization of Boolean operations. The primary gates (AND, OR, NOT, Buffer) and compound gates (NAND, NOR, XOR, XNOR) constitute the fundamental building blocks of all digital circuits.
 
-- **Universal gates** (NAND and NOR) can implement any Boolean function, simplifying IC manufacturing.
+- **Universal gates** (NAND and NOR) are functionally complete—any Boolean function can be implemented using a single gate type, which reduces fabrication complexity in integrated circuit design.
 
-- **Truth tables** provide complete input-output specifications. An n-variable function has 2ⁿ rows.
+- **Truth tables** exhaustively specify the input–output behavior of a logic function. An $n$-variable function requires $2^n$ rows for complete enumeration.
 
-- **Boolean identities** (Identity, Null, Idempotent, Complement, Involution) enable expression manipulation.
+- **Boolean identities** (Identity, Null, Idempotent, Complement, Involution) establish the foundational relationships used in algebraic manipulation of logic expressions.
 
-- **Algebraic laws** (Commutative, Associative, Distributive, Absorption, Consensus) provide simplification tools.
+- **Algebraic laws** (Commutative, Associative, Distributive, Absorption, Consensus) provide the formal basis for systematic expression simplification and circuit optimization.
 
-- **DeMorgan's theorems** relate AND and OR through complementation, essential for gate-level transformations.
+- **DeMorgan's theorems** define the duality between conjunction and disjunction under complementation, and are indispensable for gate-level transformations and NAND/NOR conversion.
 
-- **The duality principle** states that swapping AND↔OR and 0↔1 preserves theorem validity.
+- **The duality principle** guarantees that any valid Boolean theorem yields a corresponding dual theorem when AND $\leftrightarrow$ OR and $0 \leftrightarrow 1$ are interchanged throughout.
 
-- **Standard forms** (SOP and POS) provide consistent expression representations for two-level circuit implementations.
+- **Standard forms** (Sum of Products and Product of Sums) provide canonical expression representations that map directly to two-level gate implementations.
 
-- **Operator precedence** follows NOT > AND > OR, with parentheses overriding defaults.
+- **Operator precedence** is defined as NOT $>$ AND $>$ OR, with parentheses used to override the default evaluation order.
 
-- **Practical constraints** including fan-in and fan-out limits affect physical circuit design.
+- **Physical design constraints**, including fan-in limitations and fan-out loading, must be accounted for when translating Boolean expressions into realizable gate-level circuits.
 
 ??? question "Self-Check: What is the complement of $F = AB + C$ using DeMorgan's theorem?"
     $\overline{F} = \overline{AB + C} = \overline{AB} \cdot \overline{C} = (\overline{A} + \overline{B}) \cdot \overline{C} = \overline{A}\overline{C} + \overline{B}\overline{C}$
