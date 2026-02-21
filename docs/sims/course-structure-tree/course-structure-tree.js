@@ -515,13 +515,13 @@ function draw() {
 }
 
 function drawNode(node, x, y, depth) {
-  let nodeY = y + scrollOffset;
-  let isVisible = nodeY > 40 && nodeY < drawHeight - 10;
+  let screenY = y - scrollOffset;
+  let isVisible = screenY > 40 && screenY < drawHeight - 10;
 
   if (isVisible) {
-    // Check hover
+    // Check hover (mouseY is in screen coords, so compare with screenY)
     let isHovered = mouseX > x - 5 && mouseX < canvasWidth - 20 &&
-                    mouseY > y - nodeHeight/2 && mouseY < y + nodeHeight/2;
+                    mouseY > screenY - nodeHeight/2 && mouseY < screenY + nodeHeight/2;
     if (isHovered) hoveredNode = node;
 
     // Hover background
@@ -558,7 +558,7 @@ function drawNode(node, x, y, depth) {
   if (node.expanded && node.children) {
     for (let child of node.children) {
       // Draw connecting line
-      if (isVisible || (y + scrollOffset > 40 && y + scrollOffset < drawHeight)) {
+      if (isVisible || ((y - scrollOffset) > 40 && (y - scrollOffset) < drawHeight)) {
         stroke(colors.line);
         strokeWeight(1);
         line(x + 20, y - nodeHeight + 10, x + 20, y - 5);
