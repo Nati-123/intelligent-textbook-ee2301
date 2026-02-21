@@ -900,135 +900,156 @@ body.challenge-page label[for="__toc"] {
 }
 
 /* ===== FOOTER NAVIGATION (Previous / Next) ===== */
+/*
+ * Redesigned as wide rounded cards with purple icon circles.
+ * Colors: card bg #F6F1FF, border #C8B7FF, icon #7A5CFF, title #2F2F2F
+ * Selectors target the real MkDocs Material classes:
+ *   .md-footer              – outer <footer>
+ *   .md-footer__inner       – <nav> with prev/next links
+ *   .md-footer__link        – each <a> (--prev / --next)
+ *   .md-footer__direction   – "Previous" / "Next" label
+ *   .md-footer__title       – wrapper around page title
+ *   .md-footer__button      – icon wrapper
+ */
 
-/* Remove the dark background from the nav portion */
+/* --- Container --- */
 .md-footer {
-  background-color: transparent;
+  background: transparent;
   color: inherit;
 }
 
-/* The inner nav container: prev/next links */
 .md-footer__inner.md-grid {
   display: flex !important;
   justify-content: space-between;
-  gap: 1.25rem;
-  padding: 1.5rem 0.75rem 1rem;
+  gap: 1.5rem;
+  padding: 2rem 0.75rem 1.25rem;
   max-width: 61rem;
 }
 
-/* Each prev/next link as a card */
+/* --- Card (shared) --- */
 .md-footer__link {
   flex: 1 1 0;
+  display: flex !important;
   align-items: center;
-  background: #F4F0FF;
-  border: 2px solid #C8B8FF;
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
+  gap: 1rem;
+  background: #F6F1FF;
+  border: 1.5px solid #C8B7FF;
+  border-radius: 14px;
+  padding: 1.15rem 1.5rem;
   margin: 0;
   max-width: 50%;
-  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s,
-              transform 0.15s;
-  box-shadow: 0 2px 6px rgba(106, 91, 255, 0.08);
-  text-decoration: none;
-  opacity: 1;
+  box-shadow: 0 2px 8px rgba(122, 92, 255, 0.07);
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transition: background 0.22s ease,
+              border-color 0.22s ease,
+              box-shadow 0.22s ease,
+              transform 0.18s ease;
 }
 
+/* --- Hover / focus --- */
 .md-footer__link:hover,
-.md-footer__link:focus {
-  opacity: 1;
-  background: #EDE7FF;
-  border-color: #6A5BFF;
-  box-shadow: 0 4px 14px rgba(106, 91, 255, 0.18);
-  transform: translateY(-2px);
+.md-footer__link:focus-visible {
+  background: #EEE6FF;
+  border-color: #7A5CFF;
+  box-shadow: 0 6px 18px rgba(122, 92, 255, 0.16);
+  transform: translateY(-3px);
 }
 
 .md-footer__link:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(106, 91, 255, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(122, 92, 255, 0.12);
 }
 
-/* Previous link: left-aligned */
+/* --- Previous card: icon left, text right --- */
 .md-footer__link--prev {
-  flex-shrink: 0;
+  flex-direction: row;
   text-align: left;
 }
 
-/* Next link: right-aligned, push to end */
+/* --- Next card: text left, icon right --- */
 .md-footer__link--next {
+  flex-direction: row;
   text-align: right;
   margin-left: auto;
   margin-right: 0;
 }
 
-/* Always show the title on prev links (Material hides it by default) */
+/* Material hides the prev title by default – force it visible */
 .md-footer__link--prev .md-footer__title {
-  display: block;
+  display: block !important;
 }
 
-/* Title text */
+/* --- Icon circle --- */
+.md-footer__button.md-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: #7A5CFF;
+  transition: background 0.22s ease,
+              transform 0.18s ease;
+}
+
+.md-footer__link:hover .md-footer__button.md-icon {
+  background: #6344E0;
+  transform: scale(1.1);
+}
+
+/* Arrow SVG – white, sized to fill the circle */
+.md-footer__button.md-icon svg {
+  fill: #fff;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+/* --- Title block --- */
 .md-footer__title {
   flex-grow: 1;
+  min-width: 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 0;
-  padding: 0 0.6rem;
+  color: #2F2F2F;
+  margin: 0;
+  padding: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* "Previous" / "Next" direction label */
+/* "PREVIOUS" / "NEXT" label */
 .md-footer__direction {
   display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6A5BFF;
+  color: #7A5CFF;
   opacity: 1;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
-/* Page title inside the link */
+/* Page title */
 .md-footer__title .md-ellipsis {
-  color: #444;
+  display: block;
+  color: #2F2F2F;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .md-footer__link:hover .md-footer__title .md-ellipsis {
-  color: #6A5BFF;
+  color: #7A5CFF;
 }
 
-/* Arrow icon button */
-.md-footer__button.md-icon {
-  margin: 0;
-  padding: 0.5rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: #6A5BFF;
-  transition: background 0.25s, transform 0.15s;
-}
-
-.md-footer__link:hover .md-footer__button.md-icon {
-  background: #D4A017;
-  transform: scale(1.08);
-}
-
-/* Arrow SVG icon - white, larger */
-.md-footer__button.md-icon svg {
-  fill: #fff;
-  width: 1.3rem;
-  height: 1.3rem;
-}
-
-/* Keep the bottom meta bar dark and clean */
+/* --- Bottom meta bar (copyright) --- */
 .md-footer-meta {
   background-color: #2c2c3a;
 }
@@ -1041,12 +1062,12 @@ body.challenge-page label[for="__toc"] {
   color: #D4A017;
 }
 
-/* ---- Mobile: stack vertically on small screens ---- */
-@media screen and (max-width: 600px) {
+/* --- Mobile: stack cards vertically --- */
+@media screen and (max-width: 720px) {
   .md-footer__inner.md-grid {
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 1rem 0.5rem;
+    gap: 0.85rem;
+    padding: 1.25rem 0.75rem 1rem;
   }
 
   .md-footer__link {
@@ -1056,5 +1077,10 @@ body.challenge-page label[for="__toc"] {
 
   .md-footer__link--next {
     margin-left: 0;
+  }
+
+  .md-footer__button.md-icon {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
