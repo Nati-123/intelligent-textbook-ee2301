@@ -201,12 +201,19 @@ function drawCircuit(circuit, gateOutputs) {
 
   stroke(finalOutput ? '#4CAF50' : '#999');
   strokeWeight(3);
-  line(lastX + 35, lastY, canvasWidth - 50, lastY);
+  let outEndX = lastX + 80;
+  line(lastX + 35, lastY, outEndX, lastY);
 
   // Output arrow
   fill(finalOutput ? '#4CAF50' : '#999');
   noStroke();
-  triangle(canvasWidth - 45, lastY, canvasWidth - 55, lastY - 8, canvasWidth - 55, lastY + 8);
+  triangle(outEndX + 5, lastY, outEndX - 5, lastY - 8, outEndX - 5, lastY + 8);
+
+  // Output label Y
+  fill(finalOutput ? '#4CAF50' : '#f44336');
+  textAlign(LEFT, CENTER);
+  textSize(16);
+  text('Y=' + finalOutput, outEndX + 12, lastY);
 }
 
 function drawGate(type, x, y, output) {
