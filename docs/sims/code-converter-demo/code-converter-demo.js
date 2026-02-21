@@ -10,13 +10,31 @@ let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
+// Theme colors
+const PURPLE = '#6A5BFF';
+const PURPLE_DARK = '#5A3EED';
+const PURPLE_LIGHT = '#7A5CFF';
+const PURPLE_BG = '#F4F0FF';
+const PURPLE_BORDER = '#C9B9FF';
+const GOLD = '#D4A017';
+const GREEN_OK = '#4CAF50';
+const BLUE_INPUT = '#5C6BC0';
+
+// Band colors (soft pastels matching theme)
+const BAND_INPUT_BG = '#E8E0FF';
+const BAND_INPUT_BORDER = '#C9B9FF';
+const BAND_STEPS_BG = '#FFF8E1';
+const BAND_STEPS_BORDER = '#FFD54F';
+const BAND_OUTPUT_BG = '#E8F5E9';
+const BAND_OUTPUT_BORDER = '#81C784';
+
 let conversionSelect;
 let currentConversion = 'binary-gray';
 
 // Store individual bits
 let valueBits = [0, 1, 0, 1]; // 5 (0101)
-let bitBoxSize = 30;
-let bitSpacing = 8;
+let bitBoxSize = 32;
+let bitSpacing = 10;
 
 let conversions = [
   { id: 'binary-gray', name: 'Binary \u2192 Gray Code', from: 'Binary', to: 'Gray' },
@@ -49,44 +67,50 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  conversionSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 10);
+  conversionSelect.position(mainRect.left + 110, mainRect.top + drawHeight + 10);
 }
 
 function draw() {
   updateCanvasSize();
   let currentValue = bitsToValue(valueBits);
 
-  // Drawing area
-  fill('aliceblue');
-  stroke('silver');
-  strokeWeight(1);
-  rect(0, 0, canvasWidth, drawHeight);
+  // Card background
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(1, 1, canvasWidth - 2, drawHeight - 2, 14);
 
   // Control area
   fill('white');
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(18);
+  textStyle(BOLD);
   text('Code Converter Demo', canvasWidth / 2, 10);
+  textStyle(NORMAL);
 
+  // Subtitle
   let conv = conversions.find(c => c.id === currentConversion);
   textSize(12);
-  fill('#666');
-  text(conv.from + ' \u2192 ' + conv.to, canvasWidth / 2, 35);
+  fill('#555');
+  text(conv.from + ' \u2192 ' + conv.to, canvasWidth / 2, 33);
 
   // Draw conversion
   drawConversion();
 
   // Control labels
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('Conversion:', 20, drawHeight + 22);
+  textStyle(NORMAL);
 
   // Draw clickable bit toggles
   drawBitToggles();
@@ -97,40 +121,52 @@ function drawBitToggles() {
   let bitY = drawHeight + 45;
 
   // Label
-  fill('black');
+  fill(PURPLE_DARK);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(12);
+  textStyle(BOLD);
   text('Value=' + currentValue, 20, bitY + bitBoxSize / 2);
+  textStyle(NORMAL);
 
-  // Bit boxes
-  let boxStartX = 90;
+  // Bit boxes — purple active, light inactive
+  let boxStartX = 100;
   for (let i = 0; i < 4; i++) {
     let x = boxStartX + i * (bitBoxSize + bitSpacing);
-    fill(valueBits[i] === 1 ? '#2196f3' : '#e0e0e0');
-    stroke('#999');
-    strokeWeight(1);
-    rect(x, bitY, bitBoxSize, bitBoxSize, 4);
 
-    fill(valueBits[i] === 1 ? 'white' : '#333');
+    if (valueBits[i] === 1) {
+      drawingContext.shadowColor = 'rgba(106, 91, 255, 0.3)';
+      drawingContext.shadowBlur = 5;
+    }
+
+    fill(valueBits[i] === 1 ? PURPLE : '#E0E0E0');
+    stroke(PURPLE_BORDER);
+    strokeWeight(1.5);
+    rect(x, bitY, bitBoxSize, bitBoxSize, 8);
+
+    drawingContext.shadowBlur = 0;
+
+    fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(16);
+    textStyle(BOLD);
     text(valueBits[i], x + bitBoxSize / 2, bitY + bitBoxSize / 2);
+    textStyle(NORMAL);
   }
 
   // Bit position labels
-  fill('#999');
+  fill(PURPLE_LIGHT);
   noStroke();
   textSize(9);
   textAlign(CENTER, TOP);
   for (let i = 0; i < 4; i++) {
     let bx = boxStartX + i * (bitBoxSize + bitSpacing) + bitBoxSize / 2;
-    text(3 - i, bx, bitY + bitBoxSize + 2);
+    text(3 - i, bx, bitY + bitBoxSize + 3);
   }
 
   // Decimal display
-  fill('#666');
+  fill('#777');
   textSize(11);
   textAlign(LEFT, CENTER);
   let afterBitsX = boxStartX + 4 * (bitBoxSize + bitSpacing) + 10;
@@ -139,7 +175,7 @@ function drawBitToggles() {
 
 function mousePressed() {
   let bitY = drawHeight + 45;
-  let boxStartX = 90;
+  let boxStartX = 100;
 
   for (let i = 0; i < 4; i++) {
     let x = boxStartX + i * (bitBoxSize + bitSpacing);
@@ -154,7 +190,9 @@ function mousePressed() {
 function drawConversion() {
   let currentValue = bitsToValue(valueBits);
   let centerX = canvasWidth / 2;
-  let y = 65;
+  let mx = 25; // horizontal margin
+  let bandW = canvasWidth - 2 * mx;
+  let y = 56;
 
   // Get input and output values
   let inputBinary, outputCode, outputLabel;
@@ -187,109 +225,132 @@ function drawConversion() {
       break;
   }
 
-  // Input display
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(2);
-  rect(30, y, canvasWidth - 60, 50, 8);
+  // ── Input band ──
+  fill(BAND_INPUT_BG);
+  stroke(BAND_INPUT_BORDER);
+  strokeWeight(1.5);
+  rect(mx, y, bandW, 52, 12);
 
-  fill('#2196f3');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(11);
-  text('Input (' + conversions.find(c => c.id === currentConversion).from + ')', centerX, y + 5);
+  textStyle(BOLD);
+  text('Input (' + conversions.find(c => c.id === currentConversion).from + ')', centerX, y + 6);
+  textStyle(NORMAL);
 
   textSize(22);
-  fill('black');
-  text(inputBinary, centerX, y + 22);
+  textStyle(BOLD);
+  fill(PURPLE_DARK);
+  text(inputBinary, centerX, y + 24);
+  textStyle(NORMAL);
 
-  // Arrow
-  y += 60;
-  fill('#ff9800');
+  // Arrow down
+  y += 62;
+  fill(GOLD);
   noStroke();
-  triangle(centerX, y + 20, centerX - 15, y, centerX + 15, y);
+  triangle(centerX, y + 16, centerX - 12, y, centerX + 12, y);
 
-  // Conversion steps
-  y += 30;
-  fill('#fff3e0');
-  stroke('#ff9800');
-  strokeWeight(2);
-  rect(30, y, canvasWidth - 60, 100, 8);
+  // ── Conversion steps band ──
+  y += 24;
+  fill(BAND_STEPS_BG);
+  stroke(BAND_STEPS_BORDER);
+  strokeWeight(1.5);
+  rect(mx, y, bandW, 105, 12);
 
-  fill('#ff9800');
+  fill(GOLD);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(11);
-  text('Conversion Steps', centerX, y + 5);
+  textStyle(BOLD);
+  text('Conversion Steps', centerX, y + 7);
+  textStyle(NORMAL);
 
-  textSize(10);
+  // Step equations — left-aligned for clean math look
+  textSize(11);
   fill('#333');
-  let stepY = y + 25;
+  let stepY = y + 26;
   for (let step of steps) {
-    text(step, centerX, stepY);
-    stepY += 16;
+    if (step !== '') {
+      textAlign(CENTER, TOP);
+      text(step, centerX, stepY);
+    }
+    stepY += 18;
   }
 
-  // Arrow
-  y += 110;
-  fill('#4CAF50');
+  // Arrow down
+  y += 115;
+  fill(GREEN_OK);
   noStroke();
-  triangle(centerX, y + 20, centerX - 15, y, centerX + 15, y);
+  triangle(centerX, y + 16, centerX - 12, y, centerX + 12, y);
 
-  // Output display
-  y += 30;
-  fill('#e8f5e9');
-  stroke('#4CAF50');
-  strokeWeight(2);
-  rect(30, y, canvasWidth - 60, 50, 8);
+  // ── Output band ──
+  y += 24;
+  fill(BAND_OUTPUT_BG);
+  stroke(BAND_OUTPUT_BORDER);
+  strokeWeight(1.5);
+  rect(mx, y, bandW, 52, 12);
 
-  fill('#4CAF50');
+  fill(GREEN_OK);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(11);
-  text('Output (' + outputLabel + ')', centerX, y + 5);
+  textStyle(BOLD);
+  text('Output (' + outputLabel + ')', centerX, y + 6);
+  textStyle(NORMAL);
 
   textSize(22);
-  fill('black');
-  text(outputCode, centerX, y + 22);
+  textStyle(BOLD);
+  fill('#2E7D32');
+  text(outputCode, centerX, y + 24);
+  textStyle(NORMAL);
 
-  // Draw bit comparison
-  drawBitComparison(y + 65, inputBinary, outputCode);
+  // ── Bit comparison strip ──
+  drawBitComparison(y + 62, inputBinary, outputCode);
 }
 
 function drawBitComparison(y, input, output) {
-  fill('#f5f5f5');
-  stroke('#ccc');
-  strokeWeight(1);
-  rect(30, y, canvasWidth - 60, 60, 5);
+  let mx = 25;
+  let bandW = canvasWidth - 2 * mx;
 
-  fill('#333');
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(mx, y, bandW, 65, 12);
+
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(10);
-  text('Bit-by-bit Comparison:', 40, y + 8);
+  textSize(11);
+  textStyle(BOLD);
+  text('Bit-by-bit Comparison:', mx + 14, y + 8);
+  textStyle(NORMAL);
 
   // Only show for 4-bit codes
   if (input.length === 4 && output.length === 4) {
-    let startX = 60;
-    let bitW = 50;
+    let conv = conversions.find(c => c.id === currentConversion);
+    let startX = canvasWidth / 2 - 100;
+    let bitW = 55;
 
     textAlign(CENTER, TOP);
-    textSize(9);
-    fill('#666');
+    textSize(10);
+    fill(PURPLE_LIGHT);
     for (let i = 0; i < 4; i++) {
-      text('Bit ' + (3 - i), startX + i * bitW, y + 25);
+      text('Bit ' + (3 - i), startX + i * bitW, y + 26);
     }
 
-    textSize(14);
+    textSize(15);
+    textStyle(BOLD);
     for (let i = 0; i < 4; i++) {
-      fill(input[i] === output[i] ? '#999' : '#f44336');
-      text(input[i] + '\u2192' + output[i], startX + i * bitW, y + 40);
+      let changed = input[i] !== output[i];
+      fill(changed ? GOLD : '#aaa');
+      text(input[i] + '\u2192' + output[i], startX + i * bitW, y + 42);
     }
+    textStyle(NORMAL);
   } else {
     fill('#666');
     textAlign(CENTER, CENTER);
-    textSize(10);
+    textSize(11);
     text('Input: ' + input + '  \u2192  Output: ' + output, canvasWidth / 2, y + 35);
   }
 }
