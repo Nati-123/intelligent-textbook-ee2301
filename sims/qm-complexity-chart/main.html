@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>QM Complexity Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 1.3em;
+            margin: 0 0 15px 0;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        .legend-note {
+            text-align: center;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 10px;
+        }
+        .practical-zones {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .zone {
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        .zone-kmap { background-color: #e3f2fd; border: 1px solid #2196F3; }
+        .zone-qm { background-color: #fff3e0; border: 1px solid #ff9800; }
+        .zone-heuristic { background-color: #fce4ec; border: 1px solid #e91e63; }
+    </style>
+    <script src="../fullscreen-toggle.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Computational Complexity: Exact vs. Heuristic Minimization</h1>
+        <div class="chart-container">
+            <canvas id="complexityChart"></canvas>
+        </div>
+        <div class="practical-zones">
+            <span class="zone zone-kmap">K-map: 2-5 vars</span>
+            <span class="zone zone-qm">QM: 5-15 vars</span>
+            <span class="zone zone-heuristic">Heuristics: 15+ vars</span>
+        </div>
+        <p class="legend-note">Logarithmic scale. QM method becomes impractical beyond ~15 variables.</p>
+    </div>
+
+    <script>
+        // Data for the chart
+        const variables = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+
+        // QM Method time (exponential growth) - relative units
+        const qmTime = variables.map(n => Math.pow(3, n) / n / 1000);
+
+        // ESPRESSO/Heuristic time (polynomial growth)
+        const heuristicTime = variables.map(n => Math.pow(n, 3) / 10);
+
+        // Max prime implicants (3^n / n)
+        const maxPIs = variables.map(n => Math.pow(3, n) / n);
+
+        const ctx = document.getElementById('complexityChart').getContext('2d');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: variables,
+                datasets: [
+                    {
+                        label: 'QM Method Time',
+                        data: qmTime,
+                        borderColor: '#e91e63',
+                        backgroundColor: 'rgba(233, 30, 99, 0.1)',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    },
+                    {
+                        label: 'Heuristic (ESPRESSO) Time',
+                        data: heuristicTime,
+                        borderColor: '#4caf50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    },
+                    {
+                        label: 'Max Prime Implicants',
+                        data: maxPIs,
+                        borderColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                let value = context.parsed.y;
+                                if (value >= 1000000) {
+                                    return label + ': ' + (value / 1000000).toFixed(1) + 'M';
+                                } else if (value >= 1000) {
+                                    return label + ': ' + (value / 1000).toFixed(1) + 'K';
+                                }
+                                return label + ': ' + value.toFixed(1);
+                            }
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            kmapLine: {
+                                type: 'line',
+                                xMin: 5,
+                                xMax: 5,
+                                borderColor: '#2196F3',
+                                borderWidth: 2,
+                                borderDash: [10, 5],
+                                label: {
+                                    content: 'K-map limit',
+                                    enabled: true,
+                                    position: 'start'
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Number of Variables',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Computation Time (relative)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                if (value >= 1000000) return (value/1000000) + 'M';
+                                if (value >= 1000) return (value/1000) + 'K';
+                                return value;
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'logarithmic',
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Max Prime Implicants',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                if (value >= 1000000000) return (value/1000000000) + 'B';
+                                if (value >= 1000000) return (value/1000000) + 'M';
+                                if (value >= 1000) return (value/1000) + 'K';
+                                return value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

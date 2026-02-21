@@ -1,0 +1,10352 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practice problems for ROMs, PLAs, PALs, CPLDs, FPGAs, and design flow">
+      
+      
+        <meta name="author" content="University of Minnesota - Twin Cities">
+      
+      
+      
+        <link rel="prev" href="../quiz/">
+      
+      
+        <link rel="next" href="../challenge/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Unit 11 Problems - Programmable Logic Devices - Intelligent Textbook - Digital System Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css?v=19">
+    
+      <link rel="stylesheet" href="../../stylesheets/audio-player.css?v=1">
+    
+      <link rel="stylesheet" href="../../stylesheets/quiz.css?v=3">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#end-of-unit-problems-programmable-logic-devices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intelligent Textbook - Digital System Design" class="md-header__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intelligent Textbook - Digital System Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unit 11 Problems - Programmable Logic Devices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cover
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../home/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course-description/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course Description
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../unit1-number-systems/" class="md-tabs__link">
+          
+  
+  
+  Unit Modules
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sims/" class="md-tabs__link">
+          
+  
+  
+  MicroSims
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../learning-graph/" class="md-tabs__link">
+          
+  
+  
+  Learning Graph
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intelligent Textbook - Digital System Design" class="md-nav__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    Intelligent Textbook - Digital System Design
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cover
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit01-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit02-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit03-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit04-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit05-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit06-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit07-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit08-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit09-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit10-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#section-a-rom-and-pla-programming-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section A: ROM and PLA Programming (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section A: ROM and PLA Programming (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-b-pal-design-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section B: PAL Design (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section B: PAL Design (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 8
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-c-cpld-and-fpga-architecture-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section C: CPLD and FPGA Architecture (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section C: CPLD and FPGA Architecture (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 11
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-d-lut-and-clb-design-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section D: LUT and CLB Design (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section D: LUT and CLB Design (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 13
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 15
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 16
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-e-design-flow-and-device-selection-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section E: Design Flow and Device Selection (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section E: Design Flow and Device Selection (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 17
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 18
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 19
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 20
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit11-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_12" id="__nav_6_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - Introduction to VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - Introduction to VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit12-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_13" id="__nav_6_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit13-system-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit13-system-integration/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit13-system-integration/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit13-system-integration/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit13-system-integration/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit13-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MicroSims
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/course-structure-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Structure Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/base-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/analog-vs-digital-signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analog vs Digital Signals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/positional-notation-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional Notation Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-arithmetic-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Arithmetic Practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/signed-number-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signed Number Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/overflow-detection-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overflow Detection Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/number-systems-concept-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Number Systems Concept Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/base-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/and-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/or-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/not-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOT Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/buffer-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buffer Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/tri-state-buffer-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tri-State Buffer Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/xor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/xnor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XNOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/logic-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-operations-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Operations Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/truth-table-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Truth Table Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-laws-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Laws Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/demorgans-theorem-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    De Morgan's Theorem Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-simplification-tutor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Simplification Tutor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-and-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input AND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-or-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input OR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-nand-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NAND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-nor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-xor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input XOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/gate-cascade-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gate Cascade Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/circuit-analysis-synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit Analysis & Synthesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-proof-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Proof Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-adder-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Adder Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/design-flow-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Flow Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/word-problem-translator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word Problem Translator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/adder-subtractor-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adder-Subtractor Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/parity-circuit-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parity Circuit Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/code-converter-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Converter Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/seven-segment-decoder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seven Segment Decoder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/dont-care-optimizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Don't Care Optimizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/full-adder-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Adder Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-maxterm-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm/Maxterm Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sop-pos-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOP-POS Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shannon-expansion-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shannon Expansion Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-expansion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Expansion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-3var-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map 3-Variable Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/prime-implicant-finder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Implicant Finder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-dont-cares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map with Don't Cares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-practice-challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Practice Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-simplification-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Simplification Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-grouping-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Grouping Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-combination-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Combination Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pi-chart-interactive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PI Chart Interactive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-complexity-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complexity Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-complete-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complete Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-method-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Method Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/universal-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Universal Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/bubble-pushing-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bubble Pushing Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-nor-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND-NOR Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/multi-level-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Level Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/mux-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/decoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/priority-encoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priority Encoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-gray-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary-Gray Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/magnitude-comparator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitude Comparator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/mux-function-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Function Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_11" id="__nav_7_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sr-latch-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SR Latch Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/d-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/jk-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JK Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/timing-diagram-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Diagram Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/flipflop-timing-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flip-Flop Timing Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_12" id="__nav_7_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shift-register-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/counter-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counter Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fsm-designer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FSM Designer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sequence-detector-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Detector Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shift-register-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_13" id="__nav_7_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/programmable-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmable Connections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/rom-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ROM Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-vs-pal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA vs PAL Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/cpld-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPLD Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/lut-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUT Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/clb-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLB Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fpga-config-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Configuration Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fpga-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pld-selection-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLD Selection Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-programming-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Programming Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_14" id="__nav_7_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/entity-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity-Architecture Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-modeling-styles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Modeling Styles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-flipflop-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Flip-Flop Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-fsm-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-synthesis-inference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Synthesis Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-fsm-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_15" id="__nav_7_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/top-down-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top-Down Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/datapath-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/timing-analysis-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Analysis Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/digital-lock-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Lock System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/uart-transmitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transmitter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/uart-transceiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transceiver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/course-integration-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Integration Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/datapath-controller-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vending-machine-fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vending Machine FSM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/hierarchical-alu-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hierarchical ALU Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Learning Graph
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/concept-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/concept-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/taxonomy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Taxonomy Distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/book-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/chapter-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/course-description-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description Assessment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/glossary-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/quiz-generation-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz Generation Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/faq-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="problems-styled">
+<h1 id="end-of-unit-problems-programmable-logic-devices">End-of-Unit Problems: Programmable Logic Devices</h1>
+<p>Work through these problems to reinforce your understanding of ROMs, PLAs, PALs, CPLDs, FPGAs, and the programmable logic design flow.</p>
+<hr />
+<h2 id="section-a-rom-and-pla-programming-4-problems">Section A: ROM and PLA Programming (4 problems)</h2>
+<h3 id="problem-1">Problem 1</h3>
+<p>A combinational circuit has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>) and 2 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>) defined by:</p>
+<ul>
+<li><span class="arithmatex">\(F_1(A, B, C) = \sum m(1, 2, 4, 7)\)</span></li>
+<li><span class="arithmatex">\(F_2(A, B, C) = \sum m(0, 3, 5, 6)\)</span></li>
+</ul>
+<p>Implement this circuit using an <span class="arithmatex">\(8 \times 2\)</span> ROM. Show the complete truth table and the contents of every ROM address.</p>
+<p><strong>Solution:</strong> <strong>Truth table (ROM contents):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th><span class="arithmatex">\(A\)</span></th>
+<th><span class="arithmatex">\(B\)</span></th>
+<th><span class="arithmatex">\(C\)</span></th>
+<th><span class="arithmatex">\(F_1\)</span></th>
+<th><span class="arithmatex">\(F_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ROM structure:</strong></p>
+<div class="highlight"><pre><span></span><code>A ──┐
+B ──┼── [3-to-8 Decoder] ── m0 ── ·─────── F2
+C ──┘       (fixed AND        m1 ── ·───── F1
+             plane)           m2 ── ·───── F1
+                              m3 ── ·─────── F2
+                              m4 ── ·───── F1
+                              m5 ── ·─────── F2
+                              m6 ── ·─────── F2
+                              m7 ── ·───── F1
+                                    OR plane
+</code></pre></div>
+<p><strong>ROM programming:</strong></p>
+<ul>
+<li>The decoder (AND plane) is fixed and generates all <span class="arithmatex">\(2^3 = 8\)</span> minterms.</li>
+<li>The OR plane is programmable. Connections (fuse intact) are marked with a dot.</li>
+<li><span class="arithmatex">\(F_1\)</span> OR line connects to minterms 1, 2, 4, 7.</li>
+<li><span class="arithmatex">\(F_2\)</span> OR line connects to minterms 0, 3, 5, 6.</li>
+</ul>
+<p><strong>ROM size:</strong> <span class="arithmatex">\(2^3 \times 2 = 8 \times 2 = 16\)</span> bits total.</p>
+<p><strong>Key observation:</strong> The ROM stores the complete truth table. Every minterm is generated whether needed or not. Note that <span class="arithmatex">\(F_2 = \overline{F_1}\)</span> in this example, but the ROM does not exploit this — each output is independently programmed.</p>
+<hr />
+<h3 id="problem-2">Problem 2</h3>
+<p>Compare the ROM implementation from Problem 1 to a PLA implementation of the same functions. Determine the minimum number of product terms needed in the PLA and show the AND-plane and OR-plane programming.</p>
+<p><strong>Solution:</strong> <strong>Step 1: Minimize each function.</strong></p>
+<p><strong>K-map for <span class="arithmatex">\(F_1 = \sum m(1, 2, 4, 7)\)</span>:</strong></p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(A\)</span>$BC$</th>
+<th>00</th>
+<th>01</th>
+<th>11</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + \overline{A}\,B\,\overline{C} + A\,\overline{B}\,\overline{C} + A\,B\,C\)</span></p>
+<p>This simplifies to: <span class="arithmatex">\(F_1 = A \oplus B \oplus C\)</span> (odd-parity function, no further SOP reduction below 4 product terms).</p>
+<p><strong>K-map for <span class="arithmatex">\(F_2 = \sum m(0, 3, 5, 6)\)</span>:</strong></p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(A\)</span>$BC$</th>
+<th>00</th>
+<th>01</th>
+<th>11</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(F_2 = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,B\,C + A\,\overline{B}\,C + A\,B\,\overline{C}\)</span></p>
+<p><span class="arithmatex">\(F_2 = \overline{F_1}\)</span> (even parity). However, in standard PLA the complement is not free, so we still need product terms.</p>
+<p><strong>Step 2: Find shared product terms.</strong></p>
+<p>Since <span class="arithmatex">\(F_2 = \overline{F_1}\)</span>, these functions share no common product terms (they are complements). We need:</p>
+<ul>
+<li>4 product terms for <span class="arithmatex">\(F_1\)</span></li>
+<li>4 product terms for <span class="arithmatex">\(F_2\)</span></li>
+</ul>
+<p>But wait — a PLA with complemented outputs can implement <span class="arithmatex">\(F_2\)</span> by inverting <span class="arithmatex">\(F_1\)</span>. If the PLA supports XOR at the output, only 4 product terms are needed total.</p>
+<p>Without output inversion: <strong>8 product terms</strong>.</p>
+<p>With output inversion on <span class="arithmatex">\(F_2\)</span>: <strong>4 product terms</strong>.</p>
+<p><strong>Step 3: PLA programming table (with output inversion):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product Term</th>
+<th><span class="arithmatex">\(A\)</span></th>
+<th><span class="arithmatex">\(B\)</span></th>
+<th><span class="arithmatex">\(C\)</span></th>
+<th><span class="arithmatex">\(F_1\)</span></th>
+<th><span class="arithmatex">\(\overline{F_2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_1 = \overline{A}\,\overline{B}\,C\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_2 = \overline{A}\,B\,\overline{C}\)</span></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_3 = A\,\overline{B}\,\overline{C}\)</span></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_4 = A\,B\,C\)</span></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(F_2\)</span> output gets an XOR bubble (complement).</p>
+<p><strong>Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ROM</th>
+<th>PLA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND plane</td>
+<td>Fixed (all <span class="arithmatex">\(2^n\)</span> minterms)</td>
+<td>Programmable (only needed terms)</td>
+</tr>
+<tr>
+<td>OR plane</td>
+<td>Programmable</td>
+<td>Programmable</td>
+</tr>
+<tr>
+<td>Product terms</td>
+<td>8 (all minterms)</td>
+<td>4 (with output inversion)</td>
+</tr>
+<tr>
+<td>Total fuses</td>
+<td>16</td>
+<td>Much fewer</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>Any function of 3 variables</td>
+<td>Only functions fitting allocated terms</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="problem-3">Problem 3</h3>
+<p>A system requires a code converter that maps 4-bit BCD (0-9) to 7-segment display outputs (<span class="arithmatex">\(a\)</span>-<span class="arithmatex">\(g\)</span>). Show how to implement this using a ROM. Determine the ROM size and show the contents for digits 0, 1, 2, and 3.</p>
+<p>Segment mapping (active-high, common cathode):</p>
+<div class="highlight"><pre><span></span><code> ─a─
+|   |
+f   b
+|   |
+ ─g─
+|   |
+e   c
+|   |
+ ─d─
+</code></pre></div>
+<p><strong>Solution:</strong> <strong>ROM configuration:</strong></p>
+<ul>
+<li>Inputs: 4-bit BCD (<span class="arithmatex">\(D_3 D_2 D_1 D_0\)</span>) = 4 address lines</li>
+<li>Outputs: 7 segments (<span class="arithmatex">\(a, b, c, d, e, f, g\)</span>) = 7 data bits</li>
+<li>ROM size: <span class="arithmatex">\(2^4 \times 7 = 16 \times 7 = 112\)</span> bits</li>
+</ul>
+<p><strong>Segment encoding (1 = ON):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Digit</th>
+<th><span class="arithmatex">\(D_3 D_2 D_1 D_0\)</span></th>
+<th><span class="arithmatex">\(a\)</span></th>
+<th><span class="arithmatex">\(b\)</span></th>
+<th><span class="arithmatex">\(c\)</span></th>
+<th><span class="arithmatex">\(d\)</span></th>
+<th><span class="arithmatex">\(e\)</span></th>
+<th><span class="arithmatex">\(f\)</span></th>
+<th><span class="arithmatex">\(g\)</span></th>
+<th>Hex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0000</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>7E</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0010</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>6D</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0011</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>79</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0100</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>33</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0101</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>5B</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0110</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>5F</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1000</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>7F</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1001</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>7B</td>
+</tr>
+<tr>
+<td>10-15</td>
+<td>1010-1111</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ROM structure:</strong></p>
+<div class="highlight"><pre><span></span><code>D3 ──┐
+D2 ──┤  [4-to-16      m0 ──── a b c d e f (digit 0)
+D1 ──┤   Decoder]      m1 ──── b c         (digit 1)
+D0 ──┘   (fixed AND    m2 ──── a b d e g   (digit 2)
+          plane)        m3 ──── a b c d g   (digit 3)
+                        ...
+                        m9 ──── a b c d f g (digit 9)
+                       m10-m15 ── (no connections, all outputs 0)
+</code></pre></div>
+<p><strong>Addresses 10-15</strong> (invalid BCD) store all zeros, blanking the display.</p>
+<p><strong>Total storage used:</strong> 10 valid digits <span class="arithmatex">\(\times\)</span> 7 bits = 70 bits active; 6 unused addresses <span class="arithmatex">\(\times\)</span> 7 bits = 42 bits wasted.</p>
+<p><strong>ROM advantage:</strong> No minimization needed. Just store the truth table directly. Any display pattern change requires only reprogramming the ROM contents.</p>
+<hr />
+<h3 id="problem-4">Problem 4</h3>
+<p>Design a PLA with 3 inputs (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>) and 3 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>, <span class="arithmatex">\(F_3\)</span>) for the following functions. Identify shared product terms to minimize the total number of product terms.</p>
+<ul>
+<li><span class="arithmatex">\(F_1 = X\overline{Y} + XZ\)</span></li>
+<li><span class="arithmatex">\(F_2 = X\overline{Y} + \overline{X}Z\)</span></li>
+<li><span class="arithmatex">\(F_3 = XZ + \overline{X}Z\)</span></li>
+</ul>
+<p><strong>Solution:</strong> <strong>Step 1: List all unique product terms.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product Term</th>
+<th>Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_1\)</span></td>
+<td><span class="arithmatex">\(X\overline{Y}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_2\)</span></td>
+<td><span class="arithmatex">\(XZ\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_3\)</span></td>
+<td><span class="arithmatex">\(\overline{X}Z\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2: Check for sharing.</strong></p>
+<ul>
+<li><span class="arithmatex">\(F_1 = P_1 + P_2\)</span> (uses <span class="arithmatex">\(X\overline{Y}\)</span> and <span class="arithmatex">\(XZ\)</span>)</li>
+<li><span class="arithmatex">\(F_2 = P_1 + P_3\)</span> (uses <span class="arithmatex">\(X\overline{Y}\)</span> and <span class="arithmatex">\(\overline{X}Z\)</span>)</li>
+<li><span class="arithmatex">\(F_3 = P_2 + P_3\)</span> (uses <span class="arithmatex">\(XZ\)</span> and <span class="arithmatex">\(\overline{X}Z\)</span>)</li>
+</ul>
+<p>Note: <span class="arithmatex">\(F_3 = XZ + \overline{X}Z = Z(X + \overline{X}) = Z\)</span>, but in PLA SOP form we keep the product terms as they enable sharing.</p>
+<p><strong>Total unique product terms: 3</strong> (all shared across outputs).</p>
+<p><strong>Step 3: PLA programming table.</strong></p>
+<p>AND plane (1 = true, 0 = complement, — = don't connect):</p>
+<table>
+<thead>
+<tr>
+<th>Product Term</th>
+<th><span class="arithmatex">\(X\)</span></th>
+<th><span class="arithmatex">\(\overline{X}\)</span></th>
+<th><span class="arithmatex">\(Y\)</span></th>
+<th><span class="arithmatex">\(\overline{Y}\)</span></th>
+<th><span class="arithmatex">\(Z\)</span></th>
+<th><span class="arithmatex">\(\overline{Z}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_1\)</span>: <span class="arithmatex">\(X\overline{Y}\)</span></td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_2\)</span>: <span class="arithmatex">\(XZ\)</span></td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_3\)</span>: <span class="arithmatex">\(\overline{X}Z\)</span></td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>OR plane (1 = connected):</p>
+<table>
+<thead>
+<tr>
+<th>Product Term</th>
+<th><span class="arithmatex">\(F_1\)</span></th>
+<th><span class="arithmatex">\(F_2\)</span></th>
+<th><span class="arithmatex">\(F_3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_1\)</span></td>
+<td>1</td>
+<td>1</td>
+<td>—</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_2\)</span></td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_3\)</span></td>
+<td>—</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PLA diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>X ──┬──/──┐
+    │     │
+Y ──┼──/──┼──┐
+    │     │  │
+Z ──┼──/──┼──┼──┐
+    │  │  │  │  │  (true and complement available)
+    ▼  ▼  ▼  ▼  ▼
+┌──────────────────┐
+│   AND Plane       │
+│                   │
+│ P1 = X·Y&#39;         │──┬────┬────·
+│ P2 = X·Z           │──┤────·────┤
+│ P3 = X&#39;·Z           │──·────┤────┤
+│                   │  │    │    │
+└──────────────────┘  ▼    ▼    ▼
+┌──────────────────┐
+│   OR Plane        │
+│                   │
+│       F1   F2   F3│
+└──────────────────┘
+</code></pre></div>
+<p><strong>Comparison to ROM:</strong> A ROM would need all <span class="arithmatex">\(2^3 = 8\)</span> minterms. The PLA needs only <strong>3 product terms</strong> — a significant reduction. The key benefit is product term sharing: <span class="arithmatex">\(P_1\)</span> serves both <span class="arithmatex">\(F_1\)</span> and <span class="arithmatex">\(F_2\)</span>; <span class="arithmatex">\(P_2\)</span> serves both <span class="arithmatex">\(F_1\)</span> and <span class="arithmatex">\(F_3\)</span>; <span class="arithmatex">\(P_3\)</span> serves both <span class="arithmatex">\(F_2\)</span> and <span class="arithmatex">\(F_3\)</span>.</p>
+<hr />
+<h2 id="section-b-pal-design-4-problems">Section B: PAL Design (4 problems)</h2>
+<h3 id="problem-5">Problem 5</h3>
+<p>Implement the following functions using a PAL with 3 inputs and a maximum of 4 product terms per output:</p>
+<ul>
+<li><span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC\)</span></li>
+<li><span class="arithmatex">\(F_2 = \overline{A}BC + AB\overline{C} + ABC\)</span></li>
+</ul>
+<p>Show the PAL programming table and verify that the functions fit within the PAL constraints.</p>
+<p><strong>Solution:</strong> <strong>Step 1: Count product terms per output.</strong></p>
+<ul>
+<li><span class="arithmatex">\(F_1\)</span> has 4 product terms. PAL allows 4 per output. Fits exactly.</li>
+<li><span class="arithmatex">\(F_2\)</span> has 3 product terms. PAL allows 4. Fits with one spare.</li>
+</ul>
+<p><strong>Step 2: Attempt to minimize (optional for PAL, but good practice).</strong></p>
+<p><strong><span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC\)</span></strong></p>
+<p>K-map for <span class="arithmatex">\(F_1\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(A\)</span>$BC$</th>
+<th>00</th>
+<th>01</th>
+<th>11</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Grouping: <span class="arithmatex">\(A\overline{B} + AB = A(\overline{B} + B) = A\)</span>... wait:</p>
+<ul>
+<li><span class="arithmatex">\(A\overline{B}\,\overline{C} + AB\overline{C} = A\overline{C}\)</span></li>
+<li><span class="arithmatex">\(ABC\)</span> remains</li>
+<li><span class="arithmatex">\(\overline{A}\,\overline{B}\,C\)</span> remains</li>
+</ul>
+<p><span class="arithmatex">\(F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C = A\overline{C} + \overline{A}\,\overline{B}\,C + ABC\)</span></p>
+<p>Further: <span class="arithmatex">\(A\overline{C} + ABC = A(\overline{C} + BC) = A(\overline{C} + B)\)</span>... not SOP.</p>
+<p>Minimized SOP: <span class="arithmatex">\(F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C\)</span> — <strong>3 product terms</strong>.</p>
+<p><strong><span class="arithmatex">\(F_2 = \overline{A}BC + AB\overline{C} + ABC\)</span></strong></p>
+<p>K-map for <span class="arithmatex">\(F_2\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(A\)</span>$BC$</th>
+<th>00</th>
+<th>01</th>
+<th>11</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="arithmatex">\(\overline{A}BC + ABC = BC\)</span></li>
+<li><span class="arithmatex">\(AB\overline{C}\)</span> remains</li>
+</ul>
+<p><span class="arithmatex">\(F_2 = BC + AB\overline{C}\)</span> — <strong>2 product terms</strong>.</p>
+<p><strong>Step 3: PAL programming table.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th><span class="arithmatex">\(A\)</span></th>
+<th><span class="arithmatex">\(\overline{A}\)</span></th>
+<th><span class="arithmatex">\(B\)</span></th>
+<th><span class="arithmatex">\(\overline{B}\)</span></th>
+<th><span class="arithmatex">\(C\)</span></th>
+<th><span class="arithmatex">\(\overline{C}\)</span></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td><span class="arithmatex">\(F_1\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_1\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+<td>1</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_1\)</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_1\)</span> (unused, all fuses intact = 0)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_2\)</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>—</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>1</td>
+<td><span class="arithmatex">\(F_2\)</span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_2\)</span> (unused)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><span class="arithmatex">\(F_2\)</span> (unused)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key PAL characteristic:</strong> Each product term is dedicated to exactly one output. Product term <span class="arithmatex">\(P_1\)</span> (row 1) can only feed <span class="arithmatex">\(F_1\)</span>, never <span class="arithmatex">\(F_2\)</span>. This is the fundamental difference from a PLA, where any product term can feed any output.</p>
+<hr />
+<h3 id="problem-6">Problem 6</h3>
+<p>A PAL device has 4 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(D\)</span>) and 2 outputs, with a maximum of 3 product terms per output. Determine whether the following functions can be implemented directly. If not, explain what must be done.</p>
+<ul>
+<li><span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD\)</span></li>
+<li><span class="arithmatex">\(F_2 = \overline{A}\,\overline{B} + CD\)</span></li>
+</ul>
+<p><strong>Solution:</strong> <strong>Step 1: Count product terms.</strong></p>
+<ul>
+<li><span class="arithmatex">\(F_1\)</span> has 5 product terms in the given form. PAL limit is 3 per output. <strong>Does not fit.</strong></li>
+<li><span class="arithmatex">\(F_2\)</span> has 2 product terms. PAL limit is 3. <strong>Fits.</strong></li>
+</ul>
+<p><strong>Step 2: Attempt to minimize <span class="arithmatex">\(F_1\)</span>.</strong></p>
+<p><span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD\)</span></p>
+<p>Factor where possible:</p>
+<ul>
+<li><span class="arithmatex">\(AB\overline{C}D + ABC\overline{D} + ABCD = AB(\overline{C}D + C\overline{D} + CD) = AB(\overline{C}D + C) = AB(C + D)\)</span></li>
+</ul>
+<p>Wait: <span class="arithmatex">\(\overline{C}D + C\overline{D} + CD = \overline{C}D + C(\overline{D} + D) = \overline{C}D + C = C + D\)</span></p>
+<p>So: <span class="arithmatex">\(AB\overline{C}D + ABC\overline{D} + ABCD = AB(C + D)\)</span></p>
+<p>But <span class="arithmatex">\(AB(C+D) = ABC + ABD\)</span> — still 2 product terms.</p>
+<p>Now: <span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + ABC + ABD\)</span></p>
+<p>That is 4 product terms. Still exceeds 3.</p>
+<p>Try further: <span class="arithmatex">\(A\overline{B}CD + ABC = AC(\overline{B}D + B) = AC(B + D)\)</span> = <span class="arithmatex">\(ABC + ACD\)</span>. No improvement.</p>
+<p>Try: <span class="arithmatex">\(\overline{A}BCD + A\overline{B}CD = CD(\overline{A}B + A\overline{B}) = CD(A \oplus B)\)</span>. Not SOP.</p>
+<p>In SOP form, <span class="arithmatex">\(F_1\)</span> requires <strong>minimum 4 product terms</strong> (verified by K-map). This exceeds the PAL limit of 3.</p>
+<p><strong>Step 3: Solutions when function exceeds product term limit.</strong></p>
+<ol>
+<li>
+<p><strong>Use a larger PAL</strong> with more product terms per output (e.g., 4 or 8 terms per output).</p>
+</li>
+<li>
+<p><strong>Output cascading:</strong> Use the output of another PAL macro-cell as a feedback input.</p>
+<ul>
+<li><span class="arithmatex">\(G = \overline{A}BCD + A\overline{B}CD\)</span> (2 terms — fits in one output)</li>
+<li><span class="arithmatex">\(F_1 = G + ABC + ABD\)</span> (3 terms — fits, using <span class="arithmatex">\(G\)</span> as input)</li>
+</ul>
+<p>This requires two output macro-cells and one feedback path.</p>
+</li>
+<li>
+<p><strong>Use XOR output:</strong> Some PALs have XOR gates at outputs. <span class="arithmatex">\(F_1\)</span> might factor into two expressions XORed together, each with fewer terms.</p>
+</li>
+</ol>
+<p><strong>Conclusion:</strong> <span class="arithmatex">\(F_2\)</span> fits directly. <span class="arithmatex">\(F_1\)</span> requires either a larger PAL or output cascading to implement.</p>
+<hr />
+<h3 id="problem-7">Problem 7</h3>
+<p>Explain the difference between a PLA and a PAL in terms of architecture, speed, and cost. A function requires 6 product terms shared among 4 outputs. Compare the PLA and PAL implementations.</p>
+<p><strong>Solution:</strong> <strong>Architectural Comparison:</strong></p>
+<div class="highlight"><pre><span></span><code>PLA Architecture:              PAL Architecture:
+┌─────────────────┐           ┌─────────────────┐
+│  Programmable    │           │  Programmable    │
+│  AND Plane       │           │  AND Plane       │
+│  (any product    │           │  (product terms  │
+│   term from      │           │   from any       │
+│   any inputs)    │           │   inputs)        │
+└────────┬────────┘           └────────┬────────┘
+         │                              │
+┌────────▼────────┐           ┌────────▼────────┐
+│  Programmable    │           │  Fixed           │
+│  OR Plane        │           │  OR Plane        │
+│  (any product    │           │  (dedicated      │
+│   term to any    │           │   terms per      │
+│   output)        │           │   output)        │
+└─────────────────┘           └─────────────────┘
+</code></pre></div>
+<p><strong>Detailed Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>PLA</th>
+<th>PAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND plane</td>
+<td>Programmable</td>
+<td>Programmable</td>
+</tr>
+<tr>
+<td>OR plane</td>
+<td>Programmable</td>
+<td>Fixed</td>
+</tr>
+<tr>
+<td>Product term sharing</td>
+<td>Yes (any term to any output)</td>
+<td>No (terms dedicated per output)</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Slower (two programmable planes)</td>
+<td>Faster (one programmable plane)</td>
+</tr>
+<tr>
+<td>Programming complexity</td>
+<td>Higher</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Higher</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>More flexible</td>
+<td>Less flexible</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example: 6 product terms, 4 outputs.</strong></p>
+<p>Suppose the functions are:</p>
+<ul>
+<li><span class="arithmatex">\(F_1 = P_1 + P_2 + P_3\)</span></li>
+<li><span class="arithmatex">\(F_2 = P_1 + P_4\)</span></li>
+<li><span class="arithmatex">\(F_3 = P_2 + P_5 + P_6\)</span></li>
+<li><span class="arithmatex">\(F_4 = P_3 + P_4 + P_5 + P_6\)</span></li>
+</ul>
+<p><strong>PLA implementation:</strong></p>
+<ul>
+<li>AND plane: 6 product terms (each generated once)</li>
+<li>OR plane: Each output connects to its required terms</li>
+<li>Total AND gates: <strong>6</strong></li>
+<li>Product terms shared across outputs freely</li>
+</ul>
+<p><strong>PAL implementation:</strong></p>
+<ul>
+<li>Each output has its own dedicated product terms</li>
+<li><span class="arithmatex">\(F_1\)</span> needs 3 terms (own copies of <span class="arithmatex">\(P_1\)</span>, <span class="arithmatex">\(P_2\)</span>, <span class="arithmatex">\(P_3\)</span>)</li>
+<li><span class="arithmatex">\(F_2\)</span> needs 2 terms (own copies of <span class="arithmatex">\(P_1\)</span>, <span class="arithmatex">\(P_4\)</span>)</li>
+<li><span class="arithmatex">\(F_3\)</span> needs 3 terms (own copies of <span class="arithmatex">\(P_2\)</span>, <span class="arithmatex">\(P_5\)</span>, <span class="arithmatex">\(P_6\)</span>)</li>
+<li><span class="arithmatex">\(F_4\)</span> needs 4 terms (own copies of <span class="arithmatex">\(P_3\)</span>, <span class="arithmatex">\(P_4\)</span>, <span class="arithmatex">\(P_5\)</span>, <span class="arithmatex">\(P_6\)</span>)</li>
+<li>Total AND gates: <strong>12</strong> (product terms duplicated)</li>
+</ul>
+<p><strong>Summary:</strong> The PLA uses 6 AND gates (shared terms). The PAL uses 12 AND gates (dedicated terms) but runs faster because the OR plane has fixed (hardwired) connections with lower propagation delay.</p>
+<p><strong>Speed comparison:</strong> PAL is typically 5-10 ns faster per level because one programmable interconnect plane introduces less capacitive loading and delay than two.</p>
+<hr />
+<h3 id="problem-8">Problem 8</h3>
+<p>A PAL22V10 has 22 inputs and 10 outputs. Each output macro-cell contains a D flip-flop and can be configured as combinational or registered. If a specific output has 8 product terms available, implement the following registered output:</p>
+<p><span class="arithmatex">\(D = A\overline{B}C + \overline{A}BC + ABD_{feedback} + \overline{A}\,\overline{B}\,\overline{C}\)</span></p>
+<p>Explain how the output feedback works and draw the macro-cell structure.</p>
+<p><strong>Solution:</strong> <strong>PAL22V10 Macro-Cell Structure:</strong></p>
+<div class="highlight"><pre><span></span><code>From AND array (up to 8 product terms):
+┌─────────────────────────────────┐
+│  P1 ──┐                         │
+│  P2 ──┤                         │
+│  P3 ──┼── [OR gate] ──┐         │
+│  P4 ──┤               │         │
+│  ...  │               ▼         │
+│  P8 ──┘        ┌─[MUX]──┐       │
+│                │  ↑     │       │
+│                │  S1    │       │
+│                ▼        ▼       │
+│           [D FF]    [bypass]    │
+│              │        │        │
+│              └──[MUX]─┘        │
+│                  ↑             │
+│                  S0            │
+│                  │             │
+│            ┌─[XOR/BUF]─┐       │
+│            │    ↑       │       │
+│            │  polarity  │       │
+│            ▼            │       │
+│        Output Pin ──────┘       │
+│            │                    │
+│            └─── Feedback to ──→ │
+│                 AND array       │
+└─────────────────────────────────┘
+</code></pre></div>
+<p><strong>Configuration bits:</strong></p>
+<ul>
+<li><strong>S1:</strong> Selects registered (D FF) or combinational (bypass) output</li>
+<li><strong>S0:</strong> Selects active-high or active-low polarity</li>
+</ul>
+<p><strong>For this problem, set S1 = registered.</strong></p>
+<p><strong>Product term assignment (4 of 8 used):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Expression</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P_1\)</span></td>
+<td><span class="arithmatex">\(A\overline{B}C\)</span></td>
+<td>Product term 1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_2\)</span></td>
+<td><span class="arithmatex">\(\overline{A}BC\)</span></td>
+<td>Product term 2</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_3\)</span></td>
+<td><span class="arithmatex">\(ABD_{fb}\)</span></td>
+<td>Uses feedback from registered output</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_4\)</span></td>
+<td><span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{C}\)</span></td>
+<td>Product term 4</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P_5-P_8\)</span></td>
+<td>unused</td>
+<td>Available for future expansion</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Feedback operation:</strong></p>
+<ol>
+<li>The D flip-flop output (<span class="arithmatex">\(Q\)</span>) is fed back into the AND array as an additional input.</li>
+<li><span class="arithmatex">\(D_{feedback}\)</span> in the expression refers to the current value of the flip-flop output.</li>
+<li>On each clock edge: <span class="arithmatex">\(Q^+ = A\overline{B}C + \overline{A}BC + ABQ + \overline{A}\,\overline{B}\,\overline{C}\)</span></li>
+<li>This creates a <strong>registered (sequential) output</strong> — the PAL can implement state machines.</li>
+</ol>
+<p><strong>Timing:</strong></p>
+<ul>
+<li>Inputs arrive at AND plane</li>
+<li>Product terms propagate through OR gate: <span class="arithmatex">\(t_{pd-AND} + t_{pd-OR}\)</span></li>
+<li>D flip-flop captures result on clock edge: must meet setup time <span class="arithmatex">\(t_{su}\)</span></li>
+<li>Output available after clock-to-Q delay: <span class="arithmatex">\(t_{co}\)</span></li>
+<li>Feedback available for next cycle after <span class="arithmatex">\(t_{co}\)</span></li>
+</ul>
+<p><strong>Maximum clock frequency:</strong> <span class="arithmatex">\(f_{max} = \frac{1}{t_{co} + t_{pd-AND} + t_{pd-OR} + t_{su}}\)</span></p>
+<hr />
+<h2 id="section-c-cpld-and-fpga-architecture-4-problems">Section C: CPLD and FPGA Architecture (4 problems)</h2>
+<h3 id="problem-9">Problem 9</h3>
+<p>A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8 outputs (4 product terms per output). The function blocks are connected through a global interconnect matrix. Draw a block diagram and calculate:</p>
+<p>(a) Maximum number of inputs and outputs for the entire CPLD
+(b) Total number of product terms available
+(c) Total number of macro-cells</p>
+<p><strong>Solution:</strong> <strong>CPLD Block Diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────┐
+│                    CPLD                       │
+│                                               │
+│  I/O ──┐    ┌─────────────────────┐    ┌── I/O│
+│  Pins  │    │  Global Interconnect │    │  Pins│
+│        ▼    │       Matrix (GIM)   │    ▼      │
+│  ┌──────┐   │                     │  ┌──────┐ │
+│  │ FB 1 │◄──┼─────────────────────┼──► FB 5 │ │
+│  │16→8  │──►│                     │◄──│16→8  │ │
+│  └──────┘   │                     │   └──────┘ │
+│  ┌──────┐   │                     │  ┌──────┐ │
+│  │ FB 2 │◄──┼─────────────────────┼──► FB 6 │ │
+│  │16→8  │──►│                     │◄──│16→8  │ │
+│  └──────┘   │                     │   └──────┘ │
+│  ┌──────┐   │                     │  ┌──────┐ │
+│  │ FB 3 │◄──┼─────────────────────┼──► FB 7 │ │
+│  │16→8  │──►│                     │◄──│16→8  │ │
+│  └──────┘   │                     │   └──────┘ │
+│  ┌──────┐   │                     │  ┌──────┐ │
+│  │ FB 4 │◄──┼─────────────────────┼──► FB 8 │ │
+│  │16→8  │──►│                     │◄──│16→8  │ │
+│  └──────┘   │                     │   └──────┘ │
+│              └─────────────────────┘            │
+└──────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>(a) Maximum I/O:</strong></p>
+<ul>
+<li>Each function block has 8 outputs, each can connect to an I/O pin</li>
+<li>Maximum outputs: <span class="arithmatex">\(8 \times 8 = 64\)</span> I/O pins</li>
+<li>Each function block accepts 16 inputs from the GIM</li>
+<li>External inputs: depends on package pin count (separate from output pins or shared)</li>
+<li>Typical: <strong>64 I/O pins</strong> (bidirectional — each can be input or output)</li>
+</ul>
+<p><strong>(b) Total product terms:</strong></p>
+<ul>
+<li>Per output: 4 product terms</li>
+<li>Per function block: <span class="arithmatex">\(8 \times 4 = 32\)</span> product terms</li>
+<li>Total: <span class="arithmatex">\(8 \times 32 = \mathbf{256}\)</span> <strong>product terms</strong></li>
+</ul>
+<p><strong>(c) Total macro-cells:</strong></p>
+<ul>
+<li>Per function block: 8 macro-cells (one per output)</li>
+<li>Total: <span class="arithmatex">\(8 \times 8 = \mathbf{64}\)</span> <strong>macro-cells</strong></li>
+</ul>
+<p><strong>Global Interconnect Matrix:</strong></p>
+<ul>
+<li>The GIM is a programmable switch matrix</li>
+<li>Routes signals from any function block output or I/O pin to any function block input</li>
+<li>Provides <strong>predictable timing</strong> — any signal routed through the GIM experiences the same delay regardless of source and destination</li>
+<li>This is a key CPLD advantage: <strong>timing is deterministic</strong></li>
+</ul>
+<hr />
+<h3 id="problem-10">Problem 10</h3>
+<p>Compare the CPLD architecture from Problem 9 to a basic FPGA structure. Explain the fundamental architectural differences in terms of logic elements, routing, and configuration.</p>
+<p><strong>Solution:</strong> <strong>FPGA Architecture (simplified):</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────┐
+│                   FPGA                        │
+│  IOB   IOB   IOB   IOB   IOB   IOB   IOB     │
+│   │     │     │     │     │     │     │       │
+│  ─┼─────┼─────┼─────┼─────┼─────┼─────┼──    │
+│   │ CLB │ CLB │ CLB │ CLB │ CLB │ CLB │       │
+│  ─┼─────┼─────┼─────┼─────┼─────┼─────┼──    │
+│   │ CLB │ CLB │ CLB │ CLB │ CLB │ CLB │       │
+│  ─┼─────┼─────┼─────┼─────┼─────┼─────┼──    │
+│   │ CLB │ CLB │ CLB │ CLB │ CLB │ CLB │       │
+│  ─┼─────┼─────┼─────┼─────┼─────┼─────┼──    │
+│   │ CLB │ CLB │ CLB │ CLB │ CLB │ CLB │       │
+│  ─┼─────┼─────┼─────┼─────┼─────┼─────┼──    │
+│  IOB   IOB   IOB   IOB   IOB   IOB   IOB     │
+│                                               │
+│  ── = Routing channels (programmable)         │
+│  CLB = Configurable Logic Block               │
+│  IOB = I/O Block                              │
+└──────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Detailed Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>CPLD</th>
+<th>FPGA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Basic logic element</strong></td>
+<td>PAL-like function block (AND-OR)</td>
+<td>Lookup table (LUT)</td>
+</tr>
+<tr>
+<td><strong>Logic style</strong></td>
+<td>Sum-of-products (wide AND gates)</td>
+<td>Any truth table (via SRAM LUT)</td>
+</tr>
+<tr>
+<td><strong>Routing</strong></td>
+<td>Global interconnect matrix (centralized)</td>
+<td>Distributed routing channels (segmented)</td>
+</tr>
+<tr>
+<td><strong>Timing predictability</strong></td>
+<td>Highly predictable (fixed GIM delay)</td>
+<td>Less predictable (depends on routing path)</td>
+</tr>
+<tr>
+<td><strong>Configuration storage</strong></td>
+<td>Non-volatile (EEPROM/Flash)</td>
+<td>Typically volatile (SRAM, needs reload at power-up)</td>
+</tr>
+<tr>
+<td><strong>Power-on</strong></td>
+<td>Instant-on (retains config)</td>
+<td>Requires loading bitstream from external memory</td>
+</tr>
+<tr>
+<td><strong>Density</strong></td>
+<td>Low-to-medium (tens to hundreds of macro-cells)</td>
+<td>Medium-to-very-high (thousands to millions of LUTs)</td>
+</tr>
+<tr>
+<td><strong>Best suited for</strong></td>
+<td>Glue logic, address decoding, simple state machines</td>
+<td>Complex digital systems, DSP, processors</td>
+</tr>
+<tr>
+<td><strong>Granularity</strong></td>
+<td>Coarse (wide AND-OR blocks)</td>
+<td>Fine (small LUTs, flexible interconnect)</td>
+</tr>
+<tr>
+<td><strong>Cost per gate</strong></td>
+<td>Lower for small designs</td>
+<td>Lower for large designs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key architectural difference:</strong></p>
+<ul>
+<li><strong>CPLD</strong> implements logic as sum-of-products using AND-OR arrays — best for wide combinational functions with many inputs.</li>
+<li><strong>FPGA</strong> implements logic as arbitrary truth tables stored in LUT memories — best for complex, deeply nested logic with many levels.</li>
+</ul>
+<p><strong>Routing difference:</strong></p>
+<ul>
+<li>CPLD: Any-to-any connectivity through GIM with uniform delay.</li>
+<li>FPGA: Segmented routing with switch boxes; delay depends on physical distance and routing path chosen by the place-and-route tool.</li>
+</ul>
+<hr />
+<h3 id="problem-11">Problem 11</h3>
+<p>A CPLD has a global interconnect matrix delay of 5 ns, a function block AND-OR delay of 8 ns, and a macro-cell register setup time of 3 ns and clock-to-output delay of 4 ns. Calculate:</p>
+<p>(a) Maximum combinational propagation delay (input pin to output pin)
+(b) Maximum registered clock frequency
+(c) The delay if a signal must pass through two function blocks in series</p>
+<p><strong>Solution:</strong> <strong>CPLD Timing Model:</strong></p>
+<div class="highlight"><pre><span></span><code>Input Pin → [I/O Buffer] → [GIM] → [AND-OR] → [Macro-cell] → [I/O Buffer] → Output Pin
+               t_io          t_gim    t_ao        t_mc           t_io
+</code></pre></div>
+<p>Typical values given:</p>
+<ul>
+<li><span class="arithmatex">\(t_{GIM} = 5\)</span> ns (global interconnect matrix)</li>
+<li><span class="arithmatex">\(t_{AO} = 8\)</span> ns (AND-OR array within function block)</li>
+<li><span class="arithmatex">\(t_{su} = 3\)</span> ns (register setup time)</li>
+<li><span class="arithmatex">\(t_{co} = 4\)</span> ns (clock-to-output of register)</li>
+<li>Assume <span class="arithmatex">\(t_{IO} \approx 2\)</span> ns each (input and output buffer delays)</li>
+</ul>
+<p><strong>(a) Combinational propagation delay (pin-to-pin):</strong></p>
+<div class="arithmatex">\[t_{pd} = t_{IO,in} + t_{GIM} + t_{AO} + t_{IO,out}$$
+$$t_{pd} = 2 + 5 + 8 + 2 = \mathbf{17 \text{ ns}}\]</div>
+<p><strong>(b) Maximum registered clock frequency:</strong></p>
+<p>For registered operation, the critical path is clock-to-output plus routing back through GIM and AND-OR to the next register:</p>
+<div class="arithmatex">\[t_{cycle} = t_{co} + t_{GIM} + t_{AO} + t_{su}$$
+$$t_{cycle} = 4 + 5 + 8 + 3 = 20 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max} = \frac{1}{t_{cycle}} = \frac{1}{20 \text{ ns}} = \mathbf{50 \text{ MHz}}\]</div>
+<p><strong>(c) Two function blocks in series:</strong></p>
+<p>When a signal passes through two function blocks, it traverses the GIM and AND-OR array twice:</p>
+<div class="arithmatex">\[t_{pd,2FB} = t_{IO,in} + t_{GIM} + t_{AO} + t_{GIM} + t_{AO} + t_{IO,out}$$
+$$t_{pd,2FB} = 2 + 5 + 8 + 5 + 8 + 2 = \mathbf{30 \text{ ns}}\]</div>
+<p><strong>Key observation:</strong> The CPLD timing is deterministic — the GIM delay is the same regardless of which function blocks are connected. This makes timing analysis straightforward compared to FPGAs where routing delays vary.</p>
+<hr />
+<h3 id="problem-12">Problem 12</h3>
+<p>Explain what happens when a CPLD runs out of product terms in a single function block. Describe two techniques that CPLD fitters use to handle this situation.</p>
+<p><strong>Solution:</strong> <strong>Problem: Product Term Exhaustion</strong></p>
+<p>When a function requires more product terms than a single macro-cell provides (e.g., a function needing 6 product terms when the macro-cell has only 4):</p>
+<div class="highlight"><pre><span></span><code>Function: F = P1 + P2 + P3 + P4 + P5 + P6
+Macro-cell limit: 4 product terms
+Result: DOES NOT FIT in one macro-cell
+</code></pre></div>
+<p><strong>Technique 1: Product Term Borrowing (Stealing)</strong></p>
+<p>Some CPLDs allow a macro-cell to "borrow" unused product terms from adjacent macro-cells within the same function block.</p>
+<div class="highlight"><pre><span></span><code>Macro-cell N-1:  [PT1][PT2][PT3][PT4] → only uses PT1, PT2
+                               ↓   ↓
+                          borrowed by N
+Macro-cell N:    [PT1][PT2][PT3][PT4][PT5][PT6] → 4 own + 2 borrowed = 6 terms
+Macro-cell N+1:  [PT1][PT2][PT3][PT4] → all available
+</code></pre></div>
+<ul>
+<li><strong>Advantage:</strong> No additional delay — stays within one function block.</li>
+<li><strong>Disadvantage:</strong> Reduces available terms for the neighboring macro-cell. Only works if neighbors have spare terms.</li>
+</ul>
+<p><strong>Technique 2: Product Term Expansion (Cascading via Feedback)</strong></p>
+<p>Route a partial sum through the GIM back to another function block for further ORing.</p>
+<div class="highlight"><pre><span></span><code>Function Block A:
+  G = P1 + P2 + P3 + P4  (uses all 4 product terms)
+  G routed to GIM as feedback
+
+Function Block B:
+  F = G + P5 + P6         (3 product terms: G, P5, P6)
+  Final result at output of FB B
+</code></pre></div>
+<ul>
+<li><strong>Advantage:</strong> Can handle any number of product terms by cascading multiple blocks.</li>
+<li><strong>Disadvantage:</strong> Adds one GIM delay + one AND-OR delay per expansion level. The signal now crosses two function blocks, increasing propagation delay.</li>
+</ul>
+<p><strong>Trade-off summary:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Extra Delay</th>
+<th>Constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product term borrowing</td>
+<td>None</td>
+<td>Limited by neighbors' unused terms</td>
+</tr>
+<tr>
+<td>Expansion via feedback</td>
+<td><span class="arithmatex">\(t_{GIM} + t_{AO}\)</span> per level</td>
+<td>Uses extra macro-cells and function block resources</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CPLD fitter tools</strong> automatically choose between these techniques during compilation, optimizing for either speed or resource usage depending on user constraints.</p>
+<hr />
+<h2 id="section-d-lut-and-clb-design-4-problems">Section D: LUT and CLB Design (4 problems)</h2>
+<h3 id="problem-13">Problem 13</h3>
+<p>A 3-input LUT (LUT-3) can implement any Boolean function of 3 variables. Show the internal structure of a LUT-3 and program it to implement <span class="arithmatex">\(F = A \oplus B \oplus C\)</span> (3-input XOR).</p>
+<p><strong>Solution:</strong> <strong>LUT-3 Internal Structure:</strong></p>
+<p>A LUT-3 is an 8-bit SRAM with a 3-input multiplexer tree:</p>
+<div class="highlight"><pre><span></span><code>SRAM Contents:         MUX Tree:
+┌─────────┐
+│ Addr 0: 0│──────────┐
+│ Addr 1: 1│──────┐   │
+│          │      ▼   ▼
+│ Addr 2: 1│──┐ [2:1 MUX]──┐
+│ Addr 3: 0│──┘    ↑       │
+│          │       C       │
+│ Addr 4: 1│──┐            ▼
+│ Addr 5: 0│──┘ [2:1 MUX] [2:1 MUX]──── F (output)
+│ Addr 6: 0│──┐    ↑          ↑
+│ Addr 7: 1│──┘    C          B
+│          │   [2:1 MUX]──┘
+└─────────┘       ↑
+                  C
+Inputs: A (MSB), B, C (LSB)
+</code></pre></div>
+<p>Equivalently, the LUT is just:</p>
+<div class="highlight"><pre><span></span><code>A ──┐
+B ──┼── [8:1 MUX] ── F
+C ──┘       ↑
+        SRAM[0:7]
+</code></pre></div>
+<p><strong>Programming for <span class="arithmatex">\(F = A \oplus B \oplus C\)</span>:</strong></p>
+<p>The truth table directly fills the SRAM:</p>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th><span class="arithmatex">\(A\)</span></th>
+<th><span class="arithmatex">\(B\)</span></th>
+<th><span class="arithmatex">\(C\)</span></th>
+<th><span class="arithmatex">\(F = A \oplus B \oplus C\)</span></th>
+<th>SRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SRAM contents:</strong> <code>0110_1001</code> (reading top to bottom) = <span class="arithmatex">\(69_{16}\)</span></p>
+<p><strong>Key insight:</strong> The LUT does not care about Boolean minimization. Whether the function is <span class="arithmatex">\(A \oplus B \oplus C\)</span> (which requires many gates in SOP form) or a simple AND gate, the LUT uses exactly the same hardware — an 8-bit memory. Every function of 3 variables costs the same: one LUT-3.</p>
+<p><strong>LUT size formula:</strong> A <span class="arithmatex">\(k\)</span>-input LUT requires <span class="arithmatex">\(2^k\)</span> SRAM bits.</p>
+<ul>
+<li>LUT-3: <span class="arithmatex">\(2^3 = 8\)</span> bits</li>
+<li>LUT-4: <span class="arithmatex">\(2^4 = 16\)</span> bits</li>
+<li>LUT-6: <span class="arithmatex">\(2^6 = 64\)</span> bits</li>
+</ul>
+<hr />
+<h3 id="problem-14">Problem 14</h3>
+<p>A function <span class="arithmatex">\(F(A, B, C, D, E) = ABCDE + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> has 5 inputs but the FPGA only has 4-input LUTs (LUT-4). Show how to decompose this function across multiple LUTs using the Shannon expansion.</p>
+<p><strong>Solution:</strong> <strong>Problem:</strong> 5 inputs but only LUT-4 (4 inputs each).</p>
+<p><strong>Shannon expansion</strong> on variable <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(F_A = F|_{A=1} = BCDE + 0 = BCDE\)</span> (4 inputs — fits in one LUT-4)</li>
+<li><span class="arithmatex">\(F_{\overline{A}} = F|_{A=0} = 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> (4 inputs — fits in one LUT-4)</li>
+</ul>
+<p><strong>Combining:</strong> <span class="arithmatex">\(F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\)</span></p>
+<p>This combination is a 2:1 MUX controlled by <span class="arithmatex">\(A\)</span> — needs one more LUT.</p>
+<p><strong>Implementation with 3 LUT-4s:</strong></p>
+<div class="highlight"><pre><span></span><code>B ──┐
+C ──┤ LUT-4 #1
+D ──┤ F_A = BCDE
+E ──┘    │
+         │
+         ▼
+A ──┐ LUT-4 #3
+    ├─ F = A·F_A + A&#39;·F_A&#39;
+F_A&#39;┘    │
+         │
+         ▼
+         F (output)
+         ▲
+         │
+B ──┐    │
+C ──┤ LUT-4 #2
+D ──┤ F_A&#39; = B&#39;C&#39;D&#39;E&#39;
+E ──┘
+</code></pre></div>
+<p>Wait — LUT #3 has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(F_A\)</span>, <span class="arithmatex">\(F_{A'}\)</span>), which fits in a LUT-4.</p>
+<p><strong>Final mapping:</strong></p>
+<table>
+<thead>
+<tr>
+<th>LUT</th>
+<th>Inputs</th>
+<th>Function</th>
+<th>SRAM contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUT #1</td>
+<td><span class="arithmatex">\(B, C, D, E\)</span></td>
+<td><span class="arithmatex">\(F_A = BCDE\)</span></td>
+<td>Only address 1111 = 1, rest = 0</td>
+</tr>
+<tr>
+<td>LUT #2</td>
+<td><span class="arithmatex">\(B, C, D, E\)</span></td>
+<td><span class="arithmatex">\(F_{\overline{A}} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span></td>
+<td>Only address 0000 = 1, rest = 0</td>
+</tr>
+<tr>
+<td>LUT #3</td>
+<td><span class="arithmatex">\(A, F_A, F_{\overline{A}}\)</span></td>
+<td><span class="arithmatex">\(A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\)</span></td>
+<td>2:1 MUX function</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total: 3 LUT-4s</strong> in 2 levels of logic.</p>
+<p><strong>Delay:</strong> <span class="arithmatex">\(2 \times t_{LUT}\)</span> (two levels of LUT propagation).</p>
+<p><strong>General rule:</strong> A function of <span class="arithmatex">\(n\)</span> inputs can be implemented in LUT-<span class="arithmatex">\(k\)</span> devices using Shannon expansion, requiring roughly <span class="arithmatex">\(\lceil n/k \rceil\)</span> levels and up to <span class="arithmatex">\(2^{n-k}\)</span> LUTs in the first level.</p>
+<hr />
+<h3 id="problem-15">Problem 15</h3>
+<p>Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contains two 4-input LUTs, two flip-flops, and local routing. Explain the role of each component.</p>
+<p><strong>Solution:</strong> <strong>CLB Internal Structure:</strong></p>
+<div class="highlight"><pre><span></span><code>┌────────────────────────────────────────────────────────┐
+│                  Configurable Logic Block (CLB)         │
+│                                                        │
+│  A1 ──┐                                                │
+│  B1 ──┤ [LUT-4]─── F1 ───┬──[MUX]──┬── [D FF]── Q1 ──┼──→ Out1
+│  C1 ──┤   #1             │    ↑     │     ↑            │
+│  D1 ──┘                  │   cfg    │    CLK           │
+│                          │          │                  │
+│                          └──────────┴──────────────────┼──→ (comb.)
+│                                                        │
+│  A2 ──┐                                                │
+│  B2 ──┤ [LUT-4]─── F2 ───┬──[MUX]──┬── [D FF]── Q2 ──┼──→ Out2
+│  C2 ──┤   #2             │    ↑     │     ↑            │
+│  D2 ──┘                  │   cfg    │    CLK           │
+│                          │          │                  │
+│                          └──────────┴──────────────────┼──→ (comb.)
+│                                                        │
+│  ┌──────── Local Routing ────────┐                     │
+│  │  Carry chain: LUT#1 ←→ LUT#2 │                     │
+│  │  Feedback: Q1 → LUT#2 input   │                     │
+│  │  Feedback: Q2 → LUT#1 input   │                     │
+│  └──────────────────────────────┘                     │
+└────────────────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Component Roles:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LUT-4 #1, #2</strong></td>
+<td>Implement any Boolean function of 4 variables. Stores the truth table in <span class="arithmatex">\(2^4 = 16\)</span> SRAM bits.</td>
+</tr>
+<tr>
+<td><strong>D Flip-Flop #1, #2</strong></td>
+<td>Provide registered outputs for sequential logic (state machines, pipelines). Clocked by the global or regional clock.</td>
+</tr>
+<tr>
+<td><strong>Output MUX</strong></td>
+<td>Selects between combinational output (directly from LUT) or registered output (from D FF). Configured by a configuration bit.</td>
+</tr>
+<tr>
+<td><strong>Local routing</strong></td>
+<td>Fast interconnect within the CLB for carry chains (arithmetic) and feedback (sequential logic). Much faster than global routing.</td>
+</tr>
+<tr>
+<td><strong>Carry chain</strong></td>
+<td>Dedicated fast path for arithmetic carry propagation between LUTs, enabling efficient adders and counters.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CLB can implement:</strong></p>
+<ul>
+<li>Two independent combinational functions of 4 inputs each</li>
+<li>Two independent registered functions (FSMs, counters)</li>
+<li>One combinational function of 5 inputs (using both LUTs with Shannon expansion)</li>
+<li>A 1-bit full adder with carry chain</li>
+<li>Small multiplexers and decoders</li>
+</ul>
+<p><strong>Modern CLBs</strong> (e.g., Xilinx Series 7) contain multiple "slices," each with four 6-input LUTs and eight flip-flops, plus carry logic, wide MUX resources, and distributed RAM capability.</p>
+<hr />
+<h3 id="problem-16">Problem 16</h3>
+<p>An FPGA design requires implementing a 4-bit synchronous binary counter. Map the counter onto 4-input LUTs (LUT-4) and flip-flops. Determine how many LUTs and flip-flops are needed.</p>
+<p><strong>Solution:</strong> <strong>4-bit synchronous counter equations:</strong></p>
+<p>Using T flip-flop behavior with D flip-flops:</p>
+<ul>
+<li><span class="arithmatex">\(D_0 = \overline{Q_0}\)</span> (always toggles)</li>
+<li><span class="arithmatex">\(D_1 = Q_1 \oplus Q_0\)</span></li>
+<li><span class="arithmatex">\(D_2 = Q_2 \oplus (Q_1 \cdot Q_0)\)</span></li>
+<li><span class="arithmatex">\(D_3 = Q_3 \oplus (Q_2 \cdot Q_1 \cdot Q_0)\)</span></li>
+</ul>
+<p><strong>LUT mapping:</strong></p>
+<table>
+<thead>
+<tr>
+<th>D input</th>
+<th>Function</th>
+<th># Inputs</th>
+<th>LUT needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(D_0 = \overline{Q_0}\)</span></td>
+<td>Inverter</td>
+<td>1</td>
+<td>1 LUT-4 (uses 1 of 4 inputs)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D_1 = Q_1 \oplus Q_0\)</span></td>
+<td>XOR</td>
+<td>2</td>
+<td>1 LUT-4 (uses 2 of 4 inputs)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D_2 = Q_2 \oplus (Q_1 Q_0)\)</span></td>
+<td>XOR-AND</td>
+<td>3</td>
+<td>1 LUT-4 (uses 3 of 4 inputs)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D_3 = Q_3 \oplus (Q_2 Q_1 Q_0)\)</span></td>
+<td>XOR-AND3</td>
+<td>4</td>
+<td>1 LUT-4 (uses all 4 inputs)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resource count:</strong></p>
+<ul>
+<li><strong>LUTs: 4</strong> (one per counter bit)</li>
+<li><strong>Flip-flops: 4</strong> (one D FF per counter bit)</li>
+<li><strong>CLBs: 2</strong> (if each CLB has 2 LUT+FF pairs)</li>
+</ul>
+<p><strong>CLB assignment:</strong></p>
+<div class="highlight"><pre><span></span><code>CLB #1:
+  LUT-4a → D0 = Q0&#39;       → FF → Q0
+  LUT-4b → D1 = Q1 ⊕ Q0   → FF → Q1
+
+CLB #2:
+  LUT-4a → D2 = Q2 ⊕ Q1Q0     → FF → Q2
+  LUT-4b → D3 = Q3 ⊕ Q2Q1Q0   → FF → Q3
+</code></pre></div>
+<p><strong>With carry chain optimization:</strong></p>
+<p>Modern FPGAs use dedicated carry chains for counters, which are faster than LUT-based XOR-AND trees:</p>
+<div class="highlight"><pre><span></span><code>CLB with carry chain:
+Q0 ──[LUT]──[FF]── Q0
+       │
+      Carry
+       ↓
+Q1 ──[LUT]──[FF]── Q1
+       │
+      Carry
+       ↓
+Q2 ──[LUT]──[FF]── Q2
+       │
+      Carry
+       ↓
+Q3 ──[LUT]──[FF]── Q3
+</code></pre></div>
+<p><strong>Timing comparison:</strong></p>
+<ul>
+<li>Without carry chain: <span class="arithmatex">\(t_{LUT} + t_{routing} + t_{LUT} + \ldots\)</span> (grows with bit width)</li>
+<li>With carry chain: <span class="arithmatex">\(t_{LUT} + n \times t_{carry}\)</span> where <span class="arithmatex">\(t_{carry} \ll t_{routing}\)</span></li>
+</ul>
+<p>For a 4-bit counter, the carry chain reduces the critical path delay significantly, enabling higher clock frequencies.</p>
+<hr />
+<h2 id="section-e-design-flow-and-device-selection-4-problems">Section E: Design Flow and Device Selection (4 problems)</h2>
+<h3 id="problem-17">Problem 17</h3>
+<p>Describe each step of the FPGA design flow from HDL entry to final bitstream. For each step, explain what happens and what files are produced.</p>
+<p><strong>Solution:</strong> <strong>FPGA Design Flow:</strong></p>
+<div class="highlight"><pre><span></span><code>┌───────────────┐
+│ 1. Design     │  Input: Specifications
+│    Entry      │  Output: HDL source files (.v, .vhd)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 2. Synthesis   │  Input: HDL source
+│                │  Output: Gate-level netlist (.edf, .ngc)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 3. Technology  │  Input: Gate-level netlist
+│    Mapping     │  Output: Mapped netlist (LUTs, FFs, IOs)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 4. Placement   │  Input: Mapped netlist
+│                │  Output: Placed design (assigned CLB locations)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 5. Routing     │  Input: Placed design
+│                │  Output: Routed design (switch box config)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 6. Timing      │  Input: Routed design
+│    Analysis    │  Output: Timing report (.twr)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 7. Bitstream   │  Input: Routed design
+│    Generation  │  Output: Configuration file (.bit)
+└──────┬────────┘
+       ▼
+┌───────────────┐
+│ 8. Device      │  Input: Bitstream file
+│    Programming │  Output: Configured FPGA
+└───────────────┘
+</code></pre></div>
+<p><strong>Detailed descriptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Process</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Design Entry</strong></td>
+<td>Write RTL (Register Transfer Level) description in VHDL or Verilog. Simulate for functional correctness.</td>
+<td>Produces <code>.v</code> or <code>.vhd</code> files, testbench, simulation waveforms.</td>
+</tr>
+<tr>
+<td><strong>2. Synthesis</strong></td>
+<td>Converts HDL into a gate-level netlist. Infers flip-flops, adders, multiplexers from behavioral descriptions. Performs logic optimization.</td>
+<td>Produces generic gate netlist (AND, OR, NOT, FF). Equivalent to converting SOP/Boolean to gates.</td>
+</tr>
+<tr>
+<td><strong>3. Technology Mapping</strong></td>
+<td>Maps generic gates to device-specific primitives (LUTs, carry chains, block RAM, DSP slices).</td>
+<td>Produces a netlist of FPGA-specific elements. A 5-input AND might map to one LUT-6 or two LUT-4s.</td>
+</tr>
+<tr>
+<td><strong>4. Placement</strong></td>
+<td>Assigns each mapped element to a specific physical CLB location on the FPGA die. Optimizes for minimum wire length and timing.</td>
+<td>Produces a placed design file. Uses algorithms like simulated annealing.</td>
+</tr>
+<tr>
+<td><strong>5. Routing</strong></td>
+<td>Configures programmable switch boxes to connect placed elements. Determines which wire segments and switches to use.</td>
+<td>Produces a fully routed design. This step often dominates total compile time.</td>
+</tr>
+<tr>
+<td><strong>6. Timing Analysis</strong></td>
+<td>Calculates actual signal delays through placed-and-routed paths. Reports setup/hold violations, maximum clock frequency.</td>
+<td>Produces timing report. If timing fails, the designer must modify HDL, add constraints, or iterate on placement.</td>
+</tr>
+<tr>
+<td><strong>7. Bitstream Generation</strong></td>
+<td>Converts the placed-and-routed design into a binary configuration file that programs the FPGA's SRAM cells.</td>
+<td>Produces <code>.bit</code> file. Size depends on FPGA: can be from hundreds of KB to tens of MB.</td>
+</tr>
+<tr>
+<td><strong>8. Device Programming</strong></td>
+<td>Downloads bitstream to FPGA via JTAG, SPI, or other interface. SRAM-based FPGAs must be reprogrammed after every power cycle.</td>
+<td>FPGA is now configured and operational.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="problem-18">Problem 18</h3>
+<p>An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the following applications. Justify each choice.</p>
+<p>(a) A simple 4-input, 2-output combinational function used in 100,000 units
+(b) A BCD-to-seven-segment decoder prototype
+(c) A 32-bit floating-point unit with pipelining
+(d) A glue-logic replacement connecting a microprocessor to memory chips
+(e) A function generator that must be field-reprogrammable</p>
+<p><strong>Solution:</strong> <strong>(a) Simple 4-input, 2-output function in 100,000 units:</strong></p>
+<p><strong>Best choice: PAL (or mask-programmed ROM)</strong></p>
+<ul>
+<li>Simple combinational function fits easily in a small PAL</li>
+<li>High volume (100K units) justifies using the cheapest possible device</li>
+<li>PAL is inexpensive, fast, and deterministic</li>
+<li>One-time programming is acceptable for production</li>
+<li>ROM could also work but is overkill for only 2 outputs</li>
+<li>At 100K volume, a custom ASIC standard cell may also be cost-effective</li>
+</ul>
+<p><strong>(b) BCD-to-seven-segment decoder prototype:</strong></p>
+<p><strong>Best choice: ROM (EPROM or EEPROM)</strong></p>
+<ul>
+<li>4 inputs, 7 outputs: fits a <span class="arithmatex">\(16 \times 8\)</span> ROM perfectly</li>
+<li>No minimization needed — just store the truth table</li>
+<li>For prototyping, an EEPROM or EPROM allows easy reprogramming</li>
+<li>Very fast design cycle: write truth table, program ROM, done</li>
+<li>Changes require only reprogramming, not redesign</li>
+</ul>
+<p><strong>(c) 32-bit floating-point unit with pipelining:</strong></p>
+<p><strong>Best choice: FPGA</strong></p>
+<ul>
+<li>Complex design requiring thousands of logic elements</li>
+<li>Pipelining requires many flip-flops and pipeline registers</li>
+<li>Modern FPGAs have dedicated DSP slices optimized for multiply-accumulate</li>
+<li>Block RAM for intermediate storage</li>
+<li>No other PLD has sufficient capacity</li>
+<li>HDL-based design flow enables efficient implementation of complex datapath</li>
+</ul>
+<p><strong>(d) Glue logic for microprocessor-to-memory interface:</strong></p>
+<p><strong>Best choice: CPLD</strong></p>
+<ul>
+<li>Address decoding and chip-select generation are wide AND-OR functions (CPLD strength)</li>
+<li>Predictable timing is critical for bus interfaces (CPLD has deterministic delays)</li>
+<li>Non-volatile: instant-on at power-up (no bitstream loading delay)</li>
+<li>Moderate complexity fits well in CPLD macro-cells</li>
+<li>Low power consumption compared to FPGA</li>
+</ul>
+<p><strong>(e) Field-reprogrammable function generator:</strong></p>
+<p><strong>Best choice: FPGA (SRAM-based)</strong></p>
+<ul>
+<li>SRAM-based FPGAs can be reprogrammed unlimited times</li>
+<li>Can store multiple configurations and switch between them</li>
+<li>Field updates via downloading new bitstream</li>
+<li>In-system reconfiguration (ISR) supported</li>
+<li>Some FPGAs support partial reconfiguration — changing part of the design while the rest continues running</li>
+</ul>
+<p><strong>Summary Table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Best Device</th>
+<th>Key Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple function, high volume</td>
+<td>PAL</td>
+<td>Low cost, simple</td>
+</tr>
+<tr>
+<td>Decoder prototype</td>
+<td>ROM</td>
+<td>Direct truth table storage</td>
+</tr>
+<tr>
+<td>32-bit FPU</td>
+<td>FPGA</td>
+<td>High capacity, DSP resources</td>
+</tr>
+<tr>
+<td>Glue logic</td>
+<td>CPLD</td>
+<td>Deterministic timing, instant-on</td>
+</tr>
+<tr>
+<td>Field-reprogrammable</td>
+<td>FPGA (SRAM)</td>
+<td>Unlimited reprogramming</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="problem-19">Problem 19</h3>
+<p>Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. For each of the following criteria, state which technology is preferred and why:</p>
+<p>(a) Power-on behavior
+(b) Reprogramming speed
+(c) Logic density
+(d) Security
+(e) Power consumption
+(f) Design iteration speed</p>
+<p><strong>Solution:</strong> <strong>Comparison Table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>SRAM-based FPGA</th>
+<th>Flash-based FPGA</th>
+<th>Preferred</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(a) Power-on</strong></td>
+<td>Requires external config memory; takes ms to load bitstream</td>
+<td>Instant-on; retains configuration without power</td>
+<td><strong>Flash</strong></td>
+</tr>
+<tr>
+<td><strong>(b) Reprogram speed</strong></td>
+<td>Very fast (ms); unlimited cycles</td>
+<td>Slower (seconds); limited write cycles (~10K-100K)</td>
+<td><strong>SRAM</strong></td>
+</tr>
+<tr>
+<td><strong>(c) Logic density</strong></td>
+<td>Highest density available (millions of LUTs)</td>
+<td>Lower density; Flash transistors are larger</td>
+<td><strong>SRAM</strong></td>
+</tr>
+<tr>
+<td><strong>(d) Security</strong></td>
+<td>Vulnerable: bitstream can be intercepted during loading</td>
+<td>More secure: config stored on-chip, no external loading</td>
+<td><strong>Flash</strong></td>
+</tr>
+<tr>
+<td><strong>(e) Power</strong></td>
+<td>Higher static power (SRAM leakage)</td>
+<td>Lower static power; Flash cells don't leak</td>
+<td><strong>Flash</strong></td>
+</tr>
+<tr>
+<td><strong>(f) Design iteration</strong></td>
+<td>Fastest iteration: reprogram instantly during development</td>
+<td>Slightly slower due to Flash erase/write cycle</td>
+<td><strong>SRAM</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detailed explanations:</strong></p>
+<p><strong>(a) Power-on behavior:</strong></p>
+<ul>
+<li>SRAM FPGA: Configuration SRAM is volatile. At power-up, the device loads its bitstream from an external Flash memory or microcontroller via SPI, JTAG, or parallel interface. This takes milliseconds, during which the FPGA outputs are undefined.</li>
+<li>Flash FPGA: Configuration is stored in on-chip Flash. The device is operational within microseconds of power-up with no external components needed.</li>
+</ul>
+<p><strong>(b) Reprogramming speed:</strong></p>
+<ul>
+<li>SRAM: Simply write new data to SRAM — essentially instantaneous. No wear-out.</li>
+<li>Flash: Must erase then write Flash cells. Limited endurance (typically 10K-100K cycles). Not suitable for configurations that change frequently.</li>
+</ul>
+<p><strong>(c) Logic density:</strong></p>
+<ul>
+<li>SRAM: SRAM cells are small in advanced process nodes (6 transistors per bit). Leading FPGAs have millions of LUTs.</li>
+<li>Flash: Flash transistors are physically larger and don't scale as well. Flash FPGAs top out at tens of thousands of LUTs.</li>
+</ul>
+<p><strong>(d) Security:</strong></p>
+<ul>
+<li>SRAM: Bitstream must be loaded externally at every power-up, creating an opportunity for interception or cloning. Encryption and authentication help but add complexity.</li>
+<li>Flash: Configuration never leaves the chip during normal operation. Harder to reverse-engineer.</li>
+</ul>
+<p><strong>(e) Power consumption:</strong></p>
+<ul>
+<li>SRAM: Six transistors per configuration bit contribute to static leakage current, which grows with density and shrinking process nodes.</li>
+<li>Flash: Flash cells have near-zero leakage. Ideal for battery-powered and always-on applications.</li>
+</ul>
+<hr />
+<h3 id="problem-20">Problem 20</h3>
+<p>An FPGA design fails timing analysis with the following report:</p>
+<div class="highlight"><pre><span></span><code>Critical Path: RegA → LUT1 → LUT2 → LUT3 → LUT4 → RegB
+Path Delay:    2.1 ns + 0.8 ns + 1.2 ns + 0.9 ns + 0.7 ns + 1.5 ns = 7.2 ns
+Setup Time:    0.3 ns
+Required Period: 6.0 ns (target: 166.7 MHz)
+Slack:         6.0 - 7.2 - 0.3 = -1.5 ns (VIOLATION)
+</code></pre></div>
+<p>Identify three techniques to fix this timing violation. For each technique, explain how it reduces the critical path delay.</p>
+<p><strong>Solution:</strong> <strong>Current critical path breakdown:</strong></p>
+<div class="highlight"><pre><span></span><code>RegA ──2.1ns──→ LUT1 ──0.8ns──→ LUT2 ──1.2ns──→ LUT3 ──0.9ns──→ LUT4 ──0.7ns──→ RegB
+ t_co           t_LUT+route     t_LUT+route     t_LUT+route     t_LUT+route      t_su
+                                                                                 (0.3ns)
+Total: 7.2 + 0.3 = 7.5 ns &gt; 6.0 ns required → slack = -1.5 ns
+</code></pre></div>
+<p><strong>Technique 1: Pipelining (Insert Pipeline Register)</strong></p>
+<p>Split the combinational path by inserting a flip-flop between LUT2 and LUT3:</p>
+<div class="highlight"><pre><span></span><code>BEFORE: RegA → LUT1 → LUT2 → LUT3 → LUT4 → RegB  (7.5 ns total)
+
+AFTER:  RegA → LUT1 → LUT2 → RegMid  (path 1: 2.1 + 0.8 + 1.2 + 0.3 = 4.4 ns)
+        RegMid → LUT3 → LUT4 → RegB   (path 2: 2.1 + 0.9 + 0.7 + 0.3 = 4.0 ns)
+</code></pre></div>
+<ul>
+<li>Path 1: 4.4 ns &lt; 6.0 ns (passes)</li>
+<li>Path 2: 4.0 ns &lt; 6.0 ns (passes)</li>
+<li><strong>Trade-off:</strong> Adds 1 clock cycle of latency. Throughput remains the same.</li>
+</ul>
+<p><strong>Technique 2: Logic Restructuring (Reduce LUT Levels)</strong></p>
+<p>Rewrite the HDL or optimize the synthesis to reduce the number of LUT levels from 4 to 3 or fewer:</p>
+<div class="highlight"><pre><span></span><code>BEFORE: 4 LUT levels in series
+
+AFTER:  Flatten logic, use wider LUTs or parallel computation:
+        RegA → LUT_A → LUT_C → RegB
+        RegA → LUT_B ─┘
+</code></pre></div>
+<p>Methods:</p>
+<ul>
+<li>Use resource sharing to merge logic</li>
+<li>Rewrite HDL to avoid deep conditional chains (<code>if-else-if</code> cascades create long LUT chains)</li>
+<li>Replace priority encoder structure with parallel one-hot MUX</li>
+<li>Estimated savings: 1-2 LUT levels (<span class="arithmatex">\(\approx\)</span> 1.5-3.0 ns)</li>
+</ul>
+<p><strong>Technique 3: Placement Constraints and Floorplanning</strong></p>
+<p>The routing delays (embedded in the LUT+route times) depend on physical distance. Constrain critical-path elements to be placed close together:</p>
+<div class="highlight"><pre><span></span><code>BEFORE: LUT1 placed far from LUT2 → long routing wire → 1.2 ns route delay
+AFTER:  LUT1 and LUT2 in same CLB or adjacent CLBs → 0.3 ns route delay
+</code></pre></div>
+<p>Methods:</p>
+<ul>
+<li>Add placement constraints (<code>LOC</code>, <code>PBLOCK</code>) in the constraints file</li>
+<li>Use <code>set_max_delay</code> timing constraints to guide the placer</li>
+<li>Enable physical synthesis optimizations (register replication, logic duplication near destination)</li>
+<li>Estimated savings: 0.5-2.0 ns from reduced routing delay</li>
+</ul>
+<p><strong>Additional techniques:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Delay Reduction</th>
+<th>Side Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Retiming</strong></td>
+<td>Move logic across register boundaries</td>
+<td>Changes pipeline stage assignments</td>
+</tr>
+<tr>
+<td><strong>Register replication</strong></td>
+<td>Reduces fan-out, shortening route delay</td>
+<td>Uses more flip-flops</td>
+</tr>
+<tr>
+<td><strong>Use dedicated resources</strong></td>
+<td>Carry chains, DSP blocks are faster than LUTs</td>
+<td>Consumes special resources</td>
+</tr>
+<tr>
+<td><strong>Increase target device</strong></td>
+<td>Faster speed grade has lower intrinsic delays</td>
+<td>Higher cost</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Topics Covered</th>
+<th>Problem Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>ROM and PLA Programming</td>
+<td>4</td>
+</tr>
+<tr>
+<td>B</td>
+<td>PAL Design</td>
+<td>4</td>
+</tr>
+<tr>
+<td>C</td>
+<td>CPLD and FPGA Architecture</td>
+<td>4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>LUT and CLB Design</td>
+<td>4</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Design Flow and Device Selection</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>20</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../quiz/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quiz">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Quiz
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../challenge/" class="md-footer__link md-footer__link--next" aria-label="Next: Challenge">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Challenge
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js?v=1"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/tts-reader.js?v=1"></script>
+      
+        <script src="../../javascripts/audio-player.js?v=1"></script>
+      
+        <script src="../../javascripts/quiz-ui.js?v=3"></script>
+      
+        <script src="../../javascripts/problems-ui.js?v=4"></script>
+      
+        <script src="../../javascripts/diagram-wrap.js?v=1"></script>
+      
+    
+  </body>
+</html>

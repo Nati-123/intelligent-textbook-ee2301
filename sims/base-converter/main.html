@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Base Converter MicroSim</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        main { display: flex; flex-direction: column; align-items: center; }
+        .control-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 12px;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 6px 16px;
+            box-sizing: border-box;
+        }
+        .control-grid > span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .ctrl-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .control-grid input[type="text"] {
+            font-size: 13px;
+            padding: 4px 8px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            flex: 1;
+            min-width: 80px;
+        }
+        .control-grid input[type="text"]:focus {
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33,150,243,0.12);
+        }
+        .control-grid select {
+            font-size: 13px;
+            padding: 4px 8px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .control-grid select:focus {
+            border-color: #2196F3;
+            box-shadow: 0 0 0 2px rgba(33,150,243,0.12);
+        }
+        .ctrl-checkbox {
+            font-size: 12px;
+            color: #555;
+            white-space: nowrap;
+        }
+        .ctrl-checkbox input[type="checkbox"] {
+            accent-color: #2196F3;
+        }
+        .back-link {
+            margin-top: 4px;
+            font-size: 12px;
+        }
+    </style>
+    <script src="base-converter.js"></script>
+    <script src="../fullscreen-toggle.js"></script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>

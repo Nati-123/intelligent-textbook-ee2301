@@ -1,0 +1,10 @@
+{
+  "title": "Introduction to Digital System Design",
+  "description": "A comprehensive learning graph covering digital system fundamentals including number systems, Boolean algebra, logic gates, combinational circuits, canonical forms, and Karnaugh map simplification techniques for EE 2301.",
+  "creator": "University of Minnesota - Twin Cities",
+  "date": "2026-02-04",
+  "version": "1.0",
+  "format": "Learning Graph JSON v1.0",
+  "schema": "https://raw.githubusercontent.com/dmccreary/learning-graphs/refs/heads/main/src/schema/learning-graph-schema.json",
+  "license": "CC BY-NC-SA 4.0 DEED"
+}

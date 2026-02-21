@@ -1,0 +1,10543 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practice problems for top-down design, datapath-controller, timing analysis, and pipelining">
+      
+      
+        <meta name="author" content="University of Minnesota - Twin Cities">
+      
+      
+      
+        <link rel="prev" href="../quiz/">
+      
+      
+        <link rel="next" href="../challenge/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Unit 13 Problems - System Integration - Intelligent Textbook - Digital System Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css?v=19">
+    
+      <link rel="stylesheet" href="../../stylesheets/audio-player.css?v=1">
+    
+      <link rel="stylesheet" href="../../stylesheets/quiz.css?v=3">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#end-of-unit-problems-system-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intelligent Textbook - Digital System Design" class="md-header__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intelligent Textbook - Digital System Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unit 13 Problems - System Integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cover
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../home/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course-description/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course Description
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../unit1-number-systems/" class="md-tabs__link">
+          
+  
+  
+  Unit Modules
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sims/" class="md-tabs__link">
+          
+  
+  
+  MicroSims
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../learning-graph/" class="md-tabs__link">
+          
+  
+  
+  Learning Graph
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intelligent Textbook - Digital System Design" class="md-nav__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    Intelligent Textbook - Digital System Design
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cover
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit1-number-systems/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit01-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit2-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit02-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit3-applications-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit03-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit4-minterm-maxterm-expansions/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit04-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit5-karnaugh-maps/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit05-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit6-quine-mccluskey/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit06-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit7-multi-level-gates/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit07-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit8-combinational-modules/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit08-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit9-sequential-fundamentals/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit09-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit10-sequential-design/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit10-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit11-programmable-logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit11-programmable-logic/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit11-programmable-logic/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit11-programmable-logic/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit11-programmable-logic/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit11-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_12" id="__nav_6_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - Introduction to VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - Introduction to VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unit12-vhdl/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit12-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_13" id="__nav_6_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#section-a-top-down-design-and-modularity-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section A: Top-Down Design and Modularity (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section A: Top-Down Design and Modularity (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-b-datapath-and-controller-design-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section B: Datapath and Controller Design (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section B: Datapath and Controller Design (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 8
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-c-timing-analysis-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section C: Timing Analysis (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section C: Timing Analysis (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 11
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-d-pipelining-and-optimization-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section D: Pipelining and Optimization (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section D: Pipelining and Optimization (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 13
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 15
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 16
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-e-system-design-problems-4-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section E: System Design Problems (4 problems)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section E: System Design Problems (4 problems)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 17
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 18
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 19
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 20
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../videos/unit13-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MicroSims
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/course-structure-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Structure Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/base-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/analog-vs-digital-signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analog vs Digital Signals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/positional-notation-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional Notation Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-arithmetic-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Arithmetic Practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/signed-number-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signed Number Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/overflow-detection-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overflow Detection Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/number-systems-concept-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Number Systems Concept Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/base-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/and-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/or-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/not-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOT Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/buffer-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buffer Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/tri-state-buffer-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tri-State Buffer Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/xor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/xnor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XNOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/logic-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-operations-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Operations Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/truth-table-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Truth Table Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-laws-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Laws Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/demorgans-theorem-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    De Morgan's Theorem Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-simplification-tutor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Simplification Tutor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-and-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input AND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-or-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input OR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-nand-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NAND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-nor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/3-input-xor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input XOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/gate-cascade-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gate Cascade Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/circuit-analysis-synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit Analysis & Synthesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/boolean-proof-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Proof Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-adder-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Adder Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/design-flow-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Flow Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/word-problem-translator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word Problem Translator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/adder-subtractor-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adder-Subtractor Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/parity-circuit-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parity Circuit Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/code-converter-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Converter Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/seven-segment-decoder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seven Segment Decoder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/dont-care-optimizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Don't Care Optimizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/full-adder-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Adder Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-maxterm-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm/Maxterm Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sop-pos-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOP-POS Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shannon-expansion-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shannon Expansion Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/minterm-expansion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Expansion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-3var-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map 3-Variable Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/prime-implicant-finder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Implicant Finder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-dont-cares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map with Don't Cares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-practice-challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Practice Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/kmap-simplification-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Simplification Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-grouping-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Grouping Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-combination-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Combination Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pi-chart-interactive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PI Chart Interactive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-complexity-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complexity Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-complete-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complete Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/qm-method-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Method Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/universal-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Universal Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/bubble-pushing-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bubble Pushing Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-nor-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND-NOR Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/multi-level-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Level Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/nand-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/mux-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/decoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/priority-encoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priority Encoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/binary-gray-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary-Gray Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/magnitude-comparator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitude Comparator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/mux-function-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Function Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_11" id="__nav_7_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sr-latch-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SR Latch Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/d-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/jk-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JK Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/timing-diagram-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Diagram Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/flipflop-timing-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flip-Flop Timing Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_12" id="__nav_7_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shift-register-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/counter-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counter Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fsm-designer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FSM Designer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/sequence-detector-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Detector Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/shift-register-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_13" id="__nav_7_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/programmable-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmable Connections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/rom-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ROM Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-vs-pal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA vs PAL Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/cpld-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPLD Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/lut-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUT Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/clb-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLB Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fpga-config-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Configuration Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/fpga-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pld-selection-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLD Selection Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/pla-programming-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Programming Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_14" id="__nav_7_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/entity-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity-Architecture Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-modeling-styles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Modeling Styles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-flipflop-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Flip-Flop Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-fsm-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-synthesis-inference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Synthesis Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vhdl-fsm-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_15" id="__nav_7_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/top-down-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top-Down Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/datapath-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/timing-analysis-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Analysis Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/digital-lock-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Lock System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/uart-transmitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transmitter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/uart-transceiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transceiver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/course-integration-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Integration Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/datapath-controller-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/vending-machine-fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vending Machine FSM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/hierarchical-alu-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hierarchical ALU Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Learning Graph
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/concept-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/concept-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/taxonomy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Taxonomy Distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/book-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/chapter-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/course-description-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description Assessment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/glossary-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/quiz-generation-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz Generation Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning-graph/faq-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="problems-styled">
+<h1 id="end-of-unit-problems-system-integration">End-of-Unit Problems: System Integration</h1>
+<p>Work through these problems to reinforce your understanding of top-down design, datapath-controller partitioning, timing analysis, pipelining, and system-level design trade-offs.</p>
+<hr />
+<h2 id="section-a-top-down-design-and-modularity-4-problems">Section A: Top-Down Design and Modularity (4 problems)</h2>
+<h3 id="problem-1">Problem 1</h3>
+<p>A digital combination lock accepts a 4-digit code (each digit 0-9) entered sequentially. Decompose the system using top-down design into hierarchical modules. Identify each module, its inputs, outputs, and its role in the system.</p>
+<p><strong>Solution:</strong> <strong>Level 0 — Top-level system:</strong></p>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────┐
+│            Combination Lock System           │
+│                                              │
+│  Keypad ──→ [Controller] ──→ Lock Actuator   │
+│              ↕                                │
+│         [Code Memory]                        │
+└─────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Level 1 — Subsystem decomposition:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keypad Encoder</td>
+<td>10 key lines</td>
+<td>4-bit BCD digit, KEY_VALID</td>
+<td>Encodes pressed key to binary</td>
+</tr>
+<tr>
+<td>Digit Comparator</td>
+<td>entered digit, stored digit</td>
+<td>MATCH</td>
+<td>Compares one digit against stored code</td>
+</tr>
+<tr>
+<td>Sequence Counter</td>
+<td>KEY_VALID, RESET</td>
+<td>digit_index[1:0]</td>
+<td>Tracks which digit (0-3) is being entered</td>
+</tr>
+<tr>
+<td>Code Memory</td>
+<td>digit_index</td>
+<td>stored_digit[3:0]</td>
+<td>Stores the 4-digit secret code</td>
+</tr>
+<tr>
+<td>Main Controller (FSM)</td>
+<td>MATCH, digit_index, KEY_VALID</td>
+<td>UNLOCK, RESET, ERROR</td>
+<td>Orchestrates the verification sequence</td>
+</tr>
+<tr>
+<td>Lock Actuator</td>
+<td>UNLOCK</td>
+<td>physical lock signal</td>
+<td>Drives the solenoid/motor</td>
+</tr>
+<tr>
+<td>Timeout Timer</td>
+<td>CLK, RESET</td>
+<td>TIMEOUT</td>
+<td>Resets system after inactivity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Level 2 — Detailed module breakdown:</strong></p>
+<ul>
+<li><strong>Keypad Encoder:</strong> 4x3 matrix scanner + priority encoder + debounce circuit</li>
+<li><strong>Main Controller FSM states:</strong> IDLE, CHECK_D0, CHECK_D1, CHECK_D2, CHECK_D3, UNLOCK, ERROR_LOCKOUT</li>
+<li><strong>Code Memory:</strong> 4 x 4-bit register file (can be ROM for fixed code or RAM for programmable code)</li>
+</ul>
+<p><strong>Design hierarchy:</strong></p>
+<div class="highlight"><pre><span></span><code>Combination Lock System
+├── Keypad Encoder
+│   ├── Matrix Scanner
+│   ├── Priority Encoder
+│   └── Debounce Circuit
+├── Main Controller FSM
+├── Sequence Counter (2-bit)
+├── Code Memory (4 x 4-bit)
+├── Digit Comparator (4-bit equality)
+├── Timeout Timer (counter)
+└── Lock Actuator Driver
+</code></pre></div>
+<p><strong>Key design principle:</strong> Each module has a well-defined interface. The controller FSM coordinates all modules without knowing their internal implementation.</p>
+<hr />
+<h3 id="problem-2">Problem 2</h3>
+<p>Explain the difference between structural and behavioral decomposition in top-down design. For a 4-bit ALU that supports ADD, SUB, AND, OR, give both decompositions.</p>
+<p><strong>Solution:</strong> <strong>Structural decomposition</strong> breaks the system into physical components and their interconnections. <strong>Behavioral decomposition</strong> breaks the system into functional operations without specifying implementation.</p>
+<p><strong>Behavioral decomposition of 4-bit ALU:</strong></p>
+<div class="highlight"><pre><span></span><code>4-bit ALU
+├── Addition operation (A + B)
+├── Subtraction operation (A - B)
+├── Bitwise AND operation (A &amp; B)
+└── Bitwise OR operation (A | B)
+</code></pre></div>
+<p>Each operation is described by what it does, not how it is built.</p>
+<p><strong>Structural decomposition of 4-bit ALU:</strong></p>
+<div class="highlight"><pre><span></span><code>4-bit ALU
+├── 4-bit Adder/Subtractor
+│   ├── XOR array (4 gates, for B complement)
+│   ├── 4-bit Ripple Carry Adder
+│   │   ├── Full Adder bit 0
+│   │   ├── Full Adder bit 1
+│   │   ├── Full Adder bit 2
+│   │   └── Full Adder bit 3
+│   └── Carry-in = SUB control
+├── AND array (4 AND gates)
+├── OR array (4 OR gates)
+└── Output MUX (4-bit, 4-to-1)
+    └── Select = Op[1:0]
+</code></pre></div>
+<p><strong>Block diagram (structural):</strong></p>
+<div class="highlight"><pre><span></span><code>A[3:0] ──┬──────────────────────┬──────┬──────┐
+         │                      │      │      │
+B[3:0] ──┼──[XOR w/ SUB]──[Adder]  [AND]  [OR]│
+         │        │           │      │      │  │
+         │        └───────────┼──────┼──────┼──┘
+         │                    ↓      ↓      ↓
+         │              ┌─────────────────────┐
+Op[1:0]──┴─────────────→│    4-to-1 MUX       │
+                        └─────────┬───────────┘
+                                  ↓
+                              Result[3:0]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Op[1:0]</th>
+<th>Operation</th>
+<th>MUX selects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>ADD</td>
+<td>Adder output</td>
+</tr>
+<tr>
+<td>01</td>
+<td>SUB</td>
+<td>Adder output (B complemented, Cin=1)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AND</td>
+<td>AND array output</td>
+</tr>
+<tr>
+<td>11</td>
+<td>OR</td>
+<td>OR array output</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key difference:</strong> Behavioral decomposition is technology-independent and focuses on specification. Structural decomposition commits to a specific implementation architecture.</p>
+<hr />
+<h3 id="problem-3">Problem 3</h3>
+<p>A digital system must be designed with the following specifications. Identify all modules needed and draw the top-level block diagram showing interconnections.</p>
+<ul>
+<li>Read temperature from an 8-bit ADC every 100 ms</li>
+<li>Compare temperature against a programmable threshold</li>
+<li>Activate a cooling fan if temperature exceeds the threshold</li>
+<li>Display current temperature on a 2-digit 7-segment display</li>
+</ul>
+<p><strong>Solution:</strong> <strong>Module identification:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Type</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clock Divider</td>
+<td>Counter</td>
+<td>Generates 10 Hz sample signal from system clock</td>
+</tr>
+<tr>
+<td>ADC Interface</td>
+<td>Controller</td>
+<td>Manages ADC read timing and handshake</td>
+</tr>
+<tr>
+<td>Threshold Register</td>
+<td>Register</td>
+<td>Stores programmable 8-bit threshold</td>
+</tr>
+<tr>
+<td>Comparator</td>
+<td>Combinational</td>
+<td>Compares ADC value &gt; threshold</td>
+</tr>
+<tr>
+<td>Fan Controller</td>
+<td>FSM</td>
+<td>Manages fan on/off with hysteresis</td>
+</tr>
+<tr>
+<td>Binary-to-BCD</td>
+<td>Combinational</td>
+<td>Converts 8-bit binary to 2-digit BCD</td>
+</tr>
+<tr>
+<td>7-Segment Decoder</td>
+<td>Combinational</td>
+<td>Converts BCD to segment patterns</td>
+</tr>
+<tr>
+<td>Display MUX</td>
+<td>Counter + MUX</td>
+<td>Time-multiplexes two digit displays</td>
+</tr>
+<tr>
+<td>Main Controller</td>
+<td>FSM</td>
+<td>Coordinates sampling and data flow</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top-level block diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>System CLK ──→ [Clock Divider] ──→ SAMPLE_TICK
+                                       │
+                    ┌──────────────────┘
+                    ↓
+ADC_DATA[7:0] ←── [ADC Interface] ←── ADC_BUSY
+ADC_START     ──→       │
+                        ↓
+                 TEMP[7:0] ──┬──→ [Comparator] ──→ OVER_TEMP
+                             │         ↑
+                             │    [Threshold Reg] ←── THRESH_IN[7:0]
+                             │                    ←── LOAD_THRESH
+                             │
+                             │    [Fan Controller] ←── OVER_TEMP
+                             │         │
+                             │         └──→ FAN_ON
+                             │
+                             └──→ [Bin-to-BCD] ──→ BCD_TENS[3:0]
+                                       │           BCD_ONES[3:0]
+                                       ↓
+                                 [7-Seg Decode] ──→ SEGMENTS[6:0]
+                                       │
+                                 [Display MUX] ──→ DIGIT_SEL
+</code></pre></div>
+<p><strong>Main controller FSM states:</strong></p>
+<ul>
+<li>IDLE: Wait for SAMPLE_TICK</li>
+<li>START_ADC: Assert ADC_START</li>
+<li>WAIT_ADC: Wait for ADC_BUSY to deassert</li>
+<li>READ_DATA: Latch ADC_DATA into TEMP register</li>
+<li>UPDATE: Trigger comparison and display update</li>
+<li>Return to IDLE</li>
+</ul>
+<p><strong>Interface signals between modules are clearly defined,</strong> allowing each module to be designed and tested independently.</p>
+<hr />
+<h3 id="problem-4">Problem 4</h3>
+<p>What are the three key principles of modular design? For each principle, give a digital design example showing how violating it leads to problems.</p>
+<p><strong>Solution:</strong> <strong>The three key principles:</strong></p>
+<p><strong>1. Well-defined interfaces</strong></p>
+<p>Each module communicates only through declared input/output ports with specified data types and timing.</p>
+<ul>
+<li><strong>Good:</strong> ALU has inputs A[7:0], B[7:0], Op[1:0] and output Result[7:0], Carry_out</li>
+<li><strong>Violation:</strong> Module A directly reads internal flip-flop values of Module B rather than using output ports</li>
+<li><strong>Problem:</strong> Changing Module B's internal implementation breaks Module A. No isolation between modules.</li>
+</ul>
+<p><strong>2. Encapsulation (information hiding)</strong></p>
+<p>Internal implementation details are hidden; only the interface is visible to other modules.</p>
+<ul>
+<li><strong>Good:</strong> A counter module exports COUNT[3:0] and TC (terminal count); its internal carry chain is hidden</li>
+<li><strong>Violation:</strong> The top-level design routes carry signals directly between internal full adders of separate counter modules</li>
+<li><strong>Problem:</strong> Cannot replace the ripple counter with a faster carry-lookahead counter without redesigning the entire system.</li>
+</ul>
+<p><strong>3. Single responsibility</strong></p>
+<p>Each module performs one clearly defined function.</p>
+<ul>
+<li><strong>Good:</strong> Separate modules for keyboard decoding, FSM control, and display driving</li>
+<li><strong>Violation:</strong> One monolithic FSM handles keyboard scanning, sequence checking, display multiplexing, and timeout simultaneously</li>
+<li><strong>Problem:</strong> The FSM state space explodes combinatorially. A 4-state keyboard scanner x 5-state lock controller x 3-state display driver = 60 states in a single FSM instead of three small FSMs (4 + 5 + 3 = 12 states total).</li>
+</ul>
+<p><strong>Quantitative example of the state explosion:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Design approach</th>
+<th>FSM states</th>
+<th>Flip-flops needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single monolithic FSM</td>
+<td><span class="arithmatex">\(4 \times 5 \times 3 = 60\)</span></td>
+<td><span class="arithmatex">\(\lceil\log_2 60\rceil = 6\)</span></td>
+</tr>
+<tr>
+<td>Three separate FSMs</td>
+<td><span class="arithmatex">\(4 + 5 + 3 = 12\)</span></td>
+<td><span class="arithmatex">\(2 + 3 + 2 = 7\)</span> flip-flops, but far simpler logic</td>
+</tr>
+</tbody>
+</table>
+<p>Although the monolithic FSM uses one fewer flip-flop, its next-state logic is vastly more complex and nearly impossible to debug.</p>
+<hr />
+<h2 id="section-b-datapath-and-controller-design-4-problems">Section B: Datapath and Controller Design (4 problems)</h2>
+<h3 id="problem-5">Problem 5</h3>
+<p>Explain the datapath-controller partitioning approach. For a circuit that computes <span class="arithmatex">\(Y = A \times B + C\)</span> where A, B, C are 8-bit inputs, design the datapath and controller separately.</p>
+<p><strong>Solution:</strong> <strong>Datapath-controller partitioning:</strong></p>
+<ul>
+<li><strong>Datapath:</strong> Contains the components that store, transform, and route data (registers, ALUs, multiplexers, buses)</li>
+<li><strong>Controller:</strong> An FSM that generates control signals to orchestrate datapath operations each clock cycle</li>
+<li><strong>Separation:</strong> The controller does not process data; the datapath does not make sequencing decisions</li>
+</ul>
+<p><strong>Datapath design for <span class="arithmatex">\(Y = A \times B + C\)</span>:</strong></p>
+<div class="highlight"><pre><span></span><code>A[7:0] ──→ [Reg_A] ──→ ┐
+                        ├──→ [8x8 Multiplier] ──→ [Reg_P] ──→ ┐
+B[7:0] ──→ [Reg_B] ──→ ┘                                      ├──→ [16-bit Adder] ──→ [Reg_Y]
+                                                               │                        │
+C[7:0] ──→ [Reg_C] ──────────────→ (zero-extended to 16 bits) ┘                        ↓
+                                                                                    Y[15:0]
+</code></pre></div>
+<p><strong>Datapath control signals:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LD_A</td>
+<td>Load register A</td>
+</tr>
+<tr>
+<td>LD_B</td>
+<td>Load register B</td>
+</tr>
+<tr>
+<td>LD_C</td>
+<td>Load register C</td>
+</tr>
+<tr>
+<td>LD_P</td>
+<td>Load product register</td>
+</tr>
+<tr>
+<td>LD_Y</td>
+<td>Load result register</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Controller FSM:</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────┐
+│  S0: IDLE          (wait for START)      │
+│  ──→ if START: go to S1                  │
+├──────────────────────────────────────────┤
+│  S1: LOAD          assert LD_A,LD_B,LD_C │
+│  ──→ go to S2                            │
+├──────────────────────────────────────────┤
+│  S2: MULTIPLY      (wait for mult done)  │
+│  ──→ if MULT_DONE: assert LD_P, go to S3│
+├──────────────────────────────────────────┤
+│  S3: ADD           assert LD_Y           │
+│  ──→ go to S4                            │
+├──────────────────────────────────────────┤
+│  S4: DONE          assert RESULT_VALID   │
+│  ──→ go to S0                            │
+└──────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Control signal table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>LD_A</th>
+<th>LD_B</th>
+<th>LD_C</th>
+<th>LD_P</th>
+<th>LD_Y</th>
+<th>RESULT_VALID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1*</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>*LD_P asserted only when MULT_DONE = 1</p>
+<p><strong>Latency:</strong> 4 clock cycles (load + multiply + add + done)</p>
+<hr />
+<h3 id="problem-6">Problem 6</h3>
+<p>Design the datapath and controller for a circuit that finds the maximum of three 8-bit unsigned numbers A, B, and C. Show the ASM (Algorithmic State Machine) chart.</p>
+<p><strong>Solution:</strong> <strong>Algorithm:</strong></p>
+<ol>
+<li>Load A, B, C</li>
+<li>Compare A and B; keep the larger as TEMP</li>
+<li>Compare TEMP and C; keep the larger as MAX</li>
+</ol>
+<p><strong>Datapath:</strong></p>
+<div class="highlight"><pre><span></span><code>A[7:0]──→[Reg_A]──→┐                      ┌──→[Reg_MAX]──→ MAX[7:0]
+                    ├──→[8-bit Comparator]──┤
+B[7:0]──→[Reg_B]──→┤   + 2-to-1 MUX       │
+                    │        ↑              │
+C[7:0]──→[Reg_C]───┘    SEL_AB, SEL_MC     │
+                                            │
+                [2:1 MUX] ←─────────────────┘
+                   ↑
+                SEL_MC
+</code></pre></div>
+<p><strong>Refined datapath with two comparisons:</strong></p>
+<div class="highlight"><pre><span></span><code>A ──→ [Reg_A] ──→ ┐
+                  ├──→ [CMP1: A&gt;B?] ──→ A_GT_B (status to controller)
+B ──→ [Reg_B] ──→ ┘
+                  ┌──→ [MUX1] ──→ TEMP
+Reg_A output ─────┤      ↑
+Reg_B output ─────┘   SEL_AB (from controller)
+
+TEMP ─────────────┐
+                  ├──→ [CMP2: TEMP&gt;C?] ──→ T_GT_C (status to controller)
+C ──→ [Reg_C] ──→ ┘
+                  ┌──→ [MUX2] ──→ [Reg_MAX]
+TEMP ─────────────┤      ↑
+Reg_C output ─────┘   SEL_MC (from controller)
+</code></pre></div>
+<p><strong>ASM Chart:</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────┐
+│ S0: IDLE │ ──── START=0? ──→ (stay)
+└────┬─────┘
+     │ START=1
+     ↓
+┌──────────┐
+│ S1: LOAD │  LD_A=1, LD_B=1, LD_C=1
+└────┬─────┘
+     ↓
+┌──────────┐
+│ S2: CMP1 │  Compare A, B
+└────┬─────┘
+     │
+    ◇ A_GT_B?
+   / \
+  Y   N
+  │   │
+  ↓   ↓
+SEL_AB=0  SEL_AB=1
+(pick A)  (pick B)
+  │   │
+  └─┬─┘
+    ↓
+┌──────────┐
+│ S3: CMP2 │  Compare TEMP, C
+└────┬─────┘
+     │
+    ◇ T_GT_C?
+   / \
+  Y   N
+  │   │
+  ↓   ↓
+SEL_MC=0  SEL_MC=1
+(pick T)  (pick C)
+  │   │
+  └─┬─┘
+    ↓
+┌──────────┐
+│ S4: DONE │  LD_MAX=1, VALID=1
+└────┬─────┘
+     ↓
+   (go to S0)
+</code></pre></div>
+<p><strong>Controller outputs per state:</strong></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>LD_A</th>
+<th>LD_B</th>
+<th>LD_C</th>
+<th>SEL_AB</th>
+<th>SEL_MC</th>
+<th>LD_MAX</th>
+<th>VALID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>A_GT_B'</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>-</td>
+<td>T_GT_C'</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total latency:</strong> 4 clock cycles from START to VALID.</p>
+<hr />
+<h3 id="problem-7">Problem 7</h3>
+<p>A datapath for a simple accumulator processor includes: an 8-bit register (ACC), an 8-bit adder, and a 2-to-1 MUX. The processor supports three operations: LOAD (ACC = input), ADD (ACC = ACC + input), CLEAR (ACC = 0). Design the datapath and the controller.</p>
+<p><strong>Solution:</strong> <strong>Datapath:</strong></p>
+<div class="highlight"><pre><span></span><code>DATA_IN[7:0] ──→ ┐
+                 ├──→ [2:1 MUX] ──→ [8-bit Adder] ──→ [ACC Register]──┬──→ ACC_OUT[7:0]
+0x00 ────────────┘        ↑              ↑                │             │
+                       MUX_SEL        B input             │             │
+                                         │                └─────────────┘
+                                         └────────────────(feedback from ACC)
+</code></pre></div>
+<p><strong>Refined datapath with all three operations:</strong></p>
+<div class="highlight"><pre><span></span><code>                    MUX_A_SEL
+                       ↓
+DATA_IN ──→ [MUX_A] ──→ A ──→ [8-bit Adder] ──→ SUM ──→ [MUX_R] ──→ [ACC]──→ ACC_OUT
+0x00 ──────→           B ←──────────────────────── ACC     ↑
+                                                        MUX_R_SEL
+                                                        LD_ACC
+</code></pre></div>
+<p><strong>Control signal encoding:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>MUX_A_SEL</th>
+<th>MUX_R_SEL</th>
+<th>LD_ACC</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOP</td>
+<td>X</td>
+<td>X</td>
+<td>0</td>
+<td>ACC unchanged</td>
+</tr>
+<tr>
+<td>LOAD</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+<td>ACC = DATA_IN (MUX_R selects DATA_IN directly)</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>ACC = ACC + DATA_IN (MUX_R selects adder output)</td>
+</tr>
+<tr>
+<td>CLEAR</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>ACC = ACC + 0 ...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Simpler approach — single MUX at ACC input:</strong></p>
+<div class="highlight"><pre><span></span><code>DATA_IN[7:0]──────────────────→ ┐
+(ACC + DATA_IN) from adder ───→ ├──→ [4:1 MUX] ──→ D ──→ [ACC Reg] ──→ ACC_OUT
+0x00 (constant zero) ─────────→ ┤        ↑                    │
+ACC_OUT (hold) ───────────────→ ┘     SEL[1:0]                │
+                                                               │
+ACC_OUT ──→ [Adder] ←── DATA_IN                               │
+              │                                                │
+              └────────(ACC + DATA_IN)                         │
+                                                               │
+              └────────────────────────────────────────────────┘
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>SEL[1:0]</th>
+<th>MUX Output</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>DATA_IN</td>
+<td>LOAD</td>
+</tr>
+<tr>
+<td>01</td>
+<td>ACC + DATA_IN</td>
+<td>ADD</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0x00</td>
+<td>CLEAR</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ACC_OUT</td>
+<td>NOP (hold)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Controller FSM:</strong></p>
+<div class="highlight"><pre><span></span><code>┌────────┐    OP = LOAD     ┌──────────┐
+│  IDLE  │ ──────────────→  │  EXECUTE  │
+│        │    OP = ADD      │           │
+│        │ ──────────────→  │  SEL =    │
+│        │    OP = CLR      │  f(OP)    │
+│        │ ──────────────→  │  LD_ACC=1 │
+└────────┘                  └─────┬─────┘
+     ↑                            │
+     └────────────────────────────┘
+</code></pre></div>
+<p>For a single-cycle implementation, the controller is purely combinational:</p>
+<ul>
+<li>SEL[1:0] = OP[1:0]</li>
+<li>LD_ACC = (OP != NOP)</li>
+</ul>
+<hr />
+<h3 id="problem-8">Problem 8</h3>
+<p>Design the datapath and controller for a binary search circuit that finds whether a value KEY exists in a sorted 8-element array stored in a register file. Each element is 8 bits. Show the datapath components, control signals, and FSM state diagram.</p>
+<p><strong>Solution:</strong> <strong>Algorithm (binary search):</strong></p>
+<ol>
+<li>Set LOW = 0, HIGH = 7</li>
+<li>Compute MID = (LOW + HIGH) / 2</li>
+<li>Read ARRAY[MID]</li>
+<li>If ARRAY[MID] = KEY: FOUND</li>
+<li>If ARRAY[MID] &lt; KEY: LOW = MID + 1</li>
+<li>If ARRAY[MID] &gt; KEY: HIGH = MID - 1</li>
+<li>If LOW &gt; HIGH: NOT_FOUND</li>
+<li>Repeat from step 2</li>
+</ol>
+<p><strong>Datapath components:</strong></p>
+<div class="highlight"><pre><span></span><code>KEY[7:0] ──→ [Reg_KEY]
+                               ┌──→ [Comparator] ──→ EQ, LT, GT
+[Reg File: 8 x 8-bit] ──→ DATA_OUT ──┘        ↑
+     ↑ ADDR[2:0]                           Reg_KEY output
+     │
+[MID Register] ──→ ADDR
+     ↑
+[Adder/Shifter] ──→ (LOW + HIGH) &gt;&gt; 1
+     ↑         ↑
+[Reg_LOW]   [Reg_HIGH]
+     ↑         ↑
+MID+1 ──┘   MID-1 ──┘  (via adder with +1/-1)
+</code></pre></div>
+<p><strong>Datapath block diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>┌───────────────────────────────────────────────────┐
+│                   DATAPATH                        │
+│                                                   │
+│  [Reg_LOW] ──┬──→ [Adder] ──→ [&gt;&gt;1] ──→ [Reg_MID]│
+│  [Reg_HIGH]──┘      ↑                      │     │
+│       ↑  ↑        LOW+HIGH               ADDR    │
+│     LD_L LD_H                              ↓     │
+│       ↑  ↑                          [Reg File]   │
+│    MID+1 MID-1                          │        │
+│                                    DATA_OUT      │
+│                                         ↓        │
+│  [Reg_KEY] ──→ [Comparator] ←── DATA_OUT         │
+│                  │  │  │                          │
+│                 EQ  LT GT  (status to controller) │
+│                                                   │
+│  [Comparator2: LOW &gt; HIGH?] ──→ DONE_NF          │
+└───────────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Controller FSM:</strong></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Actions</th>
+<th>Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0: INIT</td>
+<td>LD_L (LOW=0), LD_H (HIGH=7), LD_KEY</td>
+<td>S1</td>
+</tr>
+<tr>
+<td>S1: CALC_MID</td>
+<td>MID = (LOW+HIGH)&gt;&gt;1, LD_MID</td>
+<td>S2</td>
+</tr>
+<tr>
+<td>S2: READ</td>
+<td>Read Reg_File[MID]</td>
+<td>S3</td>
+</tr>
+<tr>
+<td>S3: COMPARE</td>
+<td>Check comparator outputs</td>
+<td>S4 or S5 or S6 or S7</td>
+</tr>
+<tr>
+<td>S4: FOUND</td>
+<td>Assert FOUND=1</td>
+<td>S0</td>
+</tr>
+<tr>
+<td>S5: GO_HIGH</td>
+<td>LOW = MID+1, LD_L</td>
+<td>S7</td>
+</tr>
+<tr>
+<td>S6: GO_LOW</td>
+<td>HIGH = MID-1, LD_H</td>
+<td>S7</td>
+</tr>
+<tr>
+<td>S7: CHECK_DONE</td>
+<td>If LOW &gt; HIGH: NOT_FOUND, else go to S1</td>
+<td>S1 or S8</td>
+</tr>
+<tr>
+<td>S8: NOT_FOUND</td>
+<td>Assert NOT_FOUND=1</td>
+<td>S0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>State diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>S0 ──→ S1 ──→ S2 ──→ S3 ──→ EQ? ──→ S4 (FOUND)
+                           │
+                    LT? ──→ S5 ──→ S7 ──→ LOW&gt;HIGH? ──→ S8 (NOT_FOUND)
+                           │              │
+                    GT? ──→ S6 ──→ S7     └──→ S1 (repeat)
+</code></pre></div>
+<p><strong>Worst-case latency:</strong> <span class="arithmatex">\(\lceil\log_2 8\rceil = 3\)</span> iterations, each 4-5 clock cycles, so approximately <strong>12-15 clock cycles</strong>.</p>
+<hr />
+<h2 id="section-c-timing-analysis-4-problems">Section C: Timing Analysis (4 problems)</h2>
+<h3 id="problem-9">Problem 9</h3>
+<p>A synchronous circuit uses D flip-flops with the following parameters:</p>
+<ul>
+<li>Clock-to-Q delay: <span class="arithmatex">\(T_{cq}\)</span> = 0.5 ns</li>
+<li>Setup time: <span class="arithmatex">\(T_{setup}\)</span> = 0.3 ns</li>
+<li>Hold time: <span class="arithmatex">\(T_{hold}\)</span> = 0.1 ns</li>
+<li>Combinational logic delay: <span class="arithmatex">\(T_{comb}\)</span> = 2.8 ns</li>
+</ul>
+<p>Calculate the maximum clock frequency <span class="arithmatex">\(f_{max}\)</span> and verify the hold time constraint.</p>
+<p><strong>Solution:</strong> <strong>Setup time constraint (determines <span class="arithmatex">\(f_{max}\)</span>):</strong></p>
+<p>The data must arrive at the next flip-flop's D input at least <span class="arithmatex">\(T_{setup}\)</span> before the next clock edge.</p>
+<div class="arithmatex">\[T_{clk} \geq T_{cq} + T_{comb} + T_{setup}\]</div>
+<div class="arithmatex">\[T_{clk} \geq 0.5 + 2.8 + 0.3 = 3.6 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max} = \frac{1}{T_{clk,min}} = \frac{1}{3.6 \text{ ns}} = 277.8 \text{ MHz}\]</div>
+<p><strong>Hold time constraint:</strong></p>
+<p>The data at the D input must remain stable for at least <span class="arithmatex">\(T_{hold}\)</span> after the clock edge.</p>
+<div class="arithmatex">\[T_{cq} + T_{comb,min} \geq T_{hold}\]</div>
+<p>The minimum combinational delay path (shortest path between flip-flops):</p>
+<div class="arithmatex">\[T_{comb,min} \geq T_{hold} - T_{cq} = 0.1 - 0.5 = -0.4 \text{ ns}\]</div>
+<p>Since <span class="arithmatex">\(T_{comb,min}\)</span> is always <span class="arithmatex">\(\geq 0\)</span>, the hold constraint is <strong>automatically satisfied</strong> (any non-negative combinational delay meets the requirement).</p>
+<p><strong>Timing diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>CLK  ──┐     ┌──────┐     ┌──────┐
+       │     │      │     │      │
+       └─────┘      └─────┘      └─────
+       |←──── Tclk = 3.6 ns ────→|
+
+FF1 Q  ──────┤←Tcq→├──────────────────
+             0.5ns  │←── Tcomb ──→│
+                    │   2.8 ns    │
+FF2 D  ─────────────┤            ├────
+                                 │←Tsu→│
+                                  0.3ns
+</code></pre></div>
+<p><strong>Summary:</strong></p>
+<ul>
+<li><span class="arithmatex">\(f_{max} = 277.8\)</span> MHz</li>
+<li>Hold time: satisfied (margin = 0.5 + 0 - 0.1 = 0.4 ns minimum)</li>
+</ul>
+<hr />
+<h3 id="problem-10">Problem 10</h3>
+<p>A digital system has three pipeline stages with the following delays:</p>
+<ul>
+<li>Stage 1: <span class="arithmatex">\(T_{cq}\)</span> + 4.0 ns combinational</li>
+<li>Stage 2: <span class="arithmatex">\(T_{cq}\)</span> + 6.5 ns combinational</li>
+<li>Stage 3: <span class="arithmatex">\(T_{cq}\)</span> + 3.0 ns combinational</li>
+</ul>
+<p>Flip-flop parameters: <span class="arithmatex">\(T_{cq}\)</span> = 0.4 ns, <span class="arithmatex">\(T_{setup}\)</span> = 0.3 ns.</p>
+<p>(a) What is <span class="arithmatex">\(f_{max}\)</span> for the pipelined design?
+(b) What would <span class="arithmatex">\(f_{max}\)</span> be without pipelining (all logic in one stage)?
+(c) Calculate the throughput improvement from pipelining.</p>
+<p><strong>Solution:</strong> <strong>(a) Pipelined <span class="arithmatex">\(f_{max}\)</span>:</strong></p>
+<p>The clock frequency is limited by the <strong>slowest stage</strong>:</p>
+<div class="arithmatex">\[T_{clk} \geq T_{cq} + T_{comb,max} + T_{setup}\]</div>
+<p>Stage delays (including <span class="arithmatex">\(T_{cq}\)</span> and <span class="arithmatex">\(T_{setup}\)</span>):</p>
+<ul>
+<li>Stage 1: <span class="arithmatex">\(0.4 + 4.0 + 0.3 = 4.7\)</span> ns</li>
+<li>Stage 2: <span class="arithmatex">\(0.4 + 6.5 + 0.3 = 7.2\)</span> ns (bottleneck)</li>
+<li>Stage 3: <span class="arithmatex">\(0.4 + 3.0 + 0.3 = 3.7\)</span> ns</li>
+</ul>
+<div class="arithmatex">\[T_{clk,min} = 7.2 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max,pipelined} = \frac{1}{7.2 \text{ ns}} = 138.9 \text{ MHz}\]</div>
+<p><strong>(b) Non-pipelined <span class="arithmatex">\(f_{max}\)</span>:</strong></p>
+<p>Total combinational delay = <span class="arithmatex">\(4.0 + 6.5 + 3.0 = 13.5\)</span> ns</p>
+<div class="arithmatex">\[T_{clk} \geq T_{cq} + 13.5 + T_{setup} = 0.4 + 13.5 + 0.3 = 14.2 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max,unpipelined} = \frac{1}{14.2 \text{ ns}} = 70.4 \text{ MHz}\]</div>
+<p><strong>(c) Throughput improvement:</strong></p>
+<p>Throughput is proportional to clock frequency (one result per clock at steady state):</p>
+<div class="arithmatex">\[\text{Throughput ratio} = \frac{f_{max,pipelined}}{f_{max,unpipelined}} = \frac{138.9}{70.4} = 1.97\times\]</div>
+<p><strong>Pipelining nearly doubles the throughput.</strong></p>
+<p>However, latency increases:</p>
+<ul>
+<li>Non-pipelined latency: 14.2 ns (1 cycle)</li>
+<li>Pipelined latency: <span class="arithmatex">\(3 \times 7.2 = 21.6\)</span> ns (3 cycles)</li>
+</ul>
+<p><strong>Latency increased by a factor of</strong> <span class="arithmatex">\(21.6 / 14.2 = 1.52\times\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Unpipelined</th>
+<th>Pipelined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(f_{max}\)</span></td>
+<td>70.4 MHz</td>
+<td>138.9 MHz</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>14.2 ns</td>
+<td>21.6 ns</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>70.4 M results/s</td>
+<td>138.9 M results/s</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="problem-11">Problem 11</h3>
+<p>A system has the following timing parameters:</p>
+<ul>
+<li>Clock period: 10 ns</li>
+<li><span class="arithmatex">\(T_{cq}\)</span> = 0.6 ns</li>
+<li><span class="arithmatex">\(T_{setup}\)</span> = 0.4 ns</li>
+<li><span class="arithmatex">\(T_{hold}\)</span> = 0.2 ns</li>
+<li>Clock skew between source and destination flip-flop: <span class="arithmatex">\(\delta\)</span> = 0.5 ns (destination clock arrives late)</li>
+</ul>
+<p>(a) What is the maximum allowable combinational delay?
+(b) Is hold time violated? What is the hold margin?</p>
+<p><strong>Solution:</strong> <strong>(a) Maximum combinational delay with clock skew:</strong></p>
+<p>When the destination clock arrives late by <span class="arithmatex">\(\delta\)</span>, the data has more time to propagate (positive skew helps setup):</p>
+<p>Wait — we must be careful about sign convention. If the destination clock arrives <strong>late</strong>, the data has <span class="arithmatex">\(\delta\)</span> extra time, which <strong>helps</strong> setup but <strong>hurts</strong> hold.</p>
+<p><strong>Setup constraint with skew:</strong></p>
+<div class="arithmatex">\[T_{cq} + T_{comb} + T_{setup} \leq T_{clk} + \delta\]</div>
+<p>(The destination flip-flop samples <span class="arithmatex">\(\delta\)</span> later, giving more time.)</p>
+<div class="arithmatex">\[T_{comb,max} = T_{clk} + \delta - T_{cq} - T_{setup}\]</div>
+<div class="arithmatex">\[T_{comb,max} = 10 + 0.5 - 0.6 - 0.4 = 9.5 \text{ ns}\]</div>
+<p><strong>Without skew:</strong> <span class="arithmatex">\(T_{comb,max} = 10 - 0.6 - 0.4 = 9.0\)</span> ns</p>
+<p>The positive skew at the destination gives 0.5 ns more margin for combinational logic.</p>
+<p><strong>(b) Hold time analysis with skew:</strong></p>
+<p><strong>Hold constraint with skew:</strong></p>
+<div class="arithmatex">\[T_{cq} + T_{comb,min} \geq T_{hold} + \delta\]</div>
+<p>(The destination clock arriving late means the new data from the current clock edge could arrive before the destination has finished sampling the old value.)</p>
+<div class="arithmatex">\[T_{comb,min} \geq T_{hold} + \delta - T_{cq} = 0.2 + 0.5 - 0.6 = 0.1 \text{ ns}\]</div>
+<p><strong>Hold margin</strong> = <span class="arithmatex">\(T_{cq} + T_{comb,min} - T_{hold} - \delta\)</span></p>
+<p>If the minimum combinational path delay is 0 ns:</p>
+<div class="arithmatex">\[\text{Hold margin} = 0.6 + 0 - 0.2 - 0.5 = -0.1 \text{ ns}\]</div>
+<p><strong>Hold time IS violated</strong> if there is any direct path with <span class="arithmatex">\(T_{comb,min} &lt; 0.1\)</span> ns.</p>
+<p><strong>Fix:</strong> Insert a buffer (delay element) in the shortest path to add at least 0.1 ns of delay, or reduce clock skew.</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Without Skew</th>
+<th>With Skew (<span class="arithmatex">\(\delta\)</span> = 0.5 ns)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(T_{comb,max}\)</span></td>
+<td>9.0 ns</td>
+<td>9.5 ns (more margin)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T_{comb,min}\)</span></td>
+<td><span class="arithmatex">\(\geq\)</span> 0 ns (no issue)</td>
+<td><span class="arithmatex">\(\geq\)</span> 0.1 ns (potential issue!)</td>
+</tr>
+<tr>
+<td>Setup margin</td>
+<td>Helped</td>
+<td>Helped</td>
+</tr>
+<tr>
+<td>Hold margin</td>
+<td>Fine</td>
+<td>Reduced (may violate)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="problem-12">Problem 12</h3>
+<p>Calculate the maximum clock frequency for a 16-bit ripple carry adder used in a registered pipeline stage. Each full adder has a gate delay of 2 ns (two gates on the carry path). The flip-flop has <span class="arithmatex">\(T_{cq}\)</span> = 0.5 ns and <span class="arithmatex">\(T_{setup}\)</span> = 0.3 ns.</p>
+<p>Then calculate <span class="arithmatex">\(f_{max}\)</span> if the design is changed to a 4-bit carry lookahead adder with four 4-bit CLA blocks and a second-level carry lookahead unit (2 gate levels for CLA + 2 gate levels for second-level group carry).</p>
+<p><strong>Solution:</strong> <strong>Ripple Carry Adder:</strong></p>
+<p>Each full adder's carry path delay = 2 ns (two gate levels per bit).</p>
+<p>For 16 bits, the carry must ripple through all 16 full adders:</p>
+<div class="arithmatex">\[T_{comb,ripple} = 16 \times 2 = 32 \text{ ns}\]</div>
+<div class="arithmatex">\[T_{clk,min} = T_{cq} + T_{comb} + T_{setup} = 0.5 + 32 + 0.3 = 32.8 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max,ripple} = \frac{1}{32.8 \text{ ns}} = 30.5 \text{ MHz}\]</div>
+<p><strong>Carry Lookahead Adder (2-level):</strong></p>
+<p>Structure: Four 4-bit CLA blocks + one second-level lookahead unit.</p>
+<p>Delay breakdown:</p>
+<ul>
+<li>Generate G and P from inputs: 1 gate level = 1 ns</li>
+<li>First-level CLA (4-bit group G, P): 2 gate levels = 2 ns</li>
+<li>Second-level CLA (group carry): 2 gate levels = 2 ns</li>
+<li>Carries back to first level for sum: 1 gate level = 1 ns</li>
+<li>Final XOR for sum bits: 1 gate level = 1 ns</li>
+</ul>
+<p>Wait — let me be more precise with the given parameters (2 ns per two gates = 1 ns per gate level):</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Gate levels</th>
+<th>Delay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generate <span class="arithmatex">\(g_i\)</span>, <span class="arithmatex">\(p_i\)</span> from <span class="arithmatex">\(a_i\)</span>, <span class="arithmatex">\(b_i\)</span></td>
+<td>1</td>
+<td>1 ns</td>
+</tr>
+<tr>
+<td>First-level CLA: group G, P</td>
+<td>2</td>
+<td>2 ns</td>
+</tr>
+<tr>
+<td>Second-level CLA: group carries <span class="arithmatex">\(C_4, C_8, C_{12}\)</span></td>
+<td>2</td>
+<td>2 ns</td>
+</tr>
+<tr>
+<td>Carries distributed back into CLA blocks</td>
+<td>2</td>
+<td>2 ns</td>
+</tr>
+<tr>
+<td>Final sum XOR</td>
+<td>1</td>
+<td>1 ns</td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">\[T_{comb,CLA} = 1 + 2 + 2 + 2 + 1 = 8 \text{ ns}\]</div>
+<div class="arithmatex">\[T_{clk,min} = 0.5 + 8 + 0.3 = 8.8 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max,CLA} = \frac{1}{8.8 \text{ ns}} = 113.6 \text{ MHz}\]</div>
+<p><strong>Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Adder Type</th>
+<th><span class="arithmatex">\(T_{comb}\)</span></th>
+<th><span class="arithmatex">\(f_{max}\)</span></th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16-bit Ripple</td>
+<td>32.0 ns</td>
+<td>30.5 MHz</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>16-bit 2-level CLA</td>
+<td>8.0 ns</td>
+<td>113.6 MHz</td>
+<td>3.7x</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The CLA is 3.7x faster at the cost of significantly more hardware (carry lookahead logic).</strong></p>
+<hr />
+<h2 id="section-d-pipelining-and-optimization-4-problems">Section D: Pipelining and Optimization (4 problems)</h2>
+<h3 id="problem-13">Problem 13</h3>
+<p>A non-pipelined combinational circuit has four logic blocks in series with delays: 3 ns, 5 ns, 4 ns, 2 ns. Flip-flop overhead is <span class="arithmatex">\(T_{cq}\)</span> = 0.3 ns and <span class="arithmatex">\(T_{setup}\)</span> = 0.2 ns.</p>
+<p>(a) Calculate throughput without pipelining.
+(b) Pipeline the design into 4 stages (one block per stage). Calculate the new throughput and latency.
+(c) Pipeline into 2 stages by grouping blocks optimally. Calculate throughput and latency.</p>
+<p><strong>Solution:</strong> <strong>Original delays:</strong> Block A = 3 ns, Block B = 5 ns, Block C = 4 ns, Block D = 2 ns</p>
+<p><strong>Register overhead per stage:</strong> <span class="arithmatex">\(T_{cq} + T_{setup} = 0.3 + 0.2 = 0.5\)</span> ns</p>
+<p><strong>(a) No pipelining:</strong></p>
+<div class="arithmatex">\[T_{clk} = T_{cq} + (3 + 5 + 4 + 2) + T_{setup} = 0.3 + 14 + 0.2 = 14.5 \text{ ns}\]</div>
+<div class="arithmatex">\[\text{Throughput} = \frac{1}{14.5 \text{ ns}} = 69.0 \text{ M results/s}\]</div>
+<div class="arithmatex">\[\text{Latency} = 14.5 \text{ ns (1 cycle)}\]</div>
+<p><strong>(b) 4-stage pipeline:</strong></p>
+<p>Stage delays (each includes register overhead):</p>
+<ul>
+<li>Stage 1: <span class="arithmatex">\(0.3 + 3 + 0.2 = 3.5\)</span> ns</li>
+<li>Stage 2: <span class="arithmatex">\(0.3 + 5 + 0.2 = 5.5\)</span> ns (bottleneck)</li>
+<li>Stage 3: <span class="arithmatex">\(0.3 + 4 + 0.2 = 4.5\)</span> ns</li>
+<li>Stage 4: <span class="arithmatex">\(0.3 + 2 + 0.2 = 2.5\)</span> ns</li>
+</ul>
+<div class="arithmatex">\[T_{clk} = 5.5 \text{ ns (limited by slowest stage)}\]</div>
+<div class="arithmatex">\[\text{Throughput} = \frac{1}{5.5 \text{ ns}} = 181.8 \text{ M results/s}\]</div>
+<div class="arithmatex">\[\text{Latency} = 4 \times 5.5 = 22.0 \text{ ns}\]</div>
+<p><strong>Speedup:</strong> <span class="arithmatex">\(181.8 / 69.0 = 2.63\times\)</span> (not <span class="arithmatex">\(4\times\)</span> due to unbalanced stages)</p>
+<p><strong>(c) 2-stage pipeline (optimal grouping):</strong></p>
+<p>We want to split the four blocks into two groups with roughly equal total delay.</p>
+<p>Total logic delay = 14 ns, ideal split = 7 ns each.</p>
+<table>
+<thead>
+<tr>
+<th>Grouping</th>
+<th>Stage 1</th>
+<th>Stage 2</th>
+<th>Bottleneck</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td C_D="C,D">{A,B} +</td>
+<td>3+5 = 8</td>
+<td>4+2 = 6</td>
+<td>8.5 ns</td>
+</tr>
+<tr>
+<td B_C_D="B,C,D">{A} +</td>
+<td>3</td>
+<td>5+4+2 = 11</td>
+<td>11.5 ns</td>
+</tr>
+<tr>
+<td D="D">{A,B,C} +</td>
+<td>3+5+4 = 12</td>
+<td>2</td>
+<td>12.5 ns</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Optimal: {A, B} | {C, D}</strong></p>
+<ul>
+<li>Stage 1: <span class="arithmatex">\(0.3 + 8 + 0.2 = 8.5\)</span> ns</li>
+<li>Stage 2: <span class="arithmatex">\(0.3 + 6 + 0.2 = 6.5\)</span> ns</li>
+</ul>
+<div class="arithmatex">\[T_{clk} = 8.5 \text{ ns}\]</div>
+<div class="arithmatex">\[\text{Throughput} = \frac{1}{8.5 \text{ ns}} = 117.6 \text{ M results/s}\]</div>
+<div class="arithmatex">\[\text{Latency} = 2 \times 8.5 = 17.0 \text{ ns}\]</div>
+<p><strong>Summary:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th><span class="arithmatex">\(T_{clk}\)</span></th>
+<th>Throughput</th>
+<th>Latency</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No pipeline</td>
+<td>14.5 ns</td>
+<td>69.0 M/s</td>
+<td>14.5 ns</td>
+<td>1.0x</td>
+</tr>
+<tr>
+<td>2-stage</td>
+<td>8.5 ns</td>
+<td>117.6 M/s</td>
+<td>17.0 ns</td>
+<td>1.7x</td>
+</tr>
+<tr>
+<td>4-stage</td>
+<td>5.5 ns</td>
+<td>181.8 M/s</td>
+<td>22.0 ns</td>
+<td>2.6x</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> Pipelining improves throughput but increases latency. Unbalanced stages reduce the theoretical speedup (4-stage gives only 2.6x, not 4x).</p>
+<hr />
+<h3 id="problem-14">Problem 14</h3>
+<p>A 32-bit multiplier has a combinational delay of 20 ns. Registers have <span class="arithmatex">\(T_{cq}\)</span> = 0.4 ns and <span class="arithmatex">\(T_{setup}\)</span> = 0.3 ns.</p>
+<p>(a) What is <span class="arithmatex">\(f_{max}\)</span> without pipelining?
+(b) If the multiplier is split into 4 equal pipeline stages, what is <span class="arithmatex">\(f_{max}\)</span>?
+(c) What is the pipeline latency?
+(d) If a feedback path exists (output feeds back to input), how does this affect pipeline throughput?</p>
+<p><strong>Solution:</strong> <strong>(a) Without pipelining:</strong></p>
+<div class="arithmatex">\[T_{clk} = T_{cq} + 20 + T_{setup} = 0.4 + 20 + 0.3 = 20.7 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max} = \frac{1}{20.7 \text{ ns}} = 48.3 \text{ MHz}\]</div>
+<p><strong>(b) With 4 pipeline stages:</strong></p>
+<p>Each stage combinational delay: <span class="arithmatex">\(20 / 4 = 5\)</span> ns</p>
+<div class="arithmatex">\[T_{clk} = T_{cq} + 5 + T_{setup} = 0.4 + 5 + 0.3 = 5.7 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max} = \frac{1}{5.7 \text{ ns}} = 175.4 \text{ MHz}\]</div>
+<p><strong>Speedup:</strong> <span class="arithmatex">\(175.4 / 48.3 = 3.63\times\)</span></p>
+<p><strong>(c) Pipeline latency:</strong></p>
+<div class="arithmatex">\[\text{Latency} = 4 \times T_{clk} = 4 \times 5.7 = 22.8 \text{ ns}\]</div>
+<p>Compare with non-pipelined latency of 20.7 ns. Pipelining adds <span class="arithmatex">\(22.8 - 20.7 = 2.1\)</span> ns of latency overhead from the 3 extra pipeline registers (<span class="arithmatex">\(3 \times 0.7 = 2.1\)</span> ns, where 0.7 = <span class="arithmatex">\(T_{cq} + T_{setup}\)</span> for each added register).</p>
+<p><strong>(d) Feedback path impact:</strong></p>
+<div class="highlight"><pre><span></span><code>Input ──→ [Stage1] ──→ [Stage2] ──→ [Stage3] ──→ [Stage4] ──→ Output
+                                                                 │
+             ┌───────────────────────────────────────────────────┘
+             ↓ (feedback)
+          [MUX] ←── New Input
+             │
+             ↓
+Input ──→ [Stage1] ...
+</code></pre></div>
+<p>With feedback, the next computation that depends on the current result must wait for the full pipeline latency (4 cycles) before it can start. This creates a <strong>data hazard</strong>.</p>
+<p><strong>Effective throughput with feedback:</strong></p>
+<ul>
+<li>Without feedback: 1 result per cycle = 175.4 M results/s</li>
+<li>With feedback (every result depends on previous): 1 result per 4 cycles = <span class="arithmatex">\(175.4 / 4 = 43.9\)</span> M results/s</li>
+</ul>
+<p><strong>The feedback loop completely negates the pipelining benefit for dependent computations.</strong> The throughput with feedback (<span class="arithmatex">\(43.9\)</span> MHz) is actually slightly worse than the non-pipelined design (<span class="arithmatex">\(48.3\)</span> MHz) due to pipeline register overhead.</p>
+<p><strong>Solution approaches:</strong> Loop unrolling, bypassing/forwarding (if partial results suffice), or accepting the latency penalty.</p>
+<hr />
+<h3 id="problem-15">Problem 15</h3>
+<p>Compare the area, speed, and power trade-offs for three implementations of an 8-bit adder:</p>
+<ol>
+<li>Ripple carry adder (RCA)</li>
+<li>Carry lookahead adder (CLA)</li>
+<li>Carry select adder (CSLA)</li>
+</ol>
+<p>Assume a unit gate delay of 1 ns and each gate costs 1 area unit and consumes 1 power unit per switching event.</p>
+<p><strong>Solution:</strong> <strong>1. Ripple Carry Adder (RCA):</strong></p>
+<ul>
+<li><strong>Structure:</strong> 8 cascaded full adders</li>
+<li><strong>Delay:</strong> Carry propagates through 8 stages, 2 gate delays each = <span class="arithmatex">\(8 \times 2 = 16\)</span> gate delays = <strong>16 ns</strong></li>
+<li><strong>Area:</strong> 8 full adders, each ~5 gates = <strong>40 area units</strong></li>
+<li><strong>Power:</strong> Only gates on the active carry path switch = low dynamic power. Approximately <strong>40 power units</strong> worst case (all gates switch once)</li>
+</ul>
+<p><strong>2. Carry Lookahead Adder (CLA):</strong></p>
+<ul>
+<li><strong>Structure:</strong> Generate/propagate logic + lookahead carry unit</li>
+<li><strong>Delay:</strong> G,P generation (1) + CLA carry (2) + sum XOR (1) = <strong>4 gate delays = 4 ns</strong></li>
+<li><strong>Area:</strong> 8 G/P generators (16 gates) + CLA unit (~30 gates for 8-bit) + 8 XOR sum gates = <strong>~54 area units</strong></li>
+<li><strong>Power:</strong> All carry bits computed simultaneously, more gates switch = <strong>~54 power units</strong> worst case</li>
+</ul>
+<p><strong>3. Carry Select Adder (CSLA):</strong></p>
+<ul>
+<li><strong>Structure:</strong> Two 4-bit RCAs (for carry-in = 0 and 1) + MUX</li>
+<li><strong>Delay:</strong> 4-bit RCA (<span class="arithmatex">\(4 \times 2 = 8\)</span> delays) + MUX (1 delay) = <strong>9 gate delays = 9 ns</strong></li>
+<li><strong>Area:</strong> 3 x 4-bit RCA = 60 gates + 4-bit MUX = 12 gates = <strong>~72 area units</strong></li>
+<li><strong>Power:</strong> Two RCAs compute redundantly = <strong>~72 power units</strong> worst case</li>
+</ul>
+<p><strong>Comparison table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>RCA</th>
+<th>CLA</th>
+<th>CSLA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delay</td>
+<td>16 ns</td>
+<td>4 ns</td>
+<td>9 ns</td>
+</tr>
+<tr>
+<td>Area</td>
+<td>40 units</td>
+<td>54 units</td>
+<td>72 units</td>
+</tr>
+<tr>
+<td>Power</td>
+<td>40 units</td>
+<td>54 units</td>
+<td>72 units</td>
+</tr>
+<tr>
+<td>Speed rank</td>
+<td>3rd</td>
+<td>1st</td>
+<td>2nd</td>
+</tr>
+<tr>
+<td>Area rank</td>
+<td>1st</td>
+<td>2nd</td>
+<td>3rd</td>
+</tr>
+<tr>
+<td>Power rank</td>
+<td>1st</td>
+<td>2nd</td>
+<td>3rd</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Area-Delay Product (ADP):</strong> A combined metric for efficiency:</p>
+<table>
+<thead>
+<tr>
+<th>Design</th>
+<th>ADP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RCA</td>
+<td><span class="arithmatex">\(40 \times 16 = 640\)</span></td>
+</tr>
+<tr>
+<td>CLA</td>
+<td><span class="arithmatex">\(54 \times 4 = 216\)</span></td>
+</tr>
+<tr>
+<td>CSLA</td>
+<td><span class="arithmatex">\(72 \times 9 = 648\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>CLA has the best area-delay product,</strong> making it the most efficient trade-off. RCA is smallest but slowest. CSLA is largest but offers a middle-ground speed.</p>
+<p><strong>When to use each:</strong></p>
+<ul>
+<li><strong>RCA:</strong> Area-critical, low-speed designs</li>
+<li><strong>CLA:</strong> Speed-critical designs where area overhead is acceptable</li>
+<li><strong>CSLA:</strong> Moderate speed improvement needed with simpler design than full CLA</li>
+</ul>
+<hr />
+<h3 id="problem-16">Problem 16</h3>
+<p>A design must process 200 million samples per second. The combinational logic takes 12 ns. Registers have <span class="arithmatex">\(T_{cq}\)</span> = 0.3 ns and <span class="arithmatex">\(T_{setup}\)</span> = 0.2 ns. Determine the minimum number of pipeline stages required and show how to partition the logic.</p>
+<p><strong>Solution:</strong> <strong>Required throughput:</strong> 200 M samples/s</p>
+<div class="arithmatex">\[T_{clk,required} = \frac{1}{200 \times 10^6} = 5.0 \text{ ns}\]</div>
+<p><strong>Register overhead per stage:</strong> <span class="arithmatex">\(T_{cq} + T_{setup} = 0.3 + 0.2 = 0.5\)</span> ns</p>
+<p><strong>Single stage (no pipelining):</strong></p>
+<div class="arithmatex">\[T_{clk} = 0.3 + 12 + 0.2 = 12.5 \text{ ns} \Rightarrow 80 \text{ MHz (too slow)}\]</div>
+<p><strong>Minimum pipeline stages calculation:</strong></p>
+<p>For <span class="arithmatex">\(N\)</span> stages, assuming perfectly balanced logic:</p>
+<div class="arithmatex">\[T_{clk} = T_{cq} + \frac{12}{N} + T_{setup} = 0.5 + \frac{12}{N}\]</div>
+<p>Set <span class="arithmatex">\(T_{clk} \leq 5.0\)</span> ns:</p>
+<div class="arithmatex">\[0.5 + \frac{12}{N} \leq 5.0\]</div>
+<div class="arithmatex">\[\frac{12}{N} \leq 4.5\]</div>
+<div class="arithmatex">\[N \geq \frac{12}{4.5} = 2.67\]</div>
+<p><strong>Minimum stages: <span class="arithmatex">\(N = 3\)</span></strong></p>
+<p><strong>Verification with 3 stages:</strong></p>
+<p>Each stage logic delay: <span class="arithmatex">\(12 / 3 = 4.0\)</span> ns</p>
+<div class="arithmatex">\[T_{clk} = 0.3 + 4.0 + 0.2 = 4.5 \text{ ns}\]</div>
+<div class="arithmatex">\[f_{max} = \frac{1}{4.5 \text{ ns}} = 222.2 \text{ MHz} &gt; 200 \text{ MHz} \checkmark\]</div>
+<p><strong>Check <span class="arithmatex">\(N = 2\)</span>:</strong></p>
+<div class="arithmatex">\[T_{clk} = 0.5 + 6.0 = 6.5 \text{ ns} \Rightarrow 153.8 \text{ MHz} &lt; 200 \text{ MHz} \times\]</div>
+<p>Two stages is insufficient.</p>
+<p><strong>Partitioning the logic:</strong></p>
+<p>If the 12 ns logic consists of sub-blocks, we partition into 3 groups each totaling 4 ns:</p>
+<div class="highlight"><pre><span></span><code>Input ──→ [Reg] ──→ [Logic: 4ns] ──→ [Reg] ──→ [Logic: 4ns] ──→ [Reg] ──→ [Logic: 4ns] ──→ [Reg] ──→ Output
+          Stage 1                    Stage 2                    Stage 3
+</code></pre></div>
+<p><strong>Pipeline metrics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clock period</td>
+<td>4.5 ns</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f_{max}\)</span></td>
+<td>222.2 MHz</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>222.2 M samples/s</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td><span class="arithmatex">\(3 \times 4.5 = 13.5\)</span> ns</td>
+</tr>
+<tr>
+<td>Pipeline registers added</td>
+<td>2 (between stages)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> If the logic cannot be split into exactly equal groups, the bottleneck stage determines <span class="arithmatex">\(T_{clk}\)</span>. In that case, more stages may be needed to meet the 200 MHz target with unbalanced partitioning.</p>
+<hr />
+<h2 id="section-e-system-design-problems-4-problems">Section E: System Design Problems (4 problems)</h2>
+<h3 id="problem-17">Problem 17</h3>
+<p>Design a UART transmitter that sends 8-bit data with 1 start bit, 8 data bits (LSB first), and 1 stop bit. The baud rate is 9600. The system clock is 50 MHz. Show the controller FSM and datapath.</p>
+<p><strong>Solution:</strong> <strong>UART frame format:</strong></p>
+<div class="highlight"><pre><span></span><code>IDLE(1) | START(0) | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | STOP(1) | IDLE(1)...
+</code></pre></div>
+<p><strong>Baud rate clock generation:</strong></p>
+<p>Clock divider count: <span class="arithmatex">\(\frac{50 \times 10^6}{9600} = 5208.33 \approx 5208\)</span></p>
+<p>A counter counts from 0 to 5207 and generates a BAUD_TICK pulse.</p>
+<p><strong>Datapath:</strong></p>
+<div class="highlight"><pre><span></span><code>DATA_IN[7:0] ──→ [Shift Register (8-bit, PISO)] ──→ TX_BIT
+                      ↑         ↑                       ↑
+                    LOAD      SHIFT                   [MUX]
+                                                      ↑   ↑
+                                                 TX_SEL[1:0]
+                                                    │
+Sources: 0 (start), shift_out (data), 1 (stop/idle)
+</code></pre></div>
+<p><strong>Datapath components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Size</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baud counter</td>
+<td>13-bit</td>
+<td>Divides 50 MHz to 9600 Hz</td>
+</tr>
+<tr>
+<td>Bit counter</td>
+<td>4-bit</td>
+<td>Counts 0-9 (start + 8 data + stop)</td>
+</tr>
+<tr>
+<td>Shift register</td>
+<td>8-bit PISO</td>
+<td>Holds data, shifts out LSB first</td>
+</tr>
+<tr>
+<td>Output MUX</td>
+<td>3-to-1</td>
+<td>Selects start/data/stop bit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Controller FSM:</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────┐
+│   IDLE   │ ←─────────────────────────────────┐
+│  TX = 1  │                                    │
+└────┬─────┘                                    │
+     │ SEND = 1                                 │
+     ↓                                          │
+┌──────────┐                                    │
+│  START   │  TX = 0, LOAD shift reg            │
+│          │  Wait for BAUD_TICK                 │
+└────┬─────┘                                    │
+     │ BAUD_TICK                                │
+     ↓                                          │
+┌──────────┐                                    │
+│   DATA   │  TX = shift_out                    │
+│          │  On BAUD_TICK: shift, bit_cnt++    │
+│          │  When bit_cnt = 8: go to STOP      │
+└────┬─────┘                                    │
+     │ bit_cnt = 8 AND BAUD_TICK                │
+     ↓                                          │
+┌──────────┐                                    │
+│   STOP   │  TX = 1                            │
+│          │  Wait for BAUD_TICK                 │
+└────┬─────┘                                    │
+     │ BAUD_TICK                                │
+     └──────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>State encoding and control signals:</strong></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>TX_SEL</th>
+<th>LOAD</th>
+<th>SHIFT</th>
+<th>COUNT_EN</th>
+<th>BUSY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDLE</td>
+<td>10 (high)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>START</td>
+<td>00 (low)</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DATA</td>
+<td>01 (shift_out)</td>
+<td>0</td>
+<td>BAUD_TICK</td>
+<td>BAUD_TICK</td>
+<td>1</td>
+</tr>
+<tr>
+<td>STOP</td>
+<td>10 (high)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Timing for one byte at 9600 baud:</strong></p>
+<div class="arithmatex">\[T_{byte} = 10 \text{ bits} \times \frac{1}{9600} = 1.042 \text{ ms}\]</div>
+<p>Maximum data rate: <span class="arithmatex">\(9600 / 10 = 960\)</span> bytes/s.</p>
+<hr />
+<h3 id="problem-18">Problem 18</h3>
+<p>Design a simple vending machine controller that:</p>
+<ul>
+<li>Accepts nickels (5 cents) and dimes (10 cents)</li>
+<li>Item costs 25 cents</li>
+<li>Dispenses when exact amount or overpayment is reached</li>
+<li>Returns to idle after dispensing (no change given)</li>
+</ul>
+<p>Provide the complete state diagram, state table, state encoding, and next-state equations.</p>
+<p><strong>Solution:</strong> <strong>States (based on amount collected):</strong></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Amount</th>
+<th>Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>0 cents</td>
+<td>000</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>5 cents</td>
+<td>001</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>10 cents</td>
+<td>010</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>15 cents</td>
+<td>011</td>
+</tr>
+<tr>
+<td>S20</td>
+<td>20 cents</td>
+<td>100</td>
+</tr>
+<tr>
+<td>S25</td>
+<td>25+ cents (dispense)</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Inputs:</strong> N (nickel inserted), D (dime inserted). Assume N and D are mutually exclusive pulses.</p>
+<p><strong>Output:</strong> DISP (dispense item)</p>
+<p><strong>State diagram:</strong></p>
+<div class="highlight"><pre><span></span><code>S0 ──N──→ S5 ──N──→ S10 ──N──→ S15 ──N──→ S20 ──N──→ S25
+│         │          │          │          │
+└──D──→ S10   └──D──→ S15  └──D──→ S20  └──D──→ S25  └──D──→ S25
+                                                        │
+S25: DISP=1, then return to S0 ←────────────────────────┘
+</code></pre></div>
+<p><strong>Complete state table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Present</th>
+<th>N</th>
+<th>D</th>
+<th>Next</th>
+<th>DISP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0 (000)</td>
+<td>0</td>
+<td>0</td>
+<td>S0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S0</td>
+<td>1</td>
+<td>0</td>
+<td>S5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S0</td>
+<td>0</td>
+<td>1</td>
+<td>S10</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S5 (001)</td>
+<td>0</td>
+<td>0</td>
+<td>S5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>1</td>
+<td>0</td>
+<td>S10</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>0</td>
+<td>1</td>
+<td>S15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S10 (010)</td>
+<td>0</td>
+<td>0</td>
+<td>S10</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>1</td>
+<td>0</td>
+<td>S15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>0</td>
+<td>1</td>
+<td>S20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S15 (011)</td>
+<td>0</td>
+<td>0</td>
+<td>S15</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>1</td>
+<td>0</td>
+<td>S20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>0</td>
+<td>1</td>
+<td>S25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S20 (100)</td>
+<td>0</td>
+<td>0</td>
+<td>S20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S20</td>
+<td>1</td>
+<td>0</td>
+<td>S25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S20</td>
+<td>0</td>
+<td>1</td>
+<td>S25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S25 (101)</td>
+<td>X</td>
+<td>X</td>
+<td>S0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next-state equations (from K-maps):</strong></p>
+<p>Let the state bits be <span class="arithmatex">\(Q_2 Q_1 Q_0\)</span> and don't-care states are 110, 111.</p>
+<p><span class="arithmatex">\(D_2 = Q_1 Q_0 N + Q_1 Q_0 D + Q_2 \overline{Q_0} \overline{N} \overline{D} + Q_2 \overline{Q_0} N\)</span></p>
+<p>Simplified (using don't cares for 110, 111):</p>
+<div class="arithmatex">\[D_2 = Q_1 Q_0 (N + D) + Q_2 \overline{Q_0}\]</div>
+<div class="arithmatex">\[D_1 = \overline{Q_2} \overline{Q_1} Q_0 N + \overline{Q_2} Q_1 \overline{Q_0} \overline{N}\overline{D} + \overline{Q_2} \overline{Q_1} D + \overline{Q_2} Q_1 \overline{Q_0} N + \overline{Q_2} Q_1 Q_0 \overline{N}\overline{D}\]</div>
+<p>Simplified:</p>
+<div class="arithmatex">\[D_1 = \overline{Q_2}(\overline{Q_1}Q_0 N + \overline{Q_1}D + Q_1\overline{N}\overline{D} + Q_1\overline{Q_0}N)\]</div>
+<div class="arithmatex">\[D_0 = \overline{Q_2}\overline{Q_0}N + \overline{Q_2}Q_0\overline{N}\overline{D} + \overline{Q_2}\overline{Q_1}Q_0 D\]</div>
+<p>Simplified:</p>
+<div class="arithmatex">\[D_0 = \overline{Q_2}(N \oplus Q_0) \cdot \text{(with correction for dime cases)}\]</div>
+<p><strong>Output:</strong> <span class="arithmatex">\(\text{DISP} = Q_2 Q_0\)</span></p>
+<p>(DISP = 1 only in state S25 = 101)</p>
+<hr />
+<h3 id="problem-19">Problem 19</h3>
+<p>A self-checking testbench must verify a 4-bit counter. Describe the testbench architecture, the test vectors needed, and how to implement automatic checking in a hardware description approach.</p>
+<p><strong>Solution:</strong> <strong>Testbench architecture:</strong></p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────┐
+│                  TESTBENCH                        │
+│                                                  │
+│  [Stimulus       [Device        [Response         │
+│   Generator] ──→  Under    ──→  Checker]          │
+│       │          Test (DUT)]       │              │
+│       │           4-bit           │              │
+│       │          counter          │              │
+│  CLK, RST,                   Expected vs         │
+│  EN signals                  Actual comparison    │
+│                                   │              │
+│                              PASS/FAIL           │
+└──────────────────────────────────────────────────┘
+</code></pre></div>
+<p><strong>Test categories and vectors:</strong></p>
+<p><strong>1. Reset test:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>CLK</th>
+<th>RST</th>
+<th>EN</th>
+<th>Expected Q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assert reset</td>
+<td>rising</td>
+<td>1</td>
+<td>X</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>Hold reset</td>
+<td>rising</td>
+<td>1</td>
+<td>1</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>Release reset</td>
+<td>rising</td>
+<td>0</td>
+<td>0</td>
+<td>0000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Normal counting (16 cycles):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Cycle</th>
+<th>RST</th>
+<th>EN</th>
+<th>Expected Q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0</td>
+<td>1</td>
+<td>1111</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0</td>
+<td>1</td>
+<td>0000 (rollover)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Enable control:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>RST</th>
+<th>EN</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Count to 5</td>
+<td>0</td>
+<td>1</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>Disable</td>
+<td>0</td>
+<td>0</td>
+<td>0101 (hold)</td>
+</tr>
+<tr>
+<td>Disable again</td>
+<td>0</td>
+<td>0</td>
+<td>0101 (hold)</td>
+</tr>
+<tr>
+<td>Re-enable</td>
+<td>0</td>
+<td>1</td>
+<td>0110 (resume)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Reset during count:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>RST</th>
+<th>EN</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Count to 7</td>
+<td>0</td>
+<td>1</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>Assert reset</td>
+<td>1</td>
+<td>1</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>Release, count</td>
+<td>0</td>
+<td>1</td>
+<td>0001</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Self-checking mechanism (pseudocode):</strong></p>
+<div class="highlight"><pre><span></span><code>expected_count = 0
+
+for each test_cycle:
+    apply(CLK, RST, EN)
+    wait(clock_edge)
+
+    // Compute expected value
+    if (RST == 1):
+        expected_count = 0
+    else if (EN == 1):
+        expected_count = (expected_count + 1) mod 16
+
+    // Automatic check
+    if (DUT.Q != expected_count):
+        report ERROR at cycle number
+        error_count++
+
+// Final report
+if (error_count == 0):
+    report &quot;ALL TESTS PASSED&quot;
+else:
+    report &quot;FAILED: {error_count} errors&quot;
+</code></pre></div>
+<p><strong>Comprehensive test vector count:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Vectors</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reset</td>
+<td>3</td>
+<td>Verify reset behavior</td>
+</tr>
+<tr>
+<td>Full count</td>
+<td>17</td>
+<td>All states + rollover</td>
+</tr>
+<tr>
+<td>Enable toggle</td>
+<td>6</td>
+<td>Hold and resume</td>
+</tr>
+<tr>
+<td>Mid-count reset</td>
+<td>4</td>
+<td>Reset from non-zero</td>
+</tr>
+<tr>
+<td>Corner cases</td>
+<td>4</td>
+<td>Rollover with EN toggle</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~34</strong></td>
+<td><strong>Complete coverage</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design for testability tips:</strong></p>
+<ul>
+<li>Include a counter output observation point (no buried states)</li>
+<li>Add a synchronous reset (easier to test than async)</li>
+<li>Include a terminal count (TC) output and verify it at state 1111</li>
+<li>Test at least two full counting sequences to verify rollover</li>
+</ul>
+<hr />
+<h3 id="problem-20">Problem 20</h3>
+<p>A complete digital system design flows from specification to implementation. List and describe each step in the design flow. For a 4-bit ALU with ADD, SUB, AND, OR, XOR operations, give a concrete example of what happens at each step.</p>
+<p><strong>Solution:</strong> <strong>Digital design flow — 8 steps:</strong></p>
+<p><strong>Step 1: Specification</strong></p>
+<p>Define what the system does, its inputs, outputs, and constraints.</p>
+<p><em>4-bit ALU example:</em></p>
+<ul>
+<li>Inputs: A[3:0], B[3:0], Op[2:0]</li>
+<li>Outputs: Result[3:0], Carry_out, Zero_flag</li>
+<li>Operations: ADD (000), SUB (001), AND (010), OR (011), XOR (100)</li>
+<li>Constraint: Combinational, max delay &lt; 15 ns</li>
+</ul>
+<p><strong>Step 2: Architecture / Top-down decomposition</strong></p>
+<p>Break the system into modules and define their interfaces.</p>
+<p><em>4-bit ALU example:</em></p>
+<div class="highlight"><pre><span></span><code>ALU
+├── Adder/Subtractor unit (handles ADD, SUB)
+│   ├── XOR array (B complement for SUB)
+│   └── 4-bit adder (with carry-in for SUB)
+├── Logic unit (handles AND, OR, XOR)
+│   ├── AND array
+│   ├── OR array
+│   └── XOR array
+├── Output MUX (selects result based on Op)
+└── Flag generator (Zero, Carry)
+</code></pre></div>
+<p><strong>Step 3: Detailed design / RTL coding</strong></p>
+<p>Implement each module at the register-transfer level.</p>
+<p><em>Example — Output MUX logic:</em></p>
+<table>
+<thead>
+<tr>
+<th>Op[2:0]</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000</td>
+<td>A + B</td>
+</tr>
+<tr>
+<td>001</td>
+<td>A - B</td>
+</tr>
+<tr>
+<td>010</td>
+<td>A AND B</td>
+</tr>
+<tr>
+<td>011</td>
+<td>A OR B</td>
+</tr>
+<tr>
+<td>100</td>
+<td>A XOR B</td>
+</tr>
+</tbody>
+</table>
+<p>Zero_flag = (Result == 0000)</p>
+<p><strong>Step 4: Functional simulation</strong></p>
+<p>Verify the design produces correct outputs for all operations.</p>
+<p><em>Example test vectors:</em></p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Op</th>
+<th>Expected Result</th>
+<th>Expected Carry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0011</td>
+<td>0001</td>
+<td>ADD</td>
+<td>0100</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>0001</td>
+<td>SUB</td>
+<td>0010</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>0001</td>
+<td>ADD</td>
+<td>0000</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>1100</td>
+<td>AND</td>
+<td>1000</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>1100</td>
+<td>OR</td>
+<td>1110</td>
+<td>-</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>1100</td>
+<td>XOR</td>
+<td>0110</td>
+<td>-</td>
+</tr>
+<tr>
+<td>0000</td>
+<td>0000</td>
+<td>ADD</td>
+<td>0000 (Z=1)</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 5: Synthesis</strong></p>
+<p>Convert RTL to gate-level netlist targeting specific technology.</p>
+<p><em>Example output:</em> The adder synthesizes to a ripple carry adder using AND, OR, XOR gates from the target library. Total: ~35 gates.</p>
+<p><strong>Step 6: Static timing analysis</strong></p>
+<p>Verify all paths meet timing constraints.</p>
+<p><em>Example:</em></p>
+<ul>
+<li>Critical path: A input through carry chain to Result[3]</li>
+<li>Path delay: 4 XOR + 4 AND + 3 OR = 11 gate delays</li>
+<li>At 1 ns/gate: 11 ns &lt; 15 ns requirement. <strong>PASS.</strong></li>
+</ul>
+<p><strong>Step 7: Place and route (for FPGA/ASIC)</strong></p>
+<p>Map gates to physical locations and create interconnect wiring.</p>
+<p><em>Example:</em> The ALU uses 22 LUTs and 0 flip-flops on an FPGA. Routing adds 2 ns interconnect delay. Total delay: 13 ns &lt; 15 ns. <strong>PASS.</strong></p>
+<p><strong>Step 8: Post-layout verification and testing</strong></p>
+<p>Final simulation with actual delays, then physical testing.</p>
+<p><em>Example:</em> Post-layout simulation confirms all 112 test vectors (<span class="arithmatex">\(7 \text{ ops} \times 16 \text{ input combos}\)</span>) pass with worst-case delay of 13.4 ns. Design is programmed onto FPGA and verified with logic analyzer.</p>
+<p><strong>Summary of flow:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Activity</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Specification</td>
+<td>Requirements document</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Architecture</td>
+<td>Block diagram, interfaces</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RTL Design</td>
+<td>HDL code or schematic</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Functional Simulation</td>
+<td>Test results (pass/fail)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Synthesis</td>
+<td>Gate-level netlist</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Timing Analysis</td>
+<td>Timing report</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Place and Route</td>
+<td>Layout / bitstream</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Verification and Test</td>
+<td>Working hardware</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Topics Covered</th>
+<th>Problem Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Top-Down Design and Modularity</td>
+<td>4</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Datapath and Controller Design</td>
+<td>4</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Timing Analysis</td>
+<td>4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Pipelining and Optimization</td>
+<td>4</td>
+</tr>
+<tr>
+<td>E</td>
+<td>System Design Problems</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>20</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../quiz/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quiz">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Quiz
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../challenge/" class="md-footer__link md-footer__link--next" aria-label="Next: Challenge">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Challenge
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js?v=1"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/tts-reader.js?v=1"></script>
+      
+        <script src="../../javascripts/audio-player.js?v=1"></script>
+      
+        <script src="../../javascripts/quiz-ui.js?v=3"></script>
+      
+        <script src="../../javascripts/problems-ui.js?v=4"></script>
+      
+        <script src="../../javascripts/diagram-wrap.js?v=1"></script>
+      
+    
+  </body>
+</html>

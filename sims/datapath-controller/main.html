@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datapath-Controller Interaction MicroSim</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <style>
+        html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; height: 100%; overflow: hidden; }
+        body { display: flex; flex-direction: column; }
+        main { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+        main canvas { display: block; }
+        .dp-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 10px 12px; background: #e6e6eb; }
+        .dp-controls__group { display: flex; align-items: center; gap: 4px; }
+        .dp-controls__label { font-weight: bold; font-size: 12px; color: #444; }
+        .dp-controls__btn { height: 34px; border-radius: 5px; font-weight: bold; color: #fff; cursor: pointer; padding: 0 14px; border: 2px solid; }
+        .dp-controls__btn--clk { background: #5C6BC0; border-color: #303F9F; font-size: 13px; }
+        .dp-controls__btn--reset { background: #F44336; border-color: #C62828; font-size: 11px; min-width: 50px; }
+        .dp-controls__state { display: inline-block; padding: 5px 12px; border-radius: 5px; border: 2px solid #303F9F; background: #5C6BC0; color: #fff; font-weight: bold; font-size: 11px; text-align: center; min-width: 56px; }
+    </style>
+    <script src="datapath-controller.js"></script>
+    <script src="../fullscreen-toggle.js"></script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>

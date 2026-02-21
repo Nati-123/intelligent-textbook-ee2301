@@ -1,0 +1,2880 @@
+{
+  "metadata": {
+    "title": "Introduction to Digital System Design",
+    "description": "A comprehensive learning graph covering digital system fundamentals including number systems, Boolean algebra, logic gates, combinational circuits, canonical forms, and Karnaugh map simplification techniques for EE 2301.",
+    "creator": "University of Minnesota - Twin Cities",
+    "date": "2026-02-04",
+    "version": "1.0",
+    "format": "Learning Graph JSON v1.0",
+    "schema": "https://raw.githubusercontent.com/dmccreary/learning-graphs/refs/heads/main/src/schema/learning-graph-schema.json",
+    "license": "CC BY-NC-SA 4.0 DEED"
+  },
+  "groups": {
+    "FOUND": {
+      "classifierName": "Foundation Concepts",
+      "color": {
+        "classifierName": "Foundation Concepts",
+        "color": "LightCoral",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "NUMSYS": {
+      "classifierName": "NUMSYS",
+      "color": {
+        "classifierName": "Number Systems",
+        "color": "PeachPuff",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "CONV": {
+      "classifierName": "CONV",
+      "color": {
+        "classifierName": "Number Conversions",
+        "color": "LightYellow",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "ARITH": {
+      "classifierName": "ARITH",
+      "color": {
+        "classifierName": "Binary Arithmetic",
+        "color": "PaleGreen",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "BOOLF": {
+      "classifierName": "BOOLF",
+      "color": {
+        "classifierName": "Boolean Fundamentals",
+        "color": "PowderBlue",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "GATES": {
+      "classifierName": "GATES",
+      "color": {
+        "classifierName": "Logic Gates",
+        "color": "Thistle",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "THEOR": {
+      "classifierName": "THEOR",
+      "color": {
+        "classifierName": "Boolean Theorems",
+        "color": "LightSteelBlue",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "FORMS": {
+      "classifierName": "FORMS",
+      "color": {
+        "classifierName": "Boolean Forms",
+        "color": "Lavender",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "COMB": {
+      "classifierName": "COMB",
+      "color": {
+        "classifierName": "Combinational Circuits",
+        "color": "MistyRose",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "ACIR": {
+      "classifierName": "ACIR",
+      "color": {
+        "classifierName": "Arithmetic Circuits",
+        "color": "Honeydew",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "CANON": {
+      "classifierName": "CANON",
+      "color": {
+        "classifierName": "Canonical Forms",
+        "color": "LavenderBlush",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    },
+    "KMAP": {
+      "classifierName": "KMAP",
+      "color": {
+        "classifierName": "Karnaugh Maps",
+        "color": "Aquamarine",
+        "font": {
+          "color": "black"
+        }
+      },
+      "font": {
+        "color": "black"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "label": "Digital Systems",
+      "group": "FOUND",
+      "shape": "box"
+    },
+    {
+      "id": 2,
+      "label": "Analog vs Digital Signals",
+      "group": "FOUND"
+    },
+    {
+      "id": 3,
+      "label": "Binary Number System",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 4,
+      "label": "Decimal Number System",
+      "group": "NUMSYS",
+      "shape": "box"
+    },
+    {
+      "id": 5,
+      "label": "Octal Number System",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 6,
+      "label": "Hexadecimal Number System",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 7,
+      "label": "Positional Notation",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 8,
+      "label": "Base of Number System",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 9,
+      "label": "Radix Point",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 10,
+      "label": "Bit",
+      "group": "FOUND"
+    },
+    {
+      "id": 11,
+      "label": "Nibble",
+      "group": "FOUND"
+    },
+    {
+      "id": 12,
+      "label": "Byte",
+      "group": "FOUND"
+    },
+    {
+      "id": 13,
+      "label": "Word",
+      "group": "FOUND"
+    },
+    {
+      "id": 14,
+      "label": "Most Significant Bit",
+      "group": "FOUND"
+    },
+    {
+      "id": 15,
+      "label": "Least Significant Bit",
+      "group": "FOUND"
+    },
+    {
+      "id": 16,
+      "label": "Binary to Decimal Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 17,
+      "label": "Decimal to Binary Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 18,
+      "label": "Octal to Decimal Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 19,
+      "label": "Decimal to Octal Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 20,
+      "label": "Hexadecimal to Decimal",
+      "group": "CONV"
+    },
+    {
+      "id": 21,
+      "label": "Decimal to Hexadecimal",
+      "group": "CONV"
+    },
+    {
+      "id": 22,
+      "label": "Binary to Octal Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 23,
+      "label": "Octal to Binary Conversion",
+      "group": "CONV"
+    },
+    {
+      "id": 24,
+      "label": "Binary to Hexadecimal",
+      "group": "CONV"
+    },
+    {
+      "id": 25,
+      "label": "Hexadecimal to Binary",
+      "group": "CONV"
+    },
+    {
+      "id": 26,
+      "label": "Binary Addition",
+      "group": "ARITH"
+    },
+    {
+      "id": 27,
+      "label": "Binary Subtraction",
+      "group": "ARITH"
+    },
+    {
+      "id": 28,
+      "label": "Binary Multiplication",
+      "group": "ARITH"
+    },
+    {
+      "id": 29,
+      "label": "Binary Division",
+      "group": "ARITH"
+    },
+    {
+      "id": 30,
+      "label": "Signed Numbers",
+      "group": "ARITH"
+    },
+    {
+      "id": 31,
+      "label": "Unsigned Numbers",
+      "group": "ARITH"
+    },
+    {
+      "id": 32,
+      "label": "Sign Magnitude",
+      "group": "ARITH"
+    },
+    {
+      "id": 33,
+      "label": "Ones Complement",
+      "group": "ARITH"
+    },
+    {
+      "id": 34,
+      "label": "Twos Complement",
+      "group": "ARITH"
+    },
+    {
+      "id": 35,
+      "label": "Sign Extension",
+      "group": "ARITH"
+    },
+    {
+      "id": 36,
+      "label": "Twos Complement Addition",
+      "group": "ARITH"
+    },
+    {
+      "id": 37,
+      "label": "Twos Complement Subtraction",
+      "group": "ARITH"
+    },
+    {
+      "id": 38,
+      "label": "Overflow Detection",
+      "group": "ARITH"
+    },
+    {
+      "id": 39,
+      "label": "Underflow",
+      "group": "ARITH"
+    },
+    {
+      "id": 40,
+      "label": "Range of Signed Numbers",
+      "group": "ARITH"
+    },
+    {
+      "id": 41,
+      "label": "Boolean Algebra",
+      "group": "BOOLF"
+    },
+    {
+      "id": 42,
+      "label": "Boolean Variable",
+      "group": "BOOLF"
+    },
+    {
+      "id": 43,
+      "label": "Boolean Constant",
+      "group": "BOOLF"
+    },
+    {
+      "id": 44,
+      "label": "Logic Levels",
+      "group": "BOOLF"
+    },
+    {
+      "id": 45,
+      "label": "High and Low States",
+      "group": "BOOLF"
+    },
+    {
+      "id": 46,
+      "label": "Truth Value",
+      "group": "BOOLF"
+    },
+    {
+      "id": 47,
+      "label": "AND Operation",
+      "group": "BOOLF"
+    },
+    {
+      "id": 48,
+      "label": "OR Operation",
+      "group": "BOOLF"
+    },
+    {
+      "id": 49,
+      "label": "NOT Operation",
+      "group": "BOOLF"
+    },
+    {
+      "id": 50,
+      "label": "Complement",
+      "group": "BOOLF"
+    },
+    {
+      "id": 51,
+      "label": "Logic Gates",
+      "group": "GATES"
+    },
+    {
+      "id": 52,
+      "label": "AND Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 53,
+      "label": "OR Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 54,
+      "label": "NOT Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 55,
+      "label": "Inverter",
+      "group": "GATES"
+    },
+    {
+      "id": 56,
+      "label": "NAND Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 57,
+      "label": "NOR Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 58,
+      "label": "XOR Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 59,
+      "label": "XNOR Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 60,
+      "label": "Buffer Gate",
+      "group": "GATES"
+    },
+    {
+      "id": 61,
+      "label": "Universal Gates",
+      "group": "GATES"
+    },
+    {
+      "id": 62,
+      "label": "Gate Symbols",
+      "group": "GATES"
+    },
+    {
+      "id": 63,
+      "label": "IEEE Gate Symbols",
+      "group": "GATES"
+    },
+    {
+      "id": 64,
+      "label": "Truth Table",
+      "group": "BOOLF"
+    },
+    {
+      "id": 65,
+      "label": "Boolean Expression",
+      "group": "FORMS"
+    },
+    {
+      "id": 66,
+      "label": "Logic Function",
+      "group": "FORMS"
+    },
+    {
+      "id": 67,
+      "label": "Identity Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 68,
+      "label": "Null Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 69,
+      "label": "Idempotent Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 70,
+      "label": "Involution Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 71,
+      "label": "Complement Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 72,
+      "label": "Commutative Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 73,
+      "label": "Associative Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 74,
+      "label": "Distributive Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 75,
+      "label": "Absorption Law",
+      "group": "THEOR"
+    },
+    {
+      "id": 76,
+      "label": "Consensus Theorem",
+      "group": "THEOR"
+    },
+    {
+      "id": 77,
+      "label": "DeMorgans First Theorem",
+      "group": "THEOR"
+    },
+    {
+      "id": 78,
+      "label": "DeMorgans Second Theorem",
+      "group": "THEOR"
+    },
+    {
+      "id": 79,
+      "label": "Duality Principle",
+      "group": "THEOR"
+    },
+    {
+      "id": 80,
+      "label": "Algebraic Simplification",
+      "group": "THEOR"
+    },
+    {
+      "id": 81,
+      "label": "Literal",
+      "group": "FORMS"
+    },
+    {
+      "id": 82,
+      "label": "Product Term",
+      "group": "FORMS"
+    },
+    {
+      "id": 83,
+      "label": "Sum Term",
+      "group": "FORMS"
+    },
+    {
+      "id": 84,
+      "label": "Sum of Products",
+      "group": "FORMS"
+    },
+    {
+      "id": 85,
+      "label": "Product of Sums",
+      "group": "FORMS"
+    },
+    {
+      "id": 86,
+      "label": "Precedence of Operators",
+      "group": "FORMS"
+    },
+    {
+      "id": 87,
+      "label": "Parentheses in Boolean",
+      "group": "FORMS"
+    },
+    {
+      "id": 88,
+      "label": "Multiple Input Gates",
+      "group": "GATES"
+    },
+    {
+      "id": 89,
+      "label": "Cascading Gates",
+      "group": "GATES"
+    },
+    {
+      "id": 90,
+      "label": "Fan-In and Fan-Out",
+      "group": "GATES"
+    },
+    {
+      "id": 91,
+      "label": "Combinational Logic",
+      "group": "COMB"
+    },
+    {
+      "id": 92,
+      "label": "Sequential Logic",
+      "group": "COMB"
+    },
+    {
+      "id": 93,
+      "label": "Logic Circuit",
+      "group": "COMB"
+    },
+    {
+      "id": 94,
+      "label": "Circuit Analysis",
+      "group": "COMB"
+    },
+    {
+      "id": 95,
+      "label": "Circuit Synthesis",
+      "group": "COMB"
+    },
+    {
+      "id": 96,
+      "label": "Specification to Circuit",
+      "group": "COMB"
+    },
+    {
+      "id": 97,
+      "label": "Word Problems to Boolean",
+      "group": "COMB"
+    },
+    {
+      "id": 98,
+      "label": "Switching Functions",
+      "group": "COMB"
+    },
+    {
+      "id": 99,
+      "label": "Binary Decision",
+      "group": "COMB"
+    },
+    {
+      "id": 100,
+      "label": "Enable Signal",
+      "group": "COMB"
+    },
+    {
+      "id": 101,
+      "label": "Control Signal",
+      "group": "COMB"
+    },
+    {
+      "id": 102,
+      "label": "Half Adder",
+      "group": "ACIR"
+    },
+    {
+      "id": 103,
+      "label": "Full Adder",
+      "group": "ACIR"
+    },
+    {
+      "id": 104,
+      "label": "Carry Bit",
+      "group": "ACIR"
+    },
+    {
+      "id": 105,
+      "label": "Sum Bit",
+      "group": "ACIR"
+    },
+    {
+      "id": 106,
+      "label": "Ripple Carry Adder",
+      "group": "ACIR"
+    },
+    {
+      "id": 107,
+      "label": "Half Subtractor",
+      "group": "ACIR"
+    },
+    {
+      "id": 108,
+      "label": "Full Subtractor",
+      "group": "ACIR"
+    },
+    {
+      "id": 109,
+      "label": "Borrow Bit",
+      "group": "ACIR"
+    },
+    {
+      "id": 110,
+      "label": "Difference Bit",
+      "group": "ACIR"
+    },
+    {
+      "id": 111,
+      "label": "Adder Subtractor Circuit",
+      "group": "ACIR"
+    },
+    {
+      "id": 112,
+      "label": "Comparator Circuit",
+      "group": "ACIR"
+    },
+    {
+      "id": 113,
+      "label": "Magnitude Comparator",
+      "group": "ACIR"
+    },
+    {
+      "id": 114,
+      "label": "Parity Generator",
+      "group": "ACIR"
+    },
+    {
+      "id": 115,
+      "label": "Parity Checker",
+      "group": "ACIR"
+    },
+    {
+      "id": 116,
+      "label": "Even Parity",
+      "group": "ACIR"
+    },
+    {
+      "id": 117,
+      "label": "Odd Parity",
+      "group": "ACIR"
+    },
+    {
+      "id": 118,
+      "label": "Code Converter",
+      "group": "ACIR"
+    },
+    {
+      "id": 119,
+      "label": "BCD Code",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 120,
+      "label": "Gray Code",
+      "group": "NUMSYS"
+    },
+    {
+      "id": 121,
+      "label": "BCD to Binary Converter",
+      "group": "ACIR"
+    },
+    {
+      "id": 122,
+      "label": "Binary to Gray Converter",
+      "group": "ACIR"
+    },
+    {
+      "id": 123,
+      "label": "Seven Segment Display",
+      "group": "ACIR"
+    },
+    {
+      "id": 124,
+      "label": "Seven Segment Decoder",
+      "group": "ACIR"
+    },
+    {
+      "id": 125,
+      "label": "Incompletely Specified Func",
+      "group": "CANON"
+    },
+    {
+      "id": 126,
+      "label": "Canonical Form",
+      "group": "CANON"
+    },
+    {
+      "id": 127,
+      "label": "Standard Form",
+      "group": "CANON"
+    },
+    {
+      "id": 128,
+      "label": "Minterm",
+      "group": "CANON"
+    },
+    {
+      "id": 129,
+      "label": "Maxterm",
+      "group": "CANON"
+    },
+    {
+      "id": 130,
+      "label": "Minterm Expansion",
+      "group": "CANON"
+    },
+    {
+      "id": 131,
+      "label": "Maxterm Expansion",
+      "group": "CANON"
+    },
+    {
+      "id": 132,
+      "label": "Minterm Designation",
+      "group": "CANON"
+    },
+    {
+      "id": 133,
+      "label": "Maxterm Designation",
+      "group": "CANON"
+    },
+    {
+      "id": 134,
+      "label": "Sum of Minterms",
+      "group": "CANON"
+    },
+    {
+      "id": 135,
+      "label": "Product of Maxterms",
+      "group": "CANON"
+    },
+    {
+      "id": 136,
+      "label": "Minterm to Maxterm",
+      "group": "CANON"
+    },
+    {
+      "id": 137,
+      "label": "Maxterm to Minterm",
+      "group": "CANON"
+    },
+    {
+      "id": 138,
+      "label": "Canonical SOP Form",
+      "group": "CANON"
+    },
+    {
+      "id": 139,
+      "label": "Canonical POS Form",
+      "group": "CANON"
+    },
+    {
+      "id": 140,
+      "label": "Minterm List Notation",
+      "group": "CANON"
+    },
+    {
+      "id": 141,
+      "label": "Maxterm List Notation",
+      "group": "CANON"
+    },
+    {
+      "id": 142,
+      "label": "Sigma Notation",
+      "group": "CANON"
+    },
+    {
+      "id": 143,
+      "label": "Pi Notation",
+      "group": "CANON"
+    },
+    {
+      "id": 144,
+      "label": "Complement of Function",
+      "group": "CANON"
+    },
+    {
+      "id": 145,
+      "label": "Function from Truth Table",
+      "group": "CANON"
+    },
+    {
+      "id": 146,
+      "label": "Minterm from Truth Table",
+      "group": "CANON"
+    },
+    {
+      "id": 147,
+      "label": "Maxterm from Truth Table",
+      "group": "CANON"
+    },
+    {
+      "id": 148,
+      "label": "Dont Care Condition",
+      "group": "CANON"
+    },
+    {
+      "id": 149,
+      "label": "Incompletely Specified",
+      "group": "CANON"
+    },
+    {
+      "id": 150,
+      "label": "Dont Care in SOP",
+      "group": "CANON"
+    },
+    {
+      "id": 151,
+      "label": "Dont Care in POS",
+      "group": "CANON"
+    },
+    {
+      "id": 152,
+      "label": "Converting SOP to POS",
+      "group": "CANON"
+    },
+    {
+      "id": 153,
+      "label": "Converting POS to SOP",
+      "group": "CANON"
+    },
+    {
+      "id": 154,
+      "label": "Expansion Theorem",
+      "group": "CANON"
+    },
+    {
+      "id": 155,
+      "label": "Shannon Expansion",
+      "group": "CANON"
+    },
+    {
+      "id": 156,
+      "label": "Cofactor",
+      "group": "CANON"
+    },
+    {
+      "id": 157,
+      "label": "On-Set of Function",
+      "group": "CANON"
+    },
+    {
+      "id": 158,
+      "label": "Off-Set of Function",
+      "group": "CANON"
+    },
+    {
+      "id": 159,
+      "label": "DC-Set of Function",
+      "group": "CANON"
+    },
+    {
+      "id": 160,
+      "label": "Literal Count",
+      "group": "FORMS"
+    },
+    {
+      "id": 161,
+      "label": "Karnaugh Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 162,
+      "label": "K-Map Structure",
+      "group": "KMAP"
+    },
+    {
+      "id": 163,
+      "label": "K-Map Cell",
+      "group": "KMAP"
+    },
+    {
+      "id": 164,
+      "label": "K-Map Variables",
+      "group": "KMAP"
+    },
+    {
+      "id": 165,
+      "label": "Two Variable K-Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 166,
+      "label": "Three Variable K-Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 167,
+      "label": "Four Variable K-Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 168,
+      "label": "Five Variable K-Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 169,
+      "label": "K-Map Gray Code Order",
+      "group": "KMAP"
+    },
+    {
+      "id": 170,
+      "label": "K-Map Adjacency",
+      "group": "KMAP"
+    },
+    {
+      "id": 171,
+      "label": "Logical Adjacency",
+      "group": "KMAP"
+    },
+    {
+      "id": 172,
+      "label": "Physical Adjacency",
+      "group": "KMAP"
+    },
+    {
+      "id": 173,
+      "label": "K-Map Grouping",
+      "group": "KMAP"
+    },
+    {
+      "id": 174,
+      "label": "Group of Ones",
+      "group": "KMAP"
+    },
+    {
+      "id": 175,
+      "label": "Group of Zeros",
+      "group": "KMAP"
+    },
+    {
+      "id": 176,
+      "label": "Valid Group Sizes",
+      "group": "KMAP"
+    },
+    {
+      "id": 177,
+      "label": "Rectangular Groups",
+      "group": "KMAP"
+    },
+    {
+      "id": 178,
+      "label": "Wrapping in K-Maps",
+      "group": "KMAP"
+    },
+    {
+      "id": 179,
+      "label": "Corner Grouping",
+      "group": "KMAP"
+    },
+    {
+      "id": 180,
+      "label": "Implicant",
+      "group": "KMAP"
+    },
+    {
+      "id": 181,
+      "label": "Prime Implicant",
+      "group": "KMAP"
+    },
+    {
+      "id": 182,
+      "label": "Essential Prime Implicant",
+      "group": "KMAP"
+    },
+    {
+      "id": 183,
+      "label": "Redundant Prime Implicant",
+      "group": "KMAP"
+    },
+    {
+      "id": 184,
+      "label": "K-Map SOP Simplification",
+      "group": "KMAP"
+    },
+    {
+      "id": 185,
+      "label": "K-Map POS Simplification",
+      "group": "KMAP"
+    },
+    {
+      "id": 186,
+      "label": "Minimal SOP Expression",
+      "group": "KMAP"
+    },
+    {
+      "id": 187,
+      "label": "Minimal POS Expression",
+      "group": "KMAP"
+    },
+    {
+      "id": 188,
+      "label": "K-Map with Dont Cares",
+      "group": "KMAP"
+    },
+    {
+      "id": 189,
+      "label": "Using Dont Cares",
+      "group": "KMAP"
+    },
+    {
+      "id": 190,
+      "label": "Overlapping Groups",
+      "group": "KMAP"
+    },
+    {
+      "id": 191,
+      "label": "Covering All Ones",
+      "group": "KMAP"
+    },
+    {
+      "id": 192,
+      "label": "Covering All Zeros",
+      "group": "KMAP"
+    },
+    {
+      "id": 193,
+      "label": "Multiple Solutions",
+      "group": "KMAP"
+    },
+    {
+      "id": 194,
+      "label": "Cost of Expression",
+      "group": "KMAP"
+    },
+    {
+      "id": 195,
+      "label": "Gate Count Minimization",
+      "group": "KMAP"
+    },
+    {
+      "id": 196,
+      "label": "Literal Minimization",
+      "group": "KMAP"
+    },
+    {
+      "id": 197,
+      "label": "K-Map Limitations",
+      "group": "KMAP"
+    },
+    {
+      "id": 198,
+      "label": "Five Variable Technique",
+      "group": "KMAP"
+    },
+    {
+      "id": 199,
+      "label": "Entered Variable K-Map",
+      "group": "KMAP"
+    },
+    {
+      "id": 200,
+      "label": "K-Map vs Algebraic Method",
+      "group": "KMAP"
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 1
+    },
+    {
+      "from": 3,
+      "to": 1
+    },
+    {
+      "from": 3,
+      "to": 4
+    },
+    {
+      "from": 5,
+      "to": 4
+    },
+    {
+      "from": 5,
+      "to": 7
+    },
+    {
+      "from": 6,
+      "to": 4
+    },
+    {
+      "from": 6,
+      "to": 7
+    },
+    {
+      "from": 7,
+      "to": 4
+    },
+    {
+      "from": 8,
+      "to": 7
+    },
+    {
+      "from": 9,
+      "to": 7
+    },
+    {
+      "from": 9,
+      "to": 8
+    },
+    {
+      "from": 10,
+      "to": 3
+    },
+    {
+      "from": 11,
+      "to": 10
+    },
+    {
+      "from": 12,
+      "to": 11
+    },
+    {
+      "from": 13,
+      "to": 12
+    },
+    {
+      "from": 14,
+      "to": 10
+    },
+    {
+      "from": 14,
+      "to": 3
+    },
+    {
+      "from": 15,
+      "to": 10
+    },
+    {
+      "from": 15,
+      "to": 3
+    },
+    {
+      "from": 16,
+      "to": 3
+    },
+    {
+      "from": 16,
+      "to": 4
+    },
+    {
+      "from": 16,
+      "to": 7
+    },
+    {
+      "from": 17,
+      "to": 3
+    },
+    {
+      "from": 17,
+      "to": 4
+    },
+    {
+      "from": 17,
+      "to": 7
+    },
+    {
+      "from": 18,
+      "to": 5
+    },
+    {
+      "from": 18,
+      "to": 4
+    },
+    {
+      "from": 18,
+      "to": 7
+    },
+    {
+      "from": 19,
+      "to": 5
+    },
+    {
+      "from": 19,
+      "to": 4
+    },
+    {
+      "from": 19,
+      "to": 7
+    },
+    {
+      "from": 20,
+      "to": 6
+    },
+    {
+      "from": 20,
+      "to": 4
+    },
+    {
+      "from": 20,
+      "to": 7
+    },
+    {
+      "from": 21,
+      "to": 6
+    },
+    {
+      "from": 21,
+      "to": 4
+    },
+    {
+      "from": 21,
+      "to": 7
+    },
+    {
+      "from": 22,
+      "to": 3
+    },
+    {
+      "from": 22,
+      "to": 5
+    },
+    {
+      "from": 23,
+      "to": 3
+    },
+    {
+      "from": 23,
+      "to": 5
+    },
+    {
+      "from": 24,
+      "to": 3
+    },
+    {
+      "from": 24,
+      "to": 6
+    },
+    {
+      "from": 24,
+      "to": 11
+    },
+    {
+      "from": 25,
+      "to": 3
+    },
+    {
+      "from": 25,
+      "to": 6
+    },
+    {
+      "from": 25,
+      "to": 11
+    },
+    {
+      "from": 26,
+      "to": 3
+    },
+    {
+      "from": 26,
+      "to": 10
+    },
+    {
+      "from": 27,
+      "to": 3
+    },
+    {
+      "from": 27,
+      "to": 10
+    },
+    {
+      "from": 27,
+      "to": 26
+    },
+    {
+      "from": 28,
+      "to": 3
+    },
+    {
+      "from": 28,
+      "to": 26
+    },
+    {
+      "from": 29,
+      "to": 3
+    },
+    {
+      "from": 29,
+      "to": 27
+    },
+    {
+      "from": 29,
+      "to": 28
+    },
+    {
+      "from": 30,
+      "to": 3
+    },
+    {
+      "from": 30,
+      "to": 10
+    },
+    {
+      "from": 31,
+      "to": 3
+    },
+    {
+      "from": 31,
+      "to": 10
+    },
+    {
+      "from": 32,
+      "to": 30
+    },
+    {
+      "from": 32,
+      "to": 14
+    },
+    {
+      "from": 33,
+      "to": 30
+    },
+    {
+      "from": 33,
+      "to": 50
+    },
+    {
+      "from": 34,
+      "to": 33
+    },
+    {
+      "from": 35,
+      "to": 30
+    },
+    {
+      "from": 35,
+      "to": 14
+    },
+    {
+      "from": 35,
+      "to": 12
+    },
+    {
+      "from": 36,
+      "to": 34
+    },
+    {
+      "from": 36,
+      "to": 26
+    },
+    {
+      "from": 37,
+      "to": 34
+    },
+    {
+      "from": 37,
+      "to": 27
+    },
+    {
+      "from": 37,
+      "to": 36
+    },
+    {
+      "from": 38,
+      "to": 36
+    },
+    {
+      "from": 38,
+      "to": 37
+    },
+    {
+      "from": 38,
+      "to": 30
+    },
+    {
+      "from": 39,
+      "to": 38
+    },
+    {
+      "from": 40,
+      "to": 30
+    },
+    {
+      "from": 40,
+      "to": 32
+    },
+    {
+      "from": 40,
+      "to": 33
+    },
+    {
+      "from": 40,
+      "to": 34
+    },
+    {
+      "from": 41,
+      "to": 3
+    },
+    {
+      "from": 42,
+      "to": 41
+    },
+    {
+      "from": 43,
+      "to": 41
+    },
+    {
+      "from": 44,
+      "to": 1
+    },
+    {
+      "from": 44,
+      "to": 3
+    },
+    {
+      "from": 45,
+      "to": 44
+    },
+    {
+      "from": 46,
+      "to": 42
+    },
+    {
+      "from": 46,
+      "to": 43
+    },
+    {
+      "from": 47,
+      "to": 42
+    },
+    {
+      "from": 47,
+      "to": 46
+    },
+    {
+      "from": 48,
+      "to": 42
+    },
+    {
+      "from": 48,
+      "to": 46
+    },
+    {
+      "from": 49,
+      "to": 42
+    },
+    {
+      "from": 49,
+      "to": 46
+    },
+    {
+      "from": 50,
+      "to": 49
+    },
+    {
+      "from": 51,
+      "to": 44
+    },
+    {
+      "from": 51,
+      "to": 47
+    },
+    {
+      "from": 51,
+      "to": 48
+    },
+    {
+      "from": 51,
+      "to": 49
+    },
+    {
+      "from": 52,
+      "to": 47
+    },
+    {
+      "from": 52,
+      "to": 51
+    },
+    {
+      "from": 53,
+      "to": 48
+    },
+    {
+      "from": 53,
+      "to": 51
+    },
+    {
+      "from": 54,
+      "to": 49
+    },
+    {
+      "from": 54,
+      "to": 51
+    },
+    {
+      "from": 55,
+      "to": 54
+    },
+    {
+      "from": 56,
+      "to": 52
+    },
+    {
+      "from": 56,
+      "to": 54
+    },
+    {
+      "from": 57,
+      "to": 53
+    },
+    {
+      "from": 57,
+      "to": 54
+    },
+    {
+      "from": 58,
+      "to": 52
+    },
+    {
+      "from": 58,
+      "to": 53
+    },
+    {
+      "from": 59,
+      "to": 58
+    },
+    {
+      "from": 59,
+      "to": 54
+    },
+    {
+      "from": 60,
+      "to": 51
+    },
+    {
+      "from": 61,
+      "to": 56
+    },
+    {
+      "from": 61,
+      "to": 57
+    },
+    {
+      "from": 62,
+      "to": 51
+    },
+    {
+      "from": 63,
+      "to": 62
+    },
+    {
+      "from": 64,
+      "to": 46
+    },
+    {
+      "from": 64,
+      "to": 47
+    },
+    {
+      "from": 64,
+      "to": 48
+    },
+    {
+      "from": 64,
+      "to": 49
+    },
+    {
+      "from": 65,
+      "to": 42
+    },
+    {
+      "from": 65,
+      "to": 47
+    },
+    {
+      "from": 65,
+      "to": 48
+    },
+    {
+      "from": 65,
+      "to": 49
+    },
+    {
+      "from": 66,
+      "to": 65
+    },
+    {
+      "from": 66,
+      "to": 64
+    },
+    {
+      "from": 67,
+      "to": 41
+    },
+    {
+      "from": 67,
+      "to": 47
+    },
+    {
+      "from": 67,
+      "to": 48
+    },
+    {
+      "from": 68,
+      "to": 41
+    },
+    {
+      "from": 68,
+      "to": 47
+    },
+    {
+      "from": 68,
+      "to": 48
+    },
+    {
+      "from": 69,
+      "to": 41
+    },
+    {
+      "from": 69,
+      "to": 47
+    },
+    {
+      "from": 69,
+      "to": 48
+    },
+    {
+      "from": 70,
+      "to": 41
+    },
+    {
+      "from": 70,
+      "to": 49
+    },
+    {
+      "from": 70,
+      "to": 50
+    },
+    {
+      "from": 71,
+      "to": 41
+    },
+    {
+      "from": 71,
+      "to": 49
+    },
+    {
+      "from": 71,
+      "to": 50
+    },
+    {
+      "from": 72,
+      "to": 41
+    },
+    {
+      "from": 72,
+      "to": 47
+    },
+    {
+      "from": 72,
+      "to": 48
+    },
+    {
+      "from": 73,
+      "to": 41
+    },
+    {
+      "from": 73,
+      "to": 47
+    },
+    {
+      "from": 73,
+      "to": 48
+    },
+    {
+      "from": 74,
+      "to": 41
+    },
+    {
+      "from": 74,
+      "to": 47
+    },
+    {
+      "from": 74,
+      "to": 48
+    },
+    {
+      "from": 75,
+      "to": 41
+    },
+    {
+      "from": 75,
+      "to": 74
+    },
+    {
+      "from": 76,
+      "to": 41
+    },
+    {
+      "from": 76,
+      "to": 75
+    },
+    {
+      "from": 77,
+      "to": 41
+    },
+    {
+      "from": 77,
+      "to": 47
+    },
+    {
+      "from": 77,
+      "to": 49
+    },
+    {
+      "from": 78,
+      "to": 41
+    },
+    {
+      "from": 78,
+      "to": 48
+    },
+    {
+      "from": 78,
+      "to": 49
+    },
+    {
+      "from": 79,
+      "to": 41
+    },
+    {
+      "from": 79,
+      "to": 77
+    },
+    {
+      "from": 79,
+      "to": 78
+    },
+    {
+      "from": 80,
+      "to": 65
+    },
+    {
+      "from": 80,
+      "to": 67
+    },
+    {
+      "from": 80,
+      "to": 68
+    },
+    {
+      "from": 80,
+      "to": 69
+    },
+    {
+      "from": 80,
+      "to": 70
+    },
+    {
+      "from": 80,
+      "to": 71
+    },
+    {
+      "from": 80,
+      "to": 72
+    },
+    {
+      "from": 80,
+      "to": 73
+    },
+    {
+      "from": 80,
+      "to": 74
+    },
+    {
+      "from": 80,
+      "to": 75
+    },
+    {
+      "from": 81,
+      "to": 42
+    },
+    {
+      "from": 81,
+      "to": 65
+    },
+    {
+      "from": 82,
+      "to": 47
+    },
+    {
+      "from": 82,
+      "to": 81
+    },
+    {
+      "from": 83,
+      "to": 48
+    },
+    {
+      "from": 83,
+      "to": 81
+    },
+    {
+      "from": 84,
+      "to": 82
+    },
+    {
+      "from": 84,
+      "to": 48
+    },
+    {
+      "from": 85,
+      "to": 83
+    },
+    {
+      "from": 85,
+      "to": 47
+    },
+    {
+      "from": 86,
+      "to": 47
+    },
+    {
+      "from": 86,
+      "to": 48
+    },
+    {
+      "from": 86,
+      "to": 49
+    },
+    {
+      "from": 87,
+      "to": 65
+    },
+    {
+      "from": 87,
+      "to": 86
+    },
+    {
+      "from": 88,
+      "to": 51
+    },
+    {
+      "from": 88,
+      "to": 73
+    },
+    {
+      "from": 89,
+      "to": 51
+    },
+    {
+      "from": 89,
+      "to": 88
+    },
+    {
+      "from": 90,
+      "to": 51
+    },
+    {
+      "from": 90,
+      "to": 88
+    },
+    {
+      "from": 91,
+      "to": 51
+    },
+    {
+      "from": 91,
+      "to": 66
+    },
+    {
+      "from": 92,
+      "to": 91
+    },
+    {
+      "from": 93,
+      "to": 51
+    },
+    {
+      "from": 93,
+      "to": 91
+    },
+    {
+      "from": 94,
+      "to": 93
+    },
+    {
+      "from": 94,
+      "to": 64
+    },
+    {
+      "from": 95,
+      "to": 93
+    },
+    {
+      "from": 95,
+      "to": 65
+    },
+    {
+      "from": 95,
+      "to": 80
+    },
+    {
+      "from": 96,
+      "to": 95
+    },
+    {
+      "from": 97,
+      "to": 65
+    },
+    {
+      "from": 97,
+      "to": 96
+    },
+    {
+      "from": 98,
+      "to": 66
+    },
+    {
+      "from": 98,
+      "to": 91
+    },
+    {
+      "from": 99,
+      "to": 46
+    },
+    {
+      "from": 99,
+      "to": 98
+    },
+    {
+      "from": 100,
+      "to": 45
+    },
+    {
+      "from": 100,
+      "to": 98
+    },
+    {
+      "from": 101,
+      "to": 100
+    },
+    {
+      "from": 102,
+      "to": 26
+    },
+    {
+      "from": 102,
+      "to": 52
+    },
+    {
+      "from": 102,
+      "to": 58
+    },
+    {
+      "from": 103,
+      "to": 102
+    },
+    {
+      "from": 103,
+      "to": 104
+    },
+    {
+      "from": 104,
+      "to": 26
+    },
+    {
+      "from": 104,
+      "to": 102
+    },
+    {
+      "from": 105,
+      "to": 102
+    },
+    {
+      "from": 105,
+      "to": 58
+    },
+    {
+      "from": 106,
+      "to": 103
+    },
+    {
+      "from": 106,
+      "to": 89
+    },
+    {
+      "from": 107,
+      "to": 27
+    },
+    {
+      "from": 107,
+      "to": 58
+    },
+    {
+      "from": 107,
+      "to": 55
+    },
+    {
+      "from": 108,
+      "to": 107
+    },
+    {
+      "from": 108,
+      "to": 109
+    },
+    {
+      "from": 109,
+      "to": 27
+    },
+    {
+      "from": 109,
+      "to": 107
+    },
+    {
+      "from": 110,
+      "to": 107
+    },
+    {
+      "from": 110,
+      "to": 58
+    },
+    {
+      "from": 111,
+      "to": 106
+    },
+    {
+      "from": 111,
+      "to": 108
+    },
+    {
+      "from": 111,
+      "to": 101
+    },
+    {
+      "from": 112,
+      "to": 91
+    },
+    {
+      "from": 112,
+      "to": 52
+    },
+    {
+      "from": 112,
+      "to": 58
+    },
+    {
+      "from": 113,
+      "to": 112
+    },
+    {
+      "from": 114,
+      "to": 58
+    },
+    {
+      "from": 114,
+      "to": 89
+    },
+    {
+      "from": 115,
+      "to": 114
+    },
+    {
+      "from": 116,
+      "to": 114
+    },
+    {
+      "from": 117,
+      "to": 114
+    },
+    {
+      "from": 117,
+      "to": 55
+    },
+    {
+      "from": 118,
+      "to": 91
+    },
+    {
+      "from": 118,
+      "to": 95
+    },
+    {
+      "from": 119,
+      "to": 4
+    },
+    {
+      "from": 119,
+      "to": 3
+    },
+    {
+      "from": 120,
+      "to": 3
+    },
+    {
+      "from": 121,
+      "to": 118
+    },
+    {
+      "from": 121,
+      "to": 119
+    },
+    {
+      "from": 122,
+      "to": 118
+    },
+    {
+      "from": 122,
+      "to": 120
+    },
+    {
+      "from": 122,
+      "to": 58
+    },
+    {
+      "from": 123,
+      "to": 6
+    },
+    {
+      "from": 124,
+      "to": 118
+    },
+    {
+      "from": 124,
+      "to": 123
+    },
+    {
+      "from": 125,
+      "to": 66
+    },
+    {
+      "from": 125,
+      "to": 64
+    },
+    {
+      "from": 125,
+      "to": 148
+    },
+    {
+      "from": 126,
+      "to": 84
+    },
+    {
+      "from": 126,
+      "to": 85
+    },
+    {
+      "from": 127,
+      "to": 126
+    },
+    {
+      "from": 128,
+      "to": 82
+    },
+    {
+      "from": 128,
+      "to": 64
+    },
+    {
+      "from": 129,
+      "to": 83
+    },
+    {
+      "from": 129,
+      "to": 64
+    },
+    {
+      "from": 130,
+      "to": 128
+    },
+    {
+      "from": 130,
+      "to": 84
+    },
+    {
+      "from": 131,
+      "to": 129
+    },
+    {
+      "from": 131,
+      "to": 85
+    },
+    {
+      "from": 132,
+      "to": 128
+    },
+    {
+      "from": 132,
+      "to": 14
+    },
+    {
+      "from": 132,
+      "to": 15
+    },
+    {
+      "from": 133,
+      "to": 129
+    },
+    {
+      "from": 133,
+      "to": 14
+    },
+    {
+      "from": 133,
+      "to": 15
+    },
+    {
+      "from": 134,
+      "to": 130
+    },
+    {
+      "from": 134,
+      "to": 128
+    },
+    {
+      "from": 135,
+      "to": 131
+    },
+    {
+      "from": 135,
+      "to": 129
+    },
+    {
+      "from": 136,
+      "to": 128
+    },
+    {
+      "from": 136,
+      "to": 129
+    },
+    {
+      "from": 136,
+      "to": 144
+    },
+    {
+      "from": 137,
+      "to": 129
+    },
+    {
+      "from": 137,
+      "to": 128
+    },
+    {
+      "from": 137,
+      "to": 144
+    },
+    {
+      "from": 138,
+      "to": 134
+    },
+    {
+      "from": 138,
+      "to": 126
+    },
+    {
+      "from": 139,
+      "to": 135
+    },
+    {
+      "from": 139,
+      "to": 126
+    },
+    {
+      "from": 140,
+      "to": 134
+    },
+    {
+      "from": 140,
+      "to": 132
+    },
+    {
+      "from": 141,
+      "to": 135
+    },
+    {
+      "from": 141,
+      "to": 133
+    },
+    {
+      "from": 142,
+      "to": 140
+    },
+    {
+      "from": 143,
+      "to": 141
+    },
+    {
+      "from": 144,
+      "to": 66
+    },
+    {
+      "from": 144,
+      "to": 50
+    },
+    {
+      "from": 144,
+      "to": 77
+    },
+    {
+      "from": 144,
+      "to": 78
+    },
+    {
+      "from": 145,
+      "to": 64
+    },
+    {
+      "from": 145,
+      "to": 66
+    },
+    {
+      "from": 146,
+      "to": 145
+    },
+    {
+      "from": 146,
+      "to": 128
+    },
+    {
+      "from": 147,
+      "to": 145
+    },
+    {
+      "from": 147,
+      "to": 129
+    },
+    {
+      "from": 148,
+      "to": 64
+    },
+    {
+      "from": 148,
+      "to": 66
+    },
+    {
+      "from": 149,
+      "to": 148
+    },
+    {
+      "from": 149,
+      "to": 125
+    },
+    {
+      "from": 150,
+      "to": 148
+    },
+    {
+      "from": 150,
+      "to": 138
+    },
+    {
+      "from": 151,
+      "to": 148
+    },
+    {
+      "from": 151,
+      "to": 139
+    },
+    {
+      "from": 152,
+      "to": 138
+    },
+    {
+      "from": 152,
+      "to": 139
+    },
+    {
+      "from": 152,
+      "to": 144
+    },
+    {
+      "from": 153,
+      "to": 139
+    },
+    {
+      "from": 153,
+      "to": 138
+    },
+    {
+      "from": 153,
+      "to": 144
+    },
+    {
+      "from": 154,
+      "to": 74
+    },
+    {
+      "from": 154,
+      "to": 144
+    },
+    {
+      "from": 155,
+      "to": 154
+    },
+    {
+      "from": 155,
+      "to": 42
+    },
+    {
+      "from": 156,
+      "to": 155
+    },
+    {
+      "from": 156,
+      "to": 42
+    },
+    {
+      "from": 157,
+      "to": 64
+    },
+    {
+      "from": 157,
+      "to": 66
+    },
+    {
+      "from": 157,
+      "to": 128
+    },
+    {
+      "from": 158,
+      "to": 64
+    },
+    {
+      "from": 158,
+      "to": 66
+    },
+    {
+      "from": 158,
+      "to": 129
+    },
+    {
+      "from": 159,
+      "to": 148
+    },
+    {
+      "from": 159,
+      "to": 157
+    },
+    {
+      "from": 159,
+      "to": 158
+    },
+    {
+      "from": 160,
+      "to": 81
+    },
+    {
+      "from": 160,
+      "to": 65
+    },
+    {
+      "from": 161,
+      "to": 64
+    },
+    {
+      "from": 161,
+      "to": 128
+    },
+    {
+      "from": 161,
+      "to": 129
+    },
+    {
+      "from": 162,
+      "to": 161
+    },
+    {
+      "from": 163,
+      "to": 162
+    },
+    {
+      "from": 163,
+      "to": 128
+    },
+    {
+      "from": 164,
+      "to": 162
+    },
+    {
+      "from": 164,
+      "to": 42
+    },
+    {
+      "from": 165,
+      "to": 162
+    },
+    {
+      "from": 165,
+      "to": 164
+    },
+    {
+      "from": 166,
+      "to": 165
+    },
+    {
+      "from": 167,
+      "to": 166
+    },
+    {
+      "from": 168,
+      "to": 167
+    },
+    {
+      "from": 169,
+      "to": 120
+    },
+    {
+      "from": 169,
+      "to": 162
+    },
+    {
+      "from": 170,
+      "to": 162
+    },
+    {
+      "from": 170,
+      "to": 169
+    },
+    {
+      "from": 171,
+      "to": 170
+    },
+    {
+      "from": 172,
+      "to": 170
+    },
+    {
+      "from": 173,
+      "to": 170
+    },
+    {
+      "from": 173,
+      "to": 171
+    },
+    {
+      "from": 174,
+      "to": 173
+    },
+    {
+      "from": 174,
+      "to": 157
+    },
+    {
+      "from": 175,
+      "to": 173
+    },
+    {
+      "from": 175,
+      "to": 158
+    },
+    {
+      "from": 176,
+      "to": 173
+    },
+    {
+      "from": 177,
+      "to": 173
+    },
+    {
+      "from": 177,
+      "to": 176
+    },
+    {
+      "from": 178,
+      "to": 170
+    },
+    {
+      "from": 178,
+      "to": 177
+    },
+    {
+      "from": 179,
+      "to": 178
+    },
+    {
+      "from": 180,
+      "to": 82
+    },
+    {
+      "from": 180,
+      "to": 173
+    },
+    {
+      "from": 181,
+      "to": 180
+    },
+    {
+      "from": 182,
+      "to": 181
+    },
+    {
+      "from": 183,
+      "to": 181
+    },
+    {
+      "from": 183,
+      "to": 182
+    },
+    {
+      "from": 184,
+      "to": 174
+    },
+    {
+      "from": 184,
+      "to": 181
+    },
+    {
+      "from": 184,
+      "to": 182
+    },
+    {
+      "from": 184,
+      "to": 138
+    },
+    {
+      "from": 185,
+      "to": 175
+    },
+    {
+      "from": 185,
+      "to": 181
+    },
+    {
+      "from": 185,
+      "to": 182
+    },
+    {
+      "from": 185,
+      "to": 139
+    },
+    {
+      "from": 186,
+      "to": 184
+    },
+    {
+      "from": 186,
+      "to": 160
+    },
+    {
+      "from": 187,
+      "to": 185
+    },
+    {
+      "from": 187,
+      "to": 160
+    },
+    {
+      "from": 188,
+      "to": 161
+    },
+    {
+      "from": 188,
+      "to": 148
+    },
+    {
+      "from": 189,
+      "to": 188
+    },
+    {
+      "from": 189,
+      "to": 150
+    },
+    {
+      "from": 189,
+      "to": 151
+    },
+    {
+      "from": 190,
+      "to": 173
+    },
+    {
+      "from": 190,
+      "to": 180
+    },
+    {
+      "from": 191,
+      "to": 174
+    },
+    {
+      "from": 191,
+      "to": 190
+    },
+    {
+      "from": 192,
+      "to": 175
+    },
+    {
+      "from": 192,
+      "to": 190
+    },
+    {
+      "from": 193,
+      "to": 184
+    },
+    {
+      "from": 193,
+      "to": 185
+    },
+    {
+      "from": 193,
+      "to": 191
+    },
+    {
+      "from": 193,
+      "to": 192
+    },
+    {
+      "from": 194,
+      "to": 160
+    },
+    {
+      "from": 194,
+      "to": 186
+    },
+    {
+      "from": 194,
+      "to": 187
+    },
+    {
+      "from": 195,
+      "to": 194
+    },
+    {
+      "from": 195,
+      "to": 51
+    },
+    {
+      "from": 196,
+      "to": 194
+    },
+    {
+      "from": 196,
+      "to": 81
+    },
+    {
+      "from": 197,
+      "to": 167
+    },
+    {
+      "from": 197,
+      "to": 168
+    },
+    {
+      "from": 198,
+      "to": 168
+    },
+    {
+      "from": 198,
+      "to": 197
+    },
+    {
+      "from": 199,
+      "to": 161
+    },
+    {
+      "from": 199,
+      "to": 42
+    },
+    {
+      "from": 200,
+      "to": 80
+    },
+    {
+      "from": 200,
+      "to": 184
+    },
+    {
+      "from": 200,
+      "to": 185
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+<svg viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <filter id="glowB" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L6,3 L0,6 Z" fill="rgba(0,191,255,0.5)"/>
+    </marker>
+  </defs>
+
+  <!-- Subtle binary background -->
+  <text font-family="'Courier New', monospace" font-size="10" letter-spacing="4">
+    <tspan x="20" y="16" fill="rgba(0,191,255,0.04)">1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 0</tspan>
+    <tspan x="540" y="16" fill="rgba(0,191,255,0.03)">0 1 1 0 1 0 1 1 0 0 1 0 1 1</tspan>
+    <tspan x="30" y="172" fill="rgba(0,191,255,0.04)">0 0 1 0 1 1 0 1 1 0 0 1 0 1 1 0</tspan>
+    <tspan x="560" y="172" fill="rgba(0,191,255,0.03)">1 1 0 1 0 1 0 0 1 1 0 1 0 1</tspan>
+  </text>
+
+  <!-- PCB traces -->
+  <g stroke-width="1" fill="none" stroke-linecap="round">
+    <path d="M0,55 H40 L55,70 H80" stroke="rgba(0,191,255,0.15)"/>
+    <path d="M0,90 H30 L42,105 H80" stroke="rgba(0,191,255,0.12)"/>
+    <path d="M220,70 H270" stroke="rgba(0,191,255,0.15)"/>
+    <path d="M380,70 H430" stroke="rgba(0,191,255,0.15)"/>
+    <path d="M430,55 H480" stroke="rgba(0,191,255,0.12)"/>
+    <path d="M430,90 H480" stroke="rgba(0,191,255,0.12)"/>
+    <path d="M570,72 H620" stroke="rgba(0,191,255,0.15)"/>
+    <path d="M620,72 L650,55 H700" stroke="rgba(0,191,255,0.08)" stroke-dasharray="3,5"/>
+    <path d="M870,50 H1000" stroke="rgba(0,191,255,0.12)"/>
+    <path d="M870,80 H950 L970,100 H1000" stroke="rgba(0,191,255,0.1)"/>
+    <path d="M870,130 H920 L940,145 H1000" stroke="rgba(0,191,255,0.1)"/>
+  </g>
+
+  <!-- ===== FSM / State Machine ===== -->
+  <!-- State S0 -->
+  <g transform="translate(110,30)">
+    <circle cx="40" cy="40" r="34" fill="rgba(0,191,255,0.04)" stroke="rgba(0,191,255,0.5)" stroke-width="1.5" filter="url(#glowB)"/>
+    <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(0,191,255,0.15)" stroke-width="0.8"/>
+    <text x="40" y="37" fill="rgba(0,191,255,0.65)" font-size="14" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">S0</text>
+    <text x="40" y="52" fill="rgba(0,191,255,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">IDLE</text>
+  </g>
+
+  <!-- Transition S0 -> S1 -->
+  <g stroke="rgba(0,191,255,0.4)" stroke-width="1.2" fill="none">
+    <path d="M184,70 H250" marker-end="url(#arrowCyan)"/>
+  </g>
+  <text x="212" y="62" fill="rgba(0,191,255,0.35)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle">x=1</text>
+
+  <!-- State S1 -->
+  <g transform="translate(250,30)">
+    <circle cx="40" cy="40" r="34" fill="rgba(0,191,255,0.04)" stroke="rgba(0,191,255,0.5)" stroke-width="1.5" filter="url(#glowB)"/>
+    <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(0,191,255,0.15)" stroke-width="0.8"/>
+    <text x="40" y="37" fill="rgba(0,191,255,0.65)" font-size="14" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">S1</text>
+    <text x="40" y="52" fill="rgba(0,191,255,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">LOAD</text>
+  </g>
+
+  <!-- Transition S1 -> S2 -->
+  <g stroke="rgba(0,191,255,0.4)" stroke-width="1.2" fill="none">
+    <path d="M324,70 H400" marker-end="url(#arrowCyan)"/>
+  </g>
+  <text x="362" y="62" fill="rgba(0,191,255,0.35)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle">done</text>
+
+  <!-- State S2 -->
+  <g transform="translate(390,30)">
+    <circle cx="40" cy="40" r="34" fill="rgba(0,191,255,0.04)" stroke="rgba(0,191,255,0.5)" stroke-width="1.5" filter="url(#glowB)"/>
+    <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(0,191,255,0.15)" stroke-width="0.8"/>
+    <text x="40" y="37" fill="rgba(0,191,255,0.65)" font-size="14" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">S2</text>
+    <text x="40" y="52" fill="rgba(0,191,255,0.35)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">EXEC</text>
+  </g>
+
+  <!-- Self-loop on S0 -->
+  <path d="M130,32 Q130,0 155,0 Q180,0 180,32" fill="none" stroke="rgba(0,191,255,0.25)" stroke-width="1" marker-end="url(#arrowCyan)"/>
+  <text x="155" y="-5" fill="rgba(0,191,255,0.25)" font-size="6" font-family="'Courier New', monospace" text-anchor="middle">x=0</text>
+
+  <!-- Reset arrow -->
+  <path d="M80,70 L110,70" fill="none" stroke="rgba(0,191,255,0.3)" stroke-width="1.2" marker-end="url(#arrowCyan)"/>
+  <text x="78" y="62" fill="rgba(0,191,255,0.25)" font-size="7" font-family="'Courier New', monospace" text-anchor="end">RST</text>
+
+  <!-- Return S2 -> S0 -->
+  <path d="M410,104 Q410,145 290,150 Q170,150 150,104" fill="none" stroke="rgba(0,191,255,0.2)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrowCyan)"/>
+  <text x="280" y="160" fill="rgba(0,191,255,0.2)" font-size="7" font-family="'Courier New', monospace" text-anchor="middle">timeout</text>
+
+  <text x="260" y="130" fill="rgba(0,191,255,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">FSM</text>
+
+  <!-- ===== 4:1 Multiplexer ===== -->
+  <g transform="translate(480,22)">
+    <path d="M0,8 L70,0 L70,100 L0,92 Z" fill="rgba(0,191,255,0.03)" stroke="rgba(0,191,255,0.45)" stroke-width="1.5" filter="url(#glowB)"/>
+    <line x1="-15" y1="20" x2="0" y2="20" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="-15" y1="40" x2="0" y2="40" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="-15" y1="60" x2="0" y2="60" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="-15" y1="80" x2="0" y2="80" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="70" y1="50" x2="88" y2="50" stroke="rgba(0,191,255,0.4)" stroke-width="1.2"/>
+    <line x1="35" y1="100" x2="35" y2="118" stroke="rgba(0,191,255,0.3)" stroke-width="1"/>
+    <text x="8" y="24" fill="rgba(0,191,255,0.5)" font-size="8" font-family="'Courier New', monospace">I0</text>
+    <text x="8" y="44" fill="rgba(0,191,255,0.5)" font-size="8" font-family="'Courier New', monospace">I1</text>
+    <text x="8" y="64" fill="rgba(0,191,255,0.5)" font-size="8" font-family="'Courier New', monospace">I2</text>
+    <text x="8" y="84" fill="rgba(0,191,255,0.5)" font-size="8" font-family="'Courier New', monospace">I3</text>
+    <text x="58" y="46" fill="rgba(0,191,255,0.5)" font-size="8" font-family="'Courier New', monospace">Y</text>
+    <text x="40" y="116" fill="rgba(0,191,255,0.3)" font-size="7" font-family="'Courier New', monospace">S1 S0</text>
+    <text x="35" y="145" fill="rgba(0,191,255,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">4:1 MUX</text>
+  </g>
+
+  <!-- ===== Truth Table ===== -->
+  <g transform="translate(650,18)">
+    <rect x="0" y="0" width="120" height="105" rx="3" fill="rgba(0,191,255,0.03)" stroke="rgba(0,191,255,0.35)" stroke-width="1.2" filter="url(#glowB)"/>
+    <rect x="0" y="0" width="120" height="22" rx="3" fill="rgba(0,191,255,0.06)"/>
+    <line x1="0" y1="22" x2="120" y2="22" stroke="rgba(0,191,255,0.25)" stroke-width="0.8"/>
+    <line x1="30" y1="0" x2="30" y2="105" stroke="rgba(0,191,255,0.12)" stroke-width="0.5"/>
+    <line x1="60" y1="0" x2="60" y2="105" stroke="rgba(0,191,255,0.12)" stroke-width="0.5"/>
+    <line x1="90" y1="0" x2="90" y2="105" stroke="rgba(0,191,255,0.2)" stroke-width="0.8"/>
+    <line x1="0" y1="40" x2="120" y2="40" stroke="rgba(0,191,255,0.08)" stroke-width="0.5"/>
+    <line x1="0" y1="58" x2="120" y2="58" stroke="rgba(0,191,255,0.08)" stroke-width="0.5"/>
+    <line x1="0" y1="76" x2="120" y2="76" stroke="rgba(0,191,255,0.08)" stroke-width="0.5"/>
+    <text x="15" y="15" fill="rgba(0,191,255,0.6)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">A</text>
+    <text x="45" y="15" fill="rgba(0,191,255,0.6)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">B</text>
+    <text x="75" y="15" fill="rgba(0,191,255,0.6)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">Cin</text>
+    <text x="105" y="15" fill="rgba(0,191,255,0.7)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">Sum</text>
+    <text font-family="'Courier New', monospace" font-size="8" text-anchor="middle">
+      <tspan x="15" y="35" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="45" y="35" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="75" y="35" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="105" y="35" fill="rgba(0,191,255,0.5)">0</tspan>
+      <tspan x="15" y="53" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="45" y="53" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="75" y="53" fill="rgba(0,191,255,0.4)">1</tspan><tspan x="105" y="53" fill="rgba(0,191,255,0.5)">1</tspan>
+      <tspan x="15" y="71" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="45" y="71" fill="rgba(0,191,255,0.4)">1</tspan><tspan x="75" y="71" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="105" y="71" fill="rgba(0,191,255,0.5)">1</tspan>
+      <tspan x="15" y="89" fill="rgba(0,191,255,0.4)">0</tspan><tspan x="45" y="89" fill="rgba(0,191,255,0.4)">1</tspan><tspan x="75" y="89" fill="rgba(0,191,255,0.4)">1</tspan><tspan x="105" y="89" fill="rgba(0,191,255,0.5)">0</tspan>
+    </text>
+    <text x="60" y="120" fill="rgba(0,191,255,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">TRUTH TABLE</text>
+  </g>
+
+  <!-- ===== 4-Bit Register ===== -->
+  <g transform="translate(820,15)">
+    <rect x="0" y="0" width="110" height="55" rx="3" fill="rgba(0,191,255,0.03)" stroke="rgba(0,191,255,0.4)" stroke-width="1.2" filter="url(#glowB)"/>
+    <line x1="28" y1="0" x2="28" y2="55" stroke="rgba(0,191,255,0.15)" stroke-width="0.5"/>
+    <line x1="56" y1="0" x2="56" y2="55" stroke="rgba(0,191,255,0.15)" stroke-width="0.5"/>
+    <line x1="83" y1="0" x2="83" y2="55" stroke="rgba(0,191,255,0.15)" stroke-width="0.5"/>
+    <text font-family="'Courier New', monospace" font-size="18" text-anchor="middle" font-weight="bold">
+      <tspan x="14" y="38" fill="rgba(0,191,255,0.6)">1</tspan>
+      <tspan x="42" y="38" fill="rgba(0,191,255,0.6)">0</tspan>
+      <tspan x="70" y="38" fill="rgba(0,191,255,0.6)">1</tspan>
+      <tspan x="97" y="38" fill="rgba(0,191,255,0.6)">1</tspan>
+    </text>
+    <text font-family="'Courier New', monospace" font-size="6" text-anchor="middle" fill="rgba(0,191,255,0.25)">
+      <tspan x="14" y="52">b3</tspan>
+      <tspan x="42" y="52">b2</tspan>
+      <tspan x="70" y="52">b1</tspan>
+      <tspan x="97" y="52">b0</tspan>
+    </text>
+    <text x="55" y="72" fill="rgba(0,191,255,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">4-BIT REG</text>
+  </g>
+
+  <!-- ===== 2:4 Decoder ===== -->
+  <g transform="translate(840,90)">
+    <path d="M10,0 L70,0 L80,70 L0,70 Z" fill="rgba(0,191,255,0.03)" stroke="rgba(0,191,255,0.4)" stroke-width="1.2" filter="url(#glowB)"/>
+    <line x1="30" y1="-12" x2="30" y2="0" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="50" y1="-12" x2="50" y2="0" stroke="rgba(0,191,255,0.35)" stroke-width="1.2"/>
+    <line x1="80" y1="14" x2="95" y2="14" stroke="rgba(0,191,255,0.25)" stroke-width="1"/>
+    <line x1="80" y1="30" x2="95" y2="30" stroke="rgba(0,191,255,0.25)" stroke-width="1"/>
+    <line x1="80" y1="46" x2="95" y2="46" stroke="rgba(0,191,255,0.25)" stroke-width="1"/>
+    <line x1="80" y1="62" x2="95" y2="62" stroke="rgba(0,191,255,0.25)" stroke-width="1"/>
+    <text x="24" y="-14" fill="rgba(0,191,255,0.35)" font-size="7" font-family="'Courier New', monospace">A</text>
+    <text x="46" y="-14" fill="rgba(0,191,255,0.35)" font-size="7" font-family="'Courier New', monospace">B</text>
+    <text x="40" y="40" fill="rgba(0,191,255,0.5)" font-size="9" font-family="'Courier New', monospace" text-anchor="middle" font-weight="bold">DEC</text>
+    <text x="40" y="82" fill="rgba(0,191,255,0.15)" font-size="8" font-family="'Courier New', monospace" text-anchor="middle">2:4 DECODER</text>
+  </g>
+</svg>

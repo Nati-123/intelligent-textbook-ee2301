@@ -1,0 +1,10079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Systematic tabular method for minimizing Boolean functions">
+      
+      
+        <meta name="author" content="University of Minnesota - Twin Cities">
+      
+      
+      
+        <link rel="prev" href="../videos/unit05-narration/">
+      
+      
+        <link rel="next" href="quiz/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Quine-McCluskey Method - Intelligent Textbook - Digital System Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css?v=19">
+    
+      <link rel="stylesheet" href="../stylesheets/audio-player.css?v=1">
+    
+      <link rel="stylesheet" href="../stylesheets/quiz.css?v=3">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-6-quine-mccluskey-method" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intelligent Textbook - Digital System Design" class="md-header__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intelligent Textbook - Digital System Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quine-McCluskey Method
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cover
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../home/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../course-description/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Course Description
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../unit1-number-systems/" class="md-tabs__link">
+          
+  
+  
+  Unit Modules
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sims/" class="md-tabs__link">
+          
+  
+  
+  MicroSims
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../learning-graph/" class="md-tabs__link">
+          
+  
+  
+  Learning Graph
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intelligent Textbook - Digital System Design" class="md-nav__button md-logo" aria-label="Intelligent Textbook - Digital System Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    Intelligent Textbook - Digital System Design
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cover
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit1-number-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit1-number-systems/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit1-number-systems/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit1-number-systems/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit1-number-systems/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit01-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit2-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit2-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit2-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit2-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit2-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit02-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications of Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit3-applications-boolean-algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit3-applications-boolean-algebra/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit3-applications-boolean-algebra/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit3-applications-boolean-algebra/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit3-applications-boolean-algebra/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit03-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterm & Maxterm Expansions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit4-minterm-maxterm-expansions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit4-minterm-maxterm-expansions/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit4-minterm-maxterm-expansions/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit4-minterm-maxterm-expansions/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit4-minterm-maxterm-expansions/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit04-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit5-karnaugh-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit5-karnaugh-maps/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit5-karnaugh-maps/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit5-karnaugh-maps/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit5-karnaugh-maps/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit05-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey Method
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-introduction-to-algorithmic-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Introduction to Algorithmic Minimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-binary-representation-and-grouping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Binary Representation and Grouping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Binary Representation and Grouping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qm-grouping-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: QM Grouping Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-the-combination-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 The Combination Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-constructing-the-implicant-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Constructing the Implicant Table
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4 Constructing the Implicant Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qm-combination-process-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: QM Combination Process Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-identifying-prime-implicants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Identifying Prime Implicants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-the-prime-implicant-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 The Prime Implicant Chart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#67-row-and-column-dominance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Row and Column Dominance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#68-petricks-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8 Petrick's Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.8 Petrick&#39;s Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-prime-implicant-chart-interactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Prime Implicant Chart Interactive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#69-cyclic-prime-implicant-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.9 Cyclic Prime Implicant Charts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#610-handling-dont-care-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.10 Handling Don't Care Conditions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#611-computational-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.11 Computational Complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.11 Computational Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qm-complexity-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: QM Complexity Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#612-multi-output-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.12 Multi-Output Minimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#613-qm-method-summary-and-complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.13 QM Method Summary and Complete Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.13 QM Method Summary and Complete Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-complete-qm-method-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Complete QM Method Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#614-computer-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.14 Computer Implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#615-summary-and-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.15 Summary and Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-check-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Check Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit06-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gate Circuits
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit7-multi-level-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit7-multi-level-gates/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit7-multi-level-gates/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit7-multi-level-gates/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit7-multi-level-gates/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit07-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Logic Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit8-combinational-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit8-combinational-modules/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit8-combinational-modules/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit8-combinational-modules/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit8-combinational-modules/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit08-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Logic Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit9-sequential-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit9-sequential-fundamentals/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit9-sequential-fundamentals/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit9-sequential-fundamentals/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit9-sequential-fundamentals/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit09-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Circuit Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit10-sequential-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit10-sequential-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit10-sequential-design/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit10-sequential-design/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit10-sequential-design/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit10-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic Devices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit11-programmable-logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit11-programmable-logic/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit11-programmable-logic/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit11-programmable-logic/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit11-programmable-logic/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit11-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_12" id="__nav_6_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - Introduction to VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - Introduction to VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit12-vhdl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit12-vhdl/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit12-vhdl/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit12-vhdl/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit12-vhdl/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit12-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_13" id="__nav_6_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit13-system-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit13-system-integration/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit13-system-integration/problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit13-system-integration/challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit13-system-integration/references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videos/unit13-narration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Narration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MicroSims
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/course-structure-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Structure Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 1 - Number Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 1 - Number Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/base-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/analog-vs-digital-signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analog vs Digital Signals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/positional-notation-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional Notation Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/binary-arithmetic-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Arithmetic Practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/signed-number-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signed Number Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/overflow-detection-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overflow Detection Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/number-systems-concept-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Number Systems Concept Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/base-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 2 - Boolean Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 2 - Boolean Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/and-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/or-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/not-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOT Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/buffer-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buffer Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/tri-state-buffer-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tri-State Buffer Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/nand-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/nor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/xor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/xnor-gate-truth-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XNOR Gate Truth Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/logic-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logic Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/boolean-operations-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Operations Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/truth-table-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Truth Table Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/boolean-laws-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Laws Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/demorgans-theorem-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    De Morgan's Theorem Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/boolean-simplification-tutor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Simplification Tutor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/3-input-and-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input AND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/3-input-or-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input OR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/3-input-nand-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NAND Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/3-input-nor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input NOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/3-input-xor-gate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-Input XOR Gate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/gate-cascade-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gate Cascade Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/circuit-analysis-synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit Analysis & Synthesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/boolean-proof-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boolean Proof Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 3 - Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 3 - Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/binary-adder-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Adder Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/design-flow-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Flow Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/word-problem-translator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word Problem Translator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/adder-subtractor-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adder-Subtractor Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/parity-circuit-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parity Circuit Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/code-converter-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Converter Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/seven-segment-decoder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seven Segment Decoder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/dont-care-optimizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Don't Care Optimizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/full-adder-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Adder Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 4 - Minterms & Maxterms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/minterm-maxterm-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm/Maxterm Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/minterm-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/sop-pos-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOP-POS Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/shannon-expansion-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shannon Expansion Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/minterm-expansion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minterm Expansion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 5 - Karnaugh Maps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 5 - Karnaugh Maps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/kmap-solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/kmap-3var-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map 3-Variable Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/prime-implicant-finder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Implicant Finder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/kmap-dont-cares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map with Don't Cares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/kmap-practice-challenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Practice Challenge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/kmap-simplification-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Map Simplification Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 6 - Quine-McCluskey
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 6 - Quine-McCluskey
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/qm-grouping-visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Grouping Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/qm-combination-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Combination Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/pi-chart-interactive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PI Chart Interactive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/qm-complexity-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complexity Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/qm-complete-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Complete Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/qm-method-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QM Method Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 7 - Multi-Level Gates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 7 - Multi-Level Gates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/universal-gate-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Universal Gate Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/bubble-pushing-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bubble Pushing Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/nand-nor-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND-NOR Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/multi-level-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Level Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/nand-conversion-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAND Conversion Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 8 - Combinational Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 8 - Combinational Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/mux-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/decoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/priority-encoder-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priority Encoder Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/binary-gray-converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary-Gray Converter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/magnitude-comparator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magnitude Comparator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/mux-function-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MUX Function Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_11" id="__nav_7_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 9 - Sequential Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/sr-latch-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SR Latch Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/d-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/jk-flipflop-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JK Flip-Flop Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/timing-diagram-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Diagram Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/flipflop-timing-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flip-Flop Timing Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_12" id="__nav_7_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 10 - Sequential Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 10 - Sequential Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/shift-register-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/counter-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counter Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/fsm-designer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FSM Designer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/sequence-detector-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Detector Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/shift-register-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shift Register Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_13" id="__nav_7_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 11 - Programmable Logic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 11 - Programmable Logic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/programmable-connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programmable Connections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/rom-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ROM Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/pla-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/pla-vs-pal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA vs PAL Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/cpld-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPLD Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/lut-explorer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUT Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/clb-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLB Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/fpga-config-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Configuration Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/fpga-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/pld-selection-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLD Selection Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/pla-programming-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLA Programming Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_14" id="__nav_7_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 12 - VHDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 12 - VHDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/entity-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity-Architecture Explorer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vhdl-modeling-styles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Modeling Styles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vhdl-flipflop-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Flip-Flop Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vhdl-fsm-mapper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Mapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vhdl-synthesis-inference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL Synthesis Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vhdl-fsm-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VHDL FSM Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_15" id="__nav_7_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit 13 - System Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unit 13 - System Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/top-down-design-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top-Down Design Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/datapath-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/timing-analysis-visualizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timing Analysis Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/digital-lock-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Lock System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/uart-transmitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transmitter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/uart-transceiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UART Transceiver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/course-integration-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Integration Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/datapath-controller-walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datapath-Controller Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/vending-machine-fsm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vending Machine FSM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sims/hierarchical-alu-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hierarchical ALU Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Learning Graph
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/concept-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/concept-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concept Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/taxonomy-distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Taxonomy Distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/book-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/chapter-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/course-description-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description Assessment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/glossary-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/quiz-generation-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz Generation Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-graph/faq-quality-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ Quality Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="unit1-styled">
+<h1 id="unit-6-quine-mccluskey-method">Unit 6: Quine-McCluskey Method</h1>
+<details class="video-overview">
+<summary><strong>Unit Overview</strong> (click to expand)</summary>
+
+Welcome to Unit 6, where we tackle Boolean minimization from a completely different angle. Karnaugh maps are wonderful for small problems, but the Quine-McCluskey method replaces visual pattern recognition with a systematic, tabular algorithm that works for any number of variables — and that a computer can execute.
+
+The method proceeds in two phases. In the first phase, you list every minterm and group them by the number of ones in their binary representation. Then you compare minterms in adjacent groups, looking for pairs that differ in exactly one bit position. When you find such a pair, you combine them into a new implicant, replacing the differing bit with a dash. This combining process repeats until no further combinations are possible. Every implicant never checked off is a prime implicant.
+
+The second phase determines which prime implicants to include in the final expression. You construct a prime implicant chart — a table with prime implicants as rows and original minterms as columns. If any column has only a single mark, the corresponding prime implicant is essential. You select all essentials first, then for remaining coverage, Petrick's method finds the minimum number of additional prime implicants needed.
+
+The real power of Quine-McCluskey is its suitability for automation. Every step follows deterministic rules that translate directly into code. Modern logic synthesis tools use algorithms descended from this method to optimize circuits with thousands of variables.
+
+**Key Takeaways**
+
+1. The Quine-McCluskey method systematically finds all prime implicants through iterative pairwise combination of minterms, organized by the number of ones in their binary form.
+2. A prime implicant chart identifies essential prime implicants, and Petrick's method resolves any remaining coverage when essentials alone are not sufficient.
+3. The algorithm's deterministic, tabular nature makes it ideal for computer implementation, enabling minimization of functions with far more variables than K-maps can handle.
+
+</details>
+<h2 id="summary">Summary</h2>
+<p>This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algorithm for minimizing Boolean functions. While Karnaugh maps provide an intuitive visual approach for functions with up to five variables, the QM method offers a rigorous, algorithmic procedure suitable for functions with any number of variables. The method can be easily programmed for computer implementation, making it the foundation for modern logic minimization tools. Students will learn to construct implicant tables, systematically combine minterms, generate prime implicant charts, and determine minimum covers using techniques including Petrick's method.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<ol>
+<li>Quine-McCluskey Algorithm</li>
+<li>Tabular Minimization Method</li>
+<li>Implicant Table Construction</li>
+<li>Binary Representation of Minterms</li>
+<li>Grouping by Number of Ones</li>
+<li>Adjacency Criterion in QM</li>
+<li>Combining Adjacent Minterms</li>
+<li>Dash Notation for Combined Terms</li>
+<li>Iterative Combination Process</li>
+<li>Unchecked Terms as Prime Implicants</li>
+<li>Prime Implicant Chart Construction</li>
+<li>Essential Prime Implicants Selection</li>
+<li>Row Dominance</li>
+<li>Column Dominance</li>
+<li>Cyclic Prime Implicant Charts</li>
+<li>Petrick's Method</li>
+<li>Minimal Cover Selection</li>
+<li>QM Method with Don't Cares</li>
+<li>Computational Complexity of QM</li>
+<li>QM versus K-map Comparison</li>
+<li>Multi-Output Function Minimization</li>
+<li>Computer Implementation of QM</li>
+<li>Literal Count Optimization</li>
+<li>Gate Count Optimization</li>
+<li>Systematic Approach Advantages</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before studying this unit, students should be familiar with:</p>
+<ul>
+<li>Minterms, maxterms, and canonical forms (Unit 4)</li>
+<li>Prime implicants and essential prime implicants (Unit 5)</li>
+<li>K-map simplification techniques (Unit 5)</li>
+<li>Binary number representation (Unit 1)</li>
+<li>Boolean algebra fundamentals (Unit 2)</li>
+</ul>
+<hr />
+<h2 id="61-introduction-to-algorithmic-minimization">6.1 Introduction to Algorithmic Minimization</h2>
+<p>The Karnaugh map provides an elegant visual method for simplifying Boolean functions, but it has practical limitations. As the number of variables increases beyond four or five, K-maps become difficult to construct, visualize, and manipulate accurately. Additionally, the pattern-recognition approach that makes K-maps intuitive for humans does not translate easily into computer algorithms.</p>
+<p>The Quine-McCluskey method, developed independently by Willard V. Quine in 1952 and Edward J. McCluskey in 1956, addresses these limitations. This tabular minimization method provides a systematic, algorithmic procedure that:</p>
+<ul>
+<li>Works for any number of input variables</li>
+<li>Guarantees finding all prime implicants</li>
+<li>Can be readily programmed for computer implementation</li>
+<li>Produces results that can be verified step-by-step</li>
+</ul>
+<p>The QM method forms the theoretical foundation for modern Electronic Design Automation (EDA) tools used in industry for logic synthesis and optimization.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>K-map</th>
+<th>Quine-McCluskey</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum practical variables</td>
+<td>5-6</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td>Approach</td>
+<td>Visual pattern recognition</td>
+<td>Algorithmic tabular</td>
+</tr>
+<tr>
+<td>Computer implementation</td>
+<td>Difficult</td>
+<td>Straightforward</td>
+</tr>
+<tr>
+<td>Guaranteed optimal</td>
+<td>Depends on user skill</td>
+<td>Yes (finds all PIs)</td>
+</tr>
+<tr>
+<td>Speed for small functions</td>
+<td>Fast</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Speed for large functions</td>
+<td>Impractical</td>
+<td>Computationally intensive</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Historical Context</p>
+<p>The QM method represents one of the earliest examples of algorithmic approaches to digital design. It emerged during the same era that saw the development of the first commercial computers, reflecting the growing need for systematic design methods.</p>
+</div>
+<h2 id="62-binary-representation-and-grouping">6.2 Binary Representation and Grouping</h2>
+<p>The QM method begins by representing each minterm in binary form. For a function of <span class="arithmatex">\(n\)</span> variables, each minterm corresponds to an <span class="arithmatex">\(n\)</span>-bit binary number where the bit positions represent the complement or true form of each variable.</p>
+<p>Consider a function <span class="arithmatex">\(F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 10, 14)\)</span>.</p>
+<p>The first step is to list all minterms in their binary representations:</p>
+<table>
+<thead>
+<tr>
+<th>Minterm</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>Number of 1s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m₀</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>m₁</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>m₂</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>m₈</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>m₅</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>m₆</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>m₉</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>m₁₀</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>m₇</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>m₁₄</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>The minterms are then organized into groups based on the number of 1s in their binary representation. This grouping is fundamental to the QM algorithm because:</p>
+<ul>
+<li>Two minterms can only be combined if they differ in exactly one bit position</li>
+<li>Minterms that differ by one bit must have a difference of exactly one in their count of 1s</li>
+<li>Therefore, we only need to compare minterms in adjacent groups</li>
+</ul>
+<p>This insight dramatically reduces the number of comparisons needed, from <span class="arithmatex">\(\binom{n}{2}\)</span> comparisons (every pair) to comparisons only between adjacent groups.</p>
+<h4 id="diagram-qm-grouping-visualization">Diagram: QM Grouping Visualization</h4>
+<iframe height="532px" scrolling="no" src="../sims/qm-grouping-visualization/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<details>
+<summary>QM Grouping Visualization Specification</summary>
+<p>Type: microsim</p>
+<p>Bloom Level: Understand (L2)
+Bloom Verb: Classify, organize</p>
+<p>Learning Objective: Students will be able to classify minterms into groups based on the number of 1s in their binary representation and explain why this grouping facilitates the combination process.</p>
+<p>Visual Elements:
+- Left panel: Input area where students enter minterms (comma-separated list)
+- Center panel: Binary representation table showing each minterm, its binary form, and 1-count
+- Right panel: Grouped display showing minterms organized by number of 1s in stacked boxes
+- Color coding: Each group has a distinct color (Group 0: light blue, Group 1: light green, Group 2: yellow, Group 3: orange, Group 4: red)</p>
+<p>Interactive Controls:
+- Text input: Enter minterm numbers (e.g., "0,1,2,5,6,7,8,9,10,14")
+- Dropdown: Select number of variables (3, 4, 5, or 6)
+- Button: "Generate Groups"
+- Button: "Reset"
+- Checkbox: "Show binary representation"</p>
+<p>Behavior:
+- When minterms are entered and "Generate Groups" is clicked, display the binary representation table
+- Animate minterms moving from the table into their respective group boxes
+- Highlight adjacent groups with connecting arrows to show which groups will be compared
+- Display count of minterms in each group</p>
+<p>Data Visibility Requirements:
+- Stage 1: Show raw minterm list
+- Stage 2: Show conversion to binary with bit counting
+- Stage 3: Show final grouped arrangement</p>
+<p>Instructional Rationale: Grouping is a classification task that helps students understand the efficiency of the QM method. The animation showing minterms moving into groups reinforces the organizational principle.</p>
+<p>Canvas Size: 900x500 pixels, responsive to window width
+Implementation: p5.js</p>
+</details>
+<h2 id="63-the-combination-process">6.3 The Combination Process</h2>
+<p>Once minterms are grouped, the combination process begins. Two terms can be combined if and only if they:</p>
+<ol>
+<li>Differ in exactly one bit position</li>
+<li>Have identical values in all other bit positions</li>
+</ol>
+<p>When two terms are combined, the differing bit position is replaced with a dash (-), indicating that the variable is eliminated from the product term. This dash notation represents a "don't care" for that particular variable position.</p>
+<p><strong>Example:</strong> Combining minterms from the function above:</p>
+<p>Comparing Group 0 with Group 1:
+- m₀ (0000) and m₁ (0001): Differ only in position D → Combined: 000- (covers m₀, m₁)
+- m₀ (0000) and m₂ (0010): Differ only in position C → Combined: 00-0 (covers m₀, m₂)
+- m₀ (0000) and m₈ (1000): Differ only in position A → Combined: -000 (covers m₀, m₈)</p>
+<p>Each original minterm that participates in a combination is marked with a check (✓), indicating it is not a prime implicant by itself. Terms that cannot be combined with any other term remain unchecked and are identified as prime implicants.</p>
+<p>The combination process continues iteratively:</p>
+<ol>
+<li><strong>First iteration:</strong> Combine minterms to form 2-cell implicants (one dash)</li>
+<li><strong>Second iteration:</strong> Combine 2-cell implicants to form 4-cell implicants (two dashes)</li>
+<li><strong>Continue</strong> until no more combinations are possible</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Combination Rule</p>
+<p>Two terms with dashes can only be combined if:</p>
+<ul>
+<li>The dashes appear in the same positions</li>
+<li>The non-dash positions differ in exactly one bit</li>
+</ul>
+<p>For example: 0-01 and 0-11 can combine to form 0--1, but 0-01 and -001 cannot combine because the dashes are in different positions.</p>
+</div>
+<h2 id="64-constructing-the-implicant-table">6.4 Constructing the Implicant Table</h2>
+<p>The implicant table organizes the systematic combination process. Let us work through the complete example.</p>
+<p><strong>Initial Grouping (Column 1):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Minterm</th>
+<th>Binary</th>
+<th>✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0000</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0001</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>0010</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8</td>
+<td>1000</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>0101</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>0110</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2</td>
+<td>9</td>
+<td>1001</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10</td>
+<td>1010</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>0111</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14</td>
+<td>1110</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>First Combination (Column 2):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Minterms</th>
+<th>Pattern</th>
+<th>✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1</td>
+<td>0,1</td>
+<td>000-</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>0-1</td>
+<td>0,2</td>
+<td>00-0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>0-1</td>
+<td>0,8</td>
+<td>-000</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>1,5</td>
+<td>0-01</td>
+<td></td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>1,9</td>
+<td>-001</td>
+<td></td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>2,6</td>
+<td>0-10</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>2,10</td>
+<td>-010</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>8,9</td>
+<td>100-</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>8,10</td>
+<td>10-0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>5,7</td>
+<td>01-1</td>
+<td></td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>6,7</td>
+<td>011-</td>
+<td></td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>6,14</td>
+<td>-110</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>10,14</td>
+<td>1-10</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Second Combination (Column 3):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Minterms</th>
+<th>Pattern</th>
+<th>✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1-2</td>
+<td>0,1,8,9</td>
+<td>-00-</td>
+<td></td>
+</tr>
+<tr>
+<td>0-1-2</td>
+<td>0,2,8,10</td>
+<td>-0-0</td>
+<td></td>
+</tr>
+<tr>
+<td>1-2-3</td>
+<td>2,6,10,14</td>
+<td>--10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="diagram-qm-combination-process-simulator">Diagram: QM Combination Process Simulator</h4>
+<iframe height="582px" scrolling="no" src="../sims/qm-combination-simulator/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<details>
+<summary>QM Combination Process Simulator Specification</summary>
+<p>Type: microsim</p>
+<p>Bloom Level: Apply (L3)
+Bloom Verb: Execute, implement</p>
+<p>Learning Objective: Students will be able to execute the QM combination process step-by-step, identifying which terms can be combined and correctly applying dash notation.</p>
+<p>Visual Elements:
+- Three-column layout showing progressive combination stages
+- Column 1: Original minterms grouped by number of 1s
+- Column 2: First-level combinations (1 dash)
+- Column 3: Second-level combinations (2 dashes)
+- Each term displays: minterm coverage, binary/dash pattern, check mark if combined
+- Connecting lines between columns showing which terms combined
+- Prime implicant highlight (unchecked terms in gold)</p>
+<p>Interactive Controls:
+- Input: Minterm list entry
+- Dropdown: Number of variables (3, 4, 5)
+- Button: "Step" - advance one combination at a time
+- Button: "Run All" - complete all combinations
+- Button: "Reset"
+- Toggle: "Show combination details" - displays which bit differs when combining</p>
+<p>Step-by-Step Behavior:
+- Step 1: Display grouped minterms in Column 1
+- Step 2-N: Each step attempts one combination, showing:
+  - The two terms being compared
+  - Whether they can combine (highlighting the differing bit)
+  - The resulting term with dash notation
+  - Check marks added to combined source terms
+- Final: Highlight all unchecked terms as prime implicants</p>
+<p>Data Visibility Requirements:
+- Before combination: Show both source terms with binary patterns
+- During combination: Highlight the differing bit position
+- After combination: Show result with dash, update check marks</p>
+<p>Instructional Rationale: Step-through execution allows students to practice the mechanical process of QM combination. Seeing each comparison explicitly builds procedural fluency before attempting problems independently.</p>
+<p>Canvas Size: 950x600 pixels, responsive
+Implementation: p5.js</p>
+</details>
+<h2 id="65-identifying-prime-implicants">6.5 Identifying Prime Implicants</h2>
+<p>After all possible combinations have been made, the <strong>unchecked terms</strong> from all columns are the prime implicants. These are the largest possible groupings of minterms that cannot be further combined.</p>
+<p>From our example, the prime implicants are:</p>
+<table>
+<thead>
+<tr>
+<th>Prime Implicant</th>
+<th>Pattern</th>
+<th>Minterms Covered</th>
+<th>Boolean Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td>0-01</td>
+<td>1, 5</td>
+<td><span class="arithmatex">\(\bar{A}\bar{C}D\)</span></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td>-001</td>
+<td>1, 9</td>
+<td><span class="arithmatex">\(\bar{B}\bar{C}D\)</span></td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td>01-1</td>
+<td>5, 7</td>
+<td><span class="arithmatex">\(\bar{A}BD\)</span></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td>011-</td>
+<td>6, 7</td>
+<td><span class="arithmatex">\(\bar{A}BC\)</span></td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td>-00-</td>
+<td>0, 1, 8, 9</td>
+<td><span class="arithmatex">\(\bar{B}\bar{C}\)</span></td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td>-0-0</td>
+<td>0, 2, 8, 10</td>
+<td><span class="arithmatex">\(\bar{B}\bar{D}\)</span></td>
+</tr>
+<tr>
+<td>PI₇</td>
+<td>--10</td>
+<td>2, 6, 10, 14</td>
+<td><span class="arithmatex">\(C\bar{D}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>To convert a pattern to a Boolean expression:
+- A 0 in position <span class="arithmatex">\(i\)</span> means the variable appears complemented
+- A 1 in position <span class="arithmatex">\(i\)</span> means the variable appears uncomplemented
+- A dash in position <span class="arithmatex">\(i\)</span> means the variable is absent from the term</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Mistake</p>
+<p>Students sometimes confuse which terms are prime implicants. Remember: only <strong>unchecked</strong> terms are prime implicants. A term with a check mark has been absorbed into a larger grouping and is not a prime implicant.</p>
+</div>
+<h2 id="66-the-prime-implicant-chart">6.6 The Prime Implicant Chart</h2>
+<p>The prime implicant chart (also called the selection table or covering table) determines which prime implicants to include in the final minimal expression. The chart has:</p>
+<ul>
+<li><strong>Rows:</strong> One for each prime implicant</li>
+<li><strong>Columns:</strong> One for each minterm in the original function</li>
+<li><strong>Marks (×):</strong> Placed where a prime implicant covers a minterm</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>Pattern</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td>0-01</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td>-001</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td>01-1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td>011-</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td>-00-</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td>-0-0</td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>PI₇</td>
+<td>--10</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding Essential Prime Implicants:</strong></p>
+<p>An essential prime implicant (EPI) is a prime implicant that is the only one covering some minterm. In the chart, look for columns with only one × mark.</p>
+<ul>
+<li>Column 7: Only PI₃ and PI₄ cover minterm 7 → Not unique</li>
+<li>Column 14: Only PI₇ covers minterm 14 → <strong>PI₇ is essential</strong></li>
+</ul>
+<p>In this example, examining each column:
+- Minterm 0: Covered by PI₅, PI₆
+- Minterm 1: Covered by PI₁, PI₂, PI₅
+- Minterm 2: Covered by PI₆, PI₇
+- Minterm 5: Covered by PI₁, PI₃
+- Minterm 6: Covered by PI₄, PI₇
+- Minterm 7: Covered by PI₃, PI₄
+- Minterm 8: Covered by PI₅, PI₆
+- Minterm 9: Covered by PI₂, PI₅
+- Minterm 10: Covered by PI₆, PI₇
+- Minterm 14: Covered by PI₇ only → <strong>PI₇ is essential</strong></p>
+<p>Since PI₇ is essential, we must include it. PI₇ covers minterms {2, 6, 10, 14}.</p>
+<h2 id="67-row-and-column-dominance">6.7 Row and Column Dominance</h2>
+<p>After selecting essential prime implicants, we may need additional techniques to reduce the prime implicant chart before finding a minimum cover.</p>
+<p><strong>Column Dominance:</strong>
+A column <span class="arithmatex">\(j\)</span> dominates column <span class="arithmatex">\(k\)</span> if every prime implicant that covers minterm <span class="arithmatex">\(k\)</span> also covers minterm <span class="arithmatex">\(j\)</span>. The dominated column <span class="arithmatex">\(j\)</span> can be removed from the chart because covering <span class="arithmatex">\(k\)</span> automatically covers <span class="arithmatex">\(j\)</span>.</p>
+<p><strong>Row Dominance:</strong>
+A row (prime implicant) <span class="arithmatex">\(P_i\)</span> dominates row <span class="arithmatex">\(P_j\)</span> if <span class="arithmatex">\(P_i\)</span> covers every minterm that <span class="arithmatex">\(P_j\)</span> covers. If they have equal cost, the dominated row <span class="arithmatex">\(P_j\)</span> can be eliminated since <span class="arithmatex">\(P_i\)</span> is at least as good.</p>
+<p>Applying these rules iteratively can significantly reduce the complexity of the remaining selection problem.</p>
+<p><strong>Reduced Chart after selecting PI₇:</strong></p>
+<p>Minterms still to cover: {0, 1, 5, 7, 8, 9}</p>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>0</th>
+<th>1</th>
+<th>5</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Now we can observe:
+- PI₄ only covers minterm 7, which PI₃ also covers (plus minterm 5)
+- PI₄ is dominated by PI₃ → Remove PI₄</p>
+<p>After removing PI₄ and checking further, PI₅ covers {0, 1, 8, 9} which is a superset of what PI₂ covers {1, 9} plus PI₆'s coverage of {0, 8}.</p>
+<h2 id="68-petricks-method">6.8 Petrick's Method</h2>
+<p>When the prime implicant chart cannot be fully reduced by row/column dominance and essential prime implicant selection, <strong>Petrick's method</strong> provides an algebraic approach to finding all minimum covers.</p>
+<p>The method constructs a Boolean expression where:
+- Each prime implicant has a Boolean variable (<span class="arithmatex">\(P_1, P_2, \ldots\)</span>)
+- For each minterm column, form a sum (OR) of the PIs that cover it
+- Multiply (AND) all these sums together
+- Expand and simplify to find minimum covers</p>
+<p><strong>Example:</strong> For remaining minterms {0, 1, 5, 7} with PIs:
+- Minterm 0: Covered by PI₅ or PI₆ → <span class="arithmatex">\((P_5 + P_6)\)</span>
+- Minterm 1: Covered by PI₁, PI₂, or PI₅ → <span class="arithmatex">\((P_1 + P_2 + P_5)\)</span>
+- Minterm 5: Covered by PI₁ or PI₃ → <span class="arithmatex">\((P_1 + P_3)\)</span>
+- Minterm 7: Covered by PI₃ → <span class="arithmatex">\((P_3)\)</span></p>
+<p>Petrick's function:
+$<span class="arithmatex">\(P = (P_5 + P_6)(P_1 + P_2 + P_5)(P_1 + P_3)(P_3)\)</span>$</p>
+<p>Since <span class="arithmatex">\(P_3\)</span> must be true (minterm 7), we get:
+$<span class="arithmatex">\(P = (P_5 + P_6)(P_1 + P_2 + P_5)(P_1 + P_3)\)</span>$</p>
+<p>With <span class="arithmatex">\(P_3 = 1\)</span>: <span class="arithmatex">\((P_1 + P_3) = 1\)</span></p>
+<div class="arithmatex">\[P = (P_5 + P_6)(P_1 + P_2 + P_5)\]</div>
+<p>Expanding:
+$<span class="arithmatex">\(P = P_1P_5 + P_2P_5 + P_5 + P_1P_6 + P_2P_6 + P_5P_6\)</span>$</p>
+<p>By absorption (<span class="arithmatex">\(P_5\)</span> absorbs <span class="arithmatex">\(P_1P_5\)</span>, <span class="arithmatex">\(P_2P_5\)</span>, <span class="arithmatex">\(P_5P_6\)</span>):
+$<span class="arithmatex">\(P = P_5 + P_1P_6 + P_2P_6\)</span>$</p>
+<p>Minimum covers include:
+- {PI₃, PI₅, PI₇} → <span class="arithmatex">\(P_3P_5P_7\)</span>
+- {PI₃, PI₆, PI₇, PI₁} → <span class="arithmatex">\(P_1P_3P_6P_7\)</span>
+- {PI₃, PI₆, PI₇, PI₂} → <span class="arithmatex">\(P_2P_3P_6P_7\)</span></p>
+<p>The first solution has 3 prime implicants, making it the minimum cover.</p>
+<h4 id="diagram-prime-implicant-chart-interactive">Diagram: Prime Implicant Chart Interactive</h4>
+<iframe height="582px" scrolling="no" src="../sims/pi-chart-interactive/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<details>
+<summary>Prime Implicant Chart Interactive Specification</summary>
+<p>Type: microsim</p>
+<p>Bloom Level: Analyze (L4)
+Bloom Verb: Examine, differentiate</p>
+<p>Learning Objective: Students will be able to analyze a prime implicant chart to identify essential prime implicants, apply row and column dominance, and determine a minimum cover.</p>
+<p>Visual Elements:
+- Main display: Interactive prime implicant chart as a grid
+- Columns: Minterms (numbered)
+- Rows: Prime implicants (labeled with pattern and Boolean expression)
+- Marks: × symbols showing coverage
+- Color coding:
+  - Essential PI rows: Green background
+  - Selected PIs: Blue background
+  - Eliminated PIs: Red strikethrough
+  - Covered minterms: Gray columns
+  - Single-cover columns (indicates EPI): Gold highlight</p>
+<p>Interactive Controls:
+- Input: Enter minterms and prime implicants, or use example
+- Button: "Find Essential PIs" - highlights columns with single ×
+- Button: "Apply Row Dominance" - identifies and optionally removes dominated rows
+- Button: "Apply Column Dominance" - identifies and optionally removes dominated columns
+- Clickable rows: Select/deselect prime implicants manually
+- Display: Running count of selected PIs, literals, and remaining uncovered minterms
+- Button: "Check Solution" - verifies if all minterms are covered
+- Button: "Reset"</p>
+<p>Behavior:
+- When "Find Essential PIs" clicked, scan columns and highlight those with single ×
+- Auto-select essential PIs and gray out covered minterm columns
+- Row/column dominance shows relationships with dotted lines before removal
+- Manual selection updates the "uncovered minterms" display in real-time
+- "Check Solution" validates coverage and displays result</p>
+<p>Data Visibility Requirements:
+- Initial: Full chart with all PIs and minterms
+- After EPI selection: Show which minterms are now covered
+- After dominance: Show reduced chart
+- Solution: Show final selected PIs and Boolean expression</p>
+<p>Instructional Rationale: The chart analysis process requires students to examine relationships between prime implicants and minterms. Interactive exploration allows trying different selection strategies to find minimum solutions.</p>
+<p>Canvas Size: 900x550 pixels, responsive
+Implementation: p5.js with HTML table overlay</p>
+</details>
+<h2 id="69-cyclic-prime-implicant-charts">6.9 Cyclic Prime Implicant Charts</h2>
+<p>A <strong>cyclic prime implicant chart</strong> occurs when:
+- There are no essential prime implicants
+- Row and column dominance cannot reduce the chart
+- Multiple equivalent minimum solutions exist</p>
+<p>In such cases, Petrick's method must be applied to the full chart. The resulting minimum cover may not be unique—multiple selections of prime implicants may yield expressions with the same minimal cost.</p>
+<p><strong>Example of a cyclic chart:</strong></p>
+<p>Consider <span class="arithmatex">\(F(A,B,C) = \sum m(0, 1, 2, 5, 6, 7)\)</span></p>
+<p>The prime implicants are:
+- PI₁: <span class="arithmatex">\(\bar{A}\bar{B}\)</span> (covers 0, 1)
+- PI₂: <span class="arithmatex">\(\bar{A}\bar{C}\)</span> (covers 0, 2)
+- PI₃: <span class="arithmatex">\(\bar{B}C\)</span> (covers 1, 5)
+- PI₄: <span class="arithmatex">\(B\bar{C}\)</span> (covers 2, 6)
+- PI₅: <span class="arithmatex">\(\bar{A}B\)</span> (covers 6, 7)
+- PI₆: <span class="arithmatex">\(AC\)</span> (covers 5, 7)</p>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<p>Every column has exactly two ×'s—no essential prime implicants exist. This is a cyclic chart requiring Petrick's method.</p>
+<p>Two minimum solutions exist:
+- <span class="arithmatex">\(F = \bar{A}\bar{B} + B\bar{C} + AC\)</span> (PI₁ + PI₄ + PI₆)
+- <span class="arithmatex">\(F = \bar{A}\bar{C} + \bar{B}C + \bar{A}B\)</span> (PI₂ + PI₃ + PI₅)</p>
+<p>Both solutions use 3 prime implicants with 6 literals each.</p>
+<h2 id="610-handling-dont-care-conditions">6.10 Handling Don't Care Conditions</h2>
+<p>Don't care conditions are handled naturally in the QM method. During the combination phase, don't care minterms are included along with the required minterms. They participate in combinations, potentially creating larger prime implicants.</p>
+<p>However, in the prime implicant chart:
+- Don't care minterms do <strong>not</strong> appear as columns
+- Only the required minterms (ON-set) must be covered
+- Don't cares may help create prime implicants that cover required minterms more efficiently</p>
+<p><strong>Example:</strong> <span class="arithmatex">\(F(A,B,C,D) = \sum m(1, 3, 5, 7, 9) + d(6, 12, 13)\)</span></p>
+<ol>
+<li>In the combination table, include minterms {1, 3, 5, 6, 7, 9, 12, 13}</li>
+<li>Combine as usual to find all prime implicants</li>
+<li>In the PI chart, only include columns for {1, 3, 5, 7, 9}</li>
+<li>Prime implicants that exist because of don't care combinations are valid</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Don't Care Benefit</p>
+<p>Minterm 6 (0110) might combine with minterm 7 (0111) to form 011- (<span class="arithmatex">\(\bar{A}BC\)</span>). If this prime implicant helps cover required minterms more efficiently, it provides optimization that wouldn't exist without the don't care.</p>
+</div>
+<h2 id="611-computational-complexity">6.11 Computational Complexity</h2>
+<p>The QM method, while systematic, has exponential worst-case complexity:</p>
+<ul>
+<li><strong>Number of prime implicants:</strong> Can be as large as <span class="arithmatex">\(3^n / n\)</span> for <span class="arithmatex">\(n\)</span> variables</li>
+<li><strong>Prime implicant chart:</strong> Can have exponentially many rows and columns</li>
+<li><strong>Minimum cover problem:</strong> NP-complete in general</li>
+</ul>
+<p>For functions with many variables (&gt;15-20), the basic QM method becomes computationally impractical. Modern EDA tools use heuristic algorithms like ESPRESSO that:</p>
+<ul>
+<li>Use different representations (cubes, covers)</li>
+<li>Apply heuristic reduction techniques</li>
+<li>Trade guaranteed optimality for practical computation time</li>
+<li>Often find near-optimal or optimal solutions quickly</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Variables</th>
+<th>Approx. Max Prime Implicants</th>
+<th>Practical?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>~20</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>~100</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>10</td>
+<td>~5,900</td>
+<td>Challenging</td>
+</tr>
+<tr>
+<td>15</td>
+<td>~950,000</td>
+<td>Requires heuristics</td>
+</tr>
+<tr>
+<td>20</td>
+<td>~58,000,000</td>
+<td>Impractical (exact)</td>
+</tr>
+</tbody>
+</table>
+<p>Despite its complexity, the QM method remains important because:
+- It provides the theoretical foundation for understanding minimization
+- It guarantees optimal solutions for functions where K-maps are impractical but exact solutions are needed
+- It illustrates fundamental concepts used in more advanced algorithms</p>
+<h4 id="diagram-qm-complexity-visualization">Diagram: QM Complexity Visualization</h4>
+<iframe height="550px" scrolling="no" src="../sims/qm-complexity-chart/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<details>
+<summary>QM Complexity Visualization Specification</summary>
+<p>Type: chart</p>
+<p>Bloom Level: Evaluate (L5)
+Bloom Verb: Assess, compare</p>
+<p>Learning Objective: Students will be able to assess when the QM method is practical versus when heuristic methods are preferred based on problem size.</p>
+<p>Chart Type: Dual-axis line chart</p>
+<p>Purpose: Visualize the exponential growth of QM computational requirements as variable count increases, compared to heuristic methods.</p>
+<p>X-axis: Number of variables (2 to 20)
+Y-axis 1 (left, logarithmic): Computation time (relative units)
+Y-axis 2 (right, logarithmic): Maximum number of prime implicants</p>
+<p>Data Series:
+1. QM Method Time (red line, exponential growth)
+   - 2 vars: 1
+   - 4 vars: 10
+   - 6 vars: 100
+   - 8 vars: 2,000
+   - 10 vars: 50,000
+   - 15 vars: 10,000,000
+   - 20 vars: 10,000,000,000</p>
+<ol>
+<li>ESPRESSO Heuristic Time (green line, polynomial growth)</li>
+<li>2 vars: 1</li>
+<li>4 vars: 5</li>
+<li>6 vars: 20</li>
+<li>8 vars: 80</li>
+<li>10 vars: 300</li>
+<li>15 vars: 2,000</li>
+<li>
+<p>20 vars: 10,000</p>
+</li>
+<li>
+<p>Max Prime Implicants (blue dashed line)</p>
+</li>
+<li>Following 3^n / n formula</li>
+</ol>
+<p>Annotations:
+- Vertical line at n=6: "K-map practical limit"
+- Vertical line at n=15: "QM practical limit"
+- Shaded region for "Exact methods practical"
+- Shaded region for "Heuristics recommended"</p>
+<p>Title: "Computational Complexity: Exact vs. Heuristic Minimization"
+Legend: Position bottom</p>
+<p>Interactive features (if implemented as MicroSim):
+- Hover to see exact values
+- Toggle series visibility
+- Slider to adjust scale</p>
+<p>Implementation: Chart.js or p5.js
+Canvas Size: 800x450 pixels, responsive</p>
+</details>
+<h2 id="612-multi-output-minimization">6.12 Multi-Output Minimization</h2>
+<p>Many digital systems have multiple output functions sharing the same input variables. Multi-output minimization seeks to share product terms across multiple functions to minimize the total gate count.</p>
+<p><strong>Example:</strong> Two functions sharing inputs A, B, C:
+- <span class="arithmatex">\(F_1 = \sum m(1, 3, 5, 7)\)</span>
+- <span class="arithmatex">\(F_2 = \sum m(3, 4, 5, 6, 7)\)</span></p>
+<p>Minimizing separately:
+- <span class="arithmatex">\(F_1 = C\)</span> (one product term)
+- <span class="arithmatex">\(F_2 = B + AC\)</span> (two product terms)
+- Total: 3 product terms</p>
+<p>But notice that <span class="arithmatex">\(AC\)</span> could be shared if we express <span class="arithmatex">\(F_1 = \bar{B}C + BC = C\)</span>. If a shared term <span class="arithmatex">\(BC\)</span> is used:
+- <span class="arithmatex">\(F_1 = \bar{B}C + BC\)</span>
+- <span class="arithmatex">\(F_2 = B + AC\)</span>
+- Shared term: None obvious in this case</p>
+<p>The QM method can be extended for multi-output minimization by:
+1. Computing prime implicants for each function individually
+2. Computing "shared" prime implicants that cover minterms in multiple functions
+3. Building a modified prime implicant chart that accounts for sharing
+4. Selecting a minimum cover that minimizes total gates</p>
+<p>Modern tools like ESPRESSO-MV (multi-valued) handle multi-output minimization efficiently.</p>
+<h2 id="613-qm-method-summary-and-complete-example">6.13 QM Method Summary and Complete Example</h2>
+<p>Let us work through a complete example systematically.</p>
+<p><strong>Problem:</strong> Minimize <span class="arithmatex">\(F(A, B, C, D) = \sum m(0, 2, 5, 6, 7, 8, 10, 12, 13, 14, 15)\)</span></p>
+<p><strong>Step 1: Group minterms by number of 1s</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Minterm</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>2</td>
+<td>12</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+<td>1101</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>4</td>
+<td>15</td>
+<td>1111</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2: First combination</strong></p>
+<table>
+<thead>
+<tr>
+<th>Minterms</th>
+<th>Pattern</th>
+<th>✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0,2</td>
+<td>00-0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>0,8</td>
+<td>-000</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2,6</td>
+<td>0-10</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2,10</td>
+<td>-010</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>8,10</td>
+<td>10-0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>8,12</td>
+<td>1-00</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>5,7</td>
+<td>01-1</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>5,13</td>
+<td>-101</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>6,7</td>
+<td>011-</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>6,14</td>
+<td>-110</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>10,14</td>
+<td>1-10</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>12,13</td>
+<td>110-</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>12,14</td>
+<td>11-0</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>7,15</td>
+<td>-111</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>13,15</td>
+<td>11-1</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>14,15</td>
+<td>111-</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3: Second combination</strong></p>
+<table>
+<thead>
+<tr>
+<th>Minterms</th>
+<th>Pattern</th>
+<th>✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0,2,8,10</td>
+<td>-0-0</td>
+<td></td>
+</tr>
+<tr>
+<td>2,6,10,14</td>
+<td>--10</td>
+<td></td>
+</tr>
+<tr>
+<td>8,10,12,14</td>
+<td>1--0</td>
+<td></td>
+</tr>
+<tr>
+<td>5,7,13,15</td>
+<td>-1-1</td>
+<td></td>
+</tr>
+<tr>
+<td>6,7,14,15</td>
+<td>-11-</td>
+<td></td>
+</tr>
+<tr>
+<td>12,13,14,15</td>
+<td>11--</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4: No further combinations possible. Prime Implicants:</strong></p>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>Pattern</th>
+<th>Minterms</th>
+<th>Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td>-0-0</td>
+<td>0,2,8,10</td>
+<td><span class="arithmatex">\(\bar{B}\bar{D}\)</span></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td>--10</td>
+<td>2,6,10,14</td>
+<td><span class="arithmatex">\(C\bar{D}\)</span></td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td>1--0</td>
+<td>8,10,12,14</td>
+<td><span class="arithmatex">\(A\bar{D}\)</span></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td>-1-1</td>
+<td>5,7,13,15</td>
+<td><span class="arithmatex">\(BD\)</span></td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td>-11-</td>
+<td>6,7,14,15</td>
+<td><span class="arithmatex">\(BC\)</span></td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td>11--</td>
+<td>12,13,14,15</td>
+<td><span class="arithmatex">\(AB\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 5: Prime Implicant Chart</strong></p>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>0</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>10</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₁</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI₂</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td>PI₄</td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6: Find Essential Prime Implicants</strong></p>
+<ul>
+<li>Column 0: Only PI₁ → <strong>PI₁ is essential</strong></li>
+<li>Column 5: Only PI₄ → <strong>PI₄ is essential</strong></li>
+</ul>
+<p>Select PI₁ and PI₄. Covered minterms: {0, 2, 5, 7, 8, 10, 13, 15}</p>
+<p>Remaining minterms: {6, 12, 14}</p>
+<p><strong>Step 7: Reduced chart</strong></p>
+<table>
+<thead>
+<tr>
+<th>PI</th>
+<th>6</th>
+<th>12</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PI₂</td>
+<td>×</td>
+<td></td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₃</td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₅</td>
+<td>×</td>
+<td></td>
+<td>×</td>
+</tr>
+<tr>
+<td>PI₆</td>
+<td></td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<p>Minterm 6: PI₂ or PI₅
+Minterm 12: PI₃ or PI₆
+Minterm 14: All four PIs</p>
+<p>We need at least one from {PI₂, PI₅} for minterm 6 and one from {PI₃, PI₆} for minterm 12.</p>
+<p>Minimum solutions:
+- PI₁ + PI₄ + PI₂ + PI₃ = <span class="arithmatex">\(\bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}\)</span>
+- PI₁ + PI₄ + PI₂ + PI₆ = <span class="arithmatex">\(\bar{B}\bar{D} + BD + C\bar{D} + AB\)</span>
+- PI₁ + PI₄ + PI₅ + PI₃ = <span class="arithmatex">\(\bar{B}\bar{D} + BD + BC + A\bar{D}\)</span>
+- PI₁ + PI₄ + PI₅ + PI₆ = <span class="arithmatex">\(\bar{B}\bar{D} + BD + BC + AB\)</span></p>
+<p>All solutions have 4 product terms and 8 literals.</p>
+<p><strong>Final Answer:</strong> <span class="arithmatex">\(F = \bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}\)</span> (or any equivalent minimum solution)</p>
+<h4 id="diagram-complete-qm-method-walkthrough">Diagram: Complete QM Method Walkthrough</h4>
+<iframe height="652px" scrolling="no" src="../sims/qm-complete-walkthrough/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<details>
+<summary>Complete QM Method Walkthrough Specification</summary>
+<p>Type: microsim</p>
+<p>Bloom Level: Create (L6)
+Bloom Verb: Construct, develop</p>
+<p>Learning Objective: Students will be able to construct a complete QM minimization solution from start to finish, including grouping, combination, prime implicant identification, chart construction, and minimum cover selection.</p>
+<p>Visual Elements:
+- Four-panel layout:
+  1. Top-left: Minterm input and grouping table
+  2. Top-right: Combination table with iterative columns
+  3. Bottom-left: Prime implicant chart
+  4. Bottom-right: Solution summary with Boolean expression</p>
+<p>Interactive Controls:
+- Input field: Enter minterm list
+- Input field: Enter don't care list (optional)
+- Dropdown: Number of variables (3, 4, 5, 6)
+- Mode selector: "Step-by-step" or "Automatic"
+- Step-by-step controls:
+  - "Next Step" button
+  - "Previous Step" button
+  - Current step indicator
+- "Generate Full Solution" button
+- "Export Solution" button (copy to clipboard)
+- "New Problem" button</p>
+<p>Step-by-Step Sequence:
+1. Enter minterms → Display grouped table
+2. First combination → Show all possible pairs, highlight valid combinations
+3. Second combination → Continue combining
+4. Mark prime implicants → Highlight unchecked terms
+5. Build PI chart → Display coverage matrix
+6. Find essential PIs → Highlight single-cover columns
+7. Apply dominance (if applicable)
+8. Select remaining PIs → Show minimum cover options
+9. Display final expression</p>
+<p>Data Visibility Requirements:
+- Each step shows intermediate results clearly
+- Transitions highlight what changed
+- Final summary shows all prime implicants used and Boolean expression
+- Cost metrics: number of terms, number of literals</p>
+<p>Instructional Rationale: The Create level requires students to synthesize all QM steps into a complete solution. This comprehensive simulator serves as both a learning tool and a verification system for hand-computed solutions.</p>
+<p>Canvas Size: 1000x700 pixels, responsive with collapsible panels
+Implementation: p5.js</p>
+</details>
+<h2 id="614-computer-implementation">6.14 Computer Implementation</h2>
+<p>The QM method's systematic nature makes it well-suited for computer implementation. A basic implementation involves:</p>
+<p><strong>Data Structures:</strong>
+- Minterms stored as integers or bit vectors
+- Implicants stored with pattern (binary + dash positions) and coverage set
+- Chart represented as a sparse matrix or adjacency list</p>
+<p><strong>Algorithm Pseudocode:</strong></p>
+<div class="highlight"><pre><span></span><code>function QuineMcCluskey(minterms, dontcares, num_vars):
+    # Step 1: Initialize with minterms and don&#39;t cares
+    terms = minterms ∪ dontcares
+    all_prime_implicants = []
+
+    # Step 2: Group by number of 1s
+    groups = group_by_ones_count(terms, num_vars)
+
+    # Step 3: Iterative combination
+    while groups is not empty:
+        new_groups = {}
+        combined = set()
+
+        for each adjacent pair (group_i, group_j):
+            for term_a in group_i:
+                for term_b in group_j:
+                    if can_combine(term_a, term_b):
+                        new_term = combine(term_a, term_b)
+                        add new_term to new_groups
+                        mark term_a, term_b as combined
+
+        # Uncombined terms are prime implicants
+        for term in all terms not in combined:
+            add term to all_prime_implicants
+
+        groups = new_groups
+
+    # Step 4: Build prime implicant chart (exclude don&#39;t cares)
+    chart = build_chart(all_prime_implicants, minterms)
+
+    # Step 5: Find minimum cover
+    solution = find_minimum_cover(chart)
+
+    return solution
+</code></pre></div>
+<p><strong>Key Functions:</strong></p>
+<ul>
+<li><code>can_combine(a, b)</code>: Check if two terms differ in exactly one bit (dashes must align)</li>
+<li><code>combine(a, b)</code>: Create new term with dash in differing position</li>
+<li><code>find_minimum_cover(chart)</code>: Apply EPI selection, dominance, and Petrick's method</li>
+</ul>
+<p>Modern implementations use additional optimizations:
+- Signature-based hashing for faster combination checking
+- Column/row dominance applied incrementally
+- Branch-and-bound for minimum cover selection</p>
+<h2 id="615-summary-and-key-takeaways">6.15 Summary and Key Takeaways</h2>
+<p>The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean function minimization:</p>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Binary grouping:</strong> Organize minterms by 1-count to reduce comparisons</li>
+<li><strong>Systematic combination:</strong> Combine adjacent groups, mark combined terms</li>
+<li><strong>Dash notation:</strong> Represents eliminated variables in combined terms</li>
+<li><strong>Prime implicants:</strong> Unchecked terms that cannot be further combined</li>
+<li><strong>PI chart:</strong> Maps prime implicants to minterms they cover</li>
+<li><strong>Essential PIs:</strong> Must be included (unique coverage)</li>
+<li><strong>Row/column dominance:</strong> Simplifies the selection problem</li>
+<li><strong>Petrick's method:</strong> Algebraically finds all minimum covers</li>
+<li><strong>Cyclic charts:</strong> No EPIs exist; require Petrick's method</li>
+</ul>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Works for any number of variables</li>
+<li>Guarantees finding all prime implicants</li>
+<li>Produces verifiable, step-by-step solutions</li>
+<li>Foundation for computer-aided design tools</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Exponential worst-case complexity</li>
+<li>Impractical for functions with many variables (&gt;15-20)</li>
+<li>Manual application is tedious for larger functions</li>
+</ul>
+<p><strong>When to Use:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean algebra</td>
+<td>Simple expressions, quick simplifications</td>
+</tr>
+<tr>
+<td>K-maps</td>
+<td>2-5 variable functions, visual learners</td>
+</tr>
+<tr>
+<td>QM method</td>
+<td>5-15 variable functions, exact solutions needed</td>
+</tr>
+<tr>
+<td>Heuristics (ESPRESSO)</td>
+<td>Large functions, near-optimal solutions acceptable</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="self-check-questions">Self-Check Questions</h2>
+<details class="question">
+<summary>What determines which minterms can be combined in the QM method?</summary>
+<p>Two minterms (or implicants) can be combined if and only if:</p>
+<ol>
+<li>They differ in exactly one bit position</li>
+<li>Any dash positions must be in the same location</li>
+</ol>
+<p>The grouping by number of 1s ensures we only compare minterms that could potentially differ by one bit, since such minterms must have 1-counts differing by exactly one.</p>
+</details>
+<details class="question">
+<summary>How do you identify a prime implicant in the QM method?</summary>
+<p>A prime implicant is any term that:</p>
+<ul>
+<li>Remains <strong>unchecked</strong> after all combination iterations</li>
+<li>Cannot be combined with any other term to form a larger grouping</li>
+</ul>
+<p>Terms that get combined with others receive a check mark (✓) and are not prime implicants.</p>
+</details>
+<details class="question">
+<summary>What makes a prime implicant 'essential'?</summary>
+<p>A prime implicant is <strong>essential</strong> if it is the <strong>only</strong> prime implicant that covers some minterm. In the PI chart, this appears as a column with exactly one × mark.</p>
+<p>Essential prime implicants must be included in any minimum solution.</p>
+</details>
+<details class="question">
+<summary>When is Petrick's method needed?</summary>
+<p>Petrick's method is needed when:</p>
+<ul>
+<li>All essential prime implicants have been selected</li>
+<li>Row and column dominance cannot further reduce the chart</li>
+<li>Multiple prime implicants remain that could cover the remaining minterms</li>
+</ul>
+<p>This often occurs with <strong>cyclic</strong> prime implicant charts where no single PI has unique coverage.</p>
+</details>
+<details class="question">
+<summary>How does the QM method handle don't care conditions?</summary>
+<p>Don't cares are handled in two stages:</p>
+<ol>
+<li>
+<p><strong>Combination phase:</strong> Include don't care minterms with regular minterms. They participate in combinations, potentially creating larger prime implicants.</p>
+</li>
+<li>
+<p><strong>Chart phase:</strong> Don't care minterms are <strong>excluded</strong> from the PI chart columns. Only the required (ON-set) minterms appear as columns that must be covered.</p>
+</li>
+</ol>
+<p>This allows don't cares to contribute to optimization without requiring coverage.</p>
+</details>
+<details class="question">
+<summary>What is the primary advantage of QM over K-maps? What is its main disadvantage?</summary>
+<p><strong>Primary advantage:</strong> The QM method works for functions with any number of variables and can be easily programmed for computer implementation. It provides a systematic, verifiable procedure that doesn't rely on visual pattern recognition.</p>
+<p><strong>Main disadvantage:</strong> The QM method has exponential worst-case complexity. The number of prime implicants and the size of the covering problem can grow exponentially with the number of variables, making it impractical for very large functions.</p>
+</details>
+<hr />
+<h2 id="interactive-walkthrough">Interactive Walkthrough</h2>
+<p>Step through the Quine-McCluskey algorithm with grouping, combining, and PI chart:</p>
+<iframe height="600px" scrolling="no" src="../sims/qm-method-walkthrough/main.html" style="border:none; border-radius:8px; overflow:hidden;" width="100%"></iframe>
+<hr />
+<p><a href="references/">See Annotated References</a></p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../videos/unit05-narration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Narration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Narration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="quiz/" class="md-footer__link md-footer__link--next" aria-label="Next: Quiz">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Quiz
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.footer", "toc.integrate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js?v=1"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/tts-reader.js?v=1"></script>
+      
+        <script src="../javascripts/audio-player.js?v=1"></script>
+      
+        <script src="../javascripts/quiz-ui.js?v=3"></script>
+      
+        <script src="../javascripts/problems-ui.js?v=4"></script>
+      
+        <script src="../javascripts/diagram-wrap.js?v=1"></script>
+      
+    
+  </body>
+</html>

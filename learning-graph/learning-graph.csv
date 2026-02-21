@@ -1,0 +1,411 @@
+ConceptID,ConceptLabel,Dependencies,TaxonomyID
+1,Digital Systems,,FOUND
+2,Analog vs Digital Signals,1,FOUND
+3,Binary Number System,1|4,NUMSYS
+4,Decimal Number System,,NUMSYS
+5,Octal Number System,4|7,NUMSYS
+6,Hexadecimal Number System,4|7,NUMSYS
+7,Positional Notation,4,NUMSYS
+8,Base of Number System,7,NUMSYS
+9,Radix Point,7|8,NUMSYS
+10,Bit,3,FOUND
+11,Nibble,10,FOUND
+12,Byte,11,FOUND
+13,Word,12,FOUND
+14,Most Significant Bit,10|3,FOUND
+15,Least Significant Bit,10|3,FOUND
+16,Binary to Decimal Conversion,3|4|7,CONV
+17,Decimal to Binary Conversion,3|4|7,CONV
+18,Octal to Decimal Conversion,5|4|7,CONV
+19,Decimal to Octal Conversion,5|4|7,CONV
+20,Hexadecimal to Decimal,6|4|7,CONV
+21,Decimal to Hexadecimal,6|4|7,CONV
+22,Binary to Octal Conversion,3|5,CONV
+23,Octal to Binary Conversion,3|5,CONV
+24,Binary to Hexadecimal,3|6|11,CONV
+25,Hexadecimal to Binary,3|6|11,CONV
+26,Binary Addition,3|10,ARITH
+27,Binary Subtraction,3|10|26,ARITH
+28,Binary Multiplication,3|26,ARITH
+29,Binary Division,3|27|28,ARITH
+30,Signed Numbers,3|10,ARITH
+31,Unsigned Numbers,3|10,ARITH
+32,Sign Magnitude,30|14,ARITH
+33,Ones Complement,30|50,ARITH
+34,Twos Complement,33,ARITH
+35,Sign Extension,30|14|12,ARITH
+36,Twos Complement Addition,34|26,ARITH
+37,Twos Complement Subtraction,34|27|36,ARITH
+38,Overflow Detection,36|37|30,ARITH
+39,Underflow,38,ARITH
+40,Range of Signed Numbers,30|32|33|34,ARITH
+41,Boolean Algebra,3,BOOLF
+42,Boolean Variable,41,BOOLF
+43,Boolean Constant,41,BOOLF
+44,Logic Levels,1|3,BOOLF
+45,High and Low States,44,BOOLF
+46,Truth Value,42|43,BOOLF
+47,AND Operation,42|46,BOOLF
+48,OR Operation,42|46,BOOLF
+49,NOT Operation,42|46,BOOLF
+50,Complement,49,BOOLF
+51,Logic Gates,44|47|48|49,GATES
+52,AND Gate,47|51,GATES
+53,OR Gate,48|51,GATES
+54,NOT Gate,49|51,GATES
+55,Inverter,54,GATES
+56,NAND Gate,52|54,GATES
+57,NOR Gate,53|54,GATES
+58,XOR Gate,52|53,GATES
+59,XNOR Gate,58|54,GATES
+60,Buffer Gate,51,GATES
+61,Universal Gates,56|57,GATES
+62,Gate Symbols,51,GATES
+63,IEEE Gate Symbols,62,GATES
+64,Truth Table,46|47|48|49,BOOLF
+65,Boolean Expression,42|47|48|49,FORMS
+66,Logic Function,65|64,FORMS
+67,Identity Law,41|47|48,THEOR
+68,Null Law,41|47|48,THEOR
+69,Idempotent Law,41|47|48,THEOR
+70,Involution Law,41|49|50,THEOR
+71,Complement Law,41|49|50,THEOR
+72,Commutative Law,41|47|48,THEOR
+73,Associative Law,41|47|48,THEOR
+74,Distributive Law,41|47|48,THEOR
+75,Absorption Law,41|74,THEOR
+76,Consensus Theorem,41|75,THEOR
+77,DeMorgans First Theorem,41|47|49,THEOR
+78,DeMorgans Second Theorem,41|48|49,THEOR
+79,Duality Principle,41|77|78,THEOR
+80,Algebraic Simplification,65|67|68|69|70|71|72|73|74|75,THEOR
+81,Literal,42|65,FORMS
+82,Product Term,47|81,FORMS
+83,Sum Term,48|81,FORMS
+84,Sum of Products,82|48,FORMS
+85,Product of Sums,83|47,FORMS
+86,Precedence of Operators,47|48|49,FORMS
+87,Parentheses in Boolean,65|86,FORMS
+88,Multiple Input Gates,51|73,GATES
+89,Cascading Gates,51|88,GATES
+90,Fan-In and Fan-Out,51|88,GATES
+91,Combinational Logic,51|66,COMB
+92,Sequential Logic,91,COMB
+93,Logic Circuit,51|91,COMB
+94,Circuit Analysis,93|64,COMB
+95,Circuit Synthesis,93|65|80,COMB
+96,Specification to Circuit,95,COMB
+97,Word Problems to Boolean,65|96,COMB
+98,Switching Functions,66|91,COMB
+99,Binary Decision,46|98,COMB
+100,Enable Signal,45|98,COMB
+101,Control Signal,100,COMB
+102,Half Adder,26|52|58,ACIR
+103,Full Adder,102|104,ACIR
+104,Carry Bit,26|102,ACIR
+105,Sum Bit,102|58,ACIR
+106,Ripple Carry Adder,103|89,ACIR
+107,Half Subtractor,27|58|55,ACIR
+108,Full Subtractor,107|109,ACIR
+109,Borrow Bit,27|107,ACIR
+110,Difference Bit,107|58,ACIR
+111,Adder Subtractor Circuit,106|108|101,ACIR
+112,Comparator Circuit,91|52|58,ACIR
+113,Magnitude Comparator,112,ACIR
+114,Parity Generator,58|89,ACIR
+115,Parity Checker,114,ACIR
+116,Even Parity,114,ACIR
+117,Odd Parity,114|55,ACIR
+118,Code Converter,91|95,ACIR
+119,BCD Code,4|3,NUMSYS
+120,Gray Code,3,NUMSYS
+121,BCD to Binary Converter,118|119,ACIR
+122,Binary to Gray Converter,118|120|58,ACIR
+123,Seven Segment Display,6,ACIR
+124,Seven Segment Decoder,118|123,ACIR
+125,Incompletely Specified Func,66|64|148,CANON
+126,Canonical Form,84|85,CANON
+127,Standard Form,126,CANON
+128,Minterm,82|64,CANON
+129,Maxterm,83|64,CANON
+130,Minterm Expansion,128|84,CANON
+131,Maxterm Expansion,129|85,CANON
+132,Minterm Designation,128|14|15,CANON
+133,Maxterm Designation,129|14|15,CANON
+134,Sum of Minterms,130|128,CANON
+135,Product of Maxterms,131|129,CANON
+136,Minterm to Maxterm,128|129|144,CANON
+137,Maxterm to Minterm,129|128|144,CANON
+138,Canonical SOP Form,134|126,CANON
+139,Canonical POS Form,135|126,CANON
+140,Minterm List Notation,134|132,CANON
+141,Maxterm List Notation,135|133,CANON
+142,Sigma Notation,140,CANON
+143,Pi Notation,141,CANON
+144,Complement of Function,66|50|77|78,CANON
+145,Function from Truth Table,64|66,CANON
+146,Minterm from Truth Table,145|128,CANON
+147,Maxterm from Truth Table,145|129,CANON
+148,Dont Care Condition,64|66,CANON
+149,Incompletely Specified,148|125,CANON
+150,Dont Care in SOP,148|138,CANON
+151,Dont Care in POS,148|139,CANON
+152,Converting SOP to POS,138|139|144,CANON
+153,Converting POS to SOP,139|138|144,CANON
+154,Expansion Theorem,74|144,CANON
+155,Shannon Expansion,154|42,CANON
+156,Cofactor,155|42,CANON
+157,On-Set of Function,64|66|128,CANON
+158,Off-Set of Function,64|66|129,CANON
+159,DC-Set of Function,148|157|158,CANON
+160,Literal Count,81|65,FORMS
+161,Karnaugh Map,64|128|129,KMAP
+162,K-Map Structure,161,KMAP
+163,K-Map Cell,162|128,KMAP
+164,K-Map Variables,162|42,KMAP
+165,Two Variable K-Map,162|164,KMAP
+166,Three Variable K-Map,165,KMAP
+167,Four Variable K-Map,166,KMAP
+168,Five Variable K-Map,167,KMAP
+169,K-Map Gray Code Order,120|162,KMAP
+170,K-Map Adjacency,162|169,KMAP
+171,Logical Adjacency,170,KMAP
+172,Physical Adjacency,170,KMAP
+173,K-Map Grouping,170|171,KMAP
+174,Group of Ones,173|157,KMAP
+175,Group of Zeros,173|158,KMAP
+176,Valid Group Sizes,173,KMAP
+177,Rectangular Groups,173|176,KMAP
+178,Wrapping in K-Maps,170|177,KMAP
+179,Corner Grouping,178,KMAP
+180,Implicant,82|173,KMAP
+181,Prime Implicant,180,KMAP
+182,Essential Prime Implicant,181,KMAP
+183,Redundant Prime Implicant,181|182,KMAP
+184,K-Map SOP Simplification,174|181|182|138,KMAP
+185,K-Map POS Simplification,175|181|182|139,KMAP
+186,Minimal SOP Expression,184|160,KMAP
+187,Minimal POS Expression,185|160,KMAP
+188,K-Map with Dont Cares,161|148,KMAP
+189,Using Dont Cares,188|150|151,KMAP
+190,Overlapping Groups,173|180,KMAP
+191,Covering All Ones,174|190,KMAP
+192,Covering All Zeros,175|190,KMAP
+193,Multiple Solutions,184|185|191|192,KMAP
+194,Cost of Expression,160|186|187,KMAP
+195,Gate Count Minimization,194|51,KMAP
+196,Literal Minimization,194|81,KMAP
+197,K-Map Limitations,167|168,KMAP
+198,Five Variable Technique,168|197,KMAP
+199,Entered Variable K-Map,161|42,KMAP
+200,K-Map vs Algebraic Method,80|184|185,KMAP
+201,Quine-McCluskey Algorithm,186|181|182,QM
+202,Tabular Minimization Method,201|128,QM
+203,Implicant Table Construction,202|180,QM
+204,Binary Representation of Minterms,128|3,QM
+205,Grouping by Number of Ones,204|203,QM
+206,Adjacency Criterion in QM,205|171,QM
+207,Combining Adjacent Minterms,206|204,QM
+208,Dash Notation for Combined Terms,207,QM
+209,Iterative Combination Process,207|208,QM
+210,Unchecked Terms as Prime Implicants,209|181,QM
+211,Prime Implicant Chart Construction,210|203,QM
+212,Essential Prime Implicants Selection,211|182,QM
+213,Row Dominance,211|212,QM
+214,Column Dominance,211|212,QM
+215,Cyclic Prime Implicant Charts,213|214,QM
+216,Petrick's Method,215|212,QM
+217,Minimal Cover Selection,216|186,QM
+218,QM Method with Don't Cares,201|148,QM
+219,Computational Complexity of QM,201|222,QM
+220,QM versus K-map Comparison,200|201|219,QM
+221,Multi-Output Function Minimization,210|211|217,QM
+222,Computer Implementation of QM,209|210|211,QM
+223,Literal Count Optimization,217|196,QM
+224,Gate Count Optimization,217|195,QM
+225,Systematic Approach Advantages,220|221|224,QM
+226,Two-Level vs Multi-Level Circuits,93|89|91,MLEV
+227,Two-Level Circuit Definition,84|85|93,MLEV
+228,Multi-Level Circuit Definition,226|227|89,MLEV
+229,NAND-NAND Realization,61|56|84,MLEV
+230,NOR-NOR Realization,61|57|85,MLEV
+231,NAND-NOR Mixed Networks,229|230,MLEV
+232,NOR-NAND Mixed Networks,229|230,MLEV
+233,Bubble Pushing Technique,77|78|56|57,MLEV
+234,Gate-Level Transformation,233|229|230,MLEV
+235,AOI Gate,52|53|56,MLEV
+236,OAI Gate,52|53|57,MLEV
+237,AOI-OAI Circuit Forms,235|236|227,MLEV
+238,Propagation Delay,51|93,MLEV
+239,Gate Delay Model,238|51,MLEV
+240,Critical Path Analysis,238|239|228,MLEV
+241,Circuit Delay Optimization,240|195,MLEV
+242,Fan-In Constraints,90|88|228,MLEV
+243,Multi-Level Fan-In Reduction,242|228|89,MLEV
+244,Factoring Boolean Expressions,80|84|85,MLEV
+245,Multi-Level Synthesis from SOP,244|228|84,MLEV
+246,Multi-Level Synthesis from POS,244|228|85,MLEV
+247,Algebraic Factoring,244|80|74,MLEV
+248,Common Sub-expression Elimination,247|228|195,MLEV
+249,Level Reduction Techniques,243|247|240,MLEV
+250,Multi-Level Cost Analysis,249|194|195|241,MLEV
+251,Multiplexer,100|101|91,CMOD
+252,2-to-1 Multiplexer,251|93,CMOD
+253,4-to-1 Multiplexer,252|89,CMOD
+254,8-to-1 Multiplexer,253|89,CMOD
+255,MUX Select Lines,251|101,CMOD
+256,MUX Data Lines,251|100,CMOD
+257,MUX Boolean Expression,252|84,CMOD
+258,MUX-Based Function Implementation,257|95|66,CMOD
+259,Shannon Expansion for MUX,258|155,CMOD
+260,MUX Tree Implementation,254|258|259,CMOD
+261,Decoder,91|93|128,CMOD
+262,2-to-4 Decoder,261|93,CMOD
+263,3-to-8 Decoder,262|89,CMOD
+264,Decoder with Enable,262|100,CMOD
+265,Decoder Expansion,263|264|89,CMOD
+266,Decoder-Based Function Implementation,261|95|134,CMOD
+267,Encoder,261|91,CMOD
+268,Priority Encoder,267|101,CMOD
+269,Priority Encoder Valid Output,268|100,CMOD
+270,Demultiplexer,251|261,CMOD
+271,Magnitude Comparator Module,113|93,CMOD
+272,Cascading Comparators,271|265|90,CMOD
+273,Tri-State Buffer,60|101,CMOD
+274,Bus Architecture,273|90|101,CMOD
+275,Cascading Combinational Modules,265|272|90|89,CMOD
+276,Sequential vs Combinational Logic,91|92,SEQF
+277,Memory Element,276,SEQF
+278,Feedback Loop,51|276,SEQF
+279,SR Latch (NOR),57|278,SEQF
+280,SR Latch (NAND),56|278,SEQF
+281,SR Latch Invalid State,279|280,SEQF
+282,Gated SR Latch,279|100,SEQF
+283,D Latch,282|281,SEQF
+284,Latch Transparency,283,SEQF
+285,Clock Signal,101|276,SEQF
+286,Clock Edge,285,SEQF
+287,Edge Triggering,286,SEQF
+288,Positive Edge Trigger,287,SEQF
+289,Negative Edge Trigger,287,SEQF
+290,D Flip-Flop,283|287,SEQF
+291,JK Flip-Flop,290|281,SEQF
+292,T Flip-Flop,291,SEQF
+293,Master-Slave Flip-Flop,290|286,SEQF
+294,Setup Time,290|285,SEQF
+295,Hold Time,290|285,SEQF
+296,Clock-to-Q Delay,290|238,SEQF
+297,Metastability,294|295,SEQF
+298,Synchronous Logic,285|290,SEQF
+299,Asynchronous Logic,276|277,SEQF
+300,Timing Diagram,285|290,SEQF
+301,Characteristic Table,290|64,SEQF
+302,Excitation Table,301|95,SEQF
+303,State,277|276,SEQF
+304,Next State,303|290,SEQF
+305,State Transition,303|304,SEQF
+306,Register,290|298,SEQD
+307,Parallel Load Register,306|251,SEQD
+308,Shift Register,306|303,SEQD
+309,SISO Shift Register,308,SEQD
+310,SIPO Shift Register,308,SEQD
+311,PISO Shift Register,308|307,SEQD
+312,PIPO Shift Register,308|307,SEQD
+313,Binary Up Counter,306|304,SEQD
+314,Binary Down Counter,313,SEQD
+315,Up-Down Counter,313|314,SEQD
+316,Modulo-N Counter,313|95,SEQD
+317,Ring Counter,308|316,SEQD
+318,Johnson Counter,317,SEQD
+319,Finite State Machine,305|303,SEQD
+320,State Diagram,319|305,SEQD
+321,State Table,319|64,SEQD
+322,Moore Machine,319|320,SEQD
+323,Mealy Machine,319|320,SEQD
+324,State Assignment,321|95,SEQD
+325,Binary State Encoding,324,SEQD
+326,One-Hot State Encoding,324,SEQD
+327,Gray Code State Encoding,324|325,SEQD
+328,State Minimization,321|186,SEQD
+329,Next-State Logic,302|324,SEQD
+330,Output Logic,329|322,SEQD
+331,FSM Design Procedure,320|321|324|329,SEQD
+332,Timing Analysis for Sequential Circuits,296|300|298,SEQD
+333,Counter Design Using FSM,316|331,SEQD
+334,Shift Register Applications,311|312,SEQD
+335,Sequential Circuit Synthesis,331|302|94,SEQD
+336,Programmable Logic Overview,226|228,PLD
+337,Fuse Technology,336,PLD
+338,Antifuse Technology,336,PLD
+339,SRAM-Based Programming,336,PLD
+340,ROM,261|336,PLD
+341,PROM,340|337,PLD
+342,EPROM,341,PLD
+343,EEPROM,342,PLD
+344,PLA,84|336,PLD
+345,PAL,344|337,PLD
+346,PLD Selection Criteria,344|345,PLD
+347,CPLD,345|339,PLD
+348,Function Block,347,PLD
+349,Interconnect Matrix,347|348,PLD
+350,FPGA,339|290,PLD
+351,Configurable Logic Block,350|226,PLD
+352,Lookup Table,351|64,PLD
+353,I/O Block,350|273,PLD
+354,Routing Resources,350|349,PLD
+355,FPGA Design Flow,350|93,PLD
+356,Bitstream,355|339,PLD
+357,Device Programming,356|337,PLD
+358,In-System Programming,357|343,PLD
+359,FPGA vs CPLD Comparison,347|350,PLD
+360,CLB Interconnect,351|354,PLD
+361,Logic Capacity Metrics,350|347,PLD
+362,FPGA Timing Analysis,354|332,PLD
+363,Partial Reconfiguration,356|350,PLD
+364,Hard vs Soft IP Cores,350|355,PLD
+365,PLD Design Entry Methods,344|355|331,PLD
+366,Hardware Description Language,93|91,VHDL
+367,VHDL History and IEEE 1076,366,VHDL
+368,VHDL Design Entity,366|367,VHDL
+369,Entity Declaration,368,VHDL
+370,Port Declaration,369,VHDL
+371,Port Modes,370,VHDL
+372,Architecture Body,368|369,VHDL
+373,Signal Declaration,372|370,VHDL
+374,Concurrent Signal Assignment,373|372,VHDL
+375,Selected Signal Assignment,374|251,VHDL
+376,Conditional Signal Assignment,374,VHDL
+377,Dataflow Modeling Style,374|375|376,VHDL
+378,Process Statement,372|373,VHDL
+379,Sequential Statements,378,VHDL
+380,If-Then-Else Statement,379,VHDL
+381,Case Statement,379,VHDL
+382,Variables vs Signals,373|378,VHDL
+383,Behavioral Modeling Style,378|380|381,VHDL
+384,Component Declaration,368|372,VHDL
+385,Component Instantiation,384,VHDL
+386,Port Map,385|370,VHDL
+387,Generic Map,384|386,VHDL
+388,Structural Modeling Style,385|386,VHDL
+389,std_logic Type,370|371,VHDL
+390,std_logic_vector,389,VHDL
+391,VHDL Operators,373|389,VHDL
+392,Type Conversion,389|390,VHDL
+393,Testbench,366|368|386,VHDL
+394,Assert and Report,393|379,VHDL
+395,VHDL FSM Implementation,319|383|381,VHDL
+396,Top-Down Design Methodology,355|93,SYSI
+397,Hierarchical Decomposition,396|388,SYSI
+398,Datapath Design,306|313|397,SYSI
+399,Controller Design,319|397,SYSI
+400,Datapath-Controller Partitioning,398|399,SYSI
+401,Control Signals,400|101,SYSI
+402,Status Signals,400|101,SYSI
+403,ASM Chart,319|320|321|399,SYSI
+404,Timing Budget,238|294|295,SYSI
+405,Critical Path in System,404|241,SYSI
+406,Pipelining Concept,405|306|285,SYSI
+407,System Verification,393|400,SYSI
+408,Design for Testability,407|348,SYSI
+409,UART Protocol Basics,308|285|384,SYSI
+410,System-Level Debugging,407|408|409,SYSI
