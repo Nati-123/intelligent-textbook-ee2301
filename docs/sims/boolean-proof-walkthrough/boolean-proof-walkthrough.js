@@ -263,12 +263,18 @@ function drawExpressionChain(step, mx, vy, w, vh) {
     text(finalText, cx, vy + vh / 2 - 20);
 
     // Show all steps summary
-    textSize(10);
     textStyle(NORMAL);
     fill(100);
     let arrows = ' \u2192 ';
+    let summaryText = activePreset.summarySteps.join(arrows);
+    let sumSize = 11;
+    textSize(sumSize);
+    while (textWidth(summaryText) > w - 80 && sumSize > 8) {
+      sumSize--;
+      textSize(sumSize);
+    }
     textAlign(CENTER, TOP);
-    text(activePreset.summarySteps.join(arrows), cx, vy + vh / 2 + 10, w - 60);
+    text(summaryText, mx + 30, vy + vh / 2 + 10, w - 60);
     return;
   }
 
@@ -282,7 +288,7 @@ function drawExpressionChain(step, mx, vy, w, vh) {
   textStyle(NORMAL);
   let prevSize = 24;
   textSize(prevSize);
-  while (textWidth(prevExpr) > w - 40 && prevSize > 12) {
+  while (textWidth(prevExpr) > w - 40 && prevSize > 10) {
     prevSize -= 2;
     textSize(prevSize);
   }
@@ -298,7 +304,7 @@ function drawExpressionChain(step, mx, vy, w, vh) {
   textStyle(BOLD);
   let exprSize = 32;
   textSize(exprSize);
-  while (textWidth(currExpr) > w - 40 && exprSize > 16) {
+  while (textWidth(currExpr) > w - 40 && exprSize > 12) {
     exprSize -= 2;
     textSize(exprSize);
   }

@@ -1151,7 +1151,7 @@ This unit established the axiomatic framework of Boolean algebra as the mathemat
 
 Step through a complete Boolean algebra proof with each law identified:
 
-<iframe src="../sims/boolean-proof-walkthrough/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/boolean-proof-walkthrough/main.html?v=2" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 ---
 
