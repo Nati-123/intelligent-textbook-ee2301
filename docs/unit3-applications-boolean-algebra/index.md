@@ -735,21 +735,27 @@ BCD simplifies decimal I/O but is less efficient than pure binary (wastes 6 code
 
 The **binary to Gray converter** uses XOR gates:
 
-$$G_n = B_n$$ (MSB is unchanged)
-$$G_i = B_{i+1} \oplus B_i$$ (for all other bits)
+$$G_n = B_n \qquad \text{(MSB is unchanged)}$$
+
+$$G_i = B_{i+1} \oplus B_i \qquad \text{(for all other bits)}$$
 
 For 4 bits:
 
-- $G_3 = B_3$
-- $G_2 = B_3 \oplus B_2$
-- $G_1 = B_2 \oplus B_1$
-- $G_0 = B_1 \oplus B_0$
+$$
+\begin{aligned}
+G_3 &= B_3 \\[4pt]
+G_2 &= B_3 \oplus B_2 \\[4pt]
+G_1 &= B_2 \oplus B_1 \\[4pt]
+G_0 &= B_1 \oplus B_0
+\end{aligned}
+$$
 
 ### Gray to Binary Conversion
 
 The reverse conversion:
 
 $$B_n = G_n$$
+
 $$B_i = B_{i+1} \oplus G_i$$
 
 ### BCD to Binary Conversion
