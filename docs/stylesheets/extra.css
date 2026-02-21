@@ -898,3 +898,163 @@ body.problems-page label[for="__toc"],
 body.challenge-page label[for="__toc"] {
   display: none !important;
 }
+
+/* ===== FOOTER NAVIGATION (Previous / Next) ===== */
+
+/* Remove the dark background from the nav portion */
+.md-footer {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* The inner nav container: prev/next links */
+.md-footer__inner.md-grid {
+  display: flex !important;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem 0.75rem 1rem;
+  max-width: 61rem;
+}
+
+/* Each prev/next link as a card */
+.md-footer__link {
+  flex: 1 1 0;
+  align-items: center;
+  background: #F4F0FF;
+  border: 2px solid #C8B8FF;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 0;
+  max-width: 50%;
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s,
+              transform 0.15s;
+  box-shadow: 0 2px 6px rgba(106, 91, 255, 0.08);
+  text-decoration: none;
+  opacity: 1;
+}
+
+.md-footer__link:hover,
+.md-footer__link:focus {
+  opacity: 1;
+  background: #EDE7FF;
+  border-color: #6A5BFF;
+  box-shadow: 0 4px 14px rgba(106, 91, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.md-footer__link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(106, 91, 255, 0.12);
+}
+
+/* Previous link: left-aligned */
+.md-footer__link--prev {
+  flex-shrink: 0;
+  text-align: left;
+}
+
+/* Next link: right-aligned, push to end */
+.md-footer__link--next {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Always show the title on prev links (Material hides it by default) */
+.md-footer__link--prev .md-footer__title {
+  display: block;
+}
+
+/* Title text */
+.md-footer__title {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+  padding: 0 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* "Previous" / "Next" direction label */
+.md-footer__direction {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6A5BFF;
+  opacity: 1;
+  margin-bottom: 0.2rem;
+}
+
+/* Page title inside the link */
+.md-footer__title .md-ellipsis {
+  color: #444;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.md-footer__link:hover .md-footer__title .md-ellipsis {
+  color: #6A5BFF;
+}
+
+/* Arrow icon button */
+.md-footer__button.md-icon {
+  margin: 0;
+  padding: 0.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: #6A5BFF;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.md-footer__link:hover .md-footer__button.md-icon {
+  background: #D4A017;
+  transform: scale(1.08);
+}
+
+/* Arrow SVG icon - white, larger */
+.md-footer__button.md-icon svg {
+  fill: #fff;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/* Keep the bottom meta bar dark and clean */
+.md-footer-meta {
+  background-color: #2c2c3a;
+}
+
+.md-footer-meta.md-typeset a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.md-footer-meta.md-typeset a:hover {
+  color: #D4A017;
+}
+
+/* ---- Mobile: stack vertically on small screens ---- */
+@media screen and (max-width: 600px) {
+  .md-footer__inner.md-grid {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .md-footer__link {
+    max-width: 100%;
+    flex: none;
+  }
+
+  .md-footer__link--next {
+    margin-left: 0;
+  }
+}
