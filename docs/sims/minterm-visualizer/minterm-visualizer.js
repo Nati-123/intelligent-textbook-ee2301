@@ -47,6 +47,7 @@ function setup() {
   canvas.parent(mainElement);
 
   numVarsSelect = createSelect();
+  numVarsSelect.parent(mainElement);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
@@ -55,12 +56,14 @@ function setup() {
     selectedMinterm = min(selectedMinterm, Math.pow(2, numVars) - 1);
     mintermSlider.remove();
     mintermSlider = createSlider(0, Math.pow(2, numVars) - 1, selectedMinterm);
+    mintermSlider.parent(mainElement);
     mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
     positionUIElements();
   });
   numVarsSelect.selected('3 variables');
 
   mintermSlider = createSlider(0, 7, 3);
+  mintermSlider.parent(mainElement);
   mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
 
   positionUIElements();
@@ -96,10 +99,14 @@ function positionUIElements() {
   numVarsSelect.style('color', PURPLE_DARK);
   numVarsSelect.style('outline', 'none');
   numVarsSelect.style('cursor', 'pointer');
+  numVarsSelect.style('z-index', '10');
+  numVarsSelect.style('position', 'absolute');
 
-  // Style the slider
+  // Style the slider — ensure it sits above canvas
   mintermSlider.style('accent-color', PURPLE);
   mintermSlider.style('cursor', 'pointer');
+  mintermSlider.style('z-index', '10');
+  mintermSlider.style('position', 'absolute');
 }
 
 function draw() {

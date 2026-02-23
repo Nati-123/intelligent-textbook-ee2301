@@ -6,7 +6,7 @@ quality_score: 85
 
 # Minterm Visualizer
 
-<iframe src="main.html" height="570px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="610px" width="100%" scrolling="no"></iframe>
 
 
 ## Description
