@@ -9,8 +9,6 @@ quality_score: 85
 
 <iframe src="main.html" height="900px" width="100%"></iframe>
 
-[Run the Minterm/Maxterm Converter Fullscreen](./main.html){ .md-button .md-button--primary }
-
 ## Description
 
 This MicroSim demonstrates the relationship between minterms (for Sum of Products) and maxterms (for Product of Sums) in canonical Boolean function representation. Students can enter minterm indices and instantly see the corresponding maxterm indices, along with both the compact notation (Σ/Π) and expanded algebraic forms.
