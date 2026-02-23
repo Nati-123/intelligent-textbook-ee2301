@@ -109,6 +109,9 @@ function draw() {
   fill('#555');
   text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 35);
 
+  // Reposition controls every frame (fixes fullscreen toggle)
+  positionUIElements();
+
   // Draw sections
   drawBitDisplay();
   drawTruthTableRow();
