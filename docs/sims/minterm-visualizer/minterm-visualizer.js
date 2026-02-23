@@ -5,15 +5,40 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
-let controlHeight = 70;
+let drawHeight = 540;
+let controlHeight = 55;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
+
+// Theme colors (universal style template)
+const PURPLE = '#6A5BFF';
+const PURPLE_DARK = '#5A3EED';
+const PURPLE_LIGHT = '#7A5CFF';
+const PURPLE_BG = '#F4F0FF';
+const PURPLE_BORDER = '#C9B9FF';
+const GOLD = '#D4A017';
+
+// Section-specific colors
+const HEADER_BG = '#E8F1FF';
+const HEADER_BORDER = '#B3D1FF';
+const TRUTH_BG = '#EEF4FF';
+const TRUTH_BORDER = '#B8D4FF';
+const MINTERM_BG = '#E7F7E7';
+const MINTERM_BORDER = '#81C784';
+const MAXTERM_BG = '#FFE7E7';
+const MAXTERM_BORDER = '#E57373';
+const RELATION_BG = '#FFF2D9';
+const RELATION_BORDER = '#FFD54F';
+const BTN_INACTIVE = '#F6F6F6';
+const BTN_INACTIVE_BORDER = '#E0E0E0';
 
 let numVarsSelect;
 let mintermSlider;
 let numVars = 3;
 let selectedMinterm = 3;
+
+// Layout constants
+const MX = 40; // horizontal margin
 
 function setup() {
   updateCanvasSize();
@@ -30,14 +55,12 @@ function setup() {
     selectedMinterm = min(selectedMinterm, Math.pow(2, numVars) - 1);
     mintermSlider.remove();
     mintermSlider = createSlider(0, Math.pow(2, numVars) - 1, selectedMinterm);
-    mintermSlider.size(180);
     mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
     positionUIElements();
   });
   numVarsSelect.selected('3 variables');
 
   mintermSlider = createSlider(0, 7, 3);
-  mintermSlider.size(180);
   mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
 
   positionUIElements();
@@ -47,147 +70,260 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  numVarsSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 12);
-  mintermSlider.position(mainRect.left + 100, mainRect.top + drawHeight + 42);
+  let controlY = mainRect.top + drawHeight + 14;
+  let labelW = 80;
+  let selectW = 130;
+  let gap = 20;
+  let sliderW = canvasWidth - MX * 2 - labelW - selectW - gap - 110;
+  if (sliderW < 120) sliderW = 120;
+
+  numVarsSelect.position(mainRect.left + MX + labelW, controlY);
+  numVarsSelect.size(selectW);
+
+  mintermSlider.position(mainRect.left + MX + labelW + selectW + gap + 80, controlY);
+  mintermSlider.size(sliderW);
+
+  // Style the select to match universal template
+  numVarsSelect.style('font-family', 'Arial, sans-serif');
+  numVarsSelect.style('font-size', '12px');
+  numVarsSelect.style('padding', '4px 8px');
+  numVarsSelect.style('border', '1.5px solid ' + PURPLE_BORDER);
+  numVarsSelect.style('border-radius', '8px');
+  numVarsSelect.style('background', 'white');
+  numVarsSelect.style('color', PURPLE_DARK);
+  numVarsSelect.style('outline', 'none');
+
+  // Style the slider
+  mintermSlider.style('accent-color', PURPLE);
 }
 
 function draw() {
   updateCanvasSize();
+  let bandW = canvasWidth - 2 * MX;
 
-  // Drawing area
-  fill('aliceblue');
-  stroke('silver');
-  strokeWeight(1);
-  rect(0, 0, canvasWidth, drawHeight);
+  // Card background
+  fill(PURPLE_BG);
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(1, 1, canvasWidth - 2, drawHeight - 2, 14);
 
   // Control area
   fill('white');
+  noStroke();
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(18);
-  text('Minterm & Maxterm Visualizer', canvasWidth / 2, 10);
+  textStyle(BOLD);
+  text('Minterm & Maxterm Visualizer', canvasWidth / 2, 12);
+  textStyle(NORMAL);
 
-  // Draw minterm info
-  drawMintermInfo();
+  // Subtitle
+  textSize(12);
+  fill('#555');
+  text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 35);
 
-  // Draw truth table row
+  // Draw sections
+  drawBitDisplay();
   drawTruthTableRow();
-
-  // Draw minterm and maxterm
   drawMintermMaxterm();
-
-  // Draw all minterms list
   drawMintermList();
 
   // Control labels
-  fill('black');
+  fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
-  text('Variables:', 20, drawHeight + 24);
-  text('Minterm m' + selectedMinterm + ':', 20, drawHeight + 54);
+  textStyle(BOLD);
+  text('Variables:', MX, drawHeight + 25);
+  textStyle(NORMAL);
+
+  let selectW = 130;
+  let gap = 20;
+  fill(PURPLE);
+  textStyle(BOLD);
+  text('m' + selectedMinterm + ':', MX + 80 + selectW + gap, drawHeight + 25);
+  textStyle(NORMAL);
+
+  // Slider value display
+  fill(PURPLE_DARK);
   textAlign(RIGHT, CENTER);
-  text(selectedMinterm, canvasWidth - 30, drawHeight + 54);
+  textSize(11);
+  text(selectedMinterm, canvasWidth - MX, drawHeight + 25);
 }
 
-function drawMintermInfo() {
-  let y = 45;
+function drawBitDisplay() {
+  let y = 55;
+  let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(2);
-  rect(25, y, canvasWidth - 50, 60, 8);
+  // Header box with soft shadow
+  drawingContext.shadowColor = 'rgba(106, 91, 255, 0.12)';
+  drawingContext.shadowBlur = 8;
+  drawingContext.shadowOffsetY = 2;
 
-  fill('#2196f3');
+  fill(HEADER_BG);
+  stroke(HEADER_BORDER);
+  strokeWeight(1.5);
+  rect(MX, y, bandW, 78, 12);
+
+  drawingContext.shadowBlur = 0;
+  drawingContext.shadowOffsetY = 0;
+
+  // Label
+  fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(12);
-  text('Minterm m' + selectedMinterm + ' (decimal ' + selectedMinterm + ')', canvasWidth / 2, y + 8);
+  textStyle(BOLD);
+  text('Minterm m' + selectedMinterm + '  (decimal ' + selectedMinterm + ')', canvasWidth / 2, y + 10);
+  textStyle(NORMAL);
 
-  // Binary representation
-  textSize(22);
-  fill('black');
+  // Bit circles with spacing
+  let circleD = 36;
+  let circleGap = 16;
+  let totalW = numVars * circleD + (numVars - 1) * circleGap;
+  let startX = canvasWidth / 2 - totalW / 2 + circleD / 2;
 
-  let bitW = 35;
-  let startX = canvasWidth / 2 - (numVars * bitW) / 2;
   for (let i = 0; i < numVars; i++) {
+    let cx = startX + i * (circleD + circleGap);
+    let cy = y + 42;
     let bit = binary[i];
 
-    // Bit box
-    fill(bit === '1' ? '#4CAF50' : '#f44336');
-    stroke('#333');
-    strokeWeight(1);
-    rect(startX + i * bitW, y + 28, bitW - 5, 25, 3);
+    // Circle shadow for active bits
+    if (bit === '1') {
+      drawingContext.shadowColor = 'rgba(76, 175, 80, 0.3)';
+      drawingContext.shadowBlur = 6;
+    } else {
+      drawingContext.shadowColor = 'rgba(229, 115, 115, 0.3)';
+      drawingContext.shadowBlur = 6;
+    }
+
+    fill(bit === '1' ? '#4CAF50' : '#EF5350');
+    stroke(bit === '1' ? '#388E3C' : '#D32F2F');
+    strokeWeight(1.5);
+    ellipse(cx, cy, circleD, circleD);
+
+    drawingContext.shadowBlur = 0;
 
     // Bit value
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(16);
-    text(bit, startX + i * bitW + (bitW - 5) / 2, y + 40);
+    textStyle(BOLD);
+    text(bit, cx, cy);
+    textStyle(NORMAL);
 
-    // Variable label
-    fill('#666');
-    textSize(10);
-    text(varNames[i], startX + i * bitW + (bitW - 5) / 2, y + 58);
+    // Variable label below with uniform margin
+    fill('#555');
+    textSize(11);
+    textStyle(BOLD);
+    text(varNames[i], cx, cy + circleD / 2 + 12);
+    textStyle(NORMAL);
   }
 }
 
 function drawTruthTableRow() {
-  let y = 120;
+  let y = 145;
+  let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
-  fill('#f5f5f5');
-  stroke('#ccc');
-  strokeWeight(1);
-  rect(25, y, canvasWidth - 50, 55, 5);
+  // Truth table row box
+  fill(TRUTH_BG);
+  stroke(TRUTH_BORDER);
+  strokeWeight(1.5);
+  rect(MX, y, bandW, 62, 12);
 
-  fill('#333');
+  // Section title
+  fill(PURPLE);
   noStroke();
-  textAlign(LEFT, TOP);
+  textAlign(CENTER, TOP);
   textSize(11);
-  text('Truth Table Row:', 35, y + 8);
+  textStyle(BOLD);
+  text('Truth Table Row', canvasWidth / 2, y + 8);
+  textStyle(NORMAL);
 
-  // Show the row
+  // Column headers: A  B  C  D  |  F
+  let colW = 36;
+  let totalCols = numVars + 1; // vars + F
+  let separatorW = 20;
+  let totalTableW = numVars * colW + separatorW + colW;
+  let tableStartX = canvasWidth / 2 - totalTableW / 2 + colW / 2;
+
   textSize(12);
-  let rowStr = varNames.join('  ') + '  |  F';
-  text(rowStr, 50, y + 28);
+  textStyle(BOLD);
+  fill(PURPLE_DARK);
+  textAlign(CENTER, TOP);
 
-  // Values
-  let valStr = binary.split('').join('   ') + '  |  1';
+  for (let i = 0; i < numVars; i++) {
+    text(varNames[i], tableStartX + i * colW, y + 26);
+  }
+
+  // Separator bar
+  fill(PURPLE_BORDER);
+  noStroke();
+  let sepX = tableStartX + numVars * colW + separatorW / 2 - colW / 2 - 2;
+  rect(sepX, y + 24, 1.5, 30, 1);
+
+  // F header
+  fill(PURPLE_DARK);
+  textAlign(CENTER, TOP);
+  text('F', tableStartX + numVars * colW + separatorW, y + 26);
+
+  // Values row
+  textStyle(NORMAL);
+  textSize(13);
+
+  for (let i = 0; i < numVars; i++) {
+    let bit = binary[i];
+    fill(bit === '1' ? '#4CAF50' : '#EF5350');
+    textStyle(BOLD);
+    text(bit, tableStartX + i * colW, y + 43);
+  }
+
+  // F = 1
   fill('#4CAF50');
-  text(valStr, 50, y + 42);
-
-  // Explanation
-  fill('#666');
-  textSize(9);
-  textAlign(RIGHT, CENTER);
-  text('F = 1 only when ' + varNames.join(', ') + ' = ' + binary.split('').join(', '), canvasWidth - 35, y + 35);
+  textStyle(BOLD);
+  text('1', tableStartX + numVars * colW + separatorW, y + 43);
+  textStyle(NORMAL);
 }
 
 function drawMintermMaxterm() {
-  let y = 190;
+  let y = 220;
+  let bandW = canvasWidth - 2 * MX;
+  let cardW = (bandW - 16) / 2;
+  let cardH = 115;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
-  // Minterm (product term)
-  fill('#e8f5e9');
-  stroke('#4CAF50');
-  strokeWeight(2);
-  rect(25, y, (canvasWidth - 60) / 2, 100, 8);
+  // ── Minterm card (green) ──
+  let leftX = MX;
+  drawingContext.shadowColor = 'rgba(129, 199, 132, 0.2)';
+  drawingContext.shadowBlur = 6;
+  drawingContext.shadowOffsetY = 2;
 
-  fill('#4CAF50');
+  fill(MINTERM_BG);
+  stroke(MINTERM_BORDER);
+  strokeWeight(1.5);
+  rect(leftX, y, cardW, cardH, 12);
+
+  drawingContext.shadowBlur = 0;
+  drawingContext.shadowOffsetY = 0;
+
+  // Minterm title
+  fill('#388E3C');
   noStroke();
   textAlign(CENTER, TOP);
   textSize(12);
-  text('Minterm (Product Term)', 25 + (canvasWidth - 60) / 4, y + 8);
+  textStyle(BOLD);
+  text('Minterm (Product Term)', leftX + cardW / 2, y + 12);
+  textStyle(NORMAL);
 
   // Build minterm expression
   let minterm = '';
@@ -197,30 +333,46 @@ function drawMintermMaxterm() {
     } else {
       minterm += varNames[i];
     }
-    if (i < numVars - 1) minterm += ' · ';
+    if (i < numVars - 1) minterm += ' \u00B7 ';
   }
 
-  textSize(18);
-  fill('black');
-  text('m' + selectedMinterm + ' = ' + minterm, 25 + (canvasWidth - 60) / 4, y + 35);
+  // Equation
+  textSize(17);
+  textStyle(BOLD);
+  fill('#1B5E20');
+  text('m' + selectedMinterm + ' = ' + minterm, leftX + cardW / 2, y + 40);
+  textStyle(NORMAL);
 
-  fill('#666');
+  // Subtitle
+  fill('#555');
+  textSize(10);
+  text('AND of literals', leftX + cardW / 2, y + 72);
+  fill('#888');
   textSize(9);
-  text('AND of literals', 25 + (canvasWidth - 60) / 4, y + 65);
-  text("Variable complemented if bit = 0", 25 + (canvasWidth - 60) / 4, y + 80);
+  text('Complement if bit = 0', leftX + cardW / 2, y + 90);
 
-  // Maxterm (sum term)
-  let rightX = 35 + (canvasWidth - 60) / 2;
-  fill('#ffebee');
-  stroke('#f44336');
-  strokeWeight(2);
-  rect(rightX, y, (canvasWidth - 60) / 2, 100, 8);
+  // ── Maxterm card (red) ──
+  let rightX = MX + cardW + 16;
+  drawingContext.shadowColor = 'rgba(229, 115, 115, 0.2)';
+  drawingContext.shadowBlur = 6;
+  drawingContext.shadowOffsetY = 2;
 
-  fill('#f44336');
+  fill(MAXTERM_BG);
+  stroke(MAXTERM_BORDER);
+  strokeWeight(1.5);
+  rect(rightX, y, cardW, cardH, 12);
+
+  drawingContext.shadowBlur = 0;
+  drawingContext.shadowOffsetY = 0;
+
+  // Maxterm title
+  fill('#D32F2F');
   noStroke();
   textAlign(CENTER, TOP);
   textSize(12);
-  text('Maxterm (Sum Term)', rightX + (canvasWidth - 60) / 4, y + 8);
+  textStyle(BOLD);
+  text('Maxterm (Sum Term)', rightX + cardW / 2, y + 12);
+  textStyle(NORMAL);
 
   // Build maxterm expression
   let maxterm = '';
@@ -233,88 +385,143 @@ function drawMintermMaxterm() {
     if (i < numVars - 1) maxterm += ' + ';
   }
 
-  textSize(18);
-  fill('black');
-  text('M' + selectedMinterm + ' = ' + maxterm, rightX + (canvasWidth - 60) / 4, y + 35);
+  // Equation
+  textSize(17);
+  textStyle(BOLD);
+  fill('#B71C1C');
+  text('M' + selectedMinterm + ' = ' + maxterm, rightX + cardW / 2, y + 40);
+  textStyle(NORMAL);
 
-  fill('#666');
+  // Subtitle
+  fill('#555');
+  textSize(10);
+  text('OR of literals', rightX + cardW / 2, y + 72);
+  fill('#888');
   textSize(9);
-  text('OR of literals', rightX + (canvasWidth - 60) / 4, y + 65);
-  text("Variable complemented if bit = 1", rightX + (canvasWidth - 60) / 4, y + 80);
+  text('Complement if bit = 1', rightX + cardW / 2, y + 90);
 
-  // Relationship
-  y += 115;
-  fill('#fff3e0');
-  stroke('#ff9800');
-  strokeWeight(2);
-  rect(25, y, canvasWidth - 50, 35, 5);
+  // ── Relationship bar (orange) ──
+  let relY = y + cardH + 14;
+  drawingContext.shadowColor = 'rgba(255, 213, 79, 0.2)';
+  drawingContext.shadowBlur = 6;
+  drawingContext.shadowOffsetY = 2;
 
-  fill('#ff9800');
+  fill(RELATION_BG);
+  stroke(RELATION_BORDER);
+  strokeWeight(1.5);
+  rect(MX, relY, bandW, 48, 12);
+
+  drawingContext.shadowBlur = 0;
+  drawingContext.shadowOffsetY = 0;
+
+  // Relationship label
+  fill('#E65100');
   noStroke();
+  textAlign(CENTER, TOP);
+  textSize(10);
+  textStyle(BOLD);
+  text('Relationship', canvasWidth / 2, relY + 6);
+  textStyle(NORMAL);
+
+  // Relationship equation
+  textSize(14);
+  textStyle(BOLD);
+  fill('#BF360C');
   textAlign(CENTER, CENTER);
-  textSize(11);
-  text("Relationship: m" + selectedMinterm + " = (M" + selectedMinterm + ")'  and  M" + selectedMinterm + " = (m" + selectedMinterm + ")'", canvasWidth / 2, y + 17);
+  text("m" + selectedMinterm + " = (M" + selectedMinterm + ")'     M" + selectedMinterm + " = (m" + selectedMinterm + ")'", canvasWidth / 2, relY + 32);
+  textStyle(NORMAL);
 }
 
 function drawMintermList() {
-  let y = 355;
+  let y = 400;
+  let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
 
-  fill('#f5f5f5');
-  stroke('#ccc');
-  strokeWeight(1);
-  rect(25, y, canvasWidth - 50, 85, 5);
+  // Grid container
+  fill('#FAFAFA');
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(MX, y, bandW, 128, 12);
 
-  fill('#333');
+  // Section title
+  fill(PURPLE);
   noStroke();
-  textAlign(LEFT, TOP);
-  textSize(10);
-  text('All Minterms (click to select):', 35, y + 8);
+  textAlign(CENTER, TOP);
+  textSize(11);
+  textStyle(BOLD);
+  text('All Minterms (click to select)', canvasWidth / 2, y + 10);
+  textStyle(NORMAL);
 
-  // Draw minterm buttons
+  // Button grid
   let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
   let rows = Math.ceil(maxMinterms / cols);
-  let btnW = (canvasWidth - 80) / cols;
-  let btnH = 22;
-  let startX = 35;
-  let startY = y + 28;
+  let gridPadX = 20;
+  let gridPadY = 30;
+  let gapX = 8;
+  let gapY = 8;
+  let availW = bandW - 2 * gridPadX;
+  let btnW = (availW - (cols - 1) * gapX) / cols;
+  let btnH = 32;
+
+  let gridStartX = MX + gridPadX;
+  let gridStartY = y + gridPadY;
 
   for (let i = 0; i < maxMinterms; i++) {
     let col = i % cols;
     let row = Math.floor(i / cols);
-    let bx = startX + col * btnW;
-    let by = startY + row * (btnH + 3);
+    let bx = gridStartX + col * (btnW + gapX);
+    let by = gridStartY + row * (btnH + gapY);
 
-    fill(i === selectedMinterm ? '#4CAF50' : '#e0e0e0');
-    stroke(i === selectedMinterm ? '#388E3C' : '#bbb');
-    strokeWeight(1);
-    rect(bx, by, btnW - 5, btnH, 3);
+    let isActive = (i === selectedMinterm);
 
-    fill(i === selectedMinterm ? 'white' : '#333');
+    // Button shadow for active
+    if (isActive) {
+      drawingContext.shadowColor = 'rgba(106, 91, 255, 0.35)';
+      drawingContext.shadowBlur = 8;
+      drawingContext.shadowOffsetY = 2;
+    }
+
+    fill(isActive ? PURPLE : BTN_INACTIVE);
+    stroke(isActive ? PURPLE_DARK : BTN_INACTIVE_BORDER);
+    strokeWeight(isActive ? 1.5 : 1);
+    rect(bx, by, btnW, btnH, 8);
+
+    drawingContext.shadowBlur = 0;
+    drawingContext.shadowOffsetY = 0;
+
+    fill(isActive ? 'white' : '#555');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(10);
-    text('m' + i, bx + (btnW - 5) / 2, by + btnH / 2);
+    textSize(12);
+    textStyle(isActive ? BOLD : NORMAL);
+    text('m' + i, bx + btnW / 2, by + btnH / 2);
+    textStyle(NORMAL);
   }
 }
 
 function mousePressed() {
   // Check minterm buttons
-  let y = 355;
+  let y = 400;
+  let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
   let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
-  let btnW = (canvasWidth - 80) / cols;
-  let btnH = 22;
-  let startX = 35;
-  let startY = y + 28;
+  let gridPadX = 20;
+  let gridPadY = 30;
+  let gapX = 8;
+  let gapY = 8;
+  let availW = bandW - 2 * gridPadX;
+  let btnW = (availW - (cols - 1) * gapX) / cols;
+  let btnH = 32;
+  let gridStartX = MX + gridPadX;
+  let gridStartY = y + gridPadY;
 
   for (let i = 0; i < maxMinterms; i++) {
     let col = i % cols;
     let row = Math.floor(i / cols);
-    let bx = startX + col * btnW;
-    let by = startY + row * (btnH + 3);
+    let bx = gridStartX + col * (btnW + gapX);
+    let by = gridStartY + row * (btnH + gapY);
 
-    if (mouseX >= bx && mouseX <= bx + btnW - 5 && mouseY >= by && mouseY <= by + btnH) {
+    if (mouseX >= bx && mouseX <= bx + btnW && mouseY >= by && mouseY <= by + btnH) {
       selectedMinterm = i;
       mintermSlider.value(i);
       break;
