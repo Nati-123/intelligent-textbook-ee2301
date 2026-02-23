@@ -47,23 +47,22 @@ function setup() {
   canvas.parent(mainElement);
 
   numVarsSelect = createSelect();
-  numVarsSelect.parent(mainElement);
   numVarsSelect.option('2 variables', 2);
   numVarsSelect.option('3 variables', 3);
   numVarsSelect.option('4 variables', 4);
+  numVarsSelect.selected('3 variables');
   numVarsSelect.changed(() => {
     numVars = parseInt(numVarsSelect.value());
     selectedMinterm = min(selectedMinterm, Math.pow(2, numVars) - 1);
     mintermSlider.remove();
     mintermSlider = createSlider(0, Math.pow(2, numVars) - 1, selectedMinterm);
-    mintermSlider.parent(mainElement);
+    mintermSlider.size(200);
     mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
     positionUIElements();
   });
-  numVarsSelect.selected('3 variables');
 
   mintermSlider = createSlider(0, 7, 3);
-  mintermSlider.parent(mainElement);
+  mintermSlider.size(200);
   mintermSlider.input(() => { selectedMinterm = mintermSlider.value(); });
 
   positionUIElements();
@@ -73,40 +72,12 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  let baseX = mainRect.left;
-  let baseY = mainRect.top;
 
-  // Row 1: "Variables:" label (drawn on canvas) + select dropdown
-  let row1Y = baseY + drawHeight + 8;
-  numVarsSelect.position(baseX + MX + 72, row1Y);
-  numVarsSelect.size(120);
+  // Row 1: select at drawHeight + 8
+  numVarsSelect.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 8);
 
-  // Row 2: "mX:" label (drawn on canvas) + slider + value
-  let row2Y = baseY + drawHeight + 36;
-  let sliderX = baseX + MX + 72;
-  let sliderW = canvasWidth - MX - 72 - MX - 30;
-  if (sliderW < 100) sliderW = 100;
-  mintermSlider.position(sliderX, row2Y);
-  mintermSlider.size(sliderW);
-
-  // Style the select to match universal template
-  numVarsSelect.style('font-family', 'Arial, sans-serif');
-  numVarsSelect.style('font-size', '12px');
-  numVarsSelect.style('padding', '4px 8px');
-  numVarsSelect.style('border', '1.5px solid ' + PURPLE_BORDER);
-  numVarsSelect.style('border-radius', '8px');
-  numVarsSelect.style('background', 'white');
-  numVarsSelect.style('color', PURPLE_DARK);
-  numVarsSelect.style('outline', 'none');
-  numVarsSelect.style('cursor', 'pointer');
-  numVarsSelect.style('z-index', '10');
-  numVarsSelect.style('position', 'absolute');
-
-  // Style the slider — ensure it sits above canvas
-  mintermSlider.style('accent-color', PURPLE);
-  mintermSlider.style('cursor', 'pointer');
-  mintermSlider.style('z-index', '10');
-  mintermSlider.style('position', 'absolute');
+  // Row 2: slider at drawHeight + 36
+  mintermSlider.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 36);
 }
 
 function draw() {
