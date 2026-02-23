@@ -9,17 +9,24 @@
         /* ── Reset & base ── */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
+            margin: 0;
+            padding: 0;
             height: 100%;
-            overflow: hidden;
             font-family: Arial, Helvetica, sans-serif;
             background: #FAFAFA;
             color: #333;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Inner scroll wrapper — scrolls even when iframe has scrolling="no" */
+        /* Fixed scroll wrapper — guarantees scrolling even inside
+           an iframe with scrolling="no" by creating its own
+           viewport-sized scrollable layer. */
         .scroll-wrapper {
-            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
