@@ -7,106 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
         body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-
-        /* ── Universal-style control bar ── */
-        #controls {
-            background: #FAFBFF;
-            border-top: 1.5px solid #C9B9FF;
-            padding: 10px 40px 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 24px;
-            align-items: center;
-        }
-        #controls label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #6A5BFF;
-            white-space: nowrap;
-        }
-        #vars-select {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            padding: 5px 10px;
-            border: 1.5px solid #C9B9FF;
-            border-radius: 8px;
-            background: white;
-            color: #5A3EED;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* ── Slider row ── */
-        .slider-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            min-width: 200px;
-        }
-        #slider-label {
-            font-size: 13px;
-            font-weight: 700;
-            color: #6A5BFF;
-            min-width: 32px;
-            text-align: right;
-        }
-        #minterm-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            flex: 1;
-            height: 6px;
-            border-radius: 3px;
-            background: #E8E0FF;
-            outline: none;
-            cursor: pointer;
-            margin: 0 4px;
-        }
-        #minterm-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #6A5BFF;
-            border: 2px solid white;
-            box-shadow: 0 1px 4px rgba(106, 91, 255, 0.4);
-            cursor: pointer;
-        }
-        #minterm-slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #6A5BFF;
-            border: 2px solid white;
-            box-shadow: 0 1px 4px rgba(106, 91, 255, 0.4);
-            cursor: pointer;
-        }
-        #slider-value {
-            font-size: 13px;
-            font-weight: 700;
-            color: #5A3EED;
-            min-width: 18px;
-            text-align: left;
-        }
     </style>
     <script src="minterm-visualizer.js"></script>
     <script src="../fullscreen-toggle.js"></script>
 </head>
 <body>
     <main></main>
-    <div id="controls">
-        <label for="vars-select">Variables:</label>
-        <select id="vars-select">
-            <option value="2">2 variables</option>
-            <option value="3" selected>3 variables</option>
-            <option value="4">4 variables</option>
-        </select>
-        <div class="slider-row">
-            <span id="slider-label">m3:</span>
-            <input type="range" id="minterm-slider" min="0" max="7" value="3" step="1">
-            <span id="slider-value">3</span>
-        </div>
-    </div>
 </body>
 </html>

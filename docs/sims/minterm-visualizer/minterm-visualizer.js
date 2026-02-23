@@ -2,10 +2,11 @@
 // Visualize minterms and maxterms
 // Bloom Level: Understand (L2) - Explain minterm/maxterm concepts
 // MicroSim template version 2026.02
+// All controls drawn on canvas — no DOM elements, no iframe conflicts.
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 540;
+let drawHeight = 600;
 let canvasHeight = drawHeight;
 
 // Theme colors (universal style template)
@@ -34,62 +35,21 @@ let numVars = 3;
 let selectedMinterm = 3;
 
 // Layout constants
-const MX = 40; // horizontal margin
+const MX = 40;
 
-// Native HTML control references
-let varsSelect, mintermSliderEl, sliderLabelEl, sliderValueEl;
+// Custom slider state
+let sliderDragging = false;
+let sliderTrackX, sliderTrackY, sliderTrackW;
+const SLIDER_H = 6;
+const THUMB_R = 10;
 
 function setup() {
   updateCanvasSize();
   const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
-
-  // Wire up native HTML controls
-  varsSelect = document.getElementById('vars-select');
-  mintermSliderEl = document.getElementById('minterm-slider');
-  sliderLabelEl = document.getElementById('slider-label');
-  sliderValueEl = document.getElementById('slider-value');
-
-  // Variable count change
-  varsSelect.addEventListener('change', onVarsChange);
-
-  // Slider input (fires continuously while dragging)
-  mintermSliderEl.addEventListener('input', onSliderChange);
-
   describe('Minterm and maxterm visualizer showing product and sum terms', LABEL);
 }
-
-// ── Event handlers ──
-
-function onVarsChange() {
-  numVars = parseInt(varsSelect.value);
-  let maxVal = Math.pow(2, numVars) - 1;
-  mintermSliderEl.max = maxVal;
-  if (selectedMinterm > maxVal) {
-    selectedMinterm = maxVal;
-  }
-  mintermSliderEl.value = selectedMinterm;
-  syncSliderDisplay();
-}
-
-function onSliderChange() {
-  selectedMinterm = parseInt(mintermSliderEl.value);
-  syncSliderDisplay();
-}
-
-function onMintermButtonClick(index) {
-  selectedMinterm = index;
-  mintermSliderEl.value = index;
-  syncSliderDisplay();
-}
-
-function syncSliderDisplay() {
-  sliderLabelEl.textContent = 'm' + selectedMinterm + ':';
-  sliderValueEl.textContent = selectedMinterm;
-}
-
-// ── Drawing ──
 
 function draw() {
   updateCanvasSize();
@@ -114,12 +74,196 @@ function draw() {
   fill('#555');
   text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 35);
 
-  // Draw sections
+  // Sections
   drawBitDisplay();
   drawTruthTableRow();
   drawMintermMaxterm();
   drawMintermList();
+  drawControlBar();
 }
+
+// ── Control bar (variable buttons + custom slider) ──
+
+function drawControlBar() {
+  let y = 545;
+  let bandW = canvasWidth - 2 * MX;
+
+  // Background band
+  fill('#FAFBFF');
+  stroke(PURPLE_BORDER);
+  strokeWeight(1.5);
+  rect(MX, y, bandW, 44, 12);
+
+  // ── Variable selector buttons: [2] [3] [4] ──
+  let btnW = 28;
+  let btnH = 24;
+  let btnGap = 6;
+  let varsX = MX + 14;
+  let btnY = y + 10;
+
+  // Label
+  fill(PURPLE);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(10);
+  textStyle(BOLD);
+  text('Vars:', varsX, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  varsX += 34;
+  for (let v = 2; v <= 4; v++) {
+    let isActive = (numVars === v);
+    let bx = varsX + (v - 2) * (btnW + btnGap);
+
+    if (isActive) {
+      drawingContext.shadowColor = 'rgba(106,91,255,0.25)';
+      drawingContext.shadowBlur = 4;
+    }
+    fill(isActive ? PURPLE : '#F0EDFF');
+    stroke(isActive ? PURPLE_DARK : PURPLE_BORDER);
+    strokeWeight(1.2);
+    rect(bx, btnY, btnW, btnH, 6);
+    drawingContext.shadowBlur = 0;
+
+    fill(isActive ? 'white' : PURPLE);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(12);
+    textStyle(BOLD);
+    text(v, bx + btnW / 2, btnY + btnH / 2);
+    textStyle(NORMAL);
+  }
+
+  // ── Custom slider ──
+  let sliderLabelX = varsX + 3 * (btnW + btnGap) + 10;
+  let maxVal = Math.pow(2, numVars) - 1;
+
+  // Label "m3:"
+  fill(PURPLE);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text('m' + selectedMinterm + ':', sliderLabelX, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Track
+  sliderTrackX = sliderLabelX + 38;
+  sliderTrackY = btnY + btnH / 2;
+  sliderTrackW = MX + bandW - 14 - sliderTrackX - 24;
+  if (sliderTrackW < 60) sliderTrackW = 60;
+
+  // Draw track background
+  fill('#E8E0FF');
+  noStroke();
+  rect(sliderTrackX, sliderTrackY - SLIDER_H / 2, sliderTrackW, SLIDER_H, 3);
+
+  // Filled portion
+  let frac = maxVal > 0 ? selectedMinterm / maxVal : 0;
+  let filledW = frac * sliderTrackW;
+  fill(PURPLE_BORDER);
+  rect(sliderTrackX, sliderTrackY - SLIDER_H / 2, filledW, SLIDER_H, 3);
+
+  // Thumb
+  let thumbX = sliderTrackX + filledW;
+  drawingContext.shadowColor = 'rgba(106,91,255,0.35)';
+  drawingContext.shadowBlur = 6;
+  fill(PURPLE);
+  stroke('white');
+  strokeWeight(2);
+  ellipse(thumbX, sliderTrackY, THUMB_R * 2, THUMB_R * 2);
+  drawingContext.shadowBlur = 0;
+
+  // Value at end
+  fill(PURPLE_DARK);
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text(selectedMinterm, sliderTrackX + sliderTrackW + 8, sliderTrackY);
+  textStyle(NORMAL);
+}
+
+// ── Slider & button interaction ──
+
+function mousePressed() {
+  // Check variable selector buttons
+  let y = 545;
+  let btnW = 28;
+  let btnH = 24;
+  let btnGap = 6;
+  let varsX = MX + 14 + 34;
+  let btnY = y + 10;
+
+  for (let v = 2; v <= 4; v++) {
+    let bx = varsX + (v - 2) * (btnW + btnGap);
+    if (mouseX >= bx && mouseX <= bx + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
+      numVars = v;
+      let maxVal = Math.pow(2, numVars) - 1;
+      if (selectedMinterm > maxVal) selectedMinterm = maxVal;
+      return;
+    }
+  }
+
+  // Check custom slider thumb / track
+  let maxVal = Math.pow(2, numVars) - 1;
+  if (mouseY >= sliderTrackY - THUMB_R - 4 && mouseY <= sliderTrackY + THUMB_R + 4 &&
+      mouseX >= sliderTrackX - THUMB_R && mouseX <= sliderTrackX + sliderTrackW + THUMB_R) {
+    sliderDragging = true;
+    updateSliderFromMouse();
+    return;
+  }
+
+  // Check minterm buttons
+  checkMintermButtons();
+}
+
+function mouseDragged() {
+  if (sliderDragging) {
+    updateSliderFromMouse();
+  }
+}
+
+function mouseReleased() {
+  sliderDragging = false;
+}
+
+function updateSliderFromMouse() {
+  let maxVal = Math.pow(2, numVars) - 1;
+  let frac = (mouseX - sliderTrackX) / sliderTrackW;
+  frac = constrain(frac, 0, 1);
+  selectedMinterm = Math.round(frac * maxVal);
+}
+
+function checkMintermButtons() {
+  let y = 400;
+  let bandW = canvasWidth - 2 * MX;
+  let maxMinterms = Math.pow(2, numVars);
+  let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
+  let gridPadX = 20;
+  let gridPadY = 30;
+  let gapX = 8;
+  let gapY = 8;
+  let availW = bandW - 2 * gridPadX;
+  let btnW = (availW - (cols - 1) * gapX) / cols;
+  let btnH = 32;
+  let gridStartX = MX + gridPadX;
+  let gridStartY = y + gridPadY;
+
+  for (let i = 0; i < maxMinterms; i++) {
+    let col = i % cols;
+    let row = Math.floor(i / cols);
+    let bx = gridStartX + col * (btnW + gapX);
+    let by = gridStartY + row * (btnH + gapY);
+
+    if (mouseX >= bx && mouseX <= bx + btnW && mouseY >= by && mouseY <= by + btnH) {
+      selectedMinterm = i;
+      break;
+    }
+  }
+}
+
+// ── Drawing functions ──
 
 function drawBitDisplay() {
   let y = 55;
@@ -127,7 +271,6 @@ function drawBitDisplay() {
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
-  // Header box with soft shadow
   drawingContext.shadowColor = 'rgba(106, 91, 255, 0.12)';
   drawingContext.shadowBlur = 8;
   drawingContext.shadowOffsetY = 2;
@@ -140,7 +283,6 @@ function drawBitDisplay() {
   drawingContext.shadowBlur = 0;
   drawingContext.shadowOffsetY = 0;
 
-  // Label
   fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
@@ -149,7 +291,6 @@ function drawBitDisplay() {
   text('Minterm m' + selectedMinterm + '  (decimal ' + selectedMinterm + ')', canvasWidth / 2, y + 10);
   textStyle(NORMAL);
 
-  // Bit circles with spacing
   let circleD = 36;
   let circleGap = 16;
   let totalW = numVars * circleD + (numVars - 1) * circleGap;
@@ -162,11 +303,10 @@ function drawBitDisplay() {
 
     if (bit === '1') {
       drawingContext.shadowColor = 'rgba(76, 175, 80, 0.3)';
-      drawingContext.shadowBlur = 6;
     } else {
       drawingContext.shadowColor = 'rgba(229, 115, 115, 0.3)';
-      drawingContext.shadowBlur = 6;
     }
+    drawingContext.shadowBlur = 6;
 
     fill(bit === '1' ? '#4CAF50' : '#EF5350');
     stroke(bit === '1' ? '#388E3C' : '#D32F2F');
@@ -257,7 +397,7 @@ function drawMintermMaxterm() {
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
-  // ── Minterm card (green) ──
+  // Minterm card (green)
   let leftX = MX;
   drawingContext.shadowColor = 'rgba(129, 199, 132, 0.2)';
   drawingContext.shadowBlur = 6;
@@ -302,7 +442,7 @@ function drawMintermMaxterm() {
   textSize(9);
   text('Complement if bit = 0', leftX + cardW / 2, y + 90);
 
-  // ── Maxterm card (red) ──
+  // Maxterm card (red)
   let rightX = MX + cardW + 16;
   drawingContext.shadowColor = 'rgba(229, 115, 115, 0.2)';
   drawingContext.shadowBlur = 6;
@@ -347,7 +487,7 @@ function drawMintermMaxterm() {
   textSize(9);
   text('Complement if bit = 1', rightX + cardW / 2, y + 90);
 
-  // ── Relationship bar (orange) ──
+  // Relationship bar (orange)
   let relY = y + cardH + 14;
   drawingContext.shadowColor = 'rgba(255, 213, 79, 0.2)';
   drawingContext.shadowBlur = 6;
@@ -436,34 +576,6 @@ function drawMintermList() {
     textStyle(isActive ? BOLD : NORMAL);
     text('m' + i, bx + btnW / 2, by + btnH / 2);
     textStyle(NORMAL);
-  }
-}
-
-function mousePressed() {
-  let y = 400;
-  let bandW = canvasWidth - 2 * MX;
-  let maxMinterms = Math.pow(2, numVars);
-  let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
-  let gridPadX = 20;
-  let gridPadY = 30;
-  let gapX = 8;
-  let gapY = 8;
-  let availW = bandW - 2 * gridPadX;
-  let btnW = (availW - (cols - 1) * gapX) / cols;
-  let btnH = 32;
-  let gridStartX = MX + gridPadX;
-  let gridStartY = y + gridPadY;
-
-  for (let i = 0; i < maxMinterms; i++) {
-    let col = i % cols;
-    let row = Math.floor(i / cols);
-    let bx = gridStartX + col * (btnW + gapX);
-    let by = gridStartY + row * (btnH + gapY);
-
-    if (mouseX >= bx && mouseX <= bx + btnW && mouseY >= by && mouseY <= by + btnH) {
-      onMintermButtonClick(i);
-      break;
-    }
   }
 }
 
