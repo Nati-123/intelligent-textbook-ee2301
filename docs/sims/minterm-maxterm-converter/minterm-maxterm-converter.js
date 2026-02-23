@@ -3,358 +3,229 @@
 // Bloom Level: Apply (L3) - Calculate, convert, derive
 // MicroSim template version 2026.02
 
-// Canvas dimensions
-let containerWidth;
-let canvasWidth = 400;
-let drawHeight = 420;
-let controlHeight = 80;
-let canvasHeight = drawHeight + controlHeight;
-let containerHeight = canvasHeight;
+(function () {
+    'use strict';
 
-// Margins
-let margin = 20;
-let defaultTextSize = 14;
+    var VAR_NAMES = ['A', 'B', 'C', 'D'];
 
-// UI Elements
-let mintermInput;
-let numVarsSelect;
-let generateButton;
+    // State
+    var numVars  = 3;
+    var minterms = [];
+    var maxterms = [];
 
-// Data
-let numVars = 3;
-let minterms = [];
-let maxterms = [];
-let errorMessage = '';
-let varNames = ['A', 'B', 'C', 'D'];
+    // DOM references
+    var mintermInput    = document.getElementById('mintermInput');
+    var numVarsSelect   = document.getElementById('numVarsSelect');
+    var generateBtn     = document.getElementById('generateBtn');
+    var errorBox        = document.getElementById('errorBox');
+    var resultsArea     = document.getElementById('resultsArea');
+    var sopCompact      = document.getElementById('sopCompact');
+    var sopExpanded     = document.getElementById('sopExpanded');
+    var posCompact      = document.getElementById('posCompact');
+    var posExpanded     = document.getElementById('posExpanded');
+    var convExplanation = document.getElementById('convExplanation');
+    var truthTable      = document.getElementById('truthTable');
 
-function setup() {
-  updateCanvasSize();
-  const canvas = createCanvas(containerWidth, containerHeight);
-  var mainElement = document.querySelector('main');
-  canvas.parent(mainElement);
+    // ── Helpers ──────────────────────────────────────────────
 
-  textSize(defaultTextSize);
-
-  // Create minterm input
-  mintermInput = createInput('1,3,5,7');
-  mintermInput.size(150);
-  mintermInput.attribute('placeholder', 'e.g., 1,3,5,7');
-
-  // Create variable count selector
-  numVarsSelect = createSelect();
-  numVarsSelect.option('2 variables', 2);
-  numVarsSelect.option('3 variables', 3);
-  numVarsSelect.option('4 variables', 4);
-  numVarsSelect.selected('3 variables');
-  numVarsSelect.changed(handleVarsChange);
-
-  // Create generate button
-  generateButton = createButton('Generate');
-  generateButton.mousePressed(handleGenerate);
-
-  positionUIElements();
-
-  handleGenerate();
-
-  describe('Interactive converter between minterm and maxterm canonical forms for Boolean functions', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  mintermInput.position(mainRect.left + 130, mainRect.top + drawHeight + 15);
-  numVarsSelect.position(mainRect.left + 130, mainRect.top + drawHeight + 50);
-  generateButton.position(mainRect.left + 300, mainRect.top + drawHeight + 15);
-}
-
-function draw() {
-  updateCanvasSize();
-
-  // Draw background
-  fill('aliceblue');
-  stroke('silver');
-  strokeWeight(1);
-  rect(0, 0, canvasWidth, drawHeight);
-
-  // Control area
-  fill('white');
-  rect(0, drawHeight, canvasWidth, controlHeight);
-
-  // Title
-  fill('black');
-  noStroke();
-  textAlign(CENTER, TOP);
-  textSize(20);
-  text('Minterm/Maxterm Converter', canvasWidth / 2, 10);
-
-  if (errorMessage) {
-    drawError();
-  } else {
-    drawResults();
-    drawTruthTable();
-  }
-
-  // Control labels
-  fill('black');
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(defaultTextSize);
-  text('Minterm indices:', 20, drawHeight + 25);
-  text('Variables:', 20, drawHeight + 60);
-}
-
-function drawError() {
-  fill('#ffebee');
-  stroke('#f44336');
-  strokeWeight(2);
-  rect(margin, 50, canvasWidth - 2 * margin, 60, 5);
-
-  fill('#c62828');
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(14);
-  text(errorMessage, canvasWidth / 2, 80);
-}
-
-function drawResults() {
-  let y = 45;
-
-  // Sigma notation (SOP)
-  fill('#e3f2fd');
-  stroke('#2196f3');
-  strokeWeight(2);
-  rect(margin, y, canvasWidth - 2 * margin, 55, 5);
-
-  fill('#1565c0');
-  noStroke();
-  textAlign(LEFT, TOP);
-  textSize(12);
-  text('Sum of Minterms (Canonical SOP):', margin + 10, y + 8);
-
-  fill('black');
-  textSize(14);
-  let sigmaNotation = `F(${varNames.slice(0, numVars).join(',')}) = Σm(${minterms.join(',')})`;
-  text(sigmaNotation, margin + 10, y + 28);
-
-  // Expanded SOP
-  textSize(11);
-  fill('#333');
-  let sopExpanded = getSopExpression();
-  text('= ' + sopExpanded, margin + 10, y + 44);
-
-  y += 65;
-
-  // Pi notation (POS)
-  fill('#fff3e0');
-  stroke('#ff9800');
-  strokeWeight(2);
-  rect(margin, y, canvasWidth - 2 * margin, 55, 5);
-
-  fill('#e65100');
-  noStroke();
-  textAlign(LEFT, TOP);
-  textSize(12);
-  text('Product of Maxterms (Canonical POS):', margin + 10, y + 8);
-
-  fill('black');
-  textSize(14);
-  let piNotation = `F(${varNames.slice(0, numVars).join(',')}) = ΠM(${maxterms.join(',')})`;
-  text(piNotation, margin + 10, y + 28);
-
-  // Expanded POS
-  textSize(11);
-  fill('#333');
-  let posExpanded = getPosExpression();
-  text('= ' + posExpanded, margin + 10, y + 44);
-
-  // Conversion explanation
-  y += 65;
-  fill(240);
-  stroke('silver');
-  strokeWeight(1);
-  rect(margin, y, canvasWidth - 2 * margin, 50, 5);
-
-  fill('black');
-  noStroke();
-  textAlign(LEFT, TOP);
-  textSize(11);
-  text('Conversion:', margin + 10, y + 8);
-
-  let totalIndices = Math.pow(2, numVars);
-  let allIndices = [];
-  for (let i = 0; i < totalIndices; i++) allIndices.push(i);
-  text(`Maxterm indices = All indices - Minterm indices`, margin + 10, y + 22);
-  text(`{${allIndices.join(',')}} - {${minterms.join(',')}} = {${maxterms.join(',')}}`, margin + 10, y + 36);
-}
-
-function drawTruthTable() {
-  let startX = margin;
-  let startY = 235;
-  let colWidth = 35;
-  let rowHeight = 20;
-
-  let totalRows = Math.pow(2, numVars);
-  let tableWidth = colWidth * (numVars + 3); // vars + F + minterm + maxterm
-
-  // Adjust column width if needed
-  if (tableWidth > canvasWidth - 2 * margin) {
-    colWidth = (canvasWidth - 2 * margin) / (numVars + 3);
-  }
-
-  // Header
-  fill('#2196f3');
-  noStroke();
-  rect(startX, startY, colWidth * (numVars + 3), rowHeight);
-
-  fill('white');
-  textAlign(CENTER, CENTER);
-  textSize(10);
-  for (let i = 0; i < numVars; i++) {
-    text(varNames[i], startX + colWidth * i + colWidth / 2, startY + rowHeight / 2);
-  }
-  text('F', startX + colWidth * numVars + colWidth / 2, startY + rowHeight / 2);
-  text('m', startX + colWidth * (numVars + 1) + colWidth / 2, startY + rowHeight / 2);
-  text('M', startX + colWidth * (numVars + 2) + colWidth / 2, startY + rowHeight / 2);
-
-  // Rows
-  for (let r = 0; r < totalRows; r++) {
-    let y = startY + rowHeight * (r + 1);
-
-    // Check if minterm
-    let isMinterm = minterms.includes(r);
-
-    // Background
-    if (isMinterm) {
-      fill('#e8f5e9');
-    } else {
-      fill('#ffebee');
-    }
-    stroke('#ddd');
-    strokeWeight(1);
-    rect(startX, y, colWidth * (numVars + 3), rowHeight);
-
-    // Values
-    fill('black');
-    noStroke();
-    textSize(10);
-
-    // Variable values
-    for (let i = 0; i < numVars; i++) {
-      let bit = (r >> (numVars - 1 - i)) & 1;
-      text(bit, startX + colWidth * i + colWidth / 2, y + rowHeight / 2);
+    /** Wrap a character in an overline span (complement notation) */
+    function ov(ch) {
+        return '<span class="ov">' + ch + '</span>';
     }
 
-    // F value
-    fill(isMinterm ? '#4CAF50' : '#f44336');
-    text(isMinterm ? '1' : '0', startX + colWidth * numVars + colWidth / 2, y + rowHeight / 2);
+    /** Build the expanded SOP expression as HTML */
+    function buildSopHTML() {
+        var total = 1 << numVars;
+        if (minterms.length === 0)     return '0';
+        if (minterms.length === total) return '1';
 
-    // Minterm
-    fill(isMinterm ? '#4CAF50' : '#ccc');
-    textSize(9);
-    text(isMinterm ? 'm' + r : '-', startX + colWidth * (numVars + 1) + colWidth / 2, y + rowHeight / 2);
+        var terms = [];
+        for (var k = 0; k < minterms.length; k++) {
+            var m = minterms[k];
+            var t = '';
+            for (var i = 0; i < numVars; i++) {
+                var bit = (m >> (numVars - 1 - i)) & 1;
+                t += (bit === 0) ? ov(VAR_NAMES[i]) : VAR_NAMES[i];
+            }
+            terms.push(t);
+        }
 
-    // Maxterm
-    fill(!isMinterm ? '#ff9800' : '#ccc');
-    text(!isMinterm ? 'M' + r : '-', startX + colWidth * (numVars + 2) + colWidth / 2, y + rowHeight / 2);
-  }
-}
+        // Break into lines if many terms (>4 terms → ~4 per line)
+        if (terms.length <= 4) return terms.join(' + ');
 
-function getSopExpression() {
-  if (minterms.length === 0) return '0';
-  if (minterms.length === Math.pow(2, numVars)) return '1';
-
-  let terms = minterms.map(m => {
-    let term = '';
-    for (let i = 0; i < numVars; i++) {
-      let bit = (m >> (numVars - 1 - i)) & 1;
-      if (bit === 0) {
-        term += varNames[i] + "'";
-      } else {
-        term += varNames[i];
-      }
+        var lines = [];
+        for (var j = 0; j < terms.length; j += 4) {
+            lines.push(terms.slice(j, j + 4).join(' + '));
+        }
+        return lines.join('<br>');
     }
-    return term;
-  });
 
-  return terms.join(' + ');
-}
+    /** Build the expanded POS expression as HTML (multiline when long) */
+    function buildPosHTML() {
+        var total = 1 << numVars;
+        if (maxterms.length === 0)     return '1';
+        if (maxterms.length === total) return '0';
 
-function getPosExpression() {
-  if (maxterms.length === 0) return '1';
-  if (maxterms.length === Math.pow(2, numVars)) return '0';
+        var terms = [];
+        for (var k = 0; k < maxterms.length; k++) {
+            var m = maxterms[k];
+            var lits = [];
+            for (var i = 0; i < numVars; i++) {
+                var bit = (m >> (numVars - 1 - i)) & 1;
+                lits.push((bit === 1) ? ov(VAR_NAMES[i]) : VAR_NAMES[i]);
+            }
+            terms.push('(' + lits.join(' + ') + ')');
+        }
 
-  let terms = maxterms.map(m => {
-    let term = '(';
-    let literals = [];
-    for (let i = 0; i < numVars; i++) {
-      let bit = (m >> (numVars - 1 - i)) & 1;
-      if (bit === 1) {
-        literals.push(varNames[i] + "'");
-      } else {
-        literals.push(varNames[i]);
-      }
+        // Group terms per line based on variable count
+        var perLine = (numVars <= 3) ? 3 : 2;
+        if (terms.length <= perLine) return terms.join('');
+
+        var lines = [];
+        for (var j = 0; j < terms.length; j += perLine) {
+            lines.push(terms.slice(j, j + perLine).join(''));
+        }
+        return lines.join('<br>');
     }
-    term += literals.join('+') + ')';
-    return term;
-  });
 
-  return terms.join('');
-}
+    // ── Truth table ──────────────────────────────────────────
 
-function handleVarsChange() {
-  numVars = parseInt(numVarsSelect.value());
-  handleGenerate();
-}
+    function buildTruthTable() {
+        var total = 1 << numVars;
+        var vars  = VAR_NAMES.slice(0, numVars);
 
-function handleGenerate() {
-  errorMessage = '';
-  minterms = [];
-  maxterms = [];
+        var h = '<thead><tr>';
+        for (var v = 0; v < vars.length; v++) h += '<th>' + vars[v] + '</th>';
+        h += '<th>F</th><th>Minterm</th><th>Maxterm</th>';
+        h += '</tr></thead><tbody>';
 
-  let input = mintermInput.value().trim();
+        for (var r = 0; r < total; r++) {
+            var isOn = minterms.indexOf(r) !== -1;
+            h += '<tr>';
 
-  if (!input) {
-    errorMessage = 'Please enter minterm indices';
-    return;
-  }
+            // Variable columns
+            for (var i = 0; i < numVars; i++) {
+                h += '<td>' + ((r >> (numVars - 1 - i)) & 1) + '</td>';
+            }
 
-  let totalIndices = Math.pow(2, numVars);
+            // F column
+            h += '<td class="' + (isOn ? 'f-one' : 'f-zero') + '">';
+            h += isOn ? '1' : '0';
+            h += '</td>';
 
-  // Parse minterms
-  let parts = input.split(',');
-  let parsedMinterms = new Set();
+            // Minterm column
+            h += '<td class="' + (isOn ? 'm-on' : 'm-off') + '">';
+            h += isOn ? 'm<sub>' + r + '</sub>' : '\u2014';
+            h += '</td>';
 
-  for (let p of parts) {
-    let val = parseInt(p.trim());
-    if (isNaN(val)) {
-      errorMessage = `Invalid input: "${p.trim()}"`;
-      return;
+            // Maxterm column
+            h += '<td class="' + (!isOn ? 'M-on' : 'M-off') + '">';
+            h += !isOn ? 'M<sub>' + r + '</sub>' : '\u2014';
+            h += '</td>';
+
+            h += '</tr>';
+        }
+
+        h += '</tbody>';
+        truthTable.innerHTML = h;
     }
-    if (val < 0 || val >= totalIndices) {
-      errorMessage = `Index ${val} out of range (0-${totalIndices - 1})`;
-      return;
+
+    // ── Display ──────────────────────────────────────────────
+
+    function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+        resultsArea.classList.add('hidden');
     }
-    parsedMinterms.add(val);
-  }
 
-  minterms = Array.from(parsedMinterms).sort((a, b) => a - b);
-
-  // Calculate maxterms (complement)
-  for (let i = 0; i < totalIndices; i++) {
-    if (!minterms.includes(i)) {
-      maxterms.push(i);
+    function hideError() {
+        errorBox.classList.add('hidden');
+        resultsArea.classList.remove('hidden');
     }
-  }
-}
 
-function windowResized() {
-  updateCanvasSize();
-  resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
-  redraw();
-}
+    function updateDisplay() {
+        var vars = VAR_NAMES.slice(0, numVars).join(', ');
 
-function updateCanvasSize() {
-  const container = document.querySelector('main').getBoundingClientRect();
-  containerWidth = Math.floor(container.width);
-  canvasWidth = containerWidth;
-}
+        // SOP
+        sopCompact.innerHTML  = 'F(' + vars + ') = \u03A3m(' + minterms.join(', ') + ')';
+        sopExpanded.innerHTML = '= ' + buildSopHTML();
+
+        // POS
+        posCompact.innerHTML  = 'F(' + vars + ') = \u03A0M(' + maxterms.join(', ') + ')';
+        posExpanded.innerHTML = '= ' + buildPosHTML();
+
+        // Conversion explanation
+        var total = 1 << numVars;
+        var all   = [];
+        for (var i = 0; i < total; i++) all.push(i);
+
+        convExplanation.innerHTML =
+            'Maxterm indices = All indices \u2212 Minterm indices<br>' +
+            '<span class="set">{' + all.join(', ') + '}</span> \u2212 ' +
+            '<span class="set">{' + minterms.join(', ') + '}</span> = ' +
+            '<span class="set">{' + maxterms.join(', ') + '}</span>';
+
+        // Truth table
+        buildTruthTable();
+    }
+
+    // ── Core logic ───────────────────────────────────────────
+
+    function handleGenerate() {
+        minterms = [];
+        maxterms = [];
+
+        var input = mintermInput.value.trim();
+        if (!input) {
+            showError('Please enter minterm indices (e.g. 1, 3, 5, 7)');
+            return;
+        }
+
+        var total  = 1 << numVars;
+        var parts  = input.split(',');
+        var parsed = {};
+        var list   = [];
+
+        for (var k = 0; k < parts.length; k++) {
+            var v = parseInt(parts[k].trim(), 10);
+            if (isNaN(v)) {
+                showError('Invalid input: \u201C' + parts[k].trim() + '\u201D');
+                return;
+            }
+            if (v < 0 || v >= total) {
+                showError('Index ' + v + ' out of range (0\u2013' + (total - 1) + ') for ' + numVars + ' variables');
+                return;
+            }
+            if (!parsed[v]) {
+                parsed[v] = true;
+                list.push(v);
+            }
+        }
+
+        minterms = list.sort(function (a, b) { return a - b; });
+
+        for (var i = 0; i < total; i++) {
+            if (minterms.indexOf(i) === -1) maxterms.push(i);
+        }
+
+        hideError();
+        updateDisplay();
+    }
+
+    // ── Events ───────────────────────────────────────────────
+
+    generateBtn.addEventListener('click', handleGenerate);
+
+    numVarsSelect.addEventListener('change', function () {
+        numVars = parseInt(numVarsSelect.value, 10);
+        handleGenerate();
+    });
+
+    mintermInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') handleGenerate();
+    });
+
+    // ── Initialise ───────────────────────────────────────────
+    handleGenerate();
+
+})();

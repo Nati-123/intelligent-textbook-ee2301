@@ -7,7 +7,7 @@ quality_score: 85
 
 # Minterm/Maxterm Converter
 
-<iframe src="main.html" height="500px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="760px" width="100%" scrolling="no"></iframe>
 
 [Run the Minterm/Maxterm Converter Fullscreen](./main.html){ .md-button .md-button--primary }
 

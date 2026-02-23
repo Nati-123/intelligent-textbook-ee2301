@@ -5,18 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
     <title>Minterm/Maxterm Converter MicroSim</title>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
     <style>
+        /* ── Reset & base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0px;
-            padding: 0px;
             font-family: Arial, Helvetica, sans-serif;
+            background: #FAFAFA;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* ── Container ── */
+        .sim-container {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 18px 14px 28px;
+        }
+
+        /* ── Title ── */
+        .sim-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #6A55FF;
+            text-align: center;
+            letter-spacing: 0.2px;
+            margin-bottom: 2px;
+        }
+        .sim-subtitle {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* ── Generic card ── */
+        .card {
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Card variants */
+        .card-sop   { background: #CFE6FF; border: 1.5px solid #A8D1FF; }
+        .card-pos   { background: #FFE9C4; border: 1.5px solid #FFD699; }
+        .card-conv  { background: #F4F4F4; border: 1.5px solid #E0E0E0; }
+        .card-input { background: #F8F6FF; border: 1.5px solid #C9B9FF; }
+        .card-table { background: #fff;    border: 1.5px solid #E0E0E0; padding: 14px 12px; }
+
+        /* Card labels */
+        .card-label {
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .label-sop  { color: #1565C0; }
+        .label-pos  { color: #E65100; }
+        .label-conv { color: #888; }
+
+        /* ── Math expressions ── */
+        .math-line {
+            font-family: 'Times New Roman', Georgia, serif;
+            color: #222;
+            line-height: 1.8;
+            text-align: center;
+        }
+        .math-compact {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .math-expanded {
+            font-size: 14px;
+            color: #444;
+        }
+
+        /* Overbar for complements */
+        .ov { text-decoration: overline; text-decoration-thickness: 1.5px; }
+
+        /* ── Conversion explanation ── */
+        .conv-text {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+            text-align: center;
+        }
+        .conv-text .set { font-weight: 600; color: #444; }
+
+        /* ── Truth table ── */
+        .table-scroll {
+            max-height: 340px;
+            overflow-y: auto;
+            border-radius: 12px;
+        }
+        .truth-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 13px;
+            text-align: center;
+        }
+        .truth-table th {
+            background: #6A55FF;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 10px 8px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .truth-table th:first-child { border-radius: 10px 0 0 0; }
+        .truth-table th:last-child  { border-radius: 0 10px 0 0; }
+        .truth-table td {
+            padding: 8px 8px;
+            border-bottom: 1px solid #ECECEC;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Alternating row shading */
+        .truth-table tbody tr:nth-child(odd)  td { background: #fff; }
+        .truth-table tbody tr:nth-child(even) td { background: #F7F7FB; }
+
+        /* Colored cells */
+        .f-one  { color: #2E7D32; font-weight: 700; }
+        .f-zero { color: #D32F2F; font-weight: 700; }
+        .m-on   { color: #1565C0; font-weight: 600; }
+        .m-off  { color: #CCC; }
+        .M-on   { color: #E65100; font-weight: 600; }
+        .M-off  { color: #CCC; }
+
+        /* ── Input panel ── */
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .input-row:last-child { margin-bottom: 0; }
+        .input-row label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #6A55FF;
+            min-width: 115px;
+            flex-shrink: 0;
+        }
+        .input-row input[type="text"],
+        .input-row select {
+            flex: 1;
+            padding: 9px 14px;
+            border: 1.5px solid #C9B9FF;
+            border-radius: 12px;
+            font-size: 13px;
+            font-family: inherit;
+            color: #333;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .input-row input:focus,
+        .input-row select:focus {
+            border-color: #6A55FF;
+            box-shadow: 0 0 0 3px rgba(106, 85, 255, 0.12);
+        }
+        .btn-generate {
+            background: #6A55FF;
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .btn-generate:hover {
+            background: #5A3EED;
+            box-shadow: 0 2px 8px rgba(90, 62, 237, 0.25);
+        }
+        .btn-generate:active { transform: scale(0.97); }
+
+        /* ── Error ── */
+        .error-box {
+            background: #FFF0F0;
+            border: 1.5px solid #FFAAAA;
+            border-radius: 14px;
+            padding: 12px 18px;
+            color: #C62828;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .hidden { display: none; }
     </style>
-    <script src="minterm-maxterm-converter.js"></script>
-    <script src="../fullscreen-toggle.js"></script>
 </head>
 <body>
-    <main></main>
+    <main>
+        <div class="sim-container">
+            <!-- Title -->
+            <h1 class="sim-title">Minterm / Maxterm Converter</h1>
+            <p class="sim-subtitle">Convert between canonical SOP and POS forms</p>
+
+            <!-- Input panel -->
+            <div class="card card-input">
+                <div class="input-row">
+                    <label for="mintermInput">Minterm indices:</label>
+                    <input type="text" id="mintermInput" value="1,3,5,7" placeholder="e.g. 1,3,5,7">
+                </div>
+                <div class="input-row">
+                    <label for="numVarsSelect">Variables:</label>
+                    <select id="numVarsSelect">
+                        <option value="2">2 variables (A, B)</option>
+                        <option value="3" selected>3 variables (A, B, C)</option>
+                        <option value="4">4 variables (A, B, C, D)</option>
+                    </select>
+                    <button class="btn-generate" id="generateBtn">Generate</button>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div id="errorBox" class="error-box hidden"></div>
+
+            <!-- Results -->
+            <div id="resultsArea">
+                <!-- SOP -->
+                <div class="card card-sop">
+                    <div class="card-label label-sop">Sum of Minterms (Canonical SOP)</div>
+                    <div class="math-line math-compact" id="sopCompact"></div>
+                    <div class="math-line math-expanded" id="sopExpanded"></div>
+                </div>
+
+                <!-- POS -->
+                <div class="card card-pos">
+                    <div class="card-label label-pos">Product of Maxterms (Canonical POS)</div>
+                    <div class="math-line math-compact" id="posCompact"></div>
+                    <div class="math-line math-expanded" id="posExpanded"></div>
+                </div>
+
+                <!-- Conversion -->
+                <div class="card card-conv">
+                    <div class="card-label label-conv">Conversion</div>
+                    <div class="conv-text" id="convExplanation"></div>
+                </div>
+
+                <!-- Truth Table -->
+                <div class="card card-table">
+                    <div class="table-scroll">
+                        <table class="truth-table" id="truthTable"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="minterm-maxterm-converter.js"></script>
 </body>
 </html>
