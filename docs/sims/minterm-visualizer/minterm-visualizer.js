@@ -6,7 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 540;
-let controlHeight = 62;
+let controlHeight = 90;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -73,11 +73,11 @@ function setup() {
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
 
-  // Row 1: select at drawHeight + 8
-  numVarsSelect.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 8);
+  // Row 1: select at drawHeight + 15
+  numVarsSelect.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 15);
 
-  // Row 2: slider at drawHeight + 36
-  mintermSlider.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 36);
+  // Row 2: slider at drawHeight + 48
+  mintermSlider.position(mainRect.left + MX + 72, mainRect.top + drawHeight + 48);
 }
 
 function draw() {
@@ -124,19 +124,19 @@ function draw() {
   textAlign(LEFT, CENTER);
   textSize(11);
   textStyle(BOLD);
-  text('Variables:', MX, drawHeight + 20);
+  text('Variables:', MX, drawHeight + 27);
   textStyle(NORMAL);
 
   // Row 2 label: "mX:" and slider value
   fill(PURPLE);
   textStyle(BOLD);
-  text('m' + selectedMinterm + ':', MX, drawHeight + 48);
+  text('m' + selectedMinterm + ':', MX, drawHeight + 58);
   textStyle(NORMAL);
 
   fill(PURPLE_DARK);
   textAlign(RIGHT, CENTER);
   textSize(11);
-  text(selectedMinterm, canvasWidth - MX, drawHeight + 48);
+  text(selectedMinterm, canvasWidth - MX, drawHeight + 58);
 }
 
 function drawBitDisplay() {
