@@ -96,8 +96,6 @@
 
         /* ── Truth table ── */
         .table-scroll {
-            max-height: 340px;
-            overflow-y: auto;
             border-radius: 12px;
         }
         .truth-table {
@@ -202,11 +200,29 @@
             margin-bottom: 24px;
         }
         .hidden { display: none; }
+
+        /* ── Back-to-doc link (visible only in standalone mode) ── */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        .back-link a {
+            color: #6A55FF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <main>
         <div class="sim-container">
+            <!-- Back link (hidden when inside iframe, visible standalone) -->
+            <div class="back-link" id="backLink" style="display:none;">
+                <a href="index.html">&#8592; Back to Documentation</a>
+            </div>
             <!-- Title -->
             <h1 class="sim-title">Minterm / Maxterm Converter</h1>
             <p class="sim-subtitle">Convert between canonical SOP and POS forms</p>
@@ -263,5 +279,18 @@
         </div>
     </main>
     <script src="minterm-maxterm-converter.js"></script>
+    <script src="../fullscreen-toggle.js"></script>
+    <script>
+    // Show back link only when opened standalone (not inside an iframe)
+    (function () {
+        try {
+            if (window.self === window.top) {
+                document.getElementById('backLink').style.display = 'block';
+            }
+        } catch (e) {
+            // Cross-origin iframe — keep hidden
+        }
+    })();
+    </script>
 </body>
 </html>

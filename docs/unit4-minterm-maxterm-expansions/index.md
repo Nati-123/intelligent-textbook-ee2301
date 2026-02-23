@@ -321,7 +321,7 @@ Both canonical forms — the **sum of minterms** (SOP) and the **product of maxt
 
 #### Diagram: Minterm/Maxterm Converter
 
-<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="760px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="900px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Canonical Form Generator</summary>
