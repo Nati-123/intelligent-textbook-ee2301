@@ -6,7 +6,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 540;
-let controlHeight = 55;
+let controlHeight = 62;
 let canvasHeight = drawHeight + controlHeight;
 let containerHeight = canvasHeight;
 
@@ -70,17 +70,20 @@ function setup() {
 
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
-  let controlY = mainRect.top + drawHeight + 14;
-  let labelW = 80;
-  let selectW = 130;
-  let gap = 20;
-  let sliderW = canvasWidth - MX * 2 - labelW - selectW - gap - 110;
-  if (sliderW < 120) sliderW = 120;
+  let baseX = mainRect.left;
+  let baseY = mainRect.top;
 
-  numVarsSelect.position(mainRect.left + MX + labelW, controlY);
-  numVarsSelect.size(selectW);
+  // Row 1: "Variables:" label (drawn on canvas) + select dropdown
+  let row1Y = baseY + drawHeight + 8;
+  numVarsSelect.position(baseX + MX + 72, row1Y);
+  numVarsSelect.size(120);
 
-  mintermSlider.position(mainRect.left + MX + labelW + selectW + gap + 80, controlY);
+  // Row 2: "mX:" label (drawn on canvas) + slider + value
+  let row2Y = baseY + drawHeight + 36;
+  let sliderX = baseX + MX + 72;
+  let sliderW = canvasWidth - MX - 72 - MX - 30;
+  if (sliderW < 100) sliderW = 100;
+  mintermSlider.position(sliderX, row2Y);
   mintermSlider.size(sliderW);
 
   // Style the select to match universal template
@@ -92,9 +95,11 @@ function positionUIElements() {
   numVarsSelect.style('background', 'white');
   numVarsSelect.style('color', PURPLE_DARK);
   numVarsSelect.style('outline', 'none');
+  numVarsSelect.style('cursor', 'pointer');
 
   // Style the slider
   mintermSlider.style('accent-color', PURPLE);
+  mintermSlider.style('cursor', 'pointer');
 }
 
 function draw() {
@@ -132,27 +137,25 @@ function draw() {
   drawMintermMaxterm();
   drawMintermList();
 
-  // Control labels
+  // Row 1 label: "Variables:"
   fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
   textStyle(BOLD);
-  text('Variables:', MX, drawHeight + 25);
+  text('Variables:', MX, drawHeight + 20);
   textStyle(NORMAL);
 
-  let selectW = 130;
-  let gap = 20;
+  // Row 2 label: "mX:" and slider value
   fill(PURPLE);
   textStyle(BOLD);
-  text('m' + selectedMinterm + ':', MX + 80 + selectW + gap, drawHeight + 25);
+  text('m' + selectedMinterm + ':', MX, drawHeight + 48);
   textStyle(NORMAL);
 
-  // Slider value display
   fill(PURPLE_DARK);
   textAlign(RIGHT, CENTER);
   textSize(11);
-  text(selectedMinterm, canvasWidth - MX, drawHeight + 25);
+  text(selectedMinterm, canvasWidth - MX, drawHeight + 48);
 }
 
 function drawBitDisplay() {
