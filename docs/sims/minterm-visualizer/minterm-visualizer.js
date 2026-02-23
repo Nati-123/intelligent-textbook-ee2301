@@ -48,7 +48,7 @@ function setup() {
   const canvas = createCanvas(containerWidth, canvasHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
-  describe('Minterm and maxterm visualizer showing product and sum terms', LABEL);
+  describe('Minterm and maxterm visualizer showing product and sum terms');
 }
 
 function draw() {
