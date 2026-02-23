@@ -11,24 +11,10 @@
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
             font-family: Arial, Helvetica, sans-serif;
             background: #FAFAFA;
             color: #333;
             -webkit-font-smoothing: antialiased;
-        }
-
-        /* Fixed scroll wrapper — guarantees scrolling even inside
-           an iframe with scrolling="no" by creating its own
-           viewport-sized scrollable layer. */
-        .scroll-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         /* ── Container ── */
@@ -233,7 +219,6 @@
     </style>
 </head>
 <body>
-    <div class="scroll-wrapper">
     <main>
         <div class="sim-container">
             <!-- Back link (hidden when inside iframe, visible standalone) -->
@@ -295,7 +280,6 @@
             </div>
         </div>
     </main>
-    </div>
     <script src="minterm-maxterm-converter.js"></script>
     <script src="../fullscreen-toggle.js"></script>
     <script>
