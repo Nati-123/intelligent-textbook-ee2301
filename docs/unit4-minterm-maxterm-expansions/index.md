@@ -302,7 +302,7 @@ $$F = m_1 + m_3 + m_5 = \overline{A}\overline{B}C + \overline{A}BC + A\overline{
 
 ### Product of Maxterms (Canonical POS)
 
-The **canonical POS form** expresses a function as the AND (product) of all maxterms for which the function equals 0. This is also called the **maxterm expansion** or **product of maxterms**.
+The **canonical POS form** expresses a function as the AND (product) of all maxterms for which the function equals 0. This is also called the **maxterm expansion** or **product of maxterms**. Maxterms correspond to the F = 0 rows because each maxterm evaluates to 0 for exactly one input combination — ANDing them together forces F to 0 at precisely those rows while remaining 1 everywhere else.
 
 **Procedure: Maxterm from Truth Table (POS)**
 
@@ -310,12 +310,14 @@ The **canonical POS form** expresses a function as the AND (product) of all maxt
 2. Write the maxterm for each such row
 3. AND all maxterms together
 
-Using the same truth table, F = 0 for rows 0, 2, 4, 6, 7
+**Example:** Using the same truth table above, F = 0 for rows 0, 2, 4, 6, 7.
 
-$$F = M_0 \cdot M_2 \cdot M_4 \cdot M_6 \cdot M_7$$
-$$= (A+B+C)(A+\overline{B}+C)(\overline{A}+B+C)(\overline{A}+\overline{B}+C)(\overline{A}+\overline{B}+\overline{C})$$
+$$\begin{aligned}
+F &= M_0 \cdot M_2 \cdot M_4 \cdot M_6 \cdot M_7 \\[4pt]
+  &= (A + B + C)\,(A + \overline{B} + C)\,(\overline{A} + B + C)\,(\overline{A} + \overline{B} + C)\,(\overline{A} + \overline{B} + \overline{C})
+\end{aligned}$$
 
-Both expressions represent the same function F!
+Both canonical forms — the **sum of minterms** (SOP) and the **product of maxterms** (POS) — represent the same function F.
 
 #### Diagram: Minterm/Maxterm Converter
 
