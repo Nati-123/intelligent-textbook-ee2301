@@ -78,6 +78,7 @@ nav:
       - Quiz: unit3-applications-boolean-algebra/quiz.md
       - Problems: unit3-applications-boolean-algebra/problems.md
       - Challenge: unit3-applications-boolean-algebra/challenge.md
+      - Glossary: unit3-applications-boolean-algebra/glossary.md
       - References: unit3-applications-boolean-algebra/references.md
       - Narration: videos/unit03-narration.md
     - Unit 4 - Minterm & Maxterm Expansions:
