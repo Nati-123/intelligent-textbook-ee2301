@@ -211,9 +211,11 @@ $$F = \overline{A} = A' = \lnot A$$
 The complement of 0 is 1, and the complement of 1 is 0. This operation is fundamental to implementing negative logic and creating other derived operations.
 </p>
 
-#### Diagram: Boolean Operations Visualizer
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Boolean Operations Visualizer</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Boolean Operations Visualizer</summary>
