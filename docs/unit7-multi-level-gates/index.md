@@ -1619,51 +1619,53 @@ These tools implement the same fundamental algorithms (factoring, decomposition,
 
 <h2 style="color: #5A3EED;">7.17 Summary and Key Takeaways</h2>
 
-<div markdown="1" style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0;">
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 16px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Unit 7 Summary</p>
 
 This unit covered the transformation of Boolean expressions into practical multi-level circuits:
 
-- **Two-level vs. multi-level circuits** present a fundamental trade-off between propagation delay and gate count/fan-in. Multi-level circuits sacrifice speed for smaller, more practical implementations.
-
-- **Universal gates** (NAND and NOR) can implement any Boolean function. NAND is preferred for SOP forms; NOR is preferred for POS forms.
-
-- **AND-OR to NAND-NAND conversion** follows from double inversion and De Morgan's theorem: simply replace all AND and OR gates with NAND gates.
-
-- **OR-AND to NOR-NOR conversion** is the dual transformation: replace all OR and AND gates with NOR gates.
-
-- **Mixed gate conversions** (cross conversions) require extra gate levels and are generally less efficient than natural conversions.
-
-- **Bubble pushing** provides a visual method for gate conversion based on De Morgan's theorem. Bubbles on outputs can be pushed to inputs (changing gate type), and paired bubbles cancel.
-
-- **Multi-level circuit analysis** involves tracing signals through multiple gate layers to determine expressions, propagation delays, and critical paths.
-
-- **Fan-in and fan-out constraints** limit practical gate sizes and drive capabilities, necessitating multi-level decomposition and buffer insertion.
-
-- **Level reduction techniques** (flattening, partial flattening, restructuring) decrease delay at the cost of increased gate count or fan-in.
-
-- **Gate count optimization** through common sub-expression sharing reduces circuit area.
-
-- **Factoring and decomposition** extract common factors and break complex functions into simpler subfunctions.
-
-- **AOI and OAI complex gates** implement multi-level functions in single CMOS structures with reduced delay and area.
-
-- **Wired logic** exploits open-collector/open-drain outputs to implement AND or OR functions without additional gates.
-
-- **Transmission gates** provide efficient CMOS switches for multiplexers and XOR functions with minimal transistor count.
-
-- **Technology mapping** converts optimized Boolean networks to circuits using specific library cells, balancing area, delay, and power.
-
-- **Synthesis tools** automate multi-level optimization, making hand optimization primarily a learning exercise but understanding the principles essential for effective tool usage.
+- **Two-level vs. multi-level circuits** — fundamental trade-off between delay and gate count/fan-in
+- **Universal gates** (NAND, NOR) — can implement any Boolean function; NAND for SOP, NOR for POS
+- **NAND-NAND conversion** — double inversion + De Morgan's: replace all AND and OR with NAND
+- **NOR-NOR conversion** — dual transformation: replace all OR and AND with NOR
+- **Mixed/cross conversions** — require extra levels; prefer natural conversions
+- **Bubble pushing** — visual gate conversion by moving inversion bubbles (AND ↔ OR)
+- **Circuit analysis** — trace signals through levels for expressions, delays, and critical paths
+- **Fan-in/fan-out** — constrain gate sizes and drive; require decomposition and buffers
+- **Level reduction** — flattening and restructuring decrease delay at cost of gate count
+- **Gate count optimization** — share common sub-expressions to reduce area
+- **Factoring and decomposition** — extract factors and break into simpler subfunctions
+- **AOI/OAI complex gates** — multi-level logic in single CMOS structures (~1 gate delay)
+- **Wired logic** — open-collector/open-drain outputs for "free" AND/OR functions
+- **Transmission gates** — efficient CMOS switches for MUX and XOR
+- **Technology mapping** — convert Boolean networks to library cells (area/delay/power)
+- **Synthesis tools** — automate all of the above; understanding principles is essential
 
 </div>
 
-??? question "Self-Check: Why can't you simply replace all gates with NANDs in any circuit?"
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Core Design Trade-offs</p>
+
+| Goal | Technique | Cost |
+|:-----|:----------|:-----|
+| Min delay | Flattening to 2 levels | More gates, higher fan-in |
+| Min area | Factoring, sub-expression sharing | More levels, more delay |
+| Min power | Complex gates (AOI/OAI), transmission gates | Design complexity |
+| Single gate type | NAND-NAND or NOR-NOR conversion | Possible extra inverters |
+
+</div>
+
+### Self-Check Questions
+
+??? question "Why can't you simply replace all gates with NANDs in any circuit?"
     The direct replacement only works for two-level AND-OR (SOP) circuits because the double inversion principle creates matching pairs of inversions that cancel. For arbitrary multi-level circuits or for cross conversions (SOP→NOR), additional inverters or gate levels are required to handle unpaired inversions.
 
-??? question "Self-Check: What is the critical path delay of a 4-level circuit where each gate has a 3ns propagation delay?"
+??? question "What is the critical path delay of a 4-level circuit where each gate has a 3ns propagation delay?"
     The critical path delay is $4 \times 3\text{ns} = 12\text{ns}$. This assumes all gates on the critical path have equal delay. In practice, different gate types have different delays, and the critical path delay is the sum of individual gate delays along the longest path.
 
-??? question "Self-Check: How does an AOI22 gate achieve less delay than its discrete equivalent?"
+??? question "How does an AOI22 gate achieve less delay than its discrete equivalent?"
     The discrete implementation of $F = \overline{AB + CD}$ requires 2 AND gates + 1 OR gate + 1 inverter = 3 gate levels. The AOI22 implements the same function in a single CMOS structure where the transistors are arranged to compute the entire function in one stage, achieving approximately 1 gate delay instead of 3.
 
 ---
