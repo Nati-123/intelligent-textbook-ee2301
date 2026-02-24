@@ -1079,27 +1079,31 @@ Implementation: p5.js with responsive canvas
 
 <h2 id="19-practical-applications" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.9 Practical Applications</h2>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Number systems and binary arithmetic form the foundation for all digital hardware. Understanding these concepts is essential for:
 </p>
 
-<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Memory addressing:</strong> Addresses are binary numbers, typically displayed in hexadecimal</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Processor arithmetic:</strong> ALUs implement binary addition with overflow detection</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Color encoding:</strong> RGB colors use 8-bit unsigned values (0-255) per channel</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Network protocols:</strong> IP addresses, MAC addresses, and packet headers use binary/hex</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Embedded systems:</strong> Sensor data, actuator control, and register manipulation require binary operations</li>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Where These Concepts Apply</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Memory addressing:</strong> Addresses are binary numbers, typically displayed in hexadecimal</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Processor arithmetic:</strong> ALUs implement binary addition with overflow detection</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Color encoding:</strong> RGB colors use 8-bit unsigned values (0–255) per channel</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Network protocols:</strong> IP addresses, MAC addresses, and packet headers use binary/hex</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Embedded systems:</strong> Sensor data, actuator control, and register manipulation require binary operations</li>
 </ul>
+</div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Common Pitfalls</h3>
-
-<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Forgetting to include carry bits in multi-byte arithmetic</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Mixing signed and unsigned interpretations of the same bit pattern</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Sign extension errors when widening values</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Overflow in intermediate calculations even when final result would fit</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Off-by-one errors in range calculations</li>
+<div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
+<p style="color: #E65100; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Common Pitfalls</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #E65100; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Forgetting to include carry bits in multi-byte arithmetic</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #E65100; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Mixing signed and unsigned interpretations of the same bit pattern</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #E65100; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Sign extension errors when widening values</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #E65100; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Overflow in intermediate calculations even when final result would fit</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #E65100; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Off-by-one errors in range calculations</li>
 </ul>
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Number Systems Concept Map</h4>
 
