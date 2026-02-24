@@ -164,7 +164,7 @@ Each minterm equals 1 for exactly one input combination and 0 for all others. Th
 
 #### Diagram: Minterm Visualizer
 
-<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="800px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Minterm Visualizer</summary>
