@@ -101,20 +101,20 @@ Consider $F = ABCDE + ABCDF + ABCDG$. A two-level SOP needs three 5-input AND ga
 
 The key advantages of multi-level circuits include:
 
-<div style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced gate count</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Sharing common sub-expressions</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Lower fan-in</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Within standard gate library constraints</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Better utilization</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Most standard cells have 2&ndash;4 inputs</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced chip area</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">In VLSI implementations</p>
 </div>
