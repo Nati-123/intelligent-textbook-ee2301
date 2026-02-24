@@ -220,29 +220,48 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 4.3 Maxterms
+<h2 id="43-maxterms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.3 Maxterms</h2>
 
-A **maxterm** is a sum term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. Maxterms are the dual of minterms.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+A <strong style="color: #333;">maxterm</strong> is a sum term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. Maxterms are the dual of minterms.
+</p>
 
 ### Maxterm Construction
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 For each row of a truth table where the output is 0:
+</p>
 
-- Include the variable **complemented** if its value is 1
-- Include the variable **uncomplemented** if its value is 0
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Include the variable <strong>complemented</strong> if its value is 1</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Include the variable <strong>uncomplemented</strong> if its value is 0</li>
+</ul>
 
-This is the **opposite** of minterm construction!
+<p style="color: #D32F2F; font-weight: 600; line-height: 1.85; margin-bottom: 1rem;">
+This is the <strong>opposite</strong> of minterm construction!
+</p>
 
-**Example:** For 3 variables (A, B, C), construct the maxterm for input 101:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-- A = 1 → include $\overline{A}$
-- B = 0 → include B
-- C = 1 → include $\overline{C}$
-- Maxterm: $(\overline{A} + B + \overline{C})$
+For 3 variables (A, B, C), construct the maxterm for input 101:
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> A = 1 &rarr; include <span class="arithmatex">\(\overline{A}\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> B = 0 &rarr; include B</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> C = 1 &rarr; include <span class="arithmatex">\(\overline{C}\)</span></li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Maxterm: <span class="arithmatex">\((\overline{A} + B + \overline{C})\)</span></li>
+</ul>
+
+</div>
 
 ### Maxterm Designation
 
-Each maxterm has a unique **maxterm designation** equal to the decimal value of the input combination. Maxterms are denoted with capital M.
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+Each maxterm has a unique <strong style="color: #333;">maxterm designation</strong> equal to the decimal value of the input combination. Maxterms are denoted with capital M.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Row | A | B | C | Decimal | Maxterm | Designation |
 |-----|---|---|---|---------|---------|-------------|
@@ -255,19 +274,40 @@ Each maxterm has a unique **maxterm designation** equal to the decimal value of 
 | 6 | 1 | 1 | 0 | 6 | $(\overline{A} + \overline{B} + C)$ | $M_6$ |
 | 7 | 1 | 1 | 1 | 7 | $(\overline{A} + \overline{B} + \overline{C})$ | $M_7$ |
 
+</div>
+
 ### Key Property of Maxterms
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1.5rem;">
 Each maxterm equals 0 for exactly one input combination and 1 for all others. This is the dual property to minterms. ANDing together maxterms where F=0 creates a function that is 0 precisely for those inputs.
+</p>
 
 ### Relationship Between Minterms and Maxterms
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 A minterm and maxterm with the same index are complements:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 32px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$m_i = \overline{M_i} \qquad M_i = \overline{m_i}$$
 
-**Example:** $m_5 = A\overline{B}C$ and $M_5 = (\overline{A} + B + \overline{C})$
+</div>
 
-By DeMorgan's theorem: $\overline{m_5} = \overline{A\overline{B}C} = \overline{A} + B + \overline{C} = M_5$ ✓
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
+$m_5 = A\overline{B}C$ and $M_5 = (\overline{A} + B + \overline{C})$
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 14px 0 4px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+By DeMorgan's theorem:
+
+$$\overline{m_5} = \overline{A\overline{B}C} = \overline{A} + B + \overline{C} = M_5 \quad \checkmark$$
+
+</div>
+
+</div>
 
 ---
 
