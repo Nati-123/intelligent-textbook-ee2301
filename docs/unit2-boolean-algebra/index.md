@@ -617,11 +617,15 @@ Implementation: p5.js with DOM elements for input
 
 ---
 
-## 2.5 Boolean Theorems and Identities
+<h2 id="25-boolean-theorems-and-identities" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.5 Boolean Theorems and Identities</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Boolean algebra follows a set of fundamental theorems and identities that enable expression manipulation and simplification. These laws are presented in dual pairs—swapping AND with OR and 0 with 1 produces the dual form.
+</p>
 
-### Basic Identities
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Basic Identities</h3>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Law Name | Description | Equations |
 |:---------|:------------|:---------:|
@@ -631,7 +635,11 @@ Boolean algebra follows a set of fundamental theorems and identities that enable
 | **Involution Law** | Complementing twice returns the original value | $\overline{\overline{A}} = A$ |
 | **Complement Law** | A variable operated with its complement produces a constant | $A + \overline{A} = 1 \qquad A \cdot \overline{A} = 0$ |
 
-### Algebraic Laws
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Algebraic Laws</h3>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Law Name | Description | Equations |
 |:---------|:------------|:---------:|
@@ -639,20 +647,35 @@ Boolean algebra follows a set of fundamental theorems and identities that enable
 | **Associative Law** | Grouping of operands does not affect the result | $(A + B) + C = A + (B + C) \qquad (A \cdot B) \cdot C = A \cdot (B \cdot C)$ |
 | **Distributive Law** | Distribution of one operation over another | $A \cdot (B + C) = A \cdot B + A \cdot C \qquad A + (B \cdot C) = (A + B) \cdot (A + C)$ |
 
-Note: The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary algebra!
+</div>
 
-### Advanced Theorems
+<div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
+<p style="color: #E65100; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Watch Out</p>
+<p style="color: #333; line-height: 1.85; margin: 0;">
+The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary algebra!
+</p>
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Advanced Theorems</h3>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Theorem Name | Description | Equations |
 |:-------------|:------------|:---------:|
 | **Absorption Law** | Eliminates redundant terms | $A + A \cdot B = A \qquad A \cdot (A + B) = A$ |
 | **Consensus Theorem** | Eliminates redundant consensus terms | $AB + \overline{A}C + BC = AB + \overline{A}C$ <br> $(A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$ |
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 The consensus term ($BC$ or $B+C$) is redundant because it's covered by the other terms.
+</p>
 
-#### Diagram: Boolean Laws Interactive Proof
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Boolean Laws Interactive Proof</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/boolean-laws-explorer/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Boolean Laws Interactive Proof</summary>
