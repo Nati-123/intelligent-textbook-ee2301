@@ -767,20 +767,28 @@ Implementation: p5.js with interactive canvas
 
 <h2 style="color: #5A3EED;">7.8 Multi-Level Circuit Analysis</h2>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Analyzing multi-level circuits requires systematically tracing signals through multiple gate layers to derive the output expression and understand timing behavior. This section covers the analytical techniques for evaluating multi-level designs.
+
 </div>
 
 <h3 style="color: #5A3EED;">7.8.1 Deriving the Boolean Expression</h3>
 
-To analyze a multi-level circuit:
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Analysis Procedure</p>
 
 1. **Label all gate outputs** with intermediate variables ($G_1$, $G_2$, etc.)
 2. **Write the expression** for each gate output in terms of its inputs
 3. **Substitute** intermediate expressions to obtain the final output in terms of primary inputs
 4. **Simplify** the result if desired
 
-**Example:** Analyze a three-level circuit:
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Three-Level Circuit</p>
 
 - Gate 1 (AND): inputs $A$, $B$ → $G_1 = AB$
 - Gate 2 (OR): inputs $C$, $D$ → $G_2 = C + D$
@@ -789,7 +797,9 @@ To analyze a multi-level circuit:
 
 Expanding: $F = ABC + ABD + E$
 
-This three-level implementation of $F = ABC + ABD + E$ uses gates with a maximum fan-in of 2, whereas the two-level SOP form requires two 3-input AND gates and one 3-input OR gate.
+This three-level implementation uses gates with max fan-in of 2, whereas the two-level SOP requires two 3-input AND gates and one 3-input OR gate.
+
+</div>
 
 <h3 style="color: #5A3EED;">7.8.2 Critical Path and Propagation Delay</h3>
 
@@ -801,98 +811,89 @@ $$t_{pd(total)} = \sum_{i=1}^{n} t_{pd(gate_i)}$$
 
 where $t_{pd(gate_i)}$ is the propagation delay of gate $i$ along the critical path.
 
-**Example:** In the circuit above with gates 1→3→4 and gate 2→3→4:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- Path from $A$ or $B$: Gate 1 → Gate 3 → Gate 4 = 3 gate delays
-- Path from $C$ or $D$: Gate 2 → Gate 3 → Gate 4 = 3 gate delays
-- Path from $E$: Gate 4 = 1 gate delay
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Path Delay Analysis</p>
 
-The critical path has 3 gate delays. Input $E$ arrives at the output fastest (1 delay), while inputs $A$–$D$ experience the full 3 delays.
+In the circuit above (gates 1→3→4 and 2→3→4):
 
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Input</th>
-      <th style="padding: 8px 14px; text-align: left;">Path</th>
-      <th style="padding: 8px 14px; text-align: center;">Gate Delays</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 1 → Gate 3 → Gate 4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(B\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 1 → Gate 3 → Gate 4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(C\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 2 → Gate 3 → Gate 4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(D\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 2 → Gate 3 → Gate 4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(E\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">1</td>
-    </tr>
-  </tbody>
-</table>
+- Path from $A$ or $B$: Gate 1 → Gate 3 → Gate 4 = **3 gate delays**
+- Path from $C$ or $D$: Gate 2 → Gate 3 → Gate 4 = **3 gate delays**
+- Path from $E$: Gate 4 = **1 gate delay**
+
+The **critical path has 3 gate delays**. Input $E$ arrives fastest (1 delay), while $A$–$D$ experience the full 3.
+
+</div>
+
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+| Input | Path | Gate Delays |
+|:------|:-----|:-----------:|
+| $A$ | Gate 1 → Gate 3 → Gate 4 | **3** |
+| $B$ | Gate 1 → Gate 3 → Gate 4 | **3** |
+| $C$ | Gate 2 → Gate 3 → Gate 4 | **3** |
+| $D$ | Gate 2 → Gate 3 → Gate 4 | **3** |
+| $E$ | Gate 4 | **1** |
+
+</div>
 
 <h3 style="color: #5A3EED;">7.8.3 Fan-in and Fan-out Constraints</h3>
 
-**Fan-in** is the number of inputs to a gate. Exceeding practical fan-in limits leads to:
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 250px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
 
-- Increased gate propagation delay (more transistors in series)
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Fan-in</p>
+
+The number of inputs to a gate. Exceeding limits causes:
+
+- Increased propagation delay (more transistors in series)
 - Reduced noise margins
 - Unavailability in standard cell libraries
 
-**Fan-out** is the number of gate inputs driven by a single output. Excessive fan-out causes:
+</div>
+<div markdown style="flex: 1; min-width: 250px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
 
-- Increased output transition time due to higher capacitive load
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Fan-out</p>
+
+The number of gate inputs driven by a single output. Exceeding limits causes:
+
+- Increased output transition time (higher capacitive load)
 - Potential signal integrity issues
 - Need for buffer insertion
 
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Parameter</th>
-      <th style="padding: 8px 14px; text-align: center;">Typical CMOS Limit</th>
-      <th style="padding: 8px 14px; text-align: left;">Effect of Exceeding</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Fan-in</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4–8 inputs</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Increased delay, decomposition needed</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Fan-out</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4–10 loads</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Increased delay, buffer insertion needed</td>
-    </tr>
-  </tbody>
-</table>
+</div>
+</div>
+
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+| Parameter | Typical CMOS Limit | Effect of Exceeding |
+|:----------|:------------------:|:--------------------|
+| Fan-in | 4–8 inputs | Increased delay, decomposition needed |
+| Fan-out | 4–10 loads | Increased delay, buffer insertion needed |
+
+</div>
 
 <h3 style="color: #5A3EED;">7.8.4 Gate Loading Effects</h3>
 
-**Gate loading** refers to the electrical impact of connecting gate outputs to gate inputs. Each input presents a capacitive load to the driving output. As the number of loads (fan-out) increases, the driving gate must charge and discharge more capacitance, slowing its transition time.
+**Gate loading** refers to the electrical impact of connecting gate outputs to gate inputs. Each input presents a capacitive load to the driving output. As fan-out increases, the driving gate must charge/discharge more capacitance, slowing its transition time.
 
-The output delay of a gate increases approximately linearly with fan-out:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Delay vs. Load Formula</p>
 
 $$t_{pd} = t_{pd0} + k \cdot C_{load}$$
 
 where $t_{pd0}$ is the intrinsic delay, $k$ is a technology-dependent constant, and $C_{load}$ is the total load capacitance.
 
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Buffer Insertion</p>
+
 When a signal must drive many inputs, **buffer insertion** restores signal strength. A buffer (two cascaded inverters) adds one gate delay but restores the output drive capability.
+
+</div>
 
 #### Diagram: Propagation Delay and Critical Path Analyzer
 
