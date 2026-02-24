@@ -15,12 +15,6 @@ let containerHeight = canvasHeight;
 let margin = 20;
 let defaultTextSize = 14;
 
-// UI Elements
-let findEPIButton;
-let checkSolutionButton;
-let resetButton;
-let exampleSelect;
-
 // Data structures
 let primeImplicants = [];
 let minterms = [];
@@ -31,6 +25,8 @@ let coveredMinterms = new Set();
 let highlightedCol = -1;
 let message = '';
 let messageColor = 'black';
+let currentExample = 0;
+let exampleNames = ['Example 1', 'Cyclic'];
 
 // Example data
 let examples = {
@@ -67,36 +63,10 @@ function setup() {
 
   textSize(defaultTextSize);
 
-  // Create buttons
-  findEPIButton = createButton('Find Essential PIs');
-  findEPIButton.mousePressed(findEssentialPIs);
-
-  checkSolutionButton = createButton('Check Solution');
-  checkSolutionButton.mousePressed(checkSolution);
-
-  resetButton = createButton('Reset');
-  resetButton.mousePressed(resetSimulation);
-
-  // Example selector
-  exampleSelect = createSelect();
-  exampleSelect.option('Example 1');
-  exampleSelect.option('Cyclic');
-  exampleSelect.changed(loadExample);
-
-  positionUIElements();
-
   // Initialize with first example
   loadExample();
 
   describe('Interactive prime implicant chart for selecting essential PIs and finding minimum cover', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  findEPIButton.position(mainRect.left + 10, mainRect.top + drawHeight + 10);
-  checkSolutionButton.position(mainRect.left + 140, mainRect.top + drawHeight + 10);
-  resetButton.position(mainRect.left + 255, mainRect.top + drawHeight + 10);
-  exampleSelect.position(mainRect.left + 10, mainRect.top + drawHeight + 45);
 }
 
 function draw() {
@@ -125,24 +95,12 @@ function draw() {
   // Draw status
   drawStatus();
 
-  // Draw message
-  if (message) {
-    fill(messageColor);
-    noStroke();
-    textAlign(LEFT, CENTER);
-    textSize(12);
-    text(message, 120, drawHeight + 55);
-  }
-
-  // Control label
-  fill('black');
-  textAlign(LEFT, CENTER);
-  textSize(defaultTextSize);
-  text('Example:', 320, drawHeight + 20);
+  // Draw controls
+  drawControls();
 }
 
 function loadExample() {
-  let exampleName = exampleSelect.value();
+  let exampleName = exampleNames[currentExample];
   let example = examples[exampleName];
 
   primeImplicants = example.pis.map((pi, idx) => ({
@@ -321,6 +279,65 @@ function drawStatus() {
   text(exprText, margin + 10, statusY + 70);
 }
 
+function drawControls() {
+  let btnY = drawHeight + 12;
+  let btnH = 25;
+
+  // Find EPIs button
+  fill('#4CAF50');
+  stroke('#388E3C');
+  strokeWeight(1);
+  rect(10, btnY, 100, btnH, 3);
+  fill('white');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(11);
+  text('Find EPIs', 60, btnY + btnH / 2);
+
+  // Check Solution button
+  fill('#2196F3');
+  stroke('#1976D2');
+  strokeWeight(1);
+  rect(120, btnY, 100, btnH, 3);
+  fill('white');
+  noStroke();
+  text('Check Solution', 170, btnY + btnH / 2);
+
+  // Reset button
+  fill('#f44336');
+  stroke('#d32f2f');
+  strokeWeight(1);
+  rect(230, btnY, 60, btnH, 3);
+  fill('white');
+  noStroke();
+  text('Reset', 260, btnY + btnH / 2);
+
+  // Example toggle button
+  let exName = exampleNames[currentExample];
+  fill('#9C27B0');
+  stroke('#7B1FA2');
+  strokeWeight(1);
+  rect(300, btnY, 90, btnH, 3);
+  fill('white');
+  noStroke();
+  text(exName, 345, btnY + btnH / 2);
+
+  // Message
+  if (message) {
+    fill(messageColor);
+    noStroke();
+    textAlign(LEFT, CENTER);
+    textSize(12);
+    text(message, 10, drawHeight + 55);
+  }
+
+  // Tip
+  fill('#666');
+  textSize(10);
+  textAlign(CENTER, CENTER);
+  text('Click buttons above, then click PI rows in the chart', canvasWidth / 2, drawHeight + 72);
+}
+
 function findEssentialPIs() {
   essentialPIs = new Set();
   highlightedCol = -1;
@@ -378,11 +395,35 @@ function checkSolution() {
   }
 }
 
-function resetSimulation() {
-  loadExample();
-}
-
 function mousePressed() {
+  let btnY = drawHeight + 12;
+  let btnH = 25;
+
+  // Find EPIs button
+  if (mouseX >= 10 && mouseX <= 110 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    findEssentialPIs();
+    return;
+  }
+
+  // Check Solution button
+  if (mouseX >= 120 && mouseX <= 220 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    checkSolution();
+    return;
+  }
+
+  // Reset button
+  if (mouseX >= 230 && mouseX <= 290 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    loadExample();
+    return;
+  }
+
+  // Example toggle button
+  if (mouseX >= 300 && mouseX <= 390 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    currentExample = (currentExample + 1) % exampleNames.length;
+    loadExample();
+    return;
+  }
+
   // Check if clicked on a PI row header
   let startX = 80;
   let startY = 50;
@@ -411,7 +452,6 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
-  positionUIElements();
   redraw();
 }
 
