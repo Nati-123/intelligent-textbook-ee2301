@@ -585,35 +585,61 @@ De Morgan's theorems are the mathematical engine behind every gate conversion te
 
 ### The Two Forms
 
-**First theorem:** $\overline{A \cdot B} = \overline{A} + \overline{B}$
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 250px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
 
-This means: a NAND gate is equivalent to an OR gate with inverted inputs.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">First Theorem</p>
 
-**Second theorem:** $\overline{A + B} = \overline{A} \cdot \overline{B}$
+$$\overline{A \cdot B} = \overline{A} + \overline{B}$$
 
-This means: a NOR gate is equivalent to an AND gate with inverted inputs.
+A **NAND** gate is equivalent to an **OR** gate with inverted inputs.
+
+</div>
+<div markdown style="flex: 1; min-width: 250px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px;">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Second Theorem</p>
+
+$$\overline{A + B} = \overline{A} \cdot \overline{B}$$
+
+A **NOR** gate is equivalent to an **AND** gate with inverted inputs.
+
+</div>
+</div>
 
 ### Graphical Interpretation
 
 Each theorem provides two equivalent gate symbols:
 
-<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
-<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Original Gate</th><th style="padding: 8px 14px;">De Morgan Equivalent</th></tr></thead>
-<tbody>
-<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">NAND (AND with output bubble)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">OR with input bubbles</td></tr>
-<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">NOR (OR with output bubble)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AND with input bubbles</td></tr>
-<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">AND (no bubbles)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR with input and output bubbles</td></tr>
-<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">OR (no bubbles)</td><td style="padding: 8px 14px;">NAND with input and output bubbles</td></tr>
-</tbody>
-</table>
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-These equivalences are the foundation of the bubble pushing technique covered in the next section. When you see a gate with a bubble on its output, you can "push" that bubble to the inputs by changing the gate type (AND ↔ OR), and vice versa.
+| Original Gate | De Morgan Equivalent |
+|:--------------|:---------------------|
+| **NAND** (AND + output bubble) | OR with input bubbles |
+| **NOR** (OR + output bubble) | AND with input bubbles |
+| **AND** (no bubbles) | NOR with input and output bubbles |
+| **OR** (no bubbles) | NAND with input and output bubbles |
 
-**Example:** Show that a 3-input NAND is equivalent to a 3-input OR with inverted inputs.
+</div>
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Takeaway</p>
+
+When you see a gate with a bubble on its output, you can **push** that bubble to the inputs by changing the gate type (AND ↔ OR), and vice versa. This is the foundation of the bubble pushing technique covered next.
+
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: 3-Input NAND Equivalence</p>
+
+Show that a 3-input NAND is equivalent to a 3-input OR with inverted inputs:
 
 $$\overline{ABC} = \overline{A} + \overline{B} + \overline{C}$$
 
 This follows directly from the generalized form of De Morgan's first theorem. In circuit terms, a 3-input NAND gate with inputs $A$, $B$, $C$ produces the same output as a 3-input OR gate receiving $\overline{A}$, $\overline{B}$, $\overline{C}$.
+
+</div>
 
 ---
 
