@@ -489,10 +489,17 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 
 An **implicant** is any product term that covers one or more minterms of the function. Every minterm is an implicant, and any valid K-map group represents an implicant.
 
-**Example:** For $F = \Sigma m(1,3,5,7)$:
-- $m_1 = \overline{A}\overline{B}C$ is an implicant (covers m₁)
-- $\overline{A}C$ is an implicant (covers m₁ and m₃)
-- $C$ is an implicant (covers m₁, m₃, m₅, m₇)
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Implicants for <span class="arithmatex">\(F = \Sigma m(1,3,5,7)\)</span></p>
+
+<ul style="margin: 0; color: #333; line-height: 2;">
+<li><span class="arithmatex">\(m_1 = \overline{A}\,\overline{B}\,C\)</span> is an implicant (covers m<sub>1</sub>)</li>
+<li><span class="arithmatex">\(\overline{A}\,C\)</span> is an implicant (covers m<sub>1</sub> and m<sub>3</sub>)</li>
+<li><span class="arithmatex">\(C\)</span> is an implicant (covers m<sub>1</sub>, m<sub>3</sub>, m<sub>5</sub>, m<sub>7</sub>)</li>
+</ul>
+
+</div>
 
 ### Prime Implicants
 
@@ -506,10 +513,14 @@ In the example above, $C$ is the only prime implicant—it covers all 1s and can
 
 An **essential prime implicant** is a prime implicant that covers at least one minterm not covered by any other prime implicant. Essential prime implicants **must** be included in any minimal solution.
 
-**Finding essential PIs:**
-1. Identify all prime implicants
-2. For each minterm, list which PIs cover it
-3. If a minterm is covered by only one PI, that PI is essential
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin: 1rem 0;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Finding Essential PIs:</p>
+<ol style="margin: 0; color: #333; line-height: 2; padding-left: 1.5rem;">
+<li>Identify all prime implicants</li>
+<li>For each minterm, list which PIs cover it</li>
+<li>If a minterm is covered by only one PI, that PI is essential</li>
+</ol>
+</div>
 
 ### Redundant Prime Implicants
 
@@ -517,10 +528,14 @@ A **redundant prime implicant** is a prime implicant that is not needed because 
 
 ### Systematic Minimization Procedure
 
-1. Find all prime implicants (largest possible groups)
-2. Identify essential prime implicants (must include)
-3. Select additional PIs to cover remaining minterms (minimize overlap)
-4. The selected PIs form the minimal expression
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 22px 26px; margin: 1rem 0;">
+<ol style="margin: 0; color: #333; line-height: 2.2; padding-left: 1.5rem;">
+<li><strong>Find all prime implicants</strong> (largest possible groups)</li>
+<li><strong>Identify essential prime implicants</strong> (must include)</li>
+<li><strong>Select additional PIs</strong> to cover remaining minterms (minimize overlap)</li>
+<li><strong>The selected PIs</strong> form the minimal expression</li>
+</ol>
+</div>
 
 #### Diagram: Prime Implicant Finder
 
@@ -594,19 +609,28 @@ Implementation: p5.js with data visualization
 
 ### Procedure for Minimal SOP
 
-1. **Plot the function:** Place 1s in cells corresponding to minterms where F=1
-2. **Identify all prime implicants:** Find all maximal groups of 1s
-3. **Select essential prime implicants:** Include all PIs that cover unique minterms
-4. **Cover remaining minterms:** Add minimum additional PIs
-5. **Write the expression:** OR together the product terms from selected groups
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 22px 26px; margin: 1rem 0;">
+<ol style="margin: 0; color: #333; line-height: 2.2; padding-left: 1.5rem;">
+<li><strong>Plot the function:</strong> Place 1s in cells corresponding to minterms where F = 1</li>
+<li><strong>Identify all prime implicants:</strong> Find all maximal groups of 1s</li>
+<li><strong>Select essential prime implicants:</strong> Include all PIs that cover unique minterms</li>
+<li><strong>Cover remaining minterms:</strong> Add minimum additional PIs</li>
+<li><strong>Write the expression:</strong> OR together the product terms from selected groups</li>
+</ol>
+</div>
 
 ### Reading Product Terms from Groups
 
 For each group, identify the variables that have **constant value** across the group:
 
-- Variable = 1 in all cells → include uncomplemented
-- Variable = 0 in all cells → include complemented
-- Variable changes → omit from term
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 18px;">Variable Behavior</th><th style="padding: 6px 18px;">Action</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 18px;">= 1 in all cells</td><td style="padding: 6px 18px;">Include <strong>uncomplemented</strong></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 18px;">= 0 in all cells</td><td style="padding: 6px 18px;">Include <strong>complemented</strong></td></tr>
+<tr><td style="padding: 6px 18px;">Changes across cells</td><td style="padding: 6px 18px;"><strong>Omit</strong> from term</td></tr>
+</tbody>
+</table>
 
 **Example:** A group covering cells where A=1, B varies, C=0, D varies:
 The term is $A\overline{C}$ (only A and C are constant).
@@ -615,33 +639,30 @@ The term is $A\overline{C}$ (only A and C are constant).
 
 The goal is **covering all ones** with the minimum number of prime implicants. Every cell containing 1 must be included in at least one selected group.
 
-**Example:** Simplify $F(A,B,C,D) = \Sigma m(0,1,2,4,5,6,8,9,12,13,14)$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-```
-              CD
-           00   01   11   10
-        +----+----+----+----+
-AB=00   |  1 |  1 |  0 |  1 |
-        +----+----+----+----+
-AB=01   |  1 |  1 |  0 |  1 |
-        +----+----+----+----+
-AB=11   |  1 |  1 |  0 |  1 |
-        +----+----+----+----+
-AB=10   |  1 |  1 |  0 |  0 |
-        +----+----+----+----+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Simplify <span class="arithmatex">\(F(A,B,C,D) = \Sigma m(0,1,2,4,5,6,8,9,12,13,14)\)</span></p>
 
-Prime implicants:
-- Group (m₀,m₁,m₄,m₅,m₈,m₉,m₁₂,m₁₃) — columns 00 and 01, all rows: $\overline{C}$
-- Group (m₀,m₂,m₄,m₆) — rows 00,01, columns 00 and 10 (wrapping): $\overline{A}\overline{D}$
-- Group (m₄,m₆,m₁₂,m₁₄) — rows 01,11, columns 00 and 10 (wrapping): $B\overline{D}$
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;"></th><th style="padding: 6px 14px;">CD = 00</th><th style="padding: 6px 14px;">CD = 01</th><th style="padding: 6px 14px;">CD = 11</th><th style="padding: 6px 14px;">CD = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 00</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 01</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 11</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 10</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td></tr>
+</tbody>
+</table>
 
-All three are essential:
-- $\overline{C}$ is the only PI covering m₁, m₅, m₈, m₉, m₁₃
-- $\overline{A}\overline{D}$ is the only PI covering m₂
-- $B\overline{D}$ is the only PI covering m₁₄
+<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Prime implicants (all essential):</p>
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 2;">
+<li><span class="arithmatex">\(\overline{C}\)</span> &mdash; columns 00 and 01, all rows (covers m<sub>0</sub>, m<sub>1</sub>, m<sub>4</sub>, m<sub>5</sub>, m<sub>8</sub>, m<sub>9</sub>, m<sub>12</sub>, m<sub>13</sub>)</li>
+<li><span class="arithmatex">\(\overline{A}\,\overline{D}\)</span> &mdash; rows 00, 01, columns 00 and 10 wrapping (only PI covering m<sub>2</sub>)</li>
+<li><span class="arithmatex">\(B\,\overline{D}\)</span> &mdash; rows 01, 11, columns 00 and 10 wrapping (only PI covering m<sub>14</sub>)</li>
+</ul>
 
-**Result:** $F = \overline{C} + \overline{A}\overline{D} + B\overline{D}$
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Result: <span class="arithmatex">\(F = \overline{C} + \overline{A}\,\overline{D} + B\,\overline{D}\)</span></p>
+
+</div>
 
 ---
 
