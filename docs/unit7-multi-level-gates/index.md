@@ -1227,76 +1227,62 @@ Implementation: p5.js with DOM elements for expression input
 
 <h2 style="color: #5A3EED;">7.12 AOI and OAI Complex Gates</h2>
 
-CMOS technology enables the efficient implementation of **AND-OR-Invert (AOI)** and **OR-AND-Invert (OAI)** complex gates. These gates implement multi-level functions within a single gate structure, achieving the logic of two gate levels with the delay of approximately one gate.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-### AOI Gates
+CMOS technology enables efficient **AND-OR-Invert (AOI)** and **OR-AND-Invert (OAI)** complex gates. These implement multi-level functions within a single gate structure, achieving the logic of two gate levels with the delay of approximately **one gate**.
 
-An AOI gate performs AND operations on groups of inputs, ORs the results together, then inverts the output. The naming convention indicates the group sizes.
+</div>
 
-**AOI21:** Two inputs ANDed, one separate input, then OR-Invert:
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 260px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
 
-$$F = \overline{AB + C}$$
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">AOI Gates (AND-OR-Invert)</p>
 
-**AOI22:** Two groups of two inputs each, then OR-Invert:
+AND groups of inputs, OR results, then invert. The numbers indicate group sizes.
 
-$$F = \overline{AB + CD}$$
+**AOI21:** $F = \overline{AB + C}$
 
-**AOI221:** Two groups of two and one single input, then OR-Invert:
+**AOI22:** $F = \overline{AB + CD}$
 
-$$F = \overline{AB + CD + E}$$
+**AOI221:** $F = \overline{AB + CD + E}$
 
-### OAI Gates
+</div>
+<div markdown style="flex: 1; min-width: 260px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px;">
 
-An OAI gate performs OR operations on groups, ANDs the results, then inverts.
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">OAI Gates (OR-AND-Invert)</p>
 
-**OAI21:** Two inputs ORed, one separate input, then AND-Invert:
+OR groups of inputs, AND results, then invert. The numbers indicate group sizes.
 
-$$F = \overline{(A+B) \cdot C}$$
+**OAI21:** $F = \overline{(A+B) \cdot C}$
 
-**OAI22:** Two groups of two inputs, then AND-Invert:
+**OAI22:** $F = \overline{(A+B)(C+D)}$
 
-$$F = \overline{(A+B)(C+D)}$$
+</div>
+</div>
 
-<h3 style="color: #5A3EED;">Advantages of Complex Gates</h3>
+### Advantages of Complex Gates
 
-<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Feature</th>
-      <th style="padding: 8px 14px; text-align: left;">Discrete Gates</th>
-      <th style="padding: 8px 14px; text-align: left;">AOI/OAI Complex Gate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Transistor count</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Higher</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">Lower (shared structures)</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Propagation delay</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2 gate delays</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">~1 gate delay</td>
-    </tr>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Power consumption</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Higher (more transitions)</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">Lower</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px;">Chip area</td>
-      <td style="padding: 8px 14px;">Larger</td>
-      <td style="padding: 8px 14px; background: #E7F7E7;">Smaller</td>
-    </tr>
-  </tbody>
-</table>
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+| Feature | Discrete Gates | AOI/OAI Complex Gate |
+|:--------|:---------------|:---------------------|
+| Transistor count | Higher | **Lower** (shared structures) |
+| Propagation delay | 2 gate delays | **~1 gate delay** |
+| Power consumption | Higher (more transitions) | **Lower** |
+| Chip area | Larger | **Smaller** |
+
+</div>
 
 Complex gates are fundamental building blocks in standard cell libraries. Logic synthesis tools automatically identify opportunities to use AOI and OAI cells during technology mapping.
 
-**Example:** Implement $F = \overline{AB + CD}$ using:
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- Discrete gates: 2 AND gates + 1 OR gate + 1 NOT gate = 4 gates, 3 levels
-- AOI22: 1 complex gate, 1 level
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Example: Implement F = AB + CD (inverted)</p>
+
+- **Discrete gates:** 2 AND + 1 OR + 1 NOT = **4 gates, 3 levels**
+- **AOI22:** **1 complex gate, 1 level**
+
+</div>
 
 #### Diagram: AOI and OAI Gate Structures
 
