@@ -102,21 +102,36 @@ Before beginning this unit, students should have:
 
 ---
 
-## 2.1 Introduction to Boolean Algebra
+<h2 id="21-introduction-to-boolean-algebra" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.1 Introduction to Boolean Algebra</h2>
 
-**Boolean Algebra** is a mathematical system for manipulating logical values, developed by George Boole in 1854. Unlike conventional algebra that operates on real numbers, Boolean algebra operates exclusively on binary values: 0 and 1. This restriction makes Boolean algebra perfectly suited for digital electronics, where circuits naturally represent two distinct voltage states.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Boolean Algebra</strong> is a mathematical system for manipulating logical values, developed by George Boole in 1854. Unlike conventional algebra that operates on real numbers, Boolean algebra operates exclusively on binary values: 0 and 1. This restriction makes Boolean algebra perfectly suited for digital electronics, where circuits naturally represent two distinct voltage states.
+</p>
 
-In Boolean algebra, variables and expressions can only take one of two values. A **Boolean variable** represents an unknown that can be either 0 or 1, typically denoted by uppercase letters (A, B, C, X, Y, Z). A **Boolean constant** is a fixed value, either 0 or 1. These values correspond to **logic levels** in digital circuits.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+In Boolean algebra, variables and expressions can only take one of two values. A <strong>Boolean variable</strong> represents an unknown that can be either 0 or 1, typically denoted by uppercase letters (A, B, C, X, Y, Z). A <strong>Boolean constant</strong> is a fixed value, either 0 or 1. These values correspond to <strong>logic levels</strong> in digital circuits.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Boolean Values and Logic Levels</p>
 
 | Term | Boolean Value | Logic Level | Voltage (TTL) | Meaning |
 |------|---------------|-------------|---------------|---------|
-| False | 0 | LOW | 0-0.8V | Off, No, Inactive |
-| True | 1 | HIGH | 2.0-5.0V | On, Yes, Active |
+| False | 0 | LOW | 0–0.8V | Off, No, Inactive |
+| True | 1 | HIGH | 2.0–5.0V | On, Yes, Active |
 
-The terms **high and low states** refer to voltage levels in physical circuits, while **truth value** refers to the logical interpretation (true or false). The mapping between voltage and logic value can be either positive logic (high = 1) or negative logic (high = 0), though positive logic is standard.
+</div>
 
-!!! note "Historical Context"
-    George Boole's work predated electronic computers by nearly a century. Claude Shannon's 1937 master's thesis demonstrated that Boolean algebra could describe switching circuits, establishing the theoretical foundation for digital computing.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The terms <strong>high and low states</strong> refer to voltage levels in physical circuits, while <strong>truth value</strong> refers to the logical interpretation (true or false). The mapping between voltage and logic value can be either positive logic (high = 1) or negative logic (high = 0), though positive logic is standard.
+</p>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Historical Context</p>
+<p style="color: #333; line-height: 1.85; margin: 0;">
+George Boole's work predated electronic computers by nearly a century. Claude Shannon's 1937 master's thesis demonstrated that Boolean algebra could describe switching circuits, establishing the theoretical foundation for digital computing.
+</p>
+</div>
 
 ---
 
