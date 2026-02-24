@@ -671,44 +671,75 @@ $$F = \Sigma m(\text{specified 1s}) + d(10,11,12,13,14,15)$$
 
 ---
 
-## 4.9 Shannon Expansion Theorem
+<h2 id="49-shannon-expansion-theorem" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.9 Shannon Expansion Theorem</h2>
 
-The **Shannon expansion theorem** (also called the **expansion theorem**) provides a systematic method for decomposing a Boolean function with respect to any variable.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The <strong style="color: #333;">Shannon expansion theorem</strong> (also called the <strong style="color: #333;">expansion theorem</strong>) provides a systematic method for decomposing a Boolean function with respect to any variable.
+</p>
 
 ### Expansion with Respect to a Variable
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 Any Boolean function F can be expanded around a variable X:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 32px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = X \cdot F_X + \overline{X} \cdot F_{\overline{X}}$$
 
-where:
+</div>
 
-- $F_X$ is the **positive cofactor**: F evaluated with X = 1
-- $F_{\overline{X}}$ is the **negative cofactor**: F evaluated with X = 0
+<p style="color: #555; line-height: 1.85; margin-bottom: 0.5rem;">where:</p>
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(F_X\)</span> is the <strong>positive cofactor</strong>: F evaluated with X = 1</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(F_{\overline{X}}\)</span> is the <strong>negative cofactor</strong>: F evaluated with X = 0</li>
+</ul>
 
 ### Cofactors
 
-A **cofactor** of function F with respect to variable X is F with X set to a constant:
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+A <strong style="color: #333;">cofactor</strong> of function F with respect to variable X is F with X set to a constant:
+</p>
 
-- **Positive cofactor** $F_X$: Set X = 1, simplify
-- **Negative cofactor** $F_{\overline{X}}$: Set X = 0, simplify
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Positive cofactor</strong> <span class="arithmatex">\(F_X\)</span>: Set X = 1, simplify</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Negative cofactor</strong> <span class="arithmatex">\(F_{\overline{X}}\)</span>: Set X = 0, simplify</li>
+</ul>
 
-**Example:** Given $F = AB + \overline{A}C + BC$, find cofactors with respect to A.
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-$F_A$ (set A = 1): $F_A = 1 \cdot B + \overline{1} \cdot C + BC = B + 0 + BC = B + BC = B$
+Given $F = AB + \overline{A}C + BC$, find cofactors with respect to A.
 
-$F_{\overline{A}}$ (set A = 0): $F_{\overline{A}} = 0 \cdot B + \overline{0} \cdot C + BC = 0 + C + BC = C + BC = C$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 14px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-Verify: $F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}} = A \cdot B + \overline{A} \cdot C = AB + \overline{A}C$
+**Positive cofactor** (set A = 1):
 
-The reconstructed expression $AB + \overline{A}C$ appears different from the original $AB + \overline{A}C + BC$, but by the **consensus theorem**, the term $BC$ is redundant—it is covered by $AB$ (when A=1) and $\overline{A}C$ (when A=0). Therefore $AB + \overline{A}C + BC = AB + \overline{A}C$, confirming the expansion is correct. ✓
+$$F_A = 1 \cdot B + \overline{1} \cdot C + BC = B + 0 + BC = B + BC = B$$
+
+**Negative cofactor** (set A = 0):
+
+$$F_{\overline{A}} = 0 \cdot B + \overline{0} \cdot C + BC = 0 + C + BC = C + BC = C$$
+
+**Verify reconstruction:**
+
+$$F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}} = A \cdot B + \overline{A} \cdot C = AB + \overline{A}C \quad \checkmark$$
+
+</div>
+
+The reconstructed expression $AB + \overline{A}C$ appears different from the original $AB + \overline{A}C + BC$, but by the **consensus theorem**, the term $BC$ is redundant — it is covered by $AB$ (when A=1) and $\overline{A}C$ (when A=0). Therefore $AB + \overline{A}C + BC = AB + \overline{A}C$, confirming the expansion is correct.
+
+</div>
 
 ### Applications of Shannon Expansion
 
-1. **Multiplexer implementation:** The expansion directly maps to a 2:1 MUX with X as select
-2. **Recursive decomposition:** Break complex functions into simpler cofactors
-3. **BDD construction:** Binary Decision Diagrams use repeated Shannon expansion
-4. **Verification:** Check function equivalence by comparing cofactors
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;"><strong>Multiplexer implementation:</strong> The expansion directly maps to a 2:1 MUX with X as select</li>
+<li style="margin-bottom: 0.5rem;"><strong>Recursive decomposition:</strong> Break complex functions into simpler cofactors</li>
+<li style="margin-bottom: 0.5rem;"><strong>BDD construction:</strong> Binary Decision Diagrams use repeated Shannon expansion</li>
+<li style="margin-bottom: 0.5rem;"><strong>Verification:</strong> Check function equivalence by comparing cofactors</li>
+</ol>
 
 #### Diagram: Shannon Expansion Explorer
 
