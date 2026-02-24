@@ -1021,70 +1021,69 @@ $$F = AC + AD + BC + BD + E = (A+B)(C+D) + E$$
 
 <h2 style="color: #5A3EED;">7.10 Gate Count Optimization</h2>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
-<strong>Gate count optimization</strong> minimizes the total number of gates in a circuit, directly reducing chip area and manufacturing cost. While two-level minimization (K-maps, Quine-McCluskey) minimizes literals within a fixed two-level structure, multi-level optimization explores a broader design space.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+**Gate count optimization** minimizes the total number of gates in a circuit, directly reducing chip area and manufacturing cost. While two-level minimization (K-maps, Quine-McCluskey) minimizes literals within a fixed two-level structure, multi-level optimization explores a broader design space.
+
 </div>
 
-<h3 style="color: #5A3EED;">Sharing Common Sub-expressions</h3>
+### Sharing Common Sub-expressions
 
-The primary mechanism for reducing gate count in multi-level circuits is identifying and sharing common sub-expressions.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Example:** Consider two output functions:
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Shared Sub-expression</p>
+
+Consider two output functions:
 
 $$F_1 = AC + AD + BC + BD$$
 $$F_2 = AC + AD + E$$
 
-Both share the sub-expression $AC + AD = A(C+D)$. Computing $A(C+D)$ once and sharing it between $F_1$ and $F_2$ saves gates.
+Both share $AC + AD = A(C+D)$. Computing $A(C+D)$ once and sharing it saves gates:
 
 $$F_1 = A(C+D) + B(C+D) = (A+B)(C+D)$$
 $$F_2 = A(C+D) + E$$
 
-The shared term $C+D$ appears once in the circuit, driving both $F_1$ and $F_2$ computations.
+The shared term $C+D$ appears **once** in the circuit, driving both $F_1$ and $F_2$.
 
-<h3 style="color: #5A3EED;">Literal Count vs Gate Count Trade-offs</h3>
+</div>
 
-Minimizing literal count (the goal of K-maps and QM) does not always minimize gate count, and vice versa. Consider:
+### Literal Count vs Gate Count Trade-offs
 
-$$F = AB + AC + BC \quad \text{(6 literals, 3 AND + 1 OR = 4 gates)}$$
-$$F = A(B+C) + BC \quad \text{(5 literals, 1 OR + 2 AND + 1 OR = 4 gates, but 3 levels)}$$
-$$F = (A+B)(A+C) \quad \text{(4 literals, 2 OR + 1 AND = 3 gates, 2 levels)}$$
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-The POS form has the fewest gates (3) and fewest literals (4) but requires knowledge that the consensus term $BC$ is redundant in this context. The optimal choice depends on whether the design priority is delay, area, or power.
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Concept</p>
 
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Form</th>
-      <th style="padding: 8px 14px; text-align: center;">Literals</th>
-      <th style="padding: 8px 14px; text-align: center;">Gates</th>
-      <th style="padding: 8px 14px; text-align: center;">Levels</th>
-      <th style="padding: 8px 14px; text-align: center;">Priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">6</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Delay</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Factored</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Balance</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">POS</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #1565C0; font-weight: 600;">Area</td>
-    </tr>
-  </tbody>
-</table>
+Minimizing literal count (K-maps, QM) does **not** always minimize gate count. Consider three forms of the same function:
+
+$$F = AB + AC + BC \quad \text{(6 literals, 4 gates, 2 levels)}$$
+
+$$F = A(B+C) + BC \quad \text{(5 literals, 4 gates, 3 levels)}$$
+
+$$F = (A+B)(A+C) \quad \text{(4 literals, 3 gates, 2 levels)}$$
+
+The POS form wins on both gates and literals — but requires recognizing that $BC$ is a redundant consensus term.
+
+</div>
+
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Form Comparison</p>
+
+| Form | Literals | Gates | Levels | Best For |
+|:-----|:--------:|:-----:|:------:|:---------|
+| **SOP** | 6 | 4 | 2 | Speed (min delay) |
+| **Factored** | 5 | 4 | 3 | Balance |
+| **POS** | 4 | 3 | 2 | Area (min gates) |
+
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Design Takeaway</p>
+
+The optimal form depends on the design priority — **delay**, **area**, or **power**. Always evaluate multiple forms before committing to an implementation.
+
+</div>
 
 ---
 
