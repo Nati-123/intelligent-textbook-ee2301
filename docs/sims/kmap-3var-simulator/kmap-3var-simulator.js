@@ -61,7 +61,7 @@ function draw() {
 
 function drawKmap() {
   let startX = (canvasWidth - 260) / 2;
-  let startY = 50;
+  let startY = 70;
   let cellW = 55;
   let cellH = 50;
 
