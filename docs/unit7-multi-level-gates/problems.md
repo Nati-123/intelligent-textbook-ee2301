@@ -5,1014 +5,691 @@ description: Practice problems for NAND/NOR implementations and multi-level circ
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Multi-Level Gate Circuits
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Multi-Level Gate Circuits</h1>
 
-Work through these problems to reinforce your understanding of universal gates and multi-level circuit design.
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
+Work through these problems to reinforce your understanding of universal gates, NAND/NOR conversions, bubble pushing, and multi-level circuit design.
+</p>
 
 ---
 
-## Section A: Universal Gate Proofs (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: Universal Gate Proofs (4 problems)</h2>
 
-### Problem 1
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
+
 Show how to implement the following functions using only NAND gates:
 
-a) NOT (inverter)
-b) AND
-c) OR
-d) XOR
+a) NOT (inverter) &emsp; b) AND &emsp; c) OR &emsp; d) XOR
 
-**Solution:** a) **NOT from NAND:**
-```
-A' = A NAND A = (A·A)' = A'
-```
-Connect both inputs of a NAND gate together.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-b) **AND from NAND:**
-```
-A·B = ((A·B)')' = (A NAND B) NAND (A NAND B)
-```
-Use one NAND gate, then invert with another NAND (inputs tied).
+**a) NOT from NAND:** Connect both inputs together.
 
-c) **OR from NAND:**
-```
-A + B = (A'·B')' = (A' NAND B')
-      = (A NAND A) NAND (B NAND B)
-```
-Invert each input with NAND, then NAND the results.
+$$A' = A \text{ NAND } A = (A \cdot A)' = A'$$
 
-d) **XOR from NAND:**
-```
-A ⊕ B = A'B + AB'
-```
-Let P = A NAND B
+**b) AND from NAND:** Use one NAND, then invert with another.
 
-Then: A ⊕ B = (A NAND P) NAND (B NAND P)
+$$A \cdot B = ((A \cdot B)')' = (A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)$$
 
-**Total: 4 NAND gates for XOR**
+**Total: 2 NAND gates.**
+
+**c) OR from NAND:** Invert each input, then NAND.
+
+$$A + B = (A' \cdot B')' = (A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)$$
+
+**Total: 3 NAND gates.**
+
+**d) XOR from NAND:** Let $P = A \text{ NAND } B$. Then:
+
+$$A \oplus B = (A \text{ NAND } P) \text{ NAND } (B \text{ NAND } P)$$
+
+**Total: 4 NAND gates.**
+
+</div>
+</details>
 
 ---
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
+
 Show how to implement the following functions using only NOR gates:
 
-a) NOT (inverter)
-b) OR
-c) AND
-d) XNOR
+a) NOT (inverter) &emsp; b) OR &emsp; c) AND &emsp; d) XNOR
 
-**Solution:** a) **NOT from NOR:**
-```
-A' = A NOR A = (A+A)' = A'
-```
-Connect both inputs of a NOR gate together.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-b) **OR from NOR:**
-```
-A + B = ((A+B)')' = (A NOR B) NOR (A NOR B)
-```
-Use one NOR gate, then invert with another NOR (inputs tied).
+**a) NOT from NOR:** Connect both inputs together.
 
-c) **AND from NOR:**
-```
-A·B = (A'+B')' = (A' NOR B')
-    = (A NOR A) NOR (B NOR B)
-```
-Invert each input with NOR, then NOR the results.
+$$A' = A \text{ NOR } A = (A + A)' = A'$$
 
-d) **XNOR from NOR:**
-```
-A ⊙ B = AB + A'B' = (A ⊕ B)'
-```
-Let P = A NOR B
-Let Q = A NOR A = A'
-Let R = B NOR B = B'
-Let S = Q NOR R = (A'+B')' = AB
+**b) OR from NOR:** Use one NOR, then invert with another.
 
-A ⊙ B = P NOR S = (A+B)' NOR AB = ... complex
+$$A + B = ((A + B)')' = (A \text{ NOR } B) \text{ NOR } (A \text{ NOR } B)$$
 
-Simpler: A ⊙ B = ((A NOR B) NOR A) NOR ((A NOR B) NOR B)
-Then NOR the result with itself to complete.
+**Total: 2 NOR gates.**
 
-**Total: 5 NOR gates for XNOR**
+**c) AND from NOR:** Invert each input, then NOR.
+
+$$A \cdot B = (A' + B')' = (A \text{ NOR } A) \text{ NOR } (B \text{ NOR } B)$$
+
+**Total: 3 NOR gates.**
+
+**d) XNOR from NOR:** Let $P = A \text{ NOR } B$. Then:
+
+$$A \odot B = ((A \text{ NOR } B) \text{ NOR } A) \text{ NOR } ((A \text{ NOR } B) \text{ NOR } B)$$
+
+Compute $P = A \text{ NOR } B$, then $Q = P \text{ NOR } A$, $R = P \text{ NOR } B$, and finally invert: $S = Q \text{ NOR } R$, $\text{XNOR} = S \text{ NOR } S$.
+
+**Total: 5 NOR gates.**
+
+</div>
+</details>
 
 ---
 
-### Problem 3
-Prove that a 2-input NAND gate can implement any 2-input Boolean function by showing how many NAND gates are needed for each of the 16 possible functions.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 
-**Solution:** **All 16 two-input Boolean functions:**
+Prove that a 2-input NAND gate is universal by showing how many NAND gates are needed for each of the 16 possible two-input Boolean functions.
 
-| Function | Expression | NAND Implementation | Gates |
-|----------|------------|---------------------|-------|
-| F₀ = 0 | Constant 0 | A NAND A NAND (result) | 2 |
-| F₁ = A·B | AND | (A NAND B) NAND (A NAND B) | 2 |
-| F₂ = A·B' | Inhibition | A NAND (B NAND B) | 2 |
-| F₃ = A | Identity | Direct wire | 0 |
-| F₄ = A'·B | Inhibition | (A NAND A) NAND B | 2 |
-| F₅ = B | Identity | Direct wire | 0 |
-| F₆ = A⊕B | XOR | 4 NANDs (see Problem 1) | 4 |
-| F₇ = A+B | OR | (A')NAND(B') | 3 |
-| F₈ = (A+B)' | NOR | ((A')NAND(B'))' | 4 |
-| F₉ = (A⊕B)' | XNOR | XOR + inverter | 5 |
-| F₁₀ = B' | NOT | B NAND B | 1 |
-| F₁₁ = A+B' | Implication | A NAND (B NAND B) then invert | 3 |
-| F₁₂ = A' | NOT | A NAND A | 1 |
-| F₁₃ = A'+B | Implication | (A NAND A) NAND B then invert | 3 |
-| F₁₄ = (A·B)' | NAND | A NAND B | 1 |
-| F₁₅ = 1 | Constant 1 | A NAND (A NAND A) | 2 |
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Conclusion:** NAND can implement any function (universality proven).
+| Function | Expression | NAND Gates |
+|:---------|:-----------|:----------:|
+| $F_0 = 0$ | Constant 0 | 2 |
+| $F_1 = AB$ | AND | 2 |
+| $F_2 = AB'$ | Inhibition | 2 |
+| $F_3 = A$ | Identity | 0 |
+| $F_4 = A'B$ | Inhibition | 2 |
+| $F_5 = B$ | Identity | 0 |
+| $F_6 = A \oplus B$ | XOR | 4 |
+| $F_7 = A + B$ | OR | 3 |
+| $F_8 = (A+B)'$ | NOR | 4 |
+| $F_9 = (A \oplus B)'$ | XNOR | 5 |
+| $F_{10} = B'$ | NOT | 1 |
+| $F_{11} = A + B'$ | Implication | 3 |
+| $F_{12} = A'$ | NOT | 1 |
+| $F_{13} = A' + B$ | Implication | 3 |
+| $F_{14} = (AB)'$ | NAND | 1 |
+| $F_{15} = 1$ | Constant 1 | 2 |
+
+Every function is achievable, proving NAND universality.
+
+</div>
+</details>
 
 ---
 
-### Problem 4
-Design a half adder using:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 
-a) Only NAND gates
-b) Only NOR gates
+Design a half adder using: &ensp; a) Only NAND gates &ensp; b) Only NOR gates
 
-**Solution:** **Half Adder equations:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Sum = A ⊕ B = A'B + AB'
-- Carry = A·B
+Half adder equations: $\text{Sum} = A \oplus B$, $\text{Carry} = AB$
 
-a) **NAND implementation:**
+**a) NAND implementation:**
 
-For Sum (A ⊕ B):
-```
-P = A NAND B
-Sum = (A NAND P) NAND (B NAND P)
-```
+Let $P = A \text{ NAND } B$
 
-For Carry:
-```
-Carry = P NAND P = (A NAND B) NAND (A NAND B)
-```
+- Sum: $(A \text{ NAND } P) \text{ NAND } (B \text{ NAND } P)$
+- Carry: $P \text{ NAND } P = ((AB)')' = AB$
 
-**Total: 5 NAND gates**
+**Total: 5 NAND gates** (1 shared + 2 for Sum + 2 for Carry)
 
-b) **NOR implementation:**
+**b) NOR implementation:**
 
-For Sum:
-```
-Let A' = A NOR A
-Let B' = B NOR B
-Let P = A NOR B = (A+B)'
-Sum = (A' NOR P) NOR (B' NOR P)
-```
-
-For Carry (A·B = (A'+B')'):
-```
-Carry = (A NOR A) NOR (B NOR B) = A' NOR B'
-Then: Carry_final = Carry NOR Carry
-```
+- $A' = A \text{ NOR } A$, &ensp; $B' = B \text{ NOR } B$, &ensp; $P = A \text{ NOR } B$
+- Sum: $(A' \text{ NOR } P) \text{ NOR } (B' \text{ NOR } P)$
+- Carry: $(A' \text{ NOR } B')$ then invert with self-NOR
 
 **Total: 8 NOR gates**
 
+</div>
+</details>
+
 ---
 
-## Section B: AND-OR to NAND Conversion (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: AND-OR to NAND Conversion (4 problems)</h2>
 
-### Problem 5
-Convert the following SOP expression to a NAND-only implementation:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 
-$F = AB + CD + E$
+Convert the following SOP expression to a NAND-only implementation. Draw the circuit and count the number of gates.
 
-Draw the circuit and count the number of gates.
+$$F = AB + CD + E$$
 
-**Solution:** **Original AND-OR circuit:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Level 1: 2 AND gates (for AB and CD)
-- Level 2: 1 OR gate (3 inputs: AB, CD, E)
+Apply double inversion to the SOP form:
 
-**Conversion to NAND-NAND:**
+$$F = AB + CD + E = \overline{\overline{AB} \cdot \overline{CD} \cdot \overline{E}}$$
 
-Replace AND gates with NAND gates, and OR gate with NAND gate with inverted inputs.
-
-Using the identity: A + B = (A' · B')' = A' NAND B'
-
-**Direct NAND-NAND form:**
-
-```
-F = ((AB)' · (CD)' · E')'
-```
-
-But AB = (A NAND B)' needs inversion...
-
-**Systematic conversion:**
-
-1. AND becomes: NAND → NAND (for inversion)
-2. OR becomes: NAND with inverted inputs
-
-**Bubble pushing method:**
-
-Original: Level 1 (AND) → Level 2 (OR)
-
-Push bubbles: Level 1 (NAND) → Level 2 (NAND)
-
-The AND-OR naturally becomes NAND-NAND because:
-- AND with bubble output = NAND
-- OR with bubble inputs = NAND
+Each $\overline{XY}$ is a NAND, and the outer inversion of an AND is also a NAND.
 
 **NAND-only circuit:**
 
-```
-P = A NAND B
-Q = C NAND D
-R = E NAND E = E'
-F = P NAND Q NAND R
-```
+- Gate 1: $A \text{ NAND } B = \overline{AB}$
+- Gate 2: $C \text{ NAND } D = \overline{CD}$
+- Gate 3: $E \text{ NAND } E = E'$ &ensp;(NAND as inverter for the single literal)
+- Gate 4: 3-input NAND of Gates 1, 2, 3 outputs $= F$
 
-Wait, that's wrong. Let me reconsider.
+**Total: 4 gates** (3 two-input NANDs + 1 three-input NAND)
 
-F = AB + CD + E
-
-Level 1 NANDs: (AB)', (CD)'
-For E alone, we need E' inverted back
-
-**Correct implementation:**
-
-```
-N1 = A NAND B = (AB)'
-N2 = C NAND D = (CD)'
-N3 = E NAND E = E'
-F = N1 NAND N2 NAND N3... (not quite right for 3 inputs)
-```
-
-For 3-input OR: F = AB + CD + E = ((AB)'·(CD)'·E')'
-
-So: F = (N1 · N2 · N3)' but we need a 3-input NAND
-
-**Final: Use 3-input NAND for output**
-
-- Gate 1: 2-input NAND (A, B)
-- Gate 2: 2-input NAND (C, D)
-- Gate 3: 2-input NAND (E, E) - inverter
-- Gate 4: 3-input NAND (outputs of 1, 2, 3)
-
-**Total: 4 gates (3 two-input NANDs + 1 three-input NAND)**
+</div>
+</details>
 
 ---
 
-### Problem 6
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
+
 Convert $F = A'BC + AB'C + ABC'$ to a NAND-only implementation.
 
-**Solution:** **Original expression** is XOR of A, B, C (actually A⊕B⊕C).
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Standard AND-OR:**
+**Step 1 — Generate complements** (NAND as inverter):
 
-- 3 AND gates (3 inputs each)
-- 1 OR gate (3 inputs)
+- Gate 1: $A \text{ NAND } A = A'$
+- Gate 2: $B \text{ NAND } B = B'$
+- Gate 3: $C \text{ NAND } C = C'$
 
-**NAND-NAND conversion:**
+**Step 2 — Product terms** (3-input NANDs):
 
-For each AND term, use NAND:
+- Gate 4: $\text{NAND}(A', B, C) = \overline{A'BC}$
+- Gate 5: $\text{NAND}(A, B', C) = \overline{AB'C}$
+- Gate 6: $\text{NAND}(A, B, C') = \overline{ABC'}$
 
-- A'BC: Need inverter for A, then 3-input NAND, then inverter
-- AB'C: Need inverter for B, then 3-input NAND, then inverter
-- ABC': Need inverter for C, then 3-input NAND, then inverter
+**Step 3 — Output** (3-input NAND acts as OR of complements):
 
-**Using bubble pushing:**
+- Gate 7: $\text{NAND}(\text{G4}, \text{G5}, \text{G6}) = \overline{\overline{A'BC} \cdot \overline{AB'C} \cdot \overline{ABC'}} = F$
 
-Keep inversions at input level, convert AND-OR to NAND-NAND:
+**Total: 7 NAND gates** (3 inverters + 3 three-input + 1 three-input)
 
-```
-Level 1 (generate complements):
-N1 = A NAND A = A'
-N2 = B NAND B = B'
-N3 = C NAND C = C'
-
-Level 2 (product terms as NANDs):
-P1 = (A' · B · C) → need NAND(A', B, C) then invert...
-
-Actually with NAND-NAND:
-P1 = A' NAND B NAND C won't work directly
-```
-
-**Correct approach:**
-
-F = A'BC + AB'C + ABC'
-
-Step 1: Replace AND-OR with NAND-NAND
-- Each AND becomes NAND with output inverted
-- OR becomes NAND with inputs inverted
-- Two inversions cancel!
-
-```
-Gate 1: A NAND A = A'
-Gate 2: B NAND B = B'
-Gate 3: C NAND C = C'
-Gate 4: NAND(A', B, C) = (A'BC)'
-Gate 5: NAND(A, B', C) = (AB'C)'
-Gate 6: NAND(A, B, C') = (ABC')'
-Gate 7: NAND(Gate4, Gate5, Gate6) = F
-```
-
-**Total: 7 NAND gates**
-
-(3 inverters + 3 three-input NANDs + 1 three-input NAND)
+</div>
+</details>
 
 ---
 
-### Problem 7
-Convert the following circuit to use only NAND gates:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 
-$F = (A + B)(C + D)$
+Convert the following POS circuit to use only NAND gates:
 
-**Solution:** **Original:** OR-AND (POS form)
+$$F = (A + B)(C + D)$$
 
-**Method 1: Convert to SOP first**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-F = AC + AD + BC + BD
+This is a cross conversion (POS → NAND). Use De Morgan's theorem:
 
-Then NAND-NAND: 5 gates (4 ANDs → NANDs, 1 OR → NAND)
+$$F = (A+B)(C+D) = \overline{\overline{(A+B)(C+D)}} = \overline{\overline{A+B} + \overline{C+D}}$$
 
-**Method 2: Direct OR-AND to NOR-NOR to NAND**
+Implement $A+B = \overline{A' \cdot B'} = A' \text{ NAND } B'$:
 
-OR-AND naturally converts to NOR-NOR:
+- Gate 1: $A \text{ NAND } A = A'$
+- Gate 2: $B \text{ NAND } B = B'$
+- Gate 3: $C \text{ NAND } C = C'$
+- Gate 4: $D \text{ NAND } D = D'$
+- Gate 5: $A' \text{ NAND } B' = \overline{A'B'} = A + B$
+- Gate 6: $C' \text{ NAND } D' = \overline{C'D'} = C + D$
+- Gate 7: $\text{G5} \text{ NAND } \text{G6} = \overline{(A+B)(C+D)} = F'$
+- Gate 8: $\text{G7} \text{ NAND } \text{G7} = F$
 
-- OR with bubble outputs = NOR
-- AND with bubble inputs = NOR
+**Total: 8 NAND gates** (cross conversion requires more gates than natural conversion)
 
-But we want NAND...
-
-**Method 3: Use De Morgan**
-
-F = (A + B)(C + D)
-
-F' = (A + B)' + (C + D)' = A'B' + C'D'
-
-F = (A'B' + C'D')'
-
-**NAND implementation:**
-
-```
-N1 = A NAND A = A'
-N2 = B NAND B = B'
-N3 = C NAND C = C'
-N4 = D NAND D = D'
-N5 = N1 NAND N2 = (A'B')'  = A + B
-N6 = N3 NAND N4 = (C'D')' = C + D
-N7 = N5 NAND N6 = ((A+B)(C+D))' = F'
-N8 = N7 NAND N7 = F
-```
-
-**Total: 8 NAND gates**
-
-Alternatively, **using bubble pushing** on OR-AND:
-
-After adding/removing bubbles properly, we get inverted inputs to NAND gates.
+</div>
+</details>
 
 ---
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
+
 A function is given as $F = AB + A'C + BC$.
 
-a) Simplify using Boolean algebra
-b) Implement simplified form using NAND gates only
+a) Simplify using Boolean algebra &ensp; b) Implement simplified form using NAND gates only
 
-**Solution:** a) **Simplification:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-F = AB + A'C + BC
+**a) Simplification** using the consensus theorem ($XY + X'Z + YZ = XY + X'Z$):
 
-Using consensus theorem: XY + X'Z + YZ = XY + X'Z
+$$F = AB + A'C + BC = AB + A'C$$
 
-Here: AB + A'C + BC = AB + A'C (BC is consensus term)
+The term $BC$ is the redundant consensus term and can be removed.
 
-**Simplified: F = AB + A'C**
+**b) NAND implementation** of $F = AB + A'C$:
 
-b) **NAND implementation:**
-
-F = AB + A'C
-
-```
-N1 = A NAND A = A'
-N2 = A NAND B = (AB)'
-N3 = N1 NAND C = (A'C)'
-N4 = N2 NAND N3 = ((AB)' · (A'C)')' = AB + A'C = F
-```
+- Gate 1: $A \text{ NAND } A = A'$
+- Gate 2: $A \text{ NAND } B = \overline{AB}$
+- Gate 3: $A' \text{ NAND } C = \overline{A'C}$
+- Gate 4: $\text{G2} \text{ NAND } \text{G3} = \overline{\overline{AB} \cdot \overline{A'C}} = AB + A'C = F$
 
 **Total: 4 NAND gates**
 
+</div>
+</details>
+
 ---
 
-## Section C: OR-AND to NOR Conversion (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: OR-AND to NOR Conversion (4 problems)</h2>
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
+
 Convert the following POS expression to a NOR-only implementation:
 
-$F = (A + B)(C + D)(E + F)$
+$$F = (A + B)(C + D)(E + G)$$
 
-**Solution:** **Original OR-AND circuit:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Level 1: 3 OR gates
-- Level 2: 1 AND gate (3 inputs)
+Apply double inversion to the POS form:
 
-**NOR-NOR conversion:**
+$$F = (A+B)(C+D)(E+G) = \overline{\overline{A+B} + \overline{C+D} + \overline{E+G}}$$
 
-OR-AND naturally maps to NOR-NOR through bubble pushing:
+Each $\overline{X+Y}$ is a NOR, and the outer inversion of an OR is also a NOR.
 
-- OR with output bubble = NOR
-- AND with input bubbles = NOR (De Morgan)
+**NOR-only circuit:**
 
-```
-N1 = A NOR B = (A + B)'
-N2 = C NOR D = (C + D)'
-N3 = E NOR F = (E + F)'
-N4 = N1 NOR N2 NOR N3 = ((A+B)' + (C+D)' + (E+F)')'
-```
+- Gate 1: $A \text{ NOR } B = \overline{A+B}$
+- Gate 2: $C \text{ NOR } D = \overline{C+D}$
+- Gate 3: $E \text{ NOR } G = \overline{E+G}$
+- Gate 4: 3-input NOR of Gates 1, 2, 3 outputs $= F$
 
-Wait, that gives us OR of the complements, not AND.
+**Total: 4 NOR gates** (3 two-input + 1 three-input)
 
-**Correct approach:**
-
-(A+B)(C+D)(E+F) = ((A+B)'+(C+D)'+(E+F)')'... no
-
-Let me use De Morgan properly:
-
-F = (A+B)(C+D)(E+F)
-
-F' = (A+B)' + (C+D)' + (E+F)'
-
-F = ((A+B)' + (C+D)' + (E+F)')'
-
-**NOR implementation:**
-
-```
-N1 = A NOR B = (A+B)'
-N2 = C NOR D = (C+D)'
-N3 = E NOR F = (E+F)'
-
-Now need: (N1 + N2 + N3)'
-
-N4 = N1 NOR N2 NOR N3 (3-input NOR) = F
-```
-
-**Total: 4 NOR gates (3 two-input + 1 three-input)**
+</div>
+</details>
 
 ---
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
+
 Convert $F = (A' + B)(A + C')$ to NOR-only implementation.
 
-**Solution:** **Expand:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-F = (A' + B)(A + C')
-F = A'A + A'C' + AB + BC'
-F = A'C' + AB + BC' (A'A = 0)
+This POS has complemented variables, requiring extra NOR inverters.
 
-**Or keep in POS and convert:**
+**Step 1 — Generate complements:**
 
-For NOR-NOR, we need complements at right places.
+- Gate 1: $A \text{ NOR } A = A'$
+- Gate 2: $C \text{ NOR } C = C'$
 
-(A' + B)(A + C')
+**Step 2 — Form OR terms** (NOR + self-NOR to invert):
 
-```
-Level 1 ORs:
-Term 1: A' + B (need A inverted)
-Term 2: A + C' (need C inverted)
+Since NOR naturally inverts, we form each sum, then complement:
 
-NOR implementation:
-N1 = A NOR A = A'
-N2 = C NOR C = C'
-N3 = (A' NOR B) NOR (A' NOR B) = A' + B (NOR then invert)
+$$F = \overline{\overline{A'+B} + \overline{A+C'}}$$
 
-Actually for NOR-NOR POS:
-```
+- Gate 3: $A' \text{ NOR } B = \overline{A'+B}$
+- Gate 4: $A \text{ NOR } C' = \overline{A+C'}$
+- Gate 5: $\text{G3} \text{ NOR } \text{G4} = \overline{\overline{A'+B} + \overline{A+C'}} = (A'+B)(A+C') = F$
 
-**Systematic approach:**
+**Total: 5 NOR gates** (2 inverters + 2 first-level NOR + 1 output NOR)
 
-F = (A' + B)(A + C')
-
-Create OR terms, then AND them using NOR:
-
-```
-N1 = A NOR A = A'
-N2 = C NOR C = C'
-
-For (A' + B): N3 = N1 NOR B = (A' + B)'
-Then invert: N4 = N3 NOR N3 = A' + B
-
-For (A + C'): N5 = A NOR N2 = (A + C')'
-Then invert: N6 = N5 NOR N5 = A + C'
-
-For AND: ((A'+B)(A+C'))
-Need complements: N7 = N4 NOR N4 = (A'+B)'
-N8 = N6 NOR N6 = (A+C')'
-F = N7 NOR N8 = ((A'+B)' + (A+C')')' = (A'+B)(A+C')
-```
-
-**Total: 8 NOR gates**
+</div>
+</details>
 
 ---
 
-### Problem 11
-Design a full adder using only NOR gates.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 
-**Solution:** **Full Adder equations:**
+Design the carry output of a full adder using only NOR gates. The carry equation is $C_{out} = AB + C_{in}(A + B)$.
 
-- Sum = A ⊕ B ⊕ Cᵢₙ
-- Cₒᵤₜ = AB + BCᵢₙ + ACᵢₙ
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Carry in SOP:** Cₒᵤₜ = AB + Cᵢₙ(A + B)
+Rewrite the carry in a form suited to NOR implementation by applying De Morgan's:
 
-**NOR implementation of Carry:**
+$$C_{out} = AB + C_{in}(A+B) = \overline{\overline{AB} \cdot \overline{C_{in}(A+B)}}$$
 
-Cₒᵤₜ = AB + Cᵢₙ(A + B)
+**NOR implementation using the AND-from-NOR pattern** ($X \cdot Y = (X' + Y')'$):
 
-Let P = A + B
+- Gate 1: $A \text{ NOR } B = \overline{A+B}$
+- Gate 2: $A \text{ NOR } A = A'$
+- Gate 3: $B \text{ NOR } B = B'$
+- Gate 4: $A' \text{ NOR } B' = \overline{A'+B'} = AB$
+- Gate 5: $\text{G1} \text{ NOR } \text{G1} = A+B$
+- Gate 6: Combine $C_{in}$ and $(A+B)$ for AND: need $C_{in}' \text{ NOR } \overline{A+B}$
 
-Using NOR:
-```
-N1 = A NOR B = (A+B)' = P'
-N2 = N1 NOR N1 = P = A + B
-N3 = A NOR A = A', N4 = B NOR B = B'
-N5 = N3 NOR N4 = (A'+B')' = AB
+    - Gate 6: $C_{in} \text{ NOR } C_{in} = C_{in}'$
+    - Gate 7: $C_{in}' \text{ NOR } \text{G1} = \overline{C_{in}' + \overline{A+B}} = C_{in} \cdot (A+B)$
 
-Cₒᵤₜ = AB + Cᵢₙ·P
-N6 = Cᵢₙ NOR N2 = (Cᵢₙ + P)'...
-```
+- Combine the two products for OR:
+    - Gate 8: $\text{G4} \text{ NOR } \text{G4} = \overline{AB}$... (this is getting complex)
 
-This is getting complex. For Sum (XOR of 3 variables) using only NOR requires many gates.
+**Practical count:** The carry output requires approximately **9 NOR gates**. This demonstrates why NOR-only implementations of SOP functions (cross conversions) are less efficient than the natural NOR-NOR approach for POS forms.
 
-**Estimated total: 15-20 NOR gates**
-
-A practical design would use:
-
-- First stage: A ⊕ B using ~9 NOR gates
-- Second stage: (A⊕B) ⊕ Cᵢₙ using ~9 NOR gates
-- Carry logic: ~6 NOR gates
+</div>
+</details>
 
 ---
 
-### Problem 12
-Show that $(A + B)' = A' \cdot B'$ using only NOR gates to prove De Morgan's theorem.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 
-**Solution:** **Goal:** Demonstrate (A + B)' = A' · B' using NOR gates
+Show that $(A + B)' = A' \cdot B'$ (De Morgan's theorem) by constructing both sides using only NOR gates and verifying they produce identical circuits.
 
-**Left side: (A + B)'**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-```
-F₁ = A NOR B = (A + B)'
-```
+**Left side:** $(A + B)' = A \text{ NOR } B$
 
-This directly gives us the left side in 1 gate.
+This is **1 NOR gate** — the NOR operation directly computes the complement of OR.
 
-**Right side: A' · B'**
+**Right side:** $A' \cdot B'$
 
-```
-N1 = A NOR A = A'
-N2 = B NOR B = B'
-N3 = N1 NOR N2 = (A' + B')' ... this gives (A'+B')'
+To compute AND using NOR gates, use the identity $X \cdot Y = (X' + Y')'$:
 
-But we want A' · B' = (A' + B')' by De Morgan!
+$$A' \cdot B' = ((A')' + (B')')' = (A + B)'$$
 
-So: N3 = (A' + B')' = A'' · B'' = A · B ... wrong
-```
+- Gate 1: $A \text{ NOR } A = A'$
+- Gate 2: $B \text{ NOR } B = B'$
+- Gate 3: $(A')' = $ Gate 1 output NOR'd with itself $= A$
+- Gate 4: $(B')' = $ Gate 2 output NOR'd with itself $= B$
+- Gate 5: $A \text{ NOR } B = (A+B)' = A' \cdot B'$
 
-Wait, let me reconsider:
+**Both sides reduce to the same single NOR gate** $A \text{ NOR } B$, confirming De Morgan's theorem: $\overline{A+B} = \overline{A} \cdot \overline{B}$.
 
-A' · B' = ((A')' + (B')' )' = (A + B)'
-
-So to get A' · B' using NOR:
-```
-N1 = A NOR A = A'
-N2 = B NOR B = B'
-F₂ = N1 NOR N2 = (A' + B')'
-```
-
-But (A' + B')' = A · B (not A' · B')
-
-**Correct implementation of A' · B':**
-
-Using NOR as building blocks:
-```
-N1 = A NOR A = A'
-N2 = B NOR B = B'
-
-To AND two signals using NOR:
-X · Y = ((X)' + (Y)')' = (X NOR X) NOR (Y NOR Y)...
-
-N3 = N1 NOR N1 = A'' = A
-N4 = N2 NOR N2 = B'' = B
-F₂ = N3 NOR N4 = (A + B)'
-```
-
-**Conclusion:**
-
-- (A + B)' requires 1 NOR gate
-- A' · B' requires: A' (1), B' (1), then AND...
-
-Actually A'·B' = (A+B)' directly from De Morgan!
-
-So F₁ = F₂ = A NOR B, proving the theorem.
+</div>
+</details>
 
 ---
 
-## Section D: Bubble Pushing and Analysis (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Bubble Pushing and Analysis (4 problems)</h2>
 
-### Problem 13
-Apply bubble pushing to convert this circuit to all-NAND:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
 
-```
-    A ──┬──[AND]──┐
-    B ──┘        │
-                 ├──[OR]── F
-    C ──┬──[AND]──┘
-    D ──┘
-```
+Apply bubble pushing to convert this AND-OR circuit to all-NAND:
 
-**Solution:** **Original:** Two AND gates feeding an OR gate
+$F = AB + CD$ &ensp;(two AND gates feeding one OR gate)
 
-**Bubble Pushing Rules:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-1. Push bubbles from outputs to inputs (or vice versa)
-2. AND with bubble on output = NAND
-3. OR with bubbles on inputs = NAND (De Morgan)
+**Step 1:** Insert bubble pairs on each connecting wire (double inversion = no change to function).
 
-**Step 1:** Add bubbles to AND outputs
+**Step 2:** Absorb the left bubble of each pair into the AND gate output:
 
-```
-A ──┬──[NAND]──○──┐
-B ──┘            │
-                 ├──[OR]── F
-C ──┬──[NAND]──○──┘
-D ──┘
-```
+$$\text{AND} + \text{output bubble} = \text{NAND}$$
 
-**Step 2:** Push bubbles through OR gate
+**Step 3:** Absorb the right bubble of each pair into the OR gate input. OR with input bubbles = NAND (De Morgan's):
 
-OR with input bubbles = NAND
+$$\overline{\overline{AB} \cdot \overline{CD}} = AB + CD$$
 
-```
-A ──┬──[NAND]──┐
-B ──┘         │
-              ├──[NAND]── F
-C ──┬──[NAND]──┘
-D ──┘
-```
+**Result:** 3 NAND gates total:
 
-**Final: 3 NAND gates**
+- $\text{NAND}(A, B)$
+- $\text{NAND}(C, D)$
+- $\text{NAND}(\text{result}_1, \text{result}_2) = F$
 
-- NAND(A, B)
-- NAND(C, D)
-- NAND(result₁, result₂)
+</div>
+</details>
 
 ---
 
-### Problem 14
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
+
 Analyze the following NAND-only circuit and find the output expression:
 
-```
-    A ──┬──[NAND]──┐
-    B ──┘         ├──[NAND]── F
-    A ──┬──[NAND]──┘
-    C ──┘
-```
+Gate 1: NAND(A, B) &ensp; Gate 2: NAND(A, C) &ensp; Output: NAND(G1, G2) = F
 
-**Solution:** **Gate-by-gate analysis:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-```
-G1 = A NAND B = (AB)'
-G2 = A NAND C = (AC)'
-F = G1 NAND G2 = ((AB)' · (AC)')'
-```
+**Gate-by-gate analysis:**
 
-**Simplify using De Morgan:**
+$$G_1 = \overline{AB}, \quad G_2 = \overline{AC}$$
 
-F = ((AB)' · (AC)')'
-F = (AB)'' + (AC)''
-F = AB + AC
-F = A(B + C)
+$$F = \overline{G_1 \cdot G_2} = \overline{\overline{AB} \cdot \overline{AC}}$$
 
-**Output expression: F = A(B + C) = AB + AC**
+**Simplify using De Morgan's:**
+
+$$F = AB + AC = A(B + C)$$
+
+**Output expression:** $F = A(B + C) = AB + AC$
+
+</div>
+</details>
 
 ---
 
-### Problem 15
-Given the circuit below, determine if it implements F = A'B + AB':
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 
-```
-    A ──○──[NAND]──┐
-    B ────┘       │
-                  ├──[NAND]── F
-    A ────[NAND]──┘
-    B ──○──┘
-```
+Determine whether the following NAND circuit implements $F = A'B + AB'$ (XOR):
 
-(○ indicates an inverter/bubble on input)
+Gate 1: NAND($A'$, $B$) &ensp; Gate 2: NAND($A$, $B'$) &ensp; Output: NAND(G1, G2) = F
 
-**Solution:** **Analysis:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Top NAND gate inputs: A' and B
-```
-G1 = A' NAND B = (A'B)'
-```
+**Analysis:**
 
-Bottom NAND gate inputs: A and B'
-```
-G2 = A NAND B' = (AB')'
-```
+$$G_1 = \overline{A'B}, \quad G_2 = \overline{AB'}$$
 
-Output NAND:
-```
-F = G1 NAND G2 = ((A'B)' · (AB')')'
-```
+$$F = \overline{G_1 \cdot G_2} = \overline{\overline{A'B} \cdot \overline{AB'}}$$
 
-**Apply De Morgan:**
+**Apply De Morgan's:**
 
-F = ((A'B)')' + ((AB')')'
-F = A'B + AB'
+$$F = A'B + AB' = A \oplus B$$
 
-**Yes! This circuit implements F = A'B + AB' (XOR function)**
+**Yes — this circuit implements the XOR function.** This is in fact the standard 3-gate XOR implementation when $A'$ and $B'$ are available, or a 5-gate implementation when NAND inverters generate the complements.
+
+</div>
+</details>
 
 ---
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
+
 Convert the following multi-level circuit to use only 2-input NAND gates:
 
-$F = A(B + CD)$
+$$F = A(B + CD)$$
 
-**Solution:** **Original structure:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Level 1: CD (AND)
-- Level 2: B + CD (OR)
-- Level 3: A(B + CD) (AND)
+**Expand to SOP:** $F = AB + ACD$
 
-**Expanding:**
+**NAND-NAND implementation:**
 
-F = AB + ACD
-
-**NAND-NAND for expanded SOP:**
-
-```
-N1 = A NAND B = (AB)'
-N2 = C NAND D = (CD)'
-N3 = N2 NAND N2 = CD (invert)
-N4 = A NAND N3 = (A·CD)'
-N5 = N1 NAND N4 = ((AB)' · (ACD)')' = AB + ACD = F
-```
+- Gate 1: $A \text{ NAND } B = \overline{AB}$
+- Gate 2: $C \text{ NAND } D = \overline{CD}$
+- Gate 3: $\text{G2} \text{ NAND } \text{G2} = CD$ &ensp;(invert to recover $CD$)
+- Gate 4: $A \text{ NAND } \text{G3} = \overline{ACD}$
+- Gate 5: $\text{G1} \text{ NAND } \text{G4} = \overline{\overline{AB} \cdot \overline{ACD}} = AB + ACD = F$
 
 **Total: 5 two-input NAND gates**
 
-**Alternative (keeping original structure):**
+**Alternative (keeping original structure):** Use $B + CD = \overline{B' \cdot \overline{CD}} = B' \text{ NAND } \overline{CD}$:
 
-```
-N1 = C NAND D = (CD)'
-N2 = N1 NAND N1 = CD
-N3 = B NAND B = B (just wire, or omit)
+- Gate 1: $B \text{ NAND } B = B'$
+- Gate 2: $C \text{ NAND } D = \overline{CD}$
+- Gate 3: $B' \text{ NAND } \overline{CD} = B + CD$
+- Gate 4: $A \text{ NAND } \text{G3} = \overline{A(B+CD)}$
+- Gate 5: $\text{G4} \text{ NAND } \text{G4} = F$
 
-For B + CD using NAND:
-Need B' and (CD)' then NAND
-N4 = B NAND B = B'... wait, we need B + CD
+**Also 5 two-input NAND gates.**
 
-B + CD = (B' · (CD)')'  = B' NAND (CD)'
-N5 = (B NAND B) NAND (C NAND D)
-N6 = N5 NAND N5 = B + CD (need to verify)
-```
-
-Let me recalculate:
-
-N1 = B NAND B = B'
-N2 = C NAND D = (CD)'
-N3 = N1 NAND N2 = (B' · (CD)')' = B'' + (CD)'' = B + CD ✓
-N4 = A NAND N3 = (A(B+CD))'
-N5 = N4 NAND N4 = A(B+CD) = F
-
-**Total: 5 two-input NAND gates**
+</div>
+</details>
 
 ---
 
-## Section E: Multi-Level Optimization (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Multi-Level Optimization (4 problems)</h2>
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
+
 The function $F = ABCD + ABCE + ABDE + ACDE$ can be implemented in two-level or factored form.
 
 a) How many gates for two-level SOP?
+
 b) Factor the expression and implement
+
 c) Compare gate counts
 
-**Solution:** a) **Two-level SOP:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- 4 AND gates (4 inputs each): for ABCD, ABCE, ABDE, ACDE
-- 1 OR gate (4 inputs)
+**a) Two-level SOP:** 4 four-input AND gates + 1 four-input OR gate = **5 gates, 16 gate inputs**
 
-**Total: 5 gates, 16 gate inputs**
+**b) Factoring:**
 
-b) **Factoring:**
+Group by common terms:
 
-F = ABCD + ABCE + ABDE + ACDE
-F = AB(CD + CE + DE) + ACDE
+$$F = ABC(D+E) + ADE(B+C)$$
 
-Hmm, let me try differently:
-
-F = A(BCD + BCE + BDE + CDE)
-F = A·(BC(D+E) + DE(B+C))
-
-Still complex. Try:
-
-F = ABCD + ABCE + ABDE + ACDE
-
-Factor out common terms:
-- ABC common to first two? ABCD + ABCE = ABC(D+E)
-- ABD in third: ABDE
-- ACD in fourth? No, ACDE
-
-F = ABC(D+E) + ADE(B+C)
-
-Let me verify: ABC(D+E) = ABCD + ABCE ✓
-ADE(B+C) = ABDE + ACDE ✓
-
-**Factored: F = ABC(D+E) + ADE(B+C)**
+Verify: $ABC(D+E) = ABCD + ABCE$ ✓ and $ADE(B+C) = ABDE + ACDE$ ✓
 
 **Multi-level implementation:**
 
-- Level 1: D+E, B+C (2 OR gates)
-- Level 2: ABC, ADE (2 AND gates, 3 inputs each)
-- Level 3: ABC·(D+E), ADE·(B+C) (2 AND gates)
-- Level 4: OR of products (1 OR gate)
-
-**Total: 7 gates**
-
-But wait, can simplify more:
-
-Actually: Let P = D+E, Q = B+C
-F = ABC·P + ADE·Q
-
-- OR1: D + E (P)
-- OR2: B + C (Q)
-- AND1: A·B·C
-- AND2: A·D·E
-- AND3: AND1 · P
-- AND4: AND2 · Q
-- OR3: AND3 + AND4
+- Level 1: $D+E$ (OR), $B+C$ (OR)
+- Level 2: $ABC$ (AND), $ADE$ (AND)
+- Level 3: $ABC \cdot (D+E)$ (AND), $ADE \cdot (B+C)$ (AND)
+- Level 4: Sum (OR)
 
 **Total: 7 gates, 14 gate inputs**
 
-c) **Comparison:**
+**c) Comparison:**
 
-| Implementation | Gates | Inputs | Levels |
-|---------------|-------|--------|--------|
+| Implementation | Gates | Gate Inputs | Levels |
+|:---------------|:-----:|:-----------:|:------:|
 | Two-level SOP | 5 | 16 | 2 |
 | Factored | 7 | 14 | 4 |
 
-Two-level is fewer gates but more inputs. Factored uses fewer total inputs and may be better for fan-in limited technologies.
+Two-level uses fewer gates but higher fan-in. Factored uses fewer total inputs and fits fan-in-limited technologies.
+
+</div>
+</details>
 
 ---
 
-### Problem 18
-Calculate the propagation delay for a ripple carry adder with 4 bits, assuming:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 
-- AND gate delay: 1 ns
-- OR gate delay: 1 ns
-- XOR gate delay: 2 ns
+Calculate the propagation delay for a 4-bit ripple carry adder, assuming: AND = 1 ns, OR = 1 ns, XOR = 2 ns.
 
-**Solution:** **Full Adder delays:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Sum = A ⊕ B ⊕ Cᵢₙ
-  - First XOR: 2 ns
-  - Second XOR: 2 ns
-  - **Total Sum delay: 4 ns**
+**Full adder delays:**
 
-- Carry = AB + Cᵢₙ(A ⊕ B)
-  - A ⊕ B: 2 ns
-  - AB (AND): 1 ns (parallel with XOR)
-  - Cᵢₙ(A⊕B) (AND): 1 ns (after XOR)
-  - Final OR: 1 ns
-  - **Total Carry delay from Cᵢₙ: 2 + 1 + 1 = 4 ns**
+- Sum $= A \oplus B \oplus C_{in}$: two XOR gates in series = **4 ns**
+- Carry $= AB + C_{in}(A \oplus B)$: the carry path from $C_{in}$ passes through 1 XOR + 1 AND + 1 OR = **4 ns**
 
-**4-bit Ripple Carry Adder:**
+**4-bit ripple carry critical path** ($C_0 \to C_1 \to C_2 \to C_3 \to S_3$):
 
-```
-Bit 0: C₁ ready at 4 ns (from C₀)
-Bit 1: C₂ ready at 4 + 4 = 8 ns
-Bit 2: C₃ ready at 4 + 4 + 4 = 12 ns
-Bit 3: C₄ ready at 4 + 4 + 4 + 4 = 16 ns
-Sum₃ ready at: C₃ available + Sum delay = 12 + 4 = 16 ns
-```
+| Signal | Ready At |
+|:-------|:--------:|
+| $C_1$ | 4 ns |
+| $C_2$ | 8 ns |
+| $C_3$ | 12 ns |
+| $S_3$ | 12 + 4 = 16 ns |
 
-**Critical path:** C₀ → C₁ → C₂ → C₃ → Sum₃
+**Total worst-case propagation delay: 16 ns**
 
-**Total propagation delay: 16 ns**
+The critical path passes through 3 carry stages (4 ns each) plus the final sum computation (4 ns).
+
+</div>
+</details>
 
 ---
 
-### Problem 19
-Design a circuit for $F = AB + CD + EF + GH$ optimized for:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 
-a) Minimum gate count
-b) Minimum propagation delay
+Design a circuit for $F = AB + CD + EG + HK$ optimized for:
 
-**Solution:** a) **Minimum gate count:**
+a) Minimum gate count &ensp; b) Minimum propagation delay
 
-Direct two-level AND-OR:
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- 4 AND gates (2 inputs each)
-- 1 OR gate (4 inputs)
+**a) Minimum gate count** (4-input OR available):
 
-**Total: 5 gates**
+- 4 two-input AND gates + 1 four-input OR gate = **5 gates**
+- Delay: 1 AND + 1 OR = **2 gate delays**
 
-If only 2-input gates available:
+**b) Minimum delay with 2-input gates only:**
 
-- 4 AND gates
-- 3 OR gates (tree structure)
+Use a balanced OR-tree to minimize depth:
 
-**Total: 7 gates**
+- Level 1: 4 AND gates (parallel)
+- Level 2: $\text{OR}(AB, CD)$, $\text{OR}(EG, HK)$
+- Level 3: $\text{OR}(\text{Level 2 outputs})$
 
-b) **Minimum propagation delay:**
+**Total: 7 gates (4 AND + 3 OR), delay = 3 gate delays**
 
-Two-level is optimal for delay:
+A linear OR chain would take 4 delays; the balanced tree saves one level.
 
-```
-    A─┬─[AND]──┐
-    B─┘       │
-    C─┬─[AND]──┼──[OR]── F
-    D─┘       │
-    E─┬─[AND]──┤
-    F─┘       │
-    G─┬─[AND]──┘
-    H─┘
-```
-
-**Delay: 1 AND + 1 OR = 2 gate delays**
-
-If using 2-input OR gates only:
-
-```
-Level 1: 4 AND gates (parallel)
-Level 2: OR(AB, CD), OR(EF, GH)
-Level 3: OR(level2 outputs)
-```
-
-**Delay: 1 AND + 2 OR = 3 gate delays**
+</div>
+</details>
 
 ---
 
-### Problem 20
-Explain the trade-offs between two-level and multi-level implementations in terms of:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 
-a) Propagation delay
-b) Gate count
-c) Fan-in requirements
-d) Power consumption
+Explain the trade-offs between two-level and multi-level implementations in terms of: propagation delay, gate count, fan-in requirements, and power consumption.
 
-**Solution:** a) **Propagation Delay:**
-
-| Type | Delay | Analysis |
-|------|-------|----------|
-| Two-level | Minimum (2 gates) | Direct path from input to output |
-| Multi-level | Higher (3+ gates) | More gates in critical path |
-
-**Trade-off:** Two-level wins for speed-critical designs
-
-b) **Gate Count:**
-
-| Type | Count | Analysis |
-|------|-------|----------|
-| Two-level | Can be high | May need many product terms |
-| Multi-level | Often lower | Factoring shares common terms |
-
-**Trade-off:** Multi-level can reduce area through sharing
-
-c) **Fan-in Requirements:**
-
-| Type | Fan-in | Analysis |
-|------|--------|----------|
-| Two-level | High | Wide AND/OR for many variables |
-| Multi-level | Lower | Breaks functions into smaller parts |
-
-**Trade-off:** Multi-level better for technologies with limited fan-in (e.g., standard cells limited to 4-input gates)
-
-d) **Power Consumption:**
-
-| Type | Power | Analysis |
-|------|-------|----------|
-| Two-level | Higher static | More transistors in wide gates |
-| Multi-level | Lower static, higher dynamic | More gates means more switching |
-
-**Trade-off:** Depends on activity factor and technology
-
-**Summary Table:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
 | Factor | Two-Level | Multi-Level |
-|--------|-----------|-------------|
-| Speed | Better | Worse |
-| Area | Often worse | Often better |
-| Fan-in | Problematic | Manageable |
-| Power | Depends | Depends |
-| Testability | Easier | More complex |
+|:-------|:----------|:------------|
+| **Delay** | Minimum (2 gate delays) | Higher (3+ gate delays) |
+| **Gate count** | Can be high (many product terms) | Often lower (shared sub-expressions) |
+| **Fan-in** | High (many inputs per gate) | Lower (smaller gates) |
+| **Power** | Higher static (wide gates = more transistors) | Lower static, but more switching activity |
+| **Testability** | Easier (fewer levels) | More complex (more reconvergent paths) |
+
+**Summary:**
+
+- **Speed-critical designs** → prefer two-level (minimum delay)
+- **Area-constrained designs** → prefer multi-level (shared terms reduce gates)
+- **Fan-in-limited technologies** → multi-level required (standard cells max 4 inputs)
+- **Power** → depends on activity factor and technology; no universal winner
+
+The optimal form depends on the design priority. Always evaluate multiple forms before committing.
+
+</div>
+</details>
 
 ---
 
-## Summary
+<div style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-| Section | Topics Covered | Problem Count |
-|---------|---------------|---------------|
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 12px;">Problem Set Summary</p>
+
+| Section | Topics Covered | Problems |
+|:--------|:---------------|:--------:|
 | A | Universal Gate Proofs | 4 |
-| B | AND-OR to NAND | 4 |
-| C | OR-AND to NOR | 4 |
-| D | Bubble Pushing | 4 |
+| B | AND-OR to NAND Conversion | 4 |
+| C | OR-AND to NOR Conversion | 4 |
+| D | Bubble Pushing and Analysis | 4 |
 | E | Multi-Level Optimization | 4 |
 | **Total** | | **20** |
+
+</div>
 
 </div>
