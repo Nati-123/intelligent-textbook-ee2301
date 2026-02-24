@@ -493,9 +493,14 @@ Implementation: HTML/CSS/JavaScript with SVG gate symbols
 
 ---
 
-## 2.4 Truth Tables and Boolean Expressions
+<h2 id="24-truth-tables-and-boolean-expressions" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.4 Truth Tables and Boolean Expressions</h2>
 
-A **truth table** is a systematic listing of all possible input combinations and their corresponding outputs for a Boolean function. For $n$ input variables, the truth table has $2^n$ rows.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>truth table</strong> is a systematic listing of all possible input combinations and their corresponding outputs for a Boolean function. For $n$ input variables, the truth table has $2^n$ rows.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Truth Table Size</p>
 
 | Variables | Rows |
 |-----------|------|
@@ -505,32 +510,49 @@ A **truth table** is a systematic listing of all possible input combinations and
 | 4 | 16 |
 | 5 | 32 |
 
-A **Boolean expression** is an algebraic formula using Boolean variables, constants, and operations. Every Boolean expression can be represented by a truth table, and every truth table can be expressed algebraically.
+</div>
 
-A **logic function** is a mapping from input combinations to output values. The function $F(A, B, C)$ takes three Boolean inputs and produces one Boolean output. Multiple expressions can represent the same logic function—a key insight for circuit simplification.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>Boolean expression</strong> is an algebraic formula using Boolean variables, constants, and operations. Every Boolean expression can be represented by a truth table, and every truth table can be expressed algebraically.
+</p>
 
-!!! example "Example: Express the truth table as a Boolean function"
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>logic function</strong> is a mapping from input combinations to output values. The function $F(A, B, C)$ takes three Boolean inputs and produces one Boolean output. Multiple expressions can represent the same logic function—a key insight for circuit simplification.
+</p>
 
-    | A | B | F |
-    |---|---|---|
-    | 0 | 0 | 0 |
-    | 0 | 1 | 1 |
-    | 1 | 0 | 1 |
-    | 1 | 1 | 0 |
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Express the Truth Table as a Boolean Function</p>
 
-    This is the XOR function: $F = A \oplus B = \overline{A}B + A\overline{B}$
+| A | B | F |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
 
-### Boolean Expression Terminology
+This is the XOR function: $F = A \oplus B = \overline{A}B + A\overline{B}$
 
-A **literal** is a variable or its complement. In the expression $AB + \overline{A}C$, the literals are $A$, $B$, $\overline{A}$, and $C$.
+</div>
 
-A **product term** is a single literal or AND of literals: $A$, $AB$, $\overline{A}BC$.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Boolean Expression Terminology</h3>
 
-A **sum term** is a single literal or OR of literals: $A$, $A+B$, $\overline{A}+B+C$.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>literal</strong> is a variable or its complement. In the expression $AB + \overline{A}C$, the literals are $A$, $B$, $\overline{A}$, and $C$.
+</p>
 
-#### Diagram: Truth Table Generator
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>product term</strong> is a single literal or AND of literals: $A$, $AB$, $\overline{A}BC$.
+</p>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>sum term</strong> is a single literal or OR of literals: $A$, $A+B$, $\overline{A}+B+C$.
+</p>
+
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Truth Table Generator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/truth-table-generator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Truth Table Generator</summary>
