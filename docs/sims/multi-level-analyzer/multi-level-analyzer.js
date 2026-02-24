@@ -1,341 +1,602 @@
-// Multi-Level Circuit Analyzer MicroSim
-// Analyze propagation delay and critical paths
-// Bloom Level: Analyze/Evaluate (L4-L5)
+// Two-Level vs Multi-Level Circuit Comparison MicroSim
+// Compare implementations side by side
+// Bloom Level: Understand (L2) - Compare, contrast
+// MicroSim template version 2026.02
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 450;
+let drawHeight = 420;
 let controlHeight = 80;
 let canvasHeight = drawHeight + controlHeight;
+let containerHeight = canvasHeight;
 
-let animateBtn, resetBtn;
+// Input values
+let inputVals = { A: 1, B: 0, C: 1, D: 1, E: 0 };
+
+// Animation
 let animating = false;
 let animProgress = 0;
-let gateDelay = 2; // ns per gate
 
-const colors = {
-  gate: '#2196F3',
-  gateStroke: '#1565C0',
-  wire: '#666',
-  signal: '#4CAF50',
-  critical: '#F44336',
-  bg: '#f5f5f5',
-  text: '#212121'
-};
-
-// Circuit definition: 3-level factored circuit
-// F = A(B + C(D + E))
-const gates = [
-  { id: 0, type: 'OR', x: 80, y: 280, inputs: ['D', 'E'], level: 1 },
-  { id: 1, type: 'AND', x: 160, y: 230, inputs: ['C', 'g0'], level: 2 },
-  { id: 2, type: 'OR', x: 240, y: 180, inputs: ['B', 'g1'], level: 3 },
-  { id: 3, type: 'AND', x: 320, y: 150, inputs: ['A', 'g2'], level: 4 }
-];
-
-const inputs = [
-  { name: 'A', x: 40, y: 120 },
-  { name: 'B', x: 40, y: 180 },
-  { name: 'C', x: 40, y: 230 },
-  { name: 'D', x: 40, y: 280 },
-  { name: 'E', x: 40, y: 330 }
-];
+// Gate delay in ns
+let gateDelay = 2;
 
 function setup() {
   updateCanvasSize();
-  const canvas = createCanvas(containerWidth, canvasHeight);
+  const canvas = createCanvas(containerWidth, containerHeight);
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
-
-  animateBtn = createButton('▶ Animate Signal');
-  animateBtn.mousePressed(toggleAnimate);
-
-  resetBtn = createButton('Reset');
-  resetBtn.mousePressed(resetAnim);
-
-  positionUIElements();
-  describe('Multi-level circuit analyzer showing propagation delay', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  animateBtn.position(mainRect.left + 20, mainRect.top + drawHeight + 15);
-  resetBtn.position(mainRect.left + 150, mainRect.top + drawHeight + 15);
-}
-
-function toggleAnimate() {
-  animating = !animating;
-  if (animating) {
-    animProgress = 0;
-    animateBtn.html('⏸ Pause');
-  } else {
-    animateBtn.html('▶ Resume');
-  }
-}
-
-function resetAnim() {
-  animating = false;
-  animProgress = 0;
-  animateBtn.html('▶ Animate Signal');
+  describe('Side-by-side comparison of two-level and multi-level circuit implementations', LABEL);
 }
 
 function draw() {
   updateCanvasSize();
 
-  // Background
-  fill(colors.bg);
-  noStroke();
+  // Drawing area
+  fill('aliceblue');
+  stroke('silver');
+  strokeWeight(1);
   rect(0, 0, canvasWidth, drawHeight);
 
   // Control area
   fill('white');
-  stroke('silver');
   rect(0, drawHeight, canvasWidth, controlHeight);
 
   // Title
-  fill(colors.text);
+  fill('#212121');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(18);
-  text('Multi-Level Circuit Analyzer', canvasWidth / 2, 10);
+  textSize(16);
+  text('Two-Level vs Multi-Level Comparison', canvasWidth / 2, 8);
 
-  // Circuit expression
-  textSize(14);
+  // Function
   fill('#1565C0');
-  text('F = A(B + C(D + E))', canvasWidth / 2, 35);
+  textSize(12);
+  text('F = A(B + C(D + E))  =  AB + ACD + ACE', canvasWidth / 2, 28);
 
-  textSize(11);
-  fill('#666');
-  text('4-level factored implementation', canvasWidth / 2, 55);
+  // Divider
+  stroke('#ccc');
+  strokeWeight(1);
+  let midX = canvasWidth / 2;
+  line(midX, 45, midX, drawHeight - 5);
 
-  // Draw circuit
-  drawCircuit();
+  // Draw left panel (Two-Level)
+  drawTwoLevel(10, 50, midX - 20);
 
-  // Draw level indicators
-  drawLevelIndicators();
+  // Draw right panel (Multi-Level)
+  drawMultiLevel(midX + 10, 50, midX - 20);
 
-  // Draw timing info
-  drawTimingInfo();
+  // Draw shared inputs
+  drawInputToggles();
 
-  // Update animation
+  // Draw comparison metrics
+  drawMetrics();
+
+  // Draw controls
+  drawControls();
+
+  // Animation
   if (animating) {
-    animProgress += 0.5;
+    animProgress += 0.8;
     if (animProgress > 100) {
       animProgress = 0;
     }
   }
-
-  // Critical path info
-  fill(colors.text);
-  textAlign(RIGHT, CENTER);
-  textSize(11);
-  text(`Gate delay: ${gateDelay} ns`, canvasWidth - 20, drawHeight + 50);
 }
 
-function drawCircuit() {
-  // Draw wires first
-  stroke(colors.wire);
-  strokeWeight(2);
+// ── Evaluate functions ──
+function evalTwoLevel() {
+  let A = inputVals.A, B = inputVals.B, C = inputVals.C, D = inputVals.D, E = inputVals.E;
+  let t1 = A & B;
+  let t2 = A & C & D;
+  let t3 = A & C & E;
+  return t1 | t2 | t3;
+}
 
-  // Input to gate 0 (D, E -> OR)
-  line(inputs[3].x + 20, inputs[3].y, gates[0].x, gates[0].y - 10);
-  line(inputs[4].x + 20, inputs[4].y, gates[0].x, gates[0].y + 10);
+function evalMultiLevel() {
+  let A = inputVals.A, B = inputVals.B, C = inputVals.C, D = inputVals.D, E = inputVals.E;
+  let g1 = D | E;
+  let g2 = C & g1;
+  let g3 = B | g2;
+  return A & g3;
+}
 
-  // Input C and gate 0 to gate 1
-  line(inputs[2].x + 20, inputs[2].y, gates[1].x, gates[1].y - 10);
-  line(gates[0].x + 50, gates[0].y, gates[1].x, gates[1].y + 10);
+// ── Two-Level SOP: AB + ACD + ACE ──
+function drawTwoLevel(ox, oy, w) {
+  // Panel label
+  fill('#5A3EED');
+  noStroke();
+  textAlign(CENTER, TOP);
+  textSize(13);
+  textStyle(BOLD);
+  text('Two-Level (SOP)', ox + w / 2, oy);
+  textStyle(NORMAL);
 
-  // Input B and gate 1 to gate 2
-  line(inputs[1].x + 20, inputs[1].y, gates[2].x, gates[2].y - 10);
-  line(gates[1].x + 50, gates[1].y, gates[2].x, gates[2].y + 10);
+  fill('#666');
+  textSize(10);
+  text('AB + ACD + ACE', ox + w / 2, oy + 16);
 
-  // Input A and gate 2 to gate 3
-  line(inputs[0].x + 20, inputs[0].y, gates[3].x, gates[3].y - 15);
-  line(gates[2].x + 50, gates[2].y, gates[3].x, gates[3].y + 15);
+  let gateW = 36;
+  let gateH = 22;
+  let startY = oy + 42;
+  let gateCol1 = ox + w * 0.55;
+  let gateCol2 = ox + w * 0.85;
 
-  // Output
-  line(gates[3].x + 50, gates[3].y, gates[3].x + 80, gates[3].y);
+  // AND gates
+  let andGates = [
+    { label: 'AB', y: startY, inputs: ['A', 'B'], val: inputVals.A & inputVals.B },
+    { label: 'ACD', y: startY + 50, inputs: ['A', 'C', 'D'], val: inputVals.A & inputVals.C & inputVals.D },
+    { label: 'ACE', y: startY + 100, inputs: ['A', 'C', 'E'], val: inputVals.A & inputVals.C & inputVals.E }
+  ];
 
-  // Draw critical path highlight
-  if (animating || animProgress > 0) {
-    drawCriticalPath();
+  // Draw input labels
+  let inputNames = ['A', 'B', 'C', 'D', 'E'];
+  let inputYs = {};
+  for (let i = 0; i < 5; i++) {
+    let iy = startY - 8 + i * 28;
+    inputYs[inputNames[i]] = iy;
+    fill(inputVals[inputNames[i]] ? '#4CAF50' : '#999');
+    noStroke();
+    textAlign(RIGHT, CENTER);
+    textSize(11);
+    text(inputNames[i] + '=' + inputVals[inputNames[i]], ox + 30, iy);
   }
 
-  // Draw inputs
-  inputs.forEach(inp => {
-    fill('#e3f2fd');
-    stroke('#90caf9');
-    strokeWeight(2);
-    ellipse(inp.x, inp.y, 30);
+  // Draw wires from inputs to AND gates
+  stroke('#bbb');
+  strokeWeight(1);
+  andGates.forEach(g => {
+    g.inputs.forEach((inp, idx) => {
+      let iy = inputYs[inp];
+      let gy = g.y + (idx - (g.inputs.length - 1) / 2) * 8;
+      line(ox + 33, iy, gateCol1, gy);
+    });
+  });
 
-    fill(colors.text);
+  // Draw AND gates
+  andGates.forEach(g => {
+    let active = g.val === 1;
+    fill(active ? '#4CAF50' : '#2196F3');
+    stroke(active ? '#388E3C' : '#1565C0');
+    strokeWeight(1.5);
+    rect(gateCol1, g.y - gateH / 2, gateW, gateH, 0, 8, 8, 0);
+
+    fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(14);
-    text(inp.name, inp.x, inp.y);
+    textSize(8);
+    text('AND', gateCol1 + gateW / 2, g.y);
+
+    // Fan-in label
+    fill('#999');
+    textSize(8);
+    textAlign(LEFT, CENTER);
+    text(g.inputs.length + '-in', gateCol1 + gateW + 2, g.y + 10);
   });
 
-  // Draw gates
-  gates.forEach(gate => {
-    drawGate(gate);
+  // Wires from AND to OR
+  let orY = startY + 50;
+  stroke('#bbb');
+  strokeWeight(1);
+  andGates.forEach(g => {
+    line(gateCol1 + gateW, g.y, gateCol2, orY + (g.y - orY) * 0.3);
   });
 
-  // Draw output
-  fill('#c8e6c9');
-  stroke('#81c784');
-  strokeWeight(2);
-  ellipse(gates[3].x + 100, gates[3].y, 30);
+  // OR gate
+  let orVal = evalTwoLevel();
+  fill(orVal ? '#4CAF50' : '#9C27B0');
+  stroke(orVal ? '#388E3C' : '#7B1FA2');
+  strokeWeight(1.5);
+  rect(gateCol2, orY - gateH / 2, gateW, gateH, 0, 12, 12, 0);
 
-  fill(colors.text);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(14);
-  text('F', gates[3].x + 100, gates[3].y);
-}
-
-function drawGate(gate) {
-  let x = gate.x;
-  let y = gate.y;
-  let w = 50;
-  let h = 35;
-
-  // Highlight if signal has reached this gate
-  let signalReached = animProgress > gate.level * 20;
-  let gateColor = signalReached ? colors.signal : colors.gate;
-
-  fill(gateColor);
-  stroke(colors.gateStroke);
-  strokeWeight(2);
-
-  if (gate.type === 'AND') {
-    beginShape();
-    vertex(x, y - h/2);
-    vertex(x + w * 0.5, y - h/2);
-    bezierVertex(x + w, y - h/2, x + w, y + h/2, x + w * 0.5, y + h/2);
-    vertex(x, y + h/2);
-    endShape(CLOSE);
-  } else {
-    beginShape();
-    vertex(x, y - h/2);
-    bezierVertex(x + w * 0.5, y - h/2, x + w * 0.8, y - h/4, x + w, y);
-    bezierVertex(x + w * 0.8, y + h/4, x + w * 0.5, y + h/2, x, y + h/2);
-    bezierVertex(x + w * 0.15, y, x + w * 0.15, y, x, y - h/2);
-    endShape(CLOSE);
-  }
-
-  // Gate label
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(10);
-  text(gate.type, x + w * 0.4, y);
+  textSize(8);
+  text('OR', gateCol2 + gateW / 2, orY);
 
-  // Delay label
-  fill(colors.text);
+  // Fan-in label
+  fill('#999');
+  textSize(8);
+  textAlign(LEFT, CENTER);
+  text('3-in', gateCol2 + gateW + 2, orY + 10);
+
+  // Output
+  let outX = gateCol2 + gateW + 6;
+  stroke(orVal ? '#4CAF50' : '#999');
+  strokeWeight(2);
+  line(gateCol2 + gateW, orY, outX + 12, orY);
+
+  fill(orVal ? '#4CAF50' : '#ddd');
+  stroke(orVal ? '#388E3C' : '#bbb');
+  strokeWeight(1.5);
+  ellipse(outX + 20, orY, 16);
+
+  fill(orVal ? 'white' : '#666');
+  noStroke();
   textSize(9);
-  text(`${gateDelay}ns`, x + w/2, y + h/2 + 12);
+  textAlign(CENTER, CENTER);
+  text('F', outX + 20, orY);
+
+  // Stats box
+  let statsY = startY + 145;
+  fill('#f5f0ff');
+  stroke('#d1c4e9');
+  strokeWeight(1);
+  rect(ox + 5, statsY, w - 10, 55, 6);
+
+  fill('#5A3EED');
+  noStroke();
+  textAlign(LEFT, TOP);
+  textSize(10);
+  textStyle(BOLD);
+  text('Two-Level Stats', ox + 12, statsY + 5);
+  textStyle(NORMAL);
+  fill('#333');
+  textSize(9);
+  text('Gates: 4 (3 AND + 1 OR)', ox + 12, statsY + 20);
+  text('Levels: 2      Max fan-in: 3', ox + 12, statsY + 33);
+
+  fill('#F44336');
+  textStyle(BOLD);
+  text('Delay: ' + (2 * gateDelay) + ' ns', ox + 12, statsY + 43);
+  textStyle(NORMAL);
 }
 
-function drawCriticalPath() {
-  // Critical path: D/E -> g0 -> g1 -> g2 -> g3 -> F (4 levels)
-  stroke(colors.critical);
-  strokeWeight(4);
-
-  let progress = animProgress / 100;
-
-  // Animate along critical path
-  if (progress > 0) {
-    // D to gate 0
-    let p1 = min(progress * 5, 1);
-    line(inputs[3].x + 20, inputs[3].y,
-         lerp(inputs[3].x + 20, gates[0].x, p1),
-         lerp(inputs[3].y, gates[0].y - 10, p1));
-  }
-
-  if (progress > 0.2) {
-    // Gate 0 to gate 1
-    let p2 = min((progress - 0.2) * 5, 1);
-    line(gates[0].x + 50, gates[0].y,
-         lerp(gates[0].x + 50, gates[1].x, p2),
-         lerp(gates[0].y, gates[1].y + 10, p2));
-  }
-
-  if (progress > 0.4) {
-    // Gate 1 to gate 2
-    let p3 = min((progress - 0.4) * 5, 1);
-    line(gates[1].x + 50, gates[1].y,
-         lerp(gates[1].x + 50, gates[2].x, p3),
-         lerp(gates[1].y, gates[2].y + 10, p3));
-  }
-
-  if (progress > 0.6) {
-    // Gate 2 to gate 3
-    let p4 = min((progress - 0.6) * 5, 1);
-    line(gates[2].x + 50, gates[2].y,
-         lerp(gates[2].x + 50, gates[3].x, p4),
-         lerp(gates[2].y, gates[3].y + 15, p4));
-  }
-
-  if (progress > 0.8) {
-    // Gate 3 to output
-    let p5 = min((progress - 0.8) * 5, 1);
-    line(gates[3].x + 50, gates[3].y,
-         lerp(gates[3].x + 50, gates[3].x + 80, p5),
-         gates[3].y);
-  }
-}
-
-function drawLevelIndicators() {
-  let y = 380;
-
-  fill(colors.text);
+// ── Multi-Level Factored: A(B + C(D + E)) ──
+function drawMultiLevel(ox, oy, w) {
+  // Panel label
+  fill('#5A3EED');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
-  text('Logic Levels:', 60, y);
+  textSize(13);
+  textStyle(BOLD);
+  text('Multi-Level (Factored)', ox + w / 2, oy);
+  textStyle(NORMAL);
 
-  for (let i = 1; i <= 4; i++) {
-    let x = 100 + (i - 1) * 70;
-    fill('#e3f2fd');
-    stroke('#90caf9');
+  fill('#666');
+  textSize(10);
+  text('A(B + C(D + E))', ox + w / 2, oy + 16);
+
+  let gateW = 34;
+  let gateH = 20;
+  let startY = oy + 42;
+
+  // Gate positions (4 levels)
+  let g1 = { x: ox + w * 0.25, y: startY + 90, type: 'OR', label: 'D+E' };
+  let g2 = { x: ox + w * 0.45, y: startY + 60, type: 'AND', label: 'C·g1' };
+  let g3 = { x: ox + w * 0.65, y: startY + 30, type: 'OR', label: 'B+g2' };
+  let g4 = { x: ox + w * 0.85, y: startY + 10, type: 'AND', label: 'A·g3' };
+
+  let allGates = [g1, g2, g3, g4];
+
+  // Evaluate
+  let v1 = inputVals.D | inputVals.E;
+  let v2 = inputVals.C & v1;
+  let v3 = inputVals.B | v2;
+  let v4 = inputVals.A & v3;
+  let gateVals = [v1, v2, v3, v4];
+
+  // Input labels
+  let inputMap = [
+    { name: 'A', gateIdx: 3, side: 'top' },
+    { name: 'B', gateIdx: 2, side: 'top' },
+    { name: 'C', gateIdx: 1, side: 'top' },
+    { name: 'D', gateIdx: 0, side: 'top' },
+    { name: 'E', gateIdx: 0, side: 'bot' }
+  ];
+
+  // Draw wires between gates
+  stroke('#bbb');
+  strokeWeight(1);
+  // g1 → g2
+  line(g1.x + gateW, g1.y, g2.x, g2.y + 5);
+  // g2 → g3
+  line(g2.x + gateW, g2.y, g3.x, g3.y + 5);
+  // g3 → g4
+  line(g3.x + gateW, g3.y, g4.x, g4.y + 5);
+
+  // Draw input wires
+  inputMap.forEach(im => {
+    let g = allGates[im.gateIdx];
+    let gy = im.side === 'top' ? g.y - 5 : g.y + 5;
+    let ix = g.x - 18;
+    let iy = gy - 15;
+
+    stroke('#bbb');
     strokeWeight(1);
-    rect(x, y - 5, 50, 25, 3);
+    line(ix + 10, iy + 10, g.x, gy);
 
-    fill(colors.text);
+    fill(inputVals[im.name] ? '#4CAF50' : '#999');
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(10);
-    text(`Level ${i}`, x + 25, y + 7);
+    text(im.name, ix + 5, iy + 3);
+  });
+
+  // Draw critical path animation
+  if (animating || animProgress > 0) {
+    let p = animProgress / 100;
+    stroke('#F44336');
+    strokeWeight(3);
+
+    // D → g1
+    if (p > 0) {
+      let t = min(p * 5, 1);
+      let ey = g1.y + 5;
+      line(g1.x - 8, ey - 10, lerp(g1.x - 8, g1.x, t), lerp(ey - 10, ey, t));
+    }
+    // g1 → g2
+    if (p > 0.2) {
+      let t = min((p - 0.2) * 5, 1);
+      line(g1.x + gateW, g1.y, lerp(g1.x + gateW, g2.x, t), lerp(g1.y, g2.y + 5, t));
+    }
+    // g2 → g3
+    if (p > 0.4) {
+      let t = min((p - 0.4) * 5, 1);
+      line(g2.x + gateW, g2.y, lerp(g2.x + gateW, g3.x, t), lerp(g2.y, g3.y + 5, t));
+    }
+    // g3 → g4
+    if (p > 0.6) {
+      let t = min((p - 0.6) * 5, 1);
+      line(g3.x + gateW, g3.y, lerp(g3.x + gateW, g4.x, t), lerp(g3.y, g4.y + 5, t));
+    }
+    // g4 → F
+    if (p > 0.8) {
+      let t = min((p - 0.8) * 5, 1);
+      line(g4.x + gateW, g4.y, lerp(g4.x + gateW, g4.x + gateW + 18, t), g4.y);
+    }
   }
-}
 
-function drawTimingInfo() {
-  let x = canvasWidth - 130;
-  let y = 90;
+  // Draw gates
+  allGates.forEach((g, i) => {
+    let active = gateVals[i] === 1;
+    let isAnd = g.type === 'AND';
 
-  fill('#fff3e0');
-  stroke('#ffcc80');
+    fill(active ? '#4CAF50' : (isAnd ? '#2196F3' : '#9C27B0'));
+    stroke(active ? '#388E3C' : (isAnd ? '#1565C0' : '#7B1FA2'));
+    strokeWeight(1.5);
+
+    if (isAnd) {
+      rect(g.x, g.y - gateH / 2, gateW, gateH, 0, 8, 8, 0);
+    } else {
+      rect(g.x, g.y - gateH / 2, gateW, gateH, 0, 10, 10, 0);
+    }
+
+    fill('white');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(7);
+    text(g.type, g.x + gateW / 2, g.y);
+
+    // Level label
+    fill('#999');
+    textSize(7);
+    textAlign(CENTER, TOP);
+    text('L' + (i + 1), g.x + gateW / 2, g.y + gateH / 2 + 2);
+  });
+
+  // Output
+  let outVal = v4;
+  stroke(outVal ? '#4CAF50' : '#999');
+  strokeWeight(2);
+  line(g4.x + gateW, g4.y, g4.x + gateW + 18, g4.y);
+
+  fill(outVal ? '#4CAF50' : '#ddd');
+  stroke(outVal ? '#388E3C' : '#bbb');
+  strokeWeight(1.5);
+  ellipse(g4.x + gateW + 26, g4.y, 16);
+
+  fill(outVal ? 'white' : '#666');
+  noStroke();
+  textSize(9);
+  textAlign(CENTER, CENTER);
+  text('F', g4.x + gateW + 26, g4.y);
+
+  // Stats box
+  let statsY = startY + 145;
+  fill('#f5f0ff');
+  stroke('#d1c4e9');
   strokeWeight(1);
-  rect(x - 10, y - 10, 120, 90, 5);
+  rect(ox + 5, statsY, w - 10, 55, 6);
 
-  fill(colors.text);
+  fill('#5A3EED');
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(11);
-  text('Timing Analysis', x, y);
-
   textSize(10);
-  text(`Levels: 4`, x, y + 20);
-  text(`Gate delay: ${gateDelay} ns`, x, y + 35);
-  text(`Critical path:`, x, y + 50);
+  textStyle(BOLD);
+  text('Multi-Level Stats', ox + 12, statsY + 5);
+  textStyle(NORMAL);
+  fill('#333');
+  textSize(9);
+  text('Gates: 4 (2 AND + 2 OR)', ox + 12, statsY + 20);
+  text('Levels: 4      Max fan-in: 2', ox + 12, statsY + 33);
 
-  fill(colors.critical);
-  text(`${4 * gateDelay} ns total`, x, y + 65);
+  fill('#F44336');
+  textStyle(BOLD);
+  text('Delay: ' + (4 * gateDelay) + ' ns', ox + 12, statsY + 43);
+  textStyle(NORMAL);
+}
+
+// ── Shared input toggles ──
+function drawInputToggles() {
+  let y = drawHeight - 32;
+
+  fill('#333');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text('Inputs:', 12, y);
+  textStyle(NORMAL);
+
+  let names = ['A', 'B', 'C', 'D', 'E'];
+  let startX = 68;
+  let spacing = 52;
+
+  names.forEach((n, i) => {
+    let x = startX + i * spacing;
+    let val = inputVals[n];
+
+    // Toggle button
+    fill(val ? '#4CAF50' : '#e0e0e0');
+    stroke(val ? '#388E3C' : '#bbb');
+    strokeWeight(1);
+    rect(x, y - 10, 38, 20, 4);
+
+    fill(val ? 'white' : '#666');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(10);
+    text(n + '=' + val, x + 19, y);
+  });
+
+  // Output display
+  let outVal = evalTwoLevel();
+  let outX = startX + 5 * spacing + 10;
+  fill(outVal ? '#4CAF50' : '#F44336');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(12);
+  textStyle(BOLD);
+  text('F = ' + outVal, outX, y);
+  textStyle(NORMAL);
+}
+
+// ── Comparison metrics bar ──
+function drawMetrics() {
+  let y = drawHeight - 62;
+  let midX = canvasWidth / 2;
+
+  // Comparison bar
+  fill('#E8EAF6');
+  stroke('#9FA8DA');
+  strokeWeight(1);
+  rect(10, y, canvasWidth - 20, 22, 4);
+
+  fill('#333');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(10);
+  text('Trade-off: Two-level has less delay (' + (2 * gateDelay) + ' ns) but needs higher fan-in (3)  |  Multi-level uses only 2-input gates but takes ' + (4 * gateDelay) + ' ns', canvasWidth / 2, y + 11);
+}
+
+// ── Controls ──
+function drawControls() {
+  let btnY = drawHeight + 15;
+  let btnH = 25;
+
+  // Animate button
+  fill(animating ? '#F44336' : '#4CAF50');
+  stroke(animating ? '#d32f2f' : '#388E3C');
+  strokeWeight(1);
+  rect(15, btnY, 110, btnH, 3);
+
+  fill('white');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(11);
+  text(animating ? 'Pause Animation' : 'Animate Critical Path', 70, btnY + btnH / 2);
+
+  // Reset button
+  fill('#2196F3');
+  stroke('#1976D2');
+  strokeWeight(1);
+  rect(135, btnY, 60, btnH, 3);
+
+  fill('white');
+  noStroke();
+  text('Reset', 165, btnY + btnH / 2);
+
+  // Delay control
+  fill('#333');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(10);
+  text('Gate delay:', 210, btnY + btnH / 2);
+
+  // Decrease delay
+  fill('#e0e0e0');
+  stroke('#bbb');
+  strokeWeight(1);
+  rect(275, btnY + 2, 22, btnH - 4, 3);
+  fill('#333');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(13);
+  text('−', 286, btnY + btnH / 2);
+
+  // Delay value
+  fill('#1565C0');
+  textSize(12);
+  textStyle(BOLD);
+  text(gateDelay + ' ns', 315, btnY + btnH / 2);
+  textStyle(NORMAL);
+
+  // Increase delay
+  fill('#e0e0e0');
+  stroke('#bbb');
+  strokeWeight(1);
+  rect(345, btnY + 2, 22, btnH - 4, 3);
+  fill('#333');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(13);
+  text('+', 356, btnY + btnH / 2);
+
+  // Tip
+  fill('#666');
+  textSize(9);
+  textAlign(CENTER, CENTER);
+  text('Click input buttons to toggle values  |  Red path = critical path', canvasWidth / 2, drawHeight + 60);
+}
+
+function mousePressed() {
+  let btnY = drawHeight + 15;
+  let btnH = 25;
+
+  // Animate button
+  if (mouseX >= 15 && mouseX <= 125 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    animating = !animating;
+    if (animating) animProgress = 0;
+    return;
+  }
+
+  // Reset button
+  if (mouseX >= 135 && mouseX <= 195 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    animating = false;
+    animProgress = 0;
+    return;
+  }
+
+  // Decrease delay
+  if (mouseX >= 275 && mouseX <= 297 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    gateDelay = max(1, gateDelay - 1);
+    return;
+  }
+
+  // Increase delay
+  if (mouseX >= 345 && mouseX <= 367 && mouseY >= btnY && mouseY <= btnY + btnH) {
+    gateDelay = min(10, gateDelay + 1);
+    return;
+  }
+
+  // Input toggles
+  let toggleY = drawHeight - 32;
+  let names = ['A', 'B', 'C', 'D', 'E'];
+  let startX = 68;
+  let spacing = 52;
+
+  names.forEach((n, i) => {
+    let x = startX + i * spacing;
+    if (mouseX >= x && mouseX <= x + 38 && mouseY >= toggleY - 10 && mouseY <= toggleY + 10) {
+      inputVals[n] = 1 - inputVals[n];
+    }
+  });
 }
 
 function windowResized() {
   updateCanvasSize();
-  resizeCanvas(containerWidth, canvasHeight);
-  positionUIElements();
+  resizeCanvas(containerWidth, containerHeight);
 }
 
 function updateCanvasSize() {
