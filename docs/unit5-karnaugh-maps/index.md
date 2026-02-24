@@ -108,6 +108,7 @@ The **K-map structure** consists of:
 The power of K-maps lies in their **adjacency** property: cells that are physically adjacent on the map are also **logically adjacent**, meaning their minterms differ in exactly one variable. When two logically adjacent minterms are ORed together, the differing variable cancels out.
 
 **Example:** Minterms $m_5 = A\overline{B}C$ and $m_7 = ABC$ differ only in B:
+
 $$m_5 + m_7 = A\overline{B}C + ABC = AC(\overline{B} + B) = AC$$
 
 ### K-Map Variables
