@@ -381,44 +381,70 @@ Implementation: p5.js with DOM elements for truth table
 
 ---
 
-## 4.5 Compact Notation: Σ and Π
+<h2 id="45-compact-notation-and" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.5 Compact Notation: Σ and Π</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Writing out full canonical expressions is tedious. Compact notations provide efficient representations.
+</p>
 
 ### Sigma Notation (Σ) for SOP
 
-The **minterm list notation** uses the Greek letter sigma (Σ) followed by the list of minterm indices:
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+The <strong style="color: #333;">minterm list notation</strong> uses the Greek letter sigma (Σ) followed by the list of minterm indices:
+</p>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F(A,B,C) = \Sigma m(1,3,5)$$
 
-This reads: "F equals the sum of minterms 1, 3, and 5."
+This reads: "F equals the **sum** of minterms 1, 3, and 5."
 
+</div>
+
+<p style="color: #555; line-height: 1.85; margin-top: 1rem;">
 The variable list indicates the order of significance (A is MSB, C is LSB in this case).
+</p>
 
 ### Pi Notation (Π) for POS
 
-The **maxterm list notation** uses the Greek letter pi (Π) followed by the list of maxterm indices:
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+The <strong style="color: #333;">maxterm list notation</strong> uses the Greek letter pi (Π) followed by the list of maxterm indices:
+</p>
+
+<div style="background: #FFE7E7; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F(A,B,C) = \Pi M(0,2,4,6,7)$$
 
-This reads: "F equals the product of maxterms 0, 2, 4, 6, and 7."
+This reads: "F equals the **product** of maxterms 0, 2, 4, 6, and 7."
+
+</div>
 
 ### Converting Between Notations
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 Since a function is 1 for minterm indices and 0 for maxterm indices, conversion is straightforward:
+</p>
 
-**Minterm to Maxterm conversion:** The maxterm indices are all indices NOT in the minterm list.
+<p style="color: #555; line-height: 1.85; margin-bottom: 0.5rem;"><strong style="color: #333;">Minterm to Maxterm conversion:</strong> The maxterm indices are all indices NOT in the minterm list.</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \Sigma m(1,3,5) = \Pi M(0,2,4,6,7)$$
 
-For 3 variables, indices 0-7 exist. If minterms are {1,3,5}, maxterms are {0,2,4,6,7}.
+For 3 variables, indices 0–7 exist. If minterms are {1, 3, 5}, maxterms are {0, 2, 4, 6, 7}.
 
-**Maxterm to Minterm conversion:** The minterm indices are all indices NOT in the maxterm list.
+</div>
+
+<p style="color: #555; line-height: 1.85; margin-bottom: 0.5rem;"><strong style="color: #333;">Maxterm to Minterm conversion:</strong> The minterm indices are all indices NOT in the maxterm list.</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Given | To Find | Method |
 |-------|---------|--------|
 | Σm(list) | ΠM(list) | Use indices NOT in minterm list |
 | ΠM(list) | Σm(list) | Use indices NOT in maxterm list |
+
+</div>
 
 !!! tip "Quick Conversion Check"
     The minterm indices plus maxterm indices must equal all possible indices (0 to 2ⁿ-1). If they don't add up correctly, there's an error.
