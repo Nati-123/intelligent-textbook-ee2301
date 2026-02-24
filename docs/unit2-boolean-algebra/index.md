@@ -1020,59 +1020,99 @@ Implementation: p5.js with DOM elements for interaction
 
 ---
 
-## 2.8 Standard Forms: SOP and POS
+<h2 id="28-standard-forms-sop-and-pos" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.8 Standard Forms: SOP and POS</h2>
 
-Boolean expressions can be written in two **standard forms** that provide consistent representations and enable systematic circuit implementation.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Boolean expressions can be written in two <strong>standard forms</strong> that provide consistent representations and enable systematic circuit implementation.
+</p>
 
-### Sum of Products (SOP)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Sum of Products (SOP)</h3>
 
-A **Sum of Products** expression is an OR of AND terms (product terms). Each product term is an AND of literals.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>Sum of Products</strong> expression is an OR of AND terms (product terms). Each product term is an AND of literals.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \overline{A}B + AB\overline{C} + BC$$
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 SOP forms map directly to AND-OR circuit implementations:
+</p>
 
-- Each product term → one AND gate
-- Products are ORed together → one OR gate
-- This creates a two-level circuit
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Each product term → one AND gate</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Products are ORed together → one OR gate</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> This creates a two-level circuit</li>
+</ul>
 
-### Product of Sums (POS)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Product of Sums (POS)</h3>
 
-A **Product of Sums** expression is an AND of OR terms (sum terms). Each sum term is an OR of literals.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong>Product of Sums</strong> expression is an AND of OR terms (sum terms). Each sum term is an OR of literals.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = (A + B)(\overline{A} + C)(B + \overline{C})$$
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 POS forms map directly to OR-AND circuit implementations:
+</p>
 
-- Each sum term → one OR gate
-- Sums are ANDed together → one AND gate
-- This also creates a two-level circuit
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Each sum term → one OR gate</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Sums are ANDed together → one AND gate</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> This also creates a two-level circuit</li>
+</ul>
 
-### Converting Between Forms
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Converting Between Forms</h3>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 To convert SOP to POS (or vice versa):
+</p>
 
-1. Create the truth table for the expression
-2. Read off the new form from the truth table:
-   - SOP: OR together minterms where $F=1$
-   - POS: AND together maxterms where $F=0$
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Create the truth table for the expression</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Read off the new form from the truth table:</li>
+<li style="margin-bottom: 0.4rem; line-height: 1.8; color: #333; padding-left: 2.8rem; text-indent: 0;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#8226;</span> SOP: OR together minterms where <span class="arithmatex">\(F=1\)</span></li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 2.8rem; text-indent: 0;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#8226;</span> POS: AND together maxterms where <span class="arithmatex">\(F=0\)</span></li>
+</ul>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Alternatively, apply DeMorgan's theorem and Boolean algebra:
+</p>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: SOP to POS Conversion</p>
 
 $$F = AB + \overline{A}C$$
 
-Step 1 — Find $\overline{F}$ in POS: $\overline{F} = \overline{AB + \overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$
+**Step 1** — Find $\overline{F}$ in POS: $\overline{F} = \overline{AB + \overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$
 
-Step 2 — Expand $\overline{F}$ to SOP: $\overline{F} = \overline{A}A + \overline{A}\overline{C} + \overline{B}A + \overline{B}\overline{C} = \overline{A}\overline{C} + A\overline{B}$
+**Step 2** — Expand $\overline{F}$ to SOP: $\overline{F} = \overline{A}A + \overline{A}\overline{C} + \overline{B}A + \overline{B}\overline{C} = \overline{A}\overline{C} + A\overline{B}$
 
-Step 3 — Complement to get F in POS: $F = \overline{\overline{A}\overline{C} + A\overline{B}} = (A+C)(\overline{A}+B)$
+**Step 3** — Complement to get F in POS: $F = \overline{\overline{A}\overline{C} + A\overline{B}} = (A+C)(\overline{A}+B)$
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 The truth table method is often more straightforward for complex expressions.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">SOP vs POS Comparison</p>
 
 | Form | Structure | Implementation | Typical Use |
 |------|-----------|----------------|-------------|
 | SOP | OR of ANDs | AND-OR circuit | When function has few 1s |
 | POS | AND of ORs | OR-AND circuit | When function has few 0s |
+
+</div>
 
 ---
 
