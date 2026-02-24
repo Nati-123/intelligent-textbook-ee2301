@@ -1397,70 +1397,75 @@ Wired logic is less common in modern ASIC design due to speed and power disadvan
 
 <h2 style="color: #5A3EED;">7.14 Transmission Gate Circuits</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **transmission gate** (also called a pass gate) is a CMOS switch that can pass both logic 0 and logic 1 with full voltage swing. It consists of an NMOS and PMOS transistor connected in parallel, controlled by complementary signals.
+
+</div>
 
 ### Structure and Operation
 
-The transmission gate has four terminals:
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Four Terminals</p>
 
 - **Input:** The signal to be passed
 - **Output:** Connected to input when gate is ON
-- **Control ($C$):** Connects to NMOS gate and PMOS gate (complemented)
-- **Control complement ($\overline{C}$):** Connects to PMOS gate
+- **Control** ($C$): Connects to NMOS gate and PMOS gate (complemented)
+- **Control complement** ($\overline{C}$): Connects to PMOS gate
 
-When $C = 1$: Both transistors are ON, creating a low-resistance path from input to output.
+When $C = 1$: Both transistors ON → **low-resistance path** (signal passes).
 
-When $C = 0$: Both transistors are OFF, creating a high-impedance (disconnected) path.
+When $C = 0$: Both transistors OFF → **high-impedance** (disconnected).
+
+</div>
 
 ### Multiplexer Using Transmission Gates
 
-A 2:1 multiplexer can be efficiently implemented with two transmission gates:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: 2:1 MUX</p>
 
 $$F = \begin{cases} A & \text{if } S = 0 \\ B & \text{if } S = 1 \end{cases}$$
 
-- Transmission gate 1: passes $A$ when $S = 0$ ($\overline{S} = 1$)
-- Transmission gate 2: passes $B$ when $S = 1$
-- Outputs connected together (only one is active at a time)
+- TG1: passes $A$ when $S = 0$ ($\overline{S} = 1$)
+- TG2: passes $B$ when $S = 1$
+- Outputs connected together (only one active at a time)
 
-This implementation uses only 4 transistors (2 per transmission gate) plus the inverter for $\overline{S}$, compared to approximately 16 transistors for a gate-level MUX implementation.
+Uses only **4 transistors** (2 per TG) + inverter for $\overline{S}$, compared to ~16 transistors for a gate-level MUX.
+
+</div>
 
 ### XOR Using Transmission Gates
 
-The XOR function can also be implemented efficiently:
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Efficient XOR</p>
 
 $$F = A \oplus B$$
 
-Using a transmission gate controlled by $B$: when $B=0$, pass $A$; when $B=1$, pass $\overline{A}$. This requires only one transmission gate, one inverter, and complementary control—far fewer transistors than a gate-level XOR.
+Using a transmission gate controlled by $B$: when $B=0$, pass $A$; when $B=1$, pass $\overline{A}$. Only one TG, one inverter, and complementary control needed — far fewer transistors than a gate-level XOR.
 
-<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Implementation</th>
-      <th style="padding: 8px 14px; text-align: left;">Transistor Count</th>
-      <th style="padding: 8px 14px; text-align: left;">Gate Delays</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND-only XOR</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">16</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3-4</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI-based XOR</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">10-12</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
-    </tr>
-    <tr style="background: #E7F7E7;">
-      <td style="padding: 8px 14px;"><strong>Transmission gate XOR</strong></td>
-      <td style="padding: 8px 14px;"><strong>6</strong></td>
-      <td style="padding: 8px 14px;"><strong>1-2</strong></td>
-    </tr>
-  </tbody>
-</table>
+</div>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<strong>Design Trade-off:</strong> Transmission gates offer excellent area and power efficiency but can suffer from signal degradation when cascaded through many stages, since they lack the regenerative property of logic gates. In practice, buffers are inserted periodically to restore signal quality.
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">XOR Implementation Comparison</p>
+
+| Implementation | Transistors | Gate Delays |
+|:---------------|:-----------:|:-----------:|
+| NAND-only XOR | 16 | 3–4 |
+| AOI-based XOR | 10–12 | 2 |
+| **Transmission gate XOR** | **6** | **1–2** |
+
+</div>
+
+<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Design Trade-off</p>
+
+Transmission gates offer excellent area and power efficiency but can suffer from **signal degradation** when cascaded through many stages, since they lack the regenerative property of logic gates. In practice, **buffers are inserted periodically** to restore signal quality.
+
 </div>
 
 ---
