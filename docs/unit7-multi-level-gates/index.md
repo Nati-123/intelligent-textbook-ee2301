@@ -803,6 +803,10 @@ This three-level implementation uses gates with max fan-in of 2, whereas the two
 
 <h3 style="color: #5A3EED;">7.8.2 Critical Path and Propagation Delay</h3>
 
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Concept: Propagation Delay &amp; Critical Path</p>
+
 The **propagation delay** of a multi-level circuit is determined by the longest path from any input to the output, measured in gate delays. This path is called the **critical path**.
 
 For a circuit with $n$ levels, the worst-case propagation delay is:
@@ -810,6 +814,8 @@ For a circuit with $n$ levels, the worst-case propagation delay is:
 $$t_{pd(total)} = \sum_{i=1}^{n} t_{pd(gate_i)}$$
 
 where $t_{pd(gate_i)}$ is the propagation delay of gate $i$ along the critical path.
+
+</div>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
