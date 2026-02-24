@@ -649,43 +649,57 @@ This follows directly from the generalized form of De Morgan's first theorem. In
 
 ### Rules for Bubble Pushing
 
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Three Rules of Bubble Pushing</p>
+
 1. **Move a bubble from output to all inputs** (or vice versa) while changing the gate type (AND ↔ OR)
 2. **Paired bubbles cancel:** A bubble on a wire's output meeting a bubble on the connected input results in no inversion
 3. **Unpaired bubbles become inverters:** Any bubble that cannot be canceled must be implemented as an explicit inverter at the circuit input
 
+</div>
+
 ### Step-by-Step Example
 
-Convert the AND-OR circuit for $F = AB + CD$ to NAND-only:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Step 1:** Start with the AND-OR circuit.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Convert F = AB + CD to NAND-only</p>
+
+**Step 1 — Original AND-OR circuit:**
 
 - Gate 1 (AND): inputs $A$, $B$ → output $P_1 = AB$
 - Gate 2 (AND): inputs $C$, $D$ → output $P_2 = CD$
 - Gate 3 (OR): inputs $P_1$, $P_2$ → output $F = P_1 + P_2$
 
-**Step 2:** Push the OR gate's identity through De Morgan's. Add a bubble to the output of the OR gate and to both of its inputs. The OR with input bubbles becomes a NAND gate. The output bubble becomes an inverter.
+**Step 2 — Push bubbles:**
 
-But we also add bubbles to the outputs of the AND gates. The AND gates with output bubbles become NAND gates. These output bubbles cancel with the input bubbles of the final gate.
+Add a bubble to the output of the OR gate and to both of its inputs. The OR with input bubbles becomes a NAND gate. Also add bubbles to the outputs of the AND gates — they become NAND gates. These output bubbles cancel with the input bubbles of the final gate.
 
-**Step 3:** All bubbles are paired and cancel. The result is three NAND gates with no remaining inversions.
+**Step 3 — All bubbles paired and cancel.** The result is three NAND gates with no remaining inversions.
+
+</div>
 
 ### Extended Example with Single Literal
 
-For $F = A + BC$:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Convert F = A + BC to NAND-only</p>
 
 **Step 1:** The OR gate receives single literal $A$ and product $BC$.
 
-**Step 2:** Adding bubbles: the AND gate for $BC$ gets an output bubble (becoming NAND). The OR gate gets input bubbles (becoming NAND). The bubble on input $A$ of the final NAND is unpaired.
+**Step 2:** The AND gate for $BC$ gets an output bubble (becoming NAND). The OR gate gets input bubbles (becoming NAND). The bubble on input $A$ of the final NAND is **unpaired**.
 
-**Step 3:** The unpaired bubble on input $A$ requires a NAND inverter: $\overline{A}$ enters the final NAND gate.
+**Step 3:** The unpaired bubble requires a NAND inverter: $\overline{A}$ enters the final NAND gate.
 
-Result: NAND($\overline{A}$, NAND($B$, $C$)) = $\overline{\overline{A} \cdot \overline{BC}} = A + BC$
+**Result:** NAND($\overline{A}$, NAND($B$, $C$)) $= \overline{\overline{A} \cdot \overline{BC}} = A + BC$
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Bubble Pushing Shortcut</p>
 
-<p style="color: #333; margin-bottom: 0;">For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply replace all gates with the target universal gate type, then add inverters for any remaining unpaired bubbles.</p>
+For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply **replace all gates with the target universal gate type**, then add inverters for any remaining unpaired bubbles.
 
 </div>
 
