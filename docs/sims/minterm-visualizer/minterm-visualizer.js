@@ -6,7 +6,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 600;
+let drawHeight = 780;
 let canvasHeight = drawHeight;
 
 // Theme colors (universal style template)
@@ -64,15 +64,15 @@ function draw() {
   fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(18);
+  textSize(20);
   textStyle(BOLD);
-  text('Minterm & Maxterm Visualizer', canvasWidth / 2, 12);
+  text('Minterm & Maxterm Visualizer', canvasWidth / 2, 16);
   textStyle(NORMAL);
 
   // Subtitle
-  textSize(12);
+  textSize(13);
   fill('#555');
-  text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 35);
+  text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 42);
 
   // Sections
   drawBitDisplay();
@@ -85,32 +85,32 @@ function draw() {
 // ── Control bar (variable buttons + custom slider) ──
 
 function drawControlBar() {
-  let y = 545;
+  let y = 720;
   let bandW = canvasWidth - 2 * MX;
 
   // Background band
   fill('#FAFBFF');
   stroke(PURPLE_BORDER);
   strokeWeight(1.5);
-  rect(MX, y, bandW, 44, 12);
+  rect(MX, y, bandW, 46, 12);
 
   // ── Variable selector buttons: [2] [3] [4] ──
-  let btnW = 28;
-  let btnH = 24;
+  let btnW = 30;
+  let btnH = 26;
   let btnGap = 6;
-  let varsX = MX + 14;
+  let varsX = MX + 16;
   let btnY = y + 10;
 
   // Label
   fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(10);
+  textSize(11);
   textStyle(BOLD);
   text('Vars:', varsX, btnY + btnH / 2);
   textStyle(NORMAL);
 
-  varsX += 34;
+  varsX += 38;
   for (let v = 2; v <= 4; v++) {
     let isActive = (numVars === v);
     let bx = varsX + (v - 2) * (btnW + btnGap);
@@ -128,29 +128,29 @@ function drawControlBar() {
     fill(isActive ? 'white' : PURPLE);
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(12);
+    textSize(13);
     textStyle(BOLD);
     text(v, bx + btnW / 2, btnY + btnH / 2);
     textStyle(NORMAL);
   }
 
   // ── Custom slider ──
-  let sliderLabelX = varsX + 3 * (btnW + btnGap) + 10;
+  let sliderLabelX = varsX + 3 * (btnW + btnGap) + 14;
   let maxVal = Math.pow(2, numVars) - 1;
 
   // Label "m3:"
   fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(11);
+  textSize(12);
   textStyle(BOLD);
   text('m' + selectedMinterm + ':', sliderLabelX, btnY + btnH / 2);
   textStyle(NORMAL);
 
   // Track
-  sliderTrackX = sliderLabelX + 38;
+  sliderTrackX = sliderLabelX + 40;
   sliderTrackY = btnY + btnH / 2;
-  sliderTrackW = MX + bandW - 14 - sliderTrackX - 24;
+  sliderTrackW = MX + bandW - 16 - sliderTrackX - 28;
   if (sliderTrackW < 60) sliderTrackW = 60;
 
   // Draw track background
@@ -178,9 +178,9 @@ function drawControlBar() {
   fill(PURPLE_DARK);
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(11);
+  textSize(12);
   textStyle(BOLD);
-  text(selectedMinterm, sliderTrackX + sliderTrackW + 8, sliderTrackY);
+  text(selectedMinterm, sliderTrackX + sliderTrackW + 10, sliderTrackY);
   textStyle(NORMAL);
 }
 
@@ -188,11 +188,11 @@ function drawControlBar() {
 
 function mousePressed() {
   // Check variable selector buttons
-  let y = 545;
-  let btnW = 28;
-  let btnH = 24;
+  let y = 720;
+  let btnW = 30;
+  let btnH = 26;
   let btnGap = 6;
-  let varsX = MX + 14 + 34;
+  let varsX = MX + 16 + 38;
   let btnY = y + 10;
 
   for (let v = 2; v <= 4; v++) {
@@ -206,7 +206,6 @@ function mousePressed() {
   }
 
   // Check custom slider thumb / track
-  let maxVal = Math.pow(2, numVars) - 1;
   if (mouseY >= sliderTrackY - THUMB_R - 4 && mouseY <= sliderTrackY + THUMB_R + 4 &&
       mouseX >= sliderTrackX - THUMB_R && mouseX <= sliderTrackX + sliderTrackW + THUMB_R) {
     sliderDragging = true;
@@ -236,17 +235,17 @@ function updateSliderFromMouse() {
 }
 
 function checkMintermButtons() {
-  let y = 400;
+  let y = 520;
   let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
   let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
-  let gridPadX = 20;
-  let gridPadY = 30;
-  let gapX = 8;
-  let gapY = 8;
+  let gridPadX = 24;
+  let gridPadY = 34;
+  let gapX = 10;
+  let gapY = 10;
   let availW = bandW - 2 * gridPadX;
   let btnW = (availW - (cols - 1) * gapX) / cols;
-  let btnH = 32;
+  let btnH = 36;
   let gridStartX = MX + gridPadX;
   let gridStartY = y + gridPadY;
 
@@ -266,7 +265,7 @@ function checkMintermButtons() {
 // ── Drawing functions ──
 
 function drawBitDisplay() {
-  let y = 55;
+  let y = 68;
   let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
@@ -278,7 +277,7 @@ function drawBitDisplay() {
   fill(HEADER_BG);
   stroke(HEADER_BORDER);
   strokeWeight(1.5);
-  rect(MX, y, bandW, 78, 12);
+  rect(MX, y, bandW, 90, 12);
 
   drawingContext.shadowBlur = 0;
   drawingContext.shadowOffsetY = 0;
@@ -286,19 +285,19 @@ function drawBitDisplay() {
   fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(12);
+  textSize(13);
   textStyle(BOLD);
-  text('Minterm m' + selectedMinterm + '  (decimal ' + selectedMinterm + ')', canvasWidth / 2, y + 10);
+  text('Minterm m' + selectedMinterm + '  (decimal ' + selectedMinterm + ')', canvasWidth / 2, y + 12);
   textStyle(NORMAL);
 
-  let circleD = 36;
-  let circleGap = 16;
+  let circleD = 40;
+  let circleGap = 20;
   let totalW = numVars * circleD + (numVars - 1) * circleGap;
   let startX = canvasWidth / 2 - totalW / 2 + circleD / 2;
 
   for (let i = 0; i < numVars; i++) {
     let cx = startX + i * (circleD + circleGap);
-    let cy = y + 42;
+    let cy = y + 50;
     let bit = binary[i];
 
     if (bit === '1') {
@@ -318,21 +317,21 @@ function drawBitDisplay() {
     fill('white');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(16);
+    textSize(18);
     textStyle(BOLD);
     text(bit, cx, cy);
     textStyle(NORMAL);
 
     fill('#555');
-    textSize(11);
+    textSize(12);
     textStyle(BOLD);
-    text(varNames[i], cx, cy + circleD / 2 + 12);
+    text(varNames[i], cx, cy + circleD / 2 + 14);
     textStyle(NORMAL);
   }
 }
 
 function drawTruthTableRow() {
-  let y = 145;
+  let y = 178;
   let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
@@ -340,60 +339,60 @@ function drawTruthTableRow() {
   fill(TRUTH_BG);
   stroke(TRUTH_BORDER);
   strokeWeight(1.5);
-  rect(MX, y, bandW, 62, 12);
+  rect(MX, y, bandW, 72, 12);
 
   fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
+  textSize(12);
   textStyle(BOLD);
-  text('Truth Table Row', canvasWidth / 2, y + 8);
+  text('Truth Table Row', canvasWidth / 2, y + 10);
   textStyle(NORMAL);
 
-  let colW = 36;
-  let separatorW = 20;
+  let colW = 40;
+  let separatorW = 24;
   let totalTableW = numVars * colW + separatorW + colW;
   let tableStartX = canvasWidth / 2 - totalTableW / 2 + colW / 2;
 
-  textSize(12);
+  textSize(13);
   textStyle(BOLD);
   fill(PURPLE_DARK);
   textAlign(CENTER, TOP);
 
   for (let i = 0; i < numVars; i++) {
-    text(varNames[i], tableStartX + i * colW, y + 26);
+    text(varNames[i], tableStartX + i * colW, y + 30);
   }
 
   fill(PURPLE_BORDER);
   noStroke();
   let sepX = tableStartX + numVars * colW + separatorW / 2 - colW / 2 - 2;
-  rect(sepX, y + 24, 1.5, 30, 1);
+  rect(sepX, y + 28, 1.5, 34, 1);
 
   fill(PURPLE_DARK);
   textAlign(CENTER, TOP);
-  text('F', tableStartX + numVars * colW + separatorW, y + 26);
+  text('F', tableStartX + numVars * colW + separatorW, y + 30);
 
   textStyle(NORMAL);
-  textSize(13);
+  textSize(14);
 
   for (let i = 0; i < numVars; i++) {
     let bit = binary[i];
     fill(bit === '1' ? '#4CAF50' : '#EF5350');
     textStyle(BOLD);
-    text(bit, tableStartX + i * colW, y + 43);
+    text(bit, tableStartX + i * colW, y + 50);
   }
 
   fill('#4CAF50');
   textStyle(BOLD);
-  text('1', tableStartX + numVars * colW + separatorW, y + 43);
+  text('1', tableStartX + numVars * colW + separatorW, y + 50);
   textStyle(NORMAL);
 }
 
 function drawMintermMaxterm() {
-  let y = 220;
+  let y = 270;
   let bandW = canvasWidth - 2 * MX;
-  let cardW = (bandW - 16) / 2;
-  let cardH = 115;
+  let cardW = (bandW - 20) / 2;
+  let cardH = 135;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
 
@@ -414,9 +413,9 @@ function drawMintermMaxterm() {
   fill('#388E3C');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(12);
+  textSize(13);
   textStyle(BOLD);
-  text('Minterm (Product Term)', leftX + cardW / 2, y + 12);
+  text('Minterm (Product Term)', leftX + cardW / 2, y + 14);
   textStyle(NORMAL);
 
   let minterm = '';
@@ -429,21 +428,21 @@ function drawMintermMaxterm() {
     if (i < numVars - 1) minterm += ' \u00B7 ';
   }
 
-  textSize(17);
+  textSize(19);
   textStyle(BOLD);
   fill('#1B5E20');
-  text('m' + selectedMinterm + ' = ' + minterm, leftX + cardW / 2, y + 40);
+  text('m' + selectedMinterm + ' = ' + minterm, leftX + cardW / 2, y + 48);
   textStyle(NORMAL);
 
   fill('#555');
-  textSize(10);
-  text('AND of literals', leftX + cardW / 2, y + 72);
+  textSize(11);
+  text('AND of literals', leftX + cardW / 2, y + 86);
   fill('#888');
-  textSize(9);
-  text('Complement if bit = 0', leftX + cardW / 2, y + 90);
+  textSize(10);
+  text('Complement if bit = 0', leftX + cardW / 2, y + 106);
 
   // Maxterm card (red)
-  let rightX = MX + cardW + 16;
+  let rightX = MX + cardW + 20;
   drawingContext.shadowColor = 'rgba(229, 115, 115, 0.2)';
   drawingContext.shadowBlur = 6;
   drawingContext.shadowOffsetY = 2;
@@ -459,9 +458,9 @@ function drawMintermMaxterm() {
   fill('#D32F2F');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(12);
+  textSize(13);
   textStyle(BOLD);
-  text('Maxterm (Sum Term)', rightX + cardW / 2, y + 12);
+  text('Maxterm (Sum Term)', rightX + cardW / 2, y + 14);
   textStyle(NORMAL);
 
   let maxterm = '';
@@ -474,21 +473,21 @@ function drawMintermMaxterm() {
     if (i < numVars - 1) maxterm += ' + ';
   }
 
-  textSize(17);
+  textSize(19);
   textStyle(BOLD);
   fill('#B71C1C');
-  text('M' + selectedMinterm + ' = ' + maxterm, rightX + cardW / 2, y + 40);
+  text('M' + selectedMinterm + ' = ' + maxterm, rightX + cardW / 2, y + 48);
   textStyle(NORMAL);
 
   fill('#555');
-  textSize(10);
-  text('OR of literals', rightX + cardW / 2, y + 72);
+  textSize(11);
+  text('OR of literals', rightX + cardW / 2, y + 86);
   fill('#888');
-  textSize(9);
-  text('Complement if bit = 1', rightX + cardW / 2, y + 90);
+  textSize(10);
+  text('Complement if bit = 1', rightX + cardW / 2, y + 106);
 
   // Relationship bar (orange)
-  let relY = y + cardH + 14;
+  let relY = y + cardH + 18;
   drawingContext.shadowColor = 'rgba(255, 213, 79, 0.2)';
   drawingContext.shadowBlur = 6;
   drawingContext.shadowOffsetY = 2;
@@ -496,7 +495,7 @@ function drawMintermMaxterm() {
   fill(RELATION_BG);
   stroke(RELATION_BORDER);
   strokeWeight(1.5);
-  rect(MX, relY, bandW, 48, 12);
+  rect(MX, relY, bandW, 54, 12);
 
   drawingContext.shadowBlur = 0;
   drawingContext.shadowOffsetY = 0;
@@ -504,45 +503,45 @@ function drawMintermMaxterm() {
   fill('#E65100');
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(10);
+  textSize(11);
   textStyle(BOLD);
-  text('Relationship', canvasWidth / 2, relY + 6);
+  text('Relationship', canvasWidth / 2, relY + 8);
   textStyle(NORMAL);
 
-  textSize(14);
+  textSize(15);
   textStyle(BOLD);
   fill('#BF360C');
   textAlign(CENTER, CENTER);
-  text("m" + selectedMinterm + " = (M" + selectedMinterm + ")'     M" + selectedMinterm + " = (m" + selectedMinterm + ")'", canvasWidth / 2, relY + 32);
+  text("m" + selectedMinterm + " = (M" + selectedMinterm + ")'     M" + selectedMinterm + " = (m" + selectedMinterm + ")'", canvasWidth / 2, relY + 36);
   textStyle(NORMAL);
 }
 
 function drawMintermList() {
-  let y = 400;
+  let y = 520;
   let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
 
   fill('#FAFAFA');
   stroke(PURPLE_BORDER);
   strokeWeight(1.5);
-  rect(MX, y, bandW, 128, 12);
+  rect(MX, y, bandW, 180, 12);
 
   fill(PURPLE);
   noStroke();
   textAlign(CENTER, TOP);
-  textSize(11);
+  textSize(12);
   textStyle(BOLD);
-  text('All Minterms (click to select)', canvasWidth / 2, y + 10);
+  text('All Minterms (click to select)', canvasWidth / 2, y + 12);
   textStyle(NORMAL);
 
   let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
-  let gridPadX = 20;
-  let gridPadY = 30;
-  let gapX = 8;
-  let gapY = 8;
+  let gridPadX = 24;
+  let gridPadY = 34;
+  let gapX = 10;
+  let gapY = 10;
   let availW = bandW - 2 * gridPadX;
   let btnW = (availW - (cols - 1) * gapX) / cols;
-  let btnH = 32;
+  let btnH = 36;
 
   let gridStartX = MX + gridPadX;
   let gridStartY = y + gridPadY;
@@ -572,7 +571,7 @@ function drawMintermList() {
     fill(isActive ? 'white' : '#555');
     noStroke();
     textAlign(CENTER, CENTER);
-    textSize(12);
+    textSize(13);
     textStyle(isActive ? BOLD : NORMAL);
     text('m' + i, bx + btnW / 2, by + btnH / 2);
     textStyle(NORMAL);
