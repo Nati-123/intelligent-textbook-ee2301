@@ -428,7 +428,7 @@ For 3 variables, indices 0-7 exist. If minterms are {1,3,5}, maxterms are {0,2,4
 <h2 id="46-complement-of-a-function" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.6 Complement of a Function</h2>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
-The <strong style="color: #333;">complement of a function</strong> \(\overline{F}\) has the opposite output for every input combination. This leads to elegant relationships in canonical form.
+The <strong style="color: #333;">complement of a function</strong> <span class="arithmatex">\(\overline{F}\)</span> has the opposite output for every input combination. This leads to elegant relationships in canonical form.
 </p>
 
 ### Complement in Canonical Form
@@ -455,19 +455,19 @@ $$\overline{F} = \Sigma m(0,2,4,6,7) \;=\; \Pi M(1,3,5)$$
 <p style="color: #555; line-height: 1.85; margin-bottom: 0.5rem;">This reveals a beautiful symmetry:</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The minterm indices of \(F\) become the maxterm indices of \(\overline{F}\)</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The maxterm indices of \(F\) become the minterm indices of \(\overline{F}\)</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The minterm indices of <span class="arithmatex">\(F\)</span> become the maxterm indices of <span class="arithmatex">\(\overline{F}\)</span></li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The maxterm indices of <span class="arithmatex">\(F\)</span> become the minterm indices of <span class="arithmatex">\(\overline{F}\)</span></li>
 </ul>
 
 <h3 id="practical-use" style="color: #5A3EED !important; font-weight: 600; margin-top: 1.6rem; margin-bottom: 26px;">Practical Use</h3>
 
 <p style="color: #555; line-height: 1.9; margin-bottom: 1.2rem; margin-left: 0.4rem;">
-To find \(\overline{F}\) in canonical form:
+To find <span class="arithmatex">\(\overline{F}\)</span> in canonical form:
 </p>
 
 <ol style="margin: 0.8rem 0 1.5rem 2rem; line-height: 1.8; color: #333;">
-<li style="margin-bottom: 20px;"><strong>From SOP:</strong> Swap \(\Sigma m \to \Pi M\), keep same indices</li>
-<li style="margin-bottom: 20px;"><strong>From POS:</strong> Swap \(\Pi M \to \Sigma m\), keep same indices</li>
+<li style="margin-bottom: 20px;"><strong>From SOP:</strong> Swap <span class="arithmatex">\(\Sigma m \to \Pi M\)</span>, keep same indices</li>
+<li style="margin-bottom: 20px;"><strong>From POS:</strong> Swap <span class="arithmatex">\(\Pi M \to \Sigma m\)</span>, keep same indices</li>
 </ol>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 30px 32px; margin: 22px 0 24px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center;" markdown>
