@@ -73,7 +73,7 @@ function drawKmap() {
   noStroke();
   textAlign(CENTER, BOTTOM);
   textSize(12);
-  text('BC', startX + 2 * cellW + 25, startY - 5);
+  text('BC', startX + 50 + 2 * cellW, startY - 18);
 
   textSize(11);
   let colLabels = ['00', '01', '11', '10'];
