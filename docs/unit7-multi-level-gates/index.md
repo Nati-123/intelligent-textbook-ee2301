@@ -320,6 +320,10 @@ The most common conversion in digital design transforms a two-level AND-OR (SOP)
 
 ### Conversion Procedure
 
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">SOP → NAND-NAND Conversion Steps</p>
+
 Starting with an SOP expression, apply these steps:
 
 1. **Write the SOP expression:** $F = AB + CD$
@@ -327,32 +331,64 @@ Starting with an SOP expression, apply these steps:
 3. **Apply De Morgan's theorem** to the inner complement: $F = \overline{\overline{AB} \cdot \overline{CD}}$
 4. **Recognize NAND operations:** Each $\overline{XY}$ is a NAND, and the outer $\overline{X \cdot Y}$ is also a NAND
 
-The result: $F = (A \text{ NAND } B) \text{ NAND } (C \text{ NAND } D)$
+**Result:** $F = (A \text{ NAND } B) \text{ NAND } (C \text{ NAND } D)$
+
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
 
 The general rule is remarkably simple: **replace every AND gate and the OR gate with NAND gates.** No additional inverters are needed for a standard two-level SOP form.
 
 This works because the first-level NAND gates each produce the complement of what AND gates would produce, and by De Morgan's theorem, a NAND gate receiving complemented inputs performs the equivalent of OR on the original (uncomplemented) values.
 
-**Worked Example:** Convert $F = XY + X'Z + YZ$ to NAND-only form.
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Convert F = XY + X'Z + YZ</p>
 
 $$F = XY + X'Z + YZ$$
+
 $$= \overline{\overline{XY + X'Z + YZ}}$$
+
 $$= \overline{\overline{XY} \cdot \overline{X'Z} \cdot \overline{YZ}}$$
 
-This requires three first-level NAND gates (for $XY$, $X'Z$, and $YZ$) feeding one second-level NAND gate. Note that $X'$ is still needed—the complement of $X$ must be provided by an additional NAND inverter.
+This requires three first-level NAND gates (for $XY$, $X'Z$, and $YZ$) feeding one second-level NAND gate. Note that $X'$ is still needed — the complement of $X$ must be provided by an additional NAND inverter.
+
+</div>
 
 ### Handling Complemented Inputs and Single Literals
 
 Two special cases require attention:
 
-- **Complemented variables** (e.g., $\overline{A}$): Use a NAND gate configured as an inverter (both inputs tied to $A$)
-- **Single literal terms** in the SOP: A product term with only one literal (e.g., $F = A + BC$) has the term $A$ passed through a NAND inverter before the final NAND gate, since the final NAND expects complemented inputs
+<div style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
 
-For $F = A + BC$:
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Complemented Variables</p>
+
+Use a NAND gate as an inverter (both inputs tied to $A$) to produce $\overline{A}$.
+
+</div>
+<div markdown style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Single Literal Terms</p>
+
+A single-literal term (e.g., $A$ in $F = A + BC$) must pass through a NAND inverter before the final NAND gate.
+
+</div>
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 10px;">Example: F = A + BC</p>
 
 $$F = \overline{\overline{A} \cdot \overline{BC}}$$
 
 This requires: one NAND inverter for $A$, one 2-input NAND for $BC$, and one 2-input NAND for the output.
+
+</div>
 
 #### Diagram: AND-OR to NAND-NAND Conversion
 
