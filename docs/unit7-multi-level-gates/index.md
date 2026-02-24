@@ -1546,11 +1546,17 @@ Commercial synthesis tools like **Synopsys Design Compiler**, **Cadence Genus**,
 
 <h2 style="color: #5A3EED;">7.16 Multi-Level Synthesis Tools</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Modern digital design relies on **automated synthesis tools** that perform multi-level optimization and technology mapping far beyond what is practical by hand. Understanding the capabilities and workflow of these tools is essential for effective digital design.
+
+</div>
 
 ### Logic Synthesis Flow
 
-The complete synthesis flow proceeds through several stages:
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Synthesis Pipeline</p>
 
 1. **HDL Input:** Design described in Verilog or VHDL
 2. **Elaboration:** HDL parsed into generic Boolean network
@@ -1558,26 +1564,56 @@ The complete synthesis flow proceeds through several stages:
 4. **Technology Mapping:** Map to target library cells
 5. **Gate-Level Netlist Output:** Optimized circuit in target technology
 
+</div>
+
 ### Common Optimization Commands
 
-Synthesis tools provide optimization commands that apply combinations of the techniques covered in this unit:
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- **Flatten:** Convert multi-level to two-level (full flattening)
-- **Factor:** Extract common sub-expressions
-- **Simplify:** Apply Boolean minimization
-- **Restructure:** Change the circuit structure to improve a target metric
-- **Map:** Perform technology mapping to a cell library
-- **Retime:** Move flip-flops to balance pipeline stages (sequential optimization)
+| Command | Action |
+|:--------|:-------|
+| **Flatten** | Convert multi-level to two-level (full flattening) |
+| **Factor** | Extract common sub-expressions |
+| **Simplify** | Apply Boolean minimization |
+| **Restructure** | Change circuit structure to improve a target metric |
+| **Map** | Perform technology mapping to a cell library |
+| **Retime** | Move flip-flops to balance pipeline stages |
+
+</div>
 
 ### Open-Source Tools
 
-Several open-source synthesis tools allow students to experiment with multi-level optimization:
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
 
-- **ABC (Berkeley):** Academic logic synthesis and verification tool
-- **Yosys:** Open-source synthesis suite for Verilog
-- **OpenSTA:** Static timing analysis
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">ABC (Berkeley)</p>
 
-These tools implement the same fundamental algorithms (factoring, decomposition, technology mapping) covered in this unit, providing practical experience with the concepts.
+Academic logic synthesis and verification tool
+
+</div>
+<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Yosys</p>
+
+Open-source synthesis suite for Verilog
+
+</div>
+<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">OpenSTA</p>
+
+Static timing analysis
+
+</div>
+</div>
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Why This Matters</p>
+
+These tools implement the same fundamental algorithms (factoring, decomposition, technology mapping) covered in this unit. Hand optimization is primarily a learning exercise, but **understanding the principles is essential** for effective tool usage and interpreting synthesis reports.
+
+</div>
 
 ---
 
