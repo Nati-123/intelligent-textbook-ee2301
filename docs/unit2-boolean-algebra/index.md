@@ -896,51 +896,48 @@ Implementation: p5.js with responsive canvas
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Worked Examples</h3>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 1: Simplify <span class="arithmatex">\(F = AB + A\overline{B}\)</span></p>
-
-$$F = AB + A\overline{B}$$
-$$= A(B + \overline{B}) \quad \text{(factor out } A\text{)}$$
-$$= A \cdot 1 \quad \text{(complement law)}$$
-$$= A \quad \text{(identity law)}$$
-
+<span class="arithmatex">\[\begin{aligned}
+F &= AB + A\overline{B} \\[6pt]
+&= A(B + \overline{B}) && \text{(factor out } A\text{)} \\[6pt]
+&= A \cdot 1 && \text{(complement law)} \\[6pt]
+&= A && \text{(identity law)}
+\end{aligned}\]</span>
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 2: Simplify <span class="arithmatex">\(F = A + AB\)</span></p>
-
-$$F = A + AB$$
-$$= A \cdot 1 + AB \quad \text{(identity law)}$$
-$$= A(1 + B) \quad \text{(factor out } A\text{)}$$
-$$= A \cdot 1 \quad \text{(null law: } 1 + B = 1\text{)}$$
-$$= A \quad \text{(identity law)}$$
-
-This is the absorption law.
-
+<span class="arithmatex">\[\begin{aligned}
+F &= A + AB \\[6pt]
+&= A \cdot 1 + AB && \text{(identity law)} \\[6pt]
+&= A(1 + B) && \text{(factor out } A\text{)} \\[6pt]
+&= A \cdot 1 && \text{(null law: } 1 + B = 1\text{)} \\[6pt]
+&= A && \text{(identity law)}
+\end{aligned}\]</span>
+<p style="color: #333; line-height: 1.85; margin: 10px 0 0 0;">This is the absorption law.</p>
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 3: Simplify <span class="arithmatex">\(F = (A + B)(A + \overline{B})\)</span></p>
-
-$$F = (A + B)(A + \overline{B})$$
-$$= A \cdot A + A\overline{B} + AB + B\overline{B} \quad \text{(expand)}$$
-$$= A + A\overline{B} + AB + 0 \quad \text{(idempotent, complement)}$$
-$$= A + A(\overline{B} + B) \quad \text{(factor)}$$
-$$= A + A \cdot 1 \quad \text{(complement)}$$
-$$= A + A = A \quad \text{(idempotent)}$$
-
+<span class="arithmatex">\[\begin{aligned}
+F &= (A + B)(A + \overline{B}) \\[6pt]
+&= A \cdot A + A\overline{B} + AB + B\overline{B} && \text{(expand)} \\[6pt]
+&= A + A\overline{B} + AB + 0 && \text{(idempotent, complement)} \\[6pt]
+&= A + A(\overline{B} + B) && \text{(factor)} \\[6pt]
+&= A + A \cdot 1 && \text{(complement)} \\[6pt]
+&= A + A = A && \text{(idempotent)}
+\end{aligned}\]</span>
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 4: Simplify <span class="arithmatex">\(F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}\)</span></p>
-
-$$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
-$$= \overline{A}(B + C) + \overline{B}\overline{C} \quad \text{(factor out } \overline{A}\text{)}$$
-
-The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
-
-$$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
-
+<span class="arithmatex">\[\begin{aligned}
+F &= \overline{A}B + \overline{A}C + \overline{B}\overline{C} \\[6pt]
+&= \overline{A}(B + C) + \overline{B}\overline{C} && \text{(factor out } \overline{A}\text{)}
+\end{aligned}\]</span>
+<p style="color: #333; line-height: 1.85; margin: 10px 0 6px 0;">The term <span class="arithmatex">\(\overline{B}\overline{C}\)</span> is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:</p>
+<span class="arithmatex">\[F = \overline{A}(B + C) + \overline{B}\overline{C}\]</span>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Boolean Simplification Tutor</h4>
