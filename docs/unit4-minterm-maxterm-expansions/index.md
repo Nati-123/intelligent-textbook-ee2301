@@ -125,27 +125,44 @@ The canonical form of a function is unique—there is exactly one canonical SOP 
 
 ---
 
-## 4.2 Minterms
+<h2 id="42-minterms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.2 Minterms</h2>
 
-A **minterm** is a product term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. For n variables, there are exactly $2^n$ possible minterms.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+A <strong style="color: #333;">minterm</strong> is a product term containing all n variables of the function, where each variable appears exactly once in either complemented or uncomplemented form. For n variables, there are exactly <span class="arithmatex">\(2^n\)</span> possible minterms.
+</p>
 
 ### Minterm Construction
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 For each row of a truth table where the output is 1:
+</p>
 
-- Include the variable **uncomplemented** if its value is 1
-- Include the variable **complemented** if its value is 0
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Include the variable <strong>uncomplemented</strong> if its value is 1</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Include the variable <strong>complemented</strong> if its value is 0</li>
+</ul>
 
-**Example:** For 3 variables (A, B, C), construct the minterm for input 101:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-- A = 1 → include A
-- B = 0 → include $\overline{B}$
-- C = 1 → include C
-- Minterm: $A\overline{B}C$
+For 3 variables (A, B, C), construct the minterm for input 101:
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> A = 1 &rarr; include A</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> B = 0 &rarr; include <span class="arithmatex">\(\overline{B}\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> C = 1 &rarr; include C</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Minterm: <span class="arithmatex">\(A\overline{B}C\)</span></li>
+</ul>
+
+</div>
 
 ### Minterm Designation
 
-Each minterm has a unique **minterm designation** (index number) equal to the decimal value of the input combination.
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+Each minterm has a unique <strong style="color: #333;">minterm designation</strong> (index number) equal to the decimal value of the input combination.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Row | A | B | C | Decimal | Minterm | Designation |
 |-----|---|---|---|---------|---------|-------------|
@@ -158,9 +175,13 @@ Each minterm has a unique **minterm designation** (index number) equal to the de
 | 6 | 1 | 1 | 0 | 6 | $AB\overline{C}$ | $m_6$ |
 | 7 | 1 | 1 | 1 | 7 | $ABC$ | $m_7$ |
 
+</div>
+
 ### Key Property of Minterms
 
-Each minterm equals 1 for exactly one input combination and 0 for all others. This is why minterms are used to build SOP expressions—ORing together the minterms where F=1 creates a function that is 1 precisely for those inputs.
+<p style="color: #555; line-height: 1.85; margin-bottom: 1.5rem;">
+Each minterm equals 1 for exactly one input combination and 0 for all others. This is why minterms are used to build SOP expressions — ORing together the minterms where F=1 creates a function that is 1 precisely for those inputs.
+</p>
 
 #### Diagram: Minterm Visualizer
 
