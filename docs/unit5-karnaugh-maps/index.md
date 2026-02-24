@@ -399,56 +399,87 @@ Implementation: p5.js with interactive canvas
 
 Groups in a K-map must contain a **power of 2** cells: 1, 2, 4, 8, 16, etc. Each doubling of group size eliminates one variable from the product term.
 
-| Group Size | Variables Eliminated | Literals in Term |
-|------------|---------------------|------------------|
-| 1 | 0 | n (all variables) |
-| 2 | 1 | n-1 |
-| 4 | 2 | n-2 |
-| 8 | 3 | n-3 |
-| 16 | 4 | 0 (constant 1) |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 18px;">Group Size</th><th style="padding: 6px 18px;">Variables Eliminated</th><th style="padding: 6px 18px;">Literals in Term</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 18px; text-align: center; font-weight: 700;">1</td><td style="padding: 6px 18px; text-align: center;">0</td><td style="padding: 6px 18px; text-align: center;">n (all variables)</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 18px; text-align: center; font-weight: 700;">2</td><td style="padding: 6px 18px; text-align: center;">1</td><td style="padding: 6px 18px; text-align: center;">n &minus; 1</td></tr>
+<tr><td style="padding: 6px 18px; text-align: center; font-weight: 700;">4</td><td style="padding: 6px 18px; text-align: center;">2</td><td style="padding: 6px 18px; text-align: center;">n &minus; 2</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 18px; text-align: center; font-weight: 700;">8</td><td style="padding: 6px 18px; text-align: center;">3</td><td style="padding: 6px 18px; text-align: center;">n &minus; 3</td></tr>
+<tr><td style="padding: 6px 18px; text-align: center; font-weight: 700;">16</td><td style="padding: 6px 18px; text-align: center;">4</td><td style="padding: 6px 18px; text-align: center;">0 (constant 1)</td></tr>
+</tbody>
+</table>
 
 ### Rectangular Groups
 
 Groups must form **rectangles** (including squares) on the K-map. The rectangle can wrap around edges but must maintain its rectangular shape conceptually.
 
-**Valid groups:**
-- 1×1 (single cell)
-- 1×2 or 2×1 (pair)
-- 1×4, 4×1, or 2×2 (quad)
-- 1×8, 8×1, 2×4, or 4×2 (octet)
-- 4×4 (16 cells)
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0;">
 
-**Invalid groups:**
-- L-shaped
-- T-shaped
-- Diagonal
-- Non-power-of-2 sizes (3, 5, 6, etc.)
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Valid groups:</p>
+<ul style="margin: 0; color: #333; line-height: 1.85; padding-left: 1.2rem;">
+<li>1&times;1 (single cell)</li>
+<li>1&times;2 or 2&times;1 (pair)</li>
+<li>1&times;4, 4&times;1, or 2&times;2 (quad)</li>
+<li>1&times;8, 8&times;1, 2&times;4, or 4&times;2 (octet)</li>
+<li>4&times;4 (16 cells)</li>
+</ul>
+</div>
+
+<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 16px 20px;">
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Invalid groups:</p>
+<ul style="margin: 0; color: #333; line-height: 1.85; padding-left: 1.2rem;">
+<li>L-shaped</li>
+<li>T-shaped</li>
+<li>Diagonal</li>
+<li>Non-power-of-2 sizes (3, 5, 6, etc.)</li>
+</ul>
+</div>
+
+</div>
 
 ### Grouping for SOP vs POS
 
-**Group of ones:** For SOP simplification, group cells containing 1. Each group of 1s becomes a product term in the sum.
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0;">
 
-**Group of zeros:** For POS simplification, group cells containing 0. Each group of 0s becomes a sum term in the product.
+<div style="flex: 1; min-width: 200px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 16px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">SOP &mdash; Group the 1s</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">Each group of 1s becomes a <strong>product term</strong> in the sum.</p>
+</div>
+
+<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 20px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">POS &mdash; Group the 0s</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">Each group of 0s becomes a <strong>sum term</strong> in the product.</p>
+</div>
+
+</div>
 
 ### Overlapping Groups
 
 **Overlapping groups** are allowed and often necessary for minimal expressions. A cell can belong to multiple groups—this doesn't duplicate it in the final expression; it just means that cell's minterm is covered by multiple product terms.
 
-**Example:** In this K-map, overlapping is beneficial:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-```
-        00   01   11   10
-      +----+----+----+----+
-  00  |  1 |  1 |  0 |  0 |
-      +----+----+----+----+
-  01  |  1 |  1 |  1 |  0 |
-      +----+----+----+----+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Overlapping groups are beneficial</p>
 
-Group 1 (m₀, m₁, m₄, m₅): $\overline{A}\overline{C}$ (A=0, C=0 for all four cells)
-Group 2 (m₅, m₇): $\overline{A}BD$ (A=0, B=1, D=1 for both cells)
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;"></th><th style="padding: 6px 14px;">CD = 00</th><th style="padding: 6px 14px;">CD = 01</th><th style="padding: 6px 14px;">CD = 11</th><th style="padding: 6px 14px;">CD = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 00</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center;">0</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 01</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #ffe0b2;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #ffe0b2;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td></tr>
+</tbody>
+</table>
 
-Cell m₅ belongs to both groups. The final expression is $F = \overline{A}\overline{C} + \overline{A}BD$, and the overlap does not cause duplication.
+<p style="color: #333; line-height: 1.75; margin-bottom: 6px;"><strong>Group 1</strong> <span style="display: inline-block; width: 12px; height: 12px; background: #d4edda; border: 1px solid #81C784; border-radius: 2px; vertical-align: middle;"></span> (m<sub>0</sub>, m<sub>1</sub>, m<sub>4</sub>, m<sub>5</sub>): <span class="arithmatex">\(\overline{A}\,\overline{C}\)</span> &mdash; A = 0, C = 0 for all four cells</p>
+
+<p style="color: #333; line-height: 1.75; margin-bottom: 6px;"><strong>Group 2</strong> <span style="display: inline-block; width: 12px; height: 12px; background: #ffe0b2; border: 1px solid #F0D87A; border-radius: 2px; vertical-align: middle;"></span> (m<sub>5</sub>, m<sub>7</sub>): <span class="arithmatex">\(\overline{A}\,B\,D\)</span> &mdash; A = 0, B = 1, D = 1 for both cells</p>
+
+<p style="color: #333; line-height: 1.75;">Cell m<sub>5</sub> belongs to <em>both</em> groups (shown in orange). The overlap does not cause duplication.</p>
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Result: <span class="arithmatex">\(F = \overline{A}\,\overline{C} + \overline{A}\,B\,D\)</span></p>
+
+</div>
 
 ---
 
