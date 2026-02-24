@@ -169,15 +169,13 @@ Each cell contains the function value (0, 1, or X) for that minterm.
 
 The **three-variable K-map** uses a 2×4 grid with one variable on rows and two on columns (or vice versa).
 
-```
-           BC
-        00   01   11   10
-      +----+----+----+----+
-A=0   | m₀ | m₁ | m₃ | m₂ |
-      +----+----+----+----+
-A=1   | m₄ | m₅ | m₇ | m₆ |
-      +----+----+----+----+
-```
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 16px;"></th><th style="padding: 6px 16px;">BC = 00</th><th style="padding: 6px 16px;">BC = 01</th><th style="padding: 6px 16px;">BC = 11</th><th style="padding: 6px 16px;">BC = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 16px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 0</td><td style="padding: 6px 16px; text-align: center;">m<sub>0</sub></td><td style="padding: 6px 16px; text-align: center;">m<sub>1</sub></td><td style="padding: 6px 16px; text-align: center;">m<sub>3</sub></td><td style="padding: 6px 16px; text-align: center;">m<sub>2</sub></td></tr>
+<tr><td style="padding: 6px 16px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 1</td><td style="padding: 6px 16px; text-align: center; background: #f4f4ff;">m<sub>4</sub></td><td style="padding: 6px 16px; text-align: center; background: #f4f4ff;">m<sub>5</sub></td><td style="padding: 6px 16px; text-align: center; background: #f4f4ff;">m<sub>7</sub></td><td style="padding: 6px 16px; text-align: center; background: #f4f4ff;">m<sub>6</sub></td></tr>
+</tbody>
+</table>
 
 Note the **Gray code order** for BC: 00, 01, 11, 10 (not binary order 00, 01, 10, 11). This ensures adjacent columns differ by exactly one bit.
 
@@ -189,23 +187,27 @@ Note the **Gray code order** for BC: 00, 01, 11, 10 (not binary order 00, 01, 10
 - Vertically adjacent cells differ in the row variable
 - **The left and right edges wrap around** (column 00 is adjacent to column 10)
 
-**Example:** Simplify $F(A,B,C) = \Sigma m(0,2,4,5,6)$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-```
-           BC
-        00   01   11   10
-      +----+----+----+----+
-A=0   |  1 |  0 |  0 |  1 |
-      +----+----+----+----+
-A=1   |  1 |  1 |  0 |  1 |
-      +----+----+----+----+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Simplify <span class="arithmatex">\(F(A,B,C) = \Sigma m(0,2,4,5,6)\)</span></p>
 
-Groups:
-- Wrap-around group (m₀, m₂, m₄, m₆) spans columns 00 and 10: $\overline{C}$
-- Remaining 1: m₅, covered by pair (m₄, m₅): $A\overline{B}$
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 16px;"></th><th style="padding: 6px 16px;">BC = 00</th><th style="padding: 6px 16px;">BC = 01</th><th style="padding: 6px 16px;">BC = 11</th><th style="padding: 6px 16px;">BC = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 16px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 0</td><td style="padding: 6px 16px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 16px; text-align: center;">0</td><td style="padding: 6px 16px; text-align: center;">0</td><td style="padding: 6px 16px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 16px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 1</td><td style="padding: 6px 16px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 16px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 16px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 16px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+</tbody>
+</table>
 
-**Result:** $F = \overline{C} + A\overline{B}$
+<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Groups:</p>
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 1.85;">
+<li>Wrap-around group (m<sub>0</sub>, m<sub>2</sub>, m<sub>4</sub>, m<sub>6</sub>) spans columns 00 and 10 &rarr; <span class="arithmatex">\(\overline{C}\)</span></li>
+<li>Remaining 1: m<sub>5</sub>, covered by pair (m<sub>4</sub>, m<sub>5</sub>) &rarr; <span class="arithmatex">\(A\overline{B}\)</span></li>
+</ul>
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Result: <span class="arithmatex">\(F = \overline{C} + A\overline{B}\)</span></p>
+
+</div>
 
 #### Diagram: 3-Variable K-Map Simulator
 
@@ -275,19 +277,15 @@ Implementation: p5.js with interactive canvas
 
 The **four-variable K-map** is the most commonly used size, with 16 cells in a 4×4 grid.
 
-```
-              CD
-           00   01   11   10
-        +----+----+----+----+
-AB=00   | m₀ | m₁ | m₃ | m₂ |
-        +----+----+----+----+
-AB=01   | m₄ | m₅ | m₇ | m₆ |
-        +----+----+----+----+
-AB=11   | m₁₂| m₁₃| m₁₅| m₁₄|
-        +----+----+----+----+
-AB=10   | m₈ | m₉ | m₁₁| m₁₀|
-        +----+----+----+----+
-```
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;"></th><th style="padding: 6px 14px;">CD = 00</th><th style="padding: 6px 14px;">CD = 01</th><th style="padding: 6px 14px;">CD = 11</th><th style="padding: 6px 14px;">CD = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 00</td><td style="padding: 6px 14px; text-align: center;">m<sub>0</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>1</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>3</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>2</sub></td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 01</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>4</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>5</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>7</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>6</sub></td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 11</td><td style="padding: 6px 14px; text-align: center;">m<sub>12</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>13</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>15</sub></td><td style="padding: 6px 14px; text-align: center;">m<sub>14</sub></td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 10</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>8</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>9</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>11</sub></td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">m<sub>10</sub></td></tr>
+</tbody>
+</table>
 
 Both row labels (AB) and column labels (CD) use Gray code order: 00, 01, 11, 10.
 
@@ -309,22 +307,23 @@ The 4-variable K-map forms a **torus** topology—imagine wrapping the map into 
 - **Vertical wrap:** Row 00 is adjacent to row 10
 - **Corner wrap:** Cells at the four corners (m₀, m₂, m₈, m₁₀) are all mutually adjacent
 
-**Example:** The four corner cells form a valid group of 4:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-```
-           00   01   11   10
-        +----+----+----+----+
-   00   |[1] |  0 |  0 |[1] |
-        +----+----+----+----+
-   01   |  0 |  0 |  0 |  0 |
-        +----+----+----+----+
-   11   |  0 |  0 |  0 |  0 |
-        +----+----+----+----+
-   10   |[1] |  0 |  0 |[1] |
-        +----+----+----+----+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Four corner cells form a valid group of 4</p>
 
-The bracketed cells form one group: $\overline{B}\overline{D}$ (B=0 and D=0 for all four).
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;"></th><th style="padding: 6px 14px;">CD = 00</th><th style="padding: 6px 14px;">CD = 01</th><th style="padding: 6px 14px;">CD = 11</th><th style="padding: 6px 14px;">CD = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 00</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 01</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 11</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center;">0</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 10</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The green-highlighted corner cells form one group: <span class="arithmatex">\(\overline{B}\,\overline{D}\)</span> (B = 0 and D = 0 for all four).</p>
+
+</div>
 
 #### Diagram: K-Map Solver
 
