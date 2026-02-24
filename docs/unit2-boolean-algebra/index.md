@@ -1172,31 +1172,31 @@ Logic gates can accept more than two inputs. <strong>Multiple input gates</stron
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input AND Gate</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/3-input-and-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/3-input-and-gate/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input OR Gate</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/3-input-or-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/3-input-or-gate/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input NAND Gate</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input NOR Gate</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input XOR Gate</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
