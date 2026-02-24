@@ -1153,64 +1153,101 @@ Students often incorrectly evaluate <span class="arithmatex">\(A + BC\)</span> a
 
 ---
 
-## 2.10 Multiple Input Gates and Practical Considerations
+<h2 id="210-multiple-input-gates-and-practical-considerations" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.10 Multiple Input Gates and Practical Considerations</h2>
 
-### Multiple Input Gates
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Multiple Input Gates</h3>
 
-Logic gates can accept more than two inputs. **Multiple input gates** extend naturally from the two-input definitions:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Logic gates can accept more than two inputs. <strong>Multiple input gates</strong> extend naturally from the two-input definitions:
+</p>
 
-- **n-input AND:** Output is 1 only if ALL n inputs are 1
-- **n-input OR:** Output is 1 if ANY input is 1
-- **n-input NAND:** Output is 0 only if ALL n inputs are 1
-- **n-input NOR:** Output is 0 if ANY input is 1
-- **n-input XOR:** Output is 1 if an ODD number of inputs are 1
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>n-input AND:</strong> Output is 1 only if ALL n inputs are 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>n-input OR:</strong> Output is 1 if ANY input is 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>n-input NAND:</strong> Output is 0 only if ALL n inputs are 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>n-input NOR:</strong> Output is 0 if ANY input is 1</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>n-input XOR:</strong> Output is 1 if an ODD number of inputs are 1</li>
+</ul>
 
-#### Diagram: 3-Input AND Gate
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input AND Gate</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/3-input-and-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: 3-Input OR Gate
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input OR Gate</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/3-input-or-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: 3-Input NAND Gate
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input NAND Gate</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/3-input-nand-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: 3-Input NOR Gate
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input NOR Gate</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/3-input-nor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: 3-Input XOR Gate
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: 3-Input XOR Gate</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/3-input-xor-gate/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The associative property guarantees that $(A \cdot B) \cdot C = A \cdot (B \cdot C)$, allowing gates to be extended to any number of inputs.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The associative property guarantees that <span class="arithmatex">\((A \cdot B) \cdot C = A \cdot (B \cdot C)\)</span>, allowing gates to be extended to any number of inputs.
+</p>
 
-### Cascading Gates
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Cascading Gates</h3>
 
-When a single gate cannot handle all required inputs, **cascading gates** connects multiple gates in series. For example, a 4-input AND using 2-input gates:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+When a single gate cannot handle all required inputs, <strong>cascading gates</strong> connects multiple gates in series. For example, a 4-input AND using 2-input gates:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = ((A \cdot B) \cdot C) \cdot D$$
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This requires three 2-input AND gates connected in cascade.
+</p>
 
-### Fan-In and Fan-Out
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Fan-In and Fan-Out</h3>
 
-**Fan-in** refers to the number of inputs a gate can accept. Physical limitations (speed, power) restrict maximum fan-in, typically 8-12 inputs for standard logic families.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Fan-in</strong> refers to the number of inputs a gate can accept. Physical limitations (speed, power) restrict maximum fan-in, typically 8–12 inputs for standard logic families.
+</p>
 
-**Fan-out** refers to the number of gate inputs that a single output can drive. Exceeding fan-out specifications causes signal degradation. Standard TTL gates typically support fan-out of 10.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Fan-out</strong> refers to the number of gate inputs that a single output can drive. Exceeding fan-out specifications causes signal degradation. Standard TTL gates typically support fan-out of 10.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Fan-In and Fan-Out Limits</p>
 
 | Parameter | Definition | Typical Limit |
 |-----------|------------|---------------|
-| Fan-In | Maximum inputs per gate | 8-12 |
+| Fan-In | Maximum inputs per gate | 8–12 |
 | Fan-Out | Maximum loads per output | 10 |
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 When designs exceed these limits, buffer gates provide signal restoration and current amplification.
+</p>
 
-#### Diagram: Gate Cascading and Fan-Out Simulator
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Gate Cascading and Fan-Out Simulator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Gate Cascading and Fan-Out Simulator</summary>
