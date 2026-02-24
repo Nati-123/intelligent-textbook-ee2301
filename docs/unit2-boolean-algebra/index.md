@@ -273,77 +273,136 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 2.3 Logic Gates
+<h2 id="23-logic-gates" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.3 Logic Gates</h2>
 
-**Logic gates** are the physical electronic devices that implement Boolean operations. Each gate has one or more inputs and produces an output based on a specific Boolean function. Gates are the building blocks of all digital circuits, from simple calculators to complex microprocessors.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Logic gates</strong> are the physical electronic devices that implement Boolean operations. Each gate has one or more inputs and produces an output based on a specific Boolean function. Gates are the building blocks of all digital circuits, from simple calculators to complex microprocessors.
+</p>
 
-### Basic Gates
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Basic Gates</h3>
 
-The **AND gate** implements the AND operation, producing a HIGH output only when all inputs are HIGH. Its distinctive shape features a flat left edge and a curved right edge.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>AND gate</strong> implements the AND operation, producing a HIGH output only when all inputs are HIGH. Its distinctive shape features a flat left edge and a curved right edge.
+</p>
 
-#### Diagram: AND Gate with Truth Table
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: AND Gate with Truth Table</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/and-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **OR gate** implements the OR operation, producing a HIGH output when any input is HIGH. Its shape features a curved left edge (concave) and a pointed right edge.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>OR gate</strong> implements the OR operation, producing a HIGH output when any input is HIGH. Its shape features a curved left edge (concave) and a pointed right edge.
+</p>
 
-#### Diagram: OR Gate with Truth Table
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: OR Gate with Truth Table</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/or-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **NOT gate** (also called an **inverter**) implements the NOT operation, inverting its single input. It is drawn as a triangle with a small circle (bubble) at the output indicating inversion.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>NOT gate</strong> (also called an <strong>inverter</strong>) implements the NOT operation, inverting its single input. It is drawn as a triangle with a small circle (bubble) at the output indicating inversion.
+</p>
 
-#### Diagram: NOT Gate with Truth Table
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: NOT Gate with Truth Table</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/not-gate-truth-table/main.html" width="100%" height="390px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **buffer gate** passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>buffer gate</strong> passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
+</p>
 
-#### Diagram: Buffer Gate with Truth Table
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Buffer Gate with Truth Table</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/buffer-gate-truth-table/main.html" width="100%" height="390px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **tri-state buffer** adds an **enable (EN)** control input to the standard buffer. When enabled (EN = 1), the output follows the input. When disabled (EN = 0), the output enters a **high-impedance (Z)** state—effectively disconnecting from the circuit. Tri-state buffers are essential for allowing multiple devices to share a common data bus without signal conflicts.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>tri-state buffer</strong> adds an <strong>enable (EN)</strong> control input to the standard buffer. When enabled (EN = 1), the output follows the input. When disabled (EN = 0), the output enters a <strong>high-impedance (Z)</strong> state—effectively disconnecting from the circuit. Tri-state buffers are essential for allowing multiple devices to share a common data bus without signal conflicts.
+</p>
 
-#### Diagram: Tri-State Buffer with Truth Table
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Tri-State Buffer with Truth Table</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/tri-state-buffer-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-### Derived Gates
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Derived Gates</h3>
 
-**Derived gates** combine basic operations into single devices, often providing more efficient implementations.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Derived gates</strong> combine basic operations into single devices, often providing more efficient implementations.
+</p>
 
-The **NAND gate** (NOT-AND) produces the complement of AND: output is LOW only when all inputs are HIGH.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>NAND gate</strong> (NOT-AND) produces the complement of AND: output is LOW only when all inputs are HIGH.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \overline{A \cdot B}$$
 
-#### Diagram: NAND Gate with Truth Table
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: NAND Gate with Truth Table</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/nand-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **NOR gate** (NOT-OR) produces the complement of OR: output is HIGH only when all inputs are LOW.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>NOR gate</strong> (NOT-OR) produces the complement of OR: output is HIGH only when all inputs are LOW.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \overline{A + B}$$
 
-#### Diagram: NOR Gate with Truth Table
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: NOR Gate with Truth Table</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/nor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **XOR gate** (exclusive OR) produces a HIGH output when inputs differ (odd number of 1s).
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>XOR gate</strong> (exclusive OR) produces a HIGH output when inputs differ (odd number of 1s).
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = A \oplus B = A\overline{B} + \overline{A}B$$
 
-#### Diagram: XOR Gate with Truth Table
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: XOR Gate with Truth Table</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/xor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-The **XNOR gate** (exclusive NOR) produces a HIGH output when inputs are the same (equality detector).
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>XNOR gate</strong> (exclusive NOR) produces a HIGH output when inputs are the same (equality detector).
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \overline{A \oplus B} = AB + \overline{A}\overline{B}$$
 
-#### Diagram: XNOR Gate with Truth Table
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: XNOR Gate with Truth Table</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/xnor-gate-truth-table/main.html" width="100%" height="420px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Derived Gates Summary</p>
 
 | A | B | NAND | NOR | XOR | XNOR |
 |---|---|------|-----|-----|------|
@@ -352,19 +411,32 @@ $$F = \overline{A \oplus B} = AB + \overline{A}\overline{B}$$
 | 1 | 0 | 1 | 0 | 1 | 0 |
 | 1 | 1 | 0 | 0 | 0 | 1 |
 
-### Universal Gates
+</div>
 
-**Universal gates** are gates that can implement any Boolean function using only that gate type. Both NAND and NOR are universal gates. This property is crucial for integrated circuit manufacturing, where using a single gate type simplifies fabrication.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Universal Gates</h3>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Universal gates</strong> are gates that can implement any Boolean function using only that gate type. Both NAND and NOR are universal gates. This property is crucial for integrated circuit manufacturing, where using a single gate type simplifies fabrication.
+</p>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 To implement basic operations using only NAND gates:
+</p>
 
-- NOT: $\overline{A} = \overline{A \cdot A}$ (connect both NAND inputs to A)
-- AND: $A \cdot B = \overline{\overline{A \cdot B}}$ (NAND followed by NAND inverter)
-- OR: $A + B = \overline{\overline{A} \cdot \overline{B}}$ (invert both inputs, then NAND)
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">NAND as Universal Gate</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>NOT:</strong> $\overline{A} = \overline{A \cdot A}$ (connect both NAND inputs to A)</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>AND:</strong> $A \cdot B = \overline{\overline{A \cdot B}}$ (NAND followed by NAND inverter)</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>OR:</strong> $A + B = \overline{\overline{A} \cdot \overline{B}}$ (invert both inputs, then NAND)</li>
+</ul>
+</div>
 
-#### Diagram: Logic Gate Simulator
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Logic Gate Simulator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/logic-gate-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Logic Gate Symbol Reference</summary>
