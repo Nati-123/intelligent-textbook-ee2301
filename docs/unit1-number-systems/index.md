@@ -1136,26 +1136,31 @@ Implementation: vis-network JavaScript library with responsive container
 
 <h2 id="summary-and-key-takeaways" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary and Key Takeaways</h2>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This unit established the mathematical foundation for digital system design through the following key concepts:
 </p>
 
-<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Digital systems</strong> use discrete binary signals (0 and 1) rather than continuous analog values, providing noise immunity and reliable computation.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Positional notation</strong> is the basis for all number systems used in computing. The value of each digit depends on its position and the base of the system.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Four number systems</strong> are commonly used: decimal (base 10) for human readability, binary (base 2) for hardware implementation, octal (base 8) and hexadecimal (base 16) as compact binary representations.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary data units</strong> include bits (1), nibbles (4), bytes (8), and words (32/64), with MSB and LSB identifying the most and least significant positions.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Base conversions</strong> use repeated division (decimal to other bases), positional expansion (other bases to decimal), or direct grouping (binary ↔ octal/hex).</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary arithmetic</strong> follows the same algorithms as decimal but with only two digits. Carries and borrows propagate similarly to decimal.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Signed number representations</strong> include sign-magnitude, one's complement, and two's complement. Two's complement dominates because it has a unique zero and allows addition/subtraction with the same hardware.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Overflow detection</strong> is critical for correct arithmetic. In two's complement, overflow occurs when the carry into the MSB differs from the carry out of the MSB.</li>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Digital systems</strong> use discrete binary signals (0 and 1) rather than continuous analog values, providing noise immunity and reliable computation.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Positional notation</strong> is the basis for all number systems used in computing. The value of each digit depends on its position and the base of the system.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Four number systems</strong> are commonly used: decimal (base 10) for human readability, binary (base 2) for hardware implementation, octal (base 8) and hexadecimal (base 16) as compact binary representations.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Binary data units</strong> include bits (1), nibbles (4), bytes (8), and words (32/64), with MSB and LSB identifying the most and least significant positions.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Base conversions</strong> use repeated division (decimal to other bases), positional expansion (other bases to decimal), or direct grouping (binary ↔ octal/hex).</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Binary arithmetic</strong> follows the same algorithms as decimal but with only two digits. Carries and borrows propagate similarly to decimal.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Signed number representations</strong> include sign-magnitude, one's complement, and two's complement. Two's complement dominates because it has a unique zero and allows addition/subtraction with the same hardware.</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Overflow detection</strong> is critical for correct arithmetic. In two's complement, overflow occurs when the carry into the MSB differs from the carry out of the MSB.</li>
 </ul>
 
-<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<p style="color: #5A3EED; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Self-Check Questions</p>
+</div>
+
+<h3 style="color: #5A3EED !important; font-weight: 600; margin-top: 1.8rem; margin-bottom: 20px;">Self-Check Questions</h3>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 24px 28px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <details style="margin-bottom: 1rem;">
-<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">What is the range of an 8-bit two's complement number?</summary>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer; font-size: 1.02rem;">What is the range of an 8-bit two's complement number?</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
 <p style="color: #333; line-height: 1.75; margin: 0;">
 The range is <span class="arithmatex">\(-128\)</span> to <span class="arithmatex">\(+127\)</span> (i.e., <span class="arithmatex">\(-2^7\)</span> to <span class="arithmatex">\(2^7 - 1\)</span>).
@@ -1164,7 +1169,7 @@ The range is <span class="arithmatex">\(-128\)</span> to <span class="arithmatex
 </details>
 
 <details style="margin-bottom: 1rem;">
-<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Why is two's complement preferred over sign-magnitude?</summary>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer; font-size: 1.02rem;">Why is two's complement preferred over sign-magnitude?</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
 <p style="color: #333; line-height: 1.75; margin: 0;">
 Two's complement has a single representation of zero and allows addition and subtraction to use identical hardware, simplifying processor design.
@@ -1173,7 +1178,7 @@ Two's complement has a single representation of zero and allows addition and sub
 </details>
 
 <details style="margin-bottom: 0;">
-<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Convert $\text{A3}_{16}$ to binary.</summary>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer; font-size: 1.02rem;">Convert <span class="arithmatex">\(\text{A3}_{16}\)</span> to binary.</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
 <p style="color: #333; line-height: 1.75; margin: 0;">
 <span class="arithmatex">\(\text{A} = 1010\)</span>, <span class="arithmatex">\(3 = 0011\)</span>, so <span class="arithmatex">\(\text{A3}_{16} = 10100011_2\)</span>.
