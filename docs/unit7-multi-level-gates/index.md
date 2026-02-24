@@ -1472,98 +1472,74 @@ Transmission gates offer excellent area and power efficiency but can suffer from
 
 <h2 style="color: #5A3EED;">7.15 Technology Mapping</h2>
 
-**Technology mapping** is the process of converting a technology-independent Boolean network into a circuit that uses gates from a specific library (cell library). This step bridges the gap between abstract logic optimization and physical implementation in ASIC and FPGA design.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+**Technology mapping** is the process of converting a technology-independent Boolean network into a circuit that uses gates from a specific library (cell library). This bridges the gap between abstract logic optimization and physical implementation in ASIC and FPGA design.
+
+</div>
 
 ### The Technology Mapping Flow
 
-The overall flow consists of four phases:
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-1. **Decomposition:** Convert the optimized Boolean network into a base representation using only primitive gates (typically NAND2 and INV, or NOR2 and INV)
-2. **Matching:** Identify portions of the decomposed network that correspond to cells available in the target library
-3. **Covering:** Select a minimum-cost set of library cells that implements the entire function
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Four Phases</p>
+
+1. **Decomposition:** Convert the optimized network into primitive gates (typically NAND2 + INV)
+2. **Matching:** Identify portions that correspond to cells in the target library
+3. **Covering:** Select a minimum-cost set of library cells for the entire function
 4. **Optimization:** Iterate to improve area, delay, or power metrics
+
+</div>
 
 ### Decomposition
 
-Any Boolean network can be decomposed into a network of 2-input NAND gates and inverters. This uniform representation enables systematic pattern matching against library cells.
+Any Boolean network can be decomposed into 2-input NAND gates and inverters. This uniform representation enables systematic pattern matching against library cells.
 
-**Example:** Decompose a 3-input AND gate:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-$$ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}} \rightarrow \text{NAND}(\text{NAND}(\text{INV}(\text{NAND}(A,B)), C))$$
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Decompose a 3-Input AND</p>
 
-More practically: $ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}}$, which is INV(NAND(INV(NAND(A,B)), C)) = NAND2 + INV + NAND2 + INV.
+$$ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}}$$
+
+This is: INV(NAND(INV(NAND(A,B)), C)) = **NAND2 + INV + NAND2 + INV**
+
+</div>
 
 ### Library Cells and Cost
 
 A typical standard cell library contains cells ranging from simple inverters to complex gates:
 
-<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Cell</th>
-      <th style="padding: 8px 14px; text-align: left;">Function</th>
-      <th style="padding: 8px 14px; text-align: left;">Area (units)</th>
-      <th style="padding: 8px 14px; text-align: left;">Delay (ps)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">INV</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{A}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">1</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">30</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">50</td>
-    </tr>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{ABC}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">70</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{A+B}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">60</td>
-    </tr>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI21</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB+C}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">65</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI22</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB+CD}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">75</td>
-    </tr>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">OAI21</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{(A+B)C}\)</span></td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">65</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px;">MUX2</td>
-      <td style="padding: 8px 14px;"><span class="arithmatex">\(S?B:A\)</span></td>
-      <td style="padding: 8px 14px;">4</td>
-      <td style="padding: 8px 14px;">80</td>
-    </tr>
-  </tbody>
-</table>
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+| Cell | Function | Area (units) | Delay (ps) |
+|:-----|:---------|:------------:|:----------:|
+| INV | $\overline{A}$ | 1 | 30 |
+| NAND2 | $\overline{AB}$ | 2 | 50 |
+| NAND3 | $\overline{ABC}$ | 3 | 70 |
+| NOR2 | $\overline{A+B}$ | 2 | 60 |
+| AOI21 | $\overline{AB+C}$ | 3 | 65 |
+| AOI22 | $\overline{AB+CD}$ | 4 | 75 |
+| OAI21 | $\overline{(A+B)C}$ | 3 | 65 |
+| MUX2 | $S\text{?}B\text{:}A$ | 4 | 80 |
+
+</div>
 
 ### Covering Algorithm
 
-The covering problem selects library cells to minimize total cost (area, delay, or weighted combination). For tree-structured networks, dynamic programming finds the optimal covering in polynomial time. For DAG (Directed Acyclic Graph) networks with shared nodes, the problem is NP-hard, and heuristic approaches are used.
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<strong>Industry Practice:</strong> Commercial synthesis tools like Synopsys Design Compiler, Cadence Genus, and open-source tools like Yosys and ABC automate technology mapping. Understanding the underlying principles helps designers write better HDL code and interpret synthesis reports.
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Concept</p>
+
+The covering problem selects library cells to minimize total cost (area, delay, or weighted combination). For **tree-structured** networks, dynamic programming finds the optimal covering in polynomial time. For **DAG** networks with shared nodes, the problem is NP-hard and heuristic approaches are used.
+
+</div>
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Industry Practice</p>
+
+Commercial synthesis tools like **Synopsys Design Compiler**, **Cadence Genus**, and open-source tools like **Yosys** and **ABC** automate technology mapping. Understanding the underlying principles helps designers write better HDL code and interpret synthesis reports.
+
 </div>
 
 ---
