@@ -519,33 +519,61 @@ The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natur
 
 Not all circuits fit neatly into two-level AND-OR or OR-AND structures. **Mixed gate conversions** handle circuits that contain a combination of AND, OR, NAND, NOR, and NOT gates, converting them to use a single gate type.
 
-### Cross Conversion: SOP to NOR-Only
+### Cross Conversions
 
-Converting an SOP expression to NOR-only form requires additional levels because the AND-OR structure does not map directly to NOR-NOR. The approach uses De Morgan's theorem to restructure the expression.
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 260px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">SOP → NOR-Only</p>
+
+AND-OR does not map directly to NOR-NOR, so additional levels are needed.
 
 For $F = AB + CD$:
 
-1. Apply De Morgan's to each product term: $AB = \overline{\overline{A} + \overline{B}}$
-2. Substitute: $F = \overline{\overline{A} + \overline{B}} + \overline{\overline{C} + \overline{D}}$
-3. To implement the final OR, apply double inversion: $F = \overline{\overline{\overline{\overline{A} + \overline{B}} + \overline{\overline{C} + \overline{D}}}}$
+1. **De Morgan's on products:** $AB = \overline{\overline{A} + \overline{B}}$
+2. **Substitute:** $F = \overline{\overline{A} + \overline{B}} + \overline{\overline{C} + \overline{D}}$
+3. **Double inversion for OR:** $F = \overline{\overline{\overline{\overline{A} + \overline{B}} + \overline{\overline{C} + \overline{D}}}}$
 
-This requires three levels of NOR gates plus input inverters—significantly more complex than the natural NAND-NAND conversion.
+Requires **3 levels** of NOR gates + input inverters.
 
-### Cross Conversion: POS to NAND-Only
+</div>
+<div markdown style="flex: 1; min-width: 260px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
 
-Similarly, converting a POS expression to NAND-only requires restructuring each sum term using De Morgan's theorem.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">POS → NAND-Only</p>
+
+OR-AND does not map directly to NAND-NAND, so each sum term must be restructured.
 
 For $F = (A+B)(C+D)$:
 
-1. Apply De Morgan's to each sum term: $A+B = \overline{\overline{A} \cdot \overline{B}}$
-2. Substitute: $F = \overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}$
-3. Apply double inversion for the final AND: $F = \overline{\overline{\overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}}}$
+1. **De Morgan's on sums:** $A+B = \overline{\overline{A} \cdot \overline{B}}$
+2. **Substitute:** $F = \overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}$
+3. **Double inversion for AND:** $F = \overline{\overline{\overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}}}$
 
-<div style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+Requires **3 levels** of NAND gates + input inverters.
+
+</div>
+</div>
+
+<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #C62828; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Design Guideline</p>
 
-<p style="color: #333; margin-bottom: 0;">Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters. In practice, it is more efficient to first convert the expression to the form that naturally maps to the target gate type—convert SOP to POS before implementing with NOR gates, or POS to SOP before implementing with NAND gates.</p>
+Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters. In practice, **convert the expression to the form that naturally maps to the target gate type first** — convert SOP to POS before implementing with NOR gates, or POS to SOP before implementing with NAND gates.
+
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight: Natural vs Cross Conversions</p>
+
+| Conversion | Levels | Complexity |
+|:-----------|:------:|:-----------|
+| SOP → NAND-NAND | 2 | Direct — just replace gates |
+| POS → NOR-NOR | 2 | Direct — just replace gates |
+| SOP → NOR-only | 3+ | Cross — requires restructuring with De Morgan's |
+| POS → NAND-only | 3+ | Cross — requires restructuring with De Morgan's |
+
+**Rule of thumb:** Always prefer the *natural* conversion. Cross conversions cost extra gates and delay.
 
 </div>
 
