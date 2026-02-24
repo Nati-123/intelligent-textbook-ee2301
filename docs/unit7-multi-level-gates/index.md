@@ -455,40 +455,61 @@ Converting a two-level OR-AND (POS) circuit to an equivalent NOR-only implementa
 
 ### Conversion Procedure
 
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">POS → NOR-NOR Conversion Steps</p>
+
 1. **Write the POS expression:** $F = (A+B)(C+D)$
 2. **Apply double inversion:** $F = \overline{\overline{(A+B)(C+D)}}$
 3. **Apply De Morgan's theorem:** $F = \overline{\overline{A+B} + \overline{C+D}}$
 4. **Recognize NOR operations:** Each $\overline{X+Y}$ is a NOR, and the outer $\overline{X + Y}$ is also a NOR
 
-The result: $F = (A \text{ NOR } B) \text{ NOR } (C \text{ NOR } D)$
+**Result:** $F = (A \text{ NOR } B) \text{ NOR } (C \text{ NOR } D)$
+
+</div>
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
 
 The general rule: **replace every OR gate and the AND gate with NOR gates.**
 
-**Worked Example:** Convert $F = (A+B)(A'+C)(B+C')$ to NOR-only form.
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Convert F = (A+B)(A'+C)(B+C')</p>
 
 $$F = (A+B)(A'+C)(B+C')$$
+
 $$= \overline{\overline{(A+B)(A'+C)(B+C')}}$$
+
 $$= \overline{\overline{A+B} + \overline{A'+C} + \overline{B+C'}}$$
 
 Three first-level NOR gates feed one second-level NOR gate. The complemented variables $A'$ and $C'$ are generated using NOR-as-inverter gates.
 
+</div>
+
 ### Conversion Summary Table
 
-<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
-<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Original Form</th><th style="padding: 8px 14px;">Target Form</th><th style="padding: 8px 14px;">Conversion Rule</th><th style="padding: 8px 14px;">Added Inverters</th></tr></thead>
-<tbody>
-<tr style="background: #E7F7E7;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP (AND-OR)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND-NAND</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Replace all gates with NAND</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">For single-literal terms</td></tr>
-<tr style="background: #E7F7E7;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">POS (OR-AND)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR-NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Replace all gates with NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">For single-literal terms</td></tr>
-<tr style="background: #FFEBEE;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP (AND-OR)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR-NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">More complex, requires added levels</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Multiple</td></tr>
-<tr style="background: #FFEBEE;"><td style="padding: 8px 14px; font-weight: 600;">POS (OR-AND)</td><td style="padding: 8px 14px;">NAND-NAND</td><td style="padding: 8px 14px;">More complex, requires added levels</td><td style="padding: 8px 14px;">Multiple</td></tr>
-</tbody>
-</table>
+<div markdown style="background: #f9f9ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">All Two-Level Conversions</p>
 
-<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Natural vs. Cross Conversions</p>
+| Original Form | Target Form | Conversion Rule | Type |
+|---|---|---|---|
+| SOP (AND-OR) | NAND-NAND | Replace all gates with NAND | **Natural** |
+| POS (OR-AND) | NOR-NOR | Replace all gates with NOR | **Natural** |
+| SOP (AND-OR) | NOR-NOR | Requires added levels + inverters | Cross |
+| POS (OR-AND) | NAND-NAND | Requires added levels + inverters | Cross |
 
-<p style="color: #333; margin-bottom: 0;">The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natural conversions</span>) are straightforward. The latter two (<span style="color: #C62828; font-weight: 600;">cross conversions</span>) are more involved because the circuit structure does not align naturally with the target gate type.</p>
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">Natural vs. Cross Conversions</p>
+
+The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natural conversions</span>) are straightforward — the circuit structure directly maps to the target gate type. The latter two (<span style="color: #C62828; font-weight: 600;">cross conversions</span>) are more involved because the structure does not align naturally, requiring extra gate levels and inverters.
 
 </div>
 
