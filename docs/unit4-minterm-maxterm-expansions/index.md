@@ -556,7 +556,7 @@ F &= (A+B)(A+C) \\[8pt]
 
 #### Diagram: SOP-POS Converter
 
-<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="900px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>SOP-POS Converter</summary>
