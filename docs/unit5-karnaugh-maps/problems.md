@@ -5,602 +5,752 @@ description: Practice problems for K-map simplification and prime implicants
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Karnaugh Maps
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Karnaugh Maps</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to master K-map simplification techniques.
+</p>
 
 ---
 
-## Section A: 2 and 3-Variable K-Maps (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: 2 and 3-Variable K-Maps (5 problems)</h2>
 
-### Problem 1
-Simplify using a 2-variable K-map: F(A, B) = Σm(0, 1, 2)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
 
-**Solution:** ```
-    B=0  B=1
-A=0  1    1
-A=1  1    0
-```
+Simplify using a 2-variable K-map: $F(A, B) = \Sigma m(0, 1, 2)$
 
-Groups:
-- Top row (A=0): m0, m1 → A'
-- Left column (B=0): m0, m2 → B'
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-**F = A' + B'**
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">B=0</th><th style="padding: 4px 10px;">B=1</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
----
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">Top row (A=0): m0, m1 &rarr; A'</li>
+<li style="color: #333; line-height: 1.85;">Left column (B=0): m0, m2 &rarr; B'</li>
+</ul>
 
-### Problem 2
-Simplify: F(A, B, C) = Σm(0, 2, 4, 6)
-
-**Solution:** ```
-      BC
-     00  01  11  10
-A=0   1   0   0   1
-A=1   1   0   0   1
-```
-
-Group all 1s in columns BC=00 and BC=10 (both columns where C=0):
-
-**F = C'**
+<p style="color: #2E7D32; font-weight: 700;">F = A' + B'</p>
+</div>
+</details>
 
 ---
 
-### Problem 3
-Simplify: F(A, B, C) = Σm(1, 3, 4, 5, 6, 7)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 
-**Solution:** ```
-      BC
-     00  01  11  10
-A=0   0   1   1   0
-A=1   1   1   1   1
-```
+Simplify: $F(A, B, C) = \Sigma m(0, 2, 4, 6)$
 
-Groups:
-- Entire A=1 row: m4, m5, m7, m6 → A
-- Column BC=01, BC=11 (C=1): m1, m3, m5, m7 → C
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-**F = A + C**
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
----
+<p style="color: #333; line-height: 1.85;">Group all 1s in columns BC=00 and BC=10 (both columns where C=0):</p>
 
-### Problem 4
-Simplify: F(A, B, C) = Σm(0, 1, 2, 5, 6, 7)
-
-**Solution:** ```
-      BC
-     00  01  11  10
-A=0   1   1   0   1
-A=1   0   1   1   1
-```
-
-Groups:
-- m0, m1, m2: A'B' + A'C' ... let me regroup
-- m0, m2 (wrap): A'C'
-- m1, m5: B'C
-- m5, m7: AC
-- m6, m7: AB
-
-Better grouping:
-- m0, m1: A'B'
-- m0, m2: A'C'
-- m5, m7: AC
-- m6, m7: AB
-- m1, m5: B'C
-
-Minimal: **F = A'B' + AC + AB + B'C**
-
-Or: **F = A'B' + A'C' + AB + B'C**
+<p style="color: #2E7D32; font-weight: 700;">F = C'</p>
+</div>
+</details>
 
 ---
 
-### Problem 5
-Find all prime implicants for: F(A, B, C) = Σm(0, 1, 3, 5, 7)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 
-**Solution:** ```
-      BC
-     00  01  11  10
-A=0   1   1   1   0
-A=1   0   1   1   0
-```
+Simplify: $F(A, B, C) = \Sigma m(1, 3, 4, 5, 6, 7)$
 
-Prime implicants:
-- m0, m1 → A'B' (cannot expand)
-- m1, m3, m5, m7 → C (largest group)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-Essential PI: C covers m3, m5, m7 uniquely
-A'B' covers m0 uniquely
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
-**Prime Implicants: A'B', C**
-**Minimum cover: F = A'B' + C**
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">Entire A=1 row: m4, m5, m7, m6 &rarr; A</li>
+<li style="color: #333; line-height: 1.85;">Column BC=01, BC=11 (C=1): m1, m3, m5, m7 &rarr; C</li>
+</ul>
 
----
-
-## Section B: 4-Variable K-Maps (6 problems)
-
-### Problem 6
-Simplify: F(A, B, C, D) = Σm(0, 1, 2, 3, 4, 5, 6, 7)
-
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  1   1   1   1
-AB=01  1   1   1   1
-AB=11  0   0   0   0
-AB=10  0   0   0   0
-```
-
-All 1s are in the top two rows where A=0.
-
-**F = A'**
+<p style="color: #2E7D32; font-weight: 700;">F = A + C</p>
+</div>
+</details>
 
 ---
 
-### Problem 7
-Simplify: F(A, B, C, D) = Σm(0, 2, 8, 10, 5, 7, 13, 15)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  1   0   0   1
-AB=01  0   1   1   0
-AB=11  0   1   1   0
-AB=10  1   0   0   1
-```
+Simplify: $F(A, B, C) = \Sigma m(0, 1, 2, 5, 6, 7)$
 
-Groups:
-- Four corners (m0, m2, m8, m10): B'D'
-- m5, m7, m13, m15: BD
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-**F = B'D' + BD**
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
-Simplified: **F = B ⊙ D** (XNOR)
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m0, m1: A'B'</li>
+<li style="color: #333; line-height: 1.85;">m0, m2 (wrap): A'C'</li>
+<li style="color: #333; line-height: 1.85;">m5, m7: AC</li>
+<li style="color: #333; line-height: 1.85;">m6, m7: AB</li>
+<li style="color: #333; line-height: 1.85;">m1, m5: B'C</li>
+</ul>
 
----
-
-### Problem 8
-Simplify: F(A, B, C, D) = Σm(1, 3, 5, 7, 9, 11, 12, 14)
-
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  0   1   1   0
-AB=01  0   1   1   0
-AB=11  1   0   0   1
-AB=10  0   1   1   0
-```
-
-Groups:
-- m1, m3, m5, m7, m9, m11 → where D=1 and AB≠11
-- m12, m14 → ABC'
-
-Actually: Let me recheck:
-- m1, m3, m5, m7: A'D
-- m9, m11: AB'D
-- m12, m14: ABD'
-
-**F = A'D + AB'D + ABD' = A'D + AD ⊕ B**
-
-Simplified: **F = A'D + AB'D + ABD'**
+<p style="color: #333; line-height: 1.85;">Minimal:</p>
+<p style="color: #2E7D32; font-weight: 700;">F = A'B' + AC + AB + B'C</p>
+<p style="color: #333; line-height: 1.85; margin-bottom: 0;">Or: <strong>F = A'B' + A'C' + AB + B'C</strong></p>
+</div>
+</details>
 
 ---
 
-### Problem 9
-Simplify using K-map: F(A, B, C, D) = Σm(0, 4, 5, 7, 8, 9, 13, 15)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  1   0   0   0
-AB=01  1   1   1   0
-AB=11  0   1   1   0
-AB=10  1   1   0   0
-```
+Find all prime implicants for: $F(A, B, C) = \Sigma m(0, 1, 3, 5, 7)$
 
-Groups:
-- m0, m4, m8: ... wait, not adjacent
-- m0, m4: A'C'D'
-- m4, m5: A'BC'
-- m5, m7, m13, m15: BD
-- m8, m9: AB'C'
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-Let me regroup:
-- m5, m7, m13, m15 → BD (4 cells)
-- m0, m4 → A'C'D'
-- m8, m9 → AB'C'
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
-**F = BD + A'C'D' + AB'C'**
+<p style="color: #333; line-height: 1.85;">Prime implicants:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m0, m1 &rarr; A'B' (cannot expand)</li>
+<li style="color: #333; line-height: 1.85;">m1, m3, m5, m7 &rarr; C (largest group)</li>
+</ul>
 
----
+<p style="color: #333; line-height: 1.85;">Essential PI: C covers m3, m5, m7 uniquely. A'B' covers m0 uniquely.</p>
 
-### Problem 10
-Find minimum SOP and POS for: F = Σm(0, 1, 4, 5, 11, 14, 15)
-
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  1   1   0   0
-AB=01  1   1   0   0
-AB=11  0   0   1   1
-AB=10  0   0   1   0
-```
-
-**SOP:**
-- m0, m1, m4, m5 → A'C'
-- m11, m15 → ACD
-- m14, m15 → ABD'... wait m14=1110, m15=1111
-
-Groups:
-- m0, m1, m4, m5 → A'C'
-- m14, m15 → ABC
-- m11, m15 → ACD
-
-Minimal: **F = A'C' + ABC + ACD**
-
-**POS:** F' = Σm(2, 3, 6, 7, 8, 9, 10, 12, 13)
-Then F = (F')'
-
-**F = A'C' + AB(C + D) = A'C' + ABC + ABD**
+<p style="color: #333; line-height: 1.85;"><strong>Prime Implicants: A'B', C</strong></p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Minimum cover: F = A'B' + C</p>
+</div>
+</details>
 
 ---
 
-### Problem 11
-Identify all prime implicants for: F = Σm(0, 2, 3, 4, 7, 8, 10, 11, 15)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: 4-Variable K-Maps (6 problems)</h2>
 
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  1   0   1   1
-AB=01  1   0   1   0
-AB=11  0   0   1   0
-AB=10  1   0   1   1
-```
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
 
-Prime implicants:
-- m0, m2, m8, m10 → B'D' (4 cells)
-- m2, m3 → A'B'C
-- m4, m0: C'D' ... only m0, m4 → A'C'D'
-- m3, m7 → A'CD
-- m7, m15 → BCD
-- m10, m11 → AB'C
-- m11, m15 → ACD
+Simplify: $F(A, B, C, D) = \Sigma m(0, 1, 2, 3, 4, 5, 6, 7)$
 
-**Prime Implicants:**
-- B'D' (essential, covers m0, m8)
-- A'B'C (covers m2, m3)
-- A'CD (covers m3, m7)
-- BCD (covers m7, m15)
-- AB'C (essential, covers m10, m11)
-- ACD (covers m11, m15)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-**Essential PIs: B'D', AB'C**
-Need to cover m3, m4, m7, m15
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
-Minimum: **F = B'D' + AB'C + A'CD + BCD**
+<p style="color: #333; line-height: 1.85;">All 1s are in the top two rows where A=0.</p>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F = A'</p>
+</div>
+</details>
 
 ---
 
-## Section C: Don't Care Conditions (4 problems)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 
-### Problem 12
-Simplify: F = Σm(1, 3, 5, 7, 9) + Σd(6, 12, 13)
+Simplify: $F(A, B, C, D) = \Sigma m(0, 2, 8, 10, 5, 7, 13, 15)$
 
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  0   1   1   0
-AB=01  0   1   1   X
-AB=11  X   X   0   0
-AB=10  0   1   0   0
-```
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-Use don't cares to enlarge groups:
-- m1, m3, m5, m7 → A'D
-- m9 alone or... m9, m13(d) → AB'D
-- Or use d6 with m7: doesn't help much
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
-Using d13: m9, m13 → B'CD... wait that's not right
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">Four corners (m0, m2, m8, m10): B'D'</li>
+<li style="color: #333; line-height: 1.85;">m5, m7, m13, m15: BD</li>
+</ul>
 
-Best: m1, m3, m5, m7 (group of 4) → A'D
-m9 with d13 → B'C'D (if we include them)
-
-Actually: m1, m3, m5, m7, m9 and using d13:
-- m1, m3, m5, m7 → A'D
-- m9 → AB'C'D
-
-**F = A'D + AB'C'D = D(A' + AB'C') = D(A' + B'C')**
-
-Simplified: **F = A'D + B'C'D**
+<p style="color: #2E7D32; font-weight: 700;">F = B'D' + BD</p>
+<p style="color: #333; line-height: 1.85; margin-bottom: 0;">Simplified: <strong>F = B &odot; D</strong> (XNOR)</p>
+</div>
+</details>
 
 ---
 
-### Problem 13
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
+
+Simplify: $F(A, B, C, D) = \Sigma m(1, 3, 5, 7, 9, 11, 12, 14)$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m1, m3, m5, m7: A'D</li>
+<li style="color: #333; line-height: 1.85;">m9, m11: AB'D</li>
+<li style="color: #333; line-height: 1.85;">m12, m14: ABD'</li>
+</ul>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F = A'D + AB'D + ABD'</p>
+</div>
+</details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
+
+Simplify using K-map: $F(A, B, C, D) = \Sigma m(0, 4, 5, 7, 8, 9, 13, 15)$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;">Groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m5, m7, m13, m15 &rarr; BD (4 cells)</li>
+<li style="color: #333; line-height: 1.85;">m0, m4 &rarr; A'C'D'</li>
+<li style="color: #333; line-height: 1.85;">m8, m9 &rarr; AB'C'</li>
+</ul>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F = BD + A'C'D' + AB'C'</p>
+</div>
+</details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
+
+Find minimum SOP and POS for: $F = \Sigma m(0, 1, 4, 5, 11, 14, 15)$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;"><strong>SOP:</strong></p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m0, m1, m4, m5 &rarr; A'C'</li>
+<li style="color: #333; line-height: 1.85;">m14, m15 &rarr; ABC</li>
+<li style="color: #333; line-height: 1.85;">m11, m15 &rarr; ACD</li>
+</ul>
+
+<p style="color: #2E7D32; font-weight: 700;">Minimal SOP: F = A'C' + ABC + ACD</p>
+
+<p style="color: #333; line-height: 1.85;"><strong>POS:</strong> F' = &Sigma;m(2, 3, 6, 7, 8, 9, 10, 12, 13). Then F = (F')'</p>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F = A'C' + ABC + ABD</p>
+</div>
+</details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
+
+Identify all prime implicants for: $F = \Sigma m(0, 2, 3, 4, 7, 8, 10, 11, 15)$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;"><strong>Prime Implicants:</strong></p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m0, m2, m8, m10 &rarr; <strong>B'D'</strong> (4 cells)</li>
+<li style="color: #333; line-height: 1.85;">m2, m3 &rarr; <strong>A'B'C</strong></li>
+<li style="color: #333; line-height: 1.85;">m3, m7 &rarr; <strong>A'CD</strong></li>
+<li style="color: #333; line-height: 1.85;">m7, m15 &rarr; <strong>BCD</strong></li>
+<li style="color: #333; line-height: 1.85;">m10, m11 &rarr; <strong>AB'C</strong></li>
+<li style="color: #333; line-height: 1.85;">m11, m15 &rarr; <strong>ACD</strong></li>
+</ul>
+
+<p style="color: #333; line-height: 1.85;"><strong>Essential PIs:</strong> B'D' (essential, covers m0, m8) and AB'C (essential, covers m10, m11)</p>
+<p style="color: #333; line-height: 1.85;">Need to cover m3, m4, m7, m15</p>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Minimum: F = B'D' + AB'C + A'CD + BCD</p>
+</div>
+</details>
+
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: Don't Care Conditions (4 problems)</h2>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
+
+Simplify: $F = \Sigma m(1, 3, 5, 7, 9) + \Sigma d(6, 12, 13)$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;">Use don't cares to enlarge groups:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m1, m3, m5, m7 (group of 4) &rarr; A'D</li>
+<li style="color: #333; line-height: 1.85;">m9 &rarr; AB'C'D</li>
+</ul>
+
+<p style="color: #333; line-height: 1.85;">F = A'D + AB'C'D = D(A' + AB'C') = D(A' + B'C')</p>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Simplified: F = A'D + B'C'D</p>
+</div>
+</details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
+
 Design a BCD-to-Excess-3 code converter. Use don't cares for invalid BCD inputs (10-15).
 
-**Solution:** BCD input: ABCD (0-9 valid)
-Excess-3 output: WXYZ = BCD + 3
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">BCD input: ABCD (0&ndash;9 valid). Excess-3 output: WXYZ = BCD + 3</p>
 
-| BCD | WXYZ |
-|-----|------|
-| 0000 | 0011 |
-| 0001 | 0100 |
-| 0010 | 0101 |
-| 0011 | 0110 |
-| 0100 | 0111 |
-| 0101 | 1000 |
-| 0110 | 1001 |
-| 0111 | 1010 |
-| 1000 | 1011 |
-| 1001 | 1100 |
-| 1010-1111 | don't care |
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;">BCD</th><th style="padding: 4px 10px;">WXYZ</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px;">0000</td><td style="padding: 3px 10px;">0011</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">0001</td><td style="padding: 3px 10px;">0100</td></tr>
+<tr><td style="padding: 3px 10px;">0010</td><td style="padding: 3px 10px;">0101</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">0011</td><td style="padding: 3px 10px;">0110</td></tr>
+<tr><td style="padding: 3px 10px;">0100</td><td style="padding: 3px 10px;">0111</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">0101</td><td style="padding: 3px 10px;">1000</td></tr>
+<tr><td style="padding: 3px 10px;">0110</td><td style="padding: 3px 10px;">1001</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">0111</td><td style="padding: 3px 10px;">1010</td></tr>
+<tr><td style="padding: 3px 10px;">1000</td><td style="padding: 3px 10px;">1011</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">1001</td><td style="padding: 3px 10px;">1100</td></tr>
+<tr><td style="padding: 3px 10px;">1010&ndash;1111</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">don't care</td></tr>
+</tbody>
+</table>
 
-K-maps for each output (with don't cares at 10-15):
+<p style="color: #333; line-height: 1.85;">K-maps for each output (with don't cares at 10&ndash;15):</p>
 
-**W = A + BC + BD** (using don't cares)
-**X = B'C + B'D + BC'D'**
-**Y = CD + C'D'**
-**Z = D'**
+<p style="color: #2E7D32; font-weight: 700;">W = A + BC + BD</p>
+<p style="color: #2E7D32; font-weight: 700;">X = B'C + B'D + BC'D'</p>
+<p style="color: #2E7D32; font-weight: 700;">Y = CD + C'D'</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Z = D'</p>
+</div>
+</details>
 
 ---
 
-### Problem 14
-F(A,B,C,D) = Σm(2, 4, 6, 8, 10, 12) + Σd(0, 7, 15)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
+
+$F(A,B,C,D) = \Sigma m(2, 4, 6, 8, 10, 12) + \Sigma d(0, 7, 15)$
 
 Find minimum SOP expression.
 
-**Solution:** ```
-       CD
-      00  01  11  10
-AB=00  X   0   0   1
-AB=01  1   0   X   1
-AB=11  1   0   X   0
-AB=10  1   0   0   1
-```
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">K-map:</p>
 
-Using don't cares:
-- m2, m6, m10, (d0 if needed) → D'... not quite
-- m2, m6 and m10, with corners
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
-Groups:
-- m0(d), m2, m4, m6 → A'D'
-- m4, m6, m12, (need m14 but it's 0)
-- m8, m10, m12... not all adjacent
-- m2, m6, m10 → B'CD'... wait
+<p style="color: #333; line-height: 1.85;">Using don't cares:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">Using d0: m0, m2, m8, m10 &rarr; B'D'</li>
+<li style="color: #333; line-height: 1.85;">m4, m6, m12: m4, m12 &rarr; BC'D', m4, m6 &rarr; A'BD'</li>
+</ul>
 
-Let me reconsider:
-- Column CD=10: m2, m6, m10 + can use d0 → C'D' covering (0,2,8,10)
+<p style="color: #333; line-height: 1.85;">F = B'D' + BC'D' + A'BD' (using don't cares optimally)</p>
 
-Using d0: m0, m2, m8, m10 → B'D'
-m4, m6, m12: m4, m12 → BC'D', m6 alone? m4,m6 → A'BD'
+<p style="color: #333; line-height: 1.85;">Or simpler: check if D' covers all. D'=1 means D=0, positions: 0, 2, 4, 6, 8, 10, 12, 14. Our function: 2, 4, 6, 8, 10, 12 + d(0) &mdash; all have D=0.</p>
 
-**F = B'D' + BC'D' + A'BD'** (using don't cares optimally)
-
-Or simpler: **F = D'(B' + A'B + BC') = D'** if we can cover all with D'
-Check: D'=1 means D=0, positions: 0,2,4,6,8,10,12,14
-Our function: 2,4,6,8,10,12 + d(0) - all have D=0
-
-**F = D'** (with don't care at m0 treated as 1)
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F = D' (with don't care at m0 treated as 1)</p>
+</div>
+</details>
 
 ---
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
+
 In a BCD system, design a circuit that outputs 1 for prime numbers (2, 3, 5, 7).
 
-**Solution:** Input: ABCD (BCD digit 0-9)
-Output: P = 1 for primes 2, 3, 5, 7
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">Input: ABCD (BCD digit 0&ndash;9). Output: P = 1 for primes 2, 3, 5, 7</p>
 
-| Decimal | ABCD | P |
-|---------|------|---|
-| 0 | 0000 | 0 |
-| 1 | 0001 | 0 |
-| 2 | 0010 | 1 |
-| 3 | 0011 | 1 |
-| 4 | 0100 | 0 |
-| 5 | 0101 | 1 |
-| 6 | 0110 | 0 |
-| 7 | 0111 | 1 |
-| 8 | 1000 | 0 |
-| 9 | 1001 | 0 |
-| 10-15 | X | d |
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;">Decimal</th><th style="padding: 4px 10px;">ABCD</th><th style="padding: 4px 10px;">P</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0000</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">1</td><td style="padding: 3px 10px;">0001</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px;">2</td><td style="padding: 3px 10px;">0010</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">3</td><td style="padding: 3px 10px;">0011</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr><td style="padding: 3px 10px;">4</td><td style="padding: 3px 10px;">0100</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">5</td><td style="padding: 3px 10px;">0101</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr><td style="padding: 3px 10px;">6</td><td style="padding: 3px 10px;">0110</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">7</td><td style="padding: 3px 10px;">0111</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr><td style="padding: 3px 10px;">8</td><td style="padding: 3px 10px;">1000</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px;">9</td><td style="padding: 3px 10px;">1001</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px;">10&ndash;15</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">X</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td></tr>
+</tbody>
+</table>
 
-P = Σm(2, 3, 5, 7) + Σd(10-15)
+<p style="color: #333; line-height: 1.85;">P = &Sigma;m(2, 3, 5, 7) + &Sigma;d(10&ndash;15)</p>
 
-K-map with don't cares at 10-15:
-```
-       CD
-      00  01  11  10
-AB=00  0   0   1   1
-AB=01  0   1   1   0
-AB=11  d   d   d   d
-AB=10  0   0   d   d
-```
+<p style="color: #333; line-height: 1.85;">K-map with don't cares at 10&ndash;15:</p>
 
-Groups:
-- m2, m3 → A'B'C
-- m3, m7 → A'CD
-- m5, m7 → A'BD
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td><td style="padding: 3px 10px; color: #B8860B; font-weight: 700;">d</td></tr>
+</tbody>
+</table>
 
-Using don't cares:
-- m2, m3, d10, d11 → B'C
-- m5, m7, d13, d15 → BD
+<p style="color: #333; line-height: 1.85;">Groups (using don't cares):</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">m2, m3, d10, d11 &rarr; B'C</li>
+<li style="color: #333; line-height: 1.85;">m5, m7, d13, d15 &rarr; BD</li>
+</ul>
 
-**P = B'C + BD**
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">P = B'C + BD</p>
+</div>
+</details>
 
 ---
 
-## Section D: Multiple Output Functions (3 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Multiple Output Functions (3 problems)</h2>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
+
 Design minimum circuits for:
-F1 = Σm(0, 2, 3, 4, 5)
-F2 = Σm(0, 2, 3, 5, 6, 7)
+
+- $F_1 = \Sigma m(0, 2, 3, 4, 5)$
+- $F_2 = \Sigma m(0, 2, 3, 5, 6, 7)$
 
 Share common terms where possible.
 
-**Solution:** For 3 variables A, B, C:
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">For 3 variables A, B, C:</p>
 
-F1 K-map:
-```
-      BC
-     00  01  11  10
-A=0   1   0   1   1
-A=1   1   1   0   0
-```
-F1 = A'B' + A'C + AB'C' = A'B' + AC' + A'C... let me redo
+<p style="color: #333; line-height: 1.85;"><strong>F1 K-map:</strong></p>
 
-F1 = m0, m2, m3, m4, m5
-- m0, m2: A'C'
-- m2, m3: A'B
-- m4, m5: AB'
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
-F1 = A'C' + A'B + AB'... simplify: A'C' + AB' + A'B
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">F1 = m0, m2, m3, m4, m5</li>
+<li style="color: #333; line-height: 1.85;">m0, m2: A'C'</li>
+<li style="color: #333; line-height: 1.85;">m2, m3: A'B</li>
+<li style="color: #333; line-height: 1.85;">m4, m5: AB'</li>
+</ul>
 
-F2 K-map:
-```
-      BC
-     00  01  11  10
-A=0   1   0   1   1
-A=1   0   1   1   1
-```
-F2 = m0, m2, m3, m5, m6, m7
-- m0, m2: A'C'
-- m2, m3, m6, m7: B
-- m5, m7: AC
+<p style="color: #2E7D32; font-weight: 700;">F1 = A'C' + A'B + AB'</p>
 
-F2 = A'C' + B
+<p style="color: #333; line-height: 1.85;"><strong>F2 K-map:</strong></p>
 
-**Shared term: A'C'**
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
 
-**F1 = A'C' + AB' + A'B**
-**F2 = A'C' + B**
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">F2 = m0, m2, m3, m5, m6, m7</li>
+<li style="color: #333; line-height: 1.85;">m0, m2: A'C'</li>
+<li style="color: #333; line-height: 1.85;">m2, m3, m6, m7: B</li>
+<li style="color: #333; line-height: 1.85;">m5, m7: AC</li>
+</ul>
 
----
+<p style="color: #2E7D32; font-weight: 700;">F2 = A'C' + B</p>
 
-### Problem 17
-Given F1 = Σm(0, 1, 3, 7) and F2 = Σm(1, 3, 6, 7), find F1 · F2 and F1 + F2 using K-maps.
-
-**Solution:** **F1 · F2 (AND):** Intersection of 1s
-F1 has 1s at: 0, 1, 3, 7
-F2 has 1s at: 1, 3, 6, 7
-Common: **1, 3, 7**
-
-F1·F2 = Σm(1, 3, 7) = A'B'C + A'BC + ABC = A'C + ABC = **C(A' + AB) = C(A' + B)**
-
-**F1 + F2 (OR):** Union of 1s
-Combined: **0, 1, 3, 6, 7**
-
-F1+F2 = Σm(0, 1, 3, 6, 7)
-K-map:
-```
-      BC
-     00  01  11  10
-A=0   1   1   1   0
-A=1   0   0   1   1
-```
-
-F1+F2 = A'B' + BC + AC = **A'B' + BC + AC**
+<p style="color: #333; line-height: 1.85; margin-bottom: 0;"><strong>Shared term: A'C'</strong></p>
+</div>
+</details>
 
 ---
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
+
+Given $F_1 = \Sigma m(0, 1, 3, 7)$ and $F_2 = \Sigma m(1, 3, 6, 7)$, find $F_1 \cdot F_2$ and $F_1 + F_2$ using K-maps.
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;"><strong>F1 &middot; F2 (AND):</strong> Intersection of 1s</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">F1 has 1s at: 0, 1, 3, 7</li>
+<li style="color: #333; line-height: 1.85;">F2 has 1s at: 1, 3, 6, 7</li>
+<li style="color: #333; line-height: 1.85;">Common: <strong>1, 3, 7</strong></li>
+</ul>
+
+<p style="color: #333; line-height: 1.85;">F1&middot;F2 = &Sigma;m(1, 3, 7) = A'B'C + A'BC + ABC</p>
+<p style="color: #2E7D32; font-weight: 700;">F1 &middot; F2 = C(A' + AB) = C(A' + B)</p>
+
+<p style="color: #333; line-height: 1.85;"><strong>F1 + F2 (OR):</strong> Union of 1s</p>
+<p style="color: #333; line-height: 1.85;">Combined: <strong>0, 1, 3, 6, 7</strong></p>
+
+<p style="color: #333; line-height: 1.85;">F1+F2 = &Sigma;m(0, 1, 3, 6, 7) K-map:</p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
+
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">F1 + F2 = A'B' + BC + AC</p>
+</div>
+</details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
+
 Design a circuit with two outputs:
-- SUM = A ⊕ B ⊕ C
+
+- SUM = A &oplus; B &oplus; C
 - CARRY = AB + BC + AC
 
 Identify any common sub-expressions.
 
-**Solution:** This is a full adder!
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">This is a <strong>full adder</strong>!</p>
 
-**SUM K-map:**
-```
-      BC
-     00  01  11  10
-A=0   0   1   0   1
-A=1   1   0   1   0
-```
-SUM = A'B'C + A'BC' + AB'C' + ABC (no simplification)
-**SUM = A ⊕ B ⊕ C**
+<p style="color: #333; line-height: 1.85;"><strong>SUM K-map:</strong></p>
 
-**CARRY K-map:**
-```
-      BC
-     00  01  11  10
-A=0   0   0   1   0
-A=1   0   1   1   1
-```
-CARRY = BC + AC + AB (majority function)
-**CARRY = AB + BC + AC**
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
-**Common sub-expression:** A ⊕ B can be used:
-- SUM = (A ⊕ B) ⊕ C
-- CARRY = AB + C(A ⊕ B)
+<p style="color: #333; line-height: 1.85;">SUM = A'B'C + A'BC' + AB'C' + ABC (no simplification)</p>
+<p style="color: #2E7D32; font-weight: 700;">SUM = A &oplus; B &oplus; C</p>
 
-This is the standard half-adder cascade implementation.
+<p style="color: #333; line-height: 1.85;"><strong>CARRY K-map:</strong></p>
+
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">BC=00</th><th style="padding: 4px 10px;">BC=01</th><th style="padding: 4px 10px;">BC=11</th><th style="padding: 4px 10px;">BC=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">A=0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">A=1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; line-height: 1.85;">CARRY = BC + AC + AB (majority function)</p>
+<p style="color: #2E7D32; font-weight: 700;">CARRY = AB + BC + AC</p>
+
+<p style="color: #333; line-height: 1.85;"><strong>Common sub-expression:</strong> A &oplus; B can be used:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">SUM = (A &oplus; B) &oplus; C</li>
+<li style="color: #333; line-height: 1.85;">CARRY = AB + C(A &oplus; B)</li>
+</ul>
+
+<p style="color: #333; line-height: 1.85; margin-bottom: 0;">This is the standard half-adder cascade implementation.</p>
+</div>
+</details>
 
 ---
 
-## Section E: Application Problems (2 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Application Problems (2 problems)</h2>
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
+
 A security system has 4 sensors (A, B, C, D). The alarm should sound when:
+
 - At least 2 sensors are triggered, OR
 - Sensor A is triggered (critical area)
 
 Design using K-map.
 
-**Solution:** Alarm = A + (at least 2 of B, C, D triggered)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">Alarm = A + (at least 2 of B, C, D triggered)</p>
 
-"At least 2" means majority or more:
-- BC, BD, CD, BCD
+<p style="color: #333; line-height: 1.85;">"At least 2" means majority or more: BC, BD, CD, BCD</p>
 
-F = A + BC + BD + CD
+<p style="color: #333; line-height: 1.85;">F = A + BC + BD + CD</p>
 
-Let's verify with K-map (considering A separately):
-When A=1: F=1 always (8 minterms)
-When A=0: F=1 when BC + BD + CD
-- BC: m3, m7 → with A=0: just m3, m7... wait, indices:
+<p style="color: #333; line-height: 1.85;">Verification with K-map (considering A separately):</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">When A=1: F=1 always (8 minterms)</li>
+<li style="color: #333; line-height: 1.85;">When A=0: F=1 when BC + BD + CD</li>
+</ul>
 
-Actually for 4 variables ABCD:
-F = A + BC + BD + CD
+<p style="color: #333; line-height: 1.85;">For 4 variables ABCD:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0.3rem 0 0.8rem 0;">
+<li style="color: #333; line-height: 1.85;">Minterms: all with A=1 (8&ndash;15), plus those with 2+ of BCD:</li>
+<li style="color: #333; line-height: 1.85; padding-left: 1.2rem;">m3 (0011): BC</li>
+<li style="color: #333; line-height: 1.85; padding-left: 1.2rem;">m5 (0101): BD</li>
+<li style="color: #333; line-height: 1.85; padding-left: 1.2rem;">m6 (0110): CD</li>
+<li style="color: #333; line-height: 1.85; padding-left: 1.2rem;">m7 (0111): BCD</li>
+</ul>
 
-Minterms: all with A=1 (8-15), plus those with 2+ of BCD:
-- m3 (0011): BC
-- m5 (0101): BD
-- m6 (0110): CD
-- m7 (0111): BCD
+<p style="color: #333; line-height: 1.85;">F = &Sigma;m(3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)</p>
 
-F = Σm(3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
-
-Simplified: **F = A + BC + BD + CD**
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Simplified: F = A + BC + BD + CD</p>
+</div>
+</details>
 
 ---
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
+
 Design a combinational lock that opens when the 4-bit input equals either 1001 or 1100.
 
-**Solution:** F = 1 when ABCD = 1001 OR ABCD = 1100
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">F = 1 when ABCD = 1001 OR ABCD = 1100</p>
 
-Minterms: m9 (1001) and m12 (1100)
+<p style="color: #333; line-height: 1.85;">Minterms: m9 (1001) and m12 (1100)</p>
 
-K-map:
-```
-       CD
-      00  01  11  10
-AB=00  0   0   0   0
-AB=01  0   0   0   0
-AB=11  1   0   0   0
-AB=10  0   1   0   0
-```
+<p style="color: #333; line-height: 1.85;">K-map:</p>
 
-No simplification possible (cells not adjacent).
+<table style="font-size: 0.82rem; margin: 0.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 10px;"></th><th style="padding: 4px 10px;">CD=00</th><th style="padding: 4px 10px;">CD=01</th><th style="padding: 4px 10px;">CD=11</th><th style="padding: 4px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=00</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=01</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr><td style="padding: 3px 10px; font-weight: 700;">AB=11</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+<tr style="background: #f4fff4;"><td style="padding: 3px 10px; font-weight: 700;">AB=10</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px; color: #2E7D32; font-weight: 700;">1</td><td style="padding: 3px 10px;">0</td><td style="padding: 3px 10px;">0</td></tr>
+</tbody>
+</table>
 
-**F = ABC'D' + AB'C'D = AB'C'D + ABC'D'**
+<p style="color: #333; line-height: 1.85;">No simplification possible (cells not adjacent).</p>
 
-Factored: **F = AC'(B'D + BD') = AC'(B ⊕ D)**
+<p style="color: #2E7D32; font-weight: 700;">F = ABC'D' + AB'C'D</p>
+
+<p style="color: #333; line-height: 1.85; margin-bottom: 0;">Factored: <strong>F = AC'(B'D + BD') = AC'(B &oplus; D)</strong></p>
+</div>
+</details>
 
 ---
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0;" markdown>
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -610,5 +760,7 @@ Factored: **F = AC'(B'D + BD') = AC'(B ⊕ D)**
 | D | Multiple Output Functions | 3 |
 | E | Applications | 2 |
 | **Total** | | **20** |
+
+</div>
 
 </div>
