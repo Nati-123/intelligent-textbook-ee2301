@@ -956,68 +956,66 @@ Implementation: p5.js with responsive canvas
 
 <h2 style="color: #5A3EED;">7.9 Level Reduction Techniques</h2>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
-When a multi-level circuit has too many levels (and therefore too much delay), <strong>level reduction</strong> techniques restructure the circuit to decrease the number of gate levels while potentially increasing gate count or fan-in.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+When a multi-level circuit has too many levels (and therefore too much delay), **level reduction** techniques restructure the circuit to decrease the number of gate levels while potentially increasing gate count or fan-in.
+
 </div>
 
-<h3 style="color: #5A3EED;">Flattening</h3>
+### Flattening
 
-The most direct approach is **flattening**—expanding the multi-level expression back to a two-level SOP or POS form using the distributive law.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Example:** Reduce $F = A(B(C+D) + E)$ from 4 levels to 2 levels:
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Flattening (4 levels → 2 levels)</p>
+
+The most direct approach — expand back to two-level SOP/POS using the distributive law.
+
+Reduce $F = A(B(C+D) + E)$ from 4 levels to 2 levels:
 
 $$F = A(BC + BD + E) = ABC + ABD + AE$$
 
-The two-level form requires gates with higher fan-in (3-input AND gates, 3-input OR gate) but achieves minimum delay (2 gate delays).
+The two-level form requires higher fan-in (3-input AND, 3-input OR) but achieves **minimum delay** (2 gate delays).
 
-<h3 style="color: #5A3EED;">Partial Flattening</h3>
+</div>
 
-When full flattening creates impractical fan-in, **partial flattening** expands only select portions of the expression to reduce levels without exceeding fan-in constraints.
+### Partial Flattening
 
-**Example:** For a 5-level circuit, reduce to 3 levels by expanding the innermost nesting while keeping outer factoring.
+When full flattening creates impractical fan-in, **partial flattening** expands only select portions to reduce levels without exceeding fan-in constraints.
 
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Technique</th>
-      <th style="padding: 8px 14px; text-align: center;">Levels After</th>
-      <th style="padding: 8px 14px; text-align: center;">Gate Count</th>
-      <th style="padding: 8px 14px; text-align: center;">Fan-in</th>
-      <th style="padding: 8px 14px; text-align: center;">Delay</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Original multi-level</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Low</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Low</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #C62828; font-weight: 600;">High</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Partial flattening</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Full flattening</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">High</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">High</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Low</td>
-    </tr>
-  </tbody>
-</table>
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<h3 style="color: #5A3EED;">Algebraic Restructuring</h3>
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Example</p>
+
+For a 5-level circuit, reduce to 3 levels by expanding the innermost nesting while keeping outer factoring.
+
+</div>
+
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Comparison of Techniques</p>
+
+| Technique | Levels | Gate Count | Fan-in | Delay |
+|:----------|:------:|:----------:|:------:|:-----:|
+| Original multi-level | 4 | Low | Low | **High** |
+| Partial flattening | 3 | Medium | Medium | Medium |
+| Full flattening | 2 | High | High | **Low** |
+
+</div>
+
+### Algebraic Restructuring
+
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Alternative Factoring</p>
 
 Sometimes an expression can be rewritten in an alternative factored form that uses fewer levels:
 
 $$F = AC + AD + BC + BD + E = (A+B)(C+D) + E$$
 
-The first form requires 3 levels as AND-OR (five 2-input ANDs → one 5-input OR). The second form also requires 3 levels (two 2-input ORs → one 2-input AND → one 2-input OR) but uses smaller gates.
+- **SOP form:** 3 levels — five 2-input ANDs → one 5-input OR
+- **Factored form:** 3 levels — two 2-input ORs → one 2-input AND → one 2-input OR, but uses **smaller gates**
+
+</div>
 
 ---
 
