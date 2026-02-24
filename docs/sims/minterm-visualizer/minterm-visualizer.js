@@ -37,6 +37,14 @@ let selectedMinterm = 3;
 // Layout constants
 const MX = 40;
 
+// Variable bar layout (at top, for hit detection)
+const VARS_BAR_Y = 62;
+const VARS_BTN_W = 30;
+const VARS_BTN_H = 26;
+const VARS_BTN_GAP = 6;
+
+function getVarsBtnX() { return MX + 16 + 66; }
+
 function setup() {
   updateCanvasSize();
   const canvas = createCanvas(containerWidth, canvasHeight);
@@ -68,18 +76,18 @@ function draw() {
   fill('#555');
   text('Click a minterm pill below to explore its product and sum terms', canvasWidth / 2, 42);
 
-  // Sections
+  // Sections (top to bottom)
+  drawVarsBar();
   drawBitDisplay();
   drawTruthTableRow();
   drawMintermMaxterm();
   drawMintermList();
-  drawVarsBar();
 }
 
-// ── Variable selector bar ──
+// ── Variable selector bar (at top, below subtitle) ──
 
 function drawVarsBar() {
-  let y = 720;
+  let y = VARS_BAR_Y;
   let bandW = canvasWidth - 2 * MX;
 
   // Background band
@@ -88,10 +96,7 @@ function drawVarsBar() {
   strokeWeight(1.5);
   rect(MX, y, bandW, 46, 12);
 
-  // Variable selector buttons: [2] [3] [4]
-  let btnW = 30;
-  let btnH = 26;
-  let btnGap = 6;
+  // Label
   let varsX = MX + 16;
   let btnY = y + 10;
 
@@ -100,13 +105,14 @@ function drawVarsBar() {
   textAlign(LEFT, CENTER);
   textSize(11);
   textStyle(BOLD);
-  text('Variables:', varsX, btnY + btnH / 2);
+  text('Variables:', varsX, btnY + VARS_BTN_H / 2);
   textStyle(NORMAL);
 
+  // Buttons [2] [3] [4]
   varsX += 66;
   for (let v = 2; v <= 4; v++) {
     let isActive = (numVars === v);
-    let bx = varsX + (v - 2) * (btnW + btnGap);
+    let bx = varsX + (v - 2) * (VARS_BTN_W + VARS_BTN_GAP);
 
     if (isActive) {
       drawingContext.shadowColor = 'rgba(106,91,255,0.25)';
@@ -115,7 +121,7 @@ function drawVarsBar() {
     fill(isActive ? PURPLE : '#F0EDFF');
     stroke(isActive ? PURPLE_DARK : PURPLE_BORDER);
     strokeWeight(1.2);
-    rect(bx, btnY, btnW, btnH, 6);
+    rect(bx, btnY, VARS_BTN_W, VARS_BTN_H, 6);
     drawingContext.shadowBlur = 0;
 
     fill(isActive ? 'white' : PURPLE);
@@ -123,34 +129,21 @@ function drawVarsBar() {
     textAlign(CENTER, CENTER);
     textSize(13);
     textStyle(BOLD);
-    text(v, bx + btnW / 2, btnY + btnH / 2);
+    text(v, bx + VARS_BTN_W / 2, btnY + VARS_BTN_H / 2);
     textStyle(NORMAL);
   }
-
-  // Hint text
-  let hintX = varsX + 3 * (btnW + btnGap) + 16;
-  fill('#999');
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(11);
-  textStyle(NORMAL);
-  text('Click a minterm above to explore it', hintX, btnY + btnH / 2);
 }
 
 // ── Interaction: pill buttons + variable selector ──
 
 function mousePressed() {
-  // Check variable selector buttons
-  let y = 720;
-  let btnW = 30;
-  let btnH = 26;
-  let btnGap = 6;
-  let varsX = MX + 16 + 66;
-  let btnY = y + 10;
+  // Check variable selector buttons (at top)
+  let btnY = VARS_BAR_Y + 10;
+  let varsX = getVarsBtnX();
 
   for (let v = 2; v <= 4; v++) {
-    let bx = varsX + (v - 2) * (btnW + btnGap);
-    if (mouseX >= bx && mouseX <= bx + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
+    let bx = varsX + (v - 2) * (VARS_BTN_W + VARS_BTN_GAP);
+    if (mouseX >= bx && mouseX <= bx + VARS_BTN_W && mouseY >= btnY && mouseY <= btnY + VARS_BTN_H) {
       numVars = v;
       let maxVal = Math.pow(2, numVars) - 1;
       if (selectedMinterm > maxVal) selectedMinterm = maxVal;
@@ -163,7 +156,7 @@ function mousePressed() {
 }
 
 function checkMintermButtons() {
-  let y = 520;
+  let y = 560;
   let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
   let cols = numVars === 4 ? 8 : (numVars === 3 ? 4 : 2);
@@ -193,7 +186,7 @@ function checkMintermButtons() {
 // ── Drawing functions ──
 
 function drawBitDisplay() {
-  let y = 68;
+  let y = 120;
   let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
@@ -259,7 +252,7 @@ function drawBitDisplay() {
 }
 
 function drawTruthTableRow() {
-  let y = 178;
+  let y = 228;
   let bandW = canvasWidth - 2 * MX;
   let binary = selectedMinterm.toString(2).padStart(numVars, '0');
   let varNames = ['A', 'B', 'C', 'D'].slice(0, numVars);
@@ -317,7 +310,7 @@ function drawTruthTableRow() {
 }
 
 function drawMintermMaxterm() {
-  let y = 270;
+  let y = 318;
   let bandW = canvasWidth - 2 * MX;
   let cardW = (bandW - 20) / 2;
   let cardH = 135;
@@ -445,14 +438,14 @@ function drawMintermMaxterm() {
 }
 
 function drawMintermList() {
-  let y = 520;
+  let y = 560;
   let bandW = canvasWidth - 2 * MX;
   let maxMinterms = Math.pow(2, numVars);
 
   fill('#FAFAFA');
   stroke(PURPLE_BORDER);
   strokeWeight(1.5);
-  rect(MX, y, bandW, 180, 12);
+  rect(MX, y, bandW, 190, 12);
 
   fill(PURPLE);
   noStroke();
