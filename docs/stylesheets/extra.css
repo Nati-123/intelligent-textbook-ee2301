@@ -659,6 +659,16 @@
   margin-bottom: 0.5rem;
 }
 
+/* ===== QUIZ: UPPER-ALPHA ANSWER CHOICES ===== */
+.md-typeset .upper-alpha ol {
+  list-style-type: upper-alpha;
+  padding-left: 1.6rem;
+}
+
+.md-typeset .upper-alpha ol li {
+  padding-left: 0.3rem;
+}
+
 /* ===== PRACTICE PROBLEMS STYLING ===== */
 .problems-styled h1 {
   color: #D4A017 !important;
