@@ -217,9 +217,16 @@ The <strong style="color: #333;">octal number system</strong> (base 8) uses eigh
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Hexadecimal Number System</h3>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-The <strong style="color: #333;">hexadecimal number system</strong> (base 16) uses sixteen symbols: 0-9 and A-F (where A=10, B=11, C=12, D=13, E=14, F=15). Each hexadecimal digit corresponds to exactly four binary digits, making it the preferred shorthand for binary data in modern computing. Memory addresses, color codes, and machine code are typically displayed in hexadecimal.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+The <strong style="color: #333;">hexadecimal number system</strong> (base 16) uses sixteen symbols: 0–9 and A–F. Each hexadecimal digit corresponds to exactly four binary digits, making it the preferred shorthand for binary data in modern computing. Memory addresses, color codes, and machine code are typically displayed in hexadecimal.
 </p>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 20px 24px; margin: 1rem 0 1.5rem 0;">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Hex Symbol Mapping</p>
+<p style="color: #333; line-height: 2; margin-bottom: 0; font-family: monospace; font-size: 1rem; text-align: center;">
+A = 10 &nbsp;&nbsp; B = 11 &nbsp;&nbsp; C = 12 &nbsp;&nbsp; D = 13 &nbsp;&nbsp; E = 14 &nbsp;&nbsp; F = 15
+</p>
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
