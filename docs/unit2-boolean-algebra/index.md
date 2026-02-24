@@ -1304,43 +1304,56 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 2.11 Circuit Analysis and Synthesis
+<h2 id="211-circuit-analysis-and-synthesis" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.11 Circuit Analysis and Synthesis</h2>
 
-Boolean algebra bridges the gap between circuit diagrams and mathematical expressions, enabling both **circuit analysis** (deriving the expression from a circuit) and **circuit synthesis** (building a circuit from an expression).
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Boolean algebra bridges the gap between circuit diagrams and mathematical expressions, enabling both <strong>circuit analysis</strong> (deriving the expression from a circuit) and <strong>circuit synthesis</strong> (building a circuit from an expression).
+</p>
 
-### Circuit Analysis Procedure
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Circuit Analysis Procedure</h3>
 
-1. Label all gate outputs with intermediate variables
-2. Write the Boolean expression for each gate's output
-3. Substitute intermediate expressions to get the final output
-4. Simplify if desired
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Label all gate outputs with intermediate variables</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Write the Boolean expression for each gate's output</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> Substitute intermediate expressions to get the final output</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> Simplify if desired</li>
+</ul>
 
-!!! example "Example: Analyze this circuit"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Analyze this circuit</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 1 (AND): receives inputs A and B, output = AB</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 2 (NOT): receives input C, output = <span class="arithmatex">\(\overline{C}\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 3 (OR): receives Gate 1 and Gate 2 outputs</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Final output: <span class="arithmatex">\(F = AB + \overline{C}\)</span></li>
+</ul>
+</div>
 
-    - Gate 1 (AND): receives inputs A and B, output = AB
-    - Gate 2 (NOT): receives input C, output = $\overline{C}$
-    - Gate 3 (OR): receives Gate 1 and Gate 2 outputs
-    - Final output: $F = AB + \overline{C}$
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Circuit Synthesis Procedure</h3>
 
-### Circuit Synthesis Procedure
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Start with the Boolean expression</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Identify the required gates from the operations</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> Connect inputs to appropriate gates</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> Connect gate outputs according to expression structure</li>
+</ul>
 
-1. Start with the Boolean expression
-2. Identify the required gates from the operations
-3. Connect inputs to appropriate gates
-4. Connect gate outputs according to expression structure
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Synthesize <span class="arithmatex">\(F = A\overline{B} + BC\)</span></p>
+<p style="color: #333; line-height: 1.85; margin: 0 0 10px 0;">Required gates:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> NOT gate for <span class="arithmatex">\(\overline{B}\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> AND gate for <span class="arithmatex">\(A\overline{B}\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> AND gate for <span class="arithmatex">\(BC\)</span></li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> OR gate for final sum</li>
+</ul>
+</div>
 
-!!! example "Example: Synthesize $F = A\overline{B} + BC$"
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Circuit Analysis and Synthesis Tool</h4>
 
-    Required gates:
-
-    - NOT gate for $\overline{B}$
-    - AND gate for $A\overline{B}$
-    - AND gate for $BC$
-    - OR gate for final sum
-
-#### Diagram: Circuit Analysis and Synthesis Tool
-
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Circuit Analysis and Synthesis Tool</summary>
