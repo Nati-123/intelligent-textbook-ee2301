@@ -174,13 +174,13 @@ $$N = \sum_{i=-m}^{n-1} d_i \times \text{base}^i$$
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
-where $d_i$ represents the digit at position $i$, $n$ is the number of integer digits, and $m$ is the number of fractional digits. The <strong style="color: #333;">radix point</strong> (decimal point in base 10, binary point in base 2) separates integer positions from fractional positions.
+where <span class="arithmatex">\(d_i\)</span> represents the digit at position <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(n\)</span> is the number of integer digits, and <span class="arithmatex">\(m\)</span> is the number of fractional digits. The <strong style="color: #333;">radix point</strong> (decimal point in base 10, binary point in base 2) separates integer positions from fractional positions.
 </p>
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Decimal Number System</h3>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
-The <strong style="color: #333;">decimal number system</strong> (base 10) uses ten symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. Each position represents a power of 10, with the rightmost integer position being $10^0 = 1$.
+The <strong style="color: #333;">decimal number system</strong> (base 10) uses ten symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. Each position represents a power of 10, with the rightmost integer position being <span class="arithmatex">\(10^0 = 1\)</span>.
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
@@ -301,8 +301,8 @@ Digital systems organize binary digits into standard groupings that facilitate d
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
 <li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Bit</strong> (binary digit) — the fundamental unit of digital information, representing a single 0 or 1. The term combines "binary" and "digit." While a single bit can only represent two states, combining multiple bits exponentially increases representational capacity.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Nibble</strong> — consists of 4 bits and can represent $2^4 = 16$ distinct values (0–15 in decimal, or 0–F in hexadecimal). Each hexadecimal digit corresponds to exactly one nibble, which is why hex is so useful for representing binary data.</li>
-<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Byte</strong> — comprises 8 bits (2 nibbles) and represents $2^8 = 256$ distinct values (0–255 unsigned). The byte is the standard addressable unit of memory in most computer architectures and commonly represents a single character in ASCII encoding.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Nibble</strong> — consists of 4 bits and can represent <span class="arithmatex">\(2^4 = 16\)</span> distinct values (0–15 in decimal, or 0–F in hexadecimal). Each hexadecimal digit corresponds to exactly one nibble, which is why hex is so useful for representing binary data.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Byte</strong> — comprises 8 bits (2 nibbles) and represents <span class="arithmatex">\(2^8 = 256\)</span> distinct values (0–255 unsigned). The byte is the standard addressable unit of memory in most computer architectures and commonly represents a single character in ASCII encoding.</li>
 <li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Word</strong> — a processor-specific unit representing the natural data size for a particular architecture. Modern 64-bit processors use 64-bit (8-byte) words, while older 32-bit systems use 32-bit (4-byte) words. Word size affects memory addressing, register width, and arithmetic precision.</li>
 </ul>
 
@@ -343,7 +343,7 @@ The <strong style="color: #333;">repeated division method</strong> converts deci
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $19_{10}$ to Binary</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert <span class="arithmatex">\(19_{10}\)</span> to Binary</p>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -358,7 +358,7 @@ The <strong style="color: #333;">repeated division method</strong> converts deci
 </div>
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Reading remainders bottom-to-top: $19_{10} = 10011_2$
+Reading remainders bottom-to-top: <span class="arithmatex">\(19_{10} = 10011_2\)</span>
 </p>
 </div>
 
@@ -369,7 +369,7 @@ To convert binary to decimal, multiply each bit by its positional power of 2 and
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $10011_2$ to Decimal</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert <span class="arithmatex">\(10011_2\)</span> to Decimal</p>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -388,15 +388,15 @@ $$\begin{aligned}
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $255_{10}$ to Hexadecimal</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert <span class="arithmatex">\(255_{10}\)</span> to Hexadecimal</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $255 \div 16 = 15$ remainder $15$ (F)</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $15 \div 16 = 0$ remainder $15$ (F)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(255 \div 16 = 15\)</span> remainder <span class="arithmatex">\(15\)</span> (F)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(15 \div 16 = 0\)</span> remainder <span class="arithmatex">\(15\)</span> (F)</li>
 </ul>
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Result: $255_{10} = \text{FF}_{16}$
+Result: <span class="arithmatex">\(255_{10} = \text{FF}_{16}\)</span>
 </p>
 </div>
 
@@ -418,12 +418,12 @@ Because 8 = 2³ and 16 = 2⁴, direct conversions between binary and octal/hexad
 </ul>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $10111010_2$ to Hexadecimal</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert <span class="arithmatex">\(10111010_2\)</span> to Hexadecimal</p>
 
 <p style="color: #555; line-height: 1.75;">
-Group in fours: $1011 \ 1010$<br>
-Convert each group: $\text{B} \ \text{A}$<br>
-Result: $10111010_2 = \text{BA}_{16}$
+Group in fours: <span class="arithmatex">\(1011 \ 1010\)</span><br>
+Convert each group: <span class="arithmatex">\(\text{B} \ \text{A}\)</span><br>
+Result: <span class="arithmatex">\(10111010_2 = \text{BA}_{16}\)</span>
 </p>
 </div>
 
@@ -500,15 +500,15 @@ Digital computers perform all arithmetic in binary. Understanding binary arithme
 </p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 + 0 = 0$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 + 1 = 1$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 0 = 1$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 1 = 10$ (0 with carry 1)</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 1 + 1 = 11$ (1 with carry 1)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(0 + 0 = 0\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(0 + 1 = 1\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(1 + 0 = 1\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(1 + 1 = 10\)</span> (0 with carry 1)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(1 + 1 + 1 = 11\)</span> (1 with carry 1)</li>
 </ul>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $1011_2 + 1101_2$</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add <span class="arithmatex">\(1011_2 + 1101_2\)</span></p>
 
 ```
     1 1 1 1    (carries)
@@ -519,7 +519,7 @@ Digital computers perform all arithmetic in binary. Understanding binary arithme
 ```
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
+Result: <span class="arithmatex">\(1011_2 + 1101_2 = 11000_2\)</span> (11 + 13 = 24 in decimal)
 </p>
 </div>
 
@@ -530,14 +530,14 @@ Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
 </p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 - 0 = 0$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 - 0 = 1$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 - 1 = 0$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 - 1 = 1$ with borrow</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(0 - 0 = 0\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(1 - 0 = 1\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(1 - 1 = 0\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(0 - 1 = 1\)</span> with borrow</li>
 </ul>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Subtract $1101_2 - 1001_2$</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Subtract <span class="arithmatex">\(1101_2 - 1001_2\)</span></p>
 
 ```
       1 1 0 1
@@ -547,7 +547,7 @@ Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
 ```
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Result: $1101_2 - 1001_2 = 0100_2$ (13 - 9 = 4 in decimal)
+Result: <span class="arithmatex">\(1101_2 - 1001_2 = 0100_2\)</span> (13 - 9 = 4 in decimal)
 </p>
 </div>
 
@@ -562,7 +562,7 @@ In practice, digital systems typically perform subtraction using two's complemen
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Multiply $101_2 \times 11_2$</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Multiply <span class="arithmatex">\(101_2 \times 11_2\)</span></p>
 
 ```
         1 0 1
@@ -575,7 +575,7 @@ In practice, digital systems typically perform subtraction using two's complemen
 ```
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
+Result: <span class="arithmatex">\(101_2 \times 11_2 = 1111_2\)</span> (5 × 3 = 15 in decimal)
 </p>
 </div>
 
@@ -624,10 +624,10 @@ Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
 
 | | Binary | Decimal |
 |---|---|---|
-| **Dividend** | $1111100_2$ | $124$ |
-| **Divisor** | $10_2$ | $2$ |
-| **Quotient** | $111110_2$ | $62$ |
-| **Remainder** | $0$ | $0$ |
+| **Dividend** | $1111100_2$ | 124 |
+| **Divisor** | $10_2$ | 2 |
+| **Quotient** | $111110_2$ | 62 |
+| **Remainder** | 0 | 0 |
 
 </div>
 </div>
@@ -704,7 +704,7 @@ Digital systems must represent both positive and negative numbers. Several encod
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Unsigned Numbers</h3>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
-<strong style="color: #333;">Unsigned numbers</strong> represent only non-negative values. For an n-bit unsigned number, the range is $0$ to $2^n - 1$. All bits contribute to the magnitude.
+<strong style="color: #333;">Unsigned numbers</strong> represent only non-negative values. For an n-bit unsigned number, the range is <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(2^n - 1\)</span>. All bits contribute to the magnitude.
 </p>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
@@ -728,13 +728,13 @@ In <strong style="color: #333;">sign-magnitude</strong> representation, the MSB 
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit Sign-Magnitude</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5 = 1101$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+5 = 0101\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(-5 = 1101\)</span></li>
 </ul>
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
-Sign-magnitude has two representations of zero ($+0 = 0000$, $-0 = 1000$), which complicates hardware design. Addition and subtraction require separate logic, making this representation inefficient for arithmetic circuits.
+Sign-magnitude has two representations of zero (<span class="arithmatex">\(+0 = 0000\)</span>, <span class="arithmatex">\(-0 = 1000\)</span>), which complicates hardware design. Addition and subtraction require separate logic, making this representation inefficient for arithmetic circuits.
 </p>
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">One's Complement Representation</h3>
@@ -747,13 +747,13 @@ Sign-magnitude has two representations of zero ($+0 = 0000$, $-0 = 1000$), which
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit One's Complement</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5 = 1010$ (invert all bits of 0101)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+5 = 0101\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(-5 = 1010\)</span> (invert all bits of 0101)</li>
 </ul>
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
-One's complement also has two zeros ($+0 = 0000$, $-0 = 1111$) and requires end-around carry for correct addition results.
+One's complement also has two zeros (<span class="arithmatex">\(+0 = 0000\)</span>, <span class="arithmatex">\(-0 = 1111\)</span>) and requires end-around carry for correct addition results.
 </p>
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Two's Complement Representation</h3>
@@ -766,13 +766,13 @@ One's complement also has two zeros ($+0 = 0000$, $-0 = 1111$) and requires end-
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit Two's Complement</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5$: Invert $0101 \rightarrow 1010$, add 1 $\rightarrow 1011$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+5 = 0101\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(-5\)</span>: Invert <span class="arithmatex">\(0101 \rightarrow 1010\)</span>, add 1 <span class="arithmatex">\(\rightarrow 1011\)</span></li>
 </ul>
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
-Two's complement has a single representation of zero and allows addition and subtraction to use the same hardware. The range for n-bit two's complement is $-2^{n-1}$ to $2^{n-1} - 1$.
+Two's complement has a single representation of zero and allows addition and subtraction to use the same hardware. The range for n-bit two's complement is <span class="arithmatex">\(-2^{n-1}\)</span> to <span class="arithmatex">\(2^{n-1} - 1\)</span>.
 </p>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
@@ -860,11 +860,11 @@ Two's complement enables addition and subtraction using identical hardware, whic
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $5 + (-3)$ in 4-bit Two's Complement</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add <span class="arithmatex">\(5 + (-3)\)</span> in 4-bit Two's Complement</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 0.8rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-3 = 1101$ (two's complement of 3)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+5 = 0101\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(-3 = 1101\)</span> (two's complement of 3)</li>
 </ul>
 
 ```
@@ -876,7 +876,7 @@ Two's complement enables addition and subtraction using identical hardware, whic
 ```
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Discard the carry: Result = $0010 = +2$ ✓
+Discard the carry: Result = <span class="arithmatex">\(0010 = +2\)</span> ✓
 </p>
 </div>
 
@@ -893,12 +893,12 @@ $$A - B = A + (-B) = A + \overline{B} + 1$$
 </div>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Calculate $3 - 5$ in 4-bit Two's Complement</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Calculate <span class="arithmatex">\(3 - 5\)</span> in 4-bit Two's Complement</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+3 = 0011$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$, so $-5 = 1011$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $3 + (-5) = 0011 + 1011 = 1110 = -2$ ✓</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+3 = 0011\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+5 = 0101\)</span>, so <span class="arithmatex">\(-5 = 1011\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(3 + (-5) = 0011 + 1011 = 1110 = -2\)</span> ✓</li>
 </ul>
 </div>
 
@@ -909,7 +909,7 @@ When operations require operands of different bit widths, <strong style="color: 
 </p>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Extend 4-bit $1101$ (-3) to 8 bits</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Extend 4-bit <span class="arithmatex">\(1101\)</span> (-3) to 8 bits</p>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -918,7 +918,7 @@ $$1101 \rightarrow 11111101$$
 </div>
 
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
-Both represent $-3$ in two's complement.
+Both represent <span class="arithmatex">\(-3\)</span> in two's complement.
 </p>
 </div>
 
@@ -952,11 +952,11 @@ $$\text{Overflow} = C_{in,MSB} \oplus C_{out,MSB}$$
 </div>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $+7 + (+3)$ in 4-bit Two's Complement</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add <span class="arithmatex">\(+7 + (+3)\)</span> in 4-bit Two's Complement</p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 0.8rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+7 = 0111$</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+3 = 0011$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+7 = 0111\)</span></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <span class="arithmatex">\(+3 = 0011\)</span></li>
 </ul>
 
 ```
@@ -968,8 +968,8 @@ $$\text{Overflow} = C_{in,MSB} \oplus C_{out,MSB}$$
 ```
 
 <p style="color: #555; line-height: 1.75;">
-Result: $1010 = -6$ (incorrect!)<br>
-Overflow detected: $C_{in} = 1$, $C_{out} = 0$, so $1 \oplus 0 = 1$ (overflow)
+Result: <span class="arithmatex">\(1010 = -6\)</span> (incorrect!)<br>
+Overflow detected: <span class="arithmatex">\(C_{in} = 1\)</span>, <span class="arithmatex">\(C_{out} = 0\)</span>, so <span class="arithmatex">\(1 \oplus 0 = 1\)</span> (overflow)
 </p>
 <p style="color: #555; line-height: 1.75; margin-bottom: 0;">
 The correct result (+10) cannot be represented in 4 bits, which can only hold -8 to +7.
@@ -983,9 +983,9 @@ For an n-bit two's complement number:
 </p>
 
 <ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Minimum value:</strong> $-2^{n-1}$ (e.g., $-8$ for 4 bits: $1000$)</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Maximum value:</strong> $2^{n-1} - 1$ (e.g., $+7$ for 4 bits: $0111$)</li>
-<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Total values:</strong> $2^n$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Minimum value:</strong> <span class="arithmatex">\(-2^{n-1}\)</span> (e.g., <span class="arithmatex">\(-8\)</span> for 4 bits: <span class="arithmatex">\(1000\)</span>)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Maximum value:</strong> <span class="arithmatex">\(2^{n-1} - 1\)</span> (e.g., <span class="arithmatex">\(+7\)</span> for 4 bits: <span class="arithmatex">\(0111\)</span>)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Total values:</strong> <span class="arithmatex">\(2^n\)</span></li>
 </ul>
 
 <div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
