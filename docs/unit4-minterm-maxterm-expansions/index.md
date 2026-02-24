@@ -482,58 +482,81 @@ $$\Rightarrow \quad \overline{F} = \Sigma m(0,2,4,6,7)$$
 
 ---
 
-## 4.7 Converting Between SOP and POS
+<h2 id="47-converting-between-sop-and-pos" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.7 Converting Between SOP and POS</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Beyond canonical forms, we often need to convert between standard SOP and POS expressions.
+</p>
 
 ### Converting SOP to POS
 
-**Method 1: Via Truth Table**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Method 1: Via Truth Table</p>
 
-1. Expand SOP to canonical form (all minterms)
-2. Identify maxterm indices (where F=0)
-3. Write POS from maxterms
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Expand SOP to canonical form (all minterms)</li>
+<li style="margin-bottom: 0.5rem;">Identify maxterm indices (where F=0)</li>
+<li style="margin-bottom: 0.5rem;">Write POS from maxterms</li>
+</ol>
 
-**Method 2: Algebraic (DeMorgan's)**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Method 2: Algebraic (DeMorgan's)</p>
 
-1. Find $\overline{F}$ by complementing the SOP
-2. Simplify $\overline{F}$ to SOP form
-3. Complement again: $F = \overline{\overline{F}}$
-4. Apply DeMorgan's to get POS
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Find <span class="arithmatex">\(\overline{F}\)</span> by complementing the SOP</li>
+<li style="margin-bottom: 0.5rem;">Simplify <span class="arithmatex">\(\overline{F}\)</span> to SOP form</li>
+<li style="margin-bottom: 0.5rem;">Complement again: <span class="arithmatex">\(F = \overline{\overline{F}}\)</span></li>
+<li style="margin-bottom: 0.5rem;">Apply DeMorgan's to get POS</li>
+</ol>
 
-**Example:** Convert $F = AB + \overline{A}C$ to POS
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-Step 1: Find $\overline{F}$ using DeMorgan's:
+Convert $F = AB + \overline{A}C$ to POS
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 14px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+**Step 1:** Find $\overline{F}$ using DeMorgan's:
 
 $$\overline{F} = \overline{AB + \overline{A}C} = \overline{AB} \cdot \overline{\overline{A}C} = (\overline{A}+\overline{B})(A+\overline{C})$$
 
-Step 2: Expand $\overline{F}$ to SOP by distributing:
+**Step 2:** Expand $\overline{F}$ to SOP by distributing:
 
 $$\overline{F} = \overline{A}A + \overline{A}\overline{C} + \overline{B}A + \overline{B}\overline{C} = \overline{A}\overline{C} + A\overline{B} + \overline{B}\overline{C}$$
 
 The term $\overline{B}\overline{C}$ is redundant by the consensus theorem, so $\overline{F} = \overline{A}\overline{C} + A\overline{B}$.
 
-Step 3: Complement $\overline{F}$ using DeMorgan's to get F in POS:
+**Step 3:** Complement $\overline{F}$ using DeMorgan's to get F in POS:
 
 $$F = \overline{\overline{A}\overline{C} + A\overline{B}} = \overline{\overline{A}\overline{C}} \cdot \overline{A\overline{B}} = (A+C)(\overline{A}+B)$$
 
+</div>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 20px; margin: 14px 0 4px 0; text-align: center;" markdown>
+
 **Result:** $F = (A+C)(\overline{A}+B)$
+
+</div>
+
+</div>
 
 !!! tip "Algebraic vs Truth Table Conversion"
     The algebraic method works but requires careful application of DeMorgan's theorem and distribution. For complex expressions, building a truth table and reading off maxterms directly is often faster and less error-prone.
 
 ### Converting POS to SOP
 
-**Method 1: Via Truth Table**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Method 1: Via Truth Table</p>
 
-1. Expand POS to canonical form (all maxterms)
-2. Identify minterm indices (where F=1)
-3. Write SOP from minterms
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Expand POS to canonical form (all maxterms)</li>
+<li style="margin-bottom: 0.5rem;">Identify minterm indices (where F=1)</li>
+<li style="margin-bottom: 0.5rem;">Write SOP from minterms</li>
+</ol>
 
-**Method 2: Algebraic Expansion**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Method 2: Algebraic Expansion</p>
 
-1. Multiply out the POS expression using distribution
-2. Simplify using Boolean algebra
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Multiply out the POS expression using distribution</li>
+<li style="margin-bottom: 0.5rem;">Simplify using Boolean algebra</li>
+</ol>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
