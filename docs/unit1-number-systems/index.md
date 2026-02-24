@@ -90,18 +90,28 @@ Before beginning this unit, students should have:
 
 ---
 
-## 1.1 Introduction to Digital Systems
+<h2 id="11-introduction-to-digital-systems" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.1 Introduction to Digital Systems</h2>
 
-Modern computing relies entirely on **digital systems**—electronic circuits that process information using discrete signal levels rather than continuous values. Unlike **analog signals**, which can take any value within a continuous range (like the smooth variation of audio from a microphone), **digital signals** represent information using only two distinct states: typically high voltage (logic 1) and low voltage (logic 0).
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Modern computing relies entirely on <strong style="color: #333;">digital systems</strong> — electronic circuits that process information using discrete signal levels rather than continuous values. Unlike <strong style="color: #333;">analog signals</strong>, which can take any value within a continuous range (like the smooth variation of audio from a microphone), <strong style="color: #333;">digital signals</strong> represent information using only two distinct states: typically high voltage (logic 1) and low voltage (logic 0).
+</p>
 
-This binary representation offers significant advantages for electronic systems. Digital circuits exhibit superior noise immunity because small variations in voltage do not change the logical interpretation of a signal. Additionally, digital information can be stored, copied, and transmitted without degradation, enabling the complex computations that power everything from smartphones to supercomputers.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+This binary representation offers significant advantages for electronic systems. Digital circuits exhibit superior <strong style="color: #333;">noise immunity</strong> because small variations in voltage do not change the logical interpretation of a signal. Additionally, digital information can be stored, copied, and transmitted without degradation, enabling the complex computations that power everything from smartphones to supercomputers.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Signal Type | Values | Example | Noise Immunity |
 |-------------|--------|---------|----------------|
 | Analog | Continuous | Audio waveform | Low |
 | Digital | Discrete (0, 1) | Binary data | High |
 
-The foundation of all digital systems is the **binary number system**, which uses only two symbols (0 and 1) to represent numerical values. Understanding how numbers are encoded in binary—and how to convert between binary and other number systems—is essential for digital system design.
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The foundation of all digital systems is the <strong style="color: #333;">binary number system</strong>, which uses only two symbols (0 and 1) to represent numerical values. Understanding how numbers are encoded in binary — and how to convert between binary and other number systems — is essential for digital system design.
+</p>
 
 #### Diagram: Analog vs Digital Signal Comparison
 
@@ -147,39 +157,71 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 1.2 Positional Number Systems
+<h2 id="12-positional-number-systems" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.2 Positional Number Systems</h2>
 
-All the number systems used in digital design—decimal, binary, octal, and hexadecimal—are **positional number systems**. In positional notation, the value of each digit depends on both the digit itself and its position within the number. The **base** (also called **radix**) determines how many unique symbols the system uses and the multiplier for each position.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+All the number systems used in digital design — decimal, binary, octal, and hexadecimal — are <strong style="color: #333;">positional number systems</strong>. In positional notation, the value of each digit depends on both the digit itself and its position within the number. The <strong style="color: #333;">base</strong> (also called <strong style="color: #333;">radix</strong>) determines how many unique symbols the system uses and the multiplier for each position.
+</p>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 0.8rem;">
 The general formula for positional notation is:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 1rem 0 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$N = \sum_{i=-m}^{n-1} d_i \times \text{base}^i$$
 
-where $d_i$ represents the digit at position $i$, $n$ is the number of integer digits, and $m$ is the number of fractional digits. The **radix point** (decimal point in base 10, binary point in base 2) separates integer positions from fractional positions.
+</div>
 
-### The Decimal Number System
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+where $d_i$ represents the digit at position $i$, $n$ is the number of integer digits, and $m$ is the number of fractional digits. The <strong style="color: #333;">radix point</strong> (decimal point in base 10, binary point in base 2) separates integer positions from fractional positions.
+</p>
 
-The **decimal number system** (base 10) uses ten symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. Each position represents a power of 10, with the rightmost integer position being $10^0 = 1$.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Decimal Number System</h3>
 
-!!! example "Example: Decimal positional expansion"
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+The <strong style="color: #333;">decimal number system</strong> (base 10) uses ten symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. Each position represents a power of 10, with the rightmost integer position being $10^0 = 1$.
+</p>
 
-    $$472_{10} = 4 \times 10^2 + 7 \times 10^1 + 2 \times 10^0 = 400 + 70 + 2$$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Decimal Positional Expansion</p>
 
-### The Binary Number System
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-The **binary number system** (base 2) uses only two symbols: 0 and 1. This maps directly to the two voltage states in digital circuits, making binary the native language of computers. Each position represents a power of 2.
+$$472_{10} = 4 \times 10^2 + 7 \times 10^1 + 2 \times 10^0 = 400 + 70 + 2$$
 
-!!! example "Example: Binary to decimal conversion"
+</div>
+</div>
 
-    $$1011_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10}$$
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Binary Number System</h3>
 
-### The Octal Number System
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+The <strong style="color: #333;">binary number system</strong> (base 2) uses only two symbols: 0 and 1. This maps directly to the two voltage states in digital circuits, making binary the native language of computers. Each position represents a power of 2.
+</p>
 
-The **octal number system** (base 8) uses eight symbols: 0 through 7. Octal provides a convenient shorthand for binary because each octal digit corresponds exactly to three binary digits. While less common today than hexadecimal, octal appears in Unix file permissions and some assembly language contexts.
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Binary to Decimal Conversion</p>
 
-### The Hexadecimal Number System
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-The **hexadecimal number system** (base 16) uses sixteen symbols: 0-9 and A-F (where A=10, B=11, C=12, D=13, E=14, F=15). Each hexadecimal digit corresponds to exactly four binary digits, making it the preferred shorthand for binary data in modern computing. Memory addresses, color codes, and machine code are typically displayed in hexadecimal.
+$$1011_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10}$$
+
+</div>
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Octal Number System</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong style="color: #333;">octal number system</strong> (base 8) uses eight symbols: 0 through 7. Octal provides a convenient shorthand for binary because each octal digit corresponds exactly to three binary digits. While less common today than hexadecimal, octal appears in Unix file permissions and some assembly language contexts.
+</p>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Hexadecimal Number System</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong style="color: #333;">hexadecimal number system</strong> (base 16) uses sixteen symbols: 0-9 and A-F (where A=10, B=11, C=12, D=13, E=14, F=15). Each hexadecimal digit corresponds to exactly four binary digits, making it the preferred shorthand for binary data in modern computing. Memory addresses, color codes, and machine code are typically displayed in hexadecimal.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Base | Name | Symbols | Binary Digits per Symbol |
 |------|------|---------|-------------------------|
@@ -187,6 +229,8 @@ The **hexadecimal number system** (base 16) uses sixteen symbols: 0-9 and A-F (w
 | 8 | Octal | 0-7 | 3 |
 | 10 | Decimal | 0-9 | — |
 | 16 | Hexadecimal | 0-9, A-F | 4 |
+
+</div>
 
 #### Diagram: Positional Notation Interactive Explorer
 
@@ -249,17 +293,20 @@ Implementation: p5.js with responsive canvas, DOM elements for input
 
 ---
 
-## 1.3 Binary Data Units
+<h2 id="13-binary-data-units" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.3 Binary Data Units</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Digital systems organize binary digits into standard groupings that facilitate data storage and manipulation. Understanding these units is essential for working with computer memory and data transfer.
+</p>
 
-A **bit** (binary digit) is the fundamental unit of digital information, representing a single 0 or 1. The term combines "binary" and "digit." While a single bit can only represent two states, combining multiple bits exponentially increases representational capacity.
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Bit</strong> (binary digit) — the fundamental unit of digital information, representing a single 0 or 1. The term combines "binary" and "digit." While a single bit can only represent two states, combining multiple bits exponentially increases representational capacity.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Nibble</strong> — consists of 4 bits and can represent $2^4 = 16$ distinct values (0–15 in decimal, or 0–F in hexadecimal). Each hexadecimal digit corresponds to exactly one nibble, which is why hex is so useful for representing binary data.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Byte</strong> — comprises 8 bits (2 nibbles) and represents $2^8 = 256$ distinct values (0–255 unsigned). The byte is the standard addressable unit of memory in most computer architectures and commonly represents a single character in ASCII encoding.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Word</strong> — a processor-specific unit representing the natural data size for a particular architecture. Modern 64-bit processors use 64-bit (8-byte) words, while older 32-bit systems use 32-bit (4-byte) words. Word size affects memory addressing, register width, and arithmetic precision.</li>
+</ul>
 
-A **nibble** consists of 4 bits and can represent $2^4 = 16$ distinct values (0-15 in decimal, or 0-F in hexadecimal). Each hexadecimal digit corresponds to exactly one nibble, which is why hex is so useful for representing binary data.
-
-A **byte** comprises 8 bits (2 nibbles) and represents $2^8 = 256$ distinct values (0-255 unsigned). The byte is the standard addressable unit of memory in most computer architectures and commonly represents a single character in ASCII encoding.
-
-A **word** is a processor-specific unit representing the natural data size for a particular architecture. Modern 64-bit processors use 64-bit (8-byte) words, while older 32-bit systems use 32-bit (4-byte) words. Word size affects memory addressing, register width, and arithmetic precision.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Unit | Bits | Values | Common Use |
 |------|------|--------|------------|
@@ -268,70 +315,117 @@ A **word** is a processor-specific unit representing the natural data size for a
 | Byte | 8 | 256 | Character, memory address unit |
 | Word | 32/64 | 4B/16E | Processor native unit |
 
-Within any binary number, we identify positions by significance. The **Most Significant Bit (MSB)** is the leftmost bit, contributing the largest value to the number. The **Least Significant Bit (LSB)** is the rightmost bit, contributing the smallest value (either 0 or 1). In signed number representations, the MSB often indicates the sign.
+</div>
 
-!!! tip "Memory Size Prefixes"
-    In computing, size prefixes have two conventions: decimal (SI) where 1 KB = 1,000 bytes, and binary (IEC) where 1 KiB = 1,024 bytes. Hardware specifications typically use binary prefixes, while storage manufacturers often use decimal prefixes.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Within any binary number, we identify positions by significance. The <strong style="color: #333;">Most Significant Bit (MSB)</strong> is the leftmost bit, contributing the largest value to the number. The <strong style="color: #333;">Least Significant Bit (LSB)</strong> is the rightmost bit, contributing the smallest value (either 0 or 1). In signed number representations, the MSB often indicates the sign.
+</p>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Memory Size Prefixes</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">
+In computing, size prefixes have two conventions: decimal (SI) where 1 KB = 1,000 bytes, and binary (IEC) where 1 KiB = 1,024 bytes. Hardware specifications typically use binary prefixes, while storage manufacturers often use decimal prefixes.
+</p>
+</div>
 
 ---
 
-## 1.4 Base Conversion Methods
+<h2 id="14-base-conversion-methods" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.4 Base Conversion Methods</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Converting between number systems is a fundamental skill in digital design. Different methods are optimal for different conversion types.
+</p>
 
-### Decimal to Binary Conversion
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Decimal to Binary Conversion</h3>
 
-The **repeated division method** converts decimal integers to binary by repeatedly dividing by 2 and recording the remainders. The binary result is formed by reading the remainders from last to first.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+The <strong style="color: #333;">repeated division method</strong> converts decimal integers to binary by repeatedly dividing by 2 and recording the remainders. The binary result is formed by reading the remainders from last to first.
+</p>
 
-!!! example "Example: Convert $19_{10}$ to binary"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $19_{10}$ to Binary</p>
 
-    | Step | Quotient | ÷ 2 | Remainder |
-    |------|----------|-----|-----------|
-    | 1 | 19 | 9 | 1 (LSB) |
-    | 2 | 9 | 4 | 1 |
-    | 3 | 4 | 2 | 0 |
-    | 4 | 2 | 1 | 0 |
-    | 5 | 1 | 0 | 1 (MSB) |
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-    Reading remainders bottom-to-top: $19_{10} = 10011_2$
+| Step | Quotient | ÷ 2 | Remainder |
+|------|----------|-----|-----------|
+| 1 | 19 | 9 | 1 (LSB) |
+| 2 | 9 | 4 | 1 |
+| 3 | 4 | 2 | 0 |
+| 4 | 2 | 1 | 0 |
+| 5 | 1 | 0 | 1 (MSB) |
 
-### Binary to Decimal Conversion
+</div>
 
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Reading remainders bottom-to-top: $19_{10} = 10011_2$
+</p>
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary to Decimal Conversion</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 To convert binary to decimal, multiply each bit by its positional power of 2 and sum the results.
+</p>
 
-!!! example "Example: Convert $10011_2$ to decimal"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $10011_2$ to Decimal</p>
 
-    $$\begin{aligned}
-    10011_2 &= 1 \times 2^4 + 0 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 \\
-    &= 16 + 0 + 0 + 2 + 1 = 19_{10}
-    \end{aligned}$$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-### Hexadecimal Conversions
+$$\begin{aligned}
+10011_2 &= 1 \times 2^4 + 0 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 \\
+&= 16 + 0 + 0 + 2 + 1 = 19_{10}
+\end{aligned}$$
 
-**Decimal to hexadecimal** uses repeated division by 16. **Hexadecimal to decimal** uses positional notation with powers of 16.
+</div>
+</div>
 
-!!! example "Example: Convert $255_{10}$ to hexadecimal"
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Hexadecimal Conversions</h3>
 
-    - $255 \div 16 = 15$ remainder $15$ (F)
-    - $15 \div 16 = 0$ remainder $15$ (F)
-    - Result: $255_{10} = \text{FF}_{16}$
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Decimal to hexadecimal</strong> uses repeated division by 16. <strong style="color: #333;">Hexadecimal to decimal</strong> uses positional notation with powers of 16.
+</p>
 
-### Octal Conversions
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $255_{10}$ to Hexadecimal</p>
 
-**Decimal to octal** uses repeated division by 8. **Octal to decimal** uses positional notation with powers of 8.
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $255 \div 16 = 15$ remainder $15$ (F)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $15 \div 16 = 0$ remainder $15$ (F)</li>
+</ul>
 
-### Binary-Octal-Hexadecimal Shortcuts
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Result: $255_{10} = \text{FF}_{16}$
+</p>
+</div>
 
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Octal Conversions</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong style="color: #333;">Decimal to octal</strong> uses repeated division by 8. <strong style="color: #333;">Octal to decimal</strong> uses positional notation with powers of 8.
+</p>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary-Octal-Hexadecimal Shortcuts</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 Because 8 = 2³ and 16 = 2⁴, direct conversions between binary and octal/hexadecimal are straightforward:
+</p>
 
-- **Binary ↔ Octal:** Group binary digits in sets of 3 (from the radix point outward), converting each group to its octal equivalent
-- **Binary ↔ Hexadecimal:** Group binary digits in sets of 4, converting each group to its hex equivalent
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary ↔ Octal:</strong> Group binary digits in sets of 3 (from the radix point outward), converting each group to its octal equivalent</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary ↔ Hexadecimal:</strong> Group binary digits in sets of 4, converting each group to its hex equivalent</li>
+</ul>
 
-!!! example "Example: Convert $10111010_2$ to hexadecimal"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Convert $10111010_2$ to Hexadecimal</p>
 
-    Group in fours: $1011 \ 1010$
-    Convert each group: $\text{B} \ \text{A}$
-    Result: $10111010_2 = \text{BA}_{16}$
+<p style="color: #555; line-height: 1.75;">
+Group in fours: $1011 \ 1010$<br>
+Convert each group: $\text{B} \ \text{A}$<br>
+Result: $10111010_2 = \text{BA}_{16}$
+</p>
+</div>
 
 #### Diagram: Base Conversion Calculator
 
@@ -393,82 +487,121 @@ Implementation: p5.js with responsive canvas, DOM input elements
 
 ---
 
-## 1.5 Binary Arithmetic Operations
+<h2 id="15-binary-arithmetic-operations" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.5 Binary Arithmetic Operations</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Digital computers perform all arithmetic in binary. Understanding binary arithmetic operations is essential for comprehending how processors execute calculations.
+</p>
 
-### Binary Addition
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary Addition</h3>
 
-**Binary addition** follows the same principles as decimal addition but with only two digits. The addition rules are:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Binary addition</strong> follows the same principles as decimal addition but with only two digits. The addition rules are:
+</p>
 
-- $0 + 0 = 0$
-- $0 + 1 = 1$
-- $1 + 0 = 1$
-- $1 + 1 = 10$ (0 with carry 1)
-- $1 + 1 + 1 = 11$ (1 with carry 1)
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 + 0 = 0$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 + 1 = 1$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 0 = 1$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 1 = 10$ (0 with carry 1)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 + 1 + 1 = 11$ (1 with carry 1)</li>
+</ul>
 
-!!! example "Example: Add $1011_2 + 1101_2$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $1011_2 + 1101_2$</p>
 
-    ```
-        1 1 1 1    (carries)
-          1 0 1 1
-        + 1 1 0 1
-        ---------
-        1 1 0 0 0
-    ```
+```
+    1 1 1 1    (carries)
+      1 0 1 1
+    + 1 1 0 1
+    ---------
+    1 1 0 0 0
+```
 
-    Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Result: $1011_2 + 1101_2 = 11000_2$ (11 + 13 = 24 in decimal)
+</p>
+</div>
 
-### Binary Subtraction
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary Subtraction</h3>
 
-**Binary subtraction** can be performed directly using the rules:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Binary subtraction</strong> can be performed directly using the rules:
+</p>
 
-- $0 - 0 = 0$
-- $1 - 0 = 1$
-- $1 - 1 = 0$
-- $0 - 1 = 1$ with borrow
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 - 0 = 0$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 - 0 = 1$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $1 - 1 = 0$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $0 - 1 = 1$ with borrow</li>
+</ul>
 
-!!! example "Example: Subtract $1101_2 - 1001_2$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Subtract $1101_2 - 1001_2$</p>
 
-    ```
-          1 1 0 1
-        - 1 0 0 1
-        ---------
-          0 1 0 0
-    ```
+```
+      1 1 0 1
+    - 1 0 0 1
+    ---------
+      0 1 0 0
+```
 
-    Result: $1101_2 - 1001_2 = 0100_2$ (13 - 9 = 4 in decimal)
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Result: $1101_2 - 1001_2 = 0100_2$ (13 - 9 = 4 in decimal)
+</p>
+</div>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 In practice, digital systems typically perform subtraction using two's complement addition, eliminating the need for separate subtraction hardware.
+</p>
 
-### Binary Multiplication
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary Multiplication</h3>
 
-**Binary multiplication** is simpler than decimal multiplication because each partial product is either 0 (multiplied by 0) or the multiplicand itself (multiplied by 1), shifted appropriately.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Binary multiplication</strong> is simpler than decimal multiplication because each partial product is either 0 (multiplied by 0) or the multiplicand itself (multiplied by 1), shifted appropriately.
+</p>
 
-!!! example "Example: Multiply $101_2 \times 11_2$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Multiply $101_2 \times 11_2$</p>
 
-    ```
-            1 0 1
-          ×   1 1
-          -------
-            1 0 1    (101 × 1)
-          1 0 1      (101 × 1, shifted left)
-          -------
-          1 1 1 1
-    ```
+```
+        1 0 1
+      ×   1 1
+      -------
+        1 0 1    (101 × 1)
+      1 0 1      (101 × 1, shifted left)
+      -------
+      1 1 1 1
+```
 
-    Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Result: $101_2 \times 11_2 = 1111_2$ (5 × 3 = 15 in decimal)
+</p>
+</div>
 
-### Binary Division
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Binary Division</h3>
 
-**Binary division** uses the same long division algorithm as decimal division, but comparisons and subtractions are simpler with only 0 and 1 as possible quotient digits.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Binary division</strong> uses the same long division algorithm as decimal division, but comparisons and subtractions are simpler with only 0 and 1 as possible quotient digits.
+</p>
 
-!!! example "Example: Binary division"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Binary Division</p>
 
-    ```
-              1 1 1 1 1 0
-            -------------
-      1 0 ) 1 1 1 1 1 0 0
+```
+          1 1 1 1 1 0
+        -------------
+  1 0 ) 1 1 1 1 1 0 0
+        1 0
+        ---
+          1
+            ↓
+          1 1
+          1 0
+          ---
+            1
+              ↓
+            1 1
             1 0
             ---
               1
@@ -478,31 +611,26 @@ In practice, digital systems typically perform subtraction using two's complemen
               ---
                 1
                   ↓
-                1 1
+                1 0
                 1 0
                 ---
-                  1
+                  0
                     ↓
-                  1 1
-                  1 0
-                  ---
-                    1
-                      ↓
-                    1 0
-                    1 0
-                    ---
-                      0
-                        ↓
-                      0 0
-                        0     ← remainder
-    ```
+                  0 0
+                    0     ← remainder
+```
 
-    | | Binary | Decimal |
-    |---|---|---|
-    | **Dividend** | $1111100_2$ | $124$ |
-    | **Divisor** | $10_2$ | $2$ |
-    | **Quotient** | $111110_2$ | $62$ |
-    | **Remainder** | $0$ | $0$ |
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+| | Binary | Decimal |
+|---|---|---|
+| **Dividend** | $1111100_2$ | $124$ |
+| **Divisor** | $10_2$ | $2$ |
+| **Quotient** | $111110_2$ | $62$ |
+| **Remainder** | $0$ | $0$ |
+
+</div>
+</div>
 
 #### Diagram: Binary Arithmetic Practice
 
@@ -567,13 +695,19 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 1.6 Signed Number Representations
+<h2 id="16-signed-number-representations" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.6 Signed Number Representations</h2>
 
-Digital systems must represent both positive and negative numbers. Several encoding schemes exist, each with distinct characteristics. The three primary methods are **sign-magnitude**, **one's complement**, and **two's complement**.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Digital systems must represent both positive and negative numbers. Several encoding schemes exist, each with distinct characteristics. The three primary methods are <strong style="color: #333;">sign-magnitude</strong>, <strong style="color: #333;">one's complement</strong>, and <strong style="color: #333;">two's complement</strong>.
+</p>
 
-### Unsigned Numbers
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Unsigned Numbers</h3>
 
-**Unsigned numbers** represent only non-negative values. For an n-bit unsigned number, the range is $0$ to $2^n - 1$. All bits contribute to the magnitude.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Unsigned numbers</strong> represent only non-negative values. For an n-bit unsigned number, the range is $0$ to $2^n - 1$. All bits contribute to the magnitude.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Bits | Unsigned Range | Values |
 |------|----------------|--------|
@@ -582,38 +716,66 @@ Digital systems must represent both positive and negative numbers. Several encod
 | 16 | 0 to 65,535 | 65,536 |
 | 32 | 0 to 4,294,967,295 | 4.29B |
 
-### Sign-Magnitude Representation
+</div>
 
-In **sign-magnitude** representation, the MSB indicates the sign (0 = positive, 1 = negative), and the remaining bits represent the magnitude. This mirrors how humans write signed numbers.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Sign-Magnitude Representation</h3>
 
-!!! example "Example: 4-bit sign-magnitude"
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+In <strong style="color: #333;">sign-magnitude</strong> representation, the MSB indicates the sign (0 = positive, 1 = negative), and the remaining bits represent the magnitude. This mirrors how humans write signed numbers.
+</p>
 
-    - $+5 = 0101$
-    - $-5 = 1101$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit Sign-Magnitude</p>
 
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5 = 1101$</li>
+</ul>
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Sign-magnitude has two representations of zero ($+0 = 0000$, $-0 = 1000$), which complicates hardware design. Addition and subtraction require separate logic, making this representation inefficient for arithmetic circuits.
+</p>
 
-### One's Complement Representation
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">One's Complement Representation</h3>
 
-**One's complement** represents negative numbers by inverting all bits of the positive equivalent. The MSB still indicates sign.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">One's complement</strong> represents negative numbers by inverting all bits of the positive equivalent. The MSB still indicates sign.
+</p>
 
-!!! example "Example: 4-bit one's complement"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit One's Complement</p>
 
-    - $+5 = 0101$
-    - $-5 = 1010$ (invert all bits of 0101)
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5 = 1010$ (invert all bits of 0101)</li>
+</ul>
+</div>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 One's complement also has two zeros ($+0 = 0000$, $-0 = 1111$) and requires end-around carry for correct addition results.
+</p>
 
-### Two's Complement Representation
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Two's Complement Representation</h3>
 
-**Two's complement** is the dominant representation in modern digital systems. To find the two's complement of a number, invert all bits and add 1. Alternatively, find the one's complement and add 1.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Two's complement</strong> is the dominant representation in modern digital systems. To find the two's complement of a number, invert all bits and add 1. Alternatively, find the one's complement and add 1.
+</p>
 
-!!! example "Example: 4-bit two's complement"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — 4-bit Two's Complement</p>
 
-    - $+5 = 0101$
-    - $-5$: Invert $0101 \rightarrow 1010$, add 1 $\rightarrow 1011$
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-5$: Invert $0101 \rightarrow 1010$, add 1 $\rightarrow 1011$</li>
+</ul>
+</div>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 Two's complement has a single representation of zero and allows addition and subtraction to use the same hardware. The range for n-bit two's complement is $-2^{n-1}$ to $2^{n-1} - 1$.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Bits | Two's Complement Range |
 |------|----------------------|
@@ -621,6 +783,8 @@ Two's complement has a single representation of zero and allows addition and sub
 | 8 | -128 to +127 |
 | 16 | -32,768 to +32,767 |
 | 32 | -2,147,483,648 to +2,147,483,647 |
+
+</div>
 
 #### Diagram: Signed Number Representation Comparison
 
@@ -683,96 +847,153 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 1.7 Two's Complement Arithmetic
+<h2 id="17-twos-complement-arithmetic" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.7 Two's Complement Arithmetic</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
 Two's complement enables addition and subtraction using identical hardware, which is why it dominates in processor design.
+</p>
 
-### Two's Complement Addition
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Two's Complement Addition</h3>
 
-**Two's complement addition** works identically to unsigned binary addition. The key insight is that the representation automatically handles signed arithmetic—simply add the bit patterns and discard any carry out of the MSB.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+<strong style="color: #333;">Two's complement addition</strong> works identically to unsigned binary addition. The key insight is that the representation automatically handles signed arithmetic — simply add the bit patterns and discard any carry out of the MSB.
+</p>
 
-!!! example "Example: Add $5 + (-3)$ in 4-bit two's complement"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $5 + (-3)$ in 4-bit Two's Complement</p>
 
-    - $+5 = 0101$
-    - $-3 = 1101$ (two's complement of 3)
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 0.8rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $-3 = 1101$ (two's complement of 3)</li>
+</ul>
 
-    ```
-        1 1 1      (carries)
-          0 1 0 1
-        + 1 1 0 1
-        ---------
-        1 0 0 1 0
-    ```
+```
+    1 1 1      (carries)
+      0 1 0 1
+    + 1 1 0 1
+    ---------
+    1 0 0 1 0
+```
 
-    Discard the carry: Result = $0010 = +2$ ✓
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Discard the carry: Result = $0010 = +2$ ✓
+</p>
+</div>
 
-### Two's Complement Subtraction
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Two's Complement Subtraction</h3>
 
-**Two's complement subtraction** is performed by adding the two's complement of the subtrahend:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 0.8rem;">
+<strong style="color: #333;">Two's complement subtraction</strong> is performed by adding the two's complement of the subtrahend:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 1rem 0 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$A - B = A + (-B) = A + \overline{B} + 1$$
 
-!!! example "Example: Calculate $3 - 5$ in 4-bit two's complement"
+</div>
 
-    - $+3 = 0011$
-    - $+5 = 0101$, so $-5 = 1011$
-    - $3 + (-5) = 0011 + 1011 = 1110 = -2$ ✓
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Calculate $3 - 5$ in 4-bit Two's Complement</p>
 
-### Sign Extension
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+3 = 0011$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+5 = 0101$, so $-5 = 1011$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $3 + (-5) = 0011 + 1011 = 1110 = -2$ ✓</li>
+</ul>
+</div>
 
-When operations require operands of different bit widths, **sign extension** preserves the numerical value by replicating the sign bit. For positive numbers (MSB = 0), extend with 0s; for negative numbers (MSB = 1), extend with 1s.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Sign Extension</h3>
 
-!!! example "Example: Extend 4-bit $1101$ (-3) to 8 bits"
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+When operations require operands of different bit widths, <strong style="color: #333;">sign extension</strong> preserves the numerical value by replicating the sign bit. For positive numbers (MSB = 0), extend with 0s; for negative numbers (MSB = 1), extend with 1s.
+</p>
 
-    $$1101 \rightarrow 11111101$$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Extend 4-bit $1101$ (-3) to 8 bits</p>
 
-    Both represent $-3$ in two's complement.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+$$1101 \rightarrow 11111101$$
+
+</div>
+
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+Both represent $-3$ in two's complement.
+</p>
+</div>
 
 ---
 
-## 1.8 Overflow and Underflow Detection
+<h2 id="18-overflow-and-underflow-detection" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.8 Overflow and Underflow Detection</h2>
 
-Arithmetic operations can produce results that exceed the representable range. **Overflow** occurs when the result is too large (positive) for the bit width; **underflow** occurs when the result is too small (negative).
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Arithmetic operations can produce results that exceed the representable range. <strong style="color: #333;">Overflow</strong> occurs when the result is too large (positive) for the bit width; <strong style="color: #333;">underflow</strong> occurs when the result is too small (negative).
+</p>
 
-### Detecting Overflow in Two's Complement
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Detecting Overflow in Two's Complement</h3>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 Overflow occurs when:
+</p>
 
-- Adding two positive numbers yields a negative result
-- Adding two negative numbers yields a positive result
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Adding two positive numbers yields a negative result</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Adding two negative numbers yields a positive result</li>
+</ul>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 0.8rem;">
 Mathematically, overflow is detected when the carry into the MSB differs from the carry out of the MSB:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 1rem 0 1.5rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$\text{Overflow} = C_{in,MSB} \oplus C_{out,MSB}$$
 
-!!! example "Example: Add $+7 + (+3)$ in 4-bit two's complement"
+</div>
 
-    - $+7 = 0111$
-    - $+3 = 0011$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Add $+7 + (+3)$ in 4-bit Two's Complement</p>
 
-    ```
-        0 1 1 1    (carries: Cin to MSB = 1)
-          0 1 1 1
-        + 0 0 1 1
-        ---------
-          1 0 1 0  (Cout from MSB = 0)
-    ```
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 0.8rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+7 = 0111$</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> $+3 = 0011$</li>
+</ul>
 
-    Result: $1010 = -6$ (incorrect!)
-    Overflow detected: $C_{in} = 1$, $C_{out} = 0$, so $1 \oplus 0 = 1$ (overflow)
+```
+    0 1 1 1    (carries: Cin to MSB = 1)
+      0 1 1 1
+    + 0 0 1 1
+    ---------
+      1 0 1 0  (Cout from MSB = 0)
+```
 
-    The correct result (+10) cannot be represented in 4 bits, which can only hold -8 to +7.
+<p style="color: #555; line-height: 1.75;">
+Result: $1010 = -6$ (incorrect!)<br>
+Overflow detected: $C_{in} = 1$, $C_{out} = 0$, so $1 \oplus 0 = 1$ (overflow)
+</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+The correct result (+10) cannot be represented in 4 bits, which can only hold -8 to +7.
+</p>
+</div>
 
-### Range of Signed Numbers
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Range of Signed Numbers</h3>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 For an n-bit two's complement number:
+</p>
 
-- **Minimum value:** $-2^{n-1}$ (e.g., $-8$ for 4 bits: $1000$)
-- **Maximum value:** $2^{n-1} - 1$ (e.g., $+7$ for 4 bits: $0111$)
-- **Total values:** $2^n$
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Minimum value:</strong> $-2^{n-1}$ (e.g., $-8$ for 4 bits: $1000$)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Maximum value:</strong> $2^{n-1} - 1$ (e.g., $+7$ for 4 bits: $0111$)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Total values:</strong> $2^n$</li>
+</ul>
 
-!!! warning "Overflow Detection is Critical"
-    Undetected overflow can cause catastrophic failures in safety-critical systems. The 1996 Ariane 5 rocket explosion was caused by a 64-bit to 16-bit conversion overflow in the guidance system.
+<div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
+<p style="color: #E65100; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Overflow Detection is Critical</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">
+Undetected overflow can cause catastrophic failures in safety-critical systems. The 1996 Ariane 5 rocket explosion was caused by a 64-bit to 16-bit conversion overflow in the guidance system.
+</p>
+</div>
 
 #### Diagram: Overflow Detection Simulator
 
@@ -837,23 +1058,29 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 1.9 Practical Applications
+<h2 id="19-practical-applications" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.9 Practical Applications</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 Number systems and binary arithmetic form the foundation for all digital hardware. Understanding these concepts is essential for:
+</p>
 
-- **Memory addressing:** Addresses are binary numbers, typically displayed in hexadecimal
-- **Processor arithmetic:** ALUs implement binary addition with overflow detection
-- **Color encoding:** RGB colors use 8-bit unsigned values (0-255) per channel
-- **Network protocols:** IP addresses, MAC addresses, and packet headers use binary/hex
-- **Embedded systems:** Sensor data, actuator control, and register manipulation require binary operations
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Memory addressing:</strong> Addresses are binary numbers, typically displayed in hexadecimal</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Processor arithmetic:</strong> ALUs implement binary addition with overflow detection</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Color encoding:</strong> RGB colors use 8-bit unsigned values (0-255) per channel</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Network protocols:</strong> IP addresses, MAC addresses, and packet headers use binary/hex</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Embedded systems:</strong> Sensor data, actuator control, and register manipulation require binary operations</li>
+</ul>
 
-### Common Pitfalls
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Common Pitfalls</h3>
 
-- Forgetting to include carry bits in multi-byte arithmetic
-- Mixing signed and unsigned interpretations of the same bit pattern
-- Sign extension errors when widening values
-- Overflow in intermediate calculations even when final result would fit
-- Off-by-one errors in range calculations
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Forgetting to include carry bits in multi-byte arithmetic</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Mixing signed and unsigned interpretations of the same bit pattern</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Sign extension errors when widening values</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Overflow in intermediate calculations even when final result would fit</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Off-by-one errors in range calculations</li>
+</ul>
 
 #### Diagram: Number Systems Concept Map
 
@@ -907,34 +1134,54 @@ Implementation: vis-network JavaScript library with responsive container
 
 ---
 
-## Summary and Key Takeaways
+<h2 id="summary-and-key-takeaways" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary and Key Takeaways</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 This unit established the mathematical foundation for digital system design through the following key concepts:
+</p>
 
-- **Digital systems** use discrete binary signals (0 and 1) rather than continuous analog values, providing noise immunity and reliable computation.
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Digital systems</strong> use discrete binary signals (0 and 1) rather than continuous analog values, providing noise immunity and reliable computation.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Positional notation</strong> is the basis for all number systems used in computing. The value of each digit depends on its position and the base of the system.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Four number systems</strong> are commonly used: decimal (base 10) for human readability, binary (base 2) for hardware implementation, octal (base 8) and hexadecimal (base 16) as compact binary representations.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary data units</strong> include bits (1), nibbles (4), bytes (8), and words (32/64), with MSB and LSB identifying the most and least significant positions.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Base conversions</strong> use repeated division (decimal to other bases), positional expansion (other bases to decimal), or direct grouping (binary ↔ octal/hex).</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Binary arithmetic</strong> follows the same algorithms as decimal but with only two digits. Carries and borrows propagate similarly to decimal.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Signed number representations</strong> include sign-magnitude, one's complement, and two's complement. Two's complement dominates because it has a unique zero and allows addition/subtraction with the same hardware.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Overflow detection</strong> is critical for correct arithmetic. In two's complement, overflow occurs when the carry into the MSB differs from the carry out of the MSB.</li>
+</ul>
 
-- **Positional notation** is the basis for all number systems used in computing. The value of each digit depends on its position and the base of the system.
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Self-Check Questions</p>
 
-- **Four number systems** are commonly used: decimal (base 10) for human readability, binary (base 2) for hardware implementation, octal (base 8) and hexadecimal (base 16) as compact binary representations.
+<details style="margin-bottom: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">What is the range of an 8-bit two's complement number?</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin: 0;">
+The range is <span class="arithmatex">\(-128\)</span> to <span class="arithmatex">\(+127\)</span> (i.e., <span class="arithmatex">\(-2^7\)</span> to <span class="arithmatex">\(2^7 - 1\)</span>).
+</p>
+</div>
+</details>
 
-- **Binary data units** include bits (1), nibbles (4), bytes (8), and words (32/64), with MSB and LSB identifying the most and least significant positions.
+<details style="margin-bottom: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Why is two's complement preferred over sign-magnitude?</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin: 0;">
+Two's complement has a single representation of zero and allows addition and subtraction to use identical hardware, simplifying processor design.
+</p>
+</div>
+</details>
 
-- **Base conversions** use repeated division (decimal to other bases), positional expansion (other bases to decimal), or direct grouping (binary ↔ octal/hex).
+<details style="margin-bottom: 0;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Convert $\text{A3}_{16}$ to binary.</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 14px 18px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin: 0;">
+<span class="arithmatex">\(\text{A} = 1010\)</span>, <span class="arithmatex">\(3 = 0011\)</span>, so <span class="arithmatex">\(\text{A3}_{16} = 10100011_2\)</span>.
+</p>
+</div>
+</details>
 
-- **Binary arithmetic** follows the same algorithms as decimal but with only two digits. Carries and borrows propagate similarly to decimal.
-
-- **Signed number representations** include sign-magnitude, one's complement, and two's complement. Two's complement dominates because it has a unique zero and allows addition/subtraction with the same hardware.
-
-- **Overflow detection** is critical for correct arithmetic. In two's complement, overflow occurs when the carry into the MSB differs from the carry out of the MSB.
-
-??? question "Self-Check: What is the range of an 8-bit two's complement number?"
-    The range is $-128$ to $+127$ (i.e., $-2^7$ to $2^7 - 1$).
-
-??? question "Self-Check: Why is two's complement preferred over sign-magnitude?"
-    Two's complement has a single representation of zero and allows addition and subtraction to use identical hardware, simplifying processor design.
-
-??? question "Self-Check: Convert $\text{A3}_{16}$ to binary."
-    $\text{A} = 1010$, $3 = 0011$, so $\text{A3}_{16} = 10100011_2$.
+</div>
 
 ---
 
