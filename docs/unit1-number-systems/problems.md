@@ -5,15 +5,17 @@ description: Practice problems for number systems, base conversions, and binary 
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Number Systems
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Number Systems</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of number systems and conversions.
+</p>
 
 ---
 
-## Section A: Base Conversions (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: Base Conversions (5 problems)</h2>
 
-### Problem 1
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
 Convert the following decimal numbers to binary, octal, and hexadecimal:
 
 a) 156
@@ -33,7 +35,7 @@ d) 1000
 
 ---
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 Convert the following binary numbers to decimal:
 
 a) 11010110₂
@@ -53,7 +55,7 @@ d) 10000001₂
 
 ---
 
-### Problem 3
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 Convert between hexadecimal and binary:
 
 a) 3F7₁₆ to binary
@@ -73,7 +75,7 @@ d) 110011110000₂ to hexadecimal
 
 ---
 
-### Problem 4
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 Convert the following octal numbers to decimal and binary:
 
 a) 752₈
@@ -93,7 +95,7 @@ d) 4000₈
 
 ---
 
-### Problem 5
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 A computer memory address is given as 7FFF₁₆.
 
 a) Convert this to decimal
@@ -111,9 +113,9 @@ c) How many bytes can be addressed from 0000₁₆ to 7FFF₁₆?
 
 ---
 
-## Section B: Signed Number Representations (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: Signed Number Representations (5 problems)</h2>
 
-### Problem 6
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
 Represent -45 in the following 8-bit formats:
 
 a) Sign-magnitude
@@ -132,7 +134,7 @@ c) Two's complement
 
 ---
 
-### Problem 7
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 What decimal values do the following 8-bit two's complement numbers represent?
 
 a) 10000000
@@ -152,7 +154,7 @@ d) 01111111
 
 ---
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
 What is the range of values that can be represented in:
 
 a) 8-bit unsigned
@@ -172,7 +174,7 @@ d) 16-bit two's complement
 
 ---
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
 Perform the following two's complement arithmetic (8-bit):
 
 a) 35 + 47
@@ -199,7 +201,7 @@ Actual answer should be 150, but it exceeds +127</p>
 
 ---
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
 Explain why overflow occurred in Problem 9d and how you can detect it.
 
 <details style="margin-top: 1rem;">
@@ -224,9 +226,9 @@ In this case: Carry in = 1, Carry out = 0, so 1 XOR 0 = 1 (overflow)</p>
 
 ---
 
-## Section C: Binary Arithmetic (3 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: Binary Arithmetic (3 problems)</h2>
 
-### Problem 11
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 Perform binary addition:
 
 a) 10110 + 11011
@@ -259,7 +261,7 @@ c) 10101010 + 01010101
 
 ---
 
-### Problem 12
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 Perform binary subtraction using two's complement:
 
 a) 11010 - 10011
@@ -283,7 +285,7 @@ Check: 100 - 50 = 50 &#10003;</p>
 
 ---
 
-### Problem 13
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
 Multiply the following binary numbers:
 
 a) 1101 × 101
@@ -317,9 +319,9 @@ b) 1011 × 110
 
 ---
 
-## Section D: Fractional Numbers (2 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Fractional Numbers (2 problems)</h2>
 
-### Problem 14
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
 Convert the following decimal fractions to binary (4 fractional bits):
 
 a) 0.625
@@ -346,7 +348,7 @@ Fractional: 0.75 × 2 = 1.5 → 1, 0.5 × 2 = 1.0 → 1<br>
 
 ---
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 Convert the following binary fractions to decimal:
 
 a) 101.011₂
@@ -364,9 +366,9 @@ c) 0.0001₂
 
 ---
 
-## Section E: Application Problems (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Application Problems (5 problems)</h2>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
 An 8-bit grayscale image uses values 0-255 to represent pixel brightness.
 
 a) What binary value represents 50% gray?
@@ -385,7 +387,7 @@ c) How many distinct shades can be represented?
 
 ---
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
 A 24-bit RGB color uses 8 bits each for Red, Green, and Blue.
 
 a) What is the hex representation of pure red?
@@ -405,7 +407,7 @@ d) How many colors can be represented?
 
 ---
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 A 4-bit binary counter counts from 0000 to 1111 repeatedly.
 
 a) How many states does it have?
@@ -425,7 +427,7 @@ d) What is the state after 1111?
 
 ---
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 A computer uses 32-bit addresses.
 
 a) How many bytes of memory can be addressed?
@@ -444,7 +446,7 @@ Increase factor: <span class="arithmatex">\(2^{64} / 2^{32} = 2^{32}\)</span> = 
 
 ---
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 Design a number format for a simple embedded system that needs to represent:
 
 - Temperatures from -40°C to +85°C
@@ -477,7 +479,9 @@ With 0.5°C resolution: 126 / 0.5 = 252 values needed<br>
 
 ---
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -487,5 +491,7 @@ With 0.5°C resolution: 126 / 0.5 = 252 values needed<br>
 | D | Fractional Numbers | 2 |
 | E | Applications | 5 |
 | **Total** | | **20** |
+
+</div>
 
 </div>
