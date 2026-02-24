@@ -5,15 +5,20 @@ description: Practice problems for canonical forms, SOP, POS, and cofactors
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Minterm & Maxterm Expansions
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">End-of-Unit Problems: Minterm & Maxterm Expansions</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of canonical forms.
+</p>
 
 ---
 
-## Section A: Minterms and Maxterms (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section A: Minterms and Maxterms (5 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 1
+
 For a 3-variable function F(A, B, C), list:
 
 a) The minterm for row 5
@@ -21,41 +26,59 @@ b) The maxterm for row 3
 c) The minterm notation for A'BC
 d) The maxterm notation for (A + B' + C)
 
-**Solution:** a) Row 5 = 101₂, so A=1, B=0, C=1
-   **m5 = AB'C**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-b) Row 3 = 011₂, so A=0, B=1, C=1
-   Maxterm uses complements: **M3 = (A + B' + C')**
+a) Row 5 = $101_2$, so A=1, B=0, C=1 → **$m_5 = A\overline{B}C$**
 
-c) A'BC: A=0, B=1, C=1 → row 011 = 3
-   **m3**
+b) Row 3 = $011_2$, so A=0, B=1, C=1 → Maxterm uses complements: **$M_3 = (A + \overline{B} + \overline{C})$**
 
-d) (A + B' + C): complement values: A'=0, B=1, C'=0 → 010 = 2
-   **M2**
+c) $\overline{A}BC$: A=0, B=1, C=1 → row 011 = 3 → **$m_3$**
+
+d) $(A + \overline{B} + C)$: complement values: A'=0, B=1, C'=0 → 010 = 2 → **$M_2$**
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 2
-Convert between minterm and maxterm notation:
 
-a) F = Σm(0, 2, 5, 7) to maxterm form
-b) F = ΠM(1, 3, 4, 6) to minterm form
+Convert between minterm and maxterm notation for 3 variables (A, B, C):
 
-For 3 variables (A, B, C).
+a) $F = \Sigma m(0, 2, 5, 7)$ to maxterm form
+b) $F = \Pi M(1, 3, 4, 6)$ to minterm form
 
-**Solution:** a) F = Σm(0, 2, 5, 7)
-   Missing minterms: 1, 3, 4, 6
-   **F = ΠM(1, 3, 4, 6)**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-b) F = ΠM(1, 3, 4, 6)
-   Missing maxterms: 0, 2, 5, 7
-   **F = Σm(0, 2, 5, 7)**
+a) $F = \Sigma m(0, 2, 5, 7)$ → Missing minterms: 1, 3, 4, 6
 
-Note: The minterm indices of F equal the maxterm indices of F'
+**$F = \Pi M(1, 3, 4, 6)$**
+
+b) $F = \Pi M(1, 3, 4, 6)$ → Missing maxterms: 0, 2, 5, 7
+
+**$F = \Sigma m(0, 2, 5, 7)$**
+
+Note: The minterm indices of $F$ equal the maxterm indices of $\overline{F}$
+
+</div>
+</details>
+
+</div>
 
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 3
+
 Given the truth table, express F in both minterm and maxterm forms:
 
 | A | B | C | F |
@@ -69,416 +92,612 @@ Given the truth table, express F in both minterm and maxterm forms:
 | 1 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 0 |
 
-**Solution:** F = 1 at rows: 0, 2, 3, 6
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+F = 1 at rows: 0, 2, 3, 6
 
 **Minterm form (SOP):**
-F = Σm(0, 2, 3, 6)
-F = A'B'C' + A'BC' + A'BC + ABC'
+
+$F = \Sigma m(0, 2, 3, 6) = \overline{A}\overline{B}\overline{C} + \overline{A}B\overline{C} + \overline{A}BC + AB\overline{C}$
 
 F = 0 at rows: 1, 4, 5, 7
 
 **Maxterm form (POS):**
-F = ΠM(1, 4, 5, 7)
-F = (A + B + C')(A' + B + C)(A' + B + C')(A' + B' + C')
+
+$F = \Pi M(1, 4, 5, 7) = (A + B + \overline{C})(\overline{A} + B + C)(\overline{A} + B + \overline{C})(\overline{A} + \overline{B} + \overline{C})$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 4
+
 Expand the following to canonical SOP form:
 
-F(A, B, C) = A + BC
+$$F(A, B, C) = A + BC$$
 
-**Solution:** Method: Expand each term to include all variables.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Term 1: A = A(B + B')(C + C')
-= ABC + ABC' + AB'C + AB'C'
-= m7 + m6 + m5 + m4
+**Method:** Expand each term to include all variables.
 
-Term 2: BC = BC(A + A')
-= ABC + A'BC
-= m7 + m3
+Term 1: $A = A(B + \overline{B})(C + \overline{C}) = ABC + AB\overline{C} + A\overline{B}C + A\overline{B}\overline{C} = m_7 + m_6 + m_5 + m_4$
+
+Term 2: $BC = BC(A + \overline{A}) = ABC + \overline{A}BC = m_7 + m_3$
 
 Combine (remove duplicates):
-F = m3 + m4 + m5 + m6 + m7
 
-**F = Σm(3, 4, 5, 6, 7)**
-**F = A'BC + AB'C' + AB'C + ABC' + ABC**
+$$F = \Sigma m(3, 4, 5, 6, 7) = \overline{A}BC + A\overline{B}\overline{C} + A\overline{B}C + AB\overline{C} + ABC$$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 5
+
 Expand to canonical POS form:
 
-F(A, B, C) = (A + B)(B + C)
+$$F(A, B, C) = (A + B)(B + C)$$
 
-**Solution:** Method: Expand each term to include all variables.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Term 1: (A + B) = (A + B + CC') = (A + B + C)(A + B + C')
-= M0 · M1
+**Method:** Expand each term to include all variables.
 
-Term 2: (B + C) = (B + C + AA') = (A + B + C)(A' + B + C)
-= M0 · M4
+Term 1: $(A + B) = (A + B + C\overline{C}) = (A + B + C)(A + B + \overline{C}) = M_0 \cdot M_1$
+
+Term 2: $(B + C) = (B + C + A\overline{A}) = (A + B + C)(\overline{A} + B + C) = M_0 \cdot M_4$
 
 Combine (remove duplicates):
-F = M0 · M1 · M4
 
-**F = ΠM(0, 1, 4)**
-**F = (A + B + C)(A + B + C')(A' + B + C)**
+$$F = \Pi M(0, 1, 4) = (A + B + C)(A + B + \overline{C})(\overline{A} + B + C)$$
+
+</div>
+</details>
+
+</div>
 
 ---
 
-## Section B: SOP and POS Forms (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section B: SOP and POS Forms (5 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 6
+
 Convert the following SOP expression to POS:
 
-F = AB + A'C + BC
+$$F = AB + \overline{A}C + BC$$
 
-**Solution:** Step 1: Find the truth table or minterms
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-AB = m6, m7 (when A=1, B=1)
-A'C = m1, m3 (when A=0, C=1)
-BC = m3, m7 (when B=1, C=1)
+**Step 1:** Find the minterms
 
-Combined: F = Σm(1, 3, 6, 7)
+- $AB$: $m_6, m_7$ (when A=1, B=1)
+- $\overline{A}C$: $m_1, m_3$ (when A=0, C=1)
+- $BC$: $m_3, m_7$ (when B=1, C=1)
 
-Step 2: F' = Σm(0, 2, 4, 5) (missing minterms)
+Combined: $F = \Sigma m(1, 3, 6, 7)$
 
-Step 3: F = ΠM(0, 2, 4, 5)
+**Step 2:** $\overline{F} = \Sigma m(0, 2, 4, 5)$ (missing minterms)
 
-**F = (A + B + C)(A + B' + C)(A' + B + C)(A' + B + C')**
+**Step 3:** $F = \Pi M(0, 2, 4, 5)$
+
+$$F = (A + B + C)(A + \overline{B} + C)(\overline{A} + B + C)(\overline{A} + B + \overline{C})$$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 7
+
 Convert the following POS expression to SOP:
 
-F = (A + B)(A' + C)(B + C')
+$$F = (A + B)(\overline{A} + C)(B + \overline{C})$$
 
-**Solution:** Method 1: Expand algebraically
-F = (A + B)(A' + C)(B + C')
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-First, (A + B)(A' + C) = AA' + AC + A'B + BC = AC + A'B + BC
+**Method:** Expand algebraically
 
-Then, (AC + A'B + BC)(B + C')
-= ACB + ACC' + A'BB + A'BC' + BCB + BCC'
-= ABC + 0 + A'B + A'BC' + BC + 0
-= ABC + A'B + A'BC' + BC
-= A'B(1 + C') + BC + ABC
-= A'B + BC + ABC
+$(A + B)(\overline{A} + C) = A\overline{A} + AC + \overline{A}B + BC = AC + \overline{A}B + BC$
 
-**F = A'B + BC + ABC**
+Then: $(AC + \overline{A}B + BC)(B + \overline{C})$
 
-Simplified: F = A'B + BC (since ABC is covered by BC when B=1, C=1)
+$= ACB + AC\overline{C} + \overline{A}BB + \overline{A}B\overline{C} + BCB + BC\overline{C}$
+
+$= ABC + 0 + \overline{A}B + \overline{A}B\overline{C} + BC + 0$
+
+$= \overline{A}B + BC + ABC$
+
+Simplified: **$F = \overline{A}B + BC$** (since $ABC$ is covered by $BC$ when B=1, C=1)
+
+</div>
+</details>
+
+</div>
 
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 8
-Find the complement of F = Σm(1, 3, 5, 7) using:
+
+Find the complement of $F = \Sigma m(1, 3, 5, 7)$ using:
 
 a) De Morgan's theorem
 b) Missing minterms
 
-**Solution:** F = Σm(1, 3, 5, 7) for F(A, B, C)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-a) **De Morgan's method:**
-F = m1 + m3 + m5 + m7
-F' = (m1 + m3 + m5 + m7)'
-F' = m1' · m3' · m5' · m7' = M1 · M3 · M5 · M7 = ΠM(1, 3, 5, 7)
+$F = \Sigma m(1, 3, 5, 7)$ for $F(A, B, C)$
 
-In SOP: F' = Σm(0, 2, 4, 6)
+**a) De Morgan's method:**
 
-b) **Missing minterms method:**
-All minterms: 0, 1, 2, 3, 4, 5, 6, 7
-F has: 1, 3, 5, 7
-F' has: **0, 2, 4, 6**
+$\overline{F} = \overline{(m_1 + m_3 + m_5 + m_7)} = \overline{m_1} \cdot \overline{m_3} \cdot \overline{m_5} \cdot \overline{m_7} = M_1 \cdot M_3 \cdot M_5 \cdot M_7 = \Pi M(1, 3, 5, 7)$
 
-**F' = Σm(0, 2, 4, 6) = A'B'C' + A'BC' + AB'C' + ABC'**
+In SOP: $\overline{F} = \Sigma m(0, 2, 4, 6)$
 
-Note: F = C and F' = C'
+**b) Missing minterms method:**
+
+All minterms: {0, 1, 2, 3, 4, 5, 6, 7}. $F$ has: {1, 3, 5, 7}. $\overline{F}$ has: **{0, 2, 4, 6}**
+
+$$\overline{F} = \Sigma m(0, 2, 4, 6) = \overline{A}\overline{B}\overline{C} + \overline{A}B\overline{C} + A\overline{B}\overline{C} + AB\overline{C}$$
+
+Note: $F = C$ and $\overline{F} = \overline{C}$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 9
-Express F and F' in both SOP and POS forms:
 
-F(A, B, C) = Σm(0, 1, 4, 5)
+Express $F$ and $\overline{F}$ in both SOP and POS forms:
 
-**Solution:** **F in SOP:** F = Σm(0, 1, 4, 5)
-F = A'B'C' + A'B'C + AB'C' + AB'C = **B'**
+$$F(A, B, C) = \Sigma m(0, 1, 4, 5)$$
 
-**F in POS:**
-Missing: 2, 3, 6, 7
-F = ΠM(2, 3, 6, 7)
-F = (A + B' + C)(A + B' + C')(A' + B' + C)(A' + B' + C')
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**F' in SOP:** F' = Σm(2, 3, 6, 7) = **B**
+**F in SOP:** $F = \Sigma m(0, 1, 4, 5) = \overline{A}\overline{B}\overline{C} + \overline{A}\overline{B}C + A\overline{B}\overline{C} + A\overline{B}C = \overline{B}$
 
-**F' in POS:** F' = ΠM(0, 1, 4, 5)
+**F in POS:** Missing: {2, 3, 6, 7} → $F = \Pi M(2, 3, 6, 7)$
+
+$F = (A + \overline{B} + C)(A + \overline{B} + \overline{C})(\overline{A} + \overline{B} + C)(\overline{A} + \overline{B} + \overline{C})$
+
+**$\overline{F}$ in SOP:** $\overline{F} = \Sigma m(2, 3, 6, 7) = B$
+
+**$\overline{F}$ in POS:** $\overline{F} = \Pi M(0, 1, 4, 5)$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 10
-Given F1 = Σm(0, 2, 4, 6) and F2 = Σm(1, 3, 5, 6), find:
 
-a) F1 + F2 (OR)
-b) F1 · F2 (AND)
-c) F1 ⊕ F2 (XOR)
+Given $F_1 = \Sigma m(0, 2, 4, 6)$ and $F_2 = \Sigma m(1, 3, 5, 6)$, find:
 
-**Solution:** a) **F1 + F2:** Union of minterms
-{0, 2, 4, 6} ∪ {1, 3, 5, 6} = {0, 1, 2, 3, 4, 5, 6}
-**F1 + F2 = Σm(0, 1, 2, 3, 4, 5, 6)** = (m7)' = A' + B' + C'
+a) $F_1 + F_2$ (OR)
+b) $F_1 \cdot F_2$ (AND)
+c) $F_1 \oplus F_2$ (XOR)
 
-b) **F1 · F2:** Intersection of minterms
-{0, 2, 4, 6} ∩ {1, 3, 5, 6} = {6}
-**F1 · F2 = Σm(6)** = ABC'
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-c) **F1 ⊕ F2:** Symmetric difference (in one but not both)
-{0, 2, 4} ∪ {1, 3, 5} = {0, 1, 2, 3, 4, 5}
-**F1 ⊕ F2 = Σm(0, 1, 2, 3, 4, 5)**
+**a) $F_1 + F_2$:** Union of minterms
+
+$\{0, 2, 4, 6\} \cup \{1, 3, 5, 6\} = \{0, 1, 2, 3, 4, 5, 6\}$
+
+$F_1 + F_2 = \Sigma m(0, 1, 2, 3, 4, 5, 6) = \overline{m_7} = \overline{A} + \overline{B} + \overline{C}$
+
+**b) $F_1 \cdot F_2$:** Intersection of minterms
+
+$\{0, 2, 4, 6\} \cap \{1, 3, 5, 6\} = \{6\}$
+
+$F_1 \cdot F_2 = \Sigma m(6) = AB\overline{C}$
+
+**c) $F_1 \oplus F_2$:** Symmetric difference (in one but not both)
+
+$\{0, 2, 4\} \cup \{1, 3, 5\} = \{0, 1, 2, 3, 4, 5\}$
+
+$F_1 \oplus F_2 = \Sigma m(0, 1, 2, 3, 4, 5)$
+
+</div>
+</details>
+
+</div>
 
 ---
 
-## Section C: Shannon's Expansion (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section C: Shannon's Expansion (5 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 11
-Apply Shannon's expansion to F(A, B, C) = AB + BC + A'C with respect to variable A.
 
-**Solution:** Shannon's expansion: F = A·F(1,B,C) + A'·F(0,B,C)
+Apply Shannon's expansion to $F(A, B, C) = AB + BC + \overline{A}C$ with respect to variable A.
 
-**F(1, B, C):** Substitute A=1
-F = 1·B + BC + 0·C = B + BC = B
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**F(0, B, C):** Substitute A=0
-F = 0·B + BC + 1·C = BC + C = C
+Shannon's expansion: $F = A \cdot F(1,B,C) + \overline{A} \cdot F(0,B,C)$
 
-**F = A·B + A'·C**
+**$F(1, B, C)$:** Substitute A=1
+
+$F = 1 \cdot B + BC + 0 \cdot C = B + BC = B$
+
+**$F(0, B, C)$:** Substitute A=0
+
+$F = 0 \cdot B + BC + 1 \cdot C = BC + C = C$
+
+$$F = A \cdot B + \overline{A} \cdot C$$
 
 (This is also the simplified form)
 
+</div>
+</details>
+
+</div>
+
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 12
+
 Use Shannon's expansion with respect to B for:
 
-F(A, B, C) = A'B'C + ABC' + AB'C
+$$F(A, B, C) = \overline{A}\overline{B}C + AB\overline{C} + A\overline{B}C$$
 
-**Solution:** F = B·F(A,1,C) + B'·F(A,0,C)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**F(A, 1, C):** Substitute B=1
-F = A'·0·C + A·1·C' + A·0·C = AC'
+$F = B \cdot F(A,1,C) + \overline{B} \cdot F(A,0,C)$
 
-**F(A, 0, C):** Substitute B=0
-F = A'·1·C + A·1·C' + A·1·C = A'C + AC' + AC = A'C + A = A + C
+**$F(A, 1, C)$:** Substitute B=1
 
-Wait, let me recalculate:
-F(A, 0, C) = A'·1·C + A·0·C' + A·1·C = A'C + 0 + AC = A'C + AC = C
+$F = \overline{A} \cdot 0 \cdot C + A \cdot 1 \cdot \overline{C} + A \cdot 0 \cdot C = A\overline{C}$
 
-**F = B·(AC') + B'·C**
-**F = ABC' + B'C**
+**$F(A, 0, C)$:** Substitute B=0
+
+$F = \overline{A} \cdot 1 \cdot C + A \cdot 0 \cdot \overline{C} + A \cdot 1 \cdot C = \overline{A}C + AC = C$
+
+$$F = B \cdot A\overline{C} + \overline{B} \cdot C = AB\overline{C} + \overline{B}C$$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 13
+
 Find the positive and negative cofactors of F with respect to A:
 
-F(A, B, C, D) = AB + CD + A'BD
+$$F(A, B, C, D) = AB + CD + \overline{A}BD$$
 
-**Solution:** **Positive cofactor F_A (A=1):**
-F(1, B, C, D) = 1·B + CD + 0·BD = B + CD
-**F_A = B + CD**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Negative cofactor F_A' (A=0):**
-F(0, B, C, D) = 0·B + CD + 1·BD = CD + BD = D(B + C)
-**F_A' = BD + CD = D(B + C)**
+**Positive cofactor $F_A$ (A=1):**
 
-Verification: F = A·F_A + A'·F_A' = A(B + CD) + A'(BD + CD)
-= AB + ACD + A'BD + A'CD = AB + CD(A + A') + A'BD
-= AB + CD + A'BD ✓
+$F(1, B, C, D) = 1 \cdot B + CD + 0 \cdot BD = B + CD$
+
+$$F_A = B + CD$$
+
+**Negative cofactor $F_{\overline{A}}$ (A=0):**
+
+$F(0, B, C, D) = 0 \cdot B + CD + 1 \cdot BD = CD + BD = D(B + C)$
+
+$$F_{\overline{A}} = BD + CD = D(B + C)$$
+
+**Verification:** $F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}} = A(B + CD) + \overline{A}(BD + CD) = AB + ACD + \overline{A}BD + \overline{A}CD = AB + CD + \overline{A}BD$ ✓
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 14
-Recursively expand F(A, B, C) = A ⊕ B ⊕ C using Shannon's expansion.
 
-**Solution:** **Level 1 - Expand with respect to A:**
-F = A·F_A + A'·F_A'
-F_A = 1 ⊕ B ⊕ C = (B ⊕ C)'
-F_A' = 0 ⊕ B ⊕ C = B ⊕ C
+Recursively expand $F(A, B, C) = A \oplus B \oplus C$ using Shannon's expansion.
 
-F = A·(B ⊕ C)' + A'·(B ⊕ C)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Level 2 - Expand (B ⊕ C) with respect to B:**
-B ⊕ C = B·C' + B'·C
+**Level 1 — Expand with respect to A:**
+
+$F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}$
+
+$F_A = 1 \oplus B \oplus C = (B \oplus C)' = \overline{B \oplus C}$
+
+$F_{\overline{A}} = 0 \oplus B \oplus C = B \oplus C$
+
+$F = A \cdot \overline{(B \oplus C)} + \overline{A} \cdot (B \oplus C)$
+
+**Level 2 — Expand $(B \oplus C)$ with respect to B:**
+
+$B \oplus C = B \cdot \overline{C} + \overline{B} \cdot C$
 
 **Complete expansion:**
-F = A·(BC + B'C') + A'·(B'C + BC')
-= ABC + AB'C' + A'B'C + A'BC'
 
-**F = Σm(1, 2, 4, 7)** (odd parity function)
+$F = A(BC + \overline{B}\overline{C}) + \overline{A}(\overline{B}C + B\overline{C})$
+
+$= ABC + A\overline{B}\overline{C} + \overline{A}\overline{B}C + \overline{A}B\overline{C}$
+
+$$F = \Sigma m(1, 2, 4, 7) \quad \text{(odd parity function)}$$
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 15
-Use cofactors to implement F(A, B, C) = Σm(1, 2, 4, 7) using a 2-to-1 MUX with A as the select input.
 
-**Solution:** For a 2-to-1 MUX with select A:
-- When A=0: output = I0
-- When A=1: output = I1
+Use cofactors to implement $F(A, B, C) = \Sigma m(1, 2, 4, 7)$ using a 2-to-1 MUX with A as the select input.
 
-Find cofactors:
-**F_A (A=1):** minterms with A=1: m4→BC', m7→BC
-Wait, let me recalculate using indices:
-- m1 = A'B'C (A=0)
-- m2 = A'BC' (A=0)
-- m4 = AB'C' (A=1)
-- m7 = ABC (A=1)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**F_A' (A=0):** m1, m2 → F_A' = B'C + BC' = B ⊕ C
+For a 2-to-1 MUX with select A: when A=0, output = $I_0$; when A=1, output = $I_1$
 
-**F_A (A=1):** m4, m7 → F_A = B'C' + BC = (B ⊕ C)'
+Find cofactors from minterm indices:
+
+- $m_1 = \overline{A}\overline{B}C$ (A=0), $m_2 = \overline{A}B\overline{C}$ (A=0)
+- $m_4 = A\overline{B}\overline{C}$ (A=1), $m_7 = ABC$ (A=1)
+
+**$F_{\overline{A}}$ (A=0):** $m_1, m_2$ → $F_{\overline{A}} = \overline{B}C + B\overline{C} = B \oplus C$
+
+**$F_A$ (A=1):** $m_4, m_7$ → $F_A = \overline{B}\overline{C} + BC = \overline{(B \oplus C)}$
 
 MUX connections:
-- **I0 = B ⊕ C** (when A=0)
-- **I1 = (B ⊕ C)'** (when A=1)
-- **S = A**
+
+- **$I_0 = B \oplus C$** (when A=0)
+- **$I_1 = \overline{(B \oplus C)}$** (when A=1)
+- **$S = A$**
+
+</div>
+</details>
+
+</div>
 
 ---
 
-## Section D: Function Implementation (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section D: Function Implementation (5 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 16
-Implement F = Σm(0, 1, 4, 5, 6) using:
+
+Implement $F = \Sigma m(0, 1, 4, 5, 6)$ using:
 
 a) Only AND and OR gates (from SOP)
 b) Only NAND gates
 
-**Solution:** a) **SOP implementation:**
-F = m0 + m1 + m4 + m5 + m6
-= A'B'C' + A'B'C + AB'C' + AB'C + ABC'
-= A'B'(C' + C) + AB'(C' + C) + ABC'
-= A'B' + AB' + ABC'
-= B'(A' + A) + ABC'
-= **B' + ABC'**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Gates needed: 1 AND (ABC'), 1 NOT (B), 1 OR
+**a) SOP implementation:**
 
-b) **NAND implementation:**
-F = B' + ABC' = ((B' + ABC')')'
-= ((B')'·(ABC')')'
-= (B · (ABC')')'
+$F = m_0 + m_1 + m_4 + m_5 + m_6$
 
-Using NAND:
-- NOT B = NAND(B, B)
-- ABC' = NAND(NAND(A, B, C'), 1) - need to construct
+$= \overline{A}\overline{B}\overline{C} + \overline{A}\overline{B}C + A\overline{B}\overline{C} + A\overline{B}C + AB\overline{C}$
 
-Simpler: F = B' + ABC' → use NAND-NAND structure
+$= \overline{A}\overline{B} + A\overline{B} + AB\overline{C} = \overline{B} + AB\overline{C}$
+
+$$F = \overline{B} + AB\overline{C}$$
+
+Gates needed: 1 AND ($AB\overline{C}$), 1 NOT ($\overline{B}$), 1 OR
+
+**b) NAND implementation:**
+
+$F = \overline{B} + AB\overline{C}$ → use NAND-NAND structure
+
+$F = \overline{\overline{(\overline{B} + AB\overline{C})}} = \overline{B \cdot \overline{AB\overline{C}}} = \overline{B \cdot (AB\overline{C})'}$
+
+Using NAND gates: NAND($B$, NAND($A, B, \overline{C}$))
+
+</div>
+</details>
+
+</div>
 
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 17
-Implement F = ΠM(0, 3, 5, 6) using:
+
+Implement $F = \Pi M(0, 3, 5, 6)$ using:
 
 a) Only AND and OR gates (from POS)
 b) Only NOR gates
 
-**Solution:** a) **POS implementation:**
-F = M0 · M3 · M5 · M6
-= (A+B+C)(A+B'+C')(A'+B+C')(A'+B'+C)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**a) POS implementation:**
+
+$F = M_0 \cdot M_3 \cdot M_5 \cdot M_6$
+
+$= (A+B+C)(A+\overline{B}+\overline{C})(\overline{A}+B+\overline{C})(\overline{A}+\overline{B}+C)$
 
 This requires 4 three-input OR gates and 1 four-input AND gate.
 
-Let's simplify first:
-F' = Σm(0, 3, 5, 6) = A'B'C' + A'BC + AB'C + ABC'
+**b) NOR implementation:**
 
-F = (F')' - but let's use POS directly or simplify.
+POS naturally maps to NOR-NOR: each maxterm (OR) becomes NOR-NOR, and the AND of maxterms becomes NOR of NORed terms.
 
-From POS, F can be simplified using K-map to find minimal POS.
+</div>
+</details>
 
-b) **NOR implementation:**
-POS naturally maps to NOR-NOR:
-Each maxterm (OR) becomes NOR-NOR
-The AND of maxterms becomes NOR of NORed terms
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 18
-Design a circuit for F(A, B, C, D) = Σm(0, 1, 2, 3, 8, 9, 10, 11) using a 3-to-8 decoder.
 
-**Solution:** First, identify the pattern:
-Minterms: 0-3 have A=0, B=0
-Minterms: 8-11 have A=1, B=0
+Design a circuit for $F(A, B, C, D) = \Sigma m(0, 1, 2, 3, 8, 9, 10, 11)$ using a decoder.
 
-Simplified: **F = B'** (F=1 whenever B=0)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-But using decoder approach:
-- Use a 4-to-16 decoder (or cascade 3-to-8 decoders)
-- OR outputs 0, 1, 2, 3, 8, 9, 10, 11
+First, identify the pattern: minterms 0–3 have A=0, B=0; minterms 8–11 have A=1, B=0.
 
-Alternative with 3-to-8 decoder:
-Use B, C, D as inputs, and:
-- Enable decoder 1 when A=0
-- Enable decoder 2 when A=1
-- OR all outputs from both for rows 0-3 from each
+Simplified: **$F = \overline{B}$** (F=1 whenever B=0)
 
-Simplest: Just use **F = B'** (one inverter)
+Using decoder approach: use a 4-to-16 decoder (or cascade two 3-to-8 decoders) and OR outputs 0, 1, 2, 3, 8, 9, 10, 11.
+
+Simplest implementation: just use **$F = \overline{B}$** (one inverter)
+
+</div>
+</details>
+
+</div>
 
 ---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 19
-Implement F(A, B, C) = Σm(1, 2, 4, 7) using an 8-to-1 multiplexer.
 
-**Solution:** For 8-to-1 MUX with 3 select lines (A, B, C):
+Implement $F(A, B, C) = \Sigma m(1, 2, 4, 7)$ using an 8-to-1 multiplexer.
 
-Connect inputs based on minterm values:
-- I0 (m0 = 000): F=0, connect to **0**
-- I1 (m1 = 001): F=1, connect to **1**
-- I2 (m2 = 010): F=1, connect to **1**
-- I3 (m3 = 011): F=0, connect to **0**
-- I4 (m4 = 100): F=1, connect to **1**
-- I5 (m5 = 101): F=0, connect to **0**
-- I6 (m6 = 110): F=0, connect to **0**
-- I7 (m7 = 111): F=1, connect to **1**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-MUX inputs: **I7I6I5I4I3I2I1I0 = 10010110**
+For 8-to-1 MUX with 3 select lines (A, B, C), connect inputs based on minterm values:
 
-Select lines: S2=A, S1=B, S0=C
+| Input | Minterm | Binary | F | Connect to |
+|:------|:--------|:-------|:--|:-----------|
+| $I_0$ | $m_0 = 000$ | 000 | 0 | **0** |
+| $I_1$ | $m_1 = 001$ | 001 | 1 | **1** |
+| $I_2$ | $m_2 = 010$ | 010 | 1 | **1** |
+| $I_3$ | $m_3 = 011$ | 011 | 0 | **0** |
+| $I_4$ | $m_4 = 100$ | 100 | 1 | **1** |
+| $I_5$ | $m_5 = 101$ | 101 | 0 | **0** |
+| $I_6$ | $m_6 = 110$ | 110 | 0 | **0** |
+| $I_7$ | $m_7 = 111$ | 111 | 1 | **1** |
+
+MUX inputs: $I_7 I_6 I_5 I_4 I_3 I_2 I_1 I_0 = 10010110$
+
+Select lines: $S_2 = A$, $S_1 = B$, $S_0 = C$
+
+</div>
+</details>
+
+</div>
 
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 20
+
 Using a 4-to-1 MUX and external logic, implement:
 
-F(A, B, C) = Σm(0, 2, 3, 5, 7)
+$$F(A, B, C) = \Sigma m(0, 2, 3, 5, 7)$$
 
 Use A and B as select lines.
 
-**Solution:** Group minterms by A, B values:
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+Group minterms by A, B values:
 
 | A | B | C values where F=1 | MUX input |
-|---|---|-------------------|-----------|
-| 0 | 0 | C=0 (m0) | C' |
-| 0 | 1 | C=0,1 (m2,m3) | 1 |
-| 1 | 0 | C=1 (m5) | C |
-| 1 | 1 | C=1 (m7) | C |
+|:--|:--|:-------------------|:----------|
+| 0 | 0 | C=0 ($m_0$) | $\overline{C}$ |
+| 0 | 1 | C=0, C=1 ($m_2, m_3$) | **1** |
+| 1 | 0 | C=1 ($m_5$) | $C$ |
+| 1 | 1 | C=1 ($m_7$) | $C$ |
 
 MUX connections:
-- **I0 = C'** (AB=00)
-- **I1 = 1** (AB=01)
-- **I2 = C** (AB=10)
-- **I3 = C** (AB=11)
-- **S1 = A, S0 = B**
+
+- **$I_0 = \overline{C}$** (AB=00)
+- **$I_1 = 1$** (AB=01)
+- **$I_2 = C$** (AB=10)
+- **$I_3 = C$** (AB=11)
+- **$S_1 = A$, $S_0 = B$**
+
+</div>
+</details>
+
+</div>
 
 ---
 
-## Summary
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 14px;">Problems Summary</p>
 
 | Section | Topics Covered | Problem Count |
-|---------|---------------|---------------|
-| A | Minterms/Maxterms | 5 |
+|:--------|:---------------|:--------------|
+| A | Minterms / Maxterms | 5 |
 | B | SOP and POS Forms | 5 |
 | C | Shannon's Expansion | 5 |
 | D | Function Implementation | 5 |
 | **Total** | | **20** |
+
+</div>
 
 </div>
