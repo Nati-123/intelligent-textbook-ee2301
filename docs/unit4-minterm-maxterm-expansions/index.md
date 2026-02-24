@@ -535,13 +535,24 @@ $$F = \overline{\overline{A}\overline{C} + A\overline{B}} = \overline{\overline{
 1. Multiply out the POS expression using distribution
 2. Simplify using Boolean algebra
 
-**Example:** Convert $F = (A+B)(A+C)$ to SOP
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-$$F = (A+B)(A+C)$$
-$$= A \cdot A + A \cdot C + B \cdot A + B \cdot C$$
-$$= A + AC + AB + BC$$
-$$= A(1 + C + B) + BC$$
-$$= A + BC$$
+Convert $F = (A+B)(A+C)$ to SOP
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 30px 32px; margin: 18px 0 8px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+$$\begin{aligned}
+F &= (A+B)(A+C) \\[8pt]
+  &= A \cdot A + A \cdot C + B \cdot A + B \cdot C \\[8pt]
+  &= A + AC + AB + BC \\[8pt]
+  &= A(1 + C + B) + BC \\[8pt]
+  &= A + BC
+\end{aligned}$$
+
+</div>
+
+</div>
 
 #### Diagram: SOP-POS Converter
 
