@@ -426,9 +426,9 @@ To implement basic operations using only NAND gates:
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">NAND as Universal Gate</p>
 <ul style="list-style: none; padding-left: 0; margin: 0;">
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>NOT:</strong> $\overline{A} = \overline{A \cdot A}$ (connect both NAND inputs to A)</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>AND:</strong> $A \cdot B = \overline{\overline{A \cdot B}}$ (NAND followed by NAND inverter)</li>
-<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>OR:</strong> $A + B = \overline{\overline{A} \cdot \overline{B}}$ (invert both inputs, then NAND)</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>NOT:</strong> <span class="arithmatex">\(\overline{A} = \overline{A \cdot A}\)</span> (connect both NAND inputs to A)</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>AND:</strong> <span class="arithmatex">\(A \cdot B = \overline{\overline{A \cdot B}}\)</span> (NAND followed by NAND inverter)</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>OR:</strong> <span class="arithmatex">\(A + B = \overline{\overline{A} \cdot \overline{B}}\)</span> (invert both inputs, then NAND)</li>
 </ul>
 </div>
 
