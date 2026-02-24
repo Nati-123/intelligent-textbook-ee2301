@@ -131,33 +131,37 @@ K-maps become impractical beyond 5-6 variables due to the difficulty of visualiz
 
 The **two-variable K-map** is the simplest form, with 4 cells arranged in a 2×2 grid.
 
-```
-        B=0   B=1
-      +-----+-----+
-A=0   | m₀  | m₁  |
-      +-----+-----+
-A=1   | m₂  | m₃  |
-      +-----+-----+
-```
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; min-width: 220px;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 18px;"></th><th style="padding: 6px 18px;">B = 0</th><th style="padding: 6px 18px;">B = 1</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 18px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 0</td><td style="padding: 6px 18px; text-align: center;">m<sub>0</sub></td><td style="padding: 6px 18px; text-align: center;">m<sub>1</sub></td></tr>
+<tr><td style="padding: 6px 18px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 1</td><td style="padding: 6px 18px; text-align: center; background: #f4f4ff;">m<sub>2</sub></td><td style="padding: 6px 18px; text-align: center; background: #f4f4ff;">m<sub>3</sub></td></tr>
+</tbody>
+</table>
 
 Each cell contains the function value (0, 1, or X) for that minterm.
 
-**Example:** Simplify $F(A,B) = \Sigma m(0,1,3)$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-```
-        B=0   B=1
-      +-----+-----+
-A=0   |  1  |  1  |  ← Group: m₀, m₁ = Ā
-      +-----+-----+
-A=1   |  0  |  1  |  ← m₃ pairs with m₁
-      +-----+-----+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Simplify <span class="arithmatex">\(F(A,B) = \Sigma m(0,1,3)\)</span></p>
 
-Groups:
-- Horizontal pair (m₀, m₁): A=0 for both → $\overline{A}$
-- Vertical pair (m₁, m₃): B=1 for both → $B$
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse; min-width: 220px;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 18px;"></th><th style="padding: 6px 18px;">B = 0</th><th style="padding: 6px 18px;">B = 1</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 18px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 0</td><td style="padding: 6px 18px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 18px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+<tr><td style="padding: 6px 18px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 1</td><td style="padding: 6px 18px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 18px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td></tr>
+</tbody>
+</table>
 
-**Result:** $F = \overline{A} + B$
+<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Groups:</p>
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 1.85;">
+<li>Horizontal pair (m<sub>0</sub>, m<sub>1</sub>): A = 0 for both &rarr; <span class="arithmatex">\(\overline{A}\)</span></li>
+<li>Vertical pair (m<sub>1</sub>, m<sub>3</sub>): B = 1 for both &rarr; <span class="arithmatex">\(B\)</span></li>
+</ul>
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Result: <span class="arithmatex">\(F = \overline{A} + B\)</span></p>
+
+</div>
 
 ---
 
