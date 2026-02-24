@@ -459,24 +459,24 @@ $$\overline{F} = \Sigma m(0,2,4,6,7) \;=\; \Pi M(1,3,5)$$
 <li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The maxterm indices of \(F\) become the minterm indices of \(\overline{F}\)</li>
 </ul>
 
-### Practical Use
+<h3 id="practical-use" style="color: #5A3EED !important; font-weight: 600; margin-top: 1.6rem; margin-bottom: 26px;">Practical Use</h3>
 
-<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+<p style="color: #555; line-height: 1.9; margin-bottom: 1.2rem; margin-left: 0.4rem;">
 To find \(\overline{F}\) in canonical form:
 </p>
 
-<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
-<li style="margin-bottom: 0.5rem;"><strong>From SOP:</strong> Swap \(\Sigma m \to \Pi M\), keep same indices</li>
-<li style="margin-bottom: 0.5rem;"><strong>From POS:</strong> Swap \(\Pi M \to \Sigma m\), keep same indices</li>
+<ol style="margin: 0.8rem 0 1.5rem 2rem; line-height: 1.8; color: #333;">
+<li style="margin-bottom: 20px;"><strong>From SOP:</strong> Swap \(\Sigma m \to \Pi M\), keep same indices</li>
+<li style="margin-bottom: 20px;"><strong>From POS:</strong> Swap \(\Pi M \to \Sigma m\), keep same indices</li>
 </ol>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 24px; margin: 1.5rem 0; text-align: center;" markdown>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 30px 32px; margin: 22px 0 24px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center;" markdown>
 
-$$\begin{aligned}
-F &= \Sigma m(1,3,5) \\[8pt]
-\Rightarrow \quad \overline{F} &= \Pi M(1,3,5) \\[8pt]
-&= \Sigma m(0,2,4,6,7)
-\end{aligned}$$
+$$F = \Sigma m(1,3,5)$$
+
+$$\Rightarrow \quad \overline{F} = \Pi M(1,3,5)$$
+
+$$\Rightarrow \quad \overline{F} = \Sigma m(0,2,4,6,7)$$
 
 </div>
 
