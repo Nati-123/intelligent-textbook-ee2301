@@ -135,17 +135,22 @@ George Boole's work predated electronic computers by nearly a century. Claude Sh
 
 ---
 
-## 2.2 Basic Boolean Operations
+<h2 id="22-basic-boolean-operations" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.2 Basic Boolean Operations</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Boolean algebra defines three fundamental operations from which all other operations can be derived: AND, OR, and NOT.
+</p>
 
-### The AND Operation
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The AND Operation</h3>
 
-The **AND operation** (logical conjunction) produces a 1 output only when ALL inputs are 1. It is analogous to multiplication in ordinary algebra and is denoted by a dot (·), adjacency, or the ∧ symbol.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>AND operation</strong> (logical conjunction) produces a 1 output only when ALL inputs are 1. It is analogous to multiplication in ordinary algebra and is denoted by a dot (·), adjacency, or the ∧ symbol.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">AND Operation</p>
 
 $$F = A \cdot B = AB = A \land B$$
-
-The AND operation models series connections in circuits—current flows only when both switches are closed.
 
 | A | B | A · B |
 |---|---|-------|
@@ -154,13 +159,22 @@ The AND operation models series connections in circuits—current flows only whe
 | 1 | 0 | 0 |
 | 1 | 1 | 1 |
 
-### The OR Operation
+</div>
 
-The **OR operation** (logical disjunction) produces a 1 output when ANY input is 1. It is analogous to addition in ordinary algebra and is denoted by a plus sign (+) or the ∨ symbol.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The AND operation models series connections in circuits—current flows only when both switches are closed.
+</p>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The OR Operation</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>OR operation</strong> (logical disjunction) produces a 1 output when ANY input is 1. It is analogous to addition in ordinary algebra and is denoted by a plus sign (+) or the ∨ symbol.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">OR Operation</p>
 
 $$F = A + B = A \lor B$$
-
-The OR operation models parallel connections—current flows when either switch is closed.
 
 | A | B | A + B |
 |---|---|-------|
@@ -169,9 +183,20 @@ The OR operation models parallel connections—current flows when either switch 
 | 1 | 0 | 1 |
 | 1 | 1 | 1 |
 
-### The NOT Operation
+</div>
 
-The **NOT operation** (logical negation or **complement**) inverts the input value. It is denoted by an overbar, prime, or the ¬ symbol.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The OR operation models parallel connections—current flows when either switch is closed.
+</p>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The NOT Operation</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>NOT operation</strong> (logical negation or <strong>complement</strong>) inverts the input value. It is denoted by an overbar, prime, or the ¬ symbol.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">NOT Operation</p>
 
 $$F = \overline{A} = A' = \lnot A$$
 
@@ -180,7 +205,11 @@ $$F = \overline{A} = A' = \lnot A$$
 | 0 | 1 |
 | 1 | 0 |
 
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 The complement of 0 is 1, and the complement of 1 is 0. This operation is fundamental to implementing negative logic and creating other derived operations.
+</p>
 
 #### Diagram: Boolean Operations Visualizer
 
