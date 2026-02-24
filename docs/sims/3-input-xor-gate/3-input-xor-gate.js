@@ -43,12 +43,12 @@ function draw() {
   textStyle(BOLD);
   text('3-Input XOR Gate', canvasWidth / 2, margin + 18);
 
-  // Boolean expression
+  // Boolean expression (moved below truth table area)
   fill(60);
   textSize(14);
   textStyle(NORMAL);
   textAlign(CENTER, TOP);
-  text("Y = A \u2295 B \u2295 C  (output is 1 when odd number of inputs are 1)", canvasWidth / 2, margin + 46);
+  text("Y = A \u2295 B \u2295 C  (output is 1 when odd number of inputs are 1)", canvasWidth / 2, drawHeight - 100);
 
   // --- Left side: Gate symbol ---
   let gateX = canvasWidth * 0.28;
