@@ -1427,48 +1427,61 @@ Implementation: p5.js with interactive canvas and DOM elements
 
 ---
 
-## Summary and Key Takeaways
+<h2 id="summary-and-key-takeaways" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary and Key Takeaways</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This unit established the axiomatic framework of Boolean algebra as the mathematical basis for combinational logic design.
+</p>
 
-- **Boolean algebra** is defined over the binary set $\{0, 1\}$ with three primitive operations: conjunction (AND, $\cdot$), disjunction (OR, $+$), and complementation (NOT, $\overline{\phantom{A}}$).
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Takeaways</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Boolean algebra</strong> is defined over the binary set <span class="arithmatex">\(\{0, 1\}\)</span> with three primitive operations: conjunction (AND, <span class="arithmatex">\(\cdot\)</span>), disjunction (OR, <span class="arithmatex">\(+\)</span>), and complementation (NOT, <span class="arithmatex">\(\overline{\phantom{A}}\)</span>).</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Logic gates</strong> provide the physical realization of Boolean operations. The primary gates (AND, OR, NOT, Buffer) and compound gates (NAND, NOR, XOR, XNOR) constitute the fundamental building blocks of all digital circuits.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Universal gates</strong> (NAND and NOR) are functionally complete—any Boolean function can be implemented using a single gate type, which reduces fabrication complexity in integrated circuit design.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Truth tables</strong> exhaustively specify the input–output behavior of a logic function. An <span class="arithmatex">\(n\)</span>-variable function requires <span class="arithmatex">\(2^n\)</span> rows for complete enumeration.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Boolean identities</strong> (Identity, Null, Idempotent, Complement, Involution) establish the foundational relationships used in algebraic manipulation of logic expressions.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Algebraic laws</strong> (Commutative, Associative, Distributive, Absorption, Consensus) provide the formal basis for systematic expression simplification and circuit optimization.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>DeMorgan's theorems</strong> define the duality between conjunction and disjunction under complementation, and are indispensable for gate-level transformations and NAND/NOR conversion.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>The duality principle</strong> guarantees that any valid Boolean theorem yields a corresponding dual theorem when AND <span class="arithmatex">\(\leftrightarrow\)</span> OR and <span class="arithmatex">\(0 \leftrightarrow 1\)</span> are interchanged throughout.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Standard forms</strong> (Sum of Products and Product of Sums) provide canonical expression representations that map directly to two-level gate implementations.</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Operator precedence</strong> is defined as NOT <span class="arithmatex">\(>\)</span> AND <span class="arithmatex">\(>\)</span> OR, with parentheses used to override the default evaluation order.</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Physical design constraints</strong>, including fan-in limitations and fan-out loading, must be accounted for when translating Boolean expressions into realizable gate-level circuits.</li>
+</ul>
+</div>
 
-- **Logic gates** provide the physical realization of Boolean operations. The primary gates (AND, OR, NOT, Buffer) and compound gates (NAND, NOR, XOR, XNOR) constitute the fundamental building blocks of all digital circuits.
+<details style="margin-top: 1.5rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Self-Check: What is the complement of <span class="arithmatex">\(F = AB + C\)</span> using DeMorgan's theorem?</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<span class="arithmatex">\(\overline{F} = \overline{AB + C} = \overline{AB} \cdot \overline{C} = (\overline{A} + \overline{B}) \cdot \overline{C} = \overline{A}\overline{C} + \overline{B}\overline{C}\)</span>
+</div>
+</details>
 
-- **Universal gates** (NAND and NOR) are functionally complete—any Boolean function can be implemented using a single gate type, which reduces fabrication complexity in integrated circuit design.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Self-Check: Why are NAND and NOR called universal gates?</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin: 0;">They can implement any Boolean function using only that gate type. All other gates (AND, OR, NOT) can be constructed from NAND gates alone or NOR gates alone.</p>
+</div>
+</details>
 
-- **Truth tables** exhaustively specify the input–output behavior of a logic function. An $n$-variable function requires $2^n$ rows for complete enumeration.
-
-- **Boolean identities** (Identity, Null, Idempotent, Complement, Involution) establish the foundational relationships used in algebraic manipulation of logic expressions.
-
-- **Algebraic laws** (Commutative, Associative, Distributive, Absorption, Consensus) provide the formal basis for systematic expression simplification and circuit optimization.
-
-- **DeMorgan's theorems** define the duality between conjunction and disjunction under complementation, and are indispensable for gate-level transformations and NAND/NOR conversion.
-
-- **The duality principle** guarantees that any valid Boolean theorem yields a corresponding dual theorem when AND $\leftrightarrow$ OR and $0 \leftrightarrow 1$ are interchanged throughout.
-
-- **Standard forms** (Sum of Products and Product of Sums) provide canonical expression representations that map directly to two-level gate implementations.
-
-- **Operator precedence** is defined as NOT $>$ AND $>$ OR, with parentheses used to override the default evaluation order.
-
-- **Physical design constraints**, including fan-in limitations and fan-out loading, must be accounted for when translating Boolean expressions into realizable gate-level circuits.
-
-??? question "Self-Check: What is the complement of $F = AB + C$ using DeMorgan's theorem?"
-    $\overline{F} = \overline{AB + C} = \overline{AB} \cdot \overline{C} = (\overline{A} + \overline{B}) \cdot \overline{C} = \overline{A}\overline{C} + \overline{B}\overline{C}$
-
-??? question "Self-Check: Why are NAND and NOR called universal gates?"
-    They can implement any Boolean function using only that gate type. All other gates (AND, OR, NOT) can be constructed from NAND gates alone or NOR gates alone.
-
-??? question "Self-Check: Simplify $F = AB + A\overline{B} + \overline{A}B$"
-    $F = A(B + \overline{B}) + \overline{A}B = A + \overline{A}B = A + B$ (by absorption: $A + \overline{A}B = A + B$)
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Self-Check: Simplify <span class="arithmatex">\(F = AB + A\overline{B} + \overline{A}B\)</span></summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<span class="arithmatex">\(F = A(B + \overline{B}) + \overline{A}B = A + \overline{A}B = A + B\)</span> (by absorption: <span class="arithmatex">\(A + \overline{A}B = A + B\)</span>)
+</div>
+</details>
 
 ---
 
-## Interactive Walkthrough
+<h2 id="interactive-walkthrough" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Interactive Walkthrough</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Step through a complete Boolean algebra proof with each law identified:
+</p>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/boolean-proof-walkthrough/main.html?v=2" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
