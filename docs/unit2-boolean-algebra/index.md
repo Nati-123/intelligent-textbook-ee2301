@@ -736,30 +736,50 @@ Implementation: p5.js with responsive layout
 
 ---
 
-## 2.6 DeMorgan's Theorems
+<h2 id="26-demorgans-theorems" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.6 DeMorgan's Theorems</h2>
 
-**DeMorgan's theorems** are among the most important results in Boolean algebra, providing the relationship between AND and OR through complementation. They are essential for converting between logic forms and implementing circuits using universal gates.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>DeMorgan's theorems</strong> are among the most important results in Boolean algebra, providing the relationship between AND and OR through complementation. They are essential for converting between logic forms and implementing circuits using universal gates.
+</p>
 
-### DeMorgan's First Theorem
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">DeMorgan's First Theorem</h3>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$\overline{A \cdot B} = \overline{A} + \overline{B}$$
 
-The complement of a product equals the sum of the complements. In circuit terms: a NAND gate is equivalent to an OR gate with inverted inputs.
+</div>
 
-### DeMorgan's Second Theorem
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The complement of a product equals the sum of the complements. In circuit terms: a NAND gate is equivalent to an OR gate with inverted inputs.
+</p>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">DeMorgan's Second Theorem</h3>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$\overline{A + B} = \overline{A} \cdot \overline{B}$$
 
-The complement of a sum equals the product of the complements. In circuit terms: a NOR gate is equivalent to an AND gate with inverted inputs.
+</div>
 
-**Generalized Form:** DeMorgan's theorems extend to any number of variables:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The complement of a sum equals the product of the complements. In circuit terms: a NOR gate is equivalent to an AND gate with inverted inputs.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Generalized Form</p>
+
+DeMorgan's theorems extend to any number of variables:
 
 $$\begin{aligned}
 \overline{A \cdot B \cdot C \cdot \ldots} &= \overline{A} + \overline{B} + \overline{C} + \ldots \\[6pt]
 \overline{A + B + C + \ldots} &= \overline{A} \cdot \overline{B} \cdot \overline{C} \cdot \ldots
 \end{aligned}$$
 
-**Application Example:** Simplify $\overline{\overline{A}\,B + C}$
+</div>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Application Example: Simplify $\overline{\overline{A}\,B + C}$</p>
 
 $$\begin{aligned}
 \overline{\overline{A}\,B + C} &= \overline{\overline{A}\,B} \cdot \overline{C}
@@ -772,21 +792,35 @@ $$\begin{aligned}
   && \text{(Distributive law)}
 \end{aligned}$$
 
-### The Duality Principle
+</div>
 
-The **duality principle** states that any Boolean theorem remains valid if we:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">The Duality Principle</h3>
 
-1. Interchange AND and OR operators
-2. Interchange 0 and 1 constants
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong>duality principle</strong> states that any Boolean theorem remains valid if we:
+</p>
 
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Interchange AND and OR operators</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Interchange 0 and 1 constants</li>
+</ul>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 For example, the dual of $A + 0 = A$ is $A \cdot 1 = A$, and both are valid. The dual of $A + \overline{A} = 1$ is $A \cdot \overline{A} = 0$.
+</p>
 
-!!! tip "DeMorgan's Bubble Trick"
-    To find the equivalent of a gate using DeMorgan's theorem, push the bubble through the gate while changing its type (AND ↔ OR). A bubble on the output becomes bubbles on all inputs (and vice versa).
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">DeMorgan's Bubble Trick</p>
+<p style="color: #333; line-height: 1.85; margin: 0;">
+To find the equivalent of a gate using DeMorgan's theorem, push the bubble through the gate while changing its type (AND ↔ OR). A bubble on the output becomes bubbles on all inputs (and vice versa).
+</p>
+</div>
 
-#### Diagram: DeMorgan's Theorem Visualizer
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: DeMorgan's Theorem Visualizer</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/demorgans-theorem-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>DeMorgan's Theorem Visualizer</summary>
