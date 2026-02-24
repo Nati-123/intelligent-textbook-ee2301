@@ -13,4 +13,9 @@ window.MathJax = {
 
 document$.subscribe(() => {
   MathJax.typesetPromise()
+  document.querySelectorAll("details").forEach(el => {
+    el.addEventListener("toggle", () => {
+      if (el.open) MathJax.typesetPromise([el])
+    })
+  })
 })
