@@ -877,59 +877,77 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 2.7 Algebraic Simplification
+<h2 id="27-algebraic-simplification" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.7 Algebraic Simplification</h2>
 
-**Algebraic simplification** reduces Boolean expressions to simpler equivalent forms, minimizing the number of gates and connections required for implementation. A simplified expression uses fewer literals and terms while implementing the same logic function.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Algebraic simplification</strong> reduces Boolean expressions to simpler equivalent forms, minimizing the number of gates and connections required for implementation. A simplified expression uses fewer literals and terms while implementing the same logic function.
+</p>
 
-### Simplification Strategies
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Simplification Strategies</h3>
 
-1. **Apply basic identities** to eliminate constants and redundant terms
-2. **Factor common terms** using distributive law
-3. **Combine terms** using complement law: $AB + A\overline{B} = A$
-4. **Apply absorption** to eliminate redundant terms
-5. **Use consensus theorem** to remove covered terms
-6. **Apply DeMorgan's** to convert between forms
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> <strong>Apply basic identities</strong> to eliminate constants and redundant terms</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> <strong>Factor common terms</strong> using distributive law</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> <strong>Combine terms</strong> using complement law: <span class="arithmatex">\(AB + A\overline{B} = A\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> <strong>Apply absorption</strong> to eliminate redundant terms</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">5.</span> <strong>Use consensus theorem</strong> to remove covered terms</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">6.</span> <strong>Apply DeMorgan's</strong> to convert between forms</li>
+</ul>
 
-### Worked Examples
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Worked Examples</h3>
 
-!!! example "Example 1: Simplify $F = AB + A\overline{B}$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 1: Simplify <span class="arithmatex">\(F = AB + A\overline{B}\)</span></p>
 
-    $$F = AB + A\overline{B}$$
-    $$= A(B + \overline{B})$$ (factor out $A$)
-    $$= A \cdot 1$$ (complement law)
-    $$= A$$ (identity law)
+$$F = AB + A\overline{B}$$
+$$= A(B + \overline{B}) \quad \text{(factor out } A\text{)}$$
+$$= A \cdot 1 \quad \text{(complement law)}$$
+$$= A \quad \text{(identity law)}$$
 
-!!! example "Example 2: Simplify $F = A + AB$"
+</div>
 
-    $$F = A + AB$$
-    $$= A \cdot 1 + AB$$ (identity law)
-    $$= A(1 + B)$$ (factor out $A$)
-    $$= A \cdot 1$$ (null law: $1 + B = 1$)
-    $$= A$$ (identity law)
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 2: Simplify <span class="arithmatex">\(F = A + AB\)</span></p>
 
-    This is the absorption law.
+$$F = A + AB$$
+$$= A \cdot 1 + AB \quad \text{(identity law)}$$
+$$= A(1 + B) \quad \text{(factor out } A\text{)}$$
+$$= A \cdot 1 \quad \text{(null law: } 1 + B = 1\text{)}$$
+$$= A \quad \text{(identity law)}$$
 
-!!! example "Example 3: Simplify $F = (A + B)(A + \overline{B})$"
+This is the absorption law.
 
-    $$F = (A + B)(A + \overline{B})$$
-    $$= A \cdot A + A\overline{B} + AB + B\overline{B}$$ (expand)
-    $$= A + A\overline{B} + AB + 0$$ (idempotent, complement)
-    $$= A + A(\overline{B} + B)$$ (factor)
-    $$= A + A \cdot 1$$ (complement)
-    $$= A + A = A$$ (idempotent)
+</div>
 
-!!! example "Example 4: Simplify $F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 3: Simplify <span class="arithmatex">\(F = (A + B)(A + \overline{B})\)</span></p>
 
-    $$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
-    $$= \overline{A}(B + C) + \overline{B}\overline{C}$$ (factor out $\overline{A}$)
+$$F = (A + B)(A + \overline{B})$$
+$$= A \cdot A + A\overline{B} + AB + B\overline{B} \quad \text{(expand)}$$
+$$= A + A\overline{B} + AB + 0 \quad \text{(idempotent, complement)}$$
+$$= A + A(\overline{B} + B) \quad \text{(factor)}$$
+$$= A + A \cdot 1 \quad \text{(complement)}$$
+$$= A + A = A \quad \text{(idempotent)}$$
 
-    The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
+</div>
 
-    $$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example 4: Simplify <span class="arithmatex">\(F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}\)</span></p>
 
-#### Diagram: Boolean Simplification Tutor
+$$F = \overline{A}B + \overline{A}C + \overline{B}\overline{C}$$
+$$= \overline{A}(B + C) + \overline{B}\overline{C} \quad \text{(factor out } \overline{A}\text{)}$$
 
+The term $\overline{B}\overline{C}$ is not a consensus term here (consensus would require complementary variables across the first two terms). This expression cannot be reduced further, so the simplified form is:
+
+$$F = \overline{A}(B + C) + \overline{B}\overline{C}$$
+
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Boolean Simplification Tutor</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/boolean-simplification-tutor/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Boolean Simplification Tutor</summary>
