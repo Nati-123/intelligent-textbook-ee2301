@@ -113,9 +113,11 @@ This binary representation offers significant advantages for electronic systems.
 The foundation of all digital systems is the <strong style="color: #333;">binary number system</strong>, which uses only two symbols (0 and 1) to represent numerical values. Understanding how numbers are encoded in binary — and how to convert between binary and other number systems — is essential for digital system design.
 </p>
 
-#### Diagram: Analog vs Digital Signal Comparison
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Analog vs Digital Signal Comparison</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="480px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Analog vs Digital Signal Comparison</summary>
@@ -239,9 +241,11 @@ A = 10 &nbsp;&nbsp; B = 11 &nbsp;&nbsp; C = 12 &nbsp;&nbsp; D = 13 &nbsp;&nbsp; 
 
 </div>
 
-#### Diagram: Positional Notation Interactive Explorer
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Positional Notation Interactive Explorer</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/positional-notation-explorer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Positional Notation Interactive Explorer</summary>
@@ -434,9 +438,11 @@ Result: <span class="arithmatex">\(10111010_2 = \text{BA}_{16}\)</span>
 </p>
 </div>
 
-#### Diagram: Base Conversion Calculator
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Base Conversion Calculator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/base-converter/main.html" width="100%" height="450px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Base Conversion Calculator</summary>
@@ -639,9 +645,11 @@ Result: <span class="arithmatex">\(101_2 \times 11_2 = 1111_2\)</span> (5 × 3 =
 </div>
 </div>
 
-#### Diagram: Binary Arithmetic Practice
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Binary Arithmetic Practice</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/binary-arithmetic-practice/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Binary Arithmetic Practice</summary>
@@ -793,9 +801,11 @@ Two's complement has a single representation of zero and allows addition and sub
 
 </div>
 
-#### Diagram: Signed Number Representation Comparison
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Signed Number Representation Comparison</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/signed-number-comparison/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Signed Number Representation Comparison</summary>
@@ -1002,9 +1012,11 @@ Undetected overflow can cause catastrophic failures in safety-critical systems. 
 </p>
 </div>
 
-#### Diagram: Overflow Detection Simulator
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Overflow Detection Simulator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="660px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Overflow Detection Simulator</summary>
@@ -1089,9 +1101,11 @@ Number systems and binary arithmetic form the foundation for all digital hardwar
 <li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Off-by-one errors in range calculations</li>
 </ul>
 
-#### Diagram: Number Systems Concept Map
+<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Number Systems Concept Map</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="670px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Number Systems Concept Map</summary>
@@ -1197,11 +1211,15 @@ Two's complement has a single representation of zero and allows addition and sub
 
 ---
 
-## Interactive Walkthrough
+<h2 id="interactive-walkthrough" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Interactive Walkthrough</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
 Step through a complete base conversion problem with animated visuals:
+</p>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/base-conversion-walkthrough/main.html" width="100%" height="680px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
