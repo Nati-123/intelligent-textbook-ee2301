@@ -131,7 +131,7 @@ function drawKmap() {
     rowVars = 'A';
     colVars = 'B';
     startX = canvasWidth / 2 - cellSize;
-    startY = 90;
+    startY = 100;
   } else if (numVars === 3) {
     rows = 2; cols = 4;
     rowLabels = ['0', '1'];
@@ -139,7 +139,7 @@ function drawKmap() {
     rowVars = 'A';
     colVars = 'BC';
     startX = canvasWidth / 2 - cellSize * 2;
-    startY = 90;
+    startY = 100;
   } else {
     rows = 4; cols = 4;
     rowLabels = ['00', '01', '11', '10'];
@@ -147,7 +147,7 @@ function drawKmap() {
     rowVars = 'AB';
     colVars = 'CD';
     startX = canvasWidth / 2 - cellSize * 2;
-    startY = 80;
+    startY = 100;
   }
 
   // Draw column labels
@@ -288,7 +288,7 @@ function drawLegend(startY) {
 }
 
 function drawExpression() {
-  let y = numVars === 4 ? 370 : 340;
+  let y = numVars === 4 ? 390 : 350;
 
   fill(240);
   stroke('silver');
@@ -531,15 +531,15 @@ function mousePressed() {
   if (numVars === 2) {
     rows = 2; cols = 2;
     startX = canvasWidth / 2 - cellSize;
-    startY = 90;
+    startY = 100;
   } else if (numVars === 3) {
     rows = 2; cols = 4;
     startX = canvasWidth / 2 - cellSize * 2;
-    startY = 90;
+    startY = 100;
   } else {
     rows = 4; cols = 4;
     startX = canvasWidth / 2 - cellSize * 2;
-    startY = 80;
+    startY = 100;
   }
 
   for (let r = 0; r < rows; r++) {
