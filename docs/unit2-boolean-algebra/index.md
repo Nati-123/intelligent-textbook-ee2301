@@ -312,7 +312,7 @@ The <strong>NOT gate</strong> (also called an <strong>inverter</strong>) impleme
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-The <strong>buffer gate</strong> passes its input unchanged to the output ($F = A$). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
+The <strong>buffer gate</strong> passes its input unchanged to the output (<span class="arithmatex">\(F = A\)</span>). While seemingly useless logically, buffers provide signal amplification, isolation, and timing delays in physical circuits.
 </p>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Buffer Gate with Truth Table</h4>
@@ -652,7 +652,7 @@ Boolean algebra follows a set of fundamental theorems and identities that enable
 <div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
 <p style="color: #E65100; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Watch Out</p>
 <p style="color: #333; line-height: 1.85; margin: 0;">
-The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary algebra!
+The second distributive law (<span class="arithmatex">\(A + BC = (A+B)(A+C)\)</span>) differs from ordinary algebra!
 </p>
 </div>
 
@@ -668,7 +668,7 @@ The second distributive law ($A + BC = (A+B)(A+C)$) differs from ordinary algebr
 </div>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-The consensus term ($BC$ or $B+C$) is redundant because it's covered by the other terms.
+The consensus term (<span class="arithmatex">\(BC\)</span> or <span class="arithmatex">\(B+C\)</span>) is redundant because it's covered by the other terms.
 </p>
 
 <h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Boolean Laws Interactive Proof</h4>
@@ -779,7 +779,7 @@ $$\begin{aligned}
 </div>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Application Example: Simplify $\overline{\overline{A}\,B + C}$</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Application Example: Simplify <span class="arithmatex">\(\overline{\overline{A}\,B + C}\)</span></p>
 
 $$\begin{aligned}
 \overline{\overline{A}\,B + C} &= \overline{\overline{A}\,B} \cdot \overline{C}
@@ -806,7 +806,7 @@ The <strong>duality principle</strong> states that any Boolean theorem remains v
 </ul>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-For example, the dual of $A + 0 = A$ is $A \cdot 1 = A$, and both are valid. The dual of $A + \overline{A} = 1$ is $A \cdot \overline{A} = 0$.
+For example, the dual of <span class="arithmatex">\(A + 0 = A\)</span> is <span class="arithmatex">\(A \cdot 1 = A\)</span>, and both are valid. The dual of <span class="arithmatex">\(A + \overline{A} = 1\)</span> is <span class="arithmatex">\(A \cdot \overline{A} = 0\)</span>.
 </p>
 
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
