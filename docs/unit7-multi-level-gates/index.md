@@ -1089,81 +1089,82 @@ The optimal form depends on the design priority — **delay**, **area**, or **po
 
 <h2 style="color: #5A3EED;">7.11 Factoring for Multi-Level Optimization</h2>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
-<strong>Factoring</strong> transforms a two-level expression into a multi-level form by extracting common factors. This technique is the primary tool for reducing gate count and fan-in in practical circuit design.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+**Factoring** transforms a two-level expression into a multi-level form by extracting common factors. This technique is the primary tool for reducing gate count and fan-in in practical circuit design.
+
 </div>
 
-<h3 style="color: #5A3EED;">Common Factor Extraction</h3>
+### Common Factor Extraction
 
-Identify variables or sub-expressions that appear in multiple terms and factor them out:
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="flex: 1; min-width: 260px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
 
-**Example 1:**
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Example 1: Simple Factoring</p>
 
 $$F = ABC + ABD + ABE$$
 $$= AB(C + D + E)$$
 
-The original requires three 3-input AND gates and one 3-input OR gate (4 gates). The factored form requires one 2-input AND gate ($AB$), one 3-input OR gate ($C+D+E$), and one 2-input AND gate (product of the two) = 3 gates.
+Original: 4 gates (three 3-input ANDs + one 3-input OR).
+Factored: **3 gates** (one 2-input AND for $AB$, one 3-input OR, one 2-input AND).
 
-**Example 2 (Multi-step factoring):**
+</div>
+<div markdown style="flex: 1; min-width: 260px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Example 2: Multi-Step Factoring</p>
 
 $$F = ACD + ADE + BCD + BDE$$
-$$= AD(C + E) + BD(C + E) \quad \text{(factor each pair)}$$
-$$= (A + B)D(C + E) \quad \text{(factor common } D(C+E) \text{)}$$
+$$= AD(C+E) + BD(C+E)$$
+$$= (A+B)D(C+E)$$
 
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Form</th>
-      <th style="padding: 8px 14px; text-align: center;">Gates</th>
-      <th style="padding: 8px 14px; text-align: center;">Max Fan-in</th>
-      <th style="padding: 8px 14px; text-align: center;">Levels</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Original SOP</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5 (4 AND + 1 OR)</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Single factor</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5 (2 AND + 2 OR + 1 AND)</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Fully factored</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4 (2 OR + 2 AND)</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
-    </tr>
-  </tbody>
-</table>
+Factor each pair first, then extract the common $D(C+E)$.
 
-<h3 style="color: #5A3EED;">Decomposition Techniques</h3>
+</div>
+</div>
 
-**Decomposition** breaks a complex function into simpler subfunctions, each implemented separately. This is particularly useful when:
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Factoring Trade-offs (Example 2)</p>
+
+| Form | Gates | Max Fan-in | Levels |
+|:-----|:-----:|:----------:|:------:|
+| **Original SOP** | 5 (4 AND + 1 OR) | 3 | 2 |
+| **Single factor** | 5 (2 AND + 2 OR + 1 AND) | 2 | 3 |
+| **Fully factored** | 4 (2 OR + 2 AND) | 2 | 4 |
+
+</div>
+
+### Decomposition Techniques
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">When to Use Decomposition</p>
+
+**Decomposition** breaks a complex function into simpler subfunctions. Use it when:
 
 - The function has too many variables for a single implementation
 - Standard cell libraries have limited gate sizes
 - Power or area constraints require simpler gates
 
-**Functional decomposition** expresses $F(X_1, ..., X_n)$ as a composition of simpler functions:
-
-$$F(A, B, C, D) = g(A, B, h(C, D))$$
+**General form:** $F(A, B, C, D) = g(A, B,\; h(C, D))$
 
 where $h(C, D)$ and $g(A, B, h)$ are each simpler than $F$.
 
-**Example:** $F = AB\overline{C}\overline{D} + \overline{A}BCD + ABCD$
+</div>
 
-Observing that $CD$ appears as a sub-expression:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Let $h = CD$. Then:
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Worked Example: Functional Decomposition</p>
+
+$F = AB\overline{C}\overline{D} + \overline{A}BCD + ABCD$
+
+Observing that $CD$ appears as a sub-expression, let $h = CD$:
 
 $$F = AB\overline{h} + \overline{A}Bh + ABh = AB\overline{h} + Bh(\overline{A} + A) = AB\overline{h} + Bh = B(A\overline{h} + h)$$
 
-The decomposed form separates the function into a first stage computing $h = CD$ and a second stage computing $F = B(A\overline{h} + h)$.
+**Result:** Stage 1 computes $h = CD$, Stage 2 computes $F = B(A\overline{h} + h)$.
+
+</div>
 
 #### Diagram: Factoring and Decomposition Explorer
 
