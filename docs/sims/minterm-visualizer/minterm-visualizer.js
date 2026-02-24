@@ -2,7 +2,7 @@
 // Visualize minterms and maxterms
 // Bloom Level: Understand (L2) - Explain minterm/maxterm concepts
 // MicroSim template version 2026.02
-// All controls drawn on canvas — no DOM elements, no iframe conflicts.
+// All controls drawn on canvas — pill buttons only, no slider.
 
 let containerWidth;
 let canvasWidth = 400;
@@ -37,12 +37,6 @@ let selectedMinterm = 3;
 // Layout constants
 const MX = 40;
 
-// Custom slider state
-let sliderDragging = false;
-let sliderTrackX, sliderTrackY, sliderTrackW;
-const SLIDER_H = 6;
-const THUMB_R = 10;
-
 function setup() {
   updateCanvasSize();
   const canvas = createCanvas(containerWidth, canvasHeight);
@@ -72,19 +66,19 @@ function draw() {
   // Subtitle
   textSize(13);
   fill('#555');
-  text('Select a minterm to explore its product and sum terms', canvasWidth / 2, 42);
+  text('Click a minterm pill below to explore its product and sum terms', canvasWidth / 2, 42);
 
   // Sections
   drawBitDisplay();
   drawTruthTableRow();
   drawMintermMaxterm();
   drawMintermList();
-  drawControlBar();
+  drawVarsBar();
 }
 
-// ── Control bar (variable buttons + custom slider) ──
+// ── Variable selector bar ──
 
-function drawControlBar() {
+function drawVarsBar() {
   let y = 720;
   let bandW = canvasWidth - 2 * MX;
 
@@ -94,23 +88,22 @@ function drawControlBar() {
   strokeWeight(1.5);
   rect(MX, y, bandW, 46, 12);
 
-  // ── Variable selector buttons: [2] [3] [4] ──
+  // Variable selector buttons: [2] [3] [4]
   let btnW = 30;
   let btnH = 26;
   let btnGap = 6;
   let varsX = MX + 16;
   let btnY = y + 10;
 
-  // Label
   fill(PURPLE);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
   textStyle(BOLD);
-  text('Vars:', varsX, btnY + btnH / 2);
+  text('Variables:', varsX, btnY + btnH / 2);
   textStyle(NORMAL);
 
-  varsX += 38;
+  varsX += 66;
   for (let v = 2; v <= 4; v++) {
     let isActive = (numVars === v);
     let bx = varsX + (v - 2) * (btnW + btnGap);
@@ -134,57 +127,17 @@ function drawControlBar() {
     textStyle(NORMAL);
   }
 
-  // ── Custom slider ──
-  let sliderLabelX = varsX + 3 * (btnW + btnGap) + 14;
-  let maxVal = Math.pow(2, numVars) - 1;
-
-  // Label "m3:"
-  fill(PURPLE);
+  // Hint text
+  let hintX = varsX + 3 * (btnW + btnGap) + 16;
+  fill('#999');
   noStroke();
   textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text('m' + selectedMinterm + ':', sliderLabelX, btnY + btnH / 2);
+  textSize(11);
   textStyle(NORMAL);
-
-  // Track
-  sliderTrackX = sliderLabelX + 40;
-  sliderTrackY = btnY + btnH / 2;
-  sliderTrackW = MX + bandW - 16 - sliderTrackX - 28;
-  if (sliderTrackW < 60) sliderTrackW = 60;
-
-  // Draw track background
-  fill('#E8E0FF');
-  noStroke();
-  rect(sliderTrackX, sliderTrackY - SLIDER_H / 2, sliderTrackW, SLIDER_H, 3);
-
-  // Filled portion
-  let frac = maxVal > 0 ? selectedMinterm / maxVal : 0;
-  let filledW = frac * sliderTrackW;
-  fill(PURPLE_BORDER);
-  rect(sliderTrackX, sliderTrackY - SLIDER_H / 2, filledW, SLIDER_H, 3);
-
-  // Thumb
-  let thumbX = sliderTrackX + filledW;
-  drawingContext.shadowColor = 'rgba(106,91,255,0.35)';
-  drawingContext.shadowBlur = 6;
-  fill(PURPLE);
-  stroke('white');
-  strokeWeight(2);
-  ellipse(thumbX, sliderTrackY, THUMB_R * 2, THUMB_R * 2);
-  drawingContext.shadowBlur = 0;
-
-  // Value at end
-  fill(PURPLE_DARK);
-  noStroke();
-  textAlign(LEFT, CENTER);
-  textSize(12);
-  textStyle(BOLD);
-  text(selectedMinterm, sliderTrackX + sliderTrackW + 10, sliderTrackY);
-  textStyle(NORMAL);
+  text('Click a minterm above to explore it', hintX, btnY + btnH / 2);
 }
 
-// ── Slider & button interaction ──
+// ── Interaction: pill buttons + variable selector ──
 
 function mousePressed() {
   // Check variable selector buttons
@@ -192,7 +145,7 @@ function mousePressed() {
   let btnW = 30;
   let btnH = 26;
   let btnGap = 6;
-  let varsX = MX + 16 + 38;
+  let varsX = MX + 16 + 66;
   let btnY = y + 10;
 
   for (let v = 2; v <= 4; v++) {
@@ -205,33 +158,8 @@ function mousePressed() {
     }
   }
 
-  // Check custom slider thumb / track
-  if (mouseY >= sliderTrackY - THUMB_R - 4 && mouseY <= sliderTrackY + THUMB_R + 4 &&
-      mouseX >= sliderTrackX - THUMB_R && mouseX <= sliderTrackX + sliderTrackW + THUMB_R) {
-    sliderDragging = true;
-    updateSliderFromMouse();
-    return;
-  }
-
-  // Check minterm buttons
+  // Check minterm pill buttons
   checkMintermButtons();
-}
-
-function mouseDragged() {
-  if (sliderDragging) {
-    updateSliderFromMouse();
-  }
-}
-
-function mouseReleased() {
-  sliderDragging = false;
-}
-
-function updateSliderFromMouse() {
-  let maxVal = Math.pow(2, numVars) - 1;
-  let frac = (mouseX - sliderTrackX) / sliderTrackW;
-  frac = constrain(frac, 0, 1);
-  selectedMinterm = Math.round(frac * maxVal);
 }
 
 function checkMintermButtons() {
