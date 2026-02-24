@@ -1328,56 +1328,69 @@ Implementation: HTML/CSS/JavaScript with SVG gate symbols
 
 <h2 style="color: #5A3EED;">7.13 Wired Logic Implementations</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Wired logic** exploits the electrical properties of certain gate output types to implement logic functions without additional gates. When multiple gate outputs are connected together, the resulting logic depends on the output driver technology.
+
+</div>
 
 ### Open-Collector/Open-Drain Outputs
 
-In open-collector (TTL) or open-drain (CMOS) configurations, outputs can be connected together with a shared pull-up resistor. The combined output performs a **wired-AND** function:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Wired-AND Function</p>
+
+In open-collector (TTL) or open-drain (CMOS) configurations, outputs connected with a shared pull-up resistor perform a **wired-AND**:
 
 $$F = G_1 \cdot G_2 \cdot G_3$$
 
-where $G_1$, $G_2$, $G_3$ are the individual gate outputs. The output is LOW (0) if any gate pulls it low; it is HIGH (1) only if all gates are in the high-impedance state.
+where $G_1$, $G_2$, $G_3$ are individual gate outputs. Output is LOW if **any** gate pulls low; HIGH only if **all** gates are high-impedance.
+
+</div>
 
 ### Wired-AND with NAND Gates
 
-Connecting the open-collector outputs of NAND gates creates powerful composite functions. If Gate 1 outputs $\overline{AB}$ and Gate 2 outputs $\overline{CD}$, the wired-AND produces:
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Free AOI Gate</p>
+
+Connecting open-collector NAND outputs creates composite functions. If Gate 1 outputs $\overline{AB}$ and Gate 2 outputs $\overline{CD}$:
 
 $$F = \overline{AB} \cdot \overline{CD} = \overline{AB + CD}$$
 
-This implements an AND-OR-Invert function without a separate OR gate—effectively a "free" AOI gate using only the wiring and a pull-up resistor.
+This implements an **AND-OR-Invert** function without a separate OR gate — effectively a "free" AOI gate using only wiring and a pull-up resistor.
+
+</div>
 
 ### Limitations of Wired Logic
 
-- **Speed:** Pull-up resistor creates an RC time constant that slows transitions from LOW to HIGH
-- **Power:** Static power dissipation when outputs pull against the resistor
+<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Drawbacks</p>
+
+- **Speed:** Pull-up resistor creates RC delay on LOW→HIGH transitions
+- **Power:** Static dissipation when outputs pull against resistor
 - **Fan-out:** Limited by resistor value and electrical characteristics
 - **Noise margin:** Reduced compared to active gate outputs
 - **Testing:** Wired connections are harder to test and debug
 
-<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-  <thead>
-    <tr style="background: #6A5BFF; color: #fff;">
-      <th style="padding: 8px 14px; text-align: left;">Wired Configuration</th>
-      <th style="padding: 8px 14px; text-align: left;">Function</th>
-      <th style="padding: 8px 14px; text-align: left;">Output Technology Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background: #fff;">
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Wired-AND</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Product of outputs</td>
-      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Open-collector/open-drain</td>
-    </tr>
-    <tr style="background: #f4f4ff;">
-      <td style="padding: 8px 14px;">Wired-OR</td>
-      <td style="padding: 8px 14px;">Sum of outputs</td>
-      <td style="padding: 8px 14px;">Emitter-coupled logic (ECL)</td>
-    </tr>
-  </tbody>
-</table>
+</div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<strong>Modern Usage:</strong> Wired logic is less common in modern ASIC design due to its speed and power disadvantages. However, it remains relevant in bus architectures and I/O interfaces where multiple devices share a common signal line.
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+| Wired Configuration | Function | Output Technology Required |
+|:--------------------|:---------|:---------------------------|
+| Wired-AND | Product of outputs | Open-collector / open-drain |
+| Wired-OR | Sum of outputs | Emitter-coupled logic (ECL) |
+
+</div>
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Modern Usage</p>
+
+Wired logic is less common in modern ASIC design due to speed and power disadvantages. However, it remains relevant in **bus architectures** and **I/O interfaces** where multiple devices share a common signal line.
+
 </div>
 
 ---
