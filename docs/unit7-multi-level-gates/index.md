@@ -363,7 +363,7 @@ This requires three first-level NAND gates (for $XY$, $X'Z$, and $YZ$) feeding o
 
 Two special cases require attention:
 
-<div style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div markdown style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Complemented Variables</p>
