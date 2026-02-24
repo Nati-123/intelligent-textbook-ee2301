@@ -271,53 +271,82 @@ By DeMorgan's theorem: $\overline{m_5} = \overline{A\overline{B}C} = \overline{A
 
 ---
 
-## 4.4 Canonical SOP and POS Forms
+<h2 id="44-canonical-sop-and-pos-forms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.4 Canonical SOP and POS Forms</h2>
 
 ### Sum of Minterms (Canonical SOP)
 
-The **canonical SOP form** expresses a function as the OR (sum) of all minterms for which the function equals 1. This is also called the **minterm expansion** or **sum of minterms**.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The <strong style="color: #333;">canonical SOP form</strong> expresses a function as the OR (sum) of all minterms for which the function equals 1. This is also called the <strong style="color: #333;">minterm expansion</strong> or <strong style="color: #333;">sum of minterms</strong>.
+</p>
 
-**Procedure: Function from Truth Table (SOP)**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Procedure: Function from Truth Table (SOP)</p>
 
-1. Identify all rows where F = 1
-2. Write the minterm for each such row
-3. OR all minterms together
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Identify all rows where F = 1</li>
+<li style="margin-bottom: 0.5rem;">Write the minterm for each such row</li>
+<li style="margin-bottom: 0.5rem;">OR all minterms together</li>
+</ol>
 
-**Example:** Given the truth table:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
+Given the truth table:
 
 | A | B | C | F |
 |---|---|---|---|
 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 |
+| 0 | 0 | 1 | **1** |
 | 0 | 1 | 0 | 0 |
-| 0 | 1 | 1 | 1 |
+| 0 | 1 | 1 | **1** |
 | 1 | 0 | 0 | 0 |
-| 1 | 0 | 1 | 1 |
+| 1 | 0 | 1 | **1** |
 | 1 | 1 | 0 | 0 |
 | 1 | 1 | 1 | 0 |
 
 F = 1 for rows 1, 3, 5 (decimal indices where output is 1)
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 14px 0 4px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
 $$F = m_1 + m_3 + m_5 = \overline{A}\overline{B}C + \overline{A}BC + A\overline{B}C$$
+
+</div>
+
+</div>
 
 ### Product of Maxterms (Canonical POS)
 
-The **canonical POS form** expresses a function as the AND (product) of all maxterms for which the function equals 0. This is also called the **maxterm expansion** or **product of maxterms**. Maxterms correspond to the F = 0 rows because each maxterm evaluates to 0 for exactly one input combination — ANDing them together forces F to 0 at precisely those rows while remaining 1 everywhere else.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The <strong style="color: #333;">canonical POS form</strong> expresses a function as the AND (product) of all maxterms for which the function equals 0. This is also called the <strong style="color: #333;">maxterm expansion</strong> or <strong style="color: #333;">product of maxterms</strong>. Maxterms correspond to the F = 0 rows because each maxterm evaluates to 0 for exactly one input combination — ANDing them together forces F to 0 at precisely those rows while remaining 1 everywhere else.
+</p>
 
-**Procedure: Maxterm from Truth Table (POS)**
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem; font-weight: 600;">Procedure: Maxterm from Truth Table (POS)</p>
 
-1. Identify all rows where F = 0
-2. Write the maxterm for each such row
-3. AND all maxterms together
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;">Identify all rows where F = 0</li>
+<li style="margin-bottom: 0.5rem;">Write the maxterm for each such row</li>
+<li style="margin-bottom: 0.5rem;">AND all maxterms together</li>
+</ol>
 
-**Example:** Using the same truth table above, F = 0 for rows 0, 2, 4, 6, 7.
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
+Using the same truth table above, F = 0 for rows 0, 2, 4, 6, 7.
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 14px 0 4px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$\begin{aligned}
-F &= M_0 \cdot M_2 \cdot M_4 \cdot M_6 \cdot M_7 \\[4pt]
-  &= (A + B + C)\,(A + \overline{B} + C)\,(\overline{A} + B + C)\,(\overline{A} + \overline{B} + C)\,(\overline{A} + \overline{B} + \overline{C})
+F &= M_0 \cdot M_2 \cdot M_4 \cdot M_6 \cdot M_7 \\[6pt]
+  &= (A + B + C)\,(A + \overline{B} + C)\,(\overline{A} + B + C) \\[4pt]
+  &\quad\; \cdot\,(\overline{A} + \overline{B} + C)\,(\overline{A} + \overline{B} + \overline{C})
 \end{aligned}$$
 
-Both canonical forms — the **sum of minterms** (SOP) and the **product of maxterms** (POS) — represent the same function F.
+</div>
+
+</div>
+
+<p style="color: #555; line-height: 1.85; margin-top: 1.2rem;">
+Both canonical forms — the <strong style="color: #333;">sum of minterms</strong> (SOP) and the <strong style="color: #333;">product of maxterms</strong> (POS) — represent the same function F.
+</p>
 
 #### Diagram: Minterm/Maxterm Converter
 
