@@ -207,14 +207,17 @@ $$\overline{\overline{A \cdot B}} = A \cdot B$$
 
 $$\overline{\overline{A} \cdot \overline{B}} = A + B$$
 
-<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
-<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Operation</th><th style="padding: 8px 16px;">NAND Implementation</th><th style="padding: 8px 16px;">Gates</th></tr></thead>
-<tbody>
-<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">NOT <span class="arithmatex">\(A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A \text{ NAND } A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">1</td></tr>
-<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;"><span class="arithmatex">\(A \cdot B\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #5A3EED;">2</td></tr>
-<tr><td style="padding: 8px 16px; font-weight: 600;"><span class="arithmatex">\(A + B\)</span></td><td style="padding: 8px 16px;"><span class="arithmatex">\((A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)\)</span></td><td style="padding: 8px 16px; text-align: center; font-weight: 700; color: #C62828;">3</td></tr>
-</tbody>
-</table>
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">NAND Universality Summary</p>
+
+| Operation | NAND Implementation | Gates |
+|-----------|-------------------|:-----:|
+| NOT $A$ | $A \text{ NAND } A$ | **1** |
+| $A \cdot B$ | $(A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)$ | **2** |
+| $A + B$ | $(A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)$ | **3** |
+
+</div>
 
 ### 7.2.2 NOR Gate Universality Proof
 
@@ -232,16 +235,25 @@ $$\overline{\overline{A + B}} = A + B$$
 
 $$\overline{\overline{A} + \overline{B}} = A \cdot B$$
 
-<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
-<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Operation</th><th style="padding: 8px 16px;">NOR Implementation</th><th style="padding: 8px 16px;">Gates</th></tr></thead>
-<tbody>
-<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">NOT <span class="arithmatex">\(A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A \text{ NOR } A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">1</td></tr>
-<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;"><span class="arithmatex">\(A + B\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((A \text{ NOR } B) \text{ NOR } (A \text{ NOR } B)\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #5A3EED;">2</td></tr>
-<tr><td style="padding: 8px 16px; font-weight: 600;"><span class="arithmatex">\(A \cdot B\)</span></td><td style="padding: 8px 16px;"><span class="arithmatex">\((A \text{ NOR } A) \text{ NOR } (B \text{ NOR } B)\)</span></td><td style="padding: 8px 16px; text-align: center; font-weight: 700; color: #C62828;">3</td></tr>
-</tbody>
-</table>
+<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">NOR Universality Summary</p>
+
+| Operation | NOR Implementation | Gates |
+|-----------|-------------------|:-----:|
+| NOT $A$ | $A \text{ NOR } A$ | **1** |
+| $A + B$ | $(A \text{ NOR } B) \text{ NOR } (A \text{ NOR } B)$ | **2** |
+| $A \cdot B$ | $(A \text{ NOR } A) \text{ NOR } (B \text{ NOR } B)$ | **3** |
+
+</div>
+
+<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">Duality Principle</p>
 
 Notice the duality: NAND implements AND directly (2 gates) and OR with more effort (3 gates), while NOR implements OR directly (2 gates) and AND with more effort (3 gates). This duality guides the choice of universal gate based on the dominant operation in a given function.
+
+</div>
 
 #### Diagram: Universal Gate Implementations
 
