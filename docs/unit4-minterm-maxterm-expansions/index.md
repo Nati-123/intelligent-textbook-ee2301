@@ -615,59 +615,104 @@ Implementation: p5.js with DOM elements
 
 ---
 
-## 4.8 Don't Cares in Canonical Form
+<h2 id="48-dont-cares-in-canonical-form" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.8 Don't Cares in Canonical Form</h2>
 
-**Don't care conditions** (introduced in Unit 3) have specific representations in canonical notation.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+<strong style="color: #333;">Don't care conditions</strong> (introduced in Unit 3) have specific representations in canonical notation.
+</p>
 
 ### Function Sets
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 A Boolean function can be described by three sets of minterm indices:
+</p>
 
-- **On-set:** Minterms where F = 1
-- **Off-set:** Minterms where F = 0
-- **DC-set:** Minterms where F = don't care (X)
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 22px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-These three sets partition all $2^n$ indices: On-set ∪ Off-set ∪ DC-set = {0, 1, ..., 2ⁿ-1}
+| Set | Symbol | Description |
+|-----|--------|-------------|
+| **On-set** | F = 1 | Minterms where output is 1 |
+| **Off-set** | F = 0 | Minterms where output is 0 |
+| **DC-set** | F = X | Minterms where output is don't care |
+
+</div>
+
+<p style="color: #555; line-height: 1.85; margin-top: 1rem;">
+These three sets partition all <span class="arithmatex">\(2^n\)</span> indices: On-set &cup; Off-set &cup; DC-set = {0, 1, &hellip;, 2<sup>n</sup>&minus;1}
+</p>
 
 ### Notation with Don't Cares
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 The canonical notation extends to include don't cares:
+</p>
+
+<div style="background: #EEF4FF; border-left: 4px solid #5A8DEE; border-radius: 8px; padding: 20px 24px; margin: 1.2rem 0;" markdown>
+
+**SOP form:**
 
 $$F(A,B,C) = \Sigma m(1,3,5) + d(2,6)$$
 
 This reads: "F equals 1 for minterms 1, 3, 5, with don't cares at 2 and 6."
 
-For POS form:
+**POS form:**
 
 $$F(A,B,C) = \Pi M(0,4,7) \cdot d(2,6)$$
 
+</div>
+
 ### Don't Care in SOP vs POS
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 When simplifying:
+</p>
 
-- **Don't care in SOP:** Treat as 1 if it helps create larger groups
-- **Don't care in POS:** Treat as 0 if it helps create larger groups
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Don't care in SOP:</strong> Treat as 1 if it helps create larger groups</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Don't care in POS:</strong> Treat as 0 if it helps create larger groups</li>
+</ul>
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 The optimizer chooses the assignment that minimizes the expression.
+</p>
 
-**Example:**
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
 $$F = \Sigma m(1,3,5) + d(2,6)$$
 
-On-set: {1, 3, 5}
-DC-set: {2, 6}
-Off-set: {0, 4, 7}
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 24px; margin: 14px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+| Set | Indices |
+|-----|---------|
+| **On-set** | {1, 3, 5} |
+| **DC-set** | {2, 6} |
+| **Off-set** | {0, 4, 7} |
+
+</div>
 
 During simplification (K-maps, Unit 5), we may include minterms 2 and/or 6 if it reduces the expression.
 
+</div>
+
 ### Incompletely Specified Functions
 
-An **incompletely specified function** has at least one don't care condition. The function is not fully defined—it specifies required behavior for some inputs but allows flexibility for others.
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+An <strong style="color: #333;">incompletely specified function</strong> has at least one don't care condition. The function is not fully defined — it specifies required behavior for some inputs but allows flexibility for others.
+</p>
 
-**Example: BCD Decoder**
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: BCD Decoder</p>
 
-BCD uses only inputs 0000-1001 (0-9). Inputs 1010-1111 (10-15) never occur, so their outputs are don't cares:
+BCD uses only inputs 0000–1001 (0–9). Inputs 1010–1111 (10–15) never occur, so their outputs are don't cares:
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 14px 0 4px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 $$F = \Sigma m(\text{specified 1s}) + d(10,11,12,13,14,15)$$
+
+</div>
+
+</div>
 
 ---
 
