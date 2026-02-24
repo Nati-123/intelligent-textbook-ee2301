@@ -1111,6 +1111,7 @@ The optimal form depends on the design priority — **delay**, **area**, or **po
 <p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Example 1: Simple Factoring</p>
 
 $$F = ABC + ABD + ABE$$
+
 $$= AB(C + D + E)$$
 
 Original: 4 gates (three 3-input ANDs + one 3-input OR).
@@ -1122,7 +1123,9 @@ Factored: **3 gates** (one 2-input AND for $AB$, one 3-input OR, one 2-input AND
 <p style="color: #1565C0; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Example 2: Multi-Step Factoring</p>
 
 $$F = ACD + ADE + BCD + BDE$$
+
 $$= AD(C+E) + BD(C+E)$$
+
 $$= (A+B)D(C+E)$$
 
 Factor each pair first, then extract the common $D(C+E)$.
