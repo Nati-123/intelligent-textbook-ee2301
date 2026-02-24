@@ -881,37 +881,38 @@ The goal of simplification (Unit 5) is to reduce literal count while preserving 
 
 ---
 
-## Summary and Key Takeaways
+<h2 id="summary-and-key-takeaways" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary and Key Takeaways</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This unit established canonical forms as the foundation for systematic Boolean function representation:
+</p>
 
-- **Canonical forms** are unique representations where every variable appears in every term. They bridge truth tables and algebraic expressions.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-- **Minterms** are product terms with all variables (used for canonical SOP). Each minterm equals 1 for exactly one input combination.
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Canonical forms</strong> are unique representations where every variable appears in every term. They bridge truth tables and algebraic expressions.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Minterms</strong> are product terms with all variables (used for canonical SOP). Each minterm equals 1 for exactly one input combination.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Maxterms</strong> are sum terms with all variables (used for canonical POS). Each maxterm equals 0 for exactly one input combination.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Minterm/maxterm designations</strong> use indices matching the decimal value of the input combination. <span class="arithmatex">\(m_i\)</span> and <span class="arithmatex">\(M_i\)</span> are complements of each other.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Compact notation</strong> uses <span class="arithmatex">\(\Sigma m\)</span>(indices) for sum of minterms and <span class="arithmatex">\(\Pi M\)</span>(indices) for product of maxterms.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Converting between SOP and POS:</strong> Use the complementary index set, or build via truth table.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Function complement:</strong> <span class="arithmatex">\(\overline{F}\)</span> swaps minterm indices to maxterm indices (and vice versa).</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Don't cares</strong> are represented as d(indices) and define the DC-set alongside On-set and Off-set.</li>
+<li style="margin-bottom: 1.1rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Shannon expansion</strong> decomposes <span class="arithmatex">\(F = X \cdot F_X + \overline{X} \cdot F_{\overline{X}}\)</span> using positive and negative cofactors.</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Literal count</strong> measures expression complexity; canonical forms have high literal counts that simplification reduces.</li>
+</ul>
 
-- **Maxterms** are sum terms with all variables (used for canonical POS). Each maxterm equals 0 for exactly one input combination.
+</div>
 
-- **Minterm/maxterm designations** use indices matching the decimal value of the input combination. $m_i$ and $M_i$ are complements of each other.
+<h3 style="color: #5A3EED !important; font-weight: 600; margin-top: 1.8rem; margin-bottom: 20px;">Self-Check Questions</h3>
 
-- **Compact notation** uses Σm(indices) for sum of minterms and ΠM(indices) for product of maxterms.
-
-- **Converting between SOP and POS:** Use the complementary index set, or build via truth table.
-
-- **Function complement:** $\overline{F}$ swaps minterm indices to maxterm indices (and vice versa).
-
-- **Don't cares** are represented as d(indices) and define the DC-set alongside On-set and Off-set.
-
-- **Shannon expansion** decomposes F = X·F_X + X̄·F_X̄ using positive and negative cofactors.
-
-- **Literal count** measures expression complexity; canonical forms have high literal counts that simplification reduces.
-
-??? question "Self-Check: Convert F = Σm(0,2,5,7) to ΠM notation for 3 variables."
+??? question "Convert F = Σm(0,2,5,7) to ΠM notation for 3 variables."
     For 3 variables, indices are 0-7. If On-set = {0,2,5,7}, then Off-set = {1,3,4,6}. Therefore: F = ΠM(1,3,4,6)
 
-??? question "Self-Check: What is the complement of F = Σm(1,4,6) in Σ notation?"
-    $\overline{F}$ has the complementary minterm set. For 3 variables: $\overline{F} = Σm(0,2,3,5,7)$
+??? question "What is the complement of F = Σm(1,4,6) in Σ notation?"
+    $\overline{F}$ has the complementary minterm set. For 3 variables: $\overline{F} = \Sigma m(0,2,3,5,7)$
 
-??? question "Self-Check: Find the positive cofactor of F = ABC + ĀB + BC with respect to B."
+??? question "Find the positive cofactor of F = ABC + ĀB + BC with respect to B."
     Set B = 1: $F_B = A(1)C + \overline{A}(1) + (1)C = AC + \overline{A} + C = \overline{A} + C$ (by absorption: AC + C = C, and $\overline{A} + C$ remains)
 
 ---
