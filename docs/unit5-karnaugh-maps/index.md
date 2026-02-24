@@ -670,43 +670,70 @@ The goal is **covering all ones** with the minimum number of prime implicants. E
 
 **K-Map POS simplification** produces a minimal Product of Sums expression by grouping 0s instead of 1s.
 
-### Procedure for Minimal POS
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-1. **Plot the function:** Place 0s in cells where F=0
-2. **Group the 0s:** Find all prime implicants of $\overline{F}$
-3. **Write each group as a maxterm-like sum term:**
-   - Variable = 0 in all cells → include uncomplemented
-   - Variable = 1 in all cells → include complemented
-   - (Opposite of SOP rule!)
-4. **AND all sum terms together**
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Procedure for Minimal POS</p>
 
-### Reading Sum Terms from Groups of Zeros
+<ol style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li><strong>Plot the function:</strong> Place 0s in cells where F = 0</li>
+<li><strong>Group the 0s:</strong> Find all prime implicants of <span class="arithmatex">\(\overline{F}\)</span></li>
+<li><strong>Write each group as a sum term:</strong>
+<ul style="margin: 0.3rem 0; line-height: 2;">
+<li>Variable = 0 in all cells &rarr; include <em>uncomplemented</em></li>
+<li>Variable = 1 in all cells &rarr; include <em>complemented</em></li>
+<li>(Opposite of SOP rule!)</li>
+</ul></li>
+<li><strong>AND all sum terms together</strong></li>
+</ol>
 
-For a group of 0s, the sum term includes:
-- Variable **uncomplemented** if it's 0 throughout the group
-- Variable **complemented** if it's 1 throughout the group
-- Variable **omitted** if it changes
+</div>
 
-This is the dual of the SOP rule.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-### Covering All Zeros
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Reading Sum Terms from Groups of Zeros</p>
 
-The goal is **covering all zeros** with the minimum number of groups. Every cell containing 0 must be in at least one group.
+<p style="color: #333; margin-bottom: 12px;">For a group of 0s, the sum term includes:</p>
+
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 90%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px; text-align: left;">Condition</th><th style="padding: 8px 16px; text-align: left;">Action</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Variable is <strong>0</strong> throughout the group</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Include <strong>uncomplemented</strong></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Variable is <strong>1</strong> throughout the group</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Include <strong>complemented</strong></td></tr>
+<tr><td style="padding: 8px 16px;">Variable <strong>changes</strong></td><td style="padding: 8px 16px;"><strong>Omit</strong> from sum term</td></tr>
+</tbody>
+</table>
+
+<p style="color: #666; font-style: italic; margin-bottom: 0;">This is the dual of the SOP rule &mdash; the goal is <strong>covering all zeros</strong> with the minimum number of groups.</p>
+
+</div>
 
 ### Choosing SOP vs POS
 
-Compare the literal counts of minimal SOP and minimal POS—choose the simpler form.
+Compare the literal counts of minimal SOP and minimal POS — choose the simpler form.
 
-**Rule of thumb:**
-- If more 1s than 0s → POS may be simpler
-- If more 0s than 1s → SOP may be simpler
-- Always check both forms for critical designs
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 180px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">SOP likely simpler</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Few 1s, many 0s &mdash; fewer product terms to cover</p>
+</div>
+<div style="flex: 1; min-width: 180px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">POS likely simpler</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Few 0s, many 1s &mdash; fewer sum terms to cover</p>
+</div>
+<div style="flex: 1; min-width: 180px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Balanced</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Always check <strong>both</strong> SOP and POS forms</p>
+</div>
+</div>
 
-| Function Characteristic | Likely Simpler Form |
-|------------------------|---------------------|
-| Few 1s, many 0s | SOP |
-| Few 0s, many 1s | POS |
-| Balanced | Check both |
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse; width: 80%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Function Characteristic</th><th style="padding: 8px 16px;">Likely Simpler Form</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Few 1s, many 0s</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 600;">SOP</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Few 0s, many 1s</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 600;">POS</td></tr>
+<tr><td style="padding: 8px 16px;">Balanced</td><td style="padding: 8px 16px; text-align: center; font-weight: 600;">Check both</td></tr>
+</tbody>
+</table>
 
 ---
 
@@ -714,44 +741,51 @@ Compare the literal counts of minimal SOP and minimal POS—choose the simpler f
 
 **K-maps with don't cares** include cells marked with X (or d) representing input combinations where the output doesn't matter.
 
-### Using Don't Cares
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Don't cares** provide flexibility during grouping:
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Using Don't Cares</p>
 
-- **For SOP:** Treat don't cares as 1s if they help form larger groups
-- **For POS:** Treat don't cares as 0s if they help form larger groups
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px;">
+<div style="flex: 1; min-width: 200px; background: #fff; border-radius: 8px; padding: 14px 16px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 6px;">For SOP</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Treat don't cares as <strong>1s</strong> if they help form larger groups</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #fff; border-radius: 8px; padding: 14px 16px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">For POS</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Treat don't cares as <strong>0s</strong> if they help form larger groups</p>
+</div>
+</div>
 
-The optimizer chooses the most beneficial assignment for each don't care independently.
+<p style="color: #333; margin-bottom: 6px;">The optimizer chooses the most beneficial assignment for each don't care <strong>independently</strong>.</p>
+<p style="color: #C62828; font-weight: 600; margin-bottom: 0;">Don't cares are NOT required to be covered. They only help if they extend a group.</p>
 
-**Important:** Don't cares are NOT required to be covered. They only help if they extend a group.
+</div>
 
-### Example with Don't Cares
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-$F(A,B,C,D) = \Sigma m(1,3,7,11,15) + d(0,2,5)$
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: <span class="arithmatex">\(F(A,B,C,D) = \Sigma m(1,3,7,11,15) + d(0,2,5)\)</span></p>
 
-```
-              CD
-           00   01   11   10
-        +----+----+----+----+
-AB=00   |  X |  1 |  1 |  X |
-        +----+----+----+----+
-AB=01   |  0 |  X |  1 |  0 |
-        +----+----+----+----+
-AB=11   |  0 |  0 |  1 |  0 |
-        +----+----+----+----+
-AB=10   |  0 |  0 |  1 |  0 |
-        +----+----+----+----+
-```
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;"></th><th style="padding: 6px 14px;">CD = 00</th><th style="padding: 6px 14px;">CD = 01</th><th style="padding: 6px 14px;">CD = 11</th><th style="padding: 6px 14px;">CD = 10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 00</td><td style="padding: 6px 14px; text-align: center; color: #F57C00; font-weight: 700; background: #fff3e0;">X</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; color: #F57C00; font-weight: 700; background: #fff3e0;">X</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 01</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; color: #F57C00; font-weight: 700; background: #fff3e0;">X</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 11</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center;">0</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 700; background: #6A5BFF; color: #fff;">AB = 10</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td><td style="padding: 6px 14px; text-align: center;">0</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32; font-weight: 700; background: #d4edda;">1</td><td style="padding: 6px 14px; text-align: center; background: #f4f4ff;">0</td></tr>
+</tbody>
+</table>
 
-Without don't cares: Would need to cover m₁, m₃, m₇, m₁₁, m₁₅
+<p style="color: #333; margin-bottom: 8px;"><strong>Without don't cares:</strong> Would need to cover m<sub>1</sub>, m<sub>3</sub>, m<sub>7</sub>, m<sub>11</sub>, m<sub>15</sub></p>
 
-With don't cares:
-- Treat m₀ and m₂ as 1s to form group (m₀,m₁,m₂,m₃): $\overline{A}\overline{B}$
-- Column CD=11 (m₃,m₇,m₁₁,m₁₅): $CD$
+<p style="color: #333; margin-bottom: 6px;"><strong>With don't cares:</strong></p>
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 2;">
+<li>Treat m<sub>0</sub> and m<sub>2</sub> as 1s to form group (m<sub>0</sub>, m<sub>1</sub>, m<sub>2</sub>, m<sub>3</sub>): <span class="arithmatex">\(\overline{A}\,\overline{B}\)</span></li>
+<li>Column CD = 11 (m<sub>3</sub>, m<sub>7</sub>, m<sub>11</sub>, m<sub>15</sub>): <span class="arithmatex">\(CD\)</span></li>
+</ul>
 
-**Result:** $F = \overline{A}\overline{B} + CD$
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Result: <span class="arithmatex">\(F = \overline{A}\,\overline{B} + CD\)</span> &mdash; much simpler than without don't cares!</p>
 
-Without using don't cares, the expression would be more complex.
+</div>
 
 #### Diagram: K-Map with Don't Cares
 
@@ -820,41 +854,65 @@ The **five-variable K-map** extends the technique to 32 cells, typically display
 
 ### Five-Variable Technique
 
-The **five-variable technique** uses two 4×4 K-maps:
+The **five-variable technique** uses two 4×4 K-maps — one for the fifth variable = 0 and one for = 1:
 
-- One map for the fifth variable = 0
-- One map for the fifth variable = 1
+<div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin: 1.5rem 0;">
 
-```
-     E = 0                           E = 1
-              CD                            CD
-           00   01   11   10              00   01   11   10
-        +----+----+----+----+         +----+----+----+----+
-AB=00   | m₀ | m₁ | m₃ | m₂ |   00   | m₁₆| m₁₇| m₁₉| m₁₈|
-        +----+----+----+----+         +----+----+----+----+
-AB=01   | m₄ | m₅ | m₇ | m₆ |   01   | m₂₀| m₂₁| m₂₃| m₂₂|
-        +----+----+----+----+         +----+----+----+----+
-AB=11   | m₁₂| m₁₃| m₁₅| m₁₄|   11   | m₂₈| m₂₉| m₃₁| m₃₀|
-        +----+----+----+----+         +----+----+----+----+
-AB=10   | m₈ | m₉ | m₁₁| m₁₀|   10   | m₂₄| m₂₅| m₂₇| m₂₆|
-        +----+----+----+----+         +----+----+----+----+
-```
+<div style="flex: 0 1 auto;">
+<p style="text-align: center; font-weight: 700; color: #5A3EED; margin-bottom: 8px; font-size: 1.05rem;">E = 0</p>
+<table style="font-size: 0.85rem; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 10px;"></th><th style="padding: 5px 10px;">CD=00</th><th style="padding: 5px 10px;">CD=01</th><th style="padding: 5px 10px;">CD=11</th><th style="padding: 5px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=00</td><td style="padding: 5px 10px; text-align: center;">m<sub>0</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>1</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>3</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>2</sub></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=01</td><td style="padding: 5px 10px; text-align: center;">m<sub>4</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>5</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>7</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>6</sub></td></tr>
+<tr><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=11</td><td style="padding: 5px 10px; text-align: center;">m<sub>12</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>13</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>15</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>14</sub></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=10</td><td style="padding: 5px 10px; text-align: center;">m<sub>8</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>9</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>11</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>10</sub></td></tr>
+</tbody>
+</table>
+</div>
 
-### Adjacencies in 5-Variable K-Maps
+<div style="flex: 0 1 auto;">
+<p style="text-align: center; font-weight: 700; color: #5A3EED; margin-bottom: 8px; font-size: 1.05rem;">E = 1</p>
+<table style="font-size: 0.85rem; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 10px;"></th><th style="padding: 5px 10px;">CD=00</th><th style="padding: 5px 10px;">CD=01</th><th style="padding: 5px 10px;">CD=11</th><th style="padding: 5px 10px;">CD=10</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=00</td><td style="padding: 5px 10px; text-align: center;">m<sub>16</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>17</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>19</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>18</sub></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=01</td><td style="padding: 5px 10px; text-align: center;">m<sub>20</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>21</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>23</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>22</sub></td></tr>
+<tr><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=11</td><td style="padding: 5px 10px; text-align: center;">m<sub>28</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>29</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>31</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>30</sub></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; font-weight: 700; background: #6A5BFF; color: #fff;">AB=10</td><td style="padding: 5px 10px; text-align: center;">m<sub>24</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>25</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>27</sub></td><td style="padding: 5px 10px; text-align: center;">m<sub>26</sub></td></tr>
+</tbody>
+</table>
+</div>
 
-Cells in corresponding positions of the two maps are adjacent (they differ only in E).
+</div>
 
-**Example:** m₅ (in E=0 map) is adjacent to m₂₁ (in E=1 map) because:
-- m₅ = 00101 and m₂₁ = 10101 differ only in the E bit
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Groups can span both maps by including corresponding cells from each.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Adjacencies in 5-Variable K-Maps</p>
+
+<p style="color: #333; margin-bottom: 10px;">Cells in <strong>corresponding positions</strong> of the two maps are adjacent (they differ only in E).</p>
+
+<p style="color: #333; margin-bottom: 6px;"><strong>Example:</strong> m<sub>5</sub> (in E=0 map) is adjacent to m<sub>21</sub> (in E=1 map) because:</p>
+<p style="color: #5A3EED; font-weight: 600; margin-bottom: 0; font-family: monospace; font-size: 1rem;">&nbsp;&nbsp;m<sub>5</sub> = 0&#x200B;0101 &nbsp;and&nbsp; m<sub>21</sub> = 1&#x200B;0101 &nbsp;&mdash;&nbsp; differ only in E bit</p>
+
+</div>
 
 ### Grouping Across Maps
 
-A valid group in a 5-variable K-map can include cells from:
-- Just the E=0 map ($\overline{E}$ appears in the product term)
-- Just the E=1 map (E is in the term)
-- Both maps in corresponding positions (E is eliminated)
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 200px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">E = 0 map only</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(\overline{E}\)</span> appears in the product term</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">E = 1 map only</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(E\)</span> appears in the product term</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Both maps (corresponding)</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(E\)</span> is <strong>eliminated</strong> from the term</p>
+</div>
+</div>
 
 **Example:** If cells m₃, m₇ (E=0) and m₁₉, m₂₃ (E=1) are all 1s, they form a group of 4 with term $BD$ (E is eliminated).
 
@@ -864,104 +922,153 @@ A valid group in a 5-variable K-map can include cells from:
 
 ### Multiple Solutions
 
-Some functions have **multiple solutions**—different groupings that produce expressions with the same minimal cost. Both are equally valid minimal forms.
+Some functions have **multiple solutions** — different groupings that produce expressions with the same minimal cost. Both are equally valid minimal forms.
 
-**Example:** Consider $F(A,B,C,D) = \Sigma m(0,1,2,5,6,7,8,9,10,14)$. After identifying essential prime implicants and covering them, suppose minterms m₅ and m₆ remain uncovered. If two different non-essential prime implicants each cover one of these remaining minterms with equal cost, choosing one over the other yields a different but equally minimal expression.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-When multiple prime implicants can cover the same set of remaining minterms after essential PIs, different valid choices lead to different but equally minimal expressions.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Multiple Minimal Solutions</p>
+
+<p style="color: #333; margin-bottom: 10px;">Consider <span class="arithmatex">\(F(A,B,C,D) = \Sigma m(0,1,2,5,6,7,8,9,10,14)\)</span>. After identifying essential prime implicants, suppose minterms m<sub>5</sub> and m<sub>6</sub> remain uncovered. If two different non-essential prime implicants each cover one of these remaining minterms with equal cost, choosing one over the other yields a different but equally minimal expression.</p>
+
+<p style="color: #666; font-style: italic; margin-bottom: 0;">When multiple prime implicants can cover the same remaining minterms after essential PIs, different valid choices lead to different but equally minimal expressions.</p>
+
+</div>
 
 ### Cost of Expression
 
-The **cost of expression** can be measured by:
-
-1. **Literal count:** Total number of variable appearances
-2. **Term count:** Number of product terms (SOP) or sum terms (POS)
-3. **Gate count:** Number of logic gates needed for implementation
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 180px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Literal Count</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Total number of variable appearances</p>
+</div>
+<div style="flex: 1; min-width: 180px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Term Count</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Number of product terms (SOP) or sum terms (POS)</p>
+</div>
+<div style="flex: 1; min-width: 180px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Gate Count</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Number of logic gates needed for implementation</p>
+</div>
+</div>
 
 ### Gate Count Minimization
 
 **Gate count minimization** considers implementation details:
 
-- Each product term → one AND gate (inputs = literals in term)
-- Sum of products → one OR gate (inputs = number of terms)
-- Inverters for complemented variables
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Example:** $F = AB + \overline{A}C$
-- 2 AND gates (2 inputs each)
-- 1 OR gate (2 inputs)
-- 1 inverter for $\overline{A}$
-- Total: 4 gates
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Gate Count for <span class="arithmatex">\(F = AB + \overline{A}C\)</span></p>
+
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 80%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px; text-align: left;">Component</th><th style="padding: 8px 16px; text-align: center;">Count</th><th style="padding: 8px 16px; text-align: left;">Details</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">AND gates</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700;">2</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">2 inputs each</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">OR gates</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700;">1</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">2 inputs</td></tr>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Inverters</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700;">1</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">for <span class="arithmatex">\(\overline{A}\)</span></td></tr>
+<tr style="background: #d4edda;"><td style="padding: 8px 16px; font-weight: 700;">Total</td><td style="padding: 8px 16px; text-align: center; font-weight: 700; color: #2E7D32; font-size: 1.1rem;">4</td><td style="padding: 8px 16px; font-weight: 700;">gates</td></tr>
+</tbody>
+</table>
+
+</div>
 
 ### Literal Minimization
 
-**Literal minimization** is often the primary goal because:
-- Directly reduces gate input counts
-- Correlates with wiring complexity
-- Simple to count and compare
+**Literal minimization** is often the primary goal because it directly reduces gate input counts, correlates with wiring complexity, and is simple to count and compare.
 
-!!! tip "K-maps guarantee minimal two-level SOP/POS"
-    K-map minimization produces expressions optimal for two-level AND-OR (SOP) or OR-AND (POS) implementations. Multi-level implementations may be more efficient but require different techniques.
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">K-maps guarantee minimal two-level SOP/POS</p>
+
+<p style="color: #333; margin-bottom: 0;">K-map minimization produces expressions optimal for two-level AND-OR (SOP) or OR-AND (POS) implementations. Multi-level implementations may be more efficient but require different techniques.</p>
+
+</div>
 
 ---
 
 ## 5.12 K-Map Limitations and Alternatives
 
-### K-Map Limitations
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**K-map limitations** include:
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">K-Map Limitations</p>
 
-1. **Scalability:** Impractical beyond 5-6 variables
-2. **Human error:** Easy to miss groups or make mistakes
-3. **Automation:** Difficult to automate (pattern recognition is visual)
-4. **Multiple outputs:** No direct support for multi-output optimization
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px; text-align: left;">Limitation</th><th style="padding: 8px 16px; text-align: left;">Details</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Scalability</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Impractical beyond 5&ndash;6 variables</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Human error</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Easy to miss groups or make mistakes</td></tr>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Automation</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Difficult to automate (pattern recognition is visual)</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; font-weight: 600;">Multiple outputs</td><td style="padding: 8px 16px;">No direct support for multi-output optimization</td></tr>
+</tbody>
+</table>
+
+</div>
 
 ### Alternatives for Large Functions
 
-For functions with many variables:
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- **Quine-McCluskey algorithm:** Systematic tabular method (works for any number of variables)
-- **ESPRESSO:** Heuristic minimization for practical large functions
-- **Computer-aided design (CAD) tools:** Automated optimization
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">For functions with many variables:</p>
+
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li><strong style="color: #5A3EED;">Quine-McCluskey algorithm:</strong> Systematic tabular method (works for any number of variables)</li>
+<li><strong style="color: #5A3EED;">ESPRESSO:</strong> Heuristic minimization for practical large functions</li>
+<li><strong style="color: #5A3EED;">Computer-aided design (CAD) tools:</strong> Automated optimization</li>
+</ul>
+
+</div>
 
 ### Entered Variable K-Maps
 
-An **entered variable K-map** reduces the map size by placing variables (not just 0/1) in cells. This allows an n-variable function to be represented on an (n-1)-variable map.
+An **entered variable K-map** reduces the map size by placing variables (not just 0/1) in cells. This allows an n-variable function to be represented on an (n&minus;1)-variable map.
 
-**Example:** A 4-variable function on a 2×2 map:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-```
-        B=0       B=1
-      +-------+-------+
-A=0   |  C̄D   |   D   |
-      +-------+-------+
-A=1   |   1   |  C+D  |
-      +-------+-------+
-```
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: 4-Variable Function on a 2&times;2 Map</p>
 
-Each cell contains an expression in the remaining variables (C, D).
+<table style="font-size: 0.95rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 20px;"></th><th style="padding: 8px 20px;">B = 0</th><th style="padding: 8px 20px;">B = 1</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 20px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 0</td><td style="padding: 8px 20px; text-align: center; font-family: monospace; font-size: 1rem; background: #f4f4ff;"><span class="arithmatex">\(\overline{C}D\)</span></td><td style="padding: 8px 20px; text-align: center; font-family: monospace; font-size: 1rem;"><span class="arithmatex">\(D\)</span></td></tr>
+<tr><td style="padding: 8px 20px; font-weight: 700; background: #6A5BFF; color: #fff;">A = 1</td><td style="padding: 8px 20px; text-align: center; font-weight: 700; color: #2E7D32; background: #d4edda;">1</td><td style="padding: 8px 20px; text-align: center; font-family: monospace; font-size: 1rem; background: #f4f4ff;"><span class="arithmatex">\(C + D\)</span></td></tr>
+</tbody>
+</table>
 
-This technique is useful for documentation and quick analysis but less common in coursework.
+<p style="color: #666; font-style: italic; margin-bottom: 0;">Each cell contains an expression in the remaining variables (C, D). Useful for documentation and quick analysis but less common in coursework.</p>
+
+</div>
 
 ### K-Map vs Algebraic Method
 
-| Criterion | K-Map | Algebraic |
-|-----------|-------|-----------|
-| Variables | 2-5 practical | Any number |
-| Speed (small functions) | Fast | Slow |
-| Guaranteed minimum | Yes (2-level) | Depends on skill |
-| Error prone | Visual errors | Algebra errors |
-| Automation | Difficult | Straightforward |
-| Learning curve | Visual, intuitive | Abstract |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Criterion</th><th style="padding: 8px 14px;">K-Map</th><th style="padding: 8px 14px;">Algebraic</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Variables</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2&ndash;5 practical</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Any number</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Speed (small functions)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Fast</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Slow</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Guaranteed minimum</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Yes (2-level)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Depends on skill</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Error prone</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Visual errors</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Algebra errors</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Automation</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Difficult</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Straightforward</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">Learning curve</td><td style="padding: 8px 14px; color: #2E7D32; font-weight: 600;">Visual, intuitive</td><td style="padding: 8px 14px;">Abstract</td></tr>
+</tbody>
+</table>
 
-**When to use K-maps:**
-- 4 variables or fewer
-- Quick simplification needed
-- Visual verification desired
-
-**When to use algebraic methods:**
-- Many variables
-- Computer implementation
-- Multi-level optimization
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 220px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">When to use K-maps</p>
+<ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
+<li>4 variables or fewer</li>
+<li>Quick simplification needed</li>
+<li>Visual verification desired</li>
+</ul>
+</div>
+<div style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">When to use algebraic methods</p>
+<ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
+<li>Many variables</li>
+<li>Computer implementation</li>
+<li>Multi-level optimization</li>
+</ul>
+</div>
+</div>
 
 #### Diagram: K-Map Practice Challenge
 
@@ -1037,31 +1144,25 @@ Implementation: p5.js with problem generation and verification
 
 ## Summary and Key Takeaways
 
-This unit provided mastery of Karnaugh maps for Boolean function simplification:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- **Karnaugh maps** arrange truth table values in a grid where adjacent cells differ by one variable, enabling visual simplification.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 16px;">This unit provided mastery of Karnaugh maps for Boolean function simplification:</p>
 
-- **Gray code ordering** ensures physical adjacency corresponds to logical adjacency (one-bit difference).
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li><strong>Karnaugh maps</strong> arrange truth table values in a grid where adjacent cells differ by one variable, enabling visual simplification.</li>
+<li><strong>Gray code ordering</strong> ensures physical adjacency corresponds to logical adjacency (one-bit difference).</li>
+<li><strong>K-map sizes</strong> range from 2&times;2 (2 variables) to paired 4&times;4 grids (5 variables). Beyond 5&ndash;6 variables, K-maps become impractical.</li>
+<li><strong>Valid groups</strong> must contain a power of 2 cells (1, 2, 4, 8, 16) in rectangular shapes. Groups can wrap around edges.</li>
+<li><strong>Grouping rules:</strong> For SOP &mdash; group 1s, each group becomes a product term. For POS &mdash; group 0s, each group becomes a sum term.</li>
+<li><strong>Prime implicants</strong> are maximal groups that cannot be expanded. <strong>Essential prime implicants</strong> must appear in every minimal solution.</li>
+<li><strong>Don't cares</strong> (X) can be treated as 1 or 0 as convenient, enabling larger groups and simpler expressions.</li>
+<li><strong>Overlapping groups</strong> are allowed &mdash; cells can belong to multiple groups without duplication in the expression.</li>
+<li><strong>Minimal expressions</strong> are achieved by covering all required cells with the fewest prime implicants.</li>
+<li><strong>Multiple solutions</strong> may exist when non-essential PIs can be chosen differently while maintaining minimum cost.</li>
+<li><strong>Literal count</strong> and <strong>gate count</strong> measure expression complexity. K-maps guarantee minimal two-level implementations.</li>
+</ul>
 
-- **K-map sizes** range from 2×2 (2 variables) to paired 4×4 grids (5 variables). Beyond 5-6 variables, K-maps become impractical.
-
-- **Valid groups** must contain a power of 2 cells (1, 2, 4, 8, 16) in rectangular shapes. Groups can wrap around edges.
-
-- **Grouping rules:**
-  - For SOP: Group 1s, each group becomes a product term
-  - For POS: Group 0s, each group becomes a sum term
-
-- **Prime implicants** are maximal groups that cannot be expanded. **Essential prime implicants** must appear in every minimal solution.
-
-- **Don't cares** (X) can be treated as 1 or 0 as convenient, enabling larger groups and simpler expressions.
-
-- **Overlapping groups** are allowed—cells can belong to multiple groups without duplication in the expression.
-
-- **Minimal expressions** are achieved by covering all required cells with the fewest prime implicants.
-
-- **Multiple solutions** may exist when non-essential PIs can be chosen differently while maintaining minimum cost.
-
-- **Literal count** and **gate count** measure expression complexity. K-maps guarantee minimal two-level implementations.
+</div>
 
 ??? question "Self-Check: What makes a prime implicant 'essential'?"
     A prime implicant is essential if it covers at least one minterm that no other prime implicant covers. Essential PIs must be included in every minimal solution.
