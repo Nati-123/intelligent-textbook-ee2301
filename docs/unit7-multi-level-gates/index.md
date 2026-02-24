@@ -80,23 +80,53 @@ In previous units, we focused primarily on **two-level circuit implementations**
 
 **Multi-level circuits** use more than two levels of logic gates between inputs and outputs. Although they introduce additional gate delays, multi-level circuits provide significant practical advantages that make them the preferred choice in real integrated circuit design.
 
-| Circuit Type | Levels | Delay | Gate Count | Fan-in Required |
-|-------------|--------|-------|------------|-----------------|
-| Two-level SOP | 2 | Minimum | Often high | Can be high |
-| Two-level POS | 2 | Minimum | Often high | Can be high |
-| Multi-level | 3+ | Higher | Often lower | Usually lower |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Circuit Type</th><th style="padding: 8px 14px;">Levels</th><th style="padding: 8px 14px;">Delay</th><th style="padding: 8px 14px;">Gate Count</th><th style="padding: 8px 14px;">Fan-in Required</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Two-level SOP</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Minimum</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Often high</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Can be high</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Two-level POS</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Minimum</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Often high</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Can be high</td></tr>
+<tr><td style="padding: 8px 14px; font-weight: 600;">Multi-level</td><td style="padding: 8px 14px; text-align: center;">3+</td><td style="padding: 8px 14px;">Higher</td><td style="padding: 8px 14px; color: #2E7D32; font-weight: 600;">Often lower</td><td style="padding: 8px 14px; color: #2E7D32; font-weight: 600;">Usually lower</td></tr>
+</tbody>
+</table>
 
-Consider the function $F = ABCDE + ABCDF + ABCDG$. A two-level SOP implementation requires three 5-input AND gates and one 3-input OR gate. After factoring, $F = ABCD(E + F + G)$ uses one 4-input AND gate, one 3-input OR gate, and one 2-input AND gate—three levels but smaller gates.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Factoring Reduces Complexity</p>
+
+<p style="color: #333; margin-bottom: 8px;">Consider <span class="arithmatex">\(F = ABCDE + ABCDF + ABCDG\)</span>. A two-level SOP needs three 5-input AND gates and one 3-input OR gate. After factoring:</p>
+
+<p style="color: #2E7D32; font-weight: 600; margin-bottom: 0;"><span class="arithmatex">\(F = ABCD(E + F + G)\)</span> &mdash; three levels but smaller gates (max 4-input).</p>
+
+</div>
 
 The key advantages of multi-level circuits include:
 
-- **Reduced gate count** through sharing of common sub-expressions
-- **Lower fan-in requirements**, staying within standard gate library constraints
-- **Better utilization** of standard cell libraries (most cells have 2–4 inputs)
-- **Reduced chip area** in VLSI implementations
+<div style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced gate count</p>
+<p style="color: #333; margin: 0; font-size: 0.93rem;">Sharing common sub-expressions</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Lower fan-in</p>
+<p style="color: #333; margin: 0; font-size: 0.93rem;">Within standard gate library constraints</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Better utilization</p>
+<p style="color: #333; margin: 0; font-size: 0.93rem;">Most standard cells have 2&ndash;4 inputs</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced chip area</p>
+<p style="color: #333; margin: 0; font-size: 0.93rem;">In VLSI implementations</p>
+</div>
+</div>
 
-!!! info "Practical Consideration"
-    Standard logic families (TTL, CMOS) typically provide gates with a maximum of 2, 3, 4, or 8 inputs. Any function requiring higher fan-in must be decomposed into multi-level form, regardless of the delay penalty.
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Practical Consideration</p>
+
+<p style="color: #333; margin-bottom: 0;">Standard logic families (TTL, CMOS) typically provide gates with a maximum of 2, 3, 4, or 8 inputs. Any function requiring higher fan-in must be decomposed into multi-level form, regardless of the delay penalty.</p>
+
+</div>
 
 #### Diagram: Two-Level vs Multi-Level Comparison
 
@@ -177,11 +207,14 @@ $$\overline{\overline{A \cdot B}} = A \cdot B$$
 
 $$\overline{\overline{A} \cdot \overline{B}} = A + B$$
 
-| Operation | NAND Implementation | Gates Required |
-|-----------|---------------------|----------------|
-| NOT $A$ | $A \text{ NAND } A$ | 1 |
-| $A \cdot B$ | $(A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)$ | 2 |
-| $A + B$ | $(A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)$ | 3 |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Operation</th><th style="padding: 8px 16px;">NAND Implementation</th><th style="padding: 8px 16px;">Gates</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">NOT <span class="arithmatex">\(A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A \text{ NAND } A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">1</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;"><span class="arithmatex">\(A \cdot B\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #5A3EED;">2</td></tr>
+<tr><td style="padding: 8px 16px; font-weight: 600;"><span class="arithmatex">\(A + B\)</span></td><td style="padding: 8px 16px;"><span class="arithmatex">\((A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)\)</span></td><td style="padding: 8px 16px; text-align: center; font-weight: 700; color: #C62828;">3</td></tr>
+</tbody>
+</table>
 
 ### 7.2.2 NOR Gate Universality Proof
 
@@ -199,11 +232,14 @@ $$\overline{\overline{A + B}} = A + B$$
 
 $$\overline{\overline{A} + \overline{B}} = A \cdot B$$
 
-| Operation | NOR Implementation | Gates Required |
-|-----------|-------------------|----------------|
-| NOT $A$ | $A \text{ NOR } A$ | 1 |
-| $A + B$ | $(A \text{ NOR } B) \text{ NOR } (A \text{ NOR } B)$ | 2 |
-| $A \cdot B$ | $(A \text{ NOR } A) \text{ NOR } (B \text{ NOR } B)$ | 3 |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Operation</th><th style="padding: 8px 16px;">NOR Implementation</th><th style="padding: 8px 16px;">Gates</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">NOT <span class="arithmatex">\(A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A \text{ NOR } A\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">1</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;"><span class="arithmatex">\(A + B\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((A \text{ NOR } B) \text{ NOR } (A \text{ NOR } B)\)</span></td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #5A3EED;">2</td></tr>
+<tr><td style="padding: 8px 16px; font-weight: 600;"><span class="arithmatex">\(A \cdot B\)</span></td><td style="padding: 8px 16px;"><span class="arithmatex">\((A \text{ NOR } A) \text{ NOR } (B \text{ NOR } B)\)</span></td><td style="padding: 8px 16px; text-align: center; font-weight: 700; color: #C62828;">3</td></tr>
+</tbody>
+</table>
 
 Notice the duality: NAND implements AND directly (2 gates) and OR with more effort (3 gates), while NOR implements OR directly (2 gates) and AND with more effort (3 gates). This duality guides the choice of universal gate based on the dominant operation in a given function.
 
@@ -390,14 +426,23 @@ Three first-level NOR gates feed one second-level NOR gate. The complemented var
 
 ### Conversion Summary Table
 
-| Original Form | Target Form | Conversion Rule | Added Inverters |
-|--------------|-------------|-----------------|-----------------|
-| SOP (AND-OR) | NAND-NAND | Replace all gates with NAND | For single-literal terms |
-| POS (OR-AND) | NOR-NOR | Replace all gates with NOR | For single-literal terms |
-| SOP (AND-OR) | NOR-NOR | More complex, requires added levels | Multiple |
-| POS (OR-AND) | NAND-NAND | More complex, requires added levels | Multiple |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Original Form</th><th style="padding: 8px 14px;">Target Form</th><th style="padding: 8px 14px;">Conversion Rule</th><th style="padding: 8px 14px;">Added Inverters</th></tr></thead>
+<tbody>
+<tr style="background: #E7F7E7;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP (AND-OR)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND-NAND</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Replace all gates with NAND</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">For single-literal terms</td></tr>
+<tr style="background: #E7F7E7;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">POS (OR-AND)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR-NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Replace all gates with NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">For single-literal terms</td></tr>
+<tr style="background: #FFEBEE;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP (AND-OR)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR-NOR</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">More complex, requires added levels</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Multiple</td></tr>
+<tr style="background: #FFEBEE;"><td style="padding: 8px 14px; font-weight: 600;">POS (OR-AND)</td><td style="padding: 8px 14px;">NAND-NAND</td><td style="padding: 8px 14px;">More complex, requires added levels</td><td style="padding: 8px 14px;">Multiple</td></tr>
+</tbody>
+</table>
 
-The first two conversions (natural conversions) are straightforward. The latter two (cross conversions) are more involved because the circuit structure does not align naturally with the target gate type.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Natural vs. Cross Conversions</p>
+
+<p style="color: #333; margin-bottom: 0;">The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natural conversions</span>) are straightforward. The latter two (<span style="color: #C62828; font-weight: 600;">cross conversions</span>) are more involved because the circuit structure does not align naturally with the target gate type.</p>
+
+</div>
 
 ---
 
@@ -427,8 +472,13 @@ For $F = (A+B)(C+D)$:
 2. Substitute: $F = \overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}$
 3. Apply double inversion for the final AND: $F = \overline{\overline{\overline{\overline{A} \cdot \overline{B}} \cdot \overline{\overline{C} \cdot \overline{D}}}}$
 
-!!! warning "Design Guideline"
-    Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters. In practice, it is more efficient to first convert the expression to the form that naturally maps to the target gate type—convert SOP to POS before implementing with NOR gates, or POS to SOP before implementing with NAND gates.
+<div style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #C62828; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Design Guideline</p>
+
+<p style="color: #333; margin-bottom: 0;">Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters. In practice, it is more efficient to first convert the expression to the form that naturally maps to the target gate type—convert SOP to POS before implementing with NOR gates, or POS to SOP before implementing with NAND gates.</p>
+
+</div>
 
 ---
 
@@ -450,12 +500,15 @@ This means: a NOR gate is equivalent to an AND gate with inverted inputs.
 
 Each theorem provides two equivalent gate symbols:
 
-| Original Gate | De Morgan Equivalent |
-|--------------|---------------------|
-| NAND (AND with output bubble) | OR with input bubbles |
-| NOR (OR with output bubble) | AND with input bubbles |
-| AND (no bubbles) | NOR with input and output bubbles |
-| OR (no bubbles) | NAND with input and output bubbles |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Original Gate</th><th style="padding: 8px 14px;">De Morgan Equivalent</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">NAND (AND with output bubble)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">OR with input bubbles</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">NOR (OR with output bubble)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AND with input bubbles</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">AND (no bubbles)</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR with input and output bubbles</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">OR (no bubbles)</td><td style="padding: 8px 14px;">NAND with input and output bubbles</td></tr>
+</tbody>
+</table>
 
 These equivalences are the foundation of the bubble pushing technique covered in the next section. When you see a gate with a bubble on its output, you can "push" that bubble to the inputs by changing the gate type (AND ↔ OR), and vice versa.
 
@@ -505,8 +558,13 @@ For $F = A + BC$:
 
 Result: NAND($\overline{A}$, NAND($B$, $C$)) = $\overline{\overline{A} \cdot \overline{BC}} = A + BC$
 
-!!! tip "Bubble Pushing Shortcut"
-    For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply replace all gates with the target universal gate type, then add inverters for any remaining unpaired bubbles.
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Bubble Pushing Shortcut</p>
+
+<p style="color: #333; margin-bottom: 0;">For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply replace all gates with the target universal gate type, then add inverters for any remaining unpaired bubbles.</p>
+
+</div>
 
 #### Diagram: Bubble Pushing Interactive Demo
 
@@ -570,11 +628,13 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 7.8 Multi-Level Circuit Analysis
+<h2 style="color: #5A3EED;">7.8 Multi-Level Circuit Analysis</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 Analyzing multi-level circuits requires systematically tracing signals through multiple gate layers to derive the output expression and understand timing behavior. This section covers the analytical techniques for evaluating multi-level designs.
+</div>
 
-### 7.8.1 Deriving the Boolean Expression
+<h3 style="color: #5A3EED;">7.8.1 Deriving the Boolean Expression</h3>
 
 To analyze a multi-level circuit:
 
@@ -594,7 +654,7 @@ Expanding: $F = ABC + ABD + E$
 
 This three-level implementation of $F = ABC + ABD + E$ uses gates with a maximum fan-in of 2, whereas the two-level SOP form requires two 3-input AND gates and one 3-input OR gate.
 
-### 7.8.2 Critical Path and Propagation Delay
+<h3 style="color: #5A3EED;">7.8.2 Critical Path and Propagation Delay</h3>
 
 The **propagation delay** of a multi-level circuit is determined by the longest path from any input to the output, measured in gate delays. This path is called the **critical path**.
 
@@ -612,15 +672,44 @@ where $t_{pd(gate_i)}$ is the propagation delay of gate $i$ along the critical p
 
 The critical path has 3 gate delays. Input $E$ arrives at the output fastest (1 delay), while inputs $A$–$D$ experience the full 3 delays.
 
-| Input | Path | Gate Delays |
-|-------|------|-------------|
-| $A$ | Gate 1 → Gate 3 → Gate 4 | 3 |
-| $B$ | Gate 1 → Gate 3 → Gate 4 | 3 |
-| $C$ | Gate 2 → Gate 3 → Gate 4 | 3 |
-| $D$ | Gate 2 → Gate 3 → Gate 4 | 3 |
-| $E$ | Gate 4 | 1 |
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Input</th>
+      <th style="padding: 8px 14px; text-align: left;">Path</th>
+      <th style="padding: 8px 14px; text-align: center;">Gate Delays</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 1 → Gate 3 → Gate 4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(B\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 1 → Gate 3 → Gate 4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(C\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 2 → Gate 3 → Gate 4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(D\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 2 → Gate 3 → Gate 4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(E\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Gate 4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">1</td>
+    </tr>
+  </tbody>
+</table>
 
-### 7.8.3 Fan-in and Fan-out Constraints
+<h3 style="color: #5A3EED;">7.8.3 Fan-in and Fan-out Constraints</h3>
 
 **Fan-in** is the number of inputs to a gate. Exceeding practical fan-in limits leads to:
 
@@ -634,12 +723,29 @@ The critical path has 3 gate delays. Input $E$ arrives at the output fastest (1 
 - Potential signal integrity issues
 - Need for buffer insertion
 
-| Parameter | Typical CMOS Limit | Effect of Exceeding |
-|-----------|-------------------|---------------------|
-| Fan-in | 4–8 inputs | Increased delay, decomposition needed |
-| Fan-out | 4–10 loads | Increased delay, buffer insertion needed |
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Parameter</th>
+      <th style="padding: 8px 14px; text-align: center;">Typical CMOS Limit</th>
+      <th style="padding: 8px 14px; text-align: left;">Effect of Exceeding</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Fan-in</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4–8 inputs</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Increased delay, decomposition needed</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Fan-out</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4–10 loads</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Increased delay, buffer insertion needed</td>
+    </tr>
+  </tbody>
+</table>
 
-### 7.8.4 Gate Loading Effects
+<h3 style="color: #5A3EED;">7.8.4 Gate Loading Effects</h3>
 
 **Gate loading** refers to the electrical impact of connecting gate outputs to gate inputs. Each input presents a capacitive load to the driving output. As the number of loads (fan-out) increases, the driving gate must charge and discharge more capacitance, slowing its transition time.
 
@@ -710,11 +816,13 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 7.9 Level Reduction Techniques
+<h2 style="color: #5A3EED;">7.9 Level Reduction Techniques</h2>
 
-When a multi-level circuit has too many levels (and therefore too much delay), **level reduction** techniques restructure the circuit to decrease the number of gate levels while potentially increasing gate count or fan-in.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+When a multi-level circuit has too many levels (and therefore too much delay), <strong>level reduction</strong> techniques restructure the circuit to decrease the number of gate levels while potentially increasing gate count or fan-in.
+</div>
 
-### Flattening
+<h3 style="color: #5A3EED;">Flattening</h3>
 
 The most direct approach is **flattening**—expanding the multi-level expression back to a two-level SOP or POS form using the distributive law.
 
@@ -724,19 +832,48 @@ $$F = A(BC + BD + E) = ABC + ABD + AE$$
 
 The two-level form requires gates with higher fan-in (3-input AND gates, 3-input OR gate) but achieves minimum delay (2 gate delays).
 
-### Partial Flattening
+<h3 style="color: #5A3EED;">Partial Flattening</h3>
 
 When full flattening creates impractical fan-in, **partial flattening** expands only select portions of the expression to reduce levels without exceeding fan-in constraints.
 
 **Example:** For a 5-level circuit, reduce to 3 levels by expanding the innermost nesting while keeping outer factoring.
 
-| Technique | Levels After | Gate Count | Fan-in | Delay |
-|-----------|-------------|------------|--------|-------|
-| Original multi-level | 4 | Low | Low | High |
-| Partial flattening | 3 | Medium | Medium | Medium |
-| Full flattening | 2 | High | High | Low |
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Technique</th>
+      <th style="padding: 8px 14px; text-align: center;">Levels After</th>
+      <th style="padding: 8px 14px; text-align: center;">Gate Count</th>
+      <th style="padding: 8px 14px; text-align: center;">Fan-in</th>
+      <th style="padding: 8px 14px; text-align: center;">Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Original multi-level</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Low</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Low</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #C62828; font-weight: 600;">High</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Partial flattening</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Medium</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Full flattening</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">High</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">High</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Low</td>
+    </tr>
+  </tbody>
+</table>
 
-### Algebraic Restructuring
+<h3 style="color: #5A3EED;">Algebraic Restructuring</h3>
 
 Sometimes an expression can be rewritten in an alternative factored form that uses fewer levels:
 
@@ -746,11 +883,13 @@ The first form requires 3 levels as AND-OR (five 2-input ANDs → one 5-input OR
 
 ---
 
-## 7.10 Gate Count Optimization
+<h2 style="color: #5A3EED;">7.10 Gate Count Optimization</h2>
 
-**Gate count optimization** minimizes the total number of gates in a circuit, directly reducing chip area and manufacturing cost. While two-level minimization (K-maps, Quine-McCluskey) minimizes literals within a fixed two-level structure, multi-level optimization explores a broader design space.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<strong>Gate count optimization</strong> minimizes the total number of gates in a circuit, directly reducing chip area and manufacturing cost. While two-level minimization (K-maps, Quine-McCluskey) minimizes literals within a fixed two-level structure, multi-level optimization explores a broader design space.
+</div>
 
-### Sharing Common Sub-expressions
+<h3 style="color: #5A3EED;">Sharing Common Sub-expressions</h3>
 
 The primary mechanism for reducing gate count in multi-level circuits is identifying and sharing common sub-expressions.
 
@@ -766,7 +905,7 @@ $$F_2 = A(C+D) + E$$
 
 The shared term $C+D$ appears once in the circuit, driving both $F_1$ and $F_2$ computations.
 
-### Literal Count vs Gate Count Trade-offs
+<h3 style="color: #5A3EED;">Literal Count vs Gate Count Trade-offs</h3>
 
 Minimizing literal count (the goal of K-maps and QM) does not always minimize gate count, and vice versa. Consider:
 
@@ -776,19 +915,50 @@ $$F = (A+B)(A+C) \quad \text{(4 literals, 2 OR + 1 AND = 3 gates, 2 levels)}$$
 
 The POS form has the fewest gates (3) and fewest literals (4) but requires knowledge that the consensus term $BC$ is redundant in this context. The optimal choice depends on whether the design priority is delay, area, or power.
 
-| Form | Literals | Gates | Levels | Priority |
-|------|----------|-------|--------|----------|
-| SOP | 6 | 4 | 2 | Delay |
-| Factored | 5 | 4 | 3 | Balance |
-| POS | 4 | 3 | 2 | Area |
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Form</th>
+      <th style="padding: 8px 14px; text-align: center;">Literals</th>
+      <th style="padding: 8px 14px; text-align: center;">Gates</th>
+      <th style="padding: 8px 14px; text-align: center;">Levels</th>
+      <th style="padding: 8px 14px; text-align: center;">Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">SOP</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">6</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Delay</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Factored</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">Balance</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">POS</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #1565C0; font-weight: 600;">Area</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
-## 7.11 Factoring for Multi-Level Optimization
+<h2 style="color: #5A3EED;">7.11 Factoring for Multi-Level Optimization</h2>
 
-**Factoring** transforms a two-level expression into a multi-level form by extracting common factors. This technique is the primary tool for reducing gate count and fan-in in practical circuit design.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<strong>Factoring</strong> transforms a two-level expression into a multi-level form by extracting common factors. This technique is the primary tool for reducing gate count and fan-in in practical circuit design.
+</div>
 
-### Common Factor Extraction
+<h3 style="color: #5A3EED;">Common Factor Extraction</h3>
 
 Identify variables or sub-expressions that appear in multiple terms and factor them out:
 
@@ -805,13 +975,38 @@ $$F = ACD + ADE + BCD + BDE$$
 $$= AD(C + E) + BD(C + E) \quad \text{(factor each pair)}$$
 $$= (A + B)D(C + E) \quad \text{(factor common } D(C+E) \text{)}$$
 
-| Form | Gates | Max Fan-in | Levels |
-|------|-------|-----------|--------|
-| Original SOP | 5 (4 AND + 1 OR) | 3 | 2 |
-| Single factor | 5 (2 AND + 2 OR + 1 AND) | 2 | 3 |
-| Fully factored | 4 (2 OR + 2 AND) | 2 | 4 |
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.97em;">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Form</th>
+      <th style="padding: 8px 14px; text-align: center;">Gates</th>
+      <th style="padding: 8px 14px; text-align: center;">Max Fan-in</th>
+      <th style="padding: 8px 14px; text-align: center;">Levels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Original SOP</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5 (4 AND + 1 OR)</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Single factor</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">5 (2 AND + 2 OR + 1 AND)</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Fully factored</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4 (2 OR + 2 AND)</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+    </tr>
+  </tbody>
+</table>
 
-### Decomposition Techniques
+<h3 style="color: #5A3EED;">Decomposition Techniques</h3>
 
 **Decomposition** breaks a complex function into simpler subfunctions, each implemented separately. This is particularly useful when:
 
@@ -894,7 +1089,7 @@ Implementation: p5.js with DOM elements for expression input
 
 ---
 
-## 7.12 AOI and OAI Complex Gates
+<h2 style="color: #5A3EED;">7.12 AOI and OAI Complex Gates</h2>
 
 CMOS technology enables the efficient implementation of **AND-OR-Invert (AOI)** and **OR-AND-Invert (OAI)** complex gates. These gates implement multi-level functions within a single gate structure, achieving the logic of two gate levels with the delay of approximately one gate.
 
@@ -926,14 +1121,39 @@ $$F = \overline{(A+B) \cdot C}$$
 
 $$F = \overline{(A+B)(C+D)}$$
 
-### Advantages of Complex Gates
+<h3 style="color: #5A3EED;">Advantages of Complex Gates</h3>
 
-| Feature | Discrete Gates | AOI/OAI Complex Gate |
-|---------|---------------|---------------------|
-| Transistor count | Higher | Lower (shared structures) |
-| Propagation delay | 2 gate delays | ~1 gate delay |
-| Power consumption | Higher (more transitions) | Lower |
-| Chip area | Larger | Smaller |
+<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Feature</th>
+      <th style="padding: 8px 14px; text-align: left;">Discrete Gates</th>
+      <th style="padding: 8px 14px; text-align: left;">AOI/OAI Complex Gate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Transistor count</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Higher</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">Lower (shared structures)</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Propagation delay</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2 gate delays</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">~1 gate delay</td>
+    </tr>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Power consumption</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Higher (more transitions)</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd; background: #E7F7E7;">Lower</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px;">Chip area</td>
+      <td style="padding: 8px 14px;">Larger</td>
+      <td style="padding: 8px 14px; background: #E7F7E7;">Smaller</td>
+    </tr>
+  </tbody>
+</table>
 
 Complex gates are fundamental building blocks in standard cell libraries. Logic synthesis tools automatically identify opportunities to use AOI and OAI cells during technology mapping.
 
@@ -984,7 +1204,7 @@ Implementation: HTML/CSS/JavaScript with SVG gate symbols
 
 ---
 
-## 7.13 Wired Logic Implementations
+<h2 style="color: #5A3EED;">7.13 Wired Logic Implementations</h2>
 
 **Wired logic** exploits the electrical properties of certain gate output types to implement logic functions without additional gates. When multiple gate outputs are connected together, the resulting logic depends on the output driver technology.
 
@@ -1012,17 +1232,35 @@ This implements an AND-OR-Invert function without a separate OR gate—effective
 - **Noise margin:** Reduced compared to active gate outputs
 - **Testing:** Wired connections are harder to test and debug
 
-| Wired Configuration | Function | Output Technology Required |
-|--------------------|----------|---------------------------|
-| Wired-AND | Product of outputs | Open-collector/open-drain |
-| Wired-OR | Sum of outputs | Emitter-coupled logic (ECL) |
+<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Wired Configuration</th>
+      <th style="padding: 8px 14px; text-align: left;">Function</th>
+      <th style="padding: 8px 14px; text-align: left;">Output Technology Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Wired-AND</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Product of outputs</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Open-collector/open-drain</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px;">Wired-OR</td>
+      <td style="padding: 8px 14px;">Sum of outputs</td>
+      <td style="padding: 8px 14px;">Emitter-coupled logic (ECL)</td>
+    </tr>
+  </tbody>
+</table>
 
-!!! note "Modern Usage"
-    Wired logic is less common in modern ASIC design due to its speed and power disadvantages. However, it remains relevant in bus architectures and I/O interfaces where multiple devices share a common signal line.
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<strong>Modern Usage:</strong> Wired logic is less common in modern ASIC design due to its speed and power disadvantages. However, it remains relevant in bus architectures and I/O interfaces where multiple devices share a common signal line.
+</div>
 
 ---
 
-## 7.14 Transmission Gate Circuits
+<h2 style="color: #5A3EED;">7.14 Transmission Gate Circuits</h2>
 
 A **transmission gate** (also called a pass gate) is a CMOS switch that can pass both logic 0 and logic 1 with full voltage swing. It consists of an NMOS and PMOS transistor connected in parallel, controlled by complementary signals.
 
@@ -1059,18 +1297,40 @@ $$F = A \oplus B$$
 
 Using a transmission gate controlled by $B$: when $B=0$, pass $A$; when $B=1$, pass $\overline{A}$. This requires only one transmission gate, one inverter, and complementary control—far fewer transistors than a gate-level XOR.
 
-| Implementation | Transistor Count | Gate Delays |
-|---------------|-----------------|-------------|
-| NAND-only XOR | 16 | 3-4 |
-| AOI-based XOR | 10-12 | 2 |
-| Transmission gate XOR | 6 | 1-2 |
+<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Implementation</th>
+      <th style="padding: 8px 14px; text-align: left;">Transistor Count</th>
+      <th style="padding: 8px 14px; text-align: left;">Gate Delays</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND-only XOR</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">16</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3-4</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI-based XOR</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">10-12</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
+    </tr>
+    <tr style="background: #E7F7E7;">
+      <td style="padding: 8px 14px;"><strong>Transmission gate XOR</strong></td>
+      <td style="padding: 8px 14px;"><strong>6</strong></td>
+      <td style="padding: 8px 14px;"><strong>1-2</strong></td>
+    </tr>
+  </tbody>
+</table>
 
-!!! info "Design Trade-off"
-    Transmission gates offer excellent area and power efficiency but can suffer from signal degradation when cascaded through many stages, since they lack the regenerative property of logic gates. In practice, buffers are inserted periodically to restore signal quality.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<strong>Design Trade-off:</strong> Transmission gates offer excellent area and power efficiency but can suffer from signal degradation when cascaded through many stages, since they lack the regenerative property of logic gates. In practice, buffers are inserted periodically to restore signal quality.
+</div>
 
 ---
 
-## 7.15 Technology Mapping
+<h2 style="color: #5A3EED;">7.15 Technology Mapping</h2>
 
 **Technology mapping** is the process of converting a technology-independent Boolean network into a circuit that uses gates from a specific library (cell library). This step bridges the gap between abstract logic optimization and physical implementation in ASIC and FPGA design.
 
@@ -1097,27 +1357,78 @@ More practically: $ABC = \overline{\overline{\overline{\overline{AB}} \cdot C}}$
 
 A typical standard cell library contains cells ranging from simple inverters to complex gates:
 
-| Cell | Function | Area (units) | Delay (ps) |
-|------|----------|-------------|------------|
-| INV | $\overline{A}$ | 1 | 30 |
-| NAND2 | $\overline{AB}$ | 2 | 50 |
-| NAND3 | $\overline{ABC}$ | 3 | 70 |
-| NOR2 | $\overline{A+B}$ | 2 | 60 |
-| AOI21 | $\overline{AB+C}$ | 3 | 65 |
-| AOI22 | $\overline{AB+CD}$ | 4 | 75 |
-| OAI21 | $\overline{(A+B)C}$ | 3 | 65 |
-| MUX2 | $S?B:A$ | 4 | 80 |
+<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+  <thead>
+    <tr style="background: #6A5BFF; color: #fff;">
+      <th style="padding: 8px 14px; text-align: left;">Cell</th>
+      <th style="padding: 8px 14px; text-align: left;">Function</th>
+      <th style="padding: 8px 14px; text-align: left;">Area (units)</th>
+      <th style="padding: 8px 14px; text-align: left;">Delay (ps)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">INV</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{A}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">1</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">30</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">50</td>
+    </tr>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NAND3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{ABC}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">70</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">NOR2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{A+B}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">60</td>
+    </tr>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI21</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB+C}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">65</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">AOI22</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{AB+CD}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">4</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">75</td>
+    </tr>
+    <tr style="background: #fff;">
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">OAI21</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\overline{(A+B)C}\)</span></td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">3</td>
+      <td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">65</td>
+    </tr>
+    <tr style="background: #f4f4ff;">
+      <td style="padding: 8px 14px;">MUX2</td>
+      <td style="padding: 8px 14px;"><span class="arithmatex">\(S?B:A\)</span></td>
+      <td style="padding: 8px 14px;">4</td>
+      <td style="padding: 8px 14px;">80</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Covering Algorithm
 
 The covering problem selects library cells to minimize total cost (area, delay, or weighted combination). For tree-structured networks, dynamic programming finds the optimal covering in polynomial time. For DAG (Directed Acyclic Graph) networks with shared nodes, the problem is NP-hard, and heuristic approaches are used.
 
-!!! info "Industry Practice"
-    Commercial synthesis tools like Synopsys Design Compiler, Cadence Genus, and open-source tools like Yosys and ABC automate technology mapping. Understanding the underlying principles helps designers write better HDL code and interpret synthesis reports.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<strong>Industry Practice:</strong> Commercial synthesis tools like Synopsys Design Compiler, Cadence Genus, and open-source tools like Yosys and ABC automate technology mapping. Understanding the underlying principles helps designers write better HDL code and interpret synthesis reports.
+</div>
 
 ---
 
-## 7.16 Multi-Level Synthesis Tools
+<h2 style="color: #5A3EED;">7.16 Multi-Level Synthesis Tools</h2>
 
 Modern digital design relies on **automated synthesis tools** that perform multi-level optimization and technology mapping far beyond what is practical by hand. Understanding the capabilities and workflow of these tools is essential for effective digital design.
 
@@ -1154,7 +1465,9 @@ These tools implement the same fundamental algorithms (factoring, decomposition,
 
 ---
 
-## 7.17 Summary and Key Takeaways
+<h2 style="color: #5A3EED;">7.17 Summary and Key Takeaways</h2>
+
+<div markdown="1" style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0;">
 
 This unit covered the transformation of Boolean expressions into practical multi-level circuits:
 
@@ -1189,6 +1502,8 @@ This unit covered the transformation of Boolean expressions into practical multi
 - **Technology mapping** converts optimized Boolean networks to circuits using specific library cells, balancing area, delay, and power.
 
 - **Synthesis tools** automate multi-level optimization, making hand optimization primarily a learning exercise but understanding the principles essential for effective tool usage.
+
+</div>
 
 ??? question "Self-Check: Why can't you simply replace all gates with NANDs in any circuit?"
     The direct replacement only works for two-level AND-OR (SOP) circuits because the double inversion principle creates matching pairs of inversions that cancel. For arbitrary multi-level circuits or for cross conversions (SOP→NOR), additional inverters or gate levels are required to handle unpaired inversions.
