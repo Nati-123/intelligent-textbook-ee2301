@@ -1042,11 +1042,13 @@ $$F = AC + AD + BC + BD + E = (A+B)(C+D) + E$$
 Consider two output functions:
 
 $$F_1 = AC + AD + BC + BD$$
+
 $$F_2 = AC + AD + E$$
 
 Both share $AC + AD = A(C+D)$. Computing $A(C+D)$ once and sharing it saves gates:
 
 $$F_1 = A(C+D) + B(C+D) = (A+B)(C+D)$$
+
 $$F_2 = A(C+D) + E$$
 
 The shared term $C+D$ appears **once** in the circuit, driving both $F_1$ and $F_2$.
