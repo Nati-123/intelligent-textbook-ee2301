@@ -88,40 +88,71 @@ Before beginning this unit, students should have:
 
 ---
 
-## 4.1 Canonical vs Standard Forms
+<h2 id="41-canonical-vs-standard-forms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.1 Canonical vs Standard Forms</h2>
 
-Boolean expressions can be written in multiple equivalent ways. Two important classifications are **canonical forms** and **standard forms**.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+Boolean expressions can be written in multiple equivalent ways. Two important classifications are <strong style="color: #333;">canonical forms</strong> and <strong style="color: #333;">standard forms</strong>.
+</p>
 
-### Standard Form
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Standard Form</h3>
 
-A **standard form** expression is written as either:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+A <strong style="color: #333;">standard form</strong> expression is written as either:
+</p>
 
-- **Standard SOP:** Sum of product terms (not all variables need appear in each term)
-- **Standard POS:** Product of sum terms (not all variables need appear in each term)
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Standard SOP:</strong> Sum of product terms (not all variables need appear in each term)</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Standard POS:</strong> Product of sum terms (not all variables need appear in each term)</li>
+</ul>
 
-Example of standard SOP: $F = AB + \overline{A}C + BC$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example — Standard SOP</p>
 
-Note that the first term has only A and B, the second has A and C, and the third has B and C—not all three variables appear in every term.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px 28px; margin: 10px 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
-### Canonical Form
+$F = AB + \overline{A}C + BC$
 
-A **canonical form** is a standardized, unique representation where **every variable appears exactly once** (either complemented or uncomplemented) in **every term**.
+</div>
 
-- **Canonical SOP:** Every product term contains all n variables → called **minterms**
-- **Canonical POS:** Every sum term contains all n variables → called **maxterms**
+<p style="color: #555; line-height: 1.75; margin-bottom: 0;">
+The first term has only A and B, the second has A and C, and the third has B and C — <strong style="color: #333;">not all three variables appear in every term</strong>.
+</p>
+</div>
 
-The canonical form of a function is unique—there is exactly one canonical SOP and one canonical POS for any given function.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Canonical Form</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1rem;">
+A <strong style="color: #333;">canonical form</strong> is a standardized, unique representation where <strong style="color: #333;">every variable appears exactly once</strong> (either complemented or uncomplemented) in <strong style="color: #333;">every term</strong>.
+</p>
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Canonical SOP:</strong> Every product term contains all n variables → called <strong style="color: #5A3EED;">minterms</strong></li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Canonical POS:</strong> Every sum term contains all n variables → called <strong style="color: #5A3EED;">maxterms</strong></li>
+</ul>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The canonical form of a function is <strong style="color: #333;">unique</strong> — there is exactly one canonical SOP and one canonical POS for any given function.
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 14px;">Comparison Table</p>
 
 | Property | Standard Form | Canonical Form |
-|----------|---------------|----------------|
-| Variables per term | May vary | All n variables |
-| Unique representation | No | Yes |
-| Term names | Product/Sum terms | Minterms/Maxterms |
-| Directly from truth table | No | Yes |
-| Typically more terms | No | Yes |
+|:---------|:--------------|:---------------|
+| **Variables per term** | May vary | All n variables |
+| **Unique representation** | No | Yes |
+| **Term names** | Product / Sum terms | Minterms / Maxterms |
+| **Directly from truth table** | No | Yes |
+| **Typically more terms** | No | Yes |
 
-!!! note "Why Canonical Forms Matter"
-    Canonical forms provide a direct bridge between truth tables and algebraic expressions. They also serve as the starting point for systematic simplification methods like Karnaugh maps.
+</div>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 20px 24px; margin: 1.5rem 0;">
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Why Canonical Forms Matter</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">
+Canonical forms provide a <strong>direct bridge between truth tables and algebraic expressions</strong>. They also serve as the starting point for systematic simplification methods like Karnaugh maps.
+</p>
+</div>
 
 ---
 
