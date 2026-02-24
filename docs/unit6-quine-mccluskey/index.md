@@ -490,7 +490,7 @@ When the prime implicant chart cannot be fully reduced by row/column dominance a
 
 </div>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Remaining minterms {0, 1, 5, 7}</p>
 
@@ -504,24 +504,23 @@ When the prime implicant chart cannot be fully reduced by row/column dominance a
 </tbody>
 </table>
 
-<p style="color: #333; margin-bottom: 8px;"><strong>Petrick's function:</strong></p>
+**Petrick's function:**
 
 $$P = (P_5 + P_6)(P_1 + P_2 + P_5)(P_1 + P_3)(P_3)$$
 
-<p style="color: #333; margin-bottom: 6px;">Since <span class="arithmatex">\(P_3\)</span> must be true (minterm 7): <span class="arithmatex">\((P_1 + P_3) = 1\)</span></p>
+Since $P_3$ must be true (minterm 7): $(P_1 + P_3) = 1$
 
 $$P = (P_5 + P_6)(P_1 + P_2 + P_5)$$
 
-<p style="color: #333; margin-bottom: 6px;">Expanding and applying absorption (<span class="arithmatex">\(P_5\)</span> absorbs <span class="arithmatex">\(P_1P_5\)</span>, <span class="arithmatex">\(P_2P_5\)</span>, <span class="arithmatex">\(P_5P_6\)</span>):</p>
+Expanding and applying absorption ($P_5$ absorbs $P_1P_5$, $P_2P_5$, $P_5P_6$):
 
 $$P = P_5 + P_1P_6 + P_2P_6$$
 
-<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Minimum covers:</p>
-<ul style="margin: 0.3rem 0 0.3rem 0; color: #333; line-height: 2;">
-<li><strong style="color: #2E7D32;">{PI<sub>3</sub>, PI<sub>5</sub>, PI<sub>7</sub>}</strong> &mdash; 3 prime implicants (minimum cover)</li>
-<li>{PI<sub>1</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} &mdash; 4 prime implicants</li>
-<li>{PI<sub>2</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} &mdash; 4 prime implicants</li>
-</ul>
+**Minimum covers:**
+
+- <strong style="color: #2E7D32;">{PI<sub>3</sub>, PI<sub>5</sub>, PI<sub>7</sub>}</strong> — 3 prime implicants (minimum cover)
+- {PI<sub>1</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} — 4 prime implicants
+- {PI<sub>2</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} — 4 prime implicants
 
 </div>
 
