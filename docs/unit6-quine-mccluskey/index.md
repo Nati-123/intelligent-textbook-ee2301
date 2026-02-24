@@ -995,44 +995,48 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 </div>
 
-**Algorithm Pseudocode:**
+<div style="background: #1E1E2E; border: 2px solid #6A5BFF; border-radius: 12px; padding: 0; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.12); overflow: hidden;">
 
-```
-function QuineMcCluskey(minterms, dontcares, num_vars):
-    # Step 1: Initialize with minterms and don't cares
+<div style="background: #6A5BFF; padding: 10px 20px;">
+<p style="color: #fff; font-weight: 700; font-size: 1.05rem; margin: 0; font-family: monospace;">Algorithm Pseudocode: QuineMcCluskey</p>
+</div>
+
+<pre style="margin: 0; padding: 20px 24px; color: #CDD6F4; font-size: 0.88rem; line-height: 1.7; overflow-x: auto;"><code style="font-family: 'Consolas', 'Monaco', monospace; color: #CDD6F4;"><span style="color: #CBA6F7; font-weight: 600;">function</span> <span style="color: #89B4FA;">QuineMcCluskey</span>(minterms, dontcares, num_vars):
+    <span style="color: #6C7086; font-style: italic;"># Step 1: Initialize with minterms and don't cares</span>
     terms = minterms ∪ dontcares
     all_prime_implicants = []
 
-    # Step 2: Group by number of 1s
-    groups = group_by_ones_count(terms, num_vars)
+    <span style="color: #6C7086; font-style: italic;"># Step 2: Group by number of 1s</span>
+    groups = <span style="color: #89B4FA;">group_by_ones_count</span>(terms, num_vars)
 
-    # Step 3: Iterative combination
-    while groups is not empty:
+    <span style="color: #6C7086; font-style: italic;"># Step 3: Iterative combination</span>
+    <span style="color: #CBA6F7; font-weight: 600;">while</span> groups <span style="color: #CBA6F7;">is not</span> empty:
         new_groups = {}
-        combined = set()
+        combined = <span style="color: #89B4FA;">set</span>()
 
-        for each adjacent pair (group_i, group_j):
-            for term_a in group_i:
-                for term_b in group_j:
-                    if can_combine(term_a, term_b):
-                        new_term = combine(term_a, term_b)
+        <span style="color: #CBA6F7; font-weight: 600;">for each</span> adjacent pair (group_i, group_j):
+            <span style="color: #CBA6F7; font-weight: 600;">for</span> term_a <span style="color: #CBA6F7;">in</span> group_i:
+                <span style="color: #CBA6F7; font-weight: 600;">for</span> term_b <span style="color: #CBA6F7;">in</span> group_j:
+                    <span style="color: #CBA6F7; font-weight: 600;">if</span> <span style="color: #89B4FA;">can_combine</span>(term_a, term_b):
+                        new_term = <span style="color: #89B4FA;">combine</span>(term_a, term_b)
                         add new_term to new_groups
                         mark term_a, term_b as combined
 
-        # Uncombined terms are prime implicants
-        for term in all terms not in combined:
+        <span style="color: #6C7086; font-style: italic;"># Uncombined terms are prime implicants</span>
+        <span style="color: #CBA6F7; font-weight: 600;">for</span> term <span style="color: #CBA6F7;">in</span> all terms <span style="color: #CBA6F7;">not in</span> combined:
             add term to all_prime_implicants
 
         groups = new_groups
 
-    # Step 4: Build prime implicant chart (exclude don't cares)
-    chart = build_chart(all_prime_implicants, minterms)
+    <span style="color: #6C7086; font-style: italic;"># Step 4: Build prime implicant chart (exclude don't cares)</span>
+    chart = <span style="color: #89B4FA;">build_chart</span>(all_prime_implicants, minterms)
 
-    # Step 5: Find minimum cover
-    solution = find_minimum_cover(chart)
+    <span style="color: #6C7086; font-style: italic;"># Step 5: Find minimum cover</span>
+    solution = <span style="color: #89B4FA;">find_minimum_cover</span>(chart)
 
-    return solution
-```
+    <span style="color: #CBA6F7; font-weight: 600;">return</span> solution</code></pre>
+
+</div>
 
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
