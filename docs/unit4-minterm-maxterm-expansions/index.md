@@ -425,34 +425,60 @@ For 3 variables, indices 0-7 exist. If minterms are {1,3,5}, maxterms are {0,2,4
 
 ---
 
-## 4.6 Complement of a Function
+<h2 id="46-complement-of-a-function" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.6 Complement of a Function</h2>
 
-The **complement of a function** $\overline{F}$ has the opposite output for every input combination. This leads to elegant relationships in canonical form.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The <strong style="color: #333;">complement of a function</strong> \(\overline{F}\) has the opposite output for every input combination. This leads to elegant relationships in canonical form.
+</p>
 
 ### Complement in Canonical Form
 
-If $F = \Sigma m(a, b, c, ...)$, then $\overline{F} = \Sigma m(\text{all other indices})$
+<div style="background: #EEF4FF; border-left: 4px solid #5A8DEE; border-radius: 8px; padding: 20px 24px; margin: 1.2rem 0;" markdown>
 
-Equivalently: $\overline{F} = \Pi M(a, b, c, ...)$
+$$\text{If} \quad F = \Sigma m(a,\, b,\, c,\, \ldots) \quad \text{then} \quad \overline{F} = \Sigma m(\text{all other indices})$$
 
-**Example:**
-$$F = \Sigma m(1,3,5) \quad \text{(for 3 variables)}$$
-$$\overline{F} = \Sigma m(0,2,4,6,7) = \Pi M(1,3,5)$$
+$$\text{Equivalently:} \quad \overline{F} = \Pi M(a,\, b,\, c,\, \ldots)$$
 
-This reveals a beautiful symmetry:
+</div>
 
-- The minterm indices of F become the maxterm indices of $\overline{F}$
-- The maxterm indices of F become the minterm indices of $\overline{F}$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
+$$F = \Sigma m(1,3,5) \qquad \text{(3 variables, indices 0–7)}$$
+
+For 3 variables, the complement takes all remaining indices:
+
+$$\overline{F} = \Sigma m(0,2,4,6,7) \;=\; \Pi M(1,3,5)$$
+
+</div>
+
+<p style="color: #555; line-height: 1.85; margin-bottom: 0.5rem;">This reveals a beautiful symmetry:</p>
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The minterm indices of \(F\) become the maxterm indices of \(\overline{F}\)</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> The maxterm indices of \(F\) become the minterm indices of \(\overline{F}\)</li>
+</ul>
 
 ### Practical Use
 
-To find $\overline{F}$ in canonical form:
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
+To find \(\overline{F}\) in canonical form:
+</p>
 
-1. **From SOP:** Swap Σm to ΠM, keep same indices
-2. **From POS:** Swap ΠM to Σm, keep same indices
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;"><strong>From SOP:</strong> Swap \(\Sigma m \to \Pi M\), keep same indices</li>
+<li style="margin-bottom: 0.5rem;"><strong>From POS:</strong> Swap \(\Pi M \to \Sigma m\), keep same indices</li>
+</ol>
 
-$$F = \Sigma m(1,3,5) \implies \overline{F} = \Pi M(1,3,5)$$
-$$F = \Pi M(0,2,4,6,7) \implies \overline{F} = \Sigma m(0,2,4,6,7)$$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 24px; margin: 1.5rem 0; text-align: center;" markdown>
+
+$$\begin{aligned}
+F &= \Sigma m(1,3,5) \\[8pt]
+\Rightarrow \quad \overline{F} &= \Pi M(1,3,5) \\[8pt]
+&= \Sigma m(0,2,4,6,7)
+\end{aligned}$$
+
+</div>
 
 ---
 
