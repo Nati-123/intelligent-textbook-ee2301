@@ -803,38 +803,70 @@ Implementation: p5.js with expression parser
 
 ---
 
-## 4.10 Literal Count and Expression Complexity
+<h2 id="410-literal-count-and-expression-complexity" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.10 Literal Count and Expression Complexity</h2>
 
-The **literal count** is a common metric for expression complexity, counting the total number of variable appearances (complemented or uncomplemented) in an expression.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.5rem;">
+The <strong style="color: #333;">literal count</strong> is a common metric for expression complexity, counting the total number of variable appearances (complemented or uncomplemented) in an expression.
+</p>
 
 ### Counting Literals
 
-**Example:** $F = AB + \overline{A}C + BC$
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
 
-- Term 1 (AB): 2 literals (A, B)
-- Term 2 ($\overline{A}C$): 2 literals ($\overline{A}$, C)
-- Term 3 (BC): 2 literals (B, C)
-- Total: 6 literals
+$F = AB + \overline{A}C + BC$
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 14px 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+| Term | Expression | Literals | Count |
+|------|-----------|----------|-------|
+| Term 1 | $AB$ | A, B | 2 |
+| Term 2 | $\overline{A}C$ | $\overline{A}$, C | 2 |
+| Term 3 | $BC$ | B, C | 2 |
+| **Total** | | | **6** |
+
+</div>
+
+</div>
 
 ### Canonical Form Literal Count
 
+<p style="color: #555; line-height: 1.85; margin-bottom: 1rem;">
 Canonical forms typically have high literal counts because every term includes all variables:
+</p>
 
-For n variables and k minterms: Literal count = k × n
+<div style="background: #EEF4FF; border-left: 4px solid #5A8DEE; border-radius: 8px; padding: 20px 24px; margin: 1.2rem 0;" markdown>
 
-**Example:** $F = \Sigma m(1,3,5)$ in 3 variables
+$$\text{Literal count} = k \times n \qquad \text{(k minterms, n variables)}$$
 
-- 3 minterms, each with 3 literals
-- Literal count = 3 × 3 = 9
+</div>
 
-The simplified form $F = \overline{B}C + BC = C$ has only 1 literal!
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example</p>
+
+$F = \Sigma m(1,3,5)$ in 3 variables
+
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> 3 minterms, each with 3 literals</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Literal count = 3 &times; 3 = <strong>9 literals</strong></li>
+</ul>
+
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 20px; margin: 10px 0 4px 0; text-align: center;" markdown>
+
+The simplified form: $F = \overline{B}C + BC = C$ has only **1 literal** — a 9&times; reduction!
+
+</div>
+
+</div>
 
 ### Why Literal Count Matters
 
-- **Gate inputs:** Each literal requires a gate input (or inverter)
-- **Wiring complexity:** More literals = more connections
-- **Cost:** Integrated circuit area and power roughly correlate with literal count
-- **Speed:** More literals can mean longer propagation paths
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.8rem 0 1.5rem 0;">
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Gate inputs:</strong> Each literal requires a gate input (or inverter)</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Wiring complexity:</strong> More literals = more connections</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Cost:</strong> Integrated circuit area and power roughly correlate with literal count</li>
+<li style="margin-bottom: 0.9rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> <strong>Speed:</strong> More literals can mean longer propagation paths</li>
+</ul>
 
 | Metric | Canonical Form | Simplified Form |
 |--------|----------------|-----------------|
@@ -843,7 +875,9 @@ The simplified form $F = \overline{B}C + BC = C$ has only 1 literal!
 | Literal count | High | Minimized |
 | Implementation cost | High | Lower |
 
+<p style="color: #555; line-height: 1.85; margin-top: 1.2rem;">
 The goal of simplification (Unit 5) is to reduce literal count while preserving the function.
+</p>
 
 ---
 
