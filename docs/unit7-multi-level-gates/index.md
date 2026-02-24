@@ -89,13 +89,13 @@ In previous units, we focused primarily on **two-level circuit implementations**
 </tbody>
 </table>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Factoring Reduces Complexity</p>
 
-<p style="color: #333; margin-bottom: 8px;">Consider <span class="arithmatex">\(F = ABCDE + ABCDF + ABCDG\)</span>. A two-level SOP needs three 5-input AND gates and one 3-input OR gate. After factoring:</p>
+Consider $F = ABCDE + ABCDF + ABCDG$. A two-level SOP needs three 5-input AND gates and one 3-input OR gate. After factoring:
 
-<p style="color: #2E7D32; font-weight: 600; margin-bottom: 0;"><span class="arithmatex">\(F = ABCD(E + F + G)\)</span> &mdash; three levels but smaller gates (max 4-input).</p>
+**$F = ABCD(E + F + G)$** — three levels but smaller gates (max 4-input).
 
 </div>
 
