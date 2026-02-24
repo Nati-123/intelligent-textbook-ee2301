@@ -1113,28 +1113,43 @@ The truth table method is often more straightforward for complex expressions.
 
 ---
 
-## 2.9 Operator Precedence and Notation
+<h2 id="29-operator-precedence-and-notation" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.9 Operator Precedence and Notation</h2>
 
-**Precedence of operators** in Boolean algebra follows this order (highest to lowest):
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Precedence of operators</strong> in Boolean algebra follows this order (highest to lowest):
+</p>
 
-1. **Parentheses** — evaluated first
-2. **NOT** (complement) — highest operator precedence
-3. **AND** — evaluated before OR
-4. **OR** — lowest precedence
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> <strong>Parentheses</strong> — evaluated first</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> <strong>NOT</strong> (complement) — highest operator precedence</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> <strong>AND</strong> — evaluated before OR</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> <strong>OR</strong> — lowest precedence</li>
+</ul>
 
-!!! example "Example: Evaluate $A + B \cdot \overline{C}$ when $A=1$, $B=1$, $C=0$"
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Evaluate <span class="arithmatex">\(A + B \cdot \overline{C}\)</span> when <span class="arithmatex">\(A=1\)</span>, <span class="arithmatex">\(B=1\)</span>, <span class="arithmatex">\(C=0\)</span></p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> First, NOT: <span class="arithmatex">\(\overline{C} = \overline{0} = 1\)</span></li>
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Then, AND: <span class="arithmatex">\(B \cdot \overline{C} = 1 \cdot 1 = 1\)</span></li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> Finally, OR: <span class="arithmatex">\(A + 1 = 1 + 1 = 1\)</span></li>
+</ul>
+</div>
 
-    1. First, NOT: $\overline{C} = \overline{0} = 1$
-    2. Then, AND: $B \cdot \overline{C} = 1 \cdot 1 = 1$
-    3. Finally, OR: $A + 1 = 1 + 1 = 1$
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+<strong>Parentheses in Boolean</strong> expressions are used to override default precedence:
+</p>
 
-**Parentheses in Boolean** expressions are used to override default precedence:
+<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <span class="arithmatex">\((A + B) \cdot C\)</span> means OR first, then AND</li>
+<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <span class="arithmatex">\(A + B \cdot C\)</span> means AND first, then OR (no parentheses needed)</li>
+</ul>
 
-- $(A + B) \cdot C$ means OR first, then AND
-- $A + B \cdot C$ means AND first, then OR (no parentheses needed)
-
-!!! warning "Common Mistake"
-    Students often incorrectly evaluate $A + BC$ as $(A + B) \cdot C$. Remember: AND binds tighter than OR, just like multiplication binds tighter than addition in ordinary algebra.
+<div style="background: #FFF3E0; border: 2px solid #FFB74D; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(230,126,34,0.08);">
+<p style="color: #E65100; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Common Mistake</p>
+<p style="color: #333; line-height: 1.85; margin: 0;">
+Students often incorrectly evaluate <span class="arithmatex">\(A + BC\)</span> as <span class="arithmatex">\((A + B) \cdot C\)</span>. Remember: AND binds tighter than OR, just like multiplication binds tighter than addition in ordinary algebra.
+</p>
+</div>
 
 ---
 
