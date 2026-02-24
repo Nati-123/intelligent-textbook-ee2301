@@ -27,12 +27,10 @@ Express $F$ in maxterm list form $\prod M(\ldots)$ and identify the pattern in t
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
 <p style="color: #333; line-height: 1.75; margin-top: 0;">
-
-$F(A, B, C, D) = \prod M(0, 2, 4, 6, 8, 10, 12, 14)$
-
+<span class="arithmatex">\(F(A, B, C, D) = \prod M(0, 2, 4, 6, 8, 10, 12, 14)\)</span>
 </p>
 <p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
-Pattern: $F = D$ — the function equals 1 exactly when the least significant bit $D = 1$ (all odd minterms).
+Pattern: <span class="arithmatex">\(F = D\)</span> — the function equals 1 exactly when the least significant bit <span class="arithmatex">\(D = 1\)</span> (all odd minterms).
 </p>
 </div>
 </details>
@@ -51,16 +49,18 @@ $$F = A\overline{C} + \overline{B}\,D + \overline{A}\,B\,C$$
 
 <details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
-
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">
 Expansion of each term:
-
-- $A\overline{C}$: $A=1, C=0$, $B$ and $D$ free → $m(8, 9, 12, 13)$
-- $\overline{B}\,D$: $B=0, D=1$, $A$ and $C$ free → $m(1, 3, 9, 11)$
-- $\overline{A}\,BC$: $A=0, B=1, C=1$, $D$ free → $m(6, 7)$
-
-Union: $F = \sum m(1, 3, 6, 7, 8, 9, 11, 12, 13)$
-
+</p>
+<p style="color: #333; line-height: 1.85;">
+<span class="arithmatex">\(A\overline{C}\)</span>: A=1, C=0, B and D free → <span class="arithmatex">\(m(8, 9, 12, 13)\)</span><br>
+<span class="arithmatex">\(\overline{B}\,D\)</span>: B=0, D=1, A and C free → <span class="arithmatex">\(m(1, 3, 9, 11)\)</span><br>
+<span class="arithmatex">\(\overline{A}\,BC\)</span>: A=0, B=1, C=1, D free → <span class="arithmatex">\(m(6, 7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Union: <span class="arithmatex">\(F = \sum m(1, 3, 6, 7, 8, 9, 11, 12, 13)\)</span>
+</p>
 </div>
 </details>
 
@@ -80,18 +80,28 @@ where $F_0 = F|_{A=0}$ and $F_1 = F|_{A=1}$. Give both cofactors as simplified e
 
 <details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
-
-**Cofactor $F_0 = F|_{A=0}$:** Minterms with $A=0$: $m(0, 1, 4, 5, 6, 7)$ → as 3-variable function of $B, C, D$: $m_3(0, 1, 4, 5, 6, 7)$
-
-Simplified: $F_0 = \overline{B} + C$
-
-**Cofactor $F_1 = F|_{A=1}$:** Minterms with $A=1$: $m(14, 15)$ → as 3-variable function: indices $6, 7$ → $m_3(6, 7)$
-
-Simplified: $F_1 = BC$
-
-**Final decomposition:** $F = \overline{A}(\overline{B} + C) + A \cdot BC$
-
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; font-weight: 700; margin-top: 0;">
+Cofactor <span class="arithmatex">\(F_0 = F|_{A=0}\)</span>:
+</p>
+<p style="color: #333; line-height: 1.85;">
+Minterms with A=0: <span class="arithmatex">\(m(0, 1, 4, 5, 6, 7)\)</span> → as 3-variable function of B, C, D: <span class="arithmatex">\(m_3(0, 1, 4, 5, 6, 7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+Simplified: <span class="arithmatex">\(F_0 = \overline{B} + C\)</span>
+</p>
+<p style="color: #333; font-weight: 700;">
+Cofactor <span class="arithmatex">\(F_1 = F|_{A=1}\)</span>:
+</p>
+<p style="color: #333; line-height: 1.85;">
+Minterms with A=1: <span class="arithmatex">\(m(14, 15)\)</span> → as 3-variable function: indices 6, 7 → <span class="arithmatex">\(m_3(6, 7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+Simplified: <span class="arithmatex">\(F_1 = BC\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Final decomposition: <span class="arithmatex">\(F = \overline{A}(\overline{B} + C) + A \cdot BC\)</span>
+</p>
 </div>
 </details>
 
@@ -111,18 +121,22 @@ Find $\overline{F}$ in SOP form, then use it to derive $F$ in SOP form.
 
 <details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
-
-The maxterms present: $(A + B + C) = M_0$, $(A + \overline{B} + C) = M_2$, $(\overline{A} + B + \overline{C}) = M_5$
-
-So $F = \prod M(0, 2, 5)$
-
-$\overline{F} = \sum m(0, 2, 5) = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,B\,\overline{C} + A\overline{B}\,C$
-
-$F = \sum m(1, 3, 4, 6, 7)$
-
-Simplified SOP: $F = \overline{A}\,C + A\overline{C} + AB$
-
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">
+The maxterms present: <span class="arithmatex">\((A + B + C) = M_0\)</span>, <span class="arithmatex">\((A + \overline{B} + C) = M_2\)</span>, <span class="arithmatex">\((\overline{A} + B + \overline{C}) = M_5\)</span>
+</p>
+<p style="color: #333; line-height: 1.85;">
+So <span class="arithmatex">\(F = \prod M(0, 2, 5)\)</span>
+</p>
+<p style="color: #333; line-height: 1.85;">
+<span class="arithmatex">\(\overline{F} = \sum m(0, 2, 5) = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,B\,\overline{C} + A\overline{B}\,C\)</span>
+</p>
+<p style="color: #333; line-height: 1.85;">
+<span class="arithmatex">\(F = \sum m(1, 3, 4, 6, 7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Simplified SOP: <span class="arithmatex">\(F = \overline{A}\,C + A\overline{C} + AB\)</span>
+</p>
 </div>
 </details>
 
@@ -143,22 +157,25 @@ If $F = \sum m(1, 3, 5, 7)$, find $G$ as a minterm list and simplified expressio
 
 <details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
-
-Since $F \cdot G = \sum m(1, 5, 7)$, $G$ must include minterms $\{1, 5, 7\}$.
-
-Since $F + G = \sum m(0, 1, 2, 3, 5, 6, 7)$, every minterm in this set must be in $F$ or $G$ (or both).
-
-$F = \{1, 3, 5, 7\}$. Minterms in $F + G$ but not in $F$: $\{0, 2, 6\}$ — these must be in $G$.
-
-$G$ cannot include minterm 3 (it's in $F$, so $F \cdot G$ would include 3 — but $F \cdot G$ does NOT include 3).
-
-Minterm 4 is not in $F + G$, so $G$ cannot include 4.
-
-$$G = \sum m(0, 1, 2, 5, 6, 7)$$
-
-Simplified: $G = \overline{B}\,\overline{C} + \overline{A}\,\overline{B} + AB + BC$
-
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.85; margin-top: 0;">
+Since <span class="arithmatex">\(F \cdot G = \sum m(1, 5, 7)\)</span>, <span class="arithmatex">\(G\)</span> must include minterms {1, 5, 7}.
+</p>
+<p style="color: #333; line-height: 1.85;">
+Since <span class="arithmatex">\(F + G = \sum m(0, 1, 2, 3, 5, 6, 7)\)</span>, every minterm in this set must be in <span class="arithmatex">\(F\)</span> or <span class="arithmatex">\(G\)</span> (or both).
+</p>
+<p style="color: #333; line-height: 1.85;">
+<span class="arithmatex">\(F = \{1, 3, 5, 7\}\)</span>. Minterms in <span class="arithmatex">\(F + G\)</span> but not in <span class="arithmatex">\(F\)</span>: {0, 2, 6} — these must be in <span class="arithmatex">\(G\)</span>.
+</p>
+<p style="color: #333; line-height: 1.85;">
+<span class="arithmatex">\(G\)</span> cannot include minterm 3 (it's in <span class="arithmatex">\(F\)</span>, so <span class="arithmatex">\(F \cdot G\)</span> would include 3 — but <span class="arithmatex">\(F \cdot G\)</span> does NOT include 3). Minterm 4 is not in <span class="arithmatex">\(F + G\)</span>, so <span class="arithmatex">\(G\)</span> cannot include 4.
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+<span class="arithmatex">\(G = \sum m(0, 1, 2, 5, 6, 7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Simplified: <span class="arithmatex">\(G = \overline{B}\,\overline{C} + \overline{A}\,\overline{B} + AB + BC\)</span>
+</p>
 </div>
 </details>
 
