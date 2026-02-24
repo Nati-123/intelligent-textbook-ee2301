@@ -86,17 +86,25 @@ The Quine-McCluskey method, developed independently by Willard V. Quine in 1952 
 
 The QM method forms the theoretical foundation for modern Electronic Design Automation (EDA) tools used in industry for logic synthesis and optimization.
 
-| Feature | K-map | Quine-McCluskey |
-|---------|-------|-----------------|
-| Maximum practical variables | 5-6 | Unlimited |
-| Approach | Visual pattern recognition | Algorithmic tabular |
-| Computer implementation | Difficult | Straightforward |
-| Guaranteed optimal | Depends on user skill | Yes (finds all PIs) |
-| Speed for small functions | Fast | Moderate |
-| Speed for large functions | Impractical | Computationally intensive |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Feature</th><th style="padding: 8px 14px;">K-map</th><th style="padding: 8px 14px;">Quine-McCluskey</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Maximum practical variables</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">5&ndash;6</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Unlimited</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Approach</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Visual pattern recognition</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Algorithmic tabular</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Computer implementation</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Difficult</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Straightforward</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Guaranteed optimal</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Depends on user skill</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Yes (finds all PIs)</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Speed for small functions</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; color: #2E7D32; font-weight: 600;">Fast</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Moderate</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">Speed for large functions</td><td style="padding: 8px 14px;">Impractical</td><td style="padding: 8px 14px;">Computationally intensive</td></tr>
+</tbody>
+</table>
 
-!!! note "Historical Context"
-    The QM method represents one of the earliest examples of algorithmic approaches to digital design. It emerged during the same era that saw the development of the first commercial computers, reflecting the growing need for systematic design methods.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Historical Context</p>
+
+<p style="color: #333; margin-bottom: 0;">The QM method represents one of the earliest examples of algorithmic approaches to digital design. It emerged during the same era that saw the development of the first commercial computers, reflecting the growing need for systematic design methods.</p>
+
+</div>
 
 ## 6.2 Binary Representation and Grouping
 
@@ -106,26 +114,35 @@ Consider a function $F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 10, 14)$.
 
 The first step is to list all minterms in their binary representations:
 
-| Minterm | A | B | C | D | Number of 1s |
-|---------|---|---|---|---|--------------|
-| m₀ | 0 | 0 | 0 | 0 | 0 |
-| m₁ | 0 | 0 | 0 | 1 | 1 |
-| m₂ | 0 | 0 | 1 | 0 | 1 |
-| m₈ | 1 | 0 | 0 | 0 | 1 |
-| m₅ | 0 | 1 | 0 | 1 | 2 |
-| m₆ | 0 | 1 | 1 | 0 | 2 |
-| m₉ | 1 | 0 | 0 | 1 | 2 |
-| m₁₀ | 1 | 0 | 1 | 0 | 2 |
-| m₇ | 0 | 1 | 1 | 1 | 3 |
-| m₁₄ | 1 | 1 | 1 | 0 | 3 |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 12px;">Minterm</th><th style="padding: 6px 12px;">A</th><th style="padding: 6px 12px;">B</th><th style="padding: 6px 12px;">C</th><th style="padding: 6px 12px;">D</th><th style="padding: 6px 12px;">Number of 1s</th></tr></thead>
+<tbody>
+<tr style="background: #e3f2fd;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>0</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">0</td></tr>
+<tr><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>1</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">1</td></tr>
+<tr><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>2</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">1</td></tr>
+<tr><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>8</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">1</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>5</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">2</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>6</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">2</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>9</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">2</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>10</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">2</td></tr>
+<tr style="background: #fff3e0;"><td style="padding: 6px 12px; font-weight: 600; border-bottom: 1px solid #ddd;">m<sub>7</sub></td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED; border-bottom: 1px solid #ddd;">3</td></tr>
+<tr style="background: #fff3e0;"><td style="padding: 6px 12px; font-weight: 600;">m<sub>14</sub></td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED;">3</td></tr>
+</tbody>
+</table>
 
-The minterms are then organized into groups based on the number of 1s in their binary representation. This grouping is fundamental to the QM algorithm because:
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- Two minterms can only be combined if they differ in exactly one bit position
-- Minterms that differ by one bit must have a difference of exactly one in their count of 1s
-- Therefore, we only need to compare minterms in adjacent groups
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Why Group by Number of 1s?</p>
 
-This insight dramatically reduces the number of comparisons needed, from $\binom{n}{2}$ comparisons (every pair) to comparisons only between adjacent groups.
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>Two minterms can only be combined if they differ in exactly <strong>one bit position</strong></li>
+<li>Minterms that differ by one bit must have a difference of exactly one in their count of 1s</li>
+<li>Therefore, we only need to compare minterms in <strong>adjacent groups</strong></li>
+</ul>
+
+<p style="color: #666; font-style: italic; margin-bottom: 0;">This insight dramatically reduces comparisons from <span class="arithmatex">\(\binom{n}{2}\)</span> (every pair) to only adjacent-group comparisons.</p>
+
+</div>
 
 #### Diagram: QM Grouping Visualization
 
@@ -179,73 +196,107 @@ Once minterms are grouped, the combination process begins. Two terms can be comb
 
 When two terms are combined, the differing bit position is replaced with a dash (-), indicating that the variable is eliminated from the product term. This dash notation represents a "don't care" for that particular variable position.
 
-**Example:** Combining minterms from the function above:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Comparing Group 0 with Group 1:
-- m₀ (0000) and m₁ (0001): Differ only in position D → Combined: 000- (covers m₀, m₁)
-- m₀ (0000) and m₂ (0010): Differ only in position C → Combined: 00-0 (covers m₀, m₂)
-- m₀ (0000) and m₈ (1000): Differ only in position A → Combined: -000 (covers m₀, m₈)
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Combining Group 0 with Group 1</p>
 
-Each original minterm that participates in a combination is marked with a check (✓), indicating it is not a prime implicant by itself. Terms that cannot be combined with any other term remain unchecked and are identified as prime implicants.
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 12px;">Pair</th><th style="padding: 6px 12px;">Binary</th><th style="padding: 6px 12px;">Differing Bit</th><th style="padding: 6px 12px;">Result</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 12px; border-bottom: 1px solid #ddd;">m<sub>0</sub> &amp; m<sub>1</sub></td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0000 &amp; 0001</td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; text-align: center;">D</td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #2E7D32; font-weight: 600;">000-</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 12px; border-bottom: 1px solid #ddd;">m<sub>0</sub> &amp; m<sub>2</sub></td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0000 &amp; 0010</td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; text-align: center;">C</td><td style="padding: 6px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #2E7D32; font-weight: 600;">00-0</td></tr>
+<tr><td style="padding: 6px 12px;">m<sub>0</sub> &amp; m<sub>8</sub></td><td style="padding: 6px 12px; font-family: monospace;">0000 &amp; 1000</td><td style="padding: 6px 12px; text-align: center;">A</td><td style="padding: 6px 12px; font-family: monospace; color: #2E7D32; font-weight: 600;">-000</td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; margin-bottom: 0;">Each combined minterm gets a check mark (&check;) &mdash; it is <em>not</em> a prime implicant by itself. Unchecked terms become prime implicants.</p>
+
+</div>
 
 The combination process continues iteratively:
 
-1. **First iteration:** Combine minterms to form 2-cell implicants (one dash)
-2. **Second iteration:** Combine 2-cell implicants to form 4-cell implicants (two dashes)
-3. **Continue** until no more combinations are possible
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 200px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">1st Iteration</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Combine minterms &rarr; 2-cell implicants (one dash)</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">2nd Iteration</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Combine 2-cell implicants &rarr; 4-cell (two dashes)</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Continue&hellip;</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Until no more combinations are possible</p>
+</div>
+</div>
 
-!!! tip "Combination Rule"
-    Two terms with dashes can only be combined if:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-    - The dashes appear in the same positions
-    - The non-dash positions differ in exactly one bit
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Combination Rule</p>
 
-    For example: 0-01 and 0-11 can combine to form 0--1, but 0-01 and -001 cannot combine because the dashes are in different positions.
+<p style="color: #333; margin-bottom: 8px;">Two terms with dashes can only be combined if:</p>
+<ul style="margin: 0 0 10px 0; line-height: 2; color: #333; padding-left: 1.5rem;">
+<li>The dashes appear in the <strong>same positions</strong></li>
+<li>The non-dash positions differ in <strong>exactly one bit</strong></li>
+</ul>
+
+<p style="color: #333; margin-bottom: 0;"><strong>Example:</strong> <code>0-01</code> and <code>0-11</code> can combine to form <code>0--1</code>, but <code>0-01</code> and <code>-001</code> <strong>cannot</strong> combine because the dashes are in different positions.</p>
+
+</div>
 
 ## 6.4 Constructing the Implicant Table
 
 The implicant table organizes the systematic combination process. Let us work through the complete example.
 
-**Initial Grouping (Column 1):**
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px;">Initial Grouping (Column 1):</p>
 
-| Group | Minterm | Binary | ✓ |
-|-------|---------|--------|---|
-| 0 | 0 | 0000 | ✓ |
-| 1 | 1 | 0001 | ✓ |
-| 1 | 2 | 0010 | ✓ |
-| 1 | 8 | 1000 | ✓ |
-| 2 | 5 | 0101 | ✓ |
-| 2 | 6 | 0110 | ✓ |
-| 2 | 9 | 1001 | ✓ |
-| 2 | 10 | 1010 | ✓ |
-| 3 | 7 | 0111 | ✓ |
-| 3 | 14 | 1110 | ✓ |
+<table style="font-size: 0.9rem; margin: 0.8rem auto 1.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Group</th><th style="padding: 6px 14px;">Minterm</th><th style="padding: 6px 14px;">Binary</th><th style="padding: 6px 14px;">&check;</th></tr></thead>
+<tbody>
+<tr style="background: #e3f2fd;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0000</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="3">1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0001</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">2</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0010</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">8</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">1000</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="4">2</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">5</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0101</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">6</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0110</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">1001</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">1010</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #fff3e0;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="2">3</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">7</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0111</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #fff3e0;"><td style="padding: 6px 14px;">14</td><td style="padding: 6px 14px; font-family: monospace;">1110</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32;">&check;</td></tr>
+</tbody>
+</table>
 
-**First Combination (Column 2):**
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px;">First Combination (Column 2):</p>
 
-| Group | Minterms | Pattern | ✓ |
-|-------|----------|---------|---|
-| 0-1 | 0,1 | 000- | ✓ |
-| 0-1 | 0,2 | 00-0 | ✓ |
-| 0-1 | 0,8 | -000 | ✓ |
-| 1-2 | 1,5 | 0-01 | |
-| 1-2 | 1,9 | -001 | |
-| 1-2 | 2,6 | 0-10 | ✓ |
-| 1-2 | 2,10 | -010 | ✓ |
-| 1-2 | 8,9 | 100- | ✓ |
-| 1-2 | 8,10 | 10-0 | ✓ |
-| 2-3 | 5,7 | 01-1 | |
-| 2-3 | 6,7 | 011- | |
-| 2-3 | 6,14 | -110 | ✓ |
-| 2-3 | 10,14 | 1-10 | ✓ |
+<table style="font-size: 0.9rem; margin: 0.8rem auto 1.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Group</th><th style="padding: 6px 14px;">Minterms</th><th style="padding: 6px 14px;">Pattern</th><th style="padding: 6px 14px;">&check;</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="3">0&ndash;1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">000-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 2</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">00-0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 8</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-000</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="6">1&ndash;2</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">1, 5</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">0-01</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">1, 9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-001</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">2, 6</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0-10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">2, 10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-010</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">8, 9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">100-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">8, 10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">10-0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="4">2&ndash;3</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">5, 7</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">01-1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">6, 7</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">011-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">6, 14</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-110</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 6px 14px;">10, 14</td><td style="padding: 6px 14px; font-family: monospace;">1-10</td><td style="padding: 6px 14px; text-align: center; color: #2E7D32;">&check;</td></tr>
+</tbody>
+</table>
 
-**Second Combination (Column 3):**
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px;">Second Combination (Column 3):</p>
 
-| Group | Minterms | Pattern | ✓ |
-|-------|----------|---------|---|
-| 0-1-2 | 0,1,8,9 | -00- | |
-| 0-1-2 | 0,2,8,10 | -0-0 | |
-| 1-2-3 | 2,6,10,14 | --10 | |
+<table style="font-size: 0.9rem; margin: 0.8rem auto 1.5rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Group</th><th style="padding: 6px 14px;">Minterms</th><th style="padding: 6px 14px;">Pattern</th><th style="padding: 6px 14px;">&check;</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="2">0&ndash;1&ndash;2</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 1, 8, 9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-00-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 2, 8, 10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-0-0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; font-weight: 600;">1&ndash;2&ndash;3</td><td style="padding: 6px 14px;">2, 6, 10, 14</td><td style="padding: 6px 14px; font-family: monospace; color: #C62828; font-weight: 600;">--10</td><td style="padding: 6px 14px; text-align: center;"></td></tr>
+</tbody>
+</table>
 
 #### Diagram: QM Combination Process Simulator
 
@@ -303,23 +354,41 @@ After all possible combinations have been made, the **unchecked terms** from all
 
 From our example, the prime implicants are:
 
-| Prime Implicant | Pattern | Minterms Covered | Boolean Expression |
-|-----------------|---------|------------------|-------------------|
-| PI₁ | 0-01 | 1, 5 | $\bar{A}\bar{C}D$ |
-| PI₂ | -001 | 1, 9 | $\bar{B}\bar{C}D$ |
-| PI₃ | 01-1 | 5, 7 | $\bar{A}BD$ |
-| PI₄ | 011- | 6, 7 | $\bar{A}BC$ |
-| PI₅ | -00- | 0, 1, 8, 9 | $\bar{B}\bar{C}$ |
-| PI₆ | -0-0 | 0, 2, 8, 10 | $\bar{B}\bar{D}$ |
-| PI₇ | --10 | 2, 6, 10, 14 | $C\bar{D}$ |
+<table style="font-size: 0.9rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Prime Implicant</th><th style="padding: 6px 14px;">Pattern</th><th style="padding: 6px 14px;">Minterms Covered</th><th style="padding: 6px 14px;">Boolean Expression</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">0-01</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">1, 5</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}\bar{C}D\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-001</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">1, 9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{C}D\)</span></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">01-1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">5, 7</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}BD\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>4</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">011-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">6, 7</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}BC\)</span></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-00-</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 1, 8, 9</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{C}\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-family: monospace;">-0-0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">0, 2, 8, 10</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{D}\)</span></td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 600;">PI<sub>7</sub></td><td style="padding: 6px 14px; font-family: monospace;">--10</td><td style="padding: 6px 14px;">2, 6, 10, 14</td><td style="padding: 6px 14px;"><span class="arithmatex">\(C\bar{D}\)</span></td></tr>
+</tbody>
+</table>
 
-To convert a pattern to a Boolean expression:
-- A 0 in position $i$ means the variable appears complemented
-- A 1 in position $i$ means the variable appears uncomplemented
-- A dash in position $i$ means the variable is absent from the term
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-!!! warning "Common Mistake"
-    Students sometimes confuse which terms are prime implicants. Remember: only **unchecked** terms are prime implicants. A term with a check mark has been absorbed into a larger grouping and is not a prime implicant.
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Converting Pattern to Boolean Expression</p>
+
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 90%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Pattern Value</th><th style="padding: 8px 16px;">Meaning</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-family: monospace; font-weight: 700;">0</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Variable appears <strong>complemented</strong></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-family: monospace; font-weight: 700;">1</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Variable appears <strong>uncomplemented</strong></td></tr>
+<tr><td style="padding: 8px 16px; font-family: monospace; font-weight: 700;">-</td><td style="padding: 8px 16px;">Variable is <strong>absent</strong> from the term</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<div style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #C62828; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Common Mistake</p>
+
+<p style="color: #333; margin-bottom: 0;">Students sometimes confuse which terms are prime implicants. Remember: only <strong>unchecked</strong> terms are prime implicants. A term with a check mark has been absorbed into a larger grouping and is not a prime implicant.</p>
+
+</div>
 
 ## 6.6 The Prime Implicant Chart
 
@@ -329,106 +398,132 @@ The prime implicant chart (also called the selection table or covering table) de
 - **Columns:** One for each minterm in the original function
 - **Marks (×):** Placed where a prime implicant covers a minterm
 
-| PI | Pattern | 0 | 1 | 2 | 5 | 6 | 7 | 8 | 9 | 10 | 14 |
-|----|---------|---|---|---|---|---|---|---|---|----|-----|
-| PI₁ | 0-01 | | × | | × | | | | | | |
-| PI₂ | -001 | | × | | | | | | × | | |
-| PI₃ | 01-1 | | | | × | | × | | | | |
-| PI₄ | 011- | | | | | × | × | | | | |
-| PI₅ | -00- | × | × | | | | | × | × | | |
-| PI₆ | -0-0 | × | | × | | | | × | | × | |
-| PI₇ | --10 | | | × | | × | | | | × | × |
+<table style="font-size: 0.85rem; margin: 1rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 10px;">PI</th><th style="padding: 5px 10px;">Pattern</th><th style="padding: 5px 10px;">0</th><th style="padding: 5px 10px;">1</th><th style="padding: 5px 10px;">2</th><th style="padding: 5px 10px;">5</th><th style="padding: 5px 10px;">6</th><th style="padding: 5px 10px;">7</th><th style="padding: 5px 10px;">8</th><th style="padding: 5px 10px;">9</th><th style="padding: 5px 10px;">10</th><th style="padding: 5px 10px; background: #FFD600; color: #333;">14</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">0-01</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">-001</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">01-1</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>4</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">011-</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">-00-</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; font-family: monospace;">-0-0</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 10px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #d4edda;"><td style="padding: 5px 10px; font-weight: 700; color: #2E7D32;">PI<sub>7</sub></td><td style="padding: 5px 10px; font-family: monospace; font-weight: 700;">--10</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center; font-weight: 700; color: #2E7D32;">&times;</td></tr>
+</tbody>
+</table>
 
-**Finding Essential Prime Implicants:**
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-An essential prime implicant (EPI) is a prime implicant that is the only one covering some minterm. In the chart, look for columns with only one × mark.
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Finding Essential Prime Implicants</p>
 
-- Column 7: Only PI₃ and PI₄ cover minterm 7 → Not unique
-- Column 14: Only PI₇ covers minterm 14 → **PI₇ is essential**
+<p style="color: #333; margin-bottom: 10px;">Look for columns with only <strong>one &times; mark</strong> &mdash; the PI in that row is essential.</p>
 
-In this example, examining each column:
-- Minterm 0: Covered by PI₅, PI₆
-- Minterm 1: Covered by PI₁, PI₂, PI₅
-- Minterm 2: Covered by PI₆, PI₇
-- Minterm 5: Covered by PI₁, PI₃
-- Minterm 6: Covered by PI₄, PI₇
-- Minterm 7: Covered by PI₃, PI₄
-- Minterm 8: Covered by PI₅, PI₆
-- Minterm 9: Covered by PI₂, PI₅
-- Minterm 10: Covered by PI₆, PI₇
-- Minterm 14: Covered by PI₇ only → **PI₇ is essential**
+<p style="color: #333; margin-bottom: 6px;">Examining each column:</p>
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 1.9; font-size: 0.95rem;">
+<li>Minterm 0: PI<sub>5</sub>, PI<sub>6</sub></li>
+<li>Minterm 1: PI<sub>1</sub>, PI<sub>2</sub>, PI<sub>5</sub></li>
+<li>Minterm 2: PI<sub>6</sub>, PI<sub>7</sub></li>
+<li>Minterm 5: PI<sub>1</sub>, PI<sub>3</sub></li>
+<li>Minterm 6: PI<sub>4</sub>, PI<sub>7</sub></li>
+<li>Minterm 7: PI<sub>3</sub>, PI<sub>4</sub></li>
+<li>Minterm 8: PI<sub>5</sub>, PI<sub>6</sub></li>
+<li>Minterm 9: PI<sub>2</sub>, PI<sub>5</sub></li>
+<li>Minterm 10: PI<sub>6</sub>, PI<sub>7</sub></li>
+<li><strong style="color: #2E7D32;">Minterm 14: PI<sub>7</sub> only &rarr; PI<sub>7</sub> is essential!</strong></li>
+</ul>
 
-Since PI₇ is essential, we must include it. PI₇ covers minterms {2, 6, 10, 14}.
+<p style="color: #2E7D32; font-weight: 600; margin-bottom: 0;">Select PI<sub>7</sub> &mdash; covers minterms {2, 6, 10, 14}.</p>
+
+</div>
 
 ## 6.7 Row and Column Dominance
 
 After selecting essential prime implicants, we may need additional techniques to reduce the prime implicant chart before finding a minimum cover.
 
-**Column Dominance:**
-A column $j$ dominates column $k$ if every prime implicant that covers minterm $k$ also covers minterm $j$. The dominated column $j$ can be removed from the chart because covering $k$ automatically covers $j$.
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 250px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Column Dominance</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Column <em>j</em> dominates column <em>k</em> if every PI that covers <em>k</em> also covers <em>j</em>. Remove the dominated column <em>j</em>.</p>
+</div>
+<div style="flex: 1; min-width: 250px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Row Dominance</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Row <span class="arithmatex">\(P_i\)</span> dominates <span class="arithmatex">\(P_j\)</span> if <span class="arithmatex">\(P_i\)</span> covers every minterm that <span class="arithmatex">\(P_j\)</span> covers. Eliminate the dominated row.</p>
+</div>
+</div>
 
-**Row Dominance:**
-A row (prime implicant) $P_i$ dominates row $P_j$ if $P_i$ covers every minterm that $P_j$ covers. If they have equal cost, the dominated row $P_j$ can be eliminated since $P_i$ is at least as good.
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Applying these rules iteratively can significantly reduce the complexity of the remaining selection problem.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 8px;">Reduced Chart after selecting PI<sub>7</sub></p>
+<p style="color: #666; margin-bottom: 14px;">Minterms still to cover: {0, 1, 5, 7, 8, 9}</p>
 
-**Reduced Chart after selecting PI₇:**
+<table style="font-size: 0.88rem; margin: 0.8rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">PI</th><th style="padding: 5px 12px;">0</th><th style="padding: 5px 12px;">1</th><th style="padding: 5px 12px;">5</th><th style="padding: 5px 12px;">7</th><th style="padding: 5px 12px;">8</th><th style="padding: 5px 12px;">9</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #FFEBEE;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600; text-decoration: line-through; color: #999;">PI<sub>4</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 5px 12px; text-align: center;">&times;</td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;">&times;</td><td style="padding: 5px 12px; text-align: center;"></td></tr>
+</tbody>
+</table>
 
-Minterms still to cover: {0, 1, 5, 7, 8, 9}
+<p style="color: #333; margin-bottom: 6px;"><strong>Row dominance:</strong> PI<sub>4</sub> only covers minterm 7, but PI<sub>3</sub> covers {5, 7} &mdash; PI<sub>3</sub> dominates PI<sub>4</sub> &rarr; <span style="color: #C62828; font-weight: 600;">Remove PI<sub>4</sub></span></p>
 
-| PI | 0 | 1 | 5 | 7 | 8 | 9 |
-|----|---|---|---|---|---|---|
-| PI₁ | | × | × | | | |
-| PI₂ | | × | | | | × |
-| PI₃ | | | × | × | | |
-| PI₄ | | | | × | | |
-| PI₅ | × | × | | | × | × |
-| PI₆ | × | | | | × | |
+<p style="color: #333; margin-bottom: 0;">PI<sub>5</sub> covers {0, 1, 8, 9} which is a superset of PI<sub>2</sub>&rsquo;s {1, 9} and PI<sub>6</sub>&rsquo;s {0, 8}.</p>
 
-Now we can observe:
-- PI₄ only covers minterm 7, which PI₃ also covers (plus minterm 5)
-- PI₄ is dominated by PI₃ → Remove PI₄
-
-After removing PI₄ and checking further, PI₅ covers {0, 1, 8, 9} which is a superset of what PI₂ covers {1, 9} plus PI₆'s coverage of {0, 8}.
+</div>
 
 ## 6.8 Petrick's Method
 
 When the prime implicant chart cannot be fully reduced by row/column dominance and essential prime implicant selection, **Petrick's method** provides an algebraic approach to finding all minimum covers.
 
-The method constructs a Boolean expression where:
-- Each prime implicant has a Boolean variable ($P_1, P_2, \ldots$)
-- For each minterm column, form a sum (OR) of the PIs that cover it
-- Multiply (AND) all these sums together
-- Expand and simplify to find minimum covers
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Example:** For remaining minterms {0, 1, 5, 7} with PIs:
-- Minterm 0: Covered by PI₅ or PI₆ → $(P_5 + P_6)$
-- Minterm 1: Covered by PI₁, PI₂, or PI₅ → $(P_1 + P_2 + P_5)$
-- Minterm 5: Covered by PI₁ or PI₃ → $(P_1 + P_3)$
-- Minterm 7: Covered by PI₃ → $(P_3)$
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Petrick's Method Procedure</p>
 
-Petrick's function:
+<ol style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>Assign a Boolean variable (<span class="arithmatex">\(P_1, P_2, \ldots\)</span>) to each prime implicant</li>
+<li>For each minterm column, form a <strong>sum (OR)</strong> of the PIs that cover it</li>
+<li><strong>Multiply (AND)</strong> all these sums together</li>
+<li>Expand and simplify to find minimum covers</li>
+</ol>
+
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Remaining minterms {0, 1, 5, 7}</p>
+
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 90%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Minterm</th><th style="padding: 6px 14px;">Covered By</th><th style="padding: 6px 14px;">Sum Term</th></tr></thead>
+<tbody>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">0</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">PI<sub>5</sub>, PI<sub>6</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((P_5 + P_6)\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">1</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">PI<sub>1</sub>, PI<sub>2</sub>, PI<sub>5</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((P_1 + P_2 + P_5)\)</span></td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">5</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;">PI<sub>1</sub>, PI<sub>3</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\((P_1 + P_3)\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; text-align: center;">7</td><td style="padding: 6px 14px;">PI<sub>3</sub></td><td style="padding: 6px 14px;"><span class="arithmatex">\((P_3)\)</span></td></tr>
+</tbody>
+</table>
+
+<p style="color: #333; margin-bottom: 8px;"><strong>Petrick's function:</strong></p>
+
 $$P = (P_5 + P_6)(P_1 + P_2 + P_5)(P_1 + P_3)(P_3)$$
 
-Since $P_3$ must be true (minterm 7), we get:
-$$P = (P_5 + P_6)(P_1 + P_2 + P_5)(P_1 + P_3)$$
-
-With $P_3 = 1$: $(P_1 + P_3) = 1$
+<p style="color: #333; margin-bottom: 6px;">Since <span class="arithmatex">\(P_3\)</span> must be true (minterm 7): <span class="arithmatex">\((P_1 + P_3) = 1\)</span></p>
 
 $$P = (P_5 + P_6)(P_1 + P_2 + P_5)$$
 
-Expanding:
-$$P = P_1P_5 + P_2P_5 + P_5 + P_1P_6 + P_2P_6 + P_5P_6$$
+<p style="color: #333; margin-bottom: 6px;">Expanding and applying absorption (<span class="arithmatex">\(P_5\)</span> absorbs <span class="arithmatex">\(P_1P_5\)</span>, <span class="arithmatex">\(P_2P_5\)</span>, <span class="arithmatex">\(P_5P_6\)</span>):</p>
 
-By absorption ($P_5$ absorbs $P_1P_5$, $P_2P_5$, $P_5P_6$):
 $$P = P_5 + P_1P_6 + P_2P_6$$
 
-Minimum covers include:
-- {PI₃, PI₅, PI₇} → $P_3P_5P_7$
-- {PI₃, PI₆, PI₇, PI₁} → $P_1P_3P_6P_7$
-- {PI₃, PI₆, PI₇, PI₂} → $P_2P_3P_6P_7$
+<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Minimum covers:</p>
+<ul style="margin: 0.3rem 0 0.3rem 0; color: #333; line-height: 2;">
+<li><strong style="color: #2E7D32;">{PI<sub>3</sub>, PI<sub>5</sub>, PI<sub>7</sub>}</strong> &mdash; 3 prime implicants (minimum cover)</li>
+<li>{PI<sub>1</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} &mdash; 4 prime implicants</li>
+<li>{PI<sub>2</sub>, PI<sub>3</sub>, PI<sub>6</sub>, PI<sub>7</sub>} &mdash; 4 prime implicants</li>
+</ul>
 
-The first solution has 3 prime implicants, making it the minimum cover.
+</div>
 
 #### Diagram: Prime Implicant Chart Interactive
 
@@ -486,88 +581,126 @@ Implementation: p5.js with HTML table overlay
 
 ## 6.9 Cyclic Prime Implicant Charts
 
-A **cyclic prime implicant chart** occurs when:
-- There are no essential prime implicants
-- Row and column dominance cannot reduce the chart
-- Multiple equivalent minimum solutions exist
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-In such cases, Petrick's method must be applied to the full chart. The resulting minimum cover may not be unique—multiple selections of prime implicants may yield expressions with the same minimal cost.
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">When Does a Cyclic Chart Occur?</p>
 
-**Example of a cyclic chart:**
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>There are <strong>no essential prime implicants</strong></li>
+<li>Row and column dominance <strong>cannot reduce</strong> the chart</li>
+<li>Multiple equivalent minimum solutions exist</li>
+</ul>
 
-Consider $F(A,B,C) = \sum m(0, 1, 2, 5, 6, 7)$
+<p style="color: #666; font-style: italic; margin-bottom: 0;">In such cases, Petrick's method must be applied to the full chart.</p>
 
-The prime implicants are:
-- PI₁: $\bar{A}\bar{B}$ (covers 0, 1)
-- PI₂: $\bar{A}\bar{C}$ (covers 0, 2)
-- PI₃: $\bar{B}C$ (covers 1, 5)
-- PI₄: $B\bar{C}$ (covers 2, 6)
-- PI₅: $\bar{A}B$ (covers 6, 7)
-- PI₆: $AC$ (covers 5, 7)
+</div>
 
-| PI | 0 | 1 | 2 | 5 | 6 | 7 |
-|----|---|---|---|---|---|---|
-| PI₁ | × | × | | | | |
-| PI₂ | × | | × | | | |
-| PI₃ | | × | | × | | |
-| PI₄ | | | × | | × | |
-| PI₅ | | | | | × | × |
-| PI₆ | | | | × | | × |
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Every column has exactly two ×'s—no essential prime implicants exist. This is a cyclic chart requiring Petrick's method.
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Cyclic Chart for <span class="arithmatex">\(F(A,B,C) = \sum m(0, 1, 2, 5, 6, 7)\)</span></p>
 
-Two minimum solutions exist:
-- $F = \bar{A}\bar{B} + B\bar{C} + AC$ (PI₁ + PI₄ + PI₆)
-- $F = \bar{A}\bar{C} + \bar{B}C + \bar{A}B$ (PI₂ + PI₃ + PI₅)
+<table style="font-size: 0.88rem; margin: 0.8rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">PI</th><th style="padding: 5px 12px;">Expression</th><th style="padding: 5px 12px;">0</th><th style="padding: 5px 12px;">1</th><th style="padding: 5px 12px;">2</th><th style="padding: 5px 12px;">5</th><th style="padding: 5px 12px;">6</th><th style="padding: 5px 12px;">7</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}\bar{B}\)</span></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}\bar{C}\)</span></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}C\)</span></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>4</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(B\bar{C}\)</span></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{A}B\)</span></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 5px 12px;"><span class="arithmatex">\(AC\)</span></td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;">&times;</td><td style="padding: 5px 12px; text-align: center;"></td><td style="padding: 5px 12px; text-align: center;">&times;</td></tr>
+</tbody>
+</table>
 
-Both solutions use 3 prime implicants with 6 literals each.
+<p style="color: #C62828; font-weight: 600; margin-bottom: 12px;">Every column has exactly two &times;'s &mdash; no essential prime implicants exist!</p>
+
+<p style="color: #333; font-weight: 700; margin-bottom: 6px;">Two minimum solutions (3 PIs, 6 literals each):</p>
+<div style="display: flex; gap: 18px; flex-wrap: wrap;">
+<div style="flex: 1; min-width: 200px; background: #d4edda; border-radius: 8px; padding: 12px 16px;">
+<p style="color: #2E7D32; font-weight: 700; margin: 0;"><span class="arithmatex">\(F = \bar{A}\bar{B} + B\bar{C} + AC\)</span></p>
+<p style="color: #666; margin: 4px 0 0 0; font-size: 0.9rem;">PI<sub>1</sub> + PI<sub>4</sub> + PI<sub>6</sub></p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #d4edda; border-radius: 8px; padding: 12px 16px;">
+<p style="color: #2E7D32; font-weight: 700; margin: 0;"><span class="arithmatex">\(F = \bar{A}\bar{C} + \bar{B}C + \bar{A}B\)</span></p>
+<p style="color: #666; margin: 4px 0 0 0; font-size: 0.9rem;">PI<sub>2</sub> + PI<sub>3</sub> + PI<sub>5</sub></p>
+</div>
+</div>
+
+</div>
 
 ## 6.10 Handling Don't Care Conditions
 
 Don't care conditions are handled naturally in the QM method. During the combination phase, don't care minterms are included along with the required minterms. They participate in combinations, potentially creating larger prime implicants.
 
-However, in the prime implicant chart:
-- Don't care minterms do **not** appear as columns
-- Only the required minterms (ON-set) must be covered
-- Don't cares may help create prime implicants that cover required minterms more efficiently
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Example:** $F(A,B,C,D) = \sum m(1, 3, 5, 7, 9) + d(6, 12, 13)$
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Rules for Don't Cares in QM</p>
 
-1. In the combination table, include minterms {1, 3, 5, 6, 7, 9, 12, 13}
-2. Combine as usual to find all prime implicants
-3. In the PI chart, only include columns for {1, 3, 5, 7, 9}
-4. Prime implicants that exist because of don't care combinations are valid
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Phase</th><th style="padding: 8px 16px;">Don't Care Treatment</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Combination phase</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;"><strong>Include</strong> don't cares &mdash; they participate in combinations</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; font-weight: 600;">PI chart phase</td><td style="padding: 8px 16px;">Don't cares do <strong>NOT</strong> appear as columns &mdash; only required minterms must be covered</td></tr>
+</tbody>
+</table>
 
-!!! example "Don't Care Benefit"
-    Minterm 6 (0110) might combine with minterm 7 (0111) to form 011- ($\bar{A}BC$). If this prime implicant helps cover required minterms more efficiently, it provides optimization that wouldn't exist without the don't care.
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: <span class="arithmatex">\(F(A,B,C,D) = \sum m(1, 3, 5, 7, 9) + d(6, 12, 13)\)</span></p>
+
+<ol style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>In the combination table, include minterms {1, 3, 5, 6, 7, 9, 12, 13}</li>
+<li>Combine as usual to find all prime implicants</li>
+<li>In the PI chart, only include columns for <strong>{1, 3, 5, 7, 9}</strong></li>
+<li>Prime implicants created via don't care combinations are valid</li>
+</ol>
+
+<p style="color: #666; font-style: italic; margin-top: 12px; margin-bottom: 0;"><strong>Don't care benefit:</strong> Minterm 6 (0110) can combine with minterm 7 (0111) to form <code>011-</code> (<span class="arithmatex">\(\bar{A}BC\)</span>). If this PI helps cover required minterms more efficiently, the optimization wouldn't exist without the don't care.</p>
+
+</div>
 
 ## 6.11 Computational Complexity
 
 The QM method, while systematic, has exponential worst-case complexity:
 
-- **Number of prime implicants:** Can be as large as $3^n / n$ for $n$ variables
-- **Prime implicant chart:** Can have exponentially many rows and columns
-- **Minimum cover problem:** NP-complete in general
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Prime Implicants</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Can be as large as <span class="arithmatex">\(3^n / n\)</span> for <span class="arithmatex">\(n\)</span> variables</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">PI Chart</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Can have exponentially many rows and columns</p>
+</div>
+<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Minimum Cover</p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">NP-complete in general</p>
+</div>
+</div>
 
-For functions with many variables (>15-20), the basic QM method becomes computationally impractical. Modern EDA tools use heuristic algorithms like ESPRESSO that:
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 80%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Variables</th><th style="padding: 8px 14px;">Approx. Max PIs</th><th style="padding: 8px 14px;">Practical?</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">~20</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Yes</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">6</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">~100</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32; font-weight: 600;">Yes</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">10</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">~5,900</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #F57C00; font-weight: 600;">Challenging</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">15</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center;">~950,000</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; text-align: center; color: #C62828; font-weight: 600;">Requires heuristics</td></tr>
+<tr><td style="padding: 8px 14px; text-align: center;">20</td><td style="padding: 8px 14px; text-align: center;">~58,000,000</td><td style="padding: 8px 14px; text-align: center; color: #C62828; font-weight: 600;">Impractical (exact)</td></tr>
+</tbody>
+</table>
 
-- Use different representations (cubes, covers)
-- Apply heuristic reduction techniques
-- Trade guaranteed optimality for practical computation time
-- Often find near-optimal or optimal solutions quickly
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-| Variables | Approx. Max Prime Implicants | Practical? |
-|-----------|------------------------------|------------|
-| 4 | ~20 | Yes |
-| 6 | ~100 | Yes |
-| 10 | ~5,900 | Challenging |
-| 15 | ~950,000 | Requires heuristics |
-| 20 | ~58,000,000 | Impractical (exact) |
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Why QM Still Matters</p>
 
-Despite its complexity, the QM method remains important because:
-- It provides the theoretical foundation for understanding minimization
-- It guarantees optimal solutions for functions where K-maps are impractical but exact solutions are needed
-- It illustrates fundamental concepts used in more advanced algorithms
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>Provides the <strong>theoretical foundation</strong> for understanding minimization</li>
+<li>Guarantees <strong>optimal solutions</strong> for functions where K-maps are impractical but exact solutions are needed</li>
+<li>Illustrates fundamental concepts used in <strong>more advanced algorithms</strong></li>
+</ul>
+
+</div>
 
 #### Diagram: QM Complexity Visualization
 
@@ -634,137 +767,159 @@ Canvas Size: 800x450 pixels, responsive
 
 Many digital systems have multiple output functions sharing the same input variables. Multi-output minimization seeks to share product terms across multiple functions to minimize the total gate count.
 
-**Example:** Two functions sharing inputs A, B, C:
-- $F_1 = \sum m(1, 3, 5, 7)$
-- $F_2 = \sum m(3, 4, 5, 6, 7)$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Minimizing separately:
-- $F_1 = C$ (one product term)
-- $F_2 = B + AC$ (two product terms)
-- Total: 3 product terms
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Two functions sharing inputs A, B, C</p>
 
-But notice that $AC$ could be shared if we express $F_1 = \bar{B}C + BC = C$. If a shared term $BC$ is used:
-- $F_1 = \bar{B}C + BC$
-- $F_2 = B + AC$
-- Shared term: None obvious in this case
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px;">
+<div style="flex: 1; min-width: 180px; background: #fff; border-radius: 8px; padding: 12px 16px;">
+<p style="color: #5A3EED; font-weight: 700; margin: 0 0 4px 0;"><span class="arithmatex">\(F_1 = \sum m(1, 3, 5, 7)\)</span></p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Minimized: <span class="arithmatex">\(F_1 = C\)</span></p>
+</div>
+<div style="flex: 1; min-width: 180px; background: #fff; border-radius: 8px; padding: 12px 16px;">
+<p style="color: #5A3EED; font-weight: 700; margin: 0 0 4px 0;"><span class="arithmatex">\(F_2 = \sum m(3, 4, 5, 6, 7)\)</span></p>
+<p style="color: #333; margin: 0; font-size: 0.95rem;">Minimized: <span class="arithmatex">\(F_2 = B + AC\)</span></p>
+</div>
+</div>
 
-The QM method can be extended for multi-output minimization by:
-1. Computing prime implicants for each function individually
-2. Computing "shared" prime implicants that cover minterms in multiple functions
-3. Building a modified prime implicant chart that accounts for sharing
-4. Selecting a minimum cover that minimizes total gates
+<p style="color: #333; margin-bottom: 0;">Total: 3 product terms separately. Multi-output optimization seeks to <strong>share product terms</strong> across functions to reduce total gate count.</p>
 
-Modern tools like ESPRESSO-MV (multi-valued) handle multi-output minimization efficiently.
+</div>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">QM Extension for Multi-Output</p>
+
+<ol style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li>Compute prime implicants for each function <strong>individually</strong></li>
+<li>Compute <strong>"shared" prime implicants</strong> that cover minterms in multiple functions</li>
+<li>Build a modified PI chart that accounts for sharing</li>
+<li>Select a minimum cover that minimizes <strong>total gates</strong></li>
+</ol>
+
+<p style="color: #666; font-style: italic; margin-top: 10px; margin-bottom: 0;">Modern tools like ESPRESSO-MV (multi-valued) handle multi-output minimization efficiently.</p>
+
+</div>
 
 ## 6.13 QM Method Summary and Complete Example
 
 Let us work through a complete example systematically.
 
-**Problem:** Minimize $F(A, B, C, D) = \sum m(0, 2, 5, 6, 7, 8, 10, 12, 13, 14, 15)$
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Step 1: Group minterms by number of 1s**
+<p style="color: #1565C0; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 14px;">Problem: Minimize <span class="arithmatex">\(F(A, B, C, D) = \sum m(0, 2, 5, 6, 7, 8, 10, 12, 13, 14, 15)\)</span></p>
 
-| Group | Minterm | Binary |
-|-------|---------|--------|
-| 0 | 0 | 0000 |
-| 1 | 2 | 0010 |
-| 1 | 8 | 1000 |
-| 2 | 5 | 0101 |
-| 2 | 6 | 0110 |
-| 2 | 10 | 1010 |
-| 2 | 12 | 1100 |
-| 3 | 7 | 0111 |
-| 3 | 13 | 1101 |
-| 3 | 14 | 1110 |
-| 4 | 15 | 1111 |
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 1: Group minterms by number of 1s</p>
 
-**Step 2: First combination**
+<table style="font-size: 0.88rem; margin: 0.8rem auto 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">Group</th><th style="padding: 5px 12px;">Minterm</th><th style="padding: 5px 12px;">Binary</th></tr></thead>
+<tbody>
+<tr style="background: #e3f2fd;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0000</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="2">1</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">2</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0010</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">8</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1000</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="4">2</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">5</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0101</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">6</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0110</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1010</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">12</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1100</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;" rowspan="3">3</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">7</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0111</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">13</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1101</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1110</td></tr>
+<tr style="background: #fff3e0;"><td style="padding: 5px 12px; font-weight: 600;">4</td><td style="padding: 5px 12px;">15</td><td style="padding: 5px 12px; font-family: monospace;">1111</td></tr>
+</tbody>
+</table>
 
-| Minterms | Pattern | ✓ |
-|----------|---------|---|
-| 0,2 | 00-0 | ✓ |
-| 0,8 | -000 | ✓ |
-| 2,6 | 0-10 | ✓ |
-| 2,10 | -010 | ✓ |
-| 8,10 | 10-0 | ✓ |
-| 8,12 | 1-00 | ✓ |
-| 5,7 | 01-1 | ✓ |
-| 5,13 | -101 | ✓ |
-| 6,7 | 011- | ✓ |
-| 6,14 | -110 | ✓ |
-| 10,14 | 1-10 | ✓ |
-| 12,13 | 110- | ✓ |
-| 12,14 | 11-0 | ✓ |
-| 7,15 | -111 | ✓ |
-| 13,15 | 11-1 | ✓ |
-| 14,15 | 111- | ✓ |
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 2: First combination</p>
 
-**Step 3: Second combination**
+<table style="font-size: 0.88rem; margin: 0.8rem auto 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">Minterms</th><th style="padding: 5px 12px;">Pattern</th><th style="padding: 5px 12px;">&check;</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">0, 2</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">00-0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">0, 8</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-000</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">2, 6</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">0-10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">2, 10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-010</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">8, 10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">10-0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">8, 12</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1-00</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">5, 7</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">01-1</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">5, 13</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-101</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">6, 7</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">011-</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">6, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-110</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">10, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1-10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">12, 13</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">110-</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">12, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">11-0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">7, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-111</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">13, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">11-1</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; text-align: center; color: #2E7D32;">&check;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px;">14, 15</td><td style="padding: 5px 12px; font-family: monospace;">111-</td><td style="padding: 5px 12px; text-align: center; color: #2E7D32;">&check;</td></tr>
+</tbody>
+</table>
 
-| Minterms | Pattern | ✓ |
-|----------|---------|---|
-| 0,2,8,10 | -0-0 | |
-| 2,6,10,14 | --10 | |
-| 8,10,12,14 | 1--0 | |
-| 5,7,13,15 | -1-1 | |
-| 6,7,14,15 | -11- | |
-| 12,13,14,15 | 11-- | |
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 3: Second combination</p>
 
-**Step 4: No further combinations possible. Prime Implicants:**
+<table style="font-size: 0.88rem; margin: 0.8rem auto 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">Minterms</th><th style="padding: 5px 12px;">Pattern</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">0, 2, 8, 10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-0-0</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">2, 6, 10, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">--10</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">8, 10, 12, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">1--0</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">5, 7, 13, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-1-1</td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">6, 7, 14, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace; color: #C62828; font-weight: 600;">-11-</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px;">12, 13, 14, 15</td><td style="padding: 5px 12px; font-family: monospace; color: #C62828; font-weight: 600;">11--</td></tr>
+</tbody>
+</table>
 
-| PI | Pattern | Minterms | Expression |
-|----|---------|----------|------------|
-| PI₁ | -0-0 | 0,2,8,10 | $\bar{B}\bar{D}$ |
-| PI₂ | --10 | 2,6,10,14 | $C\bar{D}$ |
-| PI₃ | 1--0 | 8,10,12,14 | $A\bar{D}$ |
-| PI₄ | -1-1 | 5,7,13,15 | $BD$ |
-| PI₅ | -11- | 6,7,14,15 | $BC$ |
-| PI₆ | 11-- | 12,13,14,15 | $AB$ |
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 4: Prime Implicants (no further combinations possible)</p>
 
-**Step 5: Prime Implicant Chart**
+<table style="font-size: 0.88rem; margin: 0.8rem auto 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 5px 12px;">PI</th><th style="padding: 5px 12px;">Pattern</th><th style="padding: 5px 12px;">Minterms</th><th style="padding: 5px 12px;">Expression</th></tr></thead>
+<tbody>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-0-0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">0, 2, 8, 10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{D}\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">--10</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">2, 6, 10, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(C\bar{D}\)</span></td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">1--0</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">8, 10, 12, 14</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(A\bar{D}\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>4</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-1-1</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">5, 7, 13, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(BD\)</span></td></tr>
+<tr><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd; font-family: monospace;">-11-</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;">6, 7, 14, 15</td><td style="padding: 5px 12px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(BC\)</span></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 5px 12px; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 5px 12px; font-family: monospace;">11--</td><td style="padding: 5px 12px;">12, 13, 14, 15</td><td style="padding: 5px 12px;"><span class="arithmatex">\(AB\)</span></td></tr>
+</tbody>
+</table>
 
-| PI | 0 | 2 | 5 | 6 | 7 | 8 | 10 | 12 | 13 | 14 | 15 |
-|----|---|---|---|---|---|---|----|----|----|----|-----|
-| PI₁ | × | × | | | | × | × | | | | |
-| PI₂ | | × | | × | | | × | | | × | |
-| PI₃ | | | | | | × | × | × | | × | |
-| PI₄ | | | × | | × | | | | × | | × |
-| PI₅ | | | | × | × | | | | | × | × |
-| PI₆ | | | | | | | | × | × | × | × |
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 5: Prime Implicant Chart</p>
 
-**Step 6: Find Essential Prime Implicants**
+<table style="font-size: 0.82rem; margin: 0.8rem auto 1.2rem auto; border-collapse: collapse;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 4px 8px;">PI</th><th style="padding: 4px 8px; background: #FFD600; color: #333;">0</th><th style="padding: 4px 8px;">2</th><th style="padding: 4px 8px; background: #FFD600; color: #333;">5</th><th style="padding: 4px 8px;">6</th><th style="padding: 4px 8px;">7</th><th style="padding: 4px 8px;">8</th><th style="padding: 4px 8px;">10</th><th style="padding: 4px 8px;">12</th><th style="padding: 4px 8px;">13</th><th style="padding: 4px 8px;">14</th><th style="padding: 4px 8px;">15</th></tr></thead>
+<tbody>
+<tr style="background: #d4edda;"><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; font-weight: 700; color: #2E7D32;">PI<sub>1</sub></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>2</sub></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>3</sub></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td></tr>
+<tr style="background: #d4edda;"><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; font-weight: 700; color: #2E7D32;">PI<sub>4</sub></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center; font-weight: 700; color: #2E7D32;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td></tr>
+<tr><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>5</sub></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;"></td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td><td style="padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: center;">&times;</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 4px 8px; font-weight: 600;">PI<sub>6</sub></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;"></td><td style="padding: 4px 8px; text-align: center;">&times;</td><td style="padding: 4px 8px; text-align: center;">&times;</td><td style="padding: 4px 8px; text-align: center;">&times;</td><td style="padding: 4px 8px; text-align: center;">&times;</td></tr>
+</tbody>
+</table>
 
-- Column 0: Only PI₁ → **PI₁ is essential**
-- Column 5: Only PI₄ → **PI₄ is essential**
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 6: Essential Prime Implicants</p>
 
-Select PI₁ and PI₄. Covered minterms: {0, 2, 5, 7, 8, 10, 13, 15}
+<ul style="margin: 0.3rem 0 0.8rem 0; color: #333; line-height: 2;">
+<li><strong style="color: #2E7D32;">Column 0:</strong> Only PI<sub>1</sub> &rarr; <strong>PI<sub>1</sub> is essential</strong></li>
+<li><strong style="color: #2E7D32;">Column 5:</strong> Only PI<sub>4</sub> &rarr; <strong>PI<sub>4</sub> is essential</strong></li>
+</ul>
 
-Remaining minterms: {6, 12, 14}
+<p style="color: #333; margin-bottom: 10px;">Select PI<sub>1</sub> and PI<sub>4</sub>. Covered: {0, 2, 5, 7, 8, 10, 13, 15}. <strong>Remaining: {6, 12, 14}</strong></p>
 
-**Step 7: Reduced chart**
+<p style="color: #5A3EED; font-weight: 700; margin-bottom: 8px;">Step 7: Reduced chart and minimum solutions</p>
 
-| PI | 6 | 12 | 14 |
-|----|---|----|----|
-| PI₂ | × | | × |
-| PI₃ | | × | × |
-| PI₅ | × | | × |
-| PI₆ | | × | × |
+<p style="color: #333; margin-bottom: 6px;">We need one from {PI<sub>2</sub>, PI<sub>5</sub>} for minterm 6 and one from {PI<sub>3</sub>, PI<sub>6</sub>} for minterm 12:</p>
 
-Minterm 6: PI₂ or PI₅
-Minterm 12: PI₃ or PI₆
-Minterm 14: All four PIs
+<table style="font-size: 0.9rem; margin: 0.8rem auto; border-collapse: collapse; width: 90%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 6px 14px;">Solution</th><th style="padding: 6px 14px;">Expression</th><th style="padding: 6px 14px;">Terms</th><th style="padding: 6px 14px;">Literals</th></tr></thead>
+<tbody>
+<tr style="background: #d4edda;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub>+PI<sub>4</sub>+PI<sub>2</sub>+PI<sub>3</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}\)</span></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">8</td></tr>
+<tr><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub>+PI<sub>4</sub>+PI<sub>2</sub>+PI<sub>6</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{D} + BD + C\bar{D} + AB\)</span></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">8</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">PI<sub>1</sub>+PI<sub>4</sub>+PI<sub>5</sub>+PI<sub>3</sub></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd;"><span class="arithmatex">\(\bar{B}\bar{D} + BD + BC + A\bar{D}\)</span></td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">4</td><td style="padding: 6px 14px; border-bottom: 1px solid #ddd; text-align: center;">8</td></tr>
+<tr><td style="padding: 6px 14px; font-weight: 600;">PI<sub>1</sub>+PI<sub>4</sub>+PI<sub>5</sub>+PI<sub>6</sub></td><td style="padding: 6px 14px;"><span class="arithmatex">\(\bar{B}\bar{D} + BD + BC + AB\)</span></td><td style="padding: 6px 14px; text-align: center;">4</td><td style="padding: 6px 14px; text-align: center;">8</td></tr>
+</tbody>
+</table>
 
-We need at least one from {PI₂, PI₅} for minterm 6 and one from {PI₃, PI₆} for minterm 12.
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-bottom: 0;">Final Answer: <span class="arithmatex">\(F = \bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}\)</span> (or any equivalent minimum solution)</p>
 
-Minimum solutions:
-- PI₁ + PI₄ + PI₂ + PI₃ = $\bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}$
-- PI₁ + PI₄ + PI₂ + PI₆ = $\bar{B}\bar{D} + BD + C\bar{D} + AB$
-- PI₁ + PI₄ + PI₅ + PI₃ = $\bar{B}\bar{D} + BD + BC + A\bar{D}$
-- PI₁ + PI₄ + PI₅ + PI₆ = $\bar{B}\bar{D} + BD + BC + AB$
-
-All solutions have 4 product terms and 8 literals.
-
-**Final Answer:** $F = \bar{B}\bar{D} + BD + C\bar{D} + A\bar{D}$ (or any equivalent minimum solution)
+</div>
 
 #### Diagram: Complete QM Method Walkthrough
 
@@ -826,10 +981,20 @@ Implementation: p5.js
 
 The QM method's systematic nature makes it well-suited for computer implementation. A basic implementation involves:
 
-**Data Structures:**
-- Minterms stored as integers or bit vectors
-- Implicants stored with pattern (binary + dash positions) and coverage set
-- Chart represented as a sparse matrix or adjacency list
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Data Structures</p>
+
+<table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Structure</th><th style="padding: 8px 16px;">Representation</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Minterms</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Integers or bit vectors</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 16px; border-bottom: 1px solid #ddd; font-weight: 600;">Implicants</td><td style="padding: 8px 16px; border-bottom: 1px solid #ddd;">Pattern (binary + dash positions) and coverage set</td></tr>
+<tr><td style="padding: 8px 16px; font-weight: 600;">Chart</td><td style="padding: 8px 16px;">Sparse matrix or adjacency list</td></tr>
+</tbody>
+</table>
+
+</div>
 
 **Algorithm Pseudocode:**
 
@@ -870,54 +1035,71 @@ function QuineMcCluskey(minterms, dontcares, num_vars):
     return solution
 ```
 
-**Key Functions:**
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-- `can_combine(a, b)`: Check if two terms differ in exactly one bit (dashes must align)
-- `combine(a, b)`: Create new term with dash in differing position
-- `find_minimum_cover(chart)`: Apply EPI selection, dominance, and Petrick's method
+<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Functions</p>
 
-Modern implementations use additional optimizations:
-- Signature-based hashing for faster combination checking
-- Column/row dominance applied incrementally
-- Branch-and-bound for minimum cover selection
+<ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li><code>can_combine(a, b)</code>: Check if two terms differ in exactly one bit (dashes must align)</li>
+<li><code>combine(a, b)</code>: Create new term with dash in differing position</li>
+<li><code>find_minimum_cover(chart)</code>: Apply EPI selection, dominance, and Petrick's method</li>
+</ul>
+
+<p style="color: #666; font-style: italic; margin-top: 12px; margin-bottom: 0;">Modern optimizations: signature-based hashing, incremental dominance, branch-and-bound for minimum cover.</p>
+
+</div>
 
 ## 6.15 Summary and Key Takeaways
 
-The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean function minimization:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-**Key Concepts:**
+<p style="color: #1565C0; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 16px;">The Quine-McCluskey method provides a rigorous, algorithmic approach to Boolean function minimization:</p>
 
-- **Binary grouping:** Organize minterms by 1-count to reduce comparisons
-- **Systematic combination:** Combine adjacent groups, mark combined terms
-- **Dash notation:** Represents eliminated variables in combined terms
-- **Prime implicants:** Unchecked terms that cannot be further combined
-- **PI chart:** Maps prime implicants to minterms they cover
-- **Essential PIs:** Must be included (unique coverage)
-- **Row/column dominance:** Simplifies the selection problem
-- **Petrick's method:** Algebraically finds all minimum covers
-- **Cyclic charts:** No EPIs exist; require Petrick's method
+<ul style="margin: 0 0 16px 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
+<li><strong>Binary grouping:</strong> Organize minterms by 1-count to reduce comparisons</li>
+<li><strong>Systematic combination:</strong> Combine adjacent groups, mark combined terms</li>
+<li><strong>Dash notation:</strong> Represents eliminated variables in combined terms</li>
+<li><strong>Prime implicants:</strong> Unchecked terms that cannot be further combined</li>
+<li><strong>PI chart:</strong> Maps prime implicants to minterms they cover</li>
+<li><strong>Essential PIs:</strong> Must be included (unique coverage)</li>
+<li><strong>Row/column dominance:</strong> Simplifies the selection problem</li>
+<li><strong>Petrick's method:</strong> Algebraically finds all minimum covers</li>
+<li><strong>Cyclic charts:</strong> No EPIs exist; require Petrick's method</li>
+</ul>
 
-**Advantages:**
+</div>
 
-- Works for any number of variables
-- Guarantees finding all prime implicants
-- Produces verifiable, step-by-step solutions
-- Foundation for computer-aided design tools
+<div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
+<div style="flex: 1; min-width: 250px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Advantages</p>
+<ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
+<li>Works for any number of variables</li>
+<li>Guarantees finding all prime implicants</li>
+<li>Produces verifiable, step-by-step solutions</li>
+<li>Foundation for CAD tools</li>
+</ul>
+</div>
+<div style="flex: 1; min-width: 250px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Limitations</p>
+<ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
+<li>Exponential worst-case complexity</li>
+<li>Impractical for &gt;15&ndash;20 variables</li>
+<li>Manual application is tedious for larger functions</li>
+</ul>
+</div>
+</div>
 
-**Limitations:**
+### When to Use
 
-- Exponential worst-case complexity
-- Impractical for functions with many variables (>15-20)
-- Manual application is tedious for larger functions
-
-**When to Use:**
-
-| Method | Best For |
-|--------|----------|
-| Boolean algebra | Simple expressions, quick simplifications |
-| K-maps | 2-5 variable functions, visual learners |
-| QM method | 5-15 variable functions, exact solutions needed |
-| Heuristics (ESPRESSO) | Large functions, near-optimal solutions acceptable |
+<table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
+<thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Method</th><th style="padding: 8px 14px;">Best For</th></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">Boolean algebra</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">Simple expressions, quick simplifications</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600;">K-maps</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">2&ndash;5 variable functions, visual learners</td></tr>
+<tr><td style="padding: 8px 14px; border-bottom: 1px solid #ddd; font-weight: 600; color: #5A3EED;">QM method</td><td style="padding: 8px 14px; border-bottom: 1px solid #ddd;">5&ndash;15 variable functions, exact solutions needed</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">Heuristics (ESPRESSO)</td><td style="padding: 8px 14px;">Large functions, near-optimal solutions acceptable</td></tr>
+</tbody>
+</table>
 
 ---
 
