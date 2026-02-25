@@ -31,11 +31,17 @@ You will express FSM behavior using state diagrams and state tables, choose a st
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit brings together the concepts from previous units to design complete sequential circuits. Students will learn to design registers for parallel data storage and shifting, construct counters for various counting sequences, and master the systematic design of finite state machines (FSMs). The FSM design methodology—from state diagrams through state tables to optimized circuit implementations—forms the capstone of introductory digital design, enabling students to create controllers and sequencers that respond to inputs and produce timed output sequences.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Register Fundamentals
 2. Parallel Load Registers
@@ -68,7 +74,11 @@ This unit brings together the concepts from previous units to design complete se
 29. State Minimization
 30. Sequence Detector Design
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -78,9 +88,11 @@ Before studying this unit, students should be familiar with:
 - K-map simplification (Unit 5)
 - Combinational building blocks (Unit 8)
 
+</div>
+
 ---
 
-## 10.1 Introduction to Sequential Circuit Design
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.1 Introduction to Sequential Circuit Design</h2>
 
 The preceding unit established how individual flip-flops store single bits of information and respond to clock edges. This unit takes the next step: combining multiple flip-flops with combinational logic to build **functional sequential systems** — registers that store and manipulate multi-bit data, counters that generate ordered sequences, and finite state machines that implement complex control behavior.
 
@@ -99,7 +111,7 @@ All three categories share a common architecture: **flip-flops** hold the curren
 
 ---
 
-## 10.2 Register Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.2 Register Fundamentals</h2>
 
 A **register** is a group of flip-flops that collectively store a multi-bit binary word. An $n$-bit register consists of $n$ flip-flops sharing a common clock signal, with each flip-flop storing one bit of the word.
 
@@ -115,11 +127,11 @@ The two fundamental operations on registers are **parallel load** (writing all b
 
 ---
 
-## 10.3 Parallel Load Registers
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.3 Parallel Load Registers</h2>
 
 A **parallel load register** accepts all $n$ data bits simultaneously on a single clock edge, making it ideal for capturing the output of a combinational circuit or receiving data from a bus.
 
-### 10.3.1 Structure
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.3.1 Structure</h3>
 
 A 4-bit parallel load register consists of:
 
@@ -128,7 +140,7 @@ A 4-bit parallel load register consists of:
 - Four outputs: $Q_3, Q_2, Q_1, Q_0$
 - A **Load** enable signal
 
-### 10.3.2 Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.3.2 Operation</h3>
 
 The Load signal determines whether the register accepts new data or retains its current value:
 
@@ -139,7 +151,7 @@ The Load signal determines whether the register accepts new data or retains its 
 
 The Load function is implemented by placing a 2-to-1 multiplexer at each flip-flop's D input. When Load = 1, the MUX selects the external data input. When Load = 0, the MUX feeds back the flip-flop's current output, creating a hold condition.
 
-#### Input Equation for Each Flip-Flop
+<h4 style="color: #5A3EED; font-weight: 600;">Input Equation for Each Flip-Flop</h4>
 
 $D_i^{FF} = Load \cdot D_i + Load' \cdot Q_i$
 
@@ -150,7 +162,7 @@ where:
 - $Q_i$ is the current output of the $i$-th flip-flop
 - $Load$ is the load enable signal
 
-#### Diagram: 4-Bit Parallel Load Register
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Bit Parallel Load Register</h4>
 
 <details markdown="1">
 <summary>4-Bit Parallel Load Register Structure</summary>
@@ -186,11 +198,11 @@ Implementation: p5.js or SVG
 
 ---
 
-## 10.4 Shift Register Operation
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.4 Shift Register Operation</h2>
 
 A **shift register** moves data bit by bit through a chain of flip-flops. On each clock pulse, the content of each flip-flop transfers to the next flip-flop in the chain, while new data enters from one end.
 
-### 10.4.1 Basic Shift Right Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.4.1 Basic Shift Right Operation</h3>
 
 In a 4-bit shift-right register, each flip-flop's D input is connected to the Q output of the flip-flop to its left:
 
@@ -200,25 +212,25 @@ $D_3 = Serial\_In$
 
 On each rising clock edge, all bits shift one position to the right, and a new bit enters at the leftmost position (MSB).
 
-### 10.4.2 Shift Register Types
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.4.2 Shift Register Types</h3>
 
 Shift registers are classified by their input and output configurations:
 
-#### Serial-In-Serial-Out (SISO)
+<h4 style="color: #5A3EED; font-weight: 600;">Serial-In-Serial-Out (SISO)</h4>
 
 The **SISO** register accepts data one bit at a time through a serial input and produces output one bit at a time from the serial output (the last flip-flop's Q). Data must be shifted through all $n$ stages before it appears at the output.
 
 - **Use case:** Serial communication, data delay lines
 - **Latency:** $n$ clock cycles to pass a bit from input to output
 
-#### Serial-In-Parallel-Out (SIPO)
+<h4 style="color: #5A3EED; font-weight: 600;">Serial-In-Parallel-Out (SIPO)</h4>
 
 The **SIPO** register accepts serial input but makes all flip-flop outputs available simultaneously. After $n$ clock cycles of shifting, the complete $n$-bit word is available at the parallel outputs.
 
 - **Use case:** Serial-to-parallel conversion (e.g., receiving serial data for parallel processing)
 - **Latency:** $n$ clock cycles to fill the register
 
-#### Parallel-In-Serial-Out (PISO)
+<h4 style="color: #5A3EED; font-weight: 600;">Parallel-In-Serial-Out (PISO)</h4>
 
 The **PISO** register loads all bits simultaneously via parallel inputs, then shifts them out one at a time through the serial output.
 
@@ -244,15 +256,17 @@ The **PISO** register loads all bits simultaneously via parallel inputs, then sh
 
 After 4 clock cycles, the first bit entered (1) appears at the serial output.
 
-#### MicroSim: Shift Register Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: Shift Register Simulator</h4>
 
-<iframe src="../sims/shift-register-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/shift-register-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
-## 10.5 Bidirectional and Universal Shift Registers
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.5 Bidirectional and Universal Shift Registers</h2>
 
-### 10.5.1 Bidirectional Shift Register
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.5.1 Bidirectional Shift Register</h3>
 
 A **bidirectional shift register** can shift data in either direction—left or right—controlled by a direction signal:
 
@@ -261,11 +275,11 @@ A **bidirectional shift register** can shift data in either direction—left or 
 
 A 2-to-1 multiplexer at each flip-flop's D input selects between the left-neighbor output (for shift right) and the right-neighbor output (for shift left).
 
-### 10.5.2 Universal Shift Register
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.5.2 Universal Shift Register</h3>
 
 The **universal shift register** is the most versatile shift register design, combining all capabilities into a single module controlled by a 2-bit mode selector.
 
-#### Universal Shift Register Mode Table
+<h4 style="color: #5A3EED; font-weight: 600;">Universal Shift Register Mode Table</h4>
 
 | $S_1$ | $S_0$ | Operation |
 |-------|-------|-----------|
@@ -281,7 +295,7 @@ The **74194** is the classic TTL implementation of a 4-bit universal shift regis
 - $Q_{i-1}$ (right neighbor, for shift left)
 - $D_i$ (parallel input, for load)
 
-#### Input Equation for Bit $i$
+<h4 style="color: #5A3EED; font-weight: 600;">Input Equation for Bit $i$</h4>
 
 $D_i^{FF} = S_1'S_0'Q_i + S_1'S_0 Q_{i+1} + S_1 S_0'Q_{i-1} + S_1 S_0 D_i$
 
@@ -298,7 +312,7 @@ where:
 
 ---
 
-## 10.6 Counter Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.6 Counter Fundamentals</h2>
 
 A **counter** is a sequential circuit that cycles through a predetermined sequence of states, typically representing a binary counting pattern. Counters are among the most widely used sequential circuits, appearing in:
 
@@ -317,11 +331,11 @@ The two fundamental counter architectures differ in their clocking strategy:
 
 ---
 
-## 10.7 Asynchronous (Ripple) Counters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.7 Asynchronous (Ripple) Counters</h2>
 
 In an **asynchronous** or **ripple** counter, only the first flip-flop receives the external clock signal. Each subsequent flip-flop is clocked by the output of the preceding stage, creating a cascading "ripple" of state changes.
 
-### 10.7.1 4-Bit Ripple Up Counter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.7.1 4-Bit Ripple Up Counter</h3>
 
 **Structure:**
 
@@ -335,11 +349,11 @@ In an **asynchronous** or **ripple** counter, only the first flip-flop receives 
 
 Each bit position toggles at half the frequency of the previous bit, naturally producing the binary counting sequence.
 
-### 10.7.2 Ripple Effect and Timing
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.7.2 Ripple Effect and Timing</h3>
 
 The fundamental limitation of ripple counters is the accumulated propagation delay. In a 4-bit ripple counter, the worst-case delay for all bits to settle is:
 
-#### Ripple Counter Settling Time
+<h4 style="color: #5A3EED; font-weight: 600;">Ripple Counter Settling Time</h4>
 
 $t_{settle} = n \cdot t_{cq}$
 
@@ -351,17 +365,19 @@ where:
 
 During this settling period, the counter outputs pass through intermediate invalid states. For a 4-bit counter transitioning from 0111 to 1000, the outputs might momentarily show 0110, 0100, and 0000 before settling to 1000—creating **glitches** on any combinational logic driven by the counter outputs.
 
-#### MicroSim: Counter Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: Counter Simulator</h4>
 
-<iframe src="../sims/counter-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/counter-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
-## 10.8 Synchronous Counters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.8 Synchronous Counters</h2>
 
 **Synchronous counters** eliminate the ripple problem by connecting all flip-flops to the same clock signal. Every flip-flop transitions simultaneously at each clock edge, and combinational logic determines which flip-flops should toggle.
 
-### 10.8.1 Binary Up Counter Design
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.8.1 Binary Up Counter Design</h3>
 
 The key design insight is determining *when* each bit should toggle. Observing the binary counting sequence:
 
@@ -376,7 +392,7 @@ The key design insight is determining *when* each bit should toggle. Observing t
 
 A bit at position $i$ toggles when all lower-order bits ($Q_0$ through $Q_{i-1}$) are simultaneously 1. This observation yields the toggle equations:
 
-#### Synchronous Up Counter Toggle Equations
+<h4 style="color: #5A3EED; font-weight: 600;">Synchronous Up Counter Toggle Equations</h4>
 
 $T_0 = 1$
 
@@ -398,7 +414,7 @@ where:
 
 The least significant bit ($Q_0$) toggles on every clock edge. $Q_1$ toggles only when $Q_0 = 1$. $Q_2$ toggles only when $Q_0 = Q_1 = 1$, and so on.
 
-### 10.8.2 Binary Down Counter Design
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.8.2 Binary Down Counter Design</h3>
 
 A **down counter** counts in reverse: $1111 \rightarrow 1110 \rightarrow 1101 \rightarrow \cdots \rightarrow 0000 \rightarrow 1111$.
 
@@ -414,14 +430,14 @@ $T_3 = Q_0' \cdot Q_1' \cdot Q_2'$
 
 A bit at position $i$ toggles when all lower-order bits are simultaneously 0 (about to borrow).
 
-### 10.8.3 Up/Down Counter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.8.3 Up/Down Counter</h3>
 
 An **up/down counter** combines both counting directions with a direction control signal $Dir$:
 
 - When $Dir = 1$: Count up (use $Q_j$ in toggle terms)
 - When $Dir = 0$: Count down (use $Q_j'$ in toggle terms)
 
-#### Up/Down Counter Toggle Equation
+<h4 style="color: #5A3EED; font-weight: 600;">Up/Down Counter Toggle Equation</h4>
 
 $T_i = \prod_{j=0}^{i-1} (Dir \cdot Q_j + Dir' \cdot Q_j')$
 
@@ -439,11 +455,11 @@ Each AND chain includes a multiplexer-like term that selects $Q_j$ (for up count
 
 ---
 
-## 10.9 Modulo-N Counters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.9 Modulo-N Counters</h2>
 
 A **modulo-N counter** (or mod-N counter) counts through exactly $N$ states before repeating. A standard 4-bit binary counter is modulo-16. Designing counters with non-power-of-two modulus requires additional logic to truncate the counting sequence.
 
-### 10.9.1 Design Methods
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.9.1 Design Methods</h3>
 
 **Method 1: Synchronous Reset**
 
@@ -461,7 +477,7 @@ Load a specific starting value to skip unwanted states:
 2. Detect the terminal state
 3. Load a preset value (e.g., for mod-N, load $16 - N$ in a 4-bit counter)
 
-### 10.9.2 Example: Mod-6 Counter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.9.2 Example: Mod-6 Counter</h3>
 
 A mod-6 counter counts: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 000$
 
@@ -474,7 +490,7 @@ A mod-6 counter counts: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \ri
 !!! warning "Glitch Consideration"
     The reset method causes a brief glitch: the counter momentarily enters the "overflow" state before resetting. In synchronous designs, this glitch is resolved within the same clock cycle and causes no problems. In asynchronous designs, external circuits may see the transient state.
 
-### 10.9.3 BCD Counter (Decade Counter)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.9.3 BCD Counter (Decade Counter)</h3>
 
 The **BCD counter** (also called a **decade counter**) is a mod-10 counter that counts from 0000 to 1001 (0 to 9 in decimal), then resets to 0000. It is the fundamental building block for decimal counting systems.
 
@@ -495,11 +511,11 @@ The 7490 is the classic TTL decade counter IC. BCD counters can be cascaded to c
 
 ---
 
-## 10.10 Ring Counter and Johnson Counter
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.10 Ring Counter and Johnson Counter</h2>
 
 Two special counter types use shift register feedback to generate non-binary counting sequences with advantageous properties.
 
-### 10.10.1 Ring Counter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.10.1 Ring Counter</h3>
 
 A **ring counter** is a circular shift register with a single 1 bit that circulates through the stages. In an $n$-bit ring counter, exactly one flip-flop is 1 at any time, producing a **one-hot** sequence.
 
@@ -520,7 +536,7 @@ A **ring counter** is a circular shift register with a single 1 bit that circula
 - One-hot encoding is inherently glitch-free
 - Must be initialized to a valid state (exactly one 1)
 
-### 10.10.2 Johnson Counter (Twisted Ring Counter)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.10.2 Johnson Counter (Twisted Ring Counter)</h3>
 
 A **Johnson counter** feeds the complement of the last flip-flop's output back to the first flip-flop's input. This "twist" doubles the number of unique states compared to a ring counter.
 
@@ -545,7 +561,7 @@ A **Johnson counter** feeds the complement of the last flip-flop's output back t
 - Glitch-free outputs due to adjacent-bit-change property (similar to Gray code)
 - Must be initialized to all-zeros state
 
-#### Comparison of Counter Types
+<h4 style="color: #5A3EED; font-weight: 600;">Comparison of Counter Types</h4>
 
 | Counter Type | Flip-Flops for $n$ States | Decoding Logic | Self-Correcting | Glitch-Free |
 |-------------|---------------------------|----------------|-----------------|-------------|
@@ -555,7 +571,7 @@ A **Johnson counter** feeds the complement of the last flip-flop's output back t
 
 ---
 
-## 10.11 Finite State Machine Concepts
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.11 Finite State Machine Concepts</h2>
 
 A **finite state machine (FSM)** is the most general form of sequential circuit. Unlike registers and counters, which have fixed or simple state sequences, an FSM's next state depends on both the current state and the current inputs. FSMs can implement arbitrary sequential behavior, from simple pattern detectors to complex protocol controllers.
 
@@ -571,11 +587,11 @@ The two FSM models differ only in how outputs are generated.
 
 ---
 
-## 10.12 Moore Machine Model
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.12 Moore Machine Model</h2>
 
 In a **Moore machine**, outputs depend **only on the current state**, not on the current inputs.
 
-#### Moore Output Function
+<h4 style="color: #5A3EED; font-weight: 600;">Moore Output Function</h4>
 
 $O = \lambda(S)$
 
@@ -604,11 +620,11 @@ In a Moore state diagram, outputs are written **inside the state circles** or li
 
 ---
 
-## 10.13 Mealy Machine Model
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.13 Mealy Machine Model</h2>
 
 In a **Mealy machine**, outputs depend on **both the current state and the current inputs**.
 
-#### Mealy Output Function
+<h4 style="color: #5A3EED; font-weight: 600;">Mealy Output Function</h4>
 
 $O = \lambda(S, I)$
 
@@ -635,7 +651,7 @@ In a Mealy state diagram, outputs are written **on the transition arrows** in th
    +--------+            +--------+
 ```
 
-### 10.13.1 Moore vs Mealy Comparison
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.13.1 Moore vs Mealy Comparison</h3>
 
 | Feature | Moore Machine | Mealy Machine |
 |---------|-------------|---------------|
@@ -649,7 +665,7 @@ In a Mealy state diagram, outputs are written **on the transition arrows** in th
 
 Both models are equally powerful—any Moore machine can be converted to an equivalent Mealy machine and vice versa. The choice depends on design requirements.
 
-#### Diagram: Moore vs Mealy State Diagrams
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Moore vs Mealy State Diagrams</h4>
 
 <details markdown="1">
 <summary>Moore vs Mealy State Diagram Comparison</summary>
@@ -692,11 +708,11 @@ Implementation: p5.js or SVG
 
 ---
 
-## 10.14 State Diagram Representation
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.14 State Diagram Representation</h2>
 
 A **state diagram** (also called a state graph) is a directed graph that visually represents an FSM's behavior. It is the starting point for FSM design and the primary tool for communicating sequential behavior.
 
-### 10.14.1 State Diagram Elements
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.14.1 State Diagram Elements</h3>
 
 | Element | Symbol | Purpose |
 |---------|--------|---------|
@@ -706,7 +722,7 @@ A **state diagram** (also called a state graph) is a directed graph that visuall
 | Input label | Text on arrow | Condition that triggers the transition |
 | Output label | Text inside circle (Moore) or on arrow (Mealy) | Output value(s) |
 
-### 10.14.2 State Diagram Construction Rules
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.14.2 State Diagram Construction Rules</h3>
 
 When constructing a state diagram:
 
@@ -717,11 +733,11 @@ When constructing a state diagram:
 
 ---
 
-## 10.15 State Table Construction
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.15 State Table Construction</h2>
 
 A **state table** (or transition table) is the tabular equivalent of a state diagram, listing every state-input combination with its corresponding next state and output. State tables are easier to work with mathematically and are the bridge between the state diagram and the circuit implementation.
 
-### 10.15.1 Moore Machine State Table Format
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.15.1 Moore Machine State Table Format</h3>
 
 | Current State | Input $X$ | Next State | Output $Z$ |
 |--------------|-----------|------------|------------|
@@ -733,7 +749,7 @@ A **state table** (or transition table) is the tabular equivalent of a state dia
 
 Note: In a Moore table, the output column depends only on the current state (same output value for all input rows of a given state).
 
-### 10.15.2 Mealy Machine State Table Format
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.15.2 Mealy Machine State Table Format</h3>
 
 | Current State | Input $X$ | Next State | Output $Z$ |
 |--------------|-----------|------------|------------|
@@ -747,11 +763,11 @@ In a Mealy table, the output column depends on both the current state and the in
 
 ---
 
-## 10.16 State Assignment Strategies
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.16 State Assignment Strategies</h2>
 
 **State assignment** is the process of mapping abstract state names ($S_0, S_1, \ldots$) to binary codes stored in the flip-flops. The choice of state assignment significantly affects the complexity of the next-state and output logic.
 
-### 10.16.1 Common Strategies
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.16.1 Common Strategies</h3>
 
 | Strategy | Assignment for 4 States | Flip-Flops | Next-State Logic |
 |----------|------------------------|-----------|-----------------|
@@ -760,11 +776,11 @@ In a Mealy table, the output column depends on both the current state and the in
 | One-hot | 0001, 0010, 0100, 1000 | $N$ | Very simple |
 | Output-based | Codes chosen to match output values | $\lceil\log_2 N\rceil$ + | May eliminate output logic |
 
-### 10.16.2 Binary Encoding
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.16.2 Binary Encoding</h3>
 
 The simplest approach: assign consecutive binary numbers to states. Uses the minimum number of flip-flops ($\lceil\log_2 N\rceil$ for $N$ states) but may produce complex next-state logic.
 
-### 10.16.3 One-Hot Encoding
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.16.3 One-Hot Encoding</h3>
 
 **One-hot encoding** assigns one flip-flop per state. Exactly one flip-flop is 1 in each state. For $N$ states, this requires $N$ flip-flops.
 
@@ -789,11 +805,11 @@ The simplest approach: assign consecutive binary numbers to states. Uses the min
 
 ---
 
-## 10.17 FSM Design Procedure
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.17 FSM Design Procedure</h2>
 
 The systematic FSM design procedure transforms a behavioral specification into an optimized circuit implementation. This seven-step methodology applies to both Moore and Mealy machines.
 
-### Step 1: Problem Specification
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 1: Problem Specification</h3>
 
 Define the FSM behavior precisely:
 
@@ -802,7 +818,7 @@ Define the FSM behavior precisely:
 - Specify whether Moore or Mealy is preferred
 - Identify the reset/initial state
 
-### Step 2: State Diagram
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 2: State Diagram</h3>
 
 Draw the state diagram:
 
@@ -811,7 +827,7 @@ Draw the state diagram:
 - Verify completeness and determinism
 - Label outputs appropriately
 
-### Step 3: State Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 3: State Table</h3>
 
 Convert the state diagram to tabular form:
 
@@ -819,7 +835,7 @@ Convert the state diagram to tabular form:
 - Fill in next state and output columns
 - Verify consistency with the state diagram
 
-### Step 4: State Minimization
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 4: State Minimization</h3>
 
 Reduce the number of states (if possible):
 
@@ -827,7 +843,7 @@ Reduce the number of states (if possible):
 - Merge equivalent states
 - Update the state table
 
-### Step 5: State Assignment
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 5: State Assignment</h3>
 
 Choose binary codes for each state:
 
@@ -835,7 +851,7 @@ Choose binary codes for each state:
 - Assign codes considering logic optimization
 - Create the binary transition table
 
-### Step 6: Next-State and Output Logic Design
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 6: Next-State and Output Logic Design</h3>
 
 Derive the combinational logic equations:
 
@@ -845,7 +861,7 @@ Derive the combinational logic equations:
 4. If using JK flip-flops: use the excitation table to determine J and K inputs
 5. Derive output equations from the output columns
 
-### Step 7: Circuit Implementation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 7: Circuit Implementation</h3>
 
 Build the circuit:
 
@@ -855,7 +871,7 @@ Build the circuit:
 - Add reset/initialization circuitry
 - Verify with timing simulation
 
-#### Diagram: FSM Design Procedure Flowchart
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: FSM Design Procedure Flowchart</h4>
 
 <details markdown="1">
 <summary>Complete FSM Design Workflow</summary>
@@ -910,17 +926,19 @@ Visual specifications:
 Implementation: p5.js or SVG
 </details>
 
-#### MicroSim: FSM Designer
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: FSM Designer</h4>
 
-<iframe src="../sims/fsm-designer/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/fsm-designer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
-## 10.18 Next-State Logic Design
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.18 Next-State Logic Design</h2>
 
 The **next-state logic** is the combinational circuit that computes the next state ($Q^+$) from the current state ($Q$) and inputs ($X$). The design approach depends on the flip-flop type used.
 
-### 10.18.1 Using D Flip-Flops
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.18.1 Using D Flip-Flops</h3>
 
 With D flip-flops, the design is straightforward because:
 
@@ -928,7 +946,7 @@ $D_i = Q_i^+$
 
 The D input of each flip-flop equals the desired next-state value for that bit. Simply derive the next-state expressions from K-maps and connect them directly to the D inputs.
 
-### 10.18.2 Using JK Flip-Flops
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.18.2 Using JK Flip-Flops</h3>
 
 With JK flip-flops, use the **excitation table** (from Unit 9) to determine $J$ and $K$ inputs:
 
@@ -941,7 +959,7 @@ With JK flip-flops, use the **excitation table** (from Unit 9) to determine $J$ 
 
 The don't-care entries often allow simpler logic expressions than the D flip-flop approach. After determining $J$ and $K$ for each state variable and input combination, use K-maps to minimize the expressions.
 
-### 10.18.3 Design Example: D Flip-Flop Approach
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.18.3 Design Example: D Flip-Flop Approach</h3>
 
 Consider a 3-state Moore FSM with binary assignment $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, one input $X$, and one output $Z$.
 
@@ -969,11 +987,11 @@ $Z = Q_1$
 
 ---
 
-## 10.19 Output Logic Design
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.19 Output Logic Design</h2>
 
 The **output logic** produces the FSM's output signals from the state variables (Moore) or from the state variables and inputs (Mealy).
 
-### 10.19.1 Moore Output Logic
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.19.1 Moore Output Logic</h3>
 
 Moore outputs are purely a function of the current state:
 
@@ -981,7 +999,7 @@ $Z = f(Q_1, Q_0, \ldots)$
 
 Derive output expressions using K-maps with only state variables. In the example above, $Z = Q_1$ — the output equals the MSB of the state encoding.
 
-### 10.19.2 Mealy Output Logic
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.19.2 Mealy Output Logic</h3>
 
 Mealy outputs depend on both state and inputs:
 
@@ -994,11 +1012,11 @@ Derive output expressions using K-maps with both state variables and input varia
 
 ---
 
-## 10.20 Sequence Detector Design — Complete Example
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.20 Sequence Detector Design — Complete Example</h2>
 
 The **sequence detector** is the classic FSM design exercise, tying together all concepts in this unit. We design a Moore machine to detect the input sequence "101" in a serial bit stream, with overlapping detection allowed.
 
-### Step 1: Specification
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 1: Specification</h3>
 
 - **Input:** $X$ (1-bit serial input)
 - **Output:** $Z = 1$ when the three most recent inputs form "101"
@@ -1006,7 +1024,7 @@ The **sequence detector** is the classic FSM design exercise, tying together all
 - **Model:** Moore machine
 - **Initial state:** No bits of pattern received
 
-### Step 2: State Diagram
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 2: State Diagram</h3>
 
 The machine must track how much of the target pattern "101" has been received:
 
@@ -1028,7 +1046,7 @@ The machine must track how much of the target pattern "101" has been received:
 | $S_3$ | 0 | $S_2$ | Overlap: "1" from "101" + "0" = "10" |
 | $S_3$ | 1 | $S_1$ | Overlap: "1" from "101" starts new detection |
 
-### Step 3: State Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 3: State Table</h3>
 
 | Current State | $X = 0$ | $X = 1$ | Output $Z$ |
 |--------------|---------|---------|------------|
@@ -1037,11 +1055,11 @@ The machine must track how much of the target pattern "101" has been received:
 | $S_2$ | $S_0$ | $S_3$ | 0 |
 | $S_3$ | $S_2$ | $S_1$ | 1 |
 
-### Step 4: State Assignment (Binary)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 4: State Assignment (Binary)</h3>
 
 $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, $S_3 = 11$
 
-### Step 5: Binary Transition Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 5: Binary Transition Table</h3>
 
 | $Q_1$ | $Q_0$ | $X$ | $Q_1^+$ | $Q_0^+$ | $Z$ |
 |-------|-------|-----|---------|---------|-----|
@@ -1054,7 +1072,7 @@ $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, $S_3 = 11$
 | 1 | 1 | 0 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 0 | 1 | 1 |
 
-### Step 6: K-Map Simplification
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 6: K-Map Simplification</h3>
 
 **For $D_1 = Q_1^+$:**
 
@@ -1074,7 +1092,7 @@ $D_0 = X$
 
 $Z = Q_1 Q_0$
 
-### Step 7: Verification
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step 7: Verification</h3>
 
 Let's trace the input sequence $X = 1, 0, 1, 0, 1$ starting from $S_0$:
 
@@ -1089,11 +1107,13 @@ Let's trace the input sequence $X = 1, 0, 1, 0, 1$ starting from $S_0$:
 
 The output correctly goes high whenever the pattern "101" has been received, and overlapping detection works as specified.
 
-#### MicroSim: Sequence Detector Demo
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: Sequence Detector Demo</h4>
 
-<iframe src="../sims/sequence-detector-demo/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/sequence-detector-demo/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: Sequence Detector Interactive State Machine
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Sequence Detector Interactive State Machine</h4>
 
 <details markdown="1">
 <summary>101 Sequence Detector Interactive State Machine</summary>
@@ -1138,18 +1158,18 @@ Implementation: p5.js
 
 ---
 
-## 10.21 State Minimization
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.21 State Minimization</h2>
 
 **State minimization** reduces the number of states in an FSM while preserving identical input-output behavior. Fewer states means fewer flip-flops and potentially simpler next-state logic.
 
-### 10.21.1 Equivalent States
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.21.1 Equivalent States</h3>
 
 Two states $S_i$ and $S_j$ are **equivalent** if and only if:
 
 1. They produce the same output (for Moore machines: same output value; for Mealy machines: same output for every input)
 2. For every possible input, their next states are also equivalent
 
-### 10.21.2 Implication Table Method
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.21.2 Implication Table Method</h3>
 
 The implication table is a systematic technique for identifying equivalent states:
 
@@ -1160,7 +1180,7 @@ The implication table is a systematic technique for identifying equivalent state
 5. Repeat until no more changes occur
 6. Unmarked pairs are equivalent and can be merged
 
-### 10.21.3 Example
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.21.3 Example</h3>
 
 Consider an FSM with 4 states where analysis reveals that $S_1$ and $S_3$ are equivalent (same outputs and their next states are also equivalent for all inputs). Merging them reduces the FSM from 4 states to 3 states, potentially reducing from 2 flip-flops to 2 flip-flops (same for binary encoding of 3 or 4 states) but simplifying the next-state logic.
 
@@ -1169,7 +1189,9 @@ Consider an FSM with 4 states where analysis reveals that $S_1$ and $S_3$ are eq
 
 ---
 
-## 10.22 Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.22 Summary and Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 This unit completed the study of digital logic design by covering the three major categories of sequential circuits:
 
@@ -1203,12 +1225,16 @@ This unit completed the study of digital logic design by covering the three majo
 
 These techniques, combined with the combinational design methods from earlier units, provide the complete foundation for designing digital systems at the gate and register-transfer levels.
 
+</div>
+
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through a 4-bit shift register loading serial data one bit at a time:
 
-<iframe src="../sims/shift-register-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/shift-register-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 </div>
