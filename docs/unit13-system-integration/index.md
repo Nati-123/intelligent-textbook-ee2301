@@ -31,11 +31,17 @@ To make all of this concrete, we work through several real-world examples, inclu
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This capstone unit brings together every concept from the course—number systems, Boolean algebra, combinational logic, sequential circuits, programmable devices, and VHDL—into complete, integrated digital system designs. Students will learn the top-down design methodology for managing complexity, master systematic verification techniques including testbench design and timing analysis, and apply their skills to realistic design projects. The unit emphasizes the engineering judgment needed to make design trade-offs (speed vs area vs power), partition systems into manageable subsystems, and verify that all parts work together correctly. By completing this unit, students will have the skills to design, describe, simulate, and implement non-trivial digital systems on programmable logic devices.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Top-Down Design Methodology
 2. Design Hierarchy and Modularity
@@ -68,7 +74,11 @@ This capstone unit brings together every concept from the course—number system
 29. From Specification to Silicon
 30. Career Paths in Digital Design
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -77,9 +87,11 @@ Before studying this unit, students should be familiar with:
 - Programmable logic devices, especially FPGAs (Unit 11)
 - VHDL fundamentals: entities, architectures, processes, testbenches (Unit 12)
 
+</div>
+
 ---
 
-## 13.1 The Need for System-Level Design
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.1 The Need for System-Level Design</h2>
 
 The circuits designed in prior units—adders, decoders, counters, state machines—are building blocks. Real digital systems combine dozens or hundreds of these blocks into coordinated, multi-component designs. A simple embedded controller might include:
 
@@ -101,7 +113,7 @@ Designing such a system by immediately writing Boolean equations or drawing gate
 
 ---
 
-## 13.2 Top-Down Design Methodology
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.2 Top-Down Design Methodology</h2>
 
 The top-down approach decomposes a complex problem into progressively smaller, more manageable pieces:
 
@@ -117,9 +129,11 @@ The top-down approach decomposes a complex problem into progressively smaller, m
 
 **Step 6: Implementation.** Synthesize, place, route, and program onto the target FPGA. Verify in hardware.
 
-#### Diagram: Top-Down Design Flow
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Top-Down Design Flow</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Top-Down Design Flow</summary>
@@ -168,7 +182,7 @@ Implementation: HTML/CSS/JavaScript with SVG
 
 ---
 
-## 13.3 Design Hierarchy and Modularity
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.3 Design Hierarchy and Modularity</h2>
 
 Hierarchy is the primary tool for managing complexity. A hierarchical design consists of modules at multiple levels, where each module:
 
@@ -177,9 +191,11 @@ Hierarchy is the primary tool for managing complexity. A hierarchical design con
 - Can be **designed and tested independently**
 - Can be **reused** in other designs
 
-### Example: Hierarchical ALU Design
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: Hierarchical ALU Design</h3>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/hierarchical-alu-design/main.html" height="580px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 *Click any module to select it, expand/collapse children, and view details in the side panel.*
 
@@ -190,7 +206,7 @@ Each leaf module is simple enough to design with the techniques from prior units
 
 ---
 
-## 13.4 Datapath and Control Unit Separation
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.4 Datapath and Control Unit Separation</h2>
 
 Most digital systems can be decomposed into two complementary parts:
 
@@ -205,9 +221,11 @@ This separation is powerful because:
 - Changes to the control sequence do not require redesigning the datapath hardware
 - The same datapath can be reused with different control units for different operations
 
-#### Diagram: Datapath-Controller Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Datapath-Controller Architecture</h4>
 
-<iframe src="../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Datapath-Controller Architecture</summary>
@@ -248,7 +266,7 @@ Implementation: p5.js
 
 ---
 
-## 13.5 Interface Specification
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.5 Interface Specification</h2>
 
 When multiple engineers (or multiple modules) must connect, **interface specifications** prevent integration errors. An interface specification for each module boundary includes:
 
@@ -270,7 +288,7 @@ This pattern decouples the timing of producer and consumer, preventing data loss
 
 ---
 
-## 13.6 Verification Planning
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.6 Verification Planning</h2>
 
 Professional digital design devotes **more effort to verification than to design itself**—typically a 60/40 or even 70/30 split. A verification plan defines:
 
@@ -288,11 +306,11 @@ For the designs in this course, verification focuses on:
 
 ---
 
-## 13.7 Testbench Architecture
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.7 Testbench Architecture</h2>
 
 Unit 12 introduced basic testbenches. For system-level verification, testbenches become more sophisticated:
 
-### Self-Checking Testbench
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Self-Checking Testbench</h3>
 
 A **self-checking testbench** automatically compares the DUT's outputs against expected values, reporting errors without requiring manual waveform inspection:
 
@@ -322,7 +340,7 @@ end process verify;
 
 The `assert` statement checks a condition. When the condition is FALSE, it prints the message and raises the specified severity level. This automates the tedious process of manually checking waveforms.
 
-### Testbench with File I/O
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Testbench with File I/O</h3>
 
 For designs with many test vectors, reading stimulus from a file is more practical than hardcoding values:
 
@@ -348,11 +366,11 @@ end process file_reader;
 
 ---
 
-## 13.8 Static Timing Analysis
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.8 Static Timing Analysis</h2>
 
 After synthesis and place-and-route, the FPGA tools perform **static timing analysis (STA)** to verify that the design operates correctly at the target clock frequency.
 
-### The Timing Model
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The Timing Model</h3>
 
 Every signal path from a flip-flop output through combinational logic to the next flip-flop input must satisfy:
 
@@ -369,7 +387,7 @@ The **critical path** is the path with the largest $T_{cq} + T_{comb} + T_{setup
 
 $$f_{max} = \frac{1}{T_{cq} + T_{comb,max} + T_{setup}}$$
 
-### Hold Time Check
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Hold Time Check</h3>
 
 Additionally, every path must satisfy the hold time requirement:
 
@@ -377,9 +395,11 @@ $$T_{cq} + T_{comb,min} \geq T_{hold}$$
 
 This ensures that data doesn't change too quickly after the clock edge. Hold time violations are independent of clock frequency and must be fixed by adding delay to the path.
 
-#### Diagram: Timing Analysis Visualizer
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Timing Analysis Visualizer</h4>
 
-<iframe src="../sims/timing-analysis-visualizer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/timing-analysis-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Timing Analysis Visualizer</summary>
@@ -419,7 +439,7 @@ Implementation: p5.js
 
 ---
 
-## 13.9 Pipelining for Performance
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.9 Pipelining for Performance</h2>
 
 When the critical path limits clock frequency to an unacceptable level, **pipelining** breaks the critical path by inserting registers at intermediate points. This trades **latency** (more clock cycles to complete one operation) for **throughput** (higher clock frequency, more operations per second).
 
@@ -444,7 +464,7 @@ The pipeline stage adds one clock cycle of delay but nearly doubles the throughp
 
 ---
 
-## 13.10 Design Trade-offs
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.10 Design Trade-offs</h2>
 
 Every design decision involves trade-offs among three fundamental metrics:
 
@@ -462,7 +482,7 @@ These metrics are interrelated:
 | Logic minimization | Decreases (fewer gates) | Increases (shorter paths) | Decreases |
 | Clock gating | No change | No change | Decreases |
 
-### Resource Sharing
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Resource Sharing</h3>
 
 **Resource sharing** reuses a single hardware unit for multiple operations by time-multiplexing it with a control FSM and multiplexers:
 
@@ -477,7 +497,7 @@ This halves the adder count but doubles the execution time and adds MUX area. Re
 
 ---
 
-## 13.11 System-Level Example: Digital Combination Lock
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.11 System-Level Example: Digital Combination Lock</h2>
 
 This example integrates concepts from across the course into a complete system.
 
@@ -489,11 +509,11 @@ This example integrates concepts from across the course into a complete system.
 - The correct combination is hardcoded (e.g., 3-7-1-9)
 - Lock allows 3 attempts before a 30-second lockout
 
-### Architecture
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Architecture</h3>
 
 The digital combination lock employs a **datapath-controller** architecture. The controller — a five-state finite state machine (FSM) — orchestrates all sequencing decisions, while the datapath performs digit storage, comparison, and counting under the controller's direction. Four subsystems are organized in a pipeline from input conditioning through output indication.
 
-#### Input Subsystem
+<h4 style="color: #5A3EED; font-weight: 600;">Input Subsystem</h4>
 
 The input subsystem conditions raw external signals into clean, synchronous events for the datapath and controller.
 
@@ -503,7 +523,7 @@ The input subsystem conditions raw external signals into clean, synchronous even
 | Edge Detector | Sequential | Converts the debounced Enter signal into a single-clock-cycle pulse (`enter_pulse`) |
 | BCD Input Register | Sequential | 4-bit register; latches the current BCD digit when the controller asserts `load_digit` |
 
-#### Datapath
+<h4 style="color: #5A3EED; font-weight: 600;">Datapath</h4>
 
 The datapath contains both combinational comparison logic and sequential counters. The controller drives all counter enables and clears.
 
@@ -514,7 +534,7 @@ The datapath contains both combinational comparison logic and sequential counter
 | Digit Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_digit_ctr`, cleared by `clr_digit_ctr` |
 | Attempt Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_attempt`, cleared by `clr_attempt` |
 
-#### Control Unit (FSM)
+<h4 style="color: #5A3EED; font-weight: 600;">Control Unit (FSM)</h4>
 
 The controller is a Mealy/Moore hybrid FSM with five states. It reads status signals from the datapath and issues control signals in return.
 
@@ -527,7 +547,7 @@ The controller is a Mealy/Moore hybrid FSM with five states. It reads status sig
 
 The FSM also contains a **Lockout Timer** — a sequential down-counter that generates `timeout` after 30 seconds, returning the system from LOCKOUT to IDLE.
 
-#### Output Subsystem
+<h4 style="color: #5A3EED; font-weight: 600;">Output Subsystem</h4>
 
 | Block | Type | Function |
 |---|---|---|
@@ -535,13 +555,15 @@ The FSM also contains a **Lockout Timer** — a sequential down-counter that gen
 | Progress Display | Combinational | Decodes `digit_count` to show entered positions (e.g., "3 7 _ _") |
 | Status LEDs | Combinational | Green = unlocked, Red = locked, Flashing Red = lockout active |
 
-#### System Operation
+<h4 style="color: #5A3EED; font-weight: 600;">System Operation</h4>
 
 On power-up the FSM enters IDLE and clears all counters. When the user presses a BCD digit and hits Enter, the edge detector produces `enter_pulse`, advancing the FSM to CHECK. The controller asserts `load_digit`, latching the digit into the input register. The comparator evaluates the latched digit against the ROM value at the address selected by the digit counter and drives `match` accordingly. On a match the FSM asserts `inc_digit_ctr` and returns to WAIT_DIGIT; once the digit counter reaches 3 (`digit_done`), the FSM transitions to UNLOCK and asserts `unlock_en`. On a mismatch the FSM asserts `inc_attempt` and `clr_digit_ctr`, restarting the sequence. If the attempt counter saturates (`max_attempts`), the FSM enters LOCKOUT, asserts `start_timer`, and waits for `timeout` before returning to IDLE.
 
-#### Diagram: Digital Lock System Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Digital Lock System Architecture</h4>
 
-<iframe src="../sims/digital-lock-system/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/digital-lock-system/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Digital Lock System Architecture</summary>
@@ -582,7 +604,7 @@ Canvas size: 800x600px, responsive
 Implementation: p5.js
 </details>
 
-### VHDL Implementation (Simplified Control Unit)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">VHDL Implementation (Simplified Control Unit)</h3>
 
 ```vhdl
 type lock_state is (IDLE, WAIT_DIGIT, CHECK, UNLOCK, LOCKOUT);
@@ -644,11 +666,11 @@ end process;
 
 ---
 
-## 13.12 System-Level Example: 8-Bit ALU
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.12 System-Level Example: 8-Bit ALU</h2>
 
 An **Arithmetic Logic Unit (ALU)** is the computational heart of any processor. This example designs an 8-bit ALU that performs the operations enabled by the circuits studied throughout the course.
 
-### ALU Operations
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ALU Operations</h3>
 
 | Operation Code | Operation | Unit Reference |
 |---------------|-----------|---------------|
@@ -661,7 +683,7 @@ An **Arithmetic Logic Unit (ALU)** is the computational heart of any processor. 
 | 110 | Shift Left ($A \ll 1$) | Unit 10 (Shift Register) |
 | 111 | Shift Right ($A \gg 1$) | Unit 10 (Shift Register) |
 
-### VHDL Implementation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">VHDL Implementation</h3>
 
 ```vhdl
 library ieee;
@@ -724,7 +746,7 @@ This ALU directly applies:
 
 ---
 
-## 13.13 System-Level Example: UART Transmitter
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.13 System-Level Example: UART Transmitter</h2>
 
 A **Universal Asynchronous Receiver/Transmitter (UART)** is one of the most common serial communication interfaces. The transmitter converts parallel data into a serial bitstream:
 
@@ -735,7 +757,7 @@ A **Universal Asynchronous Receiver/Transmitter (UART)** is one of the most comm
 - Data bits: 8 bits transmitted LSB first
 - Stop bit: line returns HIGH for one bit period
 
-### Architecture
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Architecture</h3>
 
 ```
 UART Transmitter
@@ -752,9 +774,11 @@ This design combines:
 - FSM (Unit 10) for transmission control
 - All implemented in VHDL (Unit 12)
 
-#### Diagram: UART Transmission Protocol and Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: UART Transmission Protocol and Architecture</h4>
 
-<iframe src="../sims/uart-transmitter/main.html" width="100%" height="850px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/uart-transmitter/main.html" width="100%" height="850px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>UART Transmission Protocol and Architecture</summary>
@@ -797,7 +821,7 @@ Implementation: p5.js
 
 ---
 
-## 13.14 System-Level Example: Vending Machine Controller
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.14 System-Level Example: Vending Machine Controller</h2>
 
 A vending machine controller is a classic FSM design problem that exercises many concepts:
 
@@ -809,11 +833,13 @@ A vending machine controller is a classic FSM design problem that exercises many
 - Two inputs: coin_type (2 bits), coin_inserted (pulse)
 - Two outputs: dispense (pulse), change_amount (4 bits)
 
-### State Diagram — Interactive Simulation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Diagram — Interactive Simulation</h3>
 
 The FSM tracks the accumulated amount. Insert coins using the buttons below, then press **Step (Clock)** to advance the FSM one cycle at a time. Watch the state transitions, control signals, and datapath operations update in real time. When the total reaches or exceeds 30¢, the machine dispenses the item, outputs change, and returns to IDLE.
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vending-machine-fsm/main.html" width="100%" height="1140px" scrolling="no" style="border:none;border-radius:8px;"></iframe>
+</div>
 
 This design applies:
 
@@ -824,7 +850,7 @@ This design applies:
 
 ---
 
-## 13.15 Design for Testability
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.15 Design for Testability</h2>
 
 **Design for Testability (DFT)** adds features that make verification easier, both in simulation and in the final hardware:
 
@@ -844,7 +870,7 @@ For FPGA designs, DFT includes:
 
 ---
 
-## 13.16 From Specification to Silicon
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.16 From Specification to Silicon</h2>
 
 The complete journey from idea to working hardware follows a well-defined path. This table connects each phase to the units where the relevant skills were developed:
 
@@ -863,7 +889,7 @@ The complete journey from idea to working hardware follows a well-defined path. 
 
 ---
 
-## 13.17 Career Paths in Digital Design
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.17 Career Paths in Digital Design</h2>
 
 The skills developed in this course open doors to diverse engineering career paths:
 
@@ -879,7 +905,9 @@ Each path builds directly on the foundation established in this course: Boolean 
 
 ---
 
-## 13.18 Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.18 Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 - **Top-down design** manages complexity by decomposing systems into hierarchical, modular subsystems with well-defined interfaces.
 - **Datapath-controller separation** divides a system into components that process data (registers, ALU, MUX) and a control FSM that sequences operations.
@@ -891,13 +919,17 @@ Each path builds directly on the foundation established in this course: Boolean 
 - **Design for testability** and design for debug are not afterthoughts—they should be planned from the beginning.
 - The journey **from specification to working silicon** follows a systematic flow of design, verification, and implementation that applies everything learned in this course.
 
+</div>
+
 ??? question "Self-Check: Why does pipelining increase throughput even though it adds latency?"
     Pipelining divides a long combinational path into shorter stages separated by registers. Each stage has less delay, allowing a higher clock frequency. Although a single result takes more clock cycles to complete (increased latency), a new result is produced every clock cycle once the pipeline is full. The higher clock frequency means more results per second (higher throughput), even though each individual result takes longer. It is analogous to an assembly line: each car takes longer to pass through all stations, but the factory produces more cars per hour.
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Design a datapath-controller system step-by-step, connecting registers, ALU, and MUX with an FSM controller:
 
-<iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="1010px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="1010px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 </div>
