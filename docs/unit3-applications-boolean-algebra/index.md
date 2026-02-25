@@ -132,7 +132,7 @@ A **switching function** is the formal name for a Boolean function that describe
 
 #### Diagram: Design Flow Visualization
 
-<iframe src="../sims/boolean-operations-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/design-flow-visualization/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
 <details markdown="1">
 <summary>Design Flow Visualization</summary>
