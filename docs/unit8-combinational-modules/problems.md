@@ -5,18 +5,25 @@ description: Practice problems for multiplexers, decoders, encoders, and other c
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Combinational Logic Modules
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Combinational Logic Modules</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of MSI combinational building blocks.
+</p>
 
 ---
 
-## Section A: Multiplexers (6 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: Multiplexers (6 problems)</h2>
 
-### Problem 1
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
 Design the truth table and Boolean expression for a 4-to-1 multiplexer with inputs D₀, D₁, D₂, D₃, select lines S₁, S₀, and output Y.
 
-**Solution:** **Truth Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Truth Table:**
 
 | S₁ | S₀ | Y |
 |----|----|----|
@@ -37,15 +44,24 @@ $Y = S_1'S_0'D_0 + S_1'S_0D_1 + S_1S_0'D_2 + S_1S_0D_3$
 
 **Total: 7 gates**
 
+
+</div>
+</details>
+
 ---
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 Implement the function $F(A, B, C) = \sum m(1, 2, 6, 7)$ using:
 
 a) An 8-to-1 MUX with A, B, C as select inputs
 b) A 4-to-1 MUX with B, C as select inputs
 
-**Solution:** a) **8-to-1 MUX implementation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+a) **8-to-1 MUX implementation:**
 
 Connect minterms directly to data inputs:
 
@@ -83,12 +99,21 @@ Use Shannon expansion with A as the residual variable:
 - D₃ = A
 - S₁ = B, S₀ = C
 
+
+</div>
+</details>
+
 ---
 
-### Problem 3
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 Build a 16-to-1 MUX using 4-to-1 MUXes only. How many 4-to-1 MUXes are needed?
 
-**Solution:** **Two-level tree structure:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Two-level tree structure:**
 
 **Level 1:** Four 4-to-1 MUXes
 
@@ -118,16 +143,25 @@ S₁S₀ to all Level 1 MUXes
 S₃S₂ to Level 2 MUX
 ```
 
+
+</div>
+</details>
+
 ---
 
-### Problem 4
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 A 2-to-1 MUX has data inputs D₀ and D₁, select input S, and output Y. Using only 2-to-1 MUXes, implement:
 
 a) NOT gate
 b) AND gate
 c) OR gate
 
-**Solution:** **2-to-1 MUX equation:** Y = S'D₀ + SD₁
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**2-to-1 MUX equation:** Y = S'D₀ + SD₁
 
 a) **NOT gate (Y = A'):**
 
@@ -151,12 +185,21 @@ Y = A'(B) + A(1) = A'B + A = A + B ✓
 
 **Alternative:** D₀ = A, D₁ = 1, S = B gives Y = B'A + B = A + B
 
+
+</div>
+</details>
+
 ---
 
-### Problem 5
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 Implement the function $F(W, X, Y, Z) = \sum m(0, 1, 3, 4, 8, 9, 15)$ using a single 8-to-1 MUX with W, X, Y as select inputs.
 
-**Solution:** **Shannon expansion with Z as residual:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Shannon expansion with Z as residual:**
 
 For each WXY combination, determine F in terms of Z:
 
@@ -183,12 +226,21 @@ For each WXY combination, determine F in terms of Z:
 - D₇ = Z
 - S₂ = W, S₁ = X, S₀ = Y
 
+
+</div>
+</details>
+
 ---
 
-### Problem 6
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
 Design a 4-bit barrel shifter using multiplexers. The shifter should shift input data D[3:0] by S[1:0] positions to the right.
 
-**Solution:** **Barrel Shifter operation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Barrel Shifter operation:**
 
 | S[1:0] | Output |
 |--------|--------|
@@ -245,14 +297,23 @@ MUX: D₀=D[0], D₁=D[1], D₂=D[2], D₃=D[3]
 
 **Total: 4 four-to-1 MUXes**
 
+
+</div>
+</details>
+
 ---
 
-## Section B: Decoders (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: Decoders (5 problems)</h2>
 
-### Problem 7
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 Design a 3-to-8 decoder with an enable input. Show the truth table and logic equations for all 8 outputs.
 
-**Solution:** **Truth Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Truth Table:**
 
 | EN | A₂ | A₁ | A₀ | Y₀ | Y₁ | Y₂ | Y₃ | Y₄ | Y₅ | Y₆ | Y₇ |
 |----|----|----|-----|----|----|----|----|----|----|----|----|
@@ -279,12 +340,21 @@ Design a 3-to-8 decoder with an enable input. Show the truth table and logic equ
 
 **Each output is a 4-input AND gate (minterm generator)**
 
+
+</div>
+</details>
+
 ---
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
 Implement $F(A, B, C) = \sum m(1, 2, 4, 7)$ using a 3-to-8 decoder and an OR gate.
 
-**Solution:** **Decoder outputs correspond to minterms:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Decoder outputs correspond to minterms:**
 
 - Y₀ = m₀ = A'B'C'
 - Y₁ = m₁ = A'B'C
@@ -311,12 +381,21 @@ C ──┘   Decoder  Y₂──┼──[OR]── F
 
 **Connect:** Y₁, Y₂, Y₄, Y₇ to a 4-input OR gate
 
+
+</div>
+</details>
+
 ---
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
 Build a 4-to-16 decoder using 2-to-4 decoders with enable inputs. Show the interconnections.
 
-**Solution:** **Architecture:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Architecture:**
 
 Use 5 decoders: 1 for high-order bits (enable selector), 4 for low-order bits (output generators)
 
@@ -347,12 +426,21 @@ When A₃A₂ = 00: E₀ active, DEC₁ outputs Y₀-Y₃
 When A₃A₂ = 01: E₁ active, DEC₂ outputs Y₄-Y₇
 And so on...
 
+
+</div>
+</details>
+
 ---
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
 Design a BCD-to-Seven-Segment decoder. Show outputs for digits 0-9.
 
-**Solution:** **Seven-segment display segments:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Seven-segment display segments:**
 
 ```
     ─a─
@@ -395,12 +483,21 @@ Let inputs be D, C, B, A (D is MSB)
 
 (Simplified expressions may vary)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 11
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 A memory chip has 1024 addresses. How many decoder output lines are needed, and what is the minimum number of address bits?
 
-**Solution:** **Analysis:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Analysis:**
 
 - 1024 addresses = 2¹⁰ addresses
 - **Minimum address bits: 10** (since 2¹⁰ = 1024)
@@ -433,14 +530,23 @@ Full 10-to-1024 decoders are impractical. Instead, use hierarchical decoding:
 
 Row-column addressing with 64 total decoder outputs (32 + 32)
 
+
+</div>
+</details>
+
 ---
 
-## Section C: Encoders and Priority Encoders (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: Encoders and Priority Encoders (4 problems)</h2>
 
-### Problem 12
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 Design an 8-to-3 priority encoder. Show the truth table with priority (7 highest, 0 lowest).
 
-**Solution:** **Truth Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Truth Table:**
 
 | D₇ | D₆ | D₅ | D₄ | D₃ | D₂ | D₁ | D₀ | Y₂ | Y₁ | Y₀ | Valid |
 |----|----|----|----|----|----|----|----|----|----|----|-------|
@@ -469,12 +575,21 @@ Design an 8-to-3 priority encoder. Show the truth table with priority (7 highest
 - Y₁ = D₂ + D₃ + D₆ + D₇
 - Y₀ = D₁ + D₃ + D₅ + D₇
 
+
+</div>
+</details>
+
 ---
 
-### Problem 13
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
 An interrupt controller receives requests from 8 devices. Design a circuit that outputs the binary code of the highest-priority active request.
 
-**Solution:** **Use an 8-to-3 priority encoder:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Use an 8-to-3 priority encoder:**
 
 **Connections:**
 
@@ -502,15 +617,24 @@ An interrupt controller receives requests from 8 devices. Design a circuit that 
 - Mask register to disable certain interrupts
 - Daisy-chain for equal-priority handling
 
+
+</div>
+</details>
+
 ---
 
-### Problem 14
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
 Convert between encoder types:
 
 a) How can a standard encoder be converted to a priority encoder?
 b) Why can't a priority encoder easily become a standard encoder?
 
-**Solution:** a) **Standard to Priority Encoder:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+a) **Standard to Priority Encoder:**
 
 Add priority resolution logic before the encoder:
 
@@ -545,12 +669,21 @@ If inputs 3 and 5 are both active:
 
 **Conclusion:** Priority → Standard requires storing/buffering all input states before encoding, which defeats the purpose.
 
+
+</div>
+</details>
+
 ---
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 Design a decimal-to-BCD encoder (10-to-4 encoder) for a calculator keypad.
 
-**Solution:** **Input:** 10 keys (K₀ through K₉), one active at a time
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Input:** 10 keys (K₀ through K₉), one active at a time
 **Output:** 4-bit BCD code (D₃D₂D₁D₀)
 
 **Truth Table:**
@@ -589,14 +722,23 @@ Design a decimal-to-BCD encoder (10-to-4 encoder) for a calculator keypad.
 
 - KeyValid = K₀ + K₁ + ... + K₉ (10-input OR)
 
+
+</div>
+</details>
+
 ---
 
-## Section D: Code Converters (3 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Code Converters (3 problems)</h2>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
 Design a 4-bit binary-to-Gray code converter.
 
-**Solution:** **Gray code property:** Adjacent values differ by exactly one bit.
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Gray code property:** Adjacent values differ by exactly one bit.
 
 **Conversion formula:**
 
@@ -638,12 +780,21 @@ B₀ ────────────┘
 
 **Total: 3 XOR gates**
 
+
+</div>
+</details>
+
 ---
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
 Design a 4-bit Gray-to-binary converter.
 
-**Solution:** **Conversion formula (derived from Gray-to-binary relationship):**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Conversion formula (derived from Gray-to-binary relationship):**
 
 - B₃ = G₃
 - B₂ = G₃ ⊕ G₂ = B₃ ⊕ G₂
@@ -675,12 +826,21 @@ G₀ ───────────────┘
 
 Using tree structure: 2 XOR gate delays
 
+
+</div>
+</details>
+
 ---
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 Design a BCD-to-Excess-3 code converter.
 
-**Solution:** **Excess-3 = BCD + 3**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Excess-3 = BCD + 3**
 
 | Decimal | BCD (DCBA) | Excess-3 (E₃E₂E₁E₀) |
 |---------|------------|----------------------|
@@ -724,14 +884,23 @@ E₀ = A'
 - E₁ = B ⊙ A = (B ⊕ A)'
 - E₀ = A'
 
+
+</div>
+</details>
+
 ---
 
-## Section E: Comparators (2 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Comparators (2 problems)</h2>
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 Design a 2-bit magnitude comparator that compares A₁A₀ with B₁B₀ and produces three outputs: A>B, A=B, A<B.
 
-**Solution:** **Bit comparisons:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Bit comparisons:**
 
 Let x₁ = A₁ ⊙ B₁ (equals 1 if A₁ = B₁)
 Let x₀ = A₀ ⊙ B₀ (equals 1 if A₀ = B₀)
@@ -769,12 +938,21 @@ A > B when:
 
 **Total: ~10 gates**
 
+
+</div>
+</details>
+
 ---
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 Cascade two 4-bit comparators to create an 8-bit comparator. Show the connections.
 
-**Solution:** **4-bit comparator inputs/outputs:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**4-bit comparator inputs/outputs:**
 
 - Inputs: A[3:0], B[3:0]
 - Cascade inputs: (A>B)ᵢₙ, (A=B)ᵢₙ, (A<B)ᵢₙ
@@ -813,9 +991,16 @@ A[7:4], B[7:4] → [COMP2] → (A>B)final, (A=B)final, (A<B)final
 - (A=B)ₒᵤₜ = (A=B)internal · (A=B)ᵢₙ
 - (A<B)ₒᵤₜ = (A<B)internal + (A=B)internal · (A<B)ᵢₙ
 
+
+</div>
+</details>
+
 ---
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -825,5 +1010,8 @@ A[7:4], B[7:4] → [COMP2] → (A>B)final, (A=B)final, (A<B)final
 | D | Code Converters | 3 |
 | E | Comparators | 2 |
 | **Total** | | **20** |
+
+
+</div>
 
 </div>
