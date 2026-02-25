@@ -31,11 +31,17 @@ The FPGA design flow — describing your circuit in a hardware description langu
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit bridges the gap between designing logic circuits on paper and implementing them in real hardware. Students will explore the family of programmable logic devices (PLDs) that allow designers to configure hardware functionality after manufacturing. Beginning with read-only memories (ROMs) used as combinational logic generators, the unit progresses through simple PLDs (SPLDs) such as PALs and PLAs, then advances to complex PLDs (CPLDs) and field-programmable gate arrays (FPGAs). Students will understand how each device architecture maps Boolean functions to programmable hardware, compare the trade-offs among device families, and appreciate how modern FPGAs implement the combinational and sequential circuits studied in prior units using lookup tables and configurable logic blocks.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Introduction to Programmable Logic
 2. Fixed Logic vs Programmable Logic
@@ -68,7 +74,11 @@ This unit bridges the gap between designing logic circuits on paper and implemen
 29. PLD Selection Criteria
 30. Applications of Programmable Logic
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -78,9 +88,11 @@ Before studying this unit, students should be familiar with:
 - Combinational modules: MUX, decoders, encoders (Unit 8)
 - Flip-flops and sequential circuits (Units 9-10)
 
+</div>
+
 ---
 
-## 11.1 Introduction to Programmable Logic
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.1 Introduction to Programmable Logic</h2>
 
 Every circuit designed in Units 1 through 10 assumed that the designer selects individual logic gates—AND, OR, NOT, NAND, NOR—and connects them with dedicated wires to build a specific function. This approach, called **fixed logic** or **standard logic** design, works well for small circuits but becomes impractical as systems grow to thousands or millions of gates. Routing individual wires on a printed circuit board for a complex Boolean function is time-consuming, error-prone, and expensive to modify.
 
@@ -99,7 +111,7 @@ The key advantage of programmable logic is the trade-off between **non-recurring
 
 ---
 
-## 11.2 Programmable Connections
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.2 Programmable Connections</h2>
 
 At the heart of every PLD is a mechanism for making or breaking connections between logic elements. Understanding these connection technologies is essential before studying specific device architectures.
 
@@ -118,9 +130,11 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 | SRAM | Yes (unlimited) | No | Fast | High |
 | Flash | Yes (~10K cycles) | Yes | Medium | Medium |
 
-#### Diagram: Programmable Connection Technologies
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Programmable Connection Technologies</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/programmable-connections/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Programmable Connection Technologies</summary>
@@ -152,7 +166,7 @@ Implementation: p5.js or HTML/CSS/JavaScript
 
 ---
 
-## 11.3 ROM as a Logic Device
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.3 ROM as a Logic Device</h2>
 
 A **read-only memory** (ROM) is the simplest programmable logic device, though it may not be immediately obvious why a "memory" qualifies as a logic implementation device. The connection becomes clear when you consider the structure.
 
@@ -176,7 +190,7 @@ This ROM simultaneously implements two functions:
 - $D_1 = \Sigma m(2, 3, 5, 6)$
 - $D_0 = \Sigma m(0, 1, 3, 6)$
 
-### ROM Internal Architecture
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ROM Internal Architecture</h3>
 
 Internally, a ROM consists of two sections:
 
@@ -185,9 +199,11 @@ Internally, a ROM consists of two sections:
 
 Because the decoder generates **all** minterms, no minimization is needed. The trade-off is that ROM size grows exponentially with the number of inputs: an $n$-input ROM requires $2^n$ rows, regardless of how simple the function actually is.
 
-#### Diagram: ROM Internal Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: ROM Internal Architecture</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/rom-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>ROM Internal Architecture</summary>
@@ -224,7 +240,7 @@ Canvas size: 800x550px, responsive
 Implementation: p5.js
 </details>
 
-### ROM Variants
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ROM Variants</h3>
 
 Several ROM technologies exist, distinguished by how and when they are programmed:
 
@@ -236,7 +252,7 @@ Several ROM technologies exist, distinguished by how and when they are programme
 
 ---
 
-## 11.4 Programmable Logic Array (PLA)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.4 Programmable Logic Array (PLA)</h2>
 
 The ROM approach is wasteful when a function uses only a few minterms out of the possible $2^n$. A **Programmable Logic Array (PLA)** addresses this inefficiency by making **both** the AND plane and the OR plane programmable.
 
@@ -250,7 +266,7 @@ A PLA with:
 
 can implement any $m$ functions of $n$ variables, provided the total number of distinct product terms does not exceed $k$.
 
-### PLA Architecture
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PLA Architecture</h3>
 
 The PLA consists of:
 
@@ -259,9 +275,11 @@ The PLA consists of:
 3. **Programmable OR plane:** Each output can be connected to any combination of the $k$ product terms. Programming selects which product terms contribute to each output.
 4. **Optional output inversions:** Some PLAs include programmable XOR gates at the outputs, allowing the designer to choose between the function and its complement (useful for POS implementations).
 
-#### Diagram: PLA Architecture and Programming
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: PLA Architecture and Programming</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pla-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>PLA Architecture and Programming</summary>
@@ -303,7 +321,7 @@ Instructional Rationale: Interactive PLA programming lets students directly conn
 Implementation: p5.js
 </details>
 
-### PLA Example
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PLA Example</h3>
 
 Implement the following functions using a PLA with 3 inputs and 4 product terms:
 
@@ -331,7 +349,7 @@ The product term $A\bar{B}$ is **shared** between both outputs—a key advantage
 
 ---
 
-## 11.5 Programmable Array Logic (PAL)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.5 Programmable Array Logic (PAL)</h2>
 
 A **Programmable Array Logic (PAL)** device simplifies the PLA by keeping the AND plane programmable but making the OR plane **fixed**. Each output is permanently connected to a predetermined set of AND gates (product terms).
 
@@ -342,7 +360,7 @@ This simplification has important consequences:
 - **Disadvantage:** Product terms **cannot be shared** between outputs. Each output has its own dedicated set of AND gates.
 - **Disadvantage:** If a function requires more product terms than the fixed OR gate provides, it cannot be implemented in a single PAL output.
 
-### PAL Architecture
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PAL Architecture</h3>
 
 A typical PAL (such as the classic PAL16L8) provides:
 
@@ -353,7 +371,7 @@ A typical PAL (such as the classic PAL16L8) provides:
 
 Some PAL outputs are registered (include a flip-flop), enabling sequential logic implementation. The output may also feed back into the AND array as an additional input, supporting state machine designs.
 
-### PAL vs PLA Comparison
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PAL vs PLA Comparison</h3>
 
 | Feature | PLA | PAL |
 |---------|-----|-----|
@@ -365,9 +383,11 @@ Some PAL outputs are registered (include a flip-flop), enabling sequential logic
 | Cost | Higher | Lower |
 | Typical Products | PLA series | PAL16L8, PAL22V10, GAL |
 
-#### Diagram: PLA vs PAL Architecture Comparison
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: PLA vs PAL Architecture Comparison</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pla-vs-pal/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>PLA vs PAL Architecture Comparison</summary>
@@ -407,7 +427,7 @@ Implementation: HTML/CSS/JavaScript with SVG
 
 ---
 
-## 11.6 Simple PLD (SPLD) Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.6 Simple PLD (SPLD) Summary</h2>
 
 ROMs, PLAs, and PALs collectively form the **Simple PLD** (SPLD) family. Each represents a different point in the trade-off space between flexibility, speed, and cost.
 
@@ -431,11 +451,11 @@ Choosing among SPLDs depends on the application:
 
 ---
 
-## 11.7 Complex PLD (CPLD) Architecture
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.7 Complex PLD (CPLD) Architecture</h2>
 
 As designs grew beyond the capacity of a single PAL, designers needed more logic capacity without the wiring complexity of multiple discrete PLDs on a board. **Complex PLDs (CPLDs)** address this by integrating multiple PAL-like blocks onto a single chip and connecting them through a programmable interconnect matrix.
 
-### CPLD Structure
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Structure</h3>
 
 A CPLD consists of:
 
@@ -444,9 +464,11 @@ A CPLD consists of:
 3. **Programmable Interconnect Matrix:** A global routing structure that connects the outputs of any function block to the inputs of any other function block. This matrix enables inter-block communication without external wiring.
 4. **I/O Blocks:** Interface between internal logic and external pins, with configurable direction (input, output, bidirectional) and drive strength.
 
-#### Diagram: CPLD Architecture Block Diagram
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: CPLD Architecture Block Diagram</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/cpld-architecture/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>CPLD Architecture Block Diagram</summary>
@@ -483,7 +505,7 @@ Canvas size: 800x550px, responsive
 Implementation: p5.js or vis-network
 </details>
 
-### CPLD Characteristics
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Characteristics</h3>
 
 - **Predictable timing:** Because the interconnect matrix provides fixed routing paths, propagation delays through a CPLD are predictable and consistent—critical for timing-sensitive designs.
 - **Non-volatile:** Most CPLDs use EEPROM or flash-based programming, retaining their configuration without external memory.
@@ -492,13 +514,13 @@ Implementation: p5.js or vis-network
 
 ---
 
-## 11.8 Field-Programmable Gate Array (FPGA) Concepts
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.8 Field-Programmable Gate Array (FPGA) Concepts</h2>
 
 The **Field-Programmable Gate Array (FPGA)** represents the most flexible and highest-capacity family of programmable logic devices. Unlike CPLDs, which build logic from AND-OR arrays, FPGAs use a fundamentally different approach: **lookup tables (LUTs)** that can implement any Boolean function of a small number of variables.
 
 An FPGA is not programmed with product terms—it is configured by loading a **bitstream** that sets the contents of thousands of small lookup tables, configures multiplexers for routing, and sets flip-flop initial states. This architecture enables FPGAs to implement not just combinational logic but also complex sequential systems, processors, memory interfaces, and entire systems-on-chip.
 
-### FPGA vs CPLD
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FPGA vs CPLD</h3>
 
 | Feature | CPLD | FPGA |
 |---------|------|------|
@@ -512,7 +534,7 @@ An FPGA is not programmed with product terms—it is configured by loading a **b
 
 ---
 
-## 11.9 Lookup Tables (LUTs)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.9 Lookup Tables (LUTs)</h2>
 
 A **Lookup Table (LUT)** is a small memory (essentially a tiny ROM) that stores the truth table of a Boolean function. A $k$-input LUT contains $2^k$ memory cells and can implement **any** Boolean function of $k$ or fewer variables.
 
@@ -527,9 +549,11 @@ A LUT-4 works exactly like the ROM described in Section 11.3, but with only 4 ad
 2. The selected value appears at the output.
 3. The stored values are loaded from the FPGA bitstream during configuration.
 
-#### Diagram: 4-Input LUT Structure and Operation
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Input LUT Structure and Operation</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/lut-explorer/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>4-Input LUT Structure and Operation</summary>
@@ -567,7 +591,7 @@ Canvas size: 800x500px, responsive
 Implementation: p5.js
 </details>
 
-### Why LUTs Are Powerful
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Why LUTs Are Powerful</h3>
 
 The LUT approach has a remarkable property: **any** Boolean function of $k$ inputs requires exactly one $k$-input LUT, regardless of the function's complexity. Whether the function is a simple AND gate or a complex expression with many product terms, the LUT implements it in constant time with identical propagation delay.
 
@@ -575,7 +599,7 @@ For functions with more than $k$ inputs, the FPGA tools automatically decompose 
 
 ---
 
-## 11.10 Configurable Logic Blocks (CLBs)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.10 Configurable Logic Blocks (CLBs)</h2>
 
 LUTs are grouped into larger units called **Configurable Logic Blocks (CLBs)**, which form the basic building blocks of the FPGA fabric. The exact composition varies by manufacturer, but a typical CLB contains:
 
@@ -587,7 +611,7 @@ LUTs are grouped into larger units called **Configurable Logic Blocks (CLBs)**, 
 
 A modern FPGA may contain thousands to millions of CLBs arranged in a regular two-dimensional array.
 
-### CLB Architecture (Simplified)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CLB Architecture (Simplified)</h3>
 
 A simplified CLB with 2 LUT-4s and 2 flip-flops provides:
 
@@ -598,9 +622,11 @@ A simplified CLB with 2 LUT-4s and 2 flip-flops provides:
 
 The versatility of CLBs means that the same physical hardware can implement combinational circuits (Units 2-8) or sequential circuits (Units 9-10) simply by loading different configuration bits.
 
-#### Diagram: CLB Internal Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: CLB Internal Architecture</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/clb-architecture/main.html" width="100%" height="630px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>CLB Internal Architecture</summary>
@@ -642,7 +668,7 @@ Implementation: p5.js
 
 ---
 
-## 11.11 FPGA Routing Resources
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.11 FPGA Routing Resources</h2>
 
 The routing fabric is what transforms an array of isolated CLBs into a connected system. FPGA routing resources typically include:
 
@@ -658,7 +684,7 @@ The routing architecture is a critical factor in FPGA performance. Unlike CPLDs 
 
 ---
 
-## 11.12 FPGA I/O Blocks
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.12 FPGA I/O Blocks</h2>
 
 The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface between internal logic and external pins. Modern FPGA I/O blocks are highly configurable:
 
@@ -673,7 +699,7 @@ The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface be
 
 ---
 
-## 11.13 SRAM-Based vs Flash-Based FPGAs
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.13 SRAM-Based vs Flash-Based FPGAs</h2>
 
 The two dominant FPGA configuration technologies present a fundamental trade-off:
 
@@ -697,9 +723,11 @@ The two dominant FPGA configuration technologies present a fundamental trade-off
 - Preferred for safety-critical and space applications
 - Limited reprogramming cycles (~10K)
 
-#### Diagram: FPGA Configuration and Operation Flow
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: FPGA Configuration and Operation Flow</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/fpga-config-flow/main.html" width="100%" height="470px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>FPGA Configuration and Operation Flow</summary>
@@ -741,7 +769,7 @@ Implementation: HTML/CSS/JavaScript
 
 ---
 
-## 11.14 FPGA Design Flow
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.14 FPGA Design Flow</h2>
 
 Implementing a digital design on an FPGA involves a well-defined sequence of steps, quite different from the "draw a schematic and build it" approach of discrete logic:
 
@@ -765,9 +793,11 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 
 10. **Hardware Verification:** The configured FPGA is tested with real signals to verify correct operation in the target system.
 
-#### Diagram: FPGA Design Flow
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: FPGA Design Flow</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/fpga-design-flow/main.html" width="100%" height="620px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>FPGA Design Flow</summary>
@@ -805,7 +835,7 @@ Implementation: HTML/CSS/JavaScript with SVG
 
 ---
 
-## 11.15 Technology Mapping
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.15 Technology Mapping</h2>
 
 **Technology mapping** is the process of transforming a generic netlist (from synthesis) into the specific primitives available on the target FPGA or PLD. This step is critical because it determines how efficiently the design uses the available hardware.
 
@@ -822,7 +852,7 @@ For CPLD/PAL targets, technology mapping involves:
 
 ---
 
-## 11.16 Hardware Description Languages for PLDs
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.16 Hardware Description Languages for PLDs</h2>
 
 All modern PLD design uses **Hardware Description Languages (HDLs)** rather than manual schematic entry. The two dominant HDLs are:
 
@@ -840,7 +870,7 @@ Unit 12 provides a detailed introduction to VHDL for implementing the circuits s
 
 ---
 
-## 11.17 PLD Selection Criteria
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.17 PLD Selection Criteria</h2>
 
 Choosing the right programmable logic device for a project involves evaluating several factors:
 
@@ -853,9 +883,11 @@ Choosing the right programmable logic device for a project involves evaluating s
 - **Development tools:** Are vendor tools and IP libraries available?
 - **Production volume:** PLDs are cost-effective for low-to-medium volumes; ASICs become economical at high volumes.
 
-#### Diagram: PLD Selection Decision Tree
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: PLD Selection Decision Tree</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pld-selection-tree/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>PLD Selection Decision Tree</summary>
@@ -891,7 +923,7 @@ Implementation: HTML/CSS/JavaScript with SVG
 
 ---
 
-## 11.18 Applications of Programmable Logic
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.18 Applications of Programmable Logic</h2>
 
 Programmable logic devices permeate modern electronic systems:
 
@@ -909,7 +941,7 @@ Programmable logic devices permeate modern electronic systems:
 
 ---
 
-## 11.19 Connecting PLDs to Prior Units
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.19 Connecting PLDs to Prior Units</h2>
 
 Every concept from Units 1 through 10 finds direct application in programmable logic:
 
@@ -927,7 +959,9 @@ This connection illustrates why the foundational units matter: understanding Boo
 
 ---
 
-## 11.20 Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.20 Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 - **Programmable logic devices** allow hardware functionality to be configured after manufacturing, offering a balance between the flexibility of standard logic and the efficiency of custom ASICs.
 - **ROMs** implement combinational logic by storing complete truth tables but grow exponentially with input count.
@@ -939,13 +973,17 @@ This connection illustrates why the foundational units matter: understanding Boo
 - The **FPGA design flow** transforms HDL code through synthesis, mapping, placement, routing, and timing analysis to produce a configuration bitstream.
 - **Device selection** requires balancing capacity, speed, power, cost, and volatility requirements against the strengths of each PLD family.
 
+</div>
+
 ??? question "Self-Check: Why can't a PAL share product terms between outputs like a PLA can?"
     In a PAL, the OR plane is **fixed**—each output is permanently connected to its own dedicated set of AND gates. Because these connections cannot be changed, a product term generated by one output's AND gates cannot be routed to another output's OR gate. In a PLA, the OR plane is programmable, so any product term from the AND plane can be connected to any output.
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Program a PLA step-by-step by selecting product terms and connecting them to outputs:
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pla-programming-walkthrough/main.html" width="100%" height="590px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 </div>
