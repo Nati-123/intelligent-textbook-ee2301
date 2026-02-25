@@ -44,7 +44,7 @@ $$F = (AB + CD)(E + FG)$$
 
 <p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 2: Gate Count Comparison — AND-OR vs NAND-NAND</p>
 
-<p style="color: #333; line-height: 1.75;">For the function $F(A, B, C, D) = \sum m(1, 3, 5, 7, 8, 12, 13)$, find the minimum SOP expression, then implement it as:</p>
+<p style="color: #333; line-height: 1.75;" markdown>For the function $F(A, B, C, D) = \sum m(1, 3, 5, 7, 8, 12, 13)$, find the minimum SOP expression, then implement it as:</p>
 
 (a) AND-OR circuit &emsp; (b) NAND-NAND circuit
 
@@ -91,7 +91,7 @@ State the original literal count and the reduced literal count.
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Original literal count: $4 + 4 + 4 + 4 + 4 = 20$ literals</p>
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;" markdown>Original literal count: $4 + 4 + 4 + 4 + 4 = 20$ literals</p>
 
 **Factored form:**
 
@@ -120,7 +120,7 @@ $$F = (A + B)(\overline{C} + D)$$
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">NOR implementation using $X \cdot Y = \overline{\overline{X} + \overline{Y}}$:</p>
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;" markdown>NOR implementation using $X \cdot Y = \overline{\overline{X} + \overline{Y}}$:</p>
 
 - Gate 1: $A \text{ NOR } B = \overline{A+B}$
 - Gate 2: $C \text{ NOR } C = \overline{C}$ (inverter)
