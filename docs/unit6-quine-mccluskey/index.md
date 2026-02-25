@@ -29,11 +29,17 @@ The real power of Quine-McCluskey is its suitability for automation. Every step 
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algorithm for minimizing Boolean functions. While Karnaugh maps provide an intuitive visual approach for functions with up to five variables, the QM method offers a rigorous, algorithmic procedure suitable for functions with any number of variables. The method can be easily programmed for computer implementation, making it the foundation for modern logic minimization tools. Students will learn to construct implicant tables, systematically combine minterms, generate prime implicant charts, and determine minimum covers using techniques including Petrick's method.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Quine-McCluskey Algorithm
 2. Tabular Minimization Method
@@ -60,6 +66,8 @@ This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algor
 23. Literal Count Optimization
 24. Gate Count Optimization
 25. Systematic Approach Advantages
+
+</div>
 
 ## Prerequisites
 

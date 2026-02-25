@@ -31,11 +31,17 @@ Multi-level circuits introduce additional propagation delay because signals pass
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit explores the implementation of Boolean functions using multi-level gate circuits, with particular emphasis on NAND and NOR gate implementations. While two-level AND-OR or OR-AND circuits provide straightforward realizations of Boolean expressions, practical considerations often favor implementations using only NAND gates or only NOR gates due to their universal nature and manufacturing advantages. Students will learn systematic methods for converting SOP and POS expressions to NAND-only and NOR-only implementations, analyze propagation delays in multi-level circuits, and optimize circuits for gate count, literal count, and timing performance.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Two-Level vs Multi-Level Circuits
 2. Universal Gates (NAND and NOR)
@@ -61,6 +67,8 @@ This unit explores the implementation of Boolean functions using multi-level gat
 22. Wired Logic Implementations
 23. Transmission Gate Circuits
 24. Multi-Level Synthesis Tools
+
+</div>
 
 ## Prerequisites
 

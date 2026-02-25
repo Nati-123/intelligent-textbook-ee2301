@@ -31,13 +31,17 @@ Don't care conditions once again prove invaluable. Because don't cares can be tr
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 Karnaugh maps (K-maps) provide a powerful graphical method for simplifying Boolean functions, transforming the abstract process of algebraic manipulation into visual pattern recognition. Developed by Maurice Karnaugh in 1953, this technique exploits the adjacency properties of Gray code ordering to identify opportunities for variable elimination. This unit covers K-map construction for 2, 3, 4, and 5 variables, teaching students to recognize valid groupings that lead to simpler expressions. The concepts of implicants, prime implicants, and essential prime implicants formalize the simplification process, enabling systematic derivation of minimal Sum of Products (SOP) and Product of Sums (POS) expressions. Students will learn to handle don't care conditions, recognize when multiple minimal solutions exist, and understand the limitations of K-maps for larger functions.
+</p>
+</div>
 
----
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
 
-## Concepts Covered
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Karnaugh Map
 2. K-Map Structure
@@ -79,6 +83,8 @@ Karnaugh maps (K-maps) provide a powerful graphical method for simplifying Boole
 38. Five Variable Technique
 39. Entered Variable K-Map
 40. K-Map vs Algebraic Method
+
+</div>
 
 ---
 

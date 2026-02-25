@@ -31,13 +31,17 @@ Finally, don't care conditions make a return appearance. In canonical form, don'
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit introduces the canonical forms for representing Boolean functions—the most complete and unambiguous way to express any logic function. Canonical forms use minterms (for Sum of Products) or maxterms (for Product of Sums) to create expressions where every variable appears exactly once in every term. Students will learn to derive canonical expressions directly from truth tables, convert between minterm and maxterm representations, and use compact notations (Σ and Π) for efficient specification. The unit also covers the Shannon expansion theorem, which provides a systematic method for decomposing functions, and explores how don't care conditions are represented in canonical form. These concepts establish the foundation for the systematic simplification techniques covered in Unit 5 (Karnaugh Maps).
+</p>
+</div>
 
----
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
 
-## Concepts Covered
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Canonical Form
 2. Standard Form
@@ -74,6 +78,8 @@ This unit introduces the canonical forms for representing Boolean functions—th
 33. Off-Set of Function
 34. DC-Set of Function
 35. Literal Count
+
+</div>
 
 ---
 

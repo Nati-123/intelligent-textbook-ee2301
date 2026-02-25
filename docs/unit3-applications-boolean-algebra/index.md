@@ -31,13 +31,17 @@ Throughout these designs, you will encounter don't care conditions — input com
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit bridges Boolean algebra theory with practical digital circuit design, demonstrating how to translate real-world problems into working logic circuits. Students will learn systematic methods for converting English specifications into Boolean equations and truth tables, then implementing these as combinational logic circuits. The unit covers essential arithmetic circuits—half adders, full adders, and subtractors—that form the foundation of computer arithmetic units. Additional applications include magnitude comparators for decision-making circuits, parity generators/checkers for error detection, code converters for translating between number representations, and seven-segment display decoders for human-readable output. The concept of incompletely specified functions introduces don't care conditions that enable more efficient circuit implementations.
+</p>
+</div>
 
----
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
 
-## Concepts Covered
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Combinational Logic
 2. Sequential Logic
@@ -74,6 +78,8 @@ This unit bridges Boolean algebra theory with practical digital circuit design, 
 33. Seven Segment Display
 34. Seven Segment Decoder
 35. Incompletely Specified Function
+
+</div>
 
 ---
 

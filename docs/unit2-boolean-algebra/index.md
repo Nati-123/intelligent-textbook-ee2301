@@ -31,13 +31,17 @@ Finally, we introduce Sum of Products (SOP) and Product of Sums (POS) — two st
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 Boolean Algebra provides the mathematical foundation for digital logic design, enabling engineers to describe, analyze, and simplify digital circuits using algebraic methods. Developed by mathematician George Boole in the mid-19th century, this algebraic system operates on binary values and forms the theoretical basis for all modern computing. This unit introduces the fundamental Boolean operations (AND, OR, NOT), their physical implementation as logic gates, and the derived operations (NAND, NOR, XOR, XNOR) that expand design possibilities. Students will master the essential Boolean theorems and identities that enable systematic simplification of logic expressions, reducing circuit complexity and cost. The unit establishes Sum of Products (SOP) and Product of Sums (POS) as standard forms for representing Boolean functions.
+</p>
+</div>
 
----
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
 
-## Concepts Covered
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Boolean Algebra
 2. Boolean Variable
@@ -89,6 +93,8 @@ Boolean Algebra provides the mathematical foundation for digital logic design, e
 48. Multiple Input Gates
 49. Cascading Gates
 50. Fan-In and Fan-Out
+
+</div>
 
 ---
 

@@ -29,13 +29,17 @@ Once you are comfortable moving between bases, we turn to binary arithmetic — 
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 Number systems form the mathematical foundation of digital system design, providing the essential framework for representing and manipulating information in electronic circuits. This unit introduces the four primary number systems used in computing—decimal, binary, octal, and hexadecimal—and establishes the concepts of positional notation that underpin all digital arithmetic operations. Students will master conversion techniques between bases, perform binary arithmetic, and understand the critical distinction between signed and unsigned number representations. The unit culminates with two's complement arithmetic, the dominant method used in modern processors for handling negative numbers, along with techniques for detecting arithmetic overflow conditions.
+</p>
+</div>
 
----
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
 
-## Concepts Covered
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Digital Systems
 2. Analog vs Digital Signals
@@ -77,6 +81,8 @@ Number systems form the mathematical foundation of digital system design, provid
 38. Overflow Detection
 39. Underflow
 40. Range of Signed Numbers
+
+</div>
 
 ---
 
