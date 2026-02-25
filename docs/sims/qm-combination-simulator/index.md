@@ -5,65 +5,82 @@ image: /sims/qm-combination-simulator/qm-combination-simulator.png
 quality_score: 85
 ---
 
-# QM Combination Simulator
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">QM Combination Simulator</h1>
 
-<iframe src="main.html" height="582px" width="100%" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="main.html" height="582px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-[Run the QM Combination Simulator Fullscreen](./main.html){ .md-button .md-button--primary }
+<a href="../../unit6-quine-mccluskey/" style="color: #5A3EED; font-weight: 600; font-size: 0.95rem;">&#8592; Back to Unit 6</a>
 
-## Description
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Description</h2>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This MicroSim demonstrates the iterative combination process in the Quine-McCluskey algorithm. It shows how minterms are compared and combined when they differ in exactly one bit position, with the differing bit replaced by a dash (-).
+</p>
 
-Key concepts demonstrated:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Concepts</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #B8860B; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Combination rule</strong>: Two terms combine only if they differ in exactly one bit and dashes align</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #B8860B; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Dash notation</strong>: The differing bit becomes a dash, indicating the variable is eliminated</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #B8860B; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Check marks</strong>: Combined terms are marked with &#10003; and won't be prime implicants</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #B8860B; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Prime implicants</strong>: Unchecked terms that cannot be further combined (shown in gold)</li>
+</ul>
+</div>
 
-- **Combination rule**: Two terms combine only if they differ in exactly one bit and dashes align
-- **Dash notation**: The differing bit becomes a dash, indicating the variable is eliminated
-- **Check marks**: Combined terms are marked with ✓ and won't be prime implicants
-- **Prime implicants**: Unchecked terms that cannot be further combined (shown in gold)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Learning Objectives</h2>
 
-## Iframe Embedding
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Bloom Level: Apply (L3)</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0.6rem;">After using this MicroSim, students will be able to:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Determine when two terms can be combined</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Apply the dash notation correctly</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Identify which terms are combined (checked) vs. prime implicants (unchecked)</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Execute the iterative combination process step-by-step</li>
+</ul>
+</div>
 
-```html
-<iframe src="https://[your-site]/sims/qm-combination-simulator/main.html" height="582px" scrolling="no" width="100%"></iframe>
-```
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">How to Use</h2>
 
-## How to Use
+<ol style="padding-left: 1.2rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Select</strong> the number of variables (3, 4, or 5)</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Step through</strong> by clicking "Next Step" to see each comparison</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Run All</strong> to complete all combinations instantly</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Reset</strong> to start over with a fresh example</li>
+</ol>
 
-1. **Select Variables**: Choose 3, 4, or 5 variables
-2. **Step Through**: Click "Next Step" to see each comparison
-3. **Run All**: Click "Run All" to complete all combinations instantly
-4. **Reset**: Start over with a fresh example
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Lesson Plan</h2>
 
-## Learning Objectives
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Before the Simulation (5 minutes)</h3>
 
-**Bloom Level**: Apply (L3)
-**Bloom Verb**: Execute, implement
+<ul style="padding-left: 1.2rem; margin: 0.4rem 0 0.8rem 0;">
+<li style="margin-bottom: 0.4rem; line-height: 1.75; color: #333;">Review the grouping step (Group 0, Group 1, etc.)</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;">Explain the one-bit difference rule</li>
+</ul>
 
-After using this MicroSim, students will be able to:
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">During the Simulation (15 minutes)</h3>
 
-- Determine when two terms can be combined
-- Apply the dash notation correctly
-- Identify which terms are combined (checked) vs. prime implicants (unchecked)
-- Execute the iterative combination process step-by-step
+<ol style="padding-left: 1.2rem; margin: 0.4rem 0 0.8rem 0;">
+<li style="margin-bottom: 0.4rem; line-height: 1.75; color: #333;">Step through the first few comparisons</li>
+<li style="margin-bottom: 0.4rem; line-height: 1.75; color: #333;">Notice which pairs can combine (green) vs. cannot (red)</li>
+<li style="margin-bottom: 0.4rem; line-height: 1.75; color: #333;">Observe how dashes propagate through iterations</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;">Identify the final prime implicants</li>
+</ol>
 
-## Lesson Plan
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">After the Simulation (5 minutes)</h3>
 
-### Before the Simulation (5 minutes)
-- Review the grouping step (Group 0, Group 1, etc.)
-- Explain the one-bit difference rule
+<ul style="padding-left: 1.2rem; margin: 0.4rem 0 0.8rem 0;">
+<li style="margin-bottom: 0.4rem; line-height: 1.75; color: #333;">Practice identifying prime implicants manually</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;">Discuss why some terms cannot combine</li>
+</ul>
 
-### During the Simulation (15 minutes)
-1. Step through the first few comparisons
-2. Notice which pairs can combine (green) vs. cannot (red)
-3. Observe how dashes propagate through iterations
-4. Identify the final prime implicants
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">References</h2>
 
-### After the Simulation (5 minutes)
-- Practice identifying prime implicants manually
-- Discuss why some terms cannot combine
-
-## References
-
-- [Quine-McCluskey Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm)
-- Unit 6: Quine-McCluskey Method in this textbook
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm" style="color: #5A3EED; font-weight: 600;">Quine-McCluskey Algorithm - Wikipedia</a></li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="../../unit6-quine-mccluskey/" style="color: #5A3EED; font-weight: 600;">Unit 6: Quine-McCluskey Method</a></li>
+</ul>
+</div>
