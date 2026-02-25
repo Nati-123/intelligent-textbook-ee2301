@@ -32,7 +32,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: B</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">A gate is universal (functionally complete) if it can implement NOT, AND, and OR—the three operations from which any Boolean function can be constructed. NAND implements NOT by tying both inputs together, AND by cascading two NANDs, and OR by inverting each input before a NAND. NOR achieves universality through the dual construction. This property has profound practical significance: an entire IC can be fabricated using only one type of transistor configuration.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>A gate is universal (functionally complete) if it can implement NOT, AND, and OR—the three operations from which any Boolean function can be constructed. NAND implements NOT by tying both inputs together, AND by cascading two NANDs, and OR by inverting each input before a NAND. NOR achieves universality through the dual construction. This property has profound practical significance: an entire IC can be fabricated using only one type of transistor configuration.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Universal Gates (NAND and NOR)</p>
 </div>
 </details>
@@ -58,7 +58,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: C</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">An AOI (AND-OR-Invert) gate performs AND operations on groups of inputs, ORs the results together, then inverts the output. The naming convention "AOI22" indicates two groups of two inputs each. So AOI22 computes: AND group 1 ($AB$), AND group 2 ($CD$), OR them ($AB + CD$), then invert: $\overline{AB + CD}$. The dual OAI22 would compute $\overline{(A+B)(C+D)}$. AOI/OAI complex gates implement two levels of logic in a single CMOS structure with approximately one gate delay.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>An AOI (AND-OR-Invert) gate performs AND operations on groups of inputs, ORs the results together, then inverts the output. The naming convention "AOI22" indicates two groups of two inputs each. So AOI22 computes: AND group 1 ($AB$), AND group 2 ($CD$), OR them ($AB + CD$), then invert: $\overline{AB + CD}$. The dual OAI22 would compute $\overline{(A+B)(C+D)}$. AOI/OAI complex gates implement two levels of logic in a single CMOS structure with approximately one gate delay.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> AOI and OAI Complex Gates</p>
 </div>
 </details>
@@ -84,7 +84,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: A</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The AND-OR to NAND-NAND conversion works by applying double inversion: $F = AB + CD = \overline{\overline{AB + CD}} = \overline{\overline{AB} \cdot \overline{CD}}$. The first-level NAND gates produce $\overline{AB}$ and $\overline{CD}$, and the second-level NAND gate computes $\overline{\overline{AB} \cdot \overline{CD}} = AB + CD$. The inversions from the first-level NAND outputs and the second-level NAND inputs cancel in pairs, so simply replacing all gates with NAND gates produces the correct result for standard two-level SOP forms.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>The AND-OR to NAND-NAND conversion works by applying double inversion: $F = AB + CD = \overline{\overline{AB + CD}} = \overline{\overline{AB} \cdot \overline{CD}}$. The first-level NAND gates produce $\overline{AB}$ and $\overline{CD}$, and the second-level NAND gate computes $\overline{\overline{AB} \cdot \overline{CD}} = AB + CD$. The inversions from the first-level NAND outputs and the second-level NAND inputs cancel in pairs, so simply replacing all gates with NAND gates produces the correct result for standard two-level SOP forms.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> AND-OR to NAND-NAND Conversion</p>
 </div>
 </details>
@@ -110,7 +110,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: C</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">While two-level circuits (AND-OR or OR-AND) provide minimum propagation delay, they often require gates with many inputs (high fan-in) and a large total gate count—especially for complex functions. Multi-level circuits introduce additional gate delays but significantly reduce both gate count (through sharing common sub-expressions) and fan-in requirements (by breaking large gates into smaller ones). Since standard cell libraries typically offer gates with 2–4 inputs, multi-level circuits are essential for practical implementation.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>While two-level circuits (AND-OR or OR-AND) provide minimum propagation delay, they often require gates with many inputs (high fan-in) and a large total gate count—especially for complex functions. Multi-level circuits introduce additional gate delays but significantly reduce both gate count (through sharing common sub-expressions) and fan-in requirements (by breaking large gates into smaller ones). Since standard cell libraries typically offer gates with 2–4 inputs, multi-level circuits are essential for practical implementation.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Two-Level vs Multi-Level Circuits</p>
 </div>
 </details>
@@ -136,7 +136,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: D</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">Applying double inversion: $F = A + BC = \overline{\overline{A} \cdot \overline{BC}}$. The NAND gate for $BC$ produces $\overline{BC}$, which feeds the final NAND gate. But the single literal $A$ must also be complemented to $\overline{A}$ before entering the final NAND gate. This complementation requires a NAND gate configured as an inverter (both inputs tied to $A$). In bubble-pushing terms, the bubble on $A$'s input to the final NAND is unpaired and must be implemented as an explicit inverter.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>Applying double inversion: $F = A + BC = \overline{\overline{A} \cdot \overline{BC}}$. The NAND gate for $BC$ produces $\overline{BC}$, which feeds the final NAND gate. But the single literal $A$ must also be complemented to $\overline{A}$ before entering the final NAND gate. This complementation requires a NAND gate configured as an inverter (both inputs tied to $A$). In bubble-pushing terms, the bubble on $A$'s input to the final NAND is unpaired and must be implemented as an explicit inverter.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Bubble Pushing Technique / NAND Conversion</p>
 </div>
 </details>
@@ -162,7 +162,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: C</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The worst-case propagation delay of a multi-level circuit equals the number of gate levels multiplied by the per-gate delay (assuming uniform gate delays): $t_{pd} = 3 \times 4 \text{ ns} = 12$ ns. This represents the critical path—the longest signal path from any input through three gates to the output. In practice, different gate types have different delays, and the critical path delay is the sum of individual gate delays along the longest path.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>The worst-case propagation delay of a multi-level circuit equals the number of gate levels multiplied by the per-gate delay (assuming uniform gate delays): $t_{pd} = 3 \times 4 \text{ ns} = 12$ ns. This represents the critical path—the longest signal path from any input through three gates to the output. In practice, different gate types have different delays, and the critical path delay is the sum of individual gate delays along the longest path.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Propagation Delay in Multi-Level Circuits / Critical Path Analysis</p>
 </div>
 </details>
@@ -188,7 +188,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: A</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">Factoring proceeds in steps: first, pair terms sharing common factors: $F = AD(C + E) + BD(C + E)$. This is option D—a partially factored form. Recognizing that $D(C + E)$ is common to both groups: $F = (A + B)D(C + E)$. The fully factored form uses 2 OR gates and 2 AND gates with a maximum fan-in of 2, compared to the original SOP requiring four 3-input AND gates and one 4-input OR gate. The trade-off is 4 levels of logic instead of 2, but with smaller, more practical gates.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>Factoring proceeds in steps: first, pair terms sharing common factors: $F = AD(C + E) + BD(C + E)$. This is option D—a partially factored form. Recognizing that $D(C + E)$ is common to both groups: $F = (A + B)D(C + E)$. The fully factored form uses 2 OR gates and 2 AND gates with a maximum fan-in of 2, compared to the original SOP requiring four 3-input AND gates and one 4-input OR gate. The trade-off is 4 levels of logic instead of 2, but with smaller, more practical gates.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Factoring for Multi-Level Optimization</p>
 </div>
 </details>
@@ -214,7 +214,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: B</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The NAND-NAND conversion is "natural" for SOP because the AND-OR structure maps directly to NAND-NAND through double inversion—the paired inversions cancel perfectly. For NOR-NOR (cross conversion), each AND product term $AB$ must be restructured as $\overline{\overline{A} + \overline{B}}$ using De Morgan's theorem, adding an extra NOR level plus input inverters. The practical design guideline is: convert SOP to NAND-NAND, or first convert to POS form before implementing with NOR gates.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>The NAND-NAND conversion is "natural" for SOP because the AND-OR structure maps directly to NAND-NAND through double inversion—the paired inversions cancel perfectly. For NOR-NOR (cross conversion), each AND product term $AB$ must be restructured as $\overline{\overline{A} + \overline{B}}$ using De Morgan's theorem, adding an extra NOR level plus input inverters. The practical design guideline is: convert SOP to NAND-NAND, or first convert to POS form before implementing with NOR gates.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Mixed Gate Conversions / De Morgan's Theorem in Gate Conversion</p>
 </div>
 </details>
@@ -240,7 +240,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: B</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">Technology mapping works by finding portions of the circuit that match available library cells. Decomposing the entire network into the smallest primitives (NAND2 + INV) creates a uniform "canvas" where every possible library cell—including complex gates like AOI22, OAI21, and MUX2—can be identified as a pattern of adjacent NAND2/INV nodes. Without this common decomposition, the matching algorithm would need to handle arbitrary gate types directly, making systematic pattern matching impractical. The covering algorithm then selects the minimum-cost set of library cells.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>Technology mapping works by finding portions of the circuit that match available library cells. Decomposing the entire network into the smallest primitives (NAND2 + INV) creates a uniform "canvas" where every possible library cell—including complex gates like AOI22, OAI21, and MUX2—can be identified as a pattern of adjacent NAND2/INV nodes. Without this common decomposition, the matching algorithm would need to handle arbitrary gate types directly, making systematic pattern matching impractical. The covering algorithm then selects the minimum-cost set of library cells.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Technology Mapping</p>
 </div>
 </details>
@@ -266,7 +266,7 @@ Test your understanding of universal gates, circuit conversions, multi-level ana
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Correct Answer: D</p>
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;">When fan-in constraints prevent a two-level implementation, multi-level factoring decomposes the large gates into smaller ones that fit the available library. For example, a 5-input AND $ABCDE$ becomes a cascade: $G = ABC$, $F = G \cdot DE$—two 3-input and 2-input AND gates at three levels instead of one 5-input gate at two levels. The trade-off is increased propagation delay (more levels) for practical realizability. Options A and B avoid the core design problem, and option C provides no guarantee of smaller gates.</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;" markdown>When fan-in constraints prevent a two-level implementation, multi-level factoring decomposes the large gates into smaller ones that fit the available library. For example, a 5-input AND $ABCDE$ becomes a cascade: $G = ABC$, $F = G \cdot DE$—two 3-input and 2-input AND gates at three levels instead of one 5-input gate at two levels. The trade-off is increased propagation delay (more levels) for practical realizability. Options A and B avoid the core design problem, and option C provides no guarantee of smaller gates.</p>
 <p style="color: #555; font-style: italic; margin-bottom: 0; margin-top: 8px;"><strong>Concept Tested:</strong> Fan-in Constraints / Level Reduction Techniques</p>
 </div>
 </details>
