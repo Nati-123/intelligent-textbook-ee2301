@@ -5,18 +5,25 @@ description: Practice problems for latches, flip-flops, timing diagrams, and seq
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Sequential Logic Fundamentals
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Sequential Logic Fundamentals</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of memory elements and sequential circuit timing.
+</p>
 
 ---
 
-## Section A: Latches (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: Latches (5 problems)</h2>
 
-### Problem 1
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
 Draw the circuit and complete the truth table for an SR latch using NOR gates.
 
-**Solution:** **NOR-based SR Latch circuit:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**NOR-based SR Latch circuit:**
 
 ```
       ┌───────────────┐
@@ -49,12 +56,21 @@ Q(next) = S + R'Q
 
 **Invalid state:** S = R = 1 causes Q = Q' = 0, which violates the complement relationship and causes race condition when both inputs return to 0.
 
+
+</div>
+</details>
+
 ---
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 Design an SR latch using NAND gates and compare its operation to the NOR-based version.
 
-**Solution:** **NAND-based SR Latch:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**NAND-based SR Latch:**
 
 Note: Inputs are active-LOW (S̄ and R̄)
 
@@ -91,9 +107,13 @@ R̄ ────┤               │
 | Hold condition | S=0, R=0 | S̄=1, R̄=1 |
 | Invalid condition | S=1, R=1 | S̄=0, R̄=0 |
 
+
+</div>
+</details>
+
 ---
 
-### Problem 3
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 For the gated SR latch, draw the timing diagram for the following input sequence:
 
 - Initially: Q = 0
@@ -103,7 +123,12 @@ For the gated SR latch, draw the timing diagram for the following input sequence
 - t=6 to t=8: EN=1, S=0, R=1
 - t=8 to t=10: EN=0, S=1, R=1
 
-**Solution:** **Gated SR Latch operation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Gated SR Latch operation:**
 
 Q changes only when EN = 1
 
@@ -133,12 +158,21 @@ Q     _____|‾‾‾‾‾‾‾‾‾|________
           2          6
 ```
 
+
+</div>
+</details>
+
 ---
 
-### Problem 4
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 Design a D latch using an SR latch and additional gates. Explain why the D latch eliminates the invalid state problem.
 
-**Solution:** **D Latch from SR Latch:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**D Latch from SR Latch:**
 
 ```
      ┌──────┐
@@ -188,12 +222,21 @@ When EN = 1:
 
 **Characteristic equation:** Q(next) = D when EN=1, else Q(hold)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 5
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 What is the difference between a latch and a flip-flop? Give an example timing scenario where this difference matters.
 
-**Solution:** **Fundamental Difference:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Fundamental Difference:**
 
 | Property | Latch | Flip-Flop |
 |----------|-------|-----------|
@@ -237,14 +280,23 @@ CLK ──┬──[Element]── Q ──[INV]──┐
 
 **Conclusion:** Flip-flops are essential for synchronous sequential circuits where feedback exists, as they prevent transparency-caused oscillations.
 
+
+</div>
+</details>
+
 ---
 
-## Section B: Flip-Flops (6 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: Flip-Flops (6 problems)</h2>
 
-### Problem 6
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
 Complete the characteristic table and excitation table for a D flip-flop.
 
-**Solution:** **D Flip-Flop Characteristic Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**D Flip-Flop Characteristic Table:**
 
 (What Q becomes for each D input)
 
@@ -272,12 +324,21 @@ Complete the characteristic table and excitation table for a D flip-flop.
 
 This makes D flip-flops the easiest to use in design!
 
+
+</div>
+</details>
+
 ---
 
-### Problem 7
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 Complete the characteristic table and excitation table for a JK flip-flop.
 
-**Solution:** **JK Flip-Flop Characteristic Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**JK Flip-Flop Characteristic Table:**
 
 | J | K | Q(next) | Operation |
 |---|---|---------|-----------|
@@ -304,12 +365,21 @@ Complete the characteristic table and excitation table for a JK flip-flop.
 - Q: 1→0: J can be anything, K must be 1 (reset)
 - Q: 1→1: J can be anything, K must be 0 (don't reset)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
 Complete the characteristic table and excitation table for a T flip-flop.
 
-**Solution:** **T Flip-Flop Characteristic Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**T Flip-Flop Characteristic Table:**
 
 | T | Q(next) | Operation |
 |---|---------|-----------|
@@ -333,9 +403,13 @@ T = 1 when Q needs to change, T = 0 when Q stays same.
 
 **T from JK:** A JK flip-flop with J = K = T becomes a T flip-flop.
 
+
+</div>
+</details>
+
 ---
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
 Draw the timing diagram for a positive-edge-triggered D flip-flop with the following inputs:
 
 Clock: Square wave with period 4 time units
@@ -343,7 +417,12 @@ D: 0 from t=0-3, 1 from t=3-7, 0 from t=7-10
 
 Initial Q = 0
 
-**Solution:** **Clock edges at:** t = 2, 4, 6, 8, 10, ... (rising edges)
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Clock edges at:** t = 2, 4, 6, 8, 10, ... (rising edges)
 
 **Analysis at each rising edge:**
 
@@ -375,12 +454,21 @@ Q     ________|‾‾‾‾‾‾|______
 - At t=4: D=1 (changed at t=3), so Q→1
 - At t=8: D=0 (changed at t=7), so Q→0
 
+
+</div>
+</details>
+
 ---
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
 Convert a D flip-flop to a T flip-flop using external logic.
 
-**Solution:** **T flip-flop behavior:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**T flip-flop behavior:**
 
 - T=0: Q holds
 - T=1: Q toggles
@@ -427,9 +515,13 @@ Q ───┤         │           │
 
 ✓ Matches T flip-flop behavior
 
+
+</div>
+</details>
+
 ---
 
-### Problem 11
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 A JK flip-flop has the following input sequence. Determine Q after each clock pulse.
 
 Initial Q = 0
@@ -439,7 +531,12 @@ Initial Q = 0
 - Pulse 4: J=1, K=1
 - Pulse 5: J=0, K=0
 
-**Solution:** **JK Flip-Flop operation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**JK Flip-Flop operation:**
 
 - J=0, K=0: Hold
 - J=0, K=1: Reset (Q→0)
@@ -459,11 +556,15 @@ Initial Q = 0
 
 **Final Q = 1**
 
+
+</div>
+</details>
+
 ---
 
-## Section C: Timing Parameters (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: Timing Parameters (4 problems)</h2>
 
-### Problem 12
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 A D flip-flop has the following timing parameters:
 
 - Setup time (tsu): 2 ns
@@ -472,7 +573,12 @@ A D flip-flop has the following timing parameters:
 
 If the clock period is 10 ns, what is the maximum combinational logic delay allowed between two flip-flops?
 
-**Solution:** **Timing constraint equation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Timing constraint equation:**
 
 tCQ + tlogic + tsu ≤ Tclk
 
@@ -503,12 +609,21 @@ Total: 3 + 5 + 2 = 10 ns = Tclk ✓
 The new D input must not change too quickly after clock edge.
 This is usually satisfied by tCQ > th (3 ns > 1 ns ✓)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 13
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
 Explain what happens when setup time is violated. What is metastability?
 
-**Solution:** **Setup Time Violation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Setup Time Violation:**
 
 Setup time violation occurs when the D input changes too close to (within tsu of) the clock edge.
 
@@ -549,9 +664,13 @@ Metastability is an unstable intermediate state between logic 0 and logic 1.
 - Design with sufficient timing margin
 - Use faster flip-flops with better metastability characteristics
 
+
+</div>
+</details>
+
 ---
 
-### Problem 14
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
 Two flip-flops are connected with combinational logic between them. Calculate the minimum clock period if:
 
 - FF1: tCQ = 2 ns
@@ -559,7 +678,12 @@ Two flip-flops are connected with combinational logic between them. Calculate th
 - Logic delay: 4 ns (typical), 6 ns (maximum)
 - Clock skew: 0.5 ns
 
-**Solution:** **Setup time constraint (using maximum logic delay):**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Setup time constraint (using maximum logic delay):**
 
 Tclk ≥ tCQ + tlogic(max) + tsu + tskew
 
@@ -591,12 +715,21 @@ FF1 CLK edge → [tCQ=2ns] → Q1 valid →
 With skew: FF2 CLK can be up to 0.5ns early
 ```
 
+
+</div>
+</details>
+
 ---
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 A master-slave flip-flop has an inherent timing issue called "ones catching" or "zeros catching." Explain this problem and how edge-triggered flip-flops solve it.
 
-**Solution:** **Master-Slave Flip-Flop Structure:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Master-Slave Flip-Flop Structure:**
 
 ```
 D → [Master Latch] → [Slave Latch] → Q
@@ -644,11 +777,15 @@ CLK ____|‾‾‾‾|____
 
 **Modern practice:** Use true edge-triggered flip-flops (typically implemented with transmission gates and feedback) to avoid this issue.
 
+
+</div>
+</details>
+
 ---
 
-## Section D: Timing Diagram Analysis (3 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Timing Diagram Analysis (3 problems)</h2>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
 Given the following timing diagram, determine what type of flip-flop is being used and explain your reasoning.
 
 ```
@@ -662,7 +799,12 @@ Q    ____|‾‾‾|_____|‾‾|__
          2    6    8
 ```
 
-**Solution:** **Analysis of transitions:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Analysis of transitions:**
 
 | Clock Edge | D Value | Q Transition |
 |------------|---------|--------------|
@@ -700,9 +842,13 @@ This means at t=4 edge, D was actually still 1 (D went low at exactly t=4, after
 
 **Confirmed: Positive-edge-triggered D flip-flop**
 
+
+</div>
+</details>
+
 ---
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
 Draw the timing diagram for a JK flip-flop (positive-edge-triggered) with:
 
 - Initial Q = 0
@@ -710,7 +856,12 @@ Draw the timing diagram for a JK flip-flop (positive-edge-triggered) with:
 - K: 0 from t=0-4, 1 from t=4-12
 - Clock period: 2 (edges at t=1, 3, 5, 7, 9, 11)
 
-**Solution:** **Clock rising edges at:** t = 1, 3, 5, 7, 9, 11
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Clock rising edges at:** t = 1, 3, 5, 7, 9, 11
 
 **Analysis at each edge:**
 
@@ -739,9 +890,13 @@ Q    ____|‾‾‾‾‾‾‾|______________
         1       5
 ```
 
+
+</div>
+</details>
+
 ---
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 Given a T flip-flop with asynchronous PRESET and CLEAR inputs (both active-low), draw the timing diagram for:
 
 - Initial Q = 0
@@ -750,7 +905,12 @@ Given a T flip-flop with asynchronous PRESET and CLEAR inputs (both active-low),
 - CLEAR: Low from t=5-6 only
 - Clock edges at t=2, 3, 4, 7, 8
 
-**Solution:** **Asynchronous inputs override clock:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Asynchronous inputs override clock:**
 
 - PRESET low → Q = 1 immediately
 - CLEAR low → Q = 0 immediately
@@ -788,11 +948,15 @@ Q      __|‾‾‾|__|‾‾|__________|‾‾|__
        0  1  2  3  4  5      7  8
 ```
 
+
+</div>
+</details>
+
 ---
 
-## Section E: Sequential Circuit Analysis (2 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Sequential Circuit Analysis (2 problems)</h2>
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 Analyze the following circuit. Determine its function.
 
 ```
@@ -808,7 +972,12 @@ CLK ────┤>                    │
                     (Q' feeds back to D)
 ```
 
-**Solution:** **Circuit Analysis:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Circuit Analysis:**
 
 D input is connected to Q' (complement of output)
 
@@ -842,9 +1011,13 @@ Q     ___|‾‾‾‾‾|_____|‾‾‾‾‾|_____|‾‾‾‾‾|_
 
 Q completes one cycle for every two clock cycles.
 
+
+</div>
+</details>
+
 ---
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 Determine the state sequence for the following circuit:
 
 ```
@@ -856,7 +1029,12 @@ Two D flip-flops: FF0 (Q₀) and FF1 (Q₁)
 Initial state: Q₁Q₀ = 00
 ```
 
-**Solution:** **State Transition Analysis:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Transition Analysis:**
 
 Next state equations:
 
@@ -898,9 +1076,16 @@ If starting from any other state, cycles through: 01 → 10 → 11 → 01...
 **Sequence from 00:** 00 → 00 → 00 (stuck)
 **Sequence from 01:** 01 → 10 → 11 → 01 → 10 → 11 → ...
 
+
+</div>
+</details>
+
 ---
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -910,5 +1095,8 @@ If starting from any other state, cycles through: 01 → 10 → 11 → 01...
 | D | Timing Diagrams | 3 |
 | E | Circuit Analysis | 2 |
 | **Total** | | **20** |
+
+
+</div>
 
 </div>
