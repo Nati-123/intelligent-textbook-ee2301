@@ -31,11 +31,17 @@ We will also cover magnitude comparators, which determine whether one binary num
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit introduces medium-scale integration (MSI) combinational logic modules that serve as fundamental building blocks in digital system design. Multiplexers, demultiplexers, encoders, and decoders perform essential data routing and code conversion functions. Students will learn the internal structure and operation of these modules, understand their role in implementing arbitrary Boolean functions, and apply them to practical design problems including memory addressing, data bus management, and code translation.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Combinational Building Blocks
 2. Multiplexer (MUX) Fundamentals
@@ -63,7 +69,11 @@ This unit introduces medium-scale integration (MSI) combinational logic modules 
 24. Magnitude Comparator Design
 25. Cascading Combinational Modules
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -73,9 +83,11 @@ Before studying this unit, students should be familiar with:
 - Shannon expansion theorem (Unit 4)
 - Binary number systems (Unit 1)
 
+</div>
+
 ---
 
-## 8.1 Introduction to Combinational Building Blocks
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.1 Introduction to Combinational Building Blocks</h2>
 
 Digital systems are constructed from a hierarchy of modules, ranging from individual logic gates to complex subsystems. In previous units, we designed circuits directly from Boolean expressions using basic gates. While this approach works for small functions, larger designs demand a higher level of abstraction. **Combinational building blocks** are pre-designed functional units that perform common operations, allowing designers to think in terms of data selection, routing, and code conversion rather than individual gates.
 
@@ -101,7 +113,7 @@ These modules are available as discrete ICs in the 74-series TTL and 4000-series
 
 ---
 
-## 8.2 Multiplexer Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.2 Multiplexer Fundamentals</h2>
 
 A **multiplexer (MUX)** is a data selector that chooses one of several input signals and forwards it to a single output based on select (control) signals. It functions as a digitally controlled multi-position switch: the select inputs determine which data input is connected to the output.
 
@@ -117,7 +129,7 @@ $$Y = \sum_{i=0}^{2^n - 1} m_i \cdot D_i$$
 
 where $m_i$ is the $i$-th minterm of the select inputs.
 
-### 8.2.1 The 2-to-1 Multiplexer
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.1 The 2-to-1 Multiplexer</h3>
 
 The simplest multiplexer has two data inputs ($D_0$, $D_1$), one select input ($S$), and one output ($Y$).
 
@@ -134,7 +146,7 @@ When $S = 0$, the output equals $D_0$. When $S = 1$, the output equals $D_1$.
 
 The gate-level implementation requires one inverter, two AND gates, and one OR gate—a total of 4 gates. In CMOS, a 2:1 MUX can also be implemented efficiently using transmission gates (as discussed in Unit 7), requiring only 4 transistors plus an inverter.
 
-### 8.2.2 The 4-to-1 Multiplexer
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.2 The 4-to-1 Multiplexer</h3>
 
 A 4-to-1 MUX has four data inputs ($D_0$ through $D_3$), two select inputs ($S_1$, $S_0$), and one output.
 
@@ -159,7 +171,7 @@ The gate-level structure consists of:
 
 Total: 7 gates.
 
-### 8.2.3 The 8-to-1 and Larger Multiplexers
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.3 The 8-to-1 and Larger Multiplexers</h3>
 
 An 8-to-1 MUX extends the pattern to eight data inputs ($D_0$ through $D_7$) with three select inputs ($S_2$, $S_1$, $S_0$):
 
@@ -176,9 +188,11 @@ For even larger multiplexers (16-to-1 and beyond), gate-level implementation bec
 | 8:1 | 3 | 8 | 4-input | 74151 |
 | 16:1 | 4 | 16 | 5-input | 74150 |
 
-#### Diagram: Multiplexer Interactive Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Multiplexer Interactive Simulator</h4>
 
-<iframe src="../sims/mux-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/mux-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Multiplexer Interactive Simulator</summary>
@@ -239,11 +253,11 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8.3 Multiplexer Tree Expansion
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.3 Multiplexer Tree Expansion</h2>
 
 When the required MUX size exceeds available components, smaller multiplexers can be cascaded to build larger ones. This technique, called **multiplexer tree expansion**, uses a hierarchical structure where the output of lower-level MUXes feeds the data inputs of higher-level MUXes.
 
-### Building a 16-to-1 MUX from 4-to-1 MUXes
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Building a 16-to-1 MUX from 4-to-1 MUXes</h3>
 
 A 16-to-1 MUX requires 4 select lines ($S_3, S_2, S_1, S_0$). Using 4-to-1 MUXes:
 
@@ -258,7 +272,7 @@ A 16-to-1 MUX requires 4 select lines ($S_3, S_2, S_1, S_0$). Using 4-to-1 MUXes
 
 Total: 5 four-to-1 MUXes implement a 16-to-1 MUX.
 
-### General Tree Construction
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">General Tree Construction</h3>
 
 To build a $2^n$-to-1 MUX from $2^k$-to-1 MUXes:
 
@@ -276,11 +290,11 @@ If the second level itself requires expansion, the process recurses.
 
 ---
 
-## 8.4 Implementing Boolean Functions with Multiplexers
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.4 Implementing Boolean Functions with Multiplexers</h2>
 
 One of the most powerful applications of multiplexers is implementing arbitrary Boolean functions. A $2^n$-to-1 MUX can implement any $n$-variable function by connecting the input variables to the select lines and the truth table output values to the data inputs.
 
-### Direct Implementation (Full-Size MUX)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Direct Implementation (Full-Size MUX)</h3>
 
 For an $n$-variable function, use a $2^n$-to-1 MUX:
 
@@ -302,7 +316,7 @@ Connect $A, B, C$ to $S_2, S_1, S_0$. From the truth table:
 | 1 | 1 | 0 | 1 | $D_6 = 1$ |
 | 1 | 1 | 1 | 1 | $D_7 = 1$ |
 
-### Shannon Expansion Method (Reduced MUX)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Shannon Expansion Method (Reduced MUX)</h3>
 
 A more efficient approach uses an $n$-variable function with a $2^{n-1}$-to-1 MUX. The **Shannon expansion theorem** states:
 
@@ -335,9 +349,11 @@ The data input values follow this logic:
 - If $F = 0$ when $C=0$ and $F = 1$ when $C=1$: connect to $C$
 - If $F = 1$ when $C=0$ and $F = 0$ when $C=1$: connect to $\overline{C}$
 
-#### Diagram: MUX Function Implementation Tool
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: MUX Function Implementation Tool</h4>
 
-<iframe src="../sims/mux-simulator/main.html" width="100%" height="550px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/mux-simulator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Interactive MUX Function Implementation Tool</summary>
@@ -398,7 +414,7 @@ Implementation: p5.js with DOM elements for input
 
 ---
 
-## 8.5 Demultiplexer Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.5 Demultiplexer Fundamentals</h2>
 
 A **demultiplexer (DEMUX)** performs the inverse function of a multiplexer—it routes a single data input to one of several outputs based on select signals. While a MUX is a "many-to-one" selector, a DEMUX is a "one-to-many" distributor.
 
@@ -408,7 +424,7 @@ A 1-to-$2^n$ demultiplexer has:
 - $n$ select inputs ($S_{n-1}, ..., S_1, S_0$)
 - $2^n$ outputs ($Y_0, Y_1, ..., Y_{2^n-1}$)
 
-### 1-to-4 Demultiplexer
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">1-to-4 Demultiplexer</h3>
 
 **Boolean Expressions:**
 
@@ -426,7 +442,7 @@ $$Y_3 = S_1\,S_0 \cdot D$$
 
 All non-selected outputs remain at 0. Only the selected output carries the data signal.
 
-### The DEMUX-Decoder Relationship
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The DEMUX-Decoder Relationship</h3>
 
 Comparing the DEMUX equations above with a 2-to-4 decoder with enable $E$:
 
@@ -440,7 +456,7 @@ These are identical if we substitute $D = E$. This reveals an important equivale
 !!! tip "Practical Consequence"
     IC manufacturers often sell a single chip that can serve as either a decoder or a demultiplexer depending on how the enable/data input is used. The 74138 (3-to-8 decoder) is a common example.
 
-### Applications of Demultiplexers
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Applications of Demultiplexers</h3>
 
 - **Data distribution:** Sending serial data to one of several destinations
 - **Time-division demultiplexing:** Routing time-multiplexed channels to separate outputs
@@ -449,11 +465,11 @@ These are identical if we substitute $D = E$. This reveals an important equivale
 
 ---
 
-## 8.6 Decoder Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.6 Decoder Fundamentals</h2>
 
 A **decoder** converts an $n$-bit binary input code into $2^n$ output lines, activating exactly one output for each input combination. This produces a **one-hot encoding** where only the output corresponding to the binary input value is active.
 
-### 8.6.1 The 2-to-4 Decoder
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.1 The 2-to-4 Decoder</h3>
 
 The simplest useful decoder has two inputs ($A_1$, $A_0$) and four outputs ($Y_0$ through $Y_3$).
 
@@ -475,7 +491,7 @@ Each output is a **minterm** of the input variables. This is the key insight tha
 
 The gate-level implementation requires 2 inverters and 4 two-input AND gates.
 
-### 8.6.2 The 3-to-8 Decoder
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.2 The 3-to-8 Decoder</h3>
 
 A 3-to-8 decoder has three inputs ($A_2$, $A_1$, $A_0$) and eight outputs ($Y_0$ through $Y_7$), generating all eight 3-variable minterms.
 
@@ -485,7 +501,7 @@ The gate-level implementation requires 3 inverters and 8 three-input AND gates.
 
 **Common IC:** The 74138 is a 3-to-8 decoder with three enable inputs ($G_1$, $\overline{G_{2A}}$, $\overline{G_{2B}}$) and active-low outputs.
 
-### 8.6.3 Decoder Enable Inputs
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.3 Decoder Enable Inputs</h3>
 
 Many decoders include **enable** inputs that control whether the decoder is active. When disabled, all outputs go to their inactive state (0 for active-high, 1 for active-low outputs).
 
@@ -504,9 +520,11 @@ Enable inputs serve multiple purposes:
 - **DEMUX operation:** Use the enable as a data input for demultiplexer functionality
 - **Glitch prevention:** Disable outputs during input transitions
 
-#### Diagram: Decoder Interactive Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Decoder Interactive Simulator</h4>
 
-<iframe src="../sims/decoder-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/decoder-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Decoder Interactive Simulator</summary>
@@ -569,11 +587,11 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8.7 Decoder Tree Expansion
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.7 Decoder Tree Expansion</h2>
 
 Just as multiplexers can be cascaded into trees, decoders can be expanded using enable inputs to build larger decoders from smaller ones.
 
-### Building a 4-to-16 Decoder from 3-to-8 Decoders
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Building a 4-to-16 Decoder from 3-to-8 Decoders</h3>
 
 A 4-to-16 decoder requires 4 input bits ($A_3, A_2, A_1, A_0$) and produces 16 outputs ($Y_0$ through $Y_{15}$).
 
@@ -587,7 +605,7 @@ When $A_3 = 0$: the lower decoder is active, producing minterms $m_0$ through $m
 
 When $A_3 = 1$: the upper decoder is active, producing minterms $m_8$ through $m_{15}$. The lower decoder is disabled.
 
-### General Decoder Expansion
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">General Decoder Expansion</h3>
 
 To build a $(n+k)$-to-$2^{n+k}$ decoder from $n$-to-$2^n$ decoders:
 
@@ -603,11 +621,11 @@ To build a $(n+k)$-to-$2^{n+k}$ decoder from $n$-to-$2^n$ decoders:
 
 ---
 
-## 8.8 Implementing Functions with Decoders
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.8 Implementing Functions with Decoders</h2>
 
 Since an $n$-to-$2^n$ decoder generates all $2^n$ minterms of its $n$ input variables, any Boolean function of those variables can be implemented by combining (OR-ing) the appropriate minterm outputs. This is called **minterm generation** and provides a direct, systematic method for function implementation.
 
-### Procedure
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Procedure</h3>
 
 1. Express the function in canonical SOP form: $F = \sum m(...)$
 2. Use an $n$-to-$2^n$ decoder with the function variables as inputs
@@ -619,7 +637,7 @@ $$F = m_1 + m_2 + m_6 + m_7 = Y_1 + Y_2 + Y_6 + Y_7$$
 
 Connect outputs $Y_1$, $Y_2$, $Y_6$, and $Y_7$ to a 4-input OR gate. All other outputs are unused.
 
-### Multiple Function Implementation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Multiple Function Implementation</h3>
 
 A single decoder can implement **multiple functions** of the same variables simultaneously, since all minterms are available. Each function simply uses a different OR gate connected to its respective minterms.
 
@@ -630,7 +648,7 @@ $$F_2 = Y_2 + Y_3 + Y_5 + Y_7$$
 
 Note that minterm $m_3$ ($Y_3$) is shared between both functions—its output wire connects to both OR gates.
 
-### Decoder vs. MUX for Function Implementation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Decoder vs. MUX for Function Implementation</h3>
 
 | Feature | Decoder + OR | MUX |
 |---------|-------------|-----|
@@ -641,11 +659,11 @@ Note that minterm $m_3$ ($Y_3$) is shared between both functions—its output wi
 
 ---
 
-## 8.9 Encoder Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.9 Encoder Fundamentals</h2>
 
 An **encoder** performs the inverse function of a decoder—it converts a set of input lines (typically one-hot) into a compact binary code. If $2^n$ input lines are provided, the encoder produces an $n$-bit binary output representing which input is active.
 
-### Basic 4-to-2 Encoder
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Basic 4-to-2 Encoder</h3>
 
 A 4-to-2 encoder has four inputs ($D_0$ through $D_3$) and two outputs ($Y_1$, $Y_0$).
 
@@ -665,7 +683,7 @@ $$Y_0 = D_1 + D_3$$
 
 The encoder simply generates the binary index of the active input. It is implemented with OR gates—one for each output bit.
 
-### Limitations of Basic Encoders
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Limitations of Basic Encoders</h3>
 
 Basic encoders have two significant limitations:
 
@@ -676,11 +694,11 @@ These limitations motivate the priority encoder.
 
 ---
 
-## 8.10 Priority Encoder
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.10 Priority Encoder</h2>
 
 A **priority encoder** resolves the multiple-active-input problem by assigning priorities to the inputs and encoding only the highest-priority active input. By convention, higher-numbered inputs have higher priority.
 
-### Priority Encoder Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Priority Encoder Operation</h3>
 
 For a 4-to-2 priority encoder:
 
@@ -696,7 +714,7 @@ The **Valid** output ($V$) indicates whether any input is active, solving the "n
 
 The X entries in the truth table indicate "don't care"—once a higher-priority input is found active, lower-priority inputs are ignored.
 
-### 8-to-3 Priority Encoder
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8-to-3 Priority Encoder</h3>
 
 An 8-to-3 priority encoder accepts 8 inputs ($D_0$ through $D_7$) and produces a 3-bit binary code plus a valid flag.
 
@@ -709,9 +727,11 @@ The Boolean expressions for the outputs use don't care conditions extensively, m
 - **Leading-one detection:** Find the position of the most significant 1 bit (used in floating-point normalization)
 - **Keyboard encoding:** Convert key press matrix position to scan code
 
-#### Diagram: Priority Encoder Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Priority Encoder Simulator</h4>
 
-<iframe src="../sims/priority-encoder-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/priority-encoder-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Priority Encoder Simulator</summary>
@@ -771,11 +791,11 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8.11 Code Converters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.11 Code Converters</h2>
 
 **Code converters** translate data from one binary coding scheme to another. These are combinational circuits designed for specific code-to-code translations, implemented using logic derived from the conversion rules.
 
-### 8.11.1 Binary-to-Gray Code Converter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.11.1 Binary-to-Gray Code Converter</h3>
 
 **Gray code** (also called reflected binary code) has the property that successive code words differ in exactly one bit position. This property is valuable in:
 
@@ -815,7 +835,7 @@ Notice that each consecutive Gray code pair differs by exactly one bit—verify 
 
 The circuit implementation requires only $n-1$ XOR gates, making it extremely efficient.
 
-### 8.11.2 Gray-to-Binary Code Converter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.11.2 Gray-to-Binary Code Converter</h3>
 
 The inverse conversion reconstructs binary from Gray code:
 
@@ -824,9 +844,11 @@ $$B_i = B_{i+1} \oplus G_i \quad \text{for } i = n-2, n-3, ..., 0$$
 
 Note the key difference: each binary bit depends on the **previously computed binary bit** (not the input Gray bit), creating a cascaded dependency. This means the Gray-to-binary converter has a ripple structure where the MSB must be computed before the next bit can be determined.
 
-#### Diagram: Binary-Gray Code Converter
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Binary-Gray Code Converter</h4>
 
-<iframe src="../sims/binary-gray-converter/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/binary-gray-converter/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Binary-Gray Code Converter Interactive</summary>
@@ -887,11 +909,11 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8.12 BCD-to-Seven-Segment Decoder
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.12 BCD-to-Seven-Segment Decoder</h2>
 
 A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (representing digits 0–9) into seven outputs that drive the individual segments of a seven-segment LED or LCD display.
 
-### Seven-Segment Display Convention
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Seven-Segment Display Convention</h3>
 
 The seven segments are labeled $a$ through $g$:
 
@@ -920,7 +942,7 @@ Each digit (0–9) requires a specific combination of active segments:
 | 8 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 8 |
 | 9 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 9 |
 
-### Design Using Don't Cares
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Design Using Don't Cares</h3>
 
 BCD inputs 10–15 (1010 through 1111) are invalid and never occur in a properly functioning BCD system. These can be treated as **don't care** conditions for K-map simplification, potentially yielding simpler Boolean expressions for each segment.
 
@@ -939,11 +961,11 @@ Each segment function is simplified independently. The 7447 is a classic BCD-to-
 
 ---
 
-## 8.13 Comparator Circuits
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.13 Comparator Circuits</h2>
 
 **Comparators** determine the magnitude relationship between two binary numbers. They produce outputs indicating whether the first number is greater than, equal to, or less than the second number.
 
-### 1-Bit Comparator
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">1-Bit Comparator</h3>
 
 For two 1-bit inputs $A$ and $B$, the three comparison outputs are:
 
@@ -960,7 +982,7 @@ $$\text{Less: } L = \overline{A}B$$
 
 Note that $G + E + L = 1$ always—exactly one relationship holds for any input pair.
 
-### Magnitude Comparator Design
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Magnitude Comparator Design</h3>
 
 A **magnitude comparator** extends the comparison to multi-bit numbers. For two $n$-bit numbers $A = A_{n-1}...A_1A_0$ and $B = B_{n-1}...B_1B_0$, comparison proceeds from the most significant bit downward.
 
@@ -982,9 +1004,11 @@ $$(A < B) = \overline{A_3}B_3 + x_3 \overline{A_2}B_2 + x_3 x_2 \overline{A_1}B_
 
 The 7485 is a standard 4-bit magnitude comparator IC with cascade inputs for building larger comparators.
 
-#### Diagram: Magnitude Comparator Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Magnitude Comparator Simulator</h4>
 
-<iframe src="../sims/magnitude-comparator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/magnitude-comparator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Magnitude Comparator Interactive Simulator</summary>
@@ -1047,22 +1071,22 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 8.14 Cascading Combinational Modules
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.14 Cascading Combinational Modules</h2>
 
 Real-world designs frequently require functionality beyond what a single MSI module provides. **Cascading** connects multiple modules to handle wider data paths, more inputs, or combined functions.
 
-### Cascading Multiplexers
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Multiplexers</h3>
 
 As covered in Section 8.3, multiplexer trees expand MUX size. The key principle: lower-level MUXes handle the least significant select bits, and upper-level MUXes handle the most significant bits.
 
-### Cascading Decoders
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Decoders</h3>
 
 Decoder expansion uses enable inputs to create larger address spaces:
 
 - Two 3-to-8 decoders → one 4-to-16 decoder (using MSB as enable selector)
 - Four 3-to-8 decoders + one 2-to-4 decoder → one 5-to-32 decoder
 
-### Cascading Magnitude Comparators
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Magnitude Comparators</h3>
 
 For comparing numbers wider than a single comparator can handle, cascade inputs propagate the comparison result from less significant stages to more significant stages.
 
@@ -1074,7 +1098,7 @@ For comparing numbers wider than a single comparator can handle, cascade inputs 
 
 The upper comparator first checks its own bits. If they are equal ($A_{7..4} = B_{7..4}$), it passes through the cascade inputs (the lower comparator's result). If the upper bits differ, the cascade inputs are ignored.
 
-### Cascading Priority Encoders
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Priority Encoders</h3>
 
 Multiple priority encoders cascade for wider input ranges. The 74148 includes cascade outputs (GS and EO) that facilitate expansion:
 
@@ -1095,7 +1119,9 @@ Using these signals, a higher-level encoder determines which group contains the 
 
 ---
 
-## 8.15 Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.15 Summary and Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 This unit covered the essential MSI combinational building blocks that form the foundation for practical digital system design:
 
@@ -1131,6 +1157,8 @@ This unit covered the essential MSI combinational building blocks that form the 
 
 - **Cascading** connects multiple modules for wider data paths, using tree structures, enable chaining, or cascade inputs depending on the module type.
 
+</div>
+
 ??? question "Self-Check: Why can a 4-to-1 MUX implement a 3-variable function, not just a 2-variable function?"
     Shannon expansion allows one variable to be "absorbed" into the data inputs rather than requiring a select line. The 4-to-1 MUX uses 2 variables as select lines, and the third variable appears at the data inputs as 0, 1, the variable itself, or its complement. This effectively evaluates the function for both values of the third variable and selects the correct result.
 
@@ -1142,11 +1170,13 @@ This unit covered the essential MSI combinational building blocks that form the 
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through implementing a Boolean function using a 4:1 multiplexer:
 
-<iframe src="../sims/mux-function-walkthrough/main.html" width="100%" height="600px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/mux-function-walkthrough/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
