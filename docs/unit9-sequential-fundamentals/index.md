@@ -31,11 +31,17 @@ We close by examining critical timing parameters: setup time, hold time, and clo
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit introduces sequential logic circuits, which differ fundamentally from combinational circuits by incorporating memory. Sequential circuits have outputs that depend not only on current inputs but also on the history of past inputs—they remember their state. Students will learn the operation of basic memory elements including latches and flip-flops, understand the critical role of clock signals in synchronous design, analyze timing requirements, and interpret timing diagrams. These concepts form the foundation for registers, counters, and finite state machines covered in the next unit.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Combinational vs Sequential Logic
 2. Memory in Digital Circuits
@@ -63,7 +69,11 @@ This unit introduces sequential logic circuits, which differ fundamentally from 
 24. Flip-Flop Excitation Tables
 25. Timing Diagram Analysis
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -72,9 +82,11 @@ Before studying this unit, students should be familiar with:
 - Propagation delay concepts (Unit 7)
 - Signal transitions and timing (Unit 7)
 
+</div>
+
 ---
 
-## 9.1 Combinational vs Sequential Logic
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.1 Combinational vs Sequential Logic</h2>
 
 Every circuit studied in Units 1 through 8 was **combinational**—the outputs at any instant depend exclusively on the values of the inputs at that same instant. Change the inputs, wait for propagation delay, and the outputs settle to a unique value determined solely by the current input combination. Combinational circuits have no concept of "before" or "after"; they simply evaluate a Boolean function.
 
@@ -103,11 +115,11 @@ This unit focuses primarily on synchronous sequential circuits, which dominate m
 
 ---
 
-## 9.2 Memory in Digital Circuits
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.2 Memory in Digital Circuits</h2>
 
 The concept of memory in digital circuits reduces to a deceptively simple question: how can a circuit "remember" a binary value after the input that produced it has been removed? The answer lies in **feedback**.
 
-### 9.2.1 Feedback and Bistable Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.2.1 Feedback and Bistable Operation</h3>
 
 When the output of a logic gate is connected back to one of its inputs, the circuit can sustain a value without any external input—it feeds its own output back to maintain its state. The simplest example is two inverters connected in a loop:
 
@@ -130,11 +142,11 @@ The bistable element demonstrates that feedback creates memory, but it lacks any
 
 ---
 
-## 9.3 SR Latch with NOR Gates
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.3 SR Latch with NOR Gates</h2>
 
 The **SR (Set-Reset) latch** is the most fundamental controllable memory element. It extends the bistable concept by adding input signals that force the circuit into a desired state.
 
-### 9.3.1 NOR Gate Implementation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.3.1 NOR Gate Implementation</h3>
 
 Two cross-coupled NOR gates form the classic SR latch. Each gate's output feeds back to an input of the other gate, creating the bistable feedback loop, while the remaining inputs serve as Set and Reset controls.
 
@@ -150,7 +162,7 @@ Two cross-coupled NOR gates form the classic SR latch. Each gate's output feeds 
 
 The operation is governed by the NOR function. When $S = 1$, the NOR gate producing $Q'$ is forced to output 0 (since any 1 input to a NOR makes the output 0), and the feedback drives $Q$ to 1. When $R = 1$, the opposite occurs.
 
-#### SR Latch Truth Table (NOR Implementation)
+<h4 style="color: #5A3EED; font-weight: 600;">SR Latch Truth Table (NOR Implementation)</h4>
 
 | S | R | $Q_{next}$ | $Q'_{next}$ | Operation |
 |---|---|-----------|-------------|-----------|
@@ -159,17 +171,19 @@ The operation is governed by the NOR function. When $S = 1$, the NOR gate produc
 | 1 | 0 | 1 | 0 | **Set** ($Q \leftarrow 1$) |
 | 1 | 1 | 0 | 0 | **Invalid** |
 
-### 9.3.2 The Invalid State Problem
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.3.2 The Invalid State Problem</h3>
 
 When $S = R = 1$, both NOR gate outputs are forced to 0, so $Q = Q' = 0$. This violates the fundamental requirement that $Q$ and $Q'$ be complementary. Worse, when both inputs simultaneously return to 0, the final state depends on which input drops last—or if they change at exactly the same time, the circuit may oscillate or enter a metastable state.
 
 The constraint $S \cdot R = 0$ (S and R should never be simultaneously 1) is a design rule that must be enforced when using SR latches.
 
-#### MicroSim: SR Latch Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: SR Latch Simulator</h4>
 
-<iframe src="../sims/sr-latch-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/sr-latch-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: SR Latch NOR Gate Implementation
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: SR Latch NOR Gate Implementation</h4>
 
 <details markdown="1">
 <summary>SR Latch NOR Gate Implementation</summary>
@@ -211,13 +225,13 @@ Implementation: p5.js
 
 ---
 
-## 9.4 SR Latch with NAND Gates
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.4 SR Latch with NAND Gates</h2>
 
 The SR latch can also be constructed using NAND gates instead of NOR gates. The key difference is that NAND-based SR latches use **active-low** inputs, conventionally written as $\overline{S}$ and $\overline{R}$ (or $S'$ and $R'$).
 
 In the NAND implementation, the inputs are inverted in meaning: a 0 on $\overline{S}$ sets the latch, and a 0 on $\overline{R}$ resets it. The quiescent (hold) state requires both inputs to be 1.
 
-#### SR Latch Truth Table (NAND Implementation, Active-Low Inputs)
+<h4 style="color: #5A3EED; font-weight: 600;">SR Latch Truth Table (NAND Implementation, Active-Low Inputs)</h4>
 
 | $\overline{S}$ | $\overline{R}$ | $Q_{next}$ | Operation |
 |----------------|----------------|-----------|-----------|
@@ -242,11 +256,11 @@ The NAND implementation is widely used in practice because NAND gates are the mo
 
 ---
 
-## 9.5 Gated SR Latch
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.5 Gated SR Latch</h2>
 
 The basic SR latch responds to its inputs at all times, which means any glitch or transient on S or R can inadvertently change the stored state. The **gated SR latch** (also called the SR latch with enable or clocked SR latch) solves this problem by adding an **enable** (EN) control signal.
 
-#### Circuit Structure
+<h4 style="color: #5A3EED; font-weight: 600;">Circuit Structure</h4>
 
 The enable signal is ANDed with each input before reaching the core SR latch:
 
@@ -277,7 +291,7 @@ The gated SR latch represents an important step toward synchronous design: the e
 
 ---
 
-## 9.6 D Latch (Transparent Latch)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.6 D Latch (Transparent Latch)</h2>
 
 The **D latch** (data latch) is a clever modification of the gated SR latch that completely eliminates the invalid state problem. The key insight is to derive the S and R signals from a single data input D:
 
@@ -287,7 +301,7 @@ $R = D' = \overline{D}$
 
 Since $S$ and $R$ are always complementary, the condition $S = R = 1$ can never occur. The D latch has only two modes of operation:
 
-#### D Latch Truth Table
+<h4 style="color: #5A3EED; font-weight: 600;">D Latch Truth Table</h4>
 
 | Enable | D | $Q_{next}$ | Operation |
 |--------|---|-----------|-----------|
@@ -297,7 +311,7 @@ Since $S$ and $R$ are always complementary, the condition $S = R = 1$ can never 
 
 When $EN = 1$, the latch is **transparent**: the output $Q$ tracks the input $D$ in real time, like a buffer with a switch. When $EN$ transitions from 1 to 0, the last value of $D$ is "captured" and held at $Q$ until the latch is enabled again.
 
-#### Characteristic Equation
+<h4 style="color: #5A3EED; font-weight: 600;">Characteristic Equation</h4>
 
 $Q_{next} = EN \cdot D + EN' \cdot Q$
 
@@ -311,7 +325,7 @@ where:
 !!! warning "The Transparency Problem"
     While the D latch is enabled, any change on $D$ immediately propagates to $Q$. In a synchronous system where the enable is driven by a clock, this means the output can change multiple times during the high phase of the clock. If the latch output feeds back through combinational logic to its own input, a **race condition** occurs: the output changes, causing the input to change, causing the output to change again—all within the same clock period. This problem motivates the development of **edge-triggered flip-flops**.
 
-### 9.6.1 Level-Sensitive vs Edge-Triggered Behavior
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.6.1 Level-Sensitive vs Edge-Triggered Behavior</h3>
 
 The distinction between **level-sensitive** and **edge-triggered** devices is fundamental to understanding sequential circuit design:
 
@@ -327,18 +341,18 @@ Edge-triggered devices are strongly preferred in synchronous design because they
 
 ---
 
-## 9.7 Clock Signals and Timing
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.7 Clock Signals and Timing</h2>
 
 In synchronous sequential circuits, a periodic **clock signal** orchestrates all state changes, ensuring that every flip-flop in the system updates at the same well-defined instants. The clock is the heartbeat of a digital system.
 
-### 9.7.1 Clock Signal Characteristics
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.7.1 Clock Signal Characteristics</h3>
 
 A clock signal is an idealized square wave that alternates between logic 0 and logic 1. Its key parameters are:
 
 - **Period ($T$):** The time for one complete cycle (high phase + low phase)
 - **Frequency ($f$):** The number of cycles per second
 
-#### Clock Frequency
+<h4 style="color: #5A3EED; font-weight: 600;">Clock Frequency</h4>
 
 $f = \frac{1}{T}$
 
@@ -357,7 +371,7 @@ where:
 | Fall time | $t_f$ | 0.1 – 1 ns |
 | Duty cycle | — | 40% – 60% |
 
-### 9.7.2 Rising Edge and Falling Edge
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.7.2 Rising Edge and Falling Edge</h3>
 
 The critical moments in a synchronous system are the **clock edges**—the transitions between logic levels:
 
@@ -366,7 +380,7 @@ The critical moments in a synchronous system are the **clock edges**—the trans
 
 Most modern sequential circuits are **positive-edge-triggered**, meaning state changes occur at rising clock edges. Some designs use falling edges, and a few specialized circuits use both edges (dual-edge triggering).
 
-#### Diagram: Clock Signal Terminology
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Clock Signal Terminology</h4>
 
 <details markdown="1">
 <summary>Clock Signal Waveform with Labeled Features</summary>
@@ -398,11 +412,11 @@ Implementation: p5.js or SVG
 
 ---
 
-## 9.8 Edge-Triggered D Flip-Flop
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.8 Edge-Triggered D Flip-Flop</h2>
 
 The **D flip-flop** is the workhorse of synchronous digital design. It solves the transparency problem of the D latch by sampling the D input only at the active clock edge, ignoring all input changes at other times.
 
-### 9.8.1 D Flip-Flop Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.8.1 D Flip-Flop Operation</h3>
 
 A **positive-edge-triggered D flip-flop** operates as follows:
 
@@ -411,7 +425,7 @@ A **positive-edge-triggered D flip-flop** operates as follows:
 3. $Q$ holds this value regardless of any subsequent changes on $D$
 4. The process repeats at the next rising clock edge
 
-#### D Flip-Flop Truth Table
+<h4 style="color: #5A3EED; font-weight: 600;">D Flip-Flop Truth Table</h4>
 
 | Clock | D | $Q_{next}$ | Operation |
 |-------|---|-----------|-----------|
@@ -419,7 +433,7 @@ A **positive-edge-triggered D flip-flop** operates as follows:
 | Rising edge ($\uparrow$) | 1 | 1 | **Load 1** |
 | Not rising edge | X | $Q$ | **Hold** (no change) |
 
-#### D Flip-Flop Characteristic Equation
+<h4 style="color: #5A3EED; font-weight: 600;">D Flip-Flop Characteristic Equation</h4>
 
 $Q_{next} = D$
 
@@ -430,11 +444,13 @@ where:
 
 This equation is evaluated only at the active clock edge. At all other times, $Q$ retains its previous value.
 
-#### MicroSim: D Flip-Flop Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: D Flip-Flop Simulator</h4>
 
-<iframe src="../sims/d-flipflop-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/d-flipflop-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-### 9.8.2 Master-Slave Flip-Flop Construction
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.8.2 Master-Slave Flip-Flop Construction</h3>
 
 The most common method for constructing an edge-triggered flip-flop uses two D latches in a **master-slave** configuration. The master latch and the slave latch have opposite enable polarities, ensuring that only one latch is transparent at any given time.
 
@@ -458,7 +474,7 @@ The net effect is that $D$ is sampled once per clock cycle, precisely at the ris
 | Rising edge | Closes (captures D) | Opens (passes master to Q) | Q updates to captured D value |
 | HIGH | Closed (holds value) | Transparent (but stable input) | Q remains stable |
 
-#### Diagram: Master-Slave D Flip-Flop Internal Architecture
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Master-Slave D Flip-Flop Internal Architecture</h4>
 
 <details markdown="1">
 <summary>Master-Slave D Flip-Flop Internal Architecture</summary>
@@ -500,15 +516,15 @@ Implementation: p5.js
 
 ---
 
-## 9.9 JK Flip-Flop
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.9 JK Flip-Flop</h2>
 
 The **JK flip-flop** is a versatile memory element that extends the SR flip-flop by defining useful behavior for the previously invalid input combination. Where the SR flip-flop prohibits $S = R = 1$, the JK flip-flop interprets $J = K = 1$ as a **toggle** command.
 
-### 9.9.1 JK Flip-Flop Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.9.1 JK Flip-Flop Operation</h3>
 
 The JK flip-flop has two data inputs, $J$ (analogous to Set) and $K$ (analogous to Reset), plus a clock input. It is edge-triggered.
 
-#### JK Flip-Flop Truth Table
+<h4 style="color: #5A3EED; font-weight: 600;">JK Flip-Flop Truth Table</h4>
 
 | J | K | $Q_{next}$ | Operation |
 |---|---|-----------|-----------|
@@ -519,7 +535,7 @@ The JK flip-flop has two data inputs, $J$ (analogous to Set) and $K$ (analogous 
 
 The toggle mode ($J = K = 1$) inverts the current state at each active clock edge, making the JK flip-flop particularly useful for building counters and frequency dividers.
 
-#### JK Flip-Flop Characteristic Equation
+<h4 style="color: #5A3EED; font-weight: 600;">JK Flip-Flop Characteristic Equation</h4>
 
 $Q_{next} = JQ' + K'Q$
 
@@ -533,11 +549,13 @@ where:
 
 This equation can be derived from the truth table using a Karnaugh map with $J$, $K$, and $Q$ as variables.
 
-#### MicroSim: JK Flip-Flop Simulator
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: JK Flip-Flop Simulator</h4>
 
-<iframe src="../sims/jk-flipflop-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/jk-flipflop-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-### 9.9.2 JK Flip-Flop from D Flip-Flop
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.9.2 JK Flip-Flop from D Flip-Flop</h3>
 
 A JK flip-flop can be constructed from a D flip-flop by adding combinational logic at its input:
 
@@ -547,20 +565,20 @@ This means the D input is computed from J, K, and the current state Q using the 
 
 ---
 
-## 9.10 T Flip-Flop
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.10 T Flip-Flop</h2>
 
 The **T (Toggle) flip-flop** is the simplest flip-flop type, with a single input $T$ that controls whether the state changes at each clock edge.
 
-### 9.10.1 T Flip-Flop Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.10.1 T Flip-Flop Operation</h3>
 
-#### T Flip-Flop Truth Table
+<h4 style="color: #5A3EED; font-weight: 600;">T Flip-Flop Truth Table</h4>
 
 | T | $Q_{next}$ | Operation |
 |---|-----------|-----------|
 | 0 | $Q$ | **Hold** (no change) |
 | 1 | $Q'$ | **Toggle** (complement) |
 
-#### T Flip-Flop Characteristic Equation
+<h4 style="color: #5A3EED; font-weight: 600;">T Flip-Flop Characteristic Equation</h4>
 
 $Q_{next} = T \oplus Q = TQ' + T'Q$
 
@@ -570,7 +588,7 @@ where:
 - $Q$ is the current state
 - $\oplus$ denotes the XOR operation
 
-### 9.10.2 Building a T Flip-Flop
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.10.2 Building a T Flip-Flop</h3>
 
 The T flip-flop is not typically manufactured as a standalone device. Instead, it is derived from other flip-flop types:
 
@@ -582,7 +600,7 @@ The T flip-flop is not typically manufactured as a standalone device. Instead, i
 
 ---
 
-## 9.11 Comparison of Flip-Flop Types
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.11 Comparison of Flip-Flop Types</h2>
 
 Understanding the relationships between flip-flop types is essential for selecting the right element for a given application.
 
@@ -595,7 +613,7 @@ Understanding the relationships between flip-flop types is essential for selecti
 
 Each flip-flop type can be constructed from any other type by adding appropriate input logic. The D flip-flop is the most commonly used in modern VLSI design because its simple characteristic equation ($Q_{next} = D$) makes timing analysis straightforward and synthesis tools efficient.
 
-#### Diagram: Flip-Flop Family Relationships
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Flip-Flop Family Relationships</h4>
 
 <details markdown="1">
 <summary>Flip-Flop Family Relationships</summary>
@@ -638,19 +656,19 @@ Implementation: HTML/CSS/JavaScript with SVG or p5.js
 
 ---
 
-## 9.12 Flip-Flop Timing Parameters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.12 Flip-Flop Timing Parameters</h2>
 
 Correct operation of edge-triggered flip-flops requires that input signals satisfy strict timing constraints relative to the clock edge. Violating these constraints can produce incorrect or indeterminate outputs.
 
-### 9.12.1 Setup Time ($t_{setup}$)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.12.1 Setup Time ($t_{setup}$)</h3>
 
 The **setup time** is the minimum duration that the D input must be stable **before** the active clock edge arrives. If D changes too close to the clock edge, the flip-flop may not correctly capture the intended value.
 
-### 9.12.2 Hold Time ($t_{hold}$)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.12.2 Hold Time ($t_{hold}$)</h3>
 
 The **hold time** is the minimum duration that the D input must remain stable **after** the active clock edge. Even though the sampling occurs at the edge, the internal circuitry needs a brief period to complete the capture process.
 
-### 9.12.3 Clock-to-Q Delay ($t_{cq}$)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.12.3 Clock-to-Q Delay ($t_{cq}$)</h3>
 
 The **clock-to-Q delay** (also called propagation delay) is the time elapsed from the active clock edge until the output $Q$ settles to its new valid value.
 
@@ -663,7 +681,7 @@ The **clock-to-Q delay** (also called propagation delay) is the time elapsed fro
 
 These three parameters define the **timing window** around each clock edge during which input data must be stable. The setup and hold times together form the **aperture** of the flip-flop—the window during which the input is being sampled.
 
-#### Maximum Clock Frequency
+<h4 style="color: #5A3EED; font-weight: 600;">Maximum Clock Frequency</h4>
 
 The maximum clock frequency of a synchronous circuit is determined by the slowest path between any two flip-flops:
 
@@ -679,7 +697,7 @@ where:
 - $t_{setup}$ is the setup time of the destination flip-flop
 - $f_{max}$ is the maximum operating frequency
 
-#### Diagram: Timing Parameter Visualization
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Timing Parameter Visualization</h4>
 
 <details markdown="1">
 <summary>Flip-Flop Timing Parameters Diagram</summary>
@@ -718,11 +736,11 @@ Implementation: p5.js with interactive time scale zoom
 
 ---
 
-## 9.13 Metastability
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.13 Metastability</h2>
 
 When the setup or hold time requirements are violated, the flip-flop may enter a **metastable** state—an unstable condition where the output voltage sits between valid logic 0 and logic 1 levels for an unpredictable duration before eventually resolving to one or the other.
 
-### 9.13.1 Understanding Metastability
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.13.1 Understanding Metastability</h3>
 
 Recall the bistable element from Section 9.2: two stable states and one unstable equilibrium point. Metastability occurs when a timing violation causes the flip-flop's internal node voltages to land near this unstable equilibrium. Like a ball balanced on top of a hill, the circuit will eventually fall to one side—but the time it takes to resolve is theoretically unbounded, following an exponential probability distribution.
 
@@ -733,9 +751,9 @@ Recall the bistable element from Section 9.2: two stable states and one unstable
 - Downstream circuits receiving a metastable signal may interpret it as 0 or 1 unpredictably, or may themselves become metastable
 - The probability of remaining metastable decreases exponentially with time
 
-### 9.13.2 Mean Time Between Failures
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.13.2 Mean Time Between Failures</h3>
 
-#### MTBF Due to Metastability
+<h4 style="color: #5A3EED; font-weight: 600;">MTBF Due to Metastability</h4>
 
 $MTBF = \frac{e^{t_r / \tau}}{T_0 \cdot f_{clk} \cdot f_{data}}$
 
@@ -748,7 +766,7 @@ where:
 - $f_{clk}$ is the clock frequency
 - $f_{data}$ is the rate of asynchronous data transitions
 
-### 9.13.3 Synchronizer Circuits
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.13.3 Synchronizer Circuits</h3>
 
 In practice, metastability is most likely to occur at the boundary between **clock domains** or when sampling **asynchronous** external signals. The standard mitigation technique is a **synchronizer chain**—two or more flip-flops in series, all clocked by the destination domain clock. The first flip-flop may go metastable, but it has an entire clock period to resolve before the second flip-flop samples it.
 
@@ -765,11 +783,11 @@ Adding more flip-flop stages increases the resolution time exponentially, reduci
 
 ---
 
-## 9.14 Asynchronous Set and Reset
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.14 Asynchronous Set and Reset</h2>
 
 Most practical flip-flops include **asynchronous** control inputs that override normal clocked operation. These inputs act immediately, regardless of the clock state.
 
-### 9.14.1 Preset and Clear
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.14.1 Preset and Clear</h3>
 
 | Input | Common Names | Effect | Priority |
 |-------|-------------|--------|----------|
@@ -781,7 +799,7 @@ These inputs are typically **active-low**, indicated by an overbar or bubble on 
 - $\overline{PRE}$: When driven to 0, forces $Q = 1$
 - $\overline{CLR}$: When driven to 0, forces $Q = 0$
 
-### 9.14.2 Applications
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.14.2 Applications</h3>
 
 Asynchronous inputs serve critical functions in digital systems:
 
@@ -793,7 +811,7 @@ Asynchronous inputs serve critical functions in digital systems:
 !!! note "Naming Convention"
     Active-low asynchronous inputs are standard in most IC families. A flip-flop with both preset and clear will typically show: $\overline{PRE}$ and $\overline{CLR}$ (or $\overline{SET}$ and $\overline{RST}$). Both should not be asserted simultaneously.
 
-### 9.14.3 D Flip-Flop with Asynchronous Controls
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.14.3 D Flip-Flop with Asynchronous Controls</h3>
 
 A complete D flip-flop with asynchronous preset and clear has the following priority:
 
@@ -812,11 +830,11 @@ A complete D flip-flop with asynchronous preset and clear has the following prio
 
 ---
 
-## 9.15 Flip-Flop Characteristic Tables
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.15 Flip-Flop Characteristic Tables</h2>
 
 **Characteristic tables** (also called function tables or truth tables) define the next state of a flip-flop based on its current inputs and, for some types, the current state. These tables describe the flip-flop's behavior from the perspective of "given these inputs, what will the output be?"
 
-### 9.15.1 D Flip-Flop Characteristic Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.15.1 D Flip-Flop Characteristic Table</h3>
 
 | D | $Q_{next}$ |
 |---|-----------|
@@ -825,7 +843,7 @@ A complete D flip-flop with asynchronous preset and clear has the following prio
 
 The D flip-flop is the simplest: the next state always equals the D input.
 
-### 9.15.2 JK Flip-Flop Characteristic Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.15.2 JK Flip-Flop Characteristic Table</h3>
 
 | J | K | $Q_{next}$ |
 |---|---|-----------|
@@ -834,14 +852,14 @@ The D flip-flop is the simplest: the next state always equals the D input.
 | 1 | 0 | 1 (set) |
 | 1 | 1 | $Q'$ (toggle) |
 
-### 9.15.3 T Flip-Flop Characteristic Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.15.3 T Flip-Flop Characteristic Table</h3>
 
 | T | $Q_{next}$ |
 |---|-----------|
 | 0 | $Q$ (hold) |
 | 1 | $Q'$ (toggle) |
 
-### 9.15.4 SR Flip-Flop Characteristic Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.15.4 SR Flip-Flop Characteristic Table</h3>
 
 | S | R | $Q_{next}$ |
 |---|---|-----------|
@@ -852,11 +870,11 @@ The D flip-flop is the simplest: the next state always equals the D input.
 
 ---
 
-## 9.16 Flip-Flop Excitation Tables
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.16 Flip-Flop Excitation Tables</h2>
 
 **Excitation tables** are the inverse of characteristic tables. Rather than asking "given these inputs, what is the next state?", they ask "given the current state and desired next state, what inputs are required?" Excitation tables are indispensable for sequential circuit design (covered in Unit 10), where the designer knows the desired state transitions and must determine the flip-flop input equations.
 
-### 9.16.1 D Flip-Flop Excitation Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.16.1 D Flip-Flop Excitation Table</h3>
 
 | $Q$ | $Q_{next}$ | D |
 |-----|-----------|---|
@@ -867,7 +885,7 @@ The D flip-flop is the simplest: the next state always equals the D input.
 
 For the D flip-flop, the excitation table is trivial: $D = Q_{next}$. Whatever state you want next, just set D to that value.
 
-### 9.16.2 JK Flip-Flop Excitation Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.16.2 JK Flip-Flop Excitation Table</h3>
 
 | $Q$ | $Q_{next}$ | J | K |
 |-----|-----------|---|---|
@@ -878,7 +896,7 @@ For the D flip-flop, the excitation table is trivial: $D = Q_{next}$. Whatever s
 
 The **don't care** (X) entries in the JK excitation table are powerful. For example, to transition from $Q = 0$ to $Q_{next} = 0$, $J$ must be 0 (to avoid setting), but $K$ can be either 0 (hold) or 1 (reset—but Q is already 0, so reset has no additional effect). These don't cares provide additional freedom in minimizing the input equations during state machine design.
 
-### 9.16.3 T Flip-Flop Excitation Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.16.3 T Flip-Flop Excitation Table</h3>
 
 | $Q$ | $Q_{next}$ | T |
 |-----|-----------|---|
@@ -889,7 +907,7 @@ The **don't care** (X) entries in the JK excitation table are powerful. For exam
 
 The pattern is clear: $T = Q \oplus Q_{next}$. Toggle (T=1) when the state needs to change, hold (T=0) when it stays the same.
 
-### 9.16.4 SR Flip-Flop Excitation Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.16.4 SR Flip-Flop Excitation Table</h3>
 
 | $Q$ | $Q_{next}$ | S | R |
 |-----|-----------|---|---|
@@ -898,7 +916,7 @@ The pattern is clear: $T = Q \oplus Q_{next}$. Toggle (T=1) when the state needs
 | 1 | 0 | 0 | 1 |
 | 1 | 1 | X | 0 |
 
-#### Diagram: Characteristic vs Excitation Table Interactive Explorer
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Characteristic vs Excitation Table Interactive Explorer</h4>
 
 <details markdown="1">
 <summary>Characteristic vs Excitation Table Interactive Explorer</summary>
@@ -942,11 +960,11 @@ Implementation: HTML/CSS/JavaScript
 
 ---
 
-## 9.17 Timing Diagram Analysis
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.17 Timing Diagram Analysis</h2>
 
 **Timing diagrams** are graphical representations of signal values over time and are the primary tool for understanding, verifying, and debugging sequential circuit behavior. Reading and constructing timing diagrams is an essential skill for digital designers.
 
-### 9.17.1 Reading Timing Diagrams
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.17.1 Reading Timing Diagrams</h3>
 
 A timing diagram displays multiple signals on a common time axis, with each signal shown as a waveform alternating between logic 0 and logic 1. The procedure for analyzing a timing diagram with D flip-flops:
 
@@ -956,7 +974,7 @@ A timing diagram displays multiple signals on a common time axis, with each sign
 4. **Draw the Q transition** occurring after a $t_{cq}$ delay from the clock edge
 5. Repeat for each clock edge
 
-### 9.17.2 Timing Diagram Analysis for Different Flip-Flop Types
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.17.2 Timing Diagram Analysis for Different Flip-Flop Types</h3>
 
 For JK flip-flops, the process requires knowing both the current state and inputs:
 
@@ -974,7 +992,7 @@ For T flip-flops:
 2. If $T = 0$, Q holds. If $T = 1$, Q toggles.
 3. Draw Q transition after $t_{cq}$
 
-### 9.17.3 Common Timing Diagram Patterns
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">9.17.3 Common Timing Diagram Patterns</h3>
 
 | Pattern | Description | Flip-Flop Type |
 |---------|-------------|---------------|
@@ -983,11 +1001,13 @@ For T flip-flops:
 | Shift register | Data shifts one position per clock | Chain of D flip-flops |
 | Up counter | Binary count increments each clock | Chain of T flip-flops |
 
-#### MicroSim: Timing Diagram Analyzer
+<h4 style="color: #5A3EED; font-weight: 600;">MicroSim: Timing Diagram Analyzer</h4>
 
-<iframe src="../sims/timing-diagram-analyzer/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/timing-diagram-analyzer/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-#### Diagram: Interactive Timing Diagram Practice Tool
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Interactive Timing Diagram Practice Tool</h4>
 
 <details markdown="1">
 <summary>Interactive Timing Diagram Practice Tool</summary>
@@ -1029,7 +1049,9 @@ Implementation: p5.js
 
 ---
 
-## 9.18 Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.18 Summary and Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 This unit established the fundamental principles of sequential logic, which form the basis for all digital systems with memory:
 
@@ -1065,12 +1087,16 @@ This unit established the fundamental principles of sequential logic, which form
 
 These memory elements are the building blocks for registers, counters, and finite state machines explored in the next unit.
 
+</div>
+
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through a D flip-flop timing diagram trace with clock edge analysis:
 
-<iframe src="../sims/flipflop-timing-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/flipflop-timing-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 </div>
