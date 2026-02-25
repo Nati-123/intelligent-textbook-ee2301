@@ -31,11 +31,17 @@ Finally, testbenches let you generate stimulus for your design and verify correc
 
 </details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary</h2>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<p style="color: #333; line-height: 1.85; font-size: 1.02rem; margin: 0;">
 This unit introduces VHDL (VHSIC Hardware Description Language) as a formal method for describing, simulating, and synthesizing digital circuits. Rather than drawing schematics, designers write VHDL code that precisely specifies circuit behavior and structure, enabling automated synthesis into real hardware. Students will learn the fundamental elements of VHDL—entities, architectures, signals, data types, and concurrent/sequential statements—and apply them to implement the combinational and sequential circuits studied in Units 1 through 10. The unit emphasizes the critical distinction between hardware description (where all statements execute concurrently) and software programming (where statements execute sequentially), helping students develop the mindset needed for effective hardware design.
+</p>
+</div>
 
-## Concepts Covered
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Concepts Covered</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
 1. Why Hardware Description Languages
 2. VHDL History and Standards
@@ -68,7 +74,11 @@ This unit introduces VHDL (VHSIC Hardware Description Language) as a formal meth
 29. Simulation and Waveform Analysis
 30. Synthesis vs Simulation
 
-## Prerequisites
+</div>
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -77,9 +87,11 @@ Before studying this unit, students should be familiar with:
 - Sequential circuit design including flip-flops, registers, counters, FSMs (Units 9-10)
 - Programmable logic device concepts, especially FPGAs (Unit 11)
 
+</div>
+
 ---
 
-## 12.1 Why Hardware Description Languages
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.1 Why Hardware Description Languages</h2>
 
 Throughout Units 1-10, digital circuits were designed using truth tables, Boolean equations, K-maps, and hand-drawn logic diagrams. This approach works well for small circuits—a 4-bit adder, a simple state machine—but becomes impractical for modern digital systems containing millions of gates.
 
@@ -104,7 +116,7 @@ HDL-based design does not replace the understanding of Boolean algebra, minimiza
 
 ---
 
-## 12.2 VHDL History and Standards
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.2 VHDL History and Standards</h2>
 
 VHDL originated from the U.S. Department of Defense's **Very High Speed Integrated Circuit (VHSIC)** program in the 1980s. The DoD needed a standardized language to document the behavior of complex integrated circuits supplied by different vendors.
 
@@ -120,7 +132,7 @@ Most educational and industrial VHDL code targets the 1993 or 2008 standard. Thi
 
 ---
 
-## 12.3 VHDL Design Units
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.3 VHDL Design Units</h2>
 
 A VHDL design is organized into **design units**—self-contained blocks that can be compiled independently. The two most important design units are:
 
@@ -136,7 +148,7 @@ Additional design units include:
 
 ---
 
-## 12.4 Entity Declaration
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.4 Entity Declaration</h2>
 
 The **entity declaration** defines the external interface of a circuit component. It specifies:
 
@@ -183,7 +195,7 @@ entity adder4 is
 end entity adder4;
 ```
 
-### Port Modes
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Port Modes</h3>
 
 Each port has a **mode** that specifies the direction of data flow:
 
@@ -196,7 +208,7 @@ Each port has a **mode** that specifies the direction of data flow:
 
 ---
 
-## 12.5 Architecture Body
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.5 Architecture Body</h2>
 
 The **architecture** defines what the circuit does—the actual logic. It is associated with a specific entity and contains:
 
@@ -225,9 +237,11 @@ end architecture dataflow;
 
 The statement `y <= a and b;` is a **concurrent signal assignment**. The symbol `<=` is the signal assignment operator (read as "gets" or "is driven by"). This is **not** sequential assignment like in software—it describes a continuous hardware connection.
 
-#### Diagram: Entity-Architecture Relationship
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Entity-Architecture Relationship</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/entity-architecture/main.html" width="100%" height="1040px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>Entity-Architecture Relationship</summary>
@@ -266,11 +280,11 @@ Implementation: HTML/CSS/JavaScript
 
 ---
 
-## 12.6 VHDL Data Types
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.6 VHDL Data Types</h2>
 
 VHDL is a **strongly typed** language—every signal, variable, and port must have a declared type, and operations between incompatible types produce compile-time errors. This strictness catches wiring errors that would only appear during simulation (or worse, in hardware) with a less rigorous language.
 
-### Built-in Types
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Built-in Types</h3>
 
 | Type | Values | Use |
 |------|--------|-----|
@@ -280,7 +294,7 @@ VHDL is a **strongly typed** language—every signal, variable, and port must ha
 | `natural` | 0 to $2^{31}-1$ | Non-negative integers |
 | `positive` | 1 to $2^{31}-1$ | Positive integers |
 
-### IEEE std_logic Type
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">IEEE std_logic Type</h3>
 
 The most important data type for digital design is **`std_logic`** from the IEEE 1164 standard library. Unlike the simple `bit` type (only '0' and '1'), `std_logic` supports nine values that model real-world signal conditions:
 
@@ -298,7 +312,7 @@ The most important data type for digital design is **`std_logic`** from the IEEE
 
 For synthesis, only '0', '1', 'Z', and '-' are meaningful. The other values appear during simulation to help diagnose design problems—seeing 'U' in a waveform indicates a signal that was never driven, while 'X' indicates a bus conflict.
 
-### std_logic_vector
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">std_logic_vector</h3>
 
 The **`std_logic_vector`** type represents a bus (group of related signals) as an array of `std_logic` values:
 
@@ -314,7 +328,7 @@ The `downto` convention places the most significant bit at the highest index, ma
 
 ---
 
-## 12.7 Signal Declaration and Assignment
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.7 Signal Declaration and Assignment</h2>
 
 **Signals** in VHDL model physical wires in hardware. They are declared in the architecture's declarative region and assigned values in the statement region.
 
@@ -338,7 +352,7 @@ count <= "1010";      -- binary literal
 enable <= '1';        -- single bit
 ```
 
-### Key Rules for Signals
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Key Rules for Signals</h3>
 
 - A signal can be **driven** (assigned) by only **one** concurrent statement. Multiple drivers cause an 'X' (conflict) in simulation.
 - Signal assignments take effect after a **delta delay**—not immediately. This models the propagation delay in real hardware.
@@ -348,11 +362,11 @@ This concurrency is the most important conceptual difference between HDL and sof
 
 ---
 
-## 12.8 Concurrent Signal Assignments
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.8 Concurrent Signal Assignments</h2>
 
 Concurrent statements exist in the architecture body (outside of any process) and model combinational logic through continuous assignments.
 
-### Simple Concurrent Assignment
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Simple Concurrent Assignment</h3>
 
 ```vhdl
 -- These three statements execute simultaneously, not sequentially
@@ -361,7 +375,7 @@ z <= c or d;
 w <= not e;
 ```
 
-### Conditional Signal Assignment (when-else)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Conditional Signal Assignment (when-else)</h3>
 
 The `when-else` construct implements priority-encoded multiplexing, similar to a chain of if-then-else logic:
 
@@ -375,7 +389,7 @@ y <= d0 when sel = "00" else
 
 This synthesizes to a multiplexer where the first matching condition has priority. It directly implements the MUX concepts from Unit 8.
 
-### Selected Signal Assignment (with-select)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Selected Signal Assignment (with-select)</h3>
 
 The `with-select` construct implements a parallel selection, similar to a case/switch:
 
@@ -398,11 +412,11 @@ The `when others` clause is required to cover all possible values of `sel` (sinc
 
 ---
 
-## 12.9 Modeling Styles
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.9 Modeling Styles</h2>
 
 VHDL supports three modeling styles for describing circuit behavior. Understanding when to use each style is essential for writing clear, synthesizable code.
 
-### Dataflow Modeling
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Dataflow Modeling</h3>
 
 Dataflow modeling uses concurrent signal assignments to describe how data flows through combinational logic. It maps directly to Boolean equations:
 
@@ -417,7 +431,7 @@ end architecture dataflow;
 
 This is the most natural style for simple combinational circuits and directly mirrors the Boolean equations from Unit 3.
 
-### Structural Modeling
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Structural Modeling</h3>
 
 Structural modeling describes a circuit as an interconnection of components—essentially a textual netlist:
 
@@ -440,7 +454,7 @@ end architecture structural;
 
 Structural modeling creates a hierarchy—a top-level design instantiates sub-components, which may instantiate their own sub-components. This is how large systems are organized.
 
-### Behavioral Modeling
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Behavioral Modeling</h3>
 
 Behavioral modeling uses **process** statements with sequential logic (if-then-else, case, loops) to describe circuit behavior algorithmically:
 
@@ -461,9 +475,11 @@ begin
 end architecture behavioral;
 ```
 
-#### Diagram: VHDL Modeling Styles Comparison
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: VHDL Modeling Styles Comparison</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="910px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>VHDL Modeling Styles Comparison</summary>
@@ -508,7 +524,7 @@ Implementation: HTML/CSS/JavaScript
 
 ---
 
-## 12.10 The Process Statement
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.10 The Process Statement</h2>
 
 The **process** statement is the bridge between VHDL's concurrent world and sequential programming logic. A process is a concurrent statement (it runs in parallel with other concurrent statements), but **inside** a process, statements execute **sequentially**—just like a software function.
 
@@ -522,7 +538,7 @@ begin
 end process process_label;
 ```
 
-### The Sensitivity List
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The Sensitivity List</h3>
 
 The **sensitivity list** specifies which signals cause the process to **re-evaluate** (wake up). When any signal in the sensitivity list changes, the process executes all its sequential statements from top to bottom, then suspends until the next change.
 
@@ -561,11 +577,11 @@ end process seq_proc;
 
 ---
 
-## 12.11 Sequential Statements in Processes
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.11 Sequential Statements in Processes</h2>
 
 Inside a process, statements execute sequentially (top to bottom), enabling familiar programming constructs:
 
-### if-then-else
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">if-then-else</h3>
 
 ```vhdl
 -- Priority encoder
@@ -587,7 +603,7 @@ end process;
 
 The `if-then-else` chain creates **priority logic**—the first condition that is true wins. This directly implements the priority encoder from Unit 8.
 
-### case Statement
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">case Statement</h3>
 
 ```vhdl
 -- Decoder (no priority)
@@ -614,11 +630,11 @@ The `case` statement creates **parallel selection** logic—all cases are evalua
 
 ---
 
-## 12.12 Combinational Logic in VHDL
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.12 Combinational Logic in VHDL</h2>
 
 Any combinational circuit from Units 2-8 can be described in VHDL. The key rule: **every output must be assigned a value for every possible input combination**. Failing to do so creates an unintended **latch**.
 
-### Example: 2-to-4 Decoder
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: 2-to-4 Decoder</h3>
 
 ```vhdl
 library ieee;
@@ -652,7 +668,7 @@ end architecture rtl;
 
 The **default assignment** (`y <= "0000"`) at the beginning of the process ensures that `y` has a value even when `en = '0'`. Without it, the synthesis tool would infer a latch to "remember" the last value of `y`—almost always a bug.
 
-### Example: 4-bit Magnitude Comparator
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: 4-bit Magnitude Comparator</h3>
 
 ```vhdl
 library ieee;
@@ -688,7 +704,7 @@ Note the use of `unsigned()` from the `ieee.numeric_std` library to treat the `s
 
 ---
 
-## 12.13 Sequential Logic in VHDL
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.13 Sequential Logic in VHDL</h2>
 
 Sequential circuits use the clock edge to determine when state changes occur. The fundamental pattern for all synchronous sequential logic in VHDL is:
 
@@ -703,7 +719,7 @@ end process;
 
 The `rising_edge(clk)` function returns TRUE only at the moment the clock transitions from '0' to '1'. This models the **positive-edge-triggered flip-flop** behavior from Unit 9.
 
-### D Flip-Flop
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">D Flip-Flop</h3>
 
 ```vhdl
 -- Simple D flip-flop
@@ -718,7 +734,7 @@ begin
 end architecture rtl;
 ```
 
-### D Flip-Flop with Asynchronous Reset
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">D Flip-Flop with Asynchronous Reset</h3>
 
 ```vhdl
 -- D flip-flop with async reset
@@ -734,7 +750,7 @@ end process;
 
 The asynchronous reset (`rst`) is included in the sensitivity list because it takes effect immediately, without waiting for a clock edge.
 
-### D Flip-Flop with Synchronous Reset
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">D Flip-Flop with Synchronous Reset</h3>
 
 ```vhdl
 -- D flip-flop with sync reset
@@ -752,9 +768,11 @@ end process;
 
 The synchronous reset is **not** in the sensitivity list—it is evaluated only at the clock edge.
 
-#### Diagram: VHDL Flip-Flop Patterns
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: VHDL Flip-Flop Patterns</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="570px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>VHDL Flip-Flop Patterns</summary>
@@ -793,11 +811,11 @@ Implementation: p5.js
 
 ---
 
-## 12.14 Registers in VHDL
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.14 Registers in VHDL</h2>
 
 A **register** is a group of flip-flops sharing a common clock. In VHDL, registers are described using `std_logic_vector` signals within a clocked process:
 
-### Parallel Load Register
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Parallel Load Register</h3>
 
 ```vhdl
 -- 8-bit register with enable and async reset
@@ -831,7 +849,7 @@ end architecture rtl;
 
 The expression `(others => '0')` is a VHDL **aggregate** that sets all bits of the vector to '0', regardless of vector length—a convenient idiom.
 
-### Shift Register
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Shift Register</h3>
 
 ```vhdl
 -- 4-bit shift register with serial input
@@ -854,11 +872,11 @@ The `&` operator is **concatenation**—it joins `reg(2 downto 0)` (the lower 3 
 
 ---
 
-## 12.15 Counters in VHDL
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.15 Counters in VHDL</h2>
 
 Counters combine registers with incrementing logic. Using the `ieee.numeric_std` library, counter descriptions are clean and readable:
 
-### 4-Bit Up Counter
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">4-Bit Up Counter</h3>
 
 ```vhdl
 library ieee;
@@ -893,7 +911,7 @@ end architecture rtl;
 
 The internal signal uses `unsigned` for arithmetic, and the output converts back to `std_logic_vector` for the port interface.
 
-### BCD Counter (Modulo-10)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">BCD Counter (Modulo-10)</h3>
 
 ```vhdl
 process(clk, rst)
@@ -916,11 +934,11 @@ This directly implements the BCD counter from Unit 10, with the wrap-around cond
 
 ---
 
-## 12.16 Finite State Machines in VHDL
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.16 Finite State Machines in VHDL</h2>
 
 Finite state machines (from Unit 10) have a well-established VHDL coding pattern using **enumerated types** for states and a **two-process** or **three-process** architecture.
 
-### FSM Template (Two-Process Style)
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FSM Template (Two-Process Style)</h3>
 
 ```vhdl
 library ieee;
@@ -980,9 +998,11 @@ begin
 end architecture rtl;
 ```
 
-#### Diagram: FSM VHDL Code-to-State Diagram Mapper
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: FSM VHDL Code-to-State Diagram Mapper</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>FSM VHDL Code-to-State Diagram Mapper</summary>
@@ -1017,7 +1037,7 @@ Canvas size: 800x550px, responsive
 Implementation: p5.js or vis-network
 </details>
 
-### Moore vs Mealy in VHDL
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Moore vs Mealy in VHDL</h3>
 
 The difference between Moore and Mealy machines in VHDL is straightforward:
 
@@ -1034,11 +1054,11 @@ output <= '1' when (current_state = S1 and input = '1') else '0';
 
 ---
 
-## 12.17 Testbench Fundamentals
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.17 Testbench Fundamentals</h2>
 
 A **testbench** is a VHDL entity with no ports that instantiates the **Design Under Test (DUT)** and applies stimulus signals to verify its behavior. Testbenches are used for simulation only—they are not synthesized into hardware.
 
-### Testbench Structure
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Testbench Structure</h3>
 
 ```vhdl
 library ieee;
@@ -1074,7 +1094,7 @@ end architecture sim;
 
 The `wait for 10 ns;` statement is a simulation-only construct that advances simulation time. The `wait;` at the end halts the process permanently.
 
-### Clock Generation in Testbenches
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Clock Generation in Testbenches</h3>
 
 ```vhdl
 -- Clock generation process (no sensitivity list)
@@ -1093,7 +1113,7 @@ This process has no sensitivity list and no final `wait;`—it loops forever, ge
 
 ---
 
-## 12.18 Synthesis vs Simulation
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.18 Synthesis vs Simulation</h2>
 
 A critical distinction in VHDL is that not all valid VHDL code can be synthesized into hardware:
 
@@ -1119,9 +1139,11 @@ The synthesis tool reads the VHDL code and infers hardware structures:
 - `*` → multiplier (maps to DSP slices in FPGAs)
 - Incomplete if/case → latch (usually a bug!)
 
-#### Diagram: VHDL Code to Hardware Inference
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: VHDL Code to Hardware Inference</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <details markdown="1">
 <summary>VHDL Code to Hardware Inference</summary>
@@ -1157,7 +1179,7 @@ Implementation: HTML/CSS/JavaScript
 
 ---
 
-## 12.19 Complete Design Example: Traffic Light Controller
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.19 Complete Design Example: Traffic Light Controller</h2>
 
 To bring together all the VHDL concepts, consider a simple traffic light controller as a finite state machine:
 
@@ -1253,7 +1275,9 @@ This example integrates:
 
 ---
 
-## 12.20 Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.20 Key Takeaways</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 - **VHDL** describes hardware textually, enabling simulation, synthesis, and reuse of digital circuits at any scale.
 - The **entity** declares the interface (ports and types); the **architecture** defines the implementation.
@@ -1266,13 +1290,17 @@ This example integrates:
 - **Testbenches** verify designs through simulation before hardware implementation, using non-synthesizable features like `wait for` and assertions.
 - **Synthesis inference** maps VHDL patterns to specific hardware structures—understanding this mapping helps avoid common pitfalls like unintended latches.
 
+</div>
+
 ??? question "Self-Check: What happens if you write an if-then statement inside a combinational process without an else clause?"
     The synthesis tool infers a **latch**—an unintended memory element. Without the `else` clause, the signal retains its previous value when the condition is false, which requires a latch to implement. Always provide default assignments or complete if-else coverage in combinational processes to avoid this common bug.
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Design a VHDL finite state machine step-by-step, from state diagram to complete VHDL code:
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 </div>
