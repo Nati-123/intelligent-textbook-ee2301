@@ -21,7 +21,7 @@ Show how to implement the following functions using only NAND gates:
 
 a) NOT (inverter) &emsp; b) AND &emsp; c) OR &emsp; d) XOR
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -58,7 +58,7 @@ Show how to implement the following functions using only NOR gates:
 
 a) NOT (inverter) &emsp; b) OR &emsp; c) AND &emsp; d) XNOR
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -95,7 +95,7 @@ Compute $P = A \text{ NOR } B$, then $Q = P \text{ NOR } A$, $R = P \text{ NOR }
 
 Prove that a 2-input NAND gate is universal by showing how many NAND gates are needed for each of the 16 possible two-input Boolean functions.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -129,7 +129,7 @@ Every function is achievable, proving NAND universality.
 
 Design a half adder using: &ensp; a) Only NAND gates &ensp; b) Only NOR gates
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -165,7 +165,7 @@ Convert the following SOP expression to a NAND-only implementation. Draw the cir
 
 $$F = AB + CD + E$$
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -193,7 +193,7 @@ Each $\overline{XY}$ is a NAND, and the outer inversion of an AND is also a NAND
 
 Convert $F = A'BC + AB'C + ABC'$ to a NAND-only implementation.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -226,7 +226,7 @@ Convert the following POS circuit to use only NAND gates:
 
 $$F = (A + B)(C + D)$$
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -258,7 +258,7 @@ A function is given as $F = AB + A'C + BC$.
 
 a) Simplify using Boolean algebra &ensp; b) Implement simplified form using NAND gates only
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -290,7 +290,7 @@ Convert the following POS expression to a NOR-only implementation:
 
 $$F = (A + B)(C + D)(E + G)$$
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -318,7 +318,7 @@ Each $\overline{X+Y}$ is a NOR, and the outer inversion of an OR is also a NOR.
 
 Convert $F = (A' + B)(A + C')$ to NOR-only implementation.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -350,7 +350,7 @@ $$F = \overline{\overline{A'+B} + \overline{A+C'}}$$
 
 Design the carry output of a full adder using only NOR gates. The carry equation is $C_{out} = AB + C_{in}(A + B)$.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -384,7 +384,7 @@ $$C_{out} = AB + C_{in}(A+B) = \overline{\overline{AB} \cdot \overline{C_{in}(A+
 
 Show that $(A + B)' = A' \cdot B'$ (De Morgan's theorem) by constructing both sides using only NOR gates and verifying they produce identical circuits.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -419,7 +419,7 @@ Apply bubble pushing to convert this AND-OR circuit to all-NAND:
 
 $F = AB + CD$ &ensp;(two AND gates feeding one OR gate)
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -450,7 +450,7 @@ Analyze the following NAND-only circuit and find the output expression:
 
 Gate 1: NAND(A, B) &ensp; Gate 2: NAND(A, C) &ensp; Output: NAND(G1, G2) = F
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -477,7 +477,7 @@ Determine whether the following NAND circuit implements $F = A'B + AB'$ (XOR):
 
 Gate 1: NAND($A'$, $B$) &ensp; Gate 2: NAND($A$, $B'$) &ensp; Output: NAND(G1, G2) = F
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -504,7 +504,7 @@ Convert the following multi-level circuit to use only 2-input NAND gates:
 
 $$F = A(B + CD)$$
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -547,7 +547,7 @@ b) Factor the expression and implement
 
 c) Compare gate counts
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -588,7 +588,7 @@ Two-level uses fewer gates but higher fan-in. Factored uses fewer total inputs a
 
 Calculate the propagation delay for a 4-bit ripple carry adder, assuming: AND = 1 ns, OR = 1 ns, XOR = 2 ns.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -621,7 +621,7 @@ Design a circuit for $F = AB + CD + EG + HK$ optimized for:
 
 a) Minimum gate count &ensp; b) Minimum propagation delay
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -651,7 +651,7 @@ A linear OR chain would take 4 delays; the balanced tree saves one level.
 
 Explain the trade-offs between two-level and multi-level implementations in terms of: propagation delay, gate count, fan-in requirements, and power consumption.
 
-<details style="margin-top: 1rem;">
+<details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
