@@ -5,64 +5,88 @@ image: /sims/not-gate-truth-table/not-gate-truth-table.png
 quality_score: 85
 ---
 
-# NOT Gate with Truth Table
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">NOT Gate with Truth Table</h1>
 
-<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+<a href="../../unit2-boolean-algebra/" style="color: #5A3EED; font-weight: 600; font-size: 0.95rem;">&#8592; Back to Unit 2</a>
 
-## Description
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="main.html" height="480px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-This MicroSim provides an interactive demonstration of the NOT gate (also called an inverter), the simplest logic gate with only one input. The simulation displays the standard NOT gate symbol (a triangle with an inversion bubble at the output) with one input (A) and one output (Y), along with a two-row truth table.
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Description</h2>
 
-Students can toggle the input between 0 and 1 using a clickable button. The simulation updates in real time, highlighting the current row in the truth table and displaying the live Boolean expression evaluation (A' = Y). A key insight box reinforces the inversion concept and the significance of the bubble notation used in gate symbols.
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">This MicroSim provides an interactive demonstration of the NOT gate (also called an inverter), the simplest logic gate with only one input. The simulation displays the standard NOT gate symbol (a triangle with an inversion bubble at the output) with one input (A) and one output (Y), along with a two-row truth table.</p>
 
-Key features include:
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">Students can toggle the input between 0 and 1 using a clickable button. The simulation updates in real time, highlighting the current row in the truth table and displaying the live Boolean expression evaluation (A' = Y). A key insight box reinforces the inversion concept and the significance of the bubble notation used in gate symbols.</p>
 
-- NOT gate symbol (triangle with inversion bubble) with input and output wires
-- Single clickable toggle button for input A
-- Two-row truth table with the current input highlighted
-- Live Boolean expression evaluation
-- Key insight box reinforcing inversion and bubble notation
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 20px 24px; margin: 1.2rem 0;">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Key Features</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> NOT gate symbol (triangle with inversion bubble) with input and output wires</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Single clickable toggle button for input A</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Two-row truth table with the current input highlighted</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Live Boolean expression evaluation</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Key insight box reinforcing inversion and bubble notation</li>
+</ul>
+</div>
 
-## How to Use
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">How to Use</h2>
 
-1. Observe the NOT gate symbol (note the inversion bubble at the output) and the truth table displayed on screen.
-2. Click the toggle button next to input **A** to switch it between 0 and 1.
-3. Watch the gate output update in real time -- the output is always the opposite of the input.
-4. Notice the highlighted row in the truth table corresponding to the current input.
-5. Read the Boolean expression display to see the evaluated result (A' = Y).
-6. Toggle back and forth several times to reinforce the concept that NOT always flips the value.
+<ol style="padding-left: 1.2rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Observe</strong> the NOT gate symbol (note the inversion bubble at the output) and the truth table displayed on screen.</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>A</strong> to switch it between 0 and 1.</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Watch</strong> the gate output update in real time -- the output is always the opposite of the input.</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Notice</strong> the highlighted row in the truth table corresponding to the current input.</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Read</strong> the Boolean expression display to see the evaluated result (A' = Y).</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Toggle</strong> back and forth several times to reinforce the concept that NOT always flips the value.</li>
+</ol>
 
-## Learning Objectives
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Learning Objectives</h2>
 
-**Bloom Level**: Understand (L2)
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Bloom Level: Understand (L2)</p>
+<p style="color: #333; margin-top: 0.5rem; margin-bottom: 0.8rem;">After using this MicroSim, students will be able to:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Explain the behavior of a NOT gate and state its truth table from memory</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Predict the NOT gate output for any single binary input</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Identify the inversion bubble notation used in NOT, NAND, NOR, and XNOR gate symbols</li>
+</ul>
+</div>
 
-After using this MicroSim, students will be able to:
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Lesson Plan</h2>
 
-- Explain the behavior of a NOT gate and state its truth table from memory
-- Predict the NOT gate output for any single binary input
-- Identify the inversion bubble notation used in NOT, NAND, NOR, and XNOR gate symbols
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">Before the Simulation (5 minutes)</h3>
 
-## Lesson Plan
+<ul style="padding-left: 1.2rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Introduce the NOT gate as the simplest logic gate with only one input</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Show the gate symbol and explain the bubble notation for inversion</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Discuss multiple notations for NOT: A', ~A, and the overbar</li>
+</ul>
 
-### Before the Simulation (5 minutes)
-- Introduce the NOT gate as the simplest logic gate with only one input
-- Show the gate symbol and explain the bubble notation for inversion
-- Discuss multiple notations for NOT: A', ~A, and the overbar
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">During the Simulation (15 minutes)</h3>
 
-### During the Simulation (15 minutes)
-1. Start with input at 0 and observe that the output is 1 (inverted)
-2. Toggle A to 1 -- output becomes 0 (inverted)
-3. Toggle back and forth to reinforce: NOT always flips the value
-4. Point out the bubble symbol at the output indicating inversion
-5. Have students write the truth table on paper from memory
-6. Discuss: NOT is the simplest gate with only one input and one output
+<ol style="padding-left: 1.2rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Start with input at 0 and observe that the output is 1 (inverted)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle A to 1 -- output becomes 0 (inverted)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle back and forth to reinforce: NOT always flips the value</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Point out the bubble symbol at the output indicating inversion</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Have students write the truth table on paper from memory</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Discuss: NOT is the simplest gate with only one input and one output</li>
+</ol>
 
-### After the Simulation (5 minutes)
-- Show how the bubble notation appears on other gates (NAND, NOR, XNOR)
-- Discuss De Morgan's theorem and the role of inversion in Boolean algebra
-- Ask students: "How many NOT gates would you need to get back to the original value?" (Answer: two -- double inversion)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">After the Simulation (5 minutes)</h3>
 
-## References
+<ul style="padding-left: 1.2rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Show how the bubble notation appears on other gates (NAND, NOR, XNOR)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Discuss De Morgan's theorem and the role of inversion in Boolean algebra</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Ask students: "How many NOT gates would you need to get back to the original value?" (Answer: two -- double inversion)</li>
+</ul>
 
-- [Inverter (logic gate) - Wikipedia](https://en.wikipedia.org/wiki/Inverter_(logic_gate))
-- Unit 3: Logic Gates and Boolean Algebra
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">References</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/Inverter_(logic_gate)" style="color: #5A3EED; font-weight: 600;">Inverter (logic gate) - Wikipedia</a></li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="../../unit2-boolean-algebra/" style="color: #5A3EED; font-weight: 600;">Unit 3: Logic Gates and Boolean Algebra</a></li>
+</ul>
+</div>

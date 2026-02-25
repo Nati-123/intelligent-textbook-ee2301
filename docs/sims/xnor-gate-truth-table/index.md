@@ -5,66 +5,94 @@ image: /sims/xnor-gate-truth-table/xnor-gate-truth-table.png
 quality_score: 85
 ---
 
-# XNOR Gate with Truth Table
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">XNOR Gate with Truth Table</h1>
 
-<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="main.html" height="480px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-## Description
+<a href="../../unit3-applications-boolean-algebra/" style="color: #5A3EED; font-weight: 600; font-size: 0.95rem;">&#8592; Back to Unit 3</a>
 
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Description</h2>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This MicroSim provides an interactive demonstration of the XNOR (exclusive NOR) logic gate, which produces the complement of the XOR function. The XNOR gate outputs HIGH when both inputs are the same (both 0 or both 1), making it function as an equality detector. The simulation displays the standard XNOR gate symbol (XOR shape with an inversion bubble) with two inputs (A and B) and one output (Y), along with a complete truth table.
+</p>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 Students can toggle each input between 0 and 1 using clickable buttons. The simulation updates in real time, highlighting the current input combination in the truth table and displaying the live Boolean expression evaluation ((A XOR B)' = Y). A key insight box reinforces the XNOR gate's role as an equality detector in digital circuits.
+</p>
 
-Key features include:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 20px 24px; margin: 1.2rem 0;">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Key Features</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>XNOR gate symbol</strong> (XOR shape with inversion bubble) with input and output wires</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Two clickable toggle buttons</strong> for inputs A and B</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Truth table</strong> with the current input combination highlighted</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Live Boolean expression</strong> evaluation</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Key insight box</strong> explaining XNOR as an equality detector</li>
+</ul>
+</div>
 
-- XNOR gate symbol (XOR shape with inversion bubble) with input and output wires
-- Two clickable toggle buttons for inputs A and B
-- Truth table with the current input combination highlighted
-- Live Boolean expression evaluation
-- Key insight box explaining XNOR as an equality detector
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">How to Use</h2>
 
-## How to Use
+<ol style="padding-left: 1.2rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Observe</strong> the XNOR gate symbol (note the inversion bubble and the double curved input lines) and the truth table displayed on screen</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>A</strong> to switch it between 0 and 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>B</strong> to switch it between 0 and 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Watch</strong> the gate output update in real time based on the current inputs</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Notice</strong> the highlighted row in the truth table corresponding to the current input combination</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Read</strong> the Boolean expression display to see the evaluated result</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Verify</strong> the equality detection property: output is 1 when A equals B, and 0 when they differ</li>
+</ol>
 
-1. Observe the XNOR gate symbol (note the inversion bubble and the double curved input lines) and the truth table displayed on screen.
-2. Click the toggle button next to input **A** to switch it between 0 and 1.
-3. Click the toggle button next to input **B** to switch it between 0 and 1.
-4. Watch the gate output update in real time based on the current inputs.
-5. Notice the highlighted row in the truth table corresponding to the current input combination.
-6. Read the Boolean expression display to see the evaluated result.
-7. Verify the equality detection property: output is 1 when A equals B, and 0 when they differ.
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Learning Objectives</h2>
 
-## Learning Objectives
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Bloom Level: Understand (L2)</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0.6rem;">After using this MicroSim, students will be able to:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Explain the behavior of an XNOR gate and state its truth table from memory</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Predict the XNOR gate output for any combination of two binary inputs</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Recognize the XNOR gate as an equality detector and describe its use in comparator circuits</li>
+</ul>
+</div>
 
-**Bloom Level**: Understand (L2)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Lesson Plan</h2>
 
-After using this MicroSim, students will be able to:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">Before the Simulation (5 minutes)</h3>
 
-- Explain the behavior of an XNOR gate and state its truth table from memory
-- Predict the XNOR gate output for any combination of two binary inputs
-- Recognize the XNOR gate as an equality detector and describe its use in comparator circuits
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Review the XOR gate truth table and its "difference detector" property</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Introduce the concept of complementing the XOR output to get XNOR</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Ask students to predict: "If XOR detects when inputs are different, what does XNOR detect?"</li>
+</ul>
 
-## Lesson Plan
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">During the Simulation (15 minutes)</h3>
 
-### Before the Simulation (5 minutes)
-- Review the XOR gate truth table and its "difference detector" property
-- Introduce the concept of complementing the XOR output to get XNOR
-- Ask students to predict: "If XOR detects when inputs are different, what does XNOR detect?"
+<ol style="padding-left: 1.2rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Start with both inputs at 0 and observe that the output is 1 (inputs are the same)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle A to 1 -- output becomes 0 (inputs differ)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle B to 1 -- output returns to 1 (inputs are the same again)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle A to 0 -- output becomes 0 (inputs differ again)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Compare with XOR: XNOR output is always the opposite of XOR</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;">Discuss: XNOR outputs 1 when inputs are equal -- it is an equality detector</li>
+</ol>
 
-### During the Simulation (15 minutes)
-1. Start with both inputs at 0 and observe that the output is 1 (inputs are the same)
-2. Toggle A to 1 -- output becomes 0 (inputs differ)
-3. Toggle B to 1 -- output returns to 1 (inputs are the same again)
-4. Toggle A to 0 -- output becomes 0 (inputs differ again)
-5. Compare with XOR: XNOR output is always the opposite of XOR
-6. Discuss: XNOR outputs 1 when inputs are equal -- it is an equality detector
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">After the Simulation (5 minutes)</h3>
 
-### After the Simulation (5 minutes)
-- Show how multi-bit comparators are built by combining XNOR gates with AND gates
-- Discuss the relationship: XNOR = NOT(XOR) = (A AND B) OR (NOT A AND NOT B)
-- Ask students: "How would you build a 4-bit equality comparator using XNOR gates?"
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Show how multi-bit comparators are built by combining XNOR gates with AND gates</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Discuss the relationship: XNOR = NOT(XOR) = (A AND B) OR (NOT A AND NOT B)</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Ask students: "How would you build a 4-bit equality comparator using XNOR gates?"</li>
+</ul>
 
-## References
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">References</h2>
 
-- [XNOR gate - Wikipedia](https://en.wikipedia.org/wiki/XNOR_gate)
-- [Digital comparator - Wikipedia](https://en.wikipedia.org/wiki/Digital_comparator)
-- Unit 3: Logic Gates and Boolean Algebra
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/XNOR_gate" style="color: #5A3EED; font-weight: 600;">XNOR gate</a> — Wikipedia</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/Digital_comparator" style="color: #5A3EED; font-weight: 600;">Digital comparator</a> — Wikipedia</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="../../unit3-applications-boolean-algebra/" style="color: #5A3EED; font-weight: 600;">Unit 3: Logic Gates and Boolean Algebra</a> — this textbook</li>
+</ul>
+</div>

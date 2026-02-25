@@ -5,65 +5,93 @@ image: /sims/3-input-nand-gate/3-input-nand-gate.png
 quality_score: 85
 ---
 
-# 3-Input NAND Gate
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">3-Input NAND Gate</h1>
 
-<iframe src="main.html" height="480px" width="100%" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="main.html" height="480px" width="100%" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
-## Description
+<a href="../../unit3-applications-boolean-algebra/" style="color: #5A3EED; font-weight: 600; font-size: 0.95rem;">&#8592; Back to Unit 3</a>
 
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Description</h2>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 This MicroSim provides an interactive demonstration of a 3-input NAND gate. The simulation displays the standard NAND gate symbol (AND shape with an inversion bubble at the output), three clickable input toggles, and a complete eight-row truth table.
+</p>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
 The 3-input NAND gate outputs 0 only when all three inputs are 1. For every other input combination, the output is 1. This is the complement of the 3-input AND gate. As you toggle inputs, the truth table highlights the current row in real time.
+</p>
 
-Key features include:
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 20px 24px; margin: 1.2rem 0;">
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">Key Features</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Standard NAND gate symbol</strong> with inversion bubble and three input wires</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Three clickable toggle buttons</strong> for inputs A, B, and C</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Eight-row truth table</strong> with real-time row highlighting</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <strong>Live output display</strong> showing the Boolean expression NOT(A AND B AND C) = Y</li>
+</ul>
+</div>
 
-- Standard NAND gate symbol with inversion bubble and three input wires
-- Three clickable toggle buttons for inputs A, B, and C
-- Eight-row truth table with real-time row highlighting
-- Live output display showing the Boolean expression NOT(A AND B AND C) = Y
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">How to Use</h2>
 
-## How to Use
+<ol style="padding-left: 1.2rem; margin: 0.8rem 0 1.2rem 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>A</strong> to switch it between 0 and 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>B</strong> to switch it between 0 and 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Click</strong> the toggle button next to input <strong>C</strong> to switch it between 0 and 1</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Observe</strong> the gate output update in real time</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Watch</strong> the truth table highlight the row matching the current input combination</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Verify</strong> that the output is 0 only when all three inputs are 1</li>
+</ol>
 
-1. Click the toggle button next to input **A** to switch it between 0 and 1
-2. Click the toggle button next to input **B** to switch it between 0 and 1
-3. Click the toggle button next to input **C** to switch it between 0 and 1
-4. Observe the gate output update in real time
-5. Watch the truth table highlight the row matching the current input combination
-6. Verify that the output is 0 only when all three inputs are 1
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Learning Objectives</h2>
 
-## Learning Objectives
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(56,142,60,0.08);">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Bloom Level: Understand (L2)</p>
+<p style="color: #333; line-height: 1.75; margin-bottom: 0.6rem;">After using this MicroSim, students will be able to:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Extend the 2-input NAND gate concept to three or more inputs</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Predict the output of a 3-input NAND gate for any input combination</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Explain the relationship between NAND and AND gates (NAND = NOT AND)</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #2E7D32; font-weight: 700; margin-right: 0.4rem;">&#10003;</span> Recognize that NAND is a universal gate capable of implementing any Boolean function</li>
+</ul>
+</div>
 
-**Bloom Level**: Understand (L2)
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Lesson Plan</h2>
 
-After using this MicroSim, students will be able to:
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">Before the Simulation (5 minutes)</h3>
 
-- Extend the 2-input NAND gate concept to three or more inputs
-- Predict the output of a 3-input NAND gate for any input combination
-- Explain the relationship between NAND and AND gates (NAND = NOT AND)
-- Recognize that NAND is a universal gate capable of implementing any Boolean function
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Review the 2-input NAND gate and its truth table</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Remind students that NAND is the complement of AND</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Introduce NAND as a universal gate and discuss its importance in CMOS design</li>
+</ul>
 
-## Lesson Plan
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">During the Simulation (15 minutes)</h3>
 
-### Before the Simulation (5 minutes)
-- Review the 2-input NAND gate and its truth table
-- Remind students that NAND is the complement of AND
-- Introduce NAND as a universal gate and discuss its importance in CMOS design
+<ol style="padding-left: 1.2rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Start with all inputs at 0 and verify the output is 1</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Toggle inputs systematically to explore all eight combinations</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Find the single combination that produces output 0 (A=1, B=1, C=1)</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Compare the NAND truth table with the AND truth table row by row</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;">Count how many rows produce 1 versus 0 (seven vs. one)</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;">Discuss why NAND outputs are the exact complement of AND outputs</li>
+</ol>
 
-### During the Simulation (15 minutes)
-1. Start with all inputs at 0 and verify the output is 1
-2. Toggle inputs systematically to explore all eight combinations
-3. Find the single combination that produces output 0 (A=1, B=1, C=1)
-4. Compare the NAND truth table with the AND truth table row by row
-5. Count how many rows produce 1 versus 0 (seven vs. one)
-6. Discuss why NAND outputs are the exact complement of AND outputs
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.6rem;">After the Simulation (5 minutes)</h3>
 
-### After the Simulation (5 minutes)
-- Discuss why NAND gates are preferred in CMOS technology
-- Show how any gate can be built from NAND gates alone
-- Connect to De Morgan's theorem: NOT(A AND B AND C) = NOT A OR NOT B OR NOT C
+<ul style="list-style: none; padding-left: 0.8rem; margin: 0.5rem 0 1rem 0;">
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Discuss why NAND gates are preferred in CMOS technology</li>
+<li style="margin-bottom: 0.5rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Show how any gate can be built from NAND gates alone</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.5rem;">&#9679;</span> Connect to De Morgan's theorem: NOT(A AND B AND C) = NOT A OR NOT B OR NOT C</li>
+</ul>
 
-## References
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">References</h2>
 
-- [NAND Gate - Wikipedia](https://en.wikipedia.org/wiki/NAND_gate)
-- [NAND Logic (Universal Gate) - Wikipedia](https://en.wikipedia.org/wiki/NAND_logic)
-- Unit 3: Logic Gates and Boolean Algebra
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<ul style="list-style: none; padding-left: 0; margin: 0;">
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/NAND_gate" style="color: #5A3EED; font-weight: 600;">NAND Gate</a> — Wikipedia</li>
+<li style="margin-bottom: 0.6rem; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="https://en.wikipedia.org/wiki/NAND_logic" style="color: #5A3EED; font-weight: 600;">NAND Logic (Universal Gate)</a> — Wikipedia</li>
+<li style="margin-bottom: 0; line-height: 1.75; color: #333;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> <a href="../../unit3-applications-boolean-algebra/" style="color: #5A3EED; font-weight: 600;">Unit 3: Logic Gates and Boolean Algebra</a> — this textbook</li>
+</ul>
+</div>
