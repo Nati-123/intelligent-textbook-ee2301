@@ -4,6 +4,9 @@ site_author: University of Minnesota - Twin Cities
 
 theme:
   name: material
+  font:
+    text: Roboto
+    code: JetBrains Mono
   features:
     - navigation.tabs
     - navigation.sections
