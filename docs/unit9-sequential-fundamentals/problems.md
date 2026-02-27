@@ -26,20 +26,26 @@ Draw the circuit and complete the truth table for an SR latch using NOR gates.
 **NOR-based SR Latch circuit:**
 
 ```
-      ┌───────────────┐
-S ────┤               │
-      │  NOR  ├───────┴───── Q
-  ┌───┤               │
-  │   └───────────────┘
-  │
-  │   ┌───────────────┐
-  └───┤               │
-      │  NOR  ├───────┬───── Q'
-R ────┤               │
-      └───────────────┘
-           │
-           └───(feedback to top NOR)
+              ┌─────┐
+S ────────────┤1    │
+              │ NOR ├──────┬──── Q'
+    ┌─────────┤2    │      │
+    │         └─────┘      │
+    │                      │
+    │              ┌───────┘
+    │              │
+    │              │  ┌─────┐
+    │              └──┤1    │
+    │                 │ NOR ├──┬── Q
+R ────────────────────┤2    │  │
+                      └─────┘  │
+    │                          │
+    └──────────────────────────┘
 ```
+
+- Top NOR gate: inputs S and Q (feedback), output Q'
+- Bottom NOR gate: inputs Q' (feedback) and R, output Q
+- Cross-coupled: Q feeds back to top gate, Q' feeds back to bottom gate
 
 **Truth Table:**
 
