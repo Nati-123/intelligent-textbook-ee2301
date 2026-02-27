@@ -1,3 +1,6 @@
+/* Load JetBrains Mono box-drawing glyphs (not in default Google Fonts subsets) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap&text=%E2%94%80%E2%94%82%E2%94%8C%E2%94%90%E2%94%94%E2%94%98%E2%94%9C%E2%94%A4%E2%94%AC%E2%94%B4%E2%94%BC%E2%96%BC%E2%96%B2');
+
 /* ===== PURPLE / GOLD THEME OVERRIDES ===== */
 
 :root {
@@ -651,9 +654,9 @@
 .md-typeset pre code {
   background: transparent;
   padding: 0;
-  /* Use fonts that render box-drawing chars as solid connected lines */
-  font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Liberation Mono", monospace !important;
-  line-height: 1.2 !important;
+  /* JetBrains Mono with box-drawing glyphs loaded via @import above */
+  font-family: "JetBrains Mono", "Consolas", "DejaVu Sans Mono", monospace !important;
+  line-height: 1.18 !important;
   letter-spacing: 0 !important;
 }
 
