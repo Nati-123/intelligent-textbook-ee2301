@@ -649,6 +649,10 @@
 .md-typeset pre code {
   background: transparent;
   padding: 0;
+  /* Use fonts that render box-drawing chars as solid connected lines */
+  font-family: "Consolas", "Menlo", "Liberation Mono", "Courier New", monospace;
+  line-height: 1.3;
+  letter-spacing: 0;
 }
 
 .md-typeset ol {
