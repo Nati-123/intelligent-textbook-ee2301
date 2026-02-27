@@ -33,10 +33,12 @@ Design a 4-bit parallel-load register with load enable. Show the circuit using D
 **For each bit i:**
 
 ```
-D_in[i] ──┬──[2:1 MUX]── D ──[D FF]── Q[i]
-          │      ↑
-Q[i] ─────┘      │
-               Load
+D_in[i] ──┐
+           ├──[2:1 MUX]── D ──[D FF]──┬── Q[i]
+   ┌───────┘       │                   │
+   │            Load                   │
+   └───────────────────────────────────┘
+           (Q[i] feedback to MUX)
 ```
 
 **Logic equation:**
@@ -59,15 +61,15 @@ D_FF[i] = Load · D_in[i] + Load' · Q[i]
 **Complete 4-bit design:**
 
 ```
-D_in[3:0] ──┬──┬──┬──┐
-           │  │  │  │
-Load ──────┼──┼──┼──┼── (to all MUX selects)
-           │  │  │  │
-CLK ───────┼──┼──┼──┼── (to all FF clock inputs)
-           ↓  ↓  ↓  ↓
-          [Bit3][Bit2][Bit1][Bit0]
-           ↓  ↓  ↓  ↓
-Q[3:0] ────┴──┴──┴──┘
+D_in[3:0] ──┬────────┬────────┬────────┐
+             │        │        │        │
+Load ────────┼────────┼────────┼────────┼── (to all MUX selects)
+             │        │        │        │
+CLK ─────────┼────────┼────────┼────────┼── (to all FF clocks)
+             │        │        │        │
+          [Bit 3]  [Bit 2]  [Bit 1]  [Bit 0]
+             │        │        │        │
+Q[3:0] ─────┴────────┴────────┴────────┘
 ```
 
 **Total components:**
@@ -98,8 +100,9 @@ Show the connections and trace through shifting the pattern 1011.
 **4-bit SISO Shift Register:**
 
 ```
-SI → [D FF₃] → [D FF₂] → [D FF₁] → [D FF₀] → SO
-          Q₃ →      Q₂ →      Q₁ →      Q₀
+SI ── D[D FF₃]Q₃ ── D[D FF₂]Q₂ ── D[D FF₁]Q₁ ── D[D FF₀]Q₀ ── SO
+           │              │              │              │
+CLK ───────┴──────────────┴──────────────┴──────────────┘
 ```
 
 **Connections:**
@@ -184,11 +187,14 @@ Each bit needs a 4-to-1 MUX to select the source:
 ```
 For each bit i:
 
-Q[i-1] (or SL_in) ───┐
-Q[i] ────────────────┼───[4:1 MUX]──D──[D FF]──Q[i]
-Q[i+1] (or SR_in) ───┤        ↑
-D_in[i] ─────────────┘        │
-                          Mode[1:0]
+Q[i]   (hold)  ──── 00 ─┐
+Q[i+1] (right) ──── 01 ─┤                            ┌───────┐
+                         ├──[4:1 MUX]── D ──[D FF]───┤ Q[i]  │
+Q[i-1] (left)  ──── 10 ─┤       │                    └───┬───┘
+D_in[i](load)  ──── 11 ─┘       │                        │
+                           Mode[1:0]                      │
+                         ┌────────────────────────────────┘
+                         └── (Q[i] feeds back to MUX input 00)
 ```
 
 **Total components:**
@@ -220,13 +226,19 @@ A PISO (Parallel-In Serial-Out) shift register is used for serial communication.
 Same as Problem 1 but output is Q₀ (serial out).
 
 ```
-D_in[3] ──[MUX]── D₃ ──[FF₃]── Q₃
-                         ↓
-D_in[2] ──[MUX]── D₂ ──[FF₂]── Q₂
-                         ↓
-D_in[1] ──[MUX]── D₁ ──[FF₁]── Q₁
-                         ↓
-D_in[0] ──[MUX]── D₀ ──[FF₀]── Q₀ ── Serial Out
+D_in[3] ─┐
+  Load ──┼──[MUX]── D₃ ──[D FF₃]── Q₃
+         │                           │
+D_in[2] ─┤                           │
+  Load ──┼──[MUX]── D₂ ──[D FF₂]── Q₂
+         │                           │
+D_in[1] ─┤                           │
+  Load ──┼──[MUX]── D₁ ──[D FF₁]── Q₁
+         │                           │
+D_in[0] ─┤                           │
+  Load ──┼──[MUX]── D₀ ──[D FF₀]── Q₀ ── Serial Out
+
+(Load=1: select D_in[i], Load=0: select Q[i+1] for shift right)
 ```
 
 **MUX control:**
@@ -285,17 +297,23 @@ Design a 3-bit synchronous binary up counter using T flip-flops. Show the state 
 **Circuit:**
 
 ```
-   1 ─────────[T FF₀]── Q₀ ────┬──────────────→
-                 ↑            │
-   CLK ──────────┴────────────┼──────────────→
-                              │
-   Q₀ ─────────[T FF₁]── Q₁ ──┼──┬───────────→
-                 ↑            │  │
-   CLK ──────────┴────────────│──┼───────────→
-                              │  │
-   Q₀·Q₁ ─────[AND]──[T FF₂]──┴──┴── Q₂ ────→
-                        ↑
-   CLK ─────────────────┘
+               T₀          Q₀
+   1 ──────────┤            ├──────────────────┬──
+               │  [T FF₀]  │                  │
+   CLK ────────┤            │                  │
+               └────────────┘                  │
+               T₁          Q₁                 │
+   Q₀ ────────┤            ├──────────┬──     │
+               │  [T FF₁]  │          │       │
+   CLK ────────┤            │          │       │
+               └────────────┘          │       │
+                                       │       │
+   Q₀ ──┬──[AND]──┐  T₂          Q₂   │       │
+   Q₁ ──┘         ├──┤            ├────┴───   │
+                   │  │  [T FF₂]  │            │
+   CLK ────────────│──┤            │            │
+                   │  └────────────┘            │
+                   └────────────────────────────┘
 ```
 
 **T input equations:**
@@ -412,7 +430,11 @@ Design a ring counter with 4 bits. Show how it differs from a Johnson counter.
 **Structure:** Shift register with Q₀ fed back to D₃
 
 ```
-Q₀ ──→ D₃ ──[FF₃]── Q₃ ──→ D₂ ──[FF₂]── Q₂ ──→ D₁ ──[FF₁]── Q₁ ──→ D₀ ──[FF₀]── Q₀
+┌───────────────────────────────────────────────────────────────────────┐
+│                                                                       │
+└── D₃[D FF₃]Q₃ ── D₂[D FF₂]Q₂ ── D₁[D FF₁]Q₁ ── D₀[D FF₀]Q₀ ─────┘
+          │              │              │              │
+CLK ──────┴──────────────┴──────────────┴──────────────┘
 ```
 
 **Initialization:** One flip-flop set to 1, others to 0
@@ -436,7 +458,11 @@ Q₀ ──→ D₃ ──[FF₃]── Q₃ ──→ D₂ ──[FF₂]── 
 **Structure:** Shift register with Q₀' fed back to D₃
 
 ```
-Q₀'──→ D₃ ──[FF₃]── Q₃ ──→ D₂ ──[FF₂]── Q₂ ──→ D₁ ──[FF₁]── Q₁ ──→ D₀ ──[FF₀]── Q₀
+┌──[NOT]────────────────────────────────────────────────────────────────┐
+│                                                                       │
+└── D₃[D FF₃]Q₃ ── D₂[D FF₂]Q₂ ── D₁[D FF₁]Q₁ ── D₀[D FF₀]Q₀ ─────┘
+          │              │              │              │
+CLK ──────┴──────────────┴──────────────┴──────────────┘
 ```
 
 **Initialization:** All flip-flops to 0
@@ -557,8 +583,8 @@ In a ripple (asynchronous) counter, each flip-flop is clocked by the previous fl
 **Delay chain:**
 
 ```
-CLK → FF₀ → FF₁ → FF₂ → FF₃
-      10ns   10ns   10ns   10ns
+CLK ──[FF₀]──[FF₁]──[FF₂]──[FF₃]
+       10ns    10ns    10ns    10ns
 ```
 
 **Worst-case delay:**
@@ -616,14 +642,20 @@ States represent what portion of "101" has been seen:
 With overlapping, after detecting "101", the last "1" starts a new sequence.
 
 ```
-    0       1       0       1
-S0 ──→ S0   S0 ──→ S1   S1 ──→ S2   S2 ──→ S3
-                   1       0
-            S1 ──→ S1   S2 ──→ S0
+  ┌──0──┐  ┌──1──┐
+  │     │  │     │
+  ▼     │  ▼     │
+┌────┐  │┌────┐  │    ┌────┐     ┌────┐
+│ S0 │──┘│ S1 │──┘    │ S2 │     │ S3 │
+│Z=0 │   │Z=0 │       │Z=0 │     │Z=1 │
+└────┘   └────┘       └────┘     └────┘
+  │ 1      │ 0          │ 0       │ 0  │ 1
+  └── S1   └── S2       └── S0   └─S2 └─S1
 
-From S3 (Output=1):
-    0       1
-S3 ──→ S2   S3 ──→ S1
+  S0 ──0── S0      S1 ──0── S2      S2 ──0── S0
+  S0 ──1── S1      S1 ──1── S1      S2 ──1── S3
+                                     S3 ──0── S2
+                                     S3 ──1── S1
 ```
 
 **State Table (Moore Machine):**
@@ -764,14 +796,16 @@ Design an FSM for a traffic light controller with the following requirements:
 **State Diagram:**
 
 ```
-G ←─────────────────────────┐
-│                           │
-│ T=1                       │ T=1 AND S=1
-↓                           │
-R ──────────────────────────┘
-│
-│ T=0 OR S=0
-└──(stay in R)
+   ┌──T'──┐                  ┌──(TS)'──┐
+   │      │                  │         │
+   ▼      │                  ▼         │
+ ┌─────┐  │    T=1      ┌─────┐       │
+ │  G  │──┘─────────────│  R  │───────┘
+ │Green│                 │ Red │
+ └─────┘                 └─────┘
+    ▲                       │
+    │       T=1, S=1        │
+    └───────────────────────┘
 ```
 
 **State Table (Moore):**
@@ -895,14 +929,18 @@ D₀ = Q₀'
 **Circuit:**
 
 ```
-Q₀' ─────────────[D FF₀]── Q₀
-                    ↑
-CLK ────────────────┘
+                   D₀         Q₀
+Q₀ ──[NOT]─────────┤          ├──────── Q₀
+                    │ [D FF₀]  │
+CLK ────────────────┤          │
+                    └──────────┘
 
-Q₁ ──┬──[XOR]──[XOR]──[D FF₁]── Q₁
-Q₀ ──┘         ↑        ↑
-U' ────────────┘        │
-CLK ────────────────────┘
+                            D₁         Q₁
+Q₁ ──┬──[XOR]──┬──[XOR]────┤          ├──── Q₁
+Q₀ ──┘         │            │ [D FF₁]  │
+U  ──[NOT]─────┘            │          │
+CLK ────────────────────────┤          │
+                            └──────────┘
 ```
 
 
@@ -1007,11 +1045,17 @@ Design a vending machine controller with the following specifications:
 **State Diagram:**
 
 ```
-S0 (0¢) ─N→ S5 (5¢) ─N→ S10 (10¢) ─N→ S15 (dispense)
-   │         │           │              │
-   └──D──→   └──D──→     └──D──→        │
-   ↓         ↓           ↓              ↓
-S10 (10¢)  S15 (disp)  S15 (disp)     S0 (auto)
+┌──────┐   N    ┌──────┐   N    ┌──────┐   N    ┌──────┐
+│  S0  │───────│  S5  │───────│ S10  │───────│ S15  │
+│  0¢  │       │  5¢  │       │ 10¢  │       │DISP=1│
+└──────┘       └──────┘       └──────┘       └──────┘
+   │  D           │  D           │  D           │
+   └── S10        └── S15        └── S15        └── S0 (auto)
+
+Transition summary:
+S0  ──N── S5       S5  ──N── S10      S10 ──N── S15
+S0  ──D── S10      S5  ──D── S15      S10 ──D── S15
+S15 ──X── S0 (always returns to idle)
 ```
 
 **State Table:**
@@ -1083,14 +1127,19 @@ Add one bit position per clock cycle, propagating carry to next cycle.
 **Circuit:**
 
 ```
-A ───┬───────────────┐
-     │               │
-B ───┼───[Full]───S──┴── Sum output
-     │   Adder
-C ───┼───────────C_next──[D FF]──┬── C (feedback)
-     │                    ↑       │
-     └────────────────────│───────┘
-CLK ──────────────────────┘
+A ──────┐
+        ├──[Full Adder]──── S (Sum output)
+B ──────┤        │
+        │        │
+   ┌────┘        └── C_next ──┐
+   │                          │   D          Q
+   │                          └───┤          ├──┬── C
+   │                              │ [D FF]   │  │
+   │                  CLK ────────┤          │  │
+   │                              └──────────┘  │
+   │                                            │
+   └────────────────────────────────────────────┘
+                  (C feeds back to Full Adder)
 ```
 
 **State Machine View:**
@@ -1164,11 +1213,14 @@ Z = Q₂'Q₁' + Q₂'Q₀
 6-bit shift register with pattern loaded: 110100
 
 ```
-Load: 1 1 0 1 0 0
-      ↓ ↓ ↓ ↓ ↓ ↓
-[FF₅][FF₄][FF₃][FF₂][FF₁][FF₀]── Output
-  ↑                          │
-  └──────────────────────────┘ (feedback)
+Load:  1     1     0     1     0     0
+       │     │     │     │     │     │
+┌──[D FF₅][D FF₄][D FF₃][D FF₂][D FF₁][D FF₀]── Output
+│       │     │     │     │     │     │         │
+│  CLK ─┴─────┴─────┴─────┴─────┴─────┘         │
+│                                                │
+└────────────────────────────────────────────────┘
+                    (Q₀ feeds back to D₅)
 ```
 
 On each clock, shift right, Q₀ feeds back to Q₅.
@@ -1187,11 +1239,13 @@ On each clock, shift right, Q₀ feeds back to Q₅.
 Analyze the following circuit and determine its function:
 
 ```
-    ┌─────────────────────────────┐
-    │                             │
-D ──┼──[D FF₀]── Q₀ ──[D FF₁]── Q₁
-    │      ↑            ↑
-CLK ┴──────┴────────────┘
+         D₀         Q₀    D₁         Q₁
+D ────────┤          ├──────┤          ├──
+          │ [D FF₀]  │      │ [D FF₁]  │
+CLK ──────┤          │  ┌───┤          │
+          └──────────┘  │   └──────────┘
+                        │
+CLK ────────────────────┘
 ```
 
 (D is input, CLK is shared, Q₀ output of FF₀ feeds D input of FF₁)
@@ -1282,9 +1336,11 @@ Both share CLK
 **State Diagram:**
 
 ```
-00 → 10 → 11 → 01
- ↑              │
- └──────────────┘
+┌────┐     ┌────┐     ┌────┐     ┌────┐
+│ 00 │────│ 10 │────│ 11 │────│ 01 │
+└────┘     └────┘     └────┘     └────┘
+  ▲                                 │
+  └─────────────────────────────────┘
 ```
 
 **Characteristic:** Gray code sequence (only one bit changes per transition)
@@ -1377,16 +1433,21 @@ Z = Q₁ (output is 1 only in state C where Q₁=1)
 **Circuit:**
 
 ```
-X ──┬───[AND]───────[D FF₁]── Q₁ ─── Z
-    │     ↑            ↑
-Q₁ ─┼──[OR]┘           │
-Q₀ ─┤                  │
-    │                  │
-Q₁'─┬──[AND]──[D FF₀]──Q₀
-Q₀'─┤     ↑
-X ──┘     │
-          │
-CLK ──────┴───────────────
+                                D₁         Q₁
+Q₁ ──┬──[OR]──┬──[AND]─────────┤          ├──┬── Q₁ ── Z
+Q₀ ──┘        │                │ [D FF₁]  │  │
+X  ───────────┘                │          │  │
+                   CLK ────────┤          │  │
+                               └──────────┘  │
+                                             │
+                                D₀         Q₀│
+Q₁'──┬──[AND]──────────────────┤          ├──┼── Q₀
+Q₀'──┤                         │ [D FF₀]  │  │
+X  ──┘                         │          │  │
+                   CLK ────────┤          │  │
+                               └──────────┘  │
+                                             │
+(Q₁, Q₀ feed back to logic above)───────────┘
 ```
 
 
