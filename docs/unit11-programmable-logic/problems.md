@@ -5,25 +5,29 @@ description: Practice problems for ROMs, PLAs, PALs, CPLDs, FPGAs, and design fl
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Programmable Logic Devices
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Programmable Logic Devices</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of ROMs, PLAs, PALs, CPLDs, FPGAs, and the programmable logic design flow.
+</p>
 
----
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: ROM and PLA Programming (4 problems)</h2>
 
-## Section A: ROM and PLA Programming (4 problems)
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
+A combinational circuit has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>) and 2 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>) defined by:
 
-### Problem 1
-A combinational circuit has 3 inputs ($A$, $B$, $C$) and 2 outputs ($F_1$, $F_2$) defined by:
+- <span class="arithmatex">\(F_1(A, B, C) = \sum m(1, 2, 4, 7)\)</span>
+- <span class="arithmatex">\(F_2(A, B, C) = \sum m(0, 3, 5, 6)\)</span>
 
-- $F_1(A, B, C) = \sum m(1, 2, 4, 7)$
-- $F_2(A, B, C) = \sum m(0, 3, 5, 6)$
+Implement this circuit using an <span class="arithmatex">\(8 \times 2\)</span> ROM. Show the complete truth table and the contents of every ROM address.
 
-Implement this circuit using an $8 \times 2$ ROM. Show the complete truth table and the contents of every ROM address.
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Solution:** **Truth table (ROM contents):**
+**Truth table (ROM contents):**
 
-| Address | $A$ | $B$ | $C$ | $F_1$ | $F_2$ |
+| Address | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(F_2\)</span> |
 |---------|-----|-----|-----|-------|-------|
 | 0 | 0 | 0 | 0 | 0 | 1 |
 | 1 | 0 | 0 | 1 | 1 | 0 |
@@ -51,82 +55,88 @@ C ──┘       (fixed AND        m1 ── ·───── F1
 
 **ROM programming:**
 
-- The decoder (AND plane) is fixed and generates all $2^3 = 8$ minterms.
+- The decoder (AND plane) is fixed and generates all <span class="arithmatex">\(2^3 = 8\)</span> minterms.
 - The OR plane is programmable. Connections (fuse intact) are marked with a dot.
-- $F_1$ OR line connects to minterms 1, 2, 4, 7.
-- $F_2$ OR line connects to minterms 0, 3, 5, 6.
+- <span class="arithmatex">\(F_1\)</span> OR line connects to minterms 1, 2, 4, 7.
+- <span class="arithmatex">\(F_2\)</span> OR line connects to minterms 0, 3, 5, 6.
 
-**ROM size:** $2^3 \times 2 = 8 \times 2 = 16$ bits total.
+**ROM size:** <span class="arithmatex">\(2^3 \times 2 = 8 \times 2 = 16\)</span> bits total.
 
-**Key observation:** The ROM stores the complete truth table. Every minterm is generated whether needed or not. Note that $F_2 = \overline{F_1}$ in this example, but the ROM does not exploit this — each output is independently programmed.
+**Key observation:** The ROM stores the complete truth table. Every minterm is generated whether needed or not. Note that <span class="arithmatex">\(F_2 = \overline{F_1}\)</span> in this example, but the ROM does not exploit this — each output is independently programmed.
 
----
+</div>
+</details>
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 Compare the ROM implementation from Problem 1 to a PLA implementation of the same functions. Determine the minimum number of product terms needed in the PLA and show the AND-plane and OR-plane programming.
 
-**Solution:** **Step 1: Minimize each function.**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**K-map for $F_1 = \sum m(1, 2, 4, 7)$:**
+**Step 1: Minimize each function.**
 
-| $A$\$BC$ | 00 | 01 | 11 | 10 |
+**K-map for <span class="arithmatex">\(F_1 = \sum m(1, 2, 4, 7)\)</span>:**
+
+| <span class="arithmatex">\(A\)</span>\<span class="arithmatex">\(BC\)</span> | 00 | 01 | 11 | 10 |
 |---------|----|----|----|----|
 | 0 | 0 | 1 | 0 | 1 |
 | 1 | 1 | 0 | 1 | 0 |
 
-$F_1 = \overline{A}\,\overline{B}\,C + \overline{A}\,B\,\overline{C} + A\,\overline{B}\,\overline{C} + A\,B\,C$
+<span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + \overline{A}\,B\,\overline{C} + A\,\overline{B}\,\overline{C} + A\,B\,C\)</span>
 
-This simplifies to: $F_1 = A \oplus B \oplus C$ (odd-parity function, no further SOP reduction below 4 product terms).
+This simplifies to: <span class="arithmatex">\(F_1 = A \oplus B \oplus C\)</span> (odd-parity function, no further SOP reduction below 4 product terms).
 
-**K-map for $F_2 = \sum m(0, 3, 5, 6)$:**
+**K-map for <span class="arithmatex">\(F_2 = \sum m(0, 3, 5, 6)\)</span>:**
 
-| $A$\$BC$ | 00 | 01 | 11 | 10 |
+| <span class="arithmatex">\(A\)</span>\<span class="arithmatex">\(BC\)</span> | 00 | 01 | 11 | 10 |
 |---------|----|----|----|----|
 | 0 | 1 | 0 | 1 | 0 |
 | 1 | 0 | 1 | 0 | 1 |
 
-$F_2 = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,B\,C + A\,\overline{B}\,C + A\,B\,\overline{C}$
+<span class="arithmatex">\(F_2 = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,B\,C + A\,\overline{B}\,C + A\,B\,\overline{C}\)</span>
 
-$F_2 = \overline{F_1}$ (even parity). However, in standard PLA the complement is not free, so we still need product terms.
+<span class="arithmatex">\(F_2 = \overline{F_1}\)</span> (even parity). However, in standard PLA the complement is not free, so we still need product terms.
 
 **Step 2: Find shared product terms.**
 
-Since $F_2 = \overline{F_1}$, these functions share no common product terms (they are complements). We need:
+Since <span class="arithmatex">\(F_2 = \overline{F_1}\)</span>, these functions share no common product terms (they are complements). We need:
 
-- 4 product terms for $F_1$
-- 4 product terms for $F_2$
+- 4 product terms for <span class="arithmatex">\(F_1\)</span>
+- 4 product terms for <span class="arithmatex">\(F_2\)</span>
 
-But wait — a PLA with complemented outputs can implement $F_2$ by inverting $F_1$. If the PLA supports XOR at the output, only 4 product terms are needed total.
+But wait — a PLA with complemented outputs can implement <span class="arithmatex">\(F_2\)</span> by inverting <span class="arithmatex">\(F_1\)</span>. If the PLA supports XOR at the output, only 4 product terms are needed total.
 
 Without output inversion: **8 product terms**.
 
-With output inversion on $F_2$: **4 product terms**.
+With output inversion on <span class="arithmatex">\(F_2\)</span>: **4 product terms**.
 
 **Step 3: PLA programming table (with output inversion):**
 
-| Product Term | $A$ | $B$ | $C$ | $F_1$ | $\overline{F_2}$ |
+| Product Term | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(\overline{F_2}\)</span> |
 |-------------|-----|-----|-----|-------|----------|
-| $P_1 = \overline{A}\,\overline{B}\,C$ | 0 | 0 | 1 | 1 | 1 |
-| $P_2 = \overline{A}\,B\,\overline{C}$ | 0 | 1 | 0 | 1 | 1 |
-| $P_3 = A\,\overline{B}\,\overline{C}$ | 1 | 0 | 0 | 1 | 1 |
-| $P_4 = A\,B\,C$ | 1 | 1 | 1 | 1 | 1 |
+| <span class="arithmatex">\(P_1 = \overline{A}\,\overline{B}\,C\)</span> | 0 | 0 | 1 | 1 | 1 |
+| <span class="arithmatex">\(P_2 = \overline{A}\,B\,\overline{C}\)</span> | 0 | 1 | 0 | 1 | 1 |
+| <span class="arithmatex">\(P_3 = A\,\overline{B}\,\overline{C}\)</span> | 1 | 0 | 0 | 1 | 1 |
+| <span class="arithmatex">\(P_4 = A\,B\,C\)</span> | 1 | 1 | 1 | 1 | 1 |
 
-$F_2$ output gets an XOR bubble (complement).
+<span class="arithmatex">\(F_2\)</span> output gets an XOR bubble (complement).
 
 **Comparison:**
 
 | Feature | ROM | PLA |
 |---------|-----|-----|
-| AND plane | Fixed (all $2^n$ minterms) | Programmable (only needed terms) |
+| AND plane | Fixed (all <span class="arithmatex">\(2^n\)</span> minterms) | Programmable (only needed terms) |
 | OR plane | Programmable | Programmable |
 | Product terms | 8 (all minterms) | 4 (with output inversion) |
 | Total fuses | 16 | Much fewer |
 | Flexibility | Any function of 3 variables | Only functions fitting allocated terms |
 
----
+</div>
+</details>
 
-### Problem 3
-A system requires a code converter that maps 4-bit BCD (0-9) to 7-segment display outputs ($a$-$g$). Show how to implement this using a ROM. Determine the ROM size and show the contents for digits 0, 1, 2, and 3.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
+A system requires a code converter that maps 4-bit BCD (0-9) to 7-segment display outputs (<span class="arithmatex">\(a\)</span>-<span class="arithmatex">\(g\)</span>). Show how to implement this using a ROM. Determine the ROM size and show the contents for digits 0, 1, 2, and 3.
 
 Segment mapping (active-high, common cathode):
 
@@ -142,15 +152,19 @@ e   c
  ─d─
 ```
 
-**Solution:** **ROM configuration:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- Inputs: 4-bit BCD ($D_3 D_2 D_1 D_0$) = 4 address lines
-- Outputs: 7 segments ($a, b, c, d, e, f, g$) = 7 data bits
-- ROM size: $2^4 \times 7 = 16 \times 7 = 112$ bits
+**ROM configuration:**
+
+- Inputs: 4-bit BCD (<span class="arithmatex">\(D_3 D_2 D_1 D_0\)</span>) = 4 address lines
+- Outputs: 7 segments (<span class="arithmatex">\(a, b, c, d, e, f, g\)</span>) = 7 data bits
+- ROM size: <span class="arithmatex">\(2^4 \times 7 = 16 \times 7 = 112\)</span> bits
 
 **Segment encoding (1 = ON):**
 
-| Digit | $D_3 D_2 D_1 D_0$ | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ | Hex |
+| Digit | <span class="arithmatex">\(D_3 D_2 D_1 D_0\)</span> | <span class="arithmatex">\(a\)</span> | <span class="arithmatex">\(b\)</span> | <span class="arithmatex">\(c\)</span> | <span class="arithmatex">\(d\)</span> | <span class="arithmatex">\(e\)</span> | <span class="arithmatex">\(f\)</span> | <span class="arithmatex">\(g\)</span> | Hex |
 |-------|-------------------|-----|-----|-----|-----|-----|-----|-----|-----|
 | 0 | 0000 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 7E |
 | 1 | 0001 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 30 |
@@ -179,34 +193,39 @@ D0 ──┘   (fixed AND    m2 ──── a b d e g   (digit 2)
 
 **Addresses 10-15** (invalid BCD) store all zeros, blanking the display.
 
-**Total storage used:** 10 valid digits $\times$ 7 bits = 70 bits active; 6 unused addresses $\times$ 7 bits = 42 bits wasted.
+**Total storage used:** 10 valid digits <span class="arithmatex">\(\times\)</span> 7 bits = 70 bits active; 6 unused addresses <span class="arithmatex">\(\times\)</span> 7 bits = 42 bits wasted.
 
 **ROM advantage:** No minimization needed. Just store the truth table directly. Any display pattern change requires only reprogramming the ROM contents.
 
----
+</div>
+</details>
 
-### Problem 4
-Design a PLA with 3 inputs ($X$, $Y$, $Z$) and 3 outputs ($F_1$, $F_2$, $F_3$) for the following functions. Identify shared product terms to minimize the total number of product terms.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
+Design a PLA with 3 inputs (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>) and 3 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>, <span class="arithmatex">\(F_3\)</span>) for the following functions. Identify shared product terms to minimize the total number of product terms.
 
-- $F_1 = X\overline{Y} + XZ$
-- $F_2 = X\overline{Y} + \overline{X}Z$
-- $F_3 = XZ + \overline{X}Z$
+- <span class="arithmatex">\(F_1 = X\overline{Y} + XZ\)</span>
+- <span class="arithmatex">\(F_2 = X\overline{Y} + \overline{X}Z\)</span>
+- <span class="arithmatex">\(F_3 = XZ + \overline{X}Z\)</span>
 
-**Solution:** **Step 1: List all unique product terms.**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Step 1: List all unique product terms.**
 
 | Product Term | Expression |
 |-------------|------------|
-| $P_1$ | $X\overline{Y}$ |
-| $P_2$ | $XZ$ |
-| $P_3$ | $\overline{X}Z$ |
+| <span class="arithmatex">\(P_1\)</span> | <span class="arithmatex">\(X\overline{Y}\)</span> |
+| <span class="arithmatex">\(P_2\)</span> | <span class="arithmatex">\(XZ\)</span> |
+| <span class="arithmatex">\(P_3\)</span> | <span class="arithmatex">\(\overline{X}Z\)</span> |
 
 **Step 2: Check for sharing.**
 
-- $F_1 = P_1 + P_2$ (uses $X\overline{Y}$ and $XZ$)
-- $F_2 = P_1 + P_3$ (uses $X\overline{Y}$ and $\overline{X}Z$)
-- $F_3 = P_2 + P_3$ (uses $XZ$ and $\overline{X}Z$)
+- <span class="arithmatex">\(F_1 = P_1 + P_2\)</span> (uses <span class="arithmatex">\(X\overline{Y}\)</span> and <span class="arithmatex">\(XZ\)</span>)
+- <span class="arithmatex">\(F_2 = P_1 + P_3\)</span> (uses <span class="arithmatex">\(X\overline{Y}\)</span> and <span class="arithmatex">\(\overline{X}Z\)</span>)
+- <span class="arithmatex">\(F_3 = P_2 + P_3\)</span> (uses <span class="arithmatex">\(XZ\)</span> and <span class="arithmatex">\(\overline{X}Z\)</span>)
 
-Note: $F_3 = XZ + \overline{X}Z = Z(X + \overline{X}) = Z$, but in PLA SOP form we keep the product terms as they enable sharing.
+Note: <span class="arithmatex">\(F_3 = XZ + \overline{X}Z = Z(X + \overline{X}) = Z\)</span>, but in PLA SOP form we keep the product terms as they enable sharing.
 
 **Total unique product terms: 3** (all shared across outputs).
 
@@ -214,19 +233,19 @@ Note: $F_3 = XZ + \overline{X}Z = Z(X + \overline{X}) = Z$, but in PLA SOP form 
 
 AND plane (1 = true, 0 = complement, — = don't connect):
 
-| Product Term | $X$ | $\overline{X}$ | $Y$ | $\overline{Y}$ | $Z$ | $\overline{Z}$ |
+| Product Term | <span class="arithmatex">\(X\)</span> | <span class="arithmatex">\(\overline{X}\)</span> | <span class="arithmatex">\(Y\)</span> | <span class="arithmatex">\(\overline{Y}\)</span> | <span class="arithmatex">\(Z\)</span> | <span class="arithmatex">\(\overline{Z}\)</span> |
 |-------------|-----|------|-----|------|-----|------|
-| $P_1$: $X\overline{Y}$ | 1 | — | — | 1 | — | — |
-| $P_2$: $XZ$ | 1 | — | — | — | 1 | — |
-| $P_3$: $\overline{X}Z$ | — | 1 | — | — | 1 | — |
+| <span class="arithmatex">\(P_1\)</span>: <span class="arithmatex">\(X\overline{Y}\)</span> | 1 | — | — | 1 | — | — |
+| <span class="arithmatex">\(P_2\)</span>: <span class="arithmatex">\(XZ\)</span> | 1 | — | — | — | 1 | — |
+| <span class="arithmatex">\(P_3\)</span>: <span class="arithmatex">\(\overline{X}Z\)</span> | — | 1 | — | — | 1 | — |
 
 OR plane (1 = connected):
 
-| Product Term | $F_1$ | $F_2$ | $F_3$ |
+| Product Term | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(F_2\)</span> | <span class="arithmatex">\(F_3\)</span> |
 |-------------|-------|-------|-------|
-| $P_1$ | 1 | 1 | — |
-| $P_2$ | 1 | — | 1 |
-| $P_3$ | — | 1 | 1 |
+| <span class="arithmatex">\(P_1\)</span> | 1 | 1 | — |
+| <span class="arithmatex">\(P_2\)</span> | 1 | — | 1 |
+| <span class="arithmatex">\(P_3\)</span> | — | 1 | 1 |
 
 **PLA diagram:**
 
@@ -253,113 +272,123 @@ Z ──┼──/──┼──┼──┐
 └──────────────────┘
 ```
 
-**Comparison to ROM:** A ROM would need all $2^3 = 8$ minterms. The PLA needs only **3 product terms** — a significant reduction. The key benefit is product term sharing: $P_1$ serves both $F_1$ and $F_2$; $P_2$ serves both $F_1$ and $F_3$; $P_3$ serves both $F_2$ and $F_3$.
+**Comparison to ROM:** A ROM would need all <span class="arithmatex">\(2^3 = 8\)</span> minterms. The PLA needs only **3 product terms** — a significant reduction. The key benefit is product term sharing: <span class="arithmatex">\(P_1\)</span> serves both <span class="arithmatex">\(F_1\)</span> and <span class="arithmatex">\(F_2\)</span>; <span class="arithmatex">\(P_2\)</span> serves both <span class="arithmatex">\(F_1\)</span> and <span class="arithmatex">\(F_3\)</span>; <span class="arithmatex">\(P_3\)</span> serves both <span class="arithmatex">\(F_2\)</span> and <span class="arithmatex">\(F_3\)</span>.
 
----
+</div>
+</details>
 
-## Section B: PAL Design (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: PAL Design (4 problems)</h2>
 
-### Problem 5
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 Implement the following functions using a PAL with 3 inputs and a maximum of 4 product terms per output:
 
-- $F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC$
-- $F_2 = \overline{A}BC + AB\overline{C} + ABC$
+- <span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC\)</span>
+- <span class="arithmatex">\(F_2 = \overline{A}BC + AB\overline{C} + ABC\)</span>
 
 Show the PAL programming table and verify that the functions fit within the PAL constraints.
 
-**Solution:** **Step 1: Count product terms per output.**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- $F_1$ has 4 product terms. PAL allows 4 per output. Fits exactly.
-- $F_2$ has 3 product terms. PAL allows 4. Fits with one spare.
+**Step 1: Count product terms per output.**
+
+- <span class="arithmatex">\(F_1\)</span> has 4 product terms. PAL allows 4 per output. Fits exactly.
+- <span class="arithmatex">\(F_2\)</span> has 3 product terms. PAL allows 4. Fits with one spare.
 
 **Step 2: Attempt to minimize (optional for PAL, but good practice).**
 
-**$F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC$**
+**<span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC\)</span>**
 
-K-map for $F_1$:
+K-map for <span class="arithmatex">\(F_1\)</span>:
 
-| $A$\$BC$ | 00 | 01 | 11 | 10 |
+| <span class="arithmatex">\(A\)</span>\<span class="arithmatex">\(BC\)</span> | 00 | 01 | 11 | 10 |
 |---------|----|----|----|----|
 | 0 | 0 | 1 | 0 | 0 |
 | 1 | 1 | 0 | 1 | 1 |
 
-Grouping: $A\overline{B} + AB = A(\overline{B} + B) = A$... wait:
+Grouping: <span class="arithmatex">\(A\overline{B} + AB = A(\overline{B} + B) = A\)</span>... wait:
 
-- $A\overline{B}\,\overline{C} + AB\overline{C} = A\overline{C}$
-- $ABC$ remains
-- $\overline{A}\,\overline{B}\,C$ remains
+- <span class="arithmatex">\(A\overline{B}\,\overline{C} + AB\overline{C} = A\overline{C}\)</span>
+- <span class="arithmatex">\(ABC\)</span> remains
+- <span class="arithmatex">\(\overline{A}\,\overline{B}\,C\)</span> remains
 
-$F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C = A\overline{C} + \overline{A}\,\overline{B}\,C + ABC$
+<span class="arithmatex">\(F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C = A\overline{C} + \overline{A}\,\overline{B}\,C + ABC\)</span>
 
-Further: $A\overline{C} + ABC = A(\overline{C} + BC) = A(\overline{C} + B)$... not SOP.
+Further: <span class="arithmatex">\(A\overline{C} + ABC = A(\overline{C} + BC) = A(\overline{C} + B)\)</span>... not SOP.
 
-Minimized SOP: $F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C$ — **3 product terms**.
+Minimized SOP: <span class="arithmatex">\(F_1 = A\overline{C} + ABC + \overline{A}\,\overline{B}\,C\)</span> — **3 product terms**.
 
-**$F_2 = \overline{A}BC + AB\overline{C} + ABC$**
+**<span class="arithmatex">\(F_2 = \overline{A}BC + AB\overline{C} + ABC\)</span>**
 
-K-map for $F_2$:
+K-map for <span class="arithmatex">\(F_2\)</span>:
 
-| $A$\$BC$ | 00 | 01 | 11 | 10 |
+| <span class="arithmatex">\(A\)</span>\<span class="arithmatex">\(BC\)</span> | 00 | 01 | 11 | 10 |
 |---------|----|----|----|----|
 | 0 | 0 | 0 | 1 | 0 |
 | 1 | 0 | 0 | 1 | 1 |
 
-- $\overline{A}BC + ABC = BC$
-- $AB\overline{C}$ remains
+- <span class="arithmatex">\(\overline{A}BC + ABC = BC\)</span>
+- <span class="arithmatex">\(AB\overline{C}\)</span> remains
 
-$F_2 = BC + AB\overline{C}$ — **2 product terms**.
+<span class="arithmatex">\(F_2 = BC + AB\overline{C}\)</span> — **2 product terms**.
 
 **Step 3: PAL programming table.**
 
-| Row | $A$ | $\overline{A}$ | $B$ | $\overline{B}$ | $C$ | $\overline{C}$ | Output |
+| Row | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(\overline{A}\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(\overline{B}\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(\overline{C}\)</span> | Output |
 |-----|-----|------|-----|------|-----|------|--------|
-| 1 | 1 | — | — | — | — | 1 | $F_1$ |
-| 2 | 1 | — | 1 | — | 1 | — | $F_1$ |
-| 3 | — | 1 | — | 1 | 1 | — | $F_1$ |
-| 4 | — | — | — | — | — | — | $F_1$ (unused, all fuses intact = 0) |
-| 5 | — | — | 1 | — | 1 | — | $F_2$ |
-| 6 | 1 | — | 1 | — | — | 1 | $F_2$ |
-| 7 | — | — | — | — | — | — | $F_2$ (unused) |
-| 8 | — | — | — | — | — | — | $F_2$ (unused) |
+| 1 | 1 | — | — | — | — | 1 | <span class="arithmatex">\(F_1\)</span> |
+| 2 | 1 | — | 1 | — | 1 | — | <span class="arithmatex">\(F_1\)</span> |
+| 3 | — | 1 | — | 1 | 1 | — | <span class="arithmatex">\(F_1\)</span> |
+| 4 | — | — | — | — | — | — | <span class="arithmatex">\(F_1\)</span> (unused, all fuses intact = 0) |
+| 5 | — | — | 1 | — | 1 | — | <span class="arithmatex">\(F_2\)</span> |
+| 6 | 1 | — | 1 | — | — | 1 | <span class="arithmatex">\(F_2\)</span> |
+| 7 | — | — | — | — | — | — | <span class="arithmatex">\(F_2\)</span> (unused) |
+| 8 | — | — | — | — | — | — | <span class="arithmatex">\(F_2\)</span> (unused) |
 
-**Key PAL characteristic:** Each product term is dedicated to exactly one output. Product term $P_1$ (row 1) can only feed $F_1$, never $F_2$. This is the fundamental difference from a PLA, where any product term can feed any output.
+**Key PAL characteristic:** Each product term is dedicated to exactly one output. Product term <span class="arithmatex">\(P_1\)</span> (row 1) can only feed <span class="arithmatex">\(F_1\)</span>, never <span class="arithmatex">\(F_2\)</span>. This is the fundamental difference from a PLA, where any product term can feed any output.
 
----
+</div>
+</details>
 
-### Problem 6
-A PAL device has 4 inputs ($A$, $B$, $C$, $D$) and 2 outputs, with a maximum of 3 product terms per output. Determine whether the following functions can be implemented directly. If not, explain what must be done.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
+A PAL device has 4 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(D\)</span>) and 2 outputs, with a maximum of 3 product terms per output. Determine whether the following functions can be implemented directly. If not, explain what must be done.
 
-- $F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD$
-- $F_2 = \overline{A}\,\overline{B} + CD$
+- <span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD\)</span>
+- <span class="arithmatex">\(F_2 = \overline{A}\,\overline{B} + CD\)</span>
 
-**Solution:** **Step 1: Count product terms.**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-- $F_1$ has 5 product terms in the given form. PAL limit is 3 per output. **Does not fit.**
-- $F_2$ has 2 product terms. PAL limit is 3. **Fits.**
+**Step 1: Count product terms.**
 
-**Step 2: Attempt to minimize $F_1$.**
+- <span class="arithmatex">\(F_1\)</span> has 5 product terms in the given form. PAL limit is 3 per output. **Does not fit.**
+- <span class="arithmatex">\(F_2\)</span> has 2 product terms. PAL limit is 3. **Fits.**
 
-$F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD$
+**Step 2: Attempt to minimize <span class="arithmatex">\(F_1\)</span>.**
+
+<span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD\)</span>
 
 Factor where possible:
 
-- $AB\overline{C}D + ABC\overline{D} + ABCD = AB(\overline{C}D + C\overline{D} + CD) = AB(\overline{C}D + C) = AB(C + D)$
+- <span class="arithmatex">\(AB\overline{C}D + ABC\overline{D} + ABCD = AB(\overline{C}D + C\overline{D} + CD) = AB(\overline{C}D + C) = AB(C + D)\)</span>
 
-Wait: $\overline{C}D + C\overline{D} + CD = \overline{C}D + C(\overline{D} + D) = \overline{C}D + C = C + D$
+Wait: <span class="arithmatex">\(\overline{C}D + C\overline{D} + CD = \overline{C}D + C(\overline{D} + D) = \overline{C}D + C = C + D\)</span>
 
-So: $AB\overline{C}D + ABC\overline{D} + ABCD = AB(C + D)$
+So: <span class="arithmatex">\(AB\overline{C}D + ABC\overline{D} + ABCD = AB(C + D)\)</span>
 
-But $AB(C+D) = ABC + ABD$ — still 2 product terms.
+But <span class="arithmatex">\(AB(C+D) = ABC + ABD\)</span> — still 2 product terms.
 
-Now: $F_1 = \overline{A}BCD + A\overline{B}CD + ABC + ABD$
+Now: <span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + ABC + ABD\)</span>
 
 That is 4 product terms. Still exceeds 3.
 
-Try further: $A\overline{B}CD + ABC = AC(\overline{B}D + B) = AC(B + D)$ = $ABC + ACD$. No improvement.
+Try further: <span class="arithmatex">\(A\overline{B}CD + ABC = AC(\overline{B}D + B) = AC(B + D)\)</span> = <span class="arithmatex">\(ABC + ACD\)</span>. No improvement.
 
-Try: $\overline{A}BCD + A\overline{B}CD = CD(\overline{A}B + A\overline{B}) = CD(A \oplus B)$. Not SOP.
+Try: <span class="arithmatex">\(\overline{A}BCD + A\overline{B}CD = CD(\overline{A}B + A\overline{B}) = CD(A \oplus B)\)</span>. Not SOP.
 
-In SOP form, $F_1$ requires **minimum 4 product terms** (verified by K-map). This exceeds the PAL limit of 3.
+In SOP form, <span class="arithmatex">\(F_1\)</span> requires **minimum 4 product terms** (verified by K-map). This exceeds the PAL limit of 3.
 
 **Step 3: Solutions when function exceeds product term limit.**
 
@@ -367,21 +396,26 @@ In SOP form, $F_1$ requires **minimum 4 product terms** (verified by K-map). Thi
 
 2. **Output cascading:** Use the output of another PAL macro-cell as a feedback input.
 
-    - $G = \overline{A}BCD + A\overline{B}CD$ (2 terms — fits in one output)
-    - $F_1 = G + ABC + ABD$ (3 terms — fits, using $G$ as input)
+    - <span class="arithmatex">\(G = \overline{A}BCD + A\overline{B}CD\)</span> (2 terms — fits in one output)
+    - <span class="arithmatex">\(F_1 = G + ABC + ABD\)</span> (3 terms — fits, using <span class="arithmatex">\(G\)</span> as input)
 
     This requires two output macro-cells and one feedback path.
 
-3. **Use XOR output:** Some PALs have XOR gates at outputs. $F_1$ might factor into two expressions XORed together, each with fewer terms.
+3. **Use XOR output:** Some PALs have XOR gates at outputs. <span class="arithmatex">\(F_1\)</span> might factor into two expressions XORed together, each with fewer terms.
 
-**Conclusion:** $F_2$ fits directly. $F_1$ requires either a larger PAL or output cascading to implement.
+**Conclusion:** <span class="arithmatex">\(F_2\)</span> fits directly. <span class="arithmatex">\(F_1\)</span> requires either a larger PAL or output cascading to implement.
 
----
+</div>
+</details>
 
-### Problem 7
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 Explain the difference between a PLA and a PAL in terms of architecture, speed, and cost. A function requires 6 product terms shared among 4 outputs. Compare the PLA and PAL implementations.
 
-**Solution:** **Architectural Comparison:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Architectural Comparison:**
 
 ```
 PLA Architecture:              PAL Architecture:
@@ -418,10 +452,10 @@ PLA Architecture:              PAL Architecture:
 
 Suppose the functions are:
 
-- $F_1 = P_1 + P_2 + P_3$
-- $F_2 = P_1 + P_4$
-- $F_3 = P_2 + P_5 + P_6$
-- $F_4 = P_3 + P_4 + P_5 + P_6$
+- <span class="arithmatex">\(F_1 = P_1 + P_2 + P_3\)</span>
+- <span class="arithmatex">\(F_2 = P_1 + P_4\)</span>
+- <span class="arithmatex">\(F_3 = P_2 + P_5 + P_6\)</span>
+- <span class="arithmatex">\(F_4 = P_3 + P_4 + P_5 + P_6\)</span>
 
 **PLA implementation:**
 
@@ -433,26 +467,31 @@ Suppose the functions are:
 **PAL implementation:**
 
 - Each output has its own dedicated product terms
-- $F_1$ needs 3 terms (own copies of $P_1$, $P_2$, $P_3$)
-- $F_2$ needs 2 terms (own copies of $P_1$, $P_4$)
-- $F_3$ needs 3 terms (own copies of $P_2$, $P_5$, $P_6$)
-- $F_4$ needs 4 terms (own copies of $P_3$, $P_4$, $P_5$, $P_6$)
+- <span class="arithmatex">\(F_1\)</span> needs 3 terms (own copies of <span class="arithmatex">\(P_1\)</span>, <span class="arithmatex">\(P_2\)</span>, <span class="arithmatex">\(P_3\)</span>)
+- <span class="arithmatex">\(F_2\)</span> needs 2 terms (own copies of <span class="arithmatex">\(P_1\)</span>, <span class="arithmatex">\(P_4\)</span>)
+- <span class="arithmatex">\(F_3\)</span> needs 3 terms (own copies of <span class="arithmatex">\(P_2\)</span>, <span class="arithmatex">\(P_5\)</span>, <span class="arithmatex">\(P_6\)</span>)
+- <span class="arithmatex">\(F_4\)</span> needs 4 terms (own copies of <span class="arithmatex">\(P_3\)</span>, <span class="arithmatex">\(P_4\)</span>, <span class="arithmatex">\(P_5\)</span>, <span class="arithmatex">\(P_6\)</span>)
 - Total AND gates: **12** (product terms duplicated)
 
 **Summary:** The PLA uses 6 AND gates (shared terms). The PAL uses 12 AND gates (dedicated terms) but runs faster because the OR plane has fixed (hardwired) connections with lower propagation delay.
 
 **Speed comparison:** PAL is typically 5-10 ns faster per level because one programmable interconnect plane introduces less capacitive loading and delay than two.
 
----
+</div>
+</details>
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
 A PAL22V10 has 22 inputs and 10 outputs. Each output macro-cell contains a D flip-flop and can be configured as combinational or registered. If a specific output has 8 product terms available, implement the following registered output:
 
-$D = A\overline{B}C + \overline{A}BC + ABD_{feedback} + \overline{A}\,\overline{B}\,\overline{C}$
+<span class="arithmatex">\(D = A\overline{B}C + \overline{A}BC + ABD_{feedback} + \overline{A}\,\overline{B}\,\overline{C}\)</span>
 
 Explain how the output feedback works and draw the macro-cell structure.
 
-**Solution:** **PAL22V10 Macro-Cell Structure:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**PAL22V10 Macro-Cell Structure:**
 
 ```
 From AND array (up to 8 product terms):
@@ -494,41 +533,46 @@ From AND array (up to 8 product terms):
 
 | Term | Expression | Purpose |
 |------|-----------|---------|
-| $P_1$ | $A\overline{B}C$ | Product term 1 |
-| $P_2$ | $\overline{A}BC$ | Product term 2 |
-| $P_3$ | $ABD_{fb}$ | Uses feedback from registered output |
-| $P_4$ | $\overline{A}\,\overline{B}\,\overline{C}$ | Product term 4 |
-| $P_5-P_8$ | unused | Available for future expansion |
+| <span class="arithmatex">\(P_1\)</span> | <span class="arithmatex">\(A\overline{B}C\)</span> | Product term 1 |
+| <span class="arithmatex">\(P_2\)</span> | <span class="arithmatex">\(\overline{A}BC\)</span> | Product term 2 |
+| <span class="arithmatex">\(P_3\)</span> | <span class="arithmatex">\(ABD_{fb}\)</span> | Uses feedback from registered output |
+| <span class="arithmatex">\(P_4\)</span> | <span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{C}\)</span> | Product term 4 |
+| <span class="arithmatex">\(P_5\)</span>-<span class="arithmatex">\(P_8\)</span> | unused | Available for future expansion |
 
 **Feedback operation:**
 
-1. The D flip-flop output ($Q$) is fed back into the AND array as an additional input.
-2. $D_{feedback}$ in the expression refers to the current value of the flip-flop output.
-3. On each clock edge: $Q^+ = A\overline{B}C + \overline{A}BC + ABQ + \overline{A}\,\overline{B}\,\overline{C}$
+1. The D flip-flop output (<span class="arithmatex">\(Q\)</span>) is fed back into the AND array as an additional input.
+2. <span class="arithmatex">\(D_{feedback}\)</span> in the expression refers to the current value of the flip-flop output.
+3. On each clock edge: <span class="arithmatex">\(Q^+ = A\overline{B}C + \overline{A}BC + ABQ + \overline{A}\,\overline{B}\,\overline{C}\)</span>
 4. This creates a **registered (sequential) output** — the PAL can implement state machines.
 
 **Timing:**
 
 - Inputs arrive at AND plane
-- Product terms propagate through OR gate: $t_{pd-AND} + t_{pd-OR}$
-- D flip-flop captures result on clock edge: must meet setup time $t_{su}$
-- Output available after clock-to-Q delay: $t_{co}$
-- Feedback available for next cycle after $t_{co}$
+- Product terms propagate through OR gate: <span class="arithmatex">\(t_{pd-AND} + t_{pd-OR}\)</span>
+- D flip-flop captures result on clock edge: must meet setup time <span class="arithmatex">\(t_{su}\)</span>
+- Output available after clock-to-Q delay: <span class="arithmatex">\(t_{co}\)</span>
+- Feedback available for next cycle after <span class="arithmatex">\(t_{co}\)</span>
 
-**Maximum clock frequency:** $f_{max} = \frac{1}{t_{co} + t_{pd-AND} + t_{pd-OR} + t_{su}}$
+**Maximum clock frequency:** <span class="arithmatex">\(f_{max} = \frac{1}{t_{co} + t_{pd-AND} + t_{pd-OR} + t_{su}}\)</span>
 
----
+</div>
+</details>
 
-## Section C: CPLD and FPGA Architecture (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: CPLD and FPGA Architecture (4 problems)</h2>
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
 A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8 outputs (4 product terms per output). The function blocks are connected through a global interconnect matrix. Draw a block diagram and calculate:
 
 (a) Maximum number of inputs and outputs for the entire CPLD
 (b) Total number of product terms available
 (c) Total number of macro-cells
 
-**Solution:** **CPLD Block Diagram:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**CPLD Block Diagram:**
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -560,7 +604,7 @@ A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8
 **(a) Maximum I/O:**
 
 - Each function block has 8 outputs, each can connect to an I/O pin
-- Maximum outputs: $8 \times 8 = 64$ I/O pins
+- Maximum outputs: <span class="arithmatex">\(8 \times 8 = 64\)</span> I/O pins
 - Each function block accepts 16 inputs from the GIM
 - External inputs: depends on package pin count (separate from output pins or shared)
 - Typical: **64 I/O pins** (bidirectional — each can be input or output)
@@ -568,13 +612,13 @@ A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8
 **(b) Total product terms:**
 
 - Per output: 4 product terms
-- Per function block: $8 \times 4 = 32$ product terms
-- Total: $8 \times 32 = \mathbf{256}$ **product terms**
+- Per function block: <span class="arithmatex">\(8 \times 4 = 32\)</span> product terms
+- Total: <span class="arithmatex">\(8 \times 32 = \mathbf{256}\)</span> **product terms**
 
 **(c) Total macro-cells:**
 
 - Per function block: 8 macro-cells (one per output)
-- Total: $8 \times 8 = \mathbf{64}$ **macro-cells**
+- Total: <span class="arithmatex">\(8 \times 8 = \mathbf{64}\)</span> **macro-cells**
 
 **Global Interconnect Matrix:**
 
@@ -583,12 +627,17 @@ A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8
 - Provides **predictable timing** — any signal routed through the GIM experiences the same delay regardless of source and destination
 - This is a key CPLD advantage: **timing is deterministic**
 
----
+</div>
+</details>
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
 Compare the CPLD architecture from Problem 9 to a basic FPGA structure. Explain the fundamental architectural differences in terms of logic elements, routing, and configuration.
 
-**Solution:** **FPGA Architecture (simplified):**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**FPGA Architecture (simplified):**
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -637,16 +686,21 @@ Compare the CPLD architecture from Problem 9 to a basic FPGA structure. Explain 
 - CPLD: Any-to-any connectivity through GIM with uniform delay.
 - FPGA: Segmented routing with switch boxes; delay depends on physical distance and routing path chosen by the place-and-route tool.
 
----
+</div>
+</details>
 
-### Problem 11
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 A CPLD has a global interconnect matrix delay of 5 ns, a function block AND-OR delay of 8 ns, and a macro-cell register setup time of 3 ns and clock-to-output delay of 4 ns. Calculate:
 
 (a) Maximum combinational propagation delay (input pin to output pin)
 (b) Maximum registered clock frequency
 (c) The delay if a signal must pass through two function blocks in series
 
-**Solution:** **CPLD Timing Model:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**CPLD Timing Model:**
 
 ```
 Input Pin → [I/O Buffer] → [GIM] → [AND-OR] → [Macro-cell] → [I/O Buffer] → Output Pin
@@ -655,41 +709,46 @@ Input Pin → [I/O Buffer] → [GIM] → [AND-OR] → [Macro-cell] → [I/O Buff
 
 Typical values given:
 
-- $t_{GIM} = 5$ ns (global interconnect matrix)
-- $t_{AO} = 8$ ns (AND-OR array within function block)
-- $t_{su} = 3$ ns (register setup time)
-- $t_{co} = 4$ ns (clock-to-output of register)
-- Assume $t_{IO} \approx 2$ ns each (input and output buffer delays)
+- <span class="arithmatex">\(t_{GIM} = 5\)</span> ns (global interconnect matrix)
+- <span class="arithmatex">\(t_{AO} = 8\)</span> ns (AND-OR array within function block)
+- <span class="arithmatex">\(t_{su} = 3\)</span> ns (register setup time)
+- <span class="arithmatex">\(t_{co} = 4\)</span> ns (clock-to-output of register)
+- Assume <span class="arithmatex">\(t_{IO} \approx 2\)</span> ns each (input and output buffer delays)
 
 **(a) Combinational propagation delay (pin-to-pin):**
 
-$$t_{pd} = t_{IO,in} + t_{GIM} + t_{AO} + t_{IO,out}$$
-$$t_{pd} = 2 + 5 + 8 + 2 = \mathbf{17 \text{ ns}}$$
+<span class="arithmatex">\[t_{pd} = t_{IO,in} + t_{GIM} + t_{AO} + t_{IO,out}\]</span>
+<span class="arithmatex">\[t_{pd} = 2 + 5 + 8 + 2 = \mathbf{17 \text{ ns}}\]</span>
 
 **(b) Maximum registered clock frequency:**
 
 For registered operation, the critical path is clock-to-output plus routing back through GIM and AND-OR to the next register:
 
-$$t_{cycle} = t_{co} + t_{GIM} + t_{AO} + t_{su}$$
-$$t_{cycle} = 4 + 5 + 8 + 3 = 20 \text{ ns}$$
+<span class="arithmatex">\[t_{cycle} = t_{co} + t_{GIM} + t_{AO} + t_{su}\]</span>
+<span class="arithmatex">\[t_{cycle} = 4 + 5 + 8 + 3 = 20 \text{ ns}\]</span>
 
-$$f_{max} = \frac{1}{t_{cycle}} = \frac{1}{20 \text{ ns}} = \mathbf{50 \text{ MHz}}$$
+<span class="arithmatex">\[f_{max} = \frac{1}{t_{cycle}} = \frac{1}{20 \text{ ns}} = \mathbf{50 \text{ MHz}}\]</span>
 
 **(c) Two function blocks in series:**
 
 When a signal passes through two function blocks, it traverses the GIM and AND-OR array twice:
 
-$$t_{pd,2FB} = t_{IO,in} + t_{GIM} + t_{AO} + t_{GIM} + t_{AO} + t_{IO,out}$$
-$$t_{pd,2FB} = 2 + 5 + 8 + 5 + 8 + 2 = \mathbf{30 \text{ ns}}$$
+<span class="arithmatex">\[t_{pd,2FB} = t_{IO,in} + t_{GIM} + t_{AO} + t_{GIM} + t_{AO} + t_{IO,out}\]</span>
+<span class="arithmatex">\[t_{pd,2FB} = 2 + 5 + 8 + 5 + 8 + 2 = \mathbf{30 \text{ ns}}\]</span>
 
 **Key observation:** The CPLD timing is deterministic — the GIM delay is the same regardless of which function blocks are connected. This makes timing analysis straightforward compared to FPGAs where routing delays vary.
 
----
+</div>
+</details>
 
-### Problem 12
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 Explain what happens when a CPLD runs out of product terms in a single function block. Describe two techniques that CPLD fitters use to handle this situation.
 
-**Solution:** **Problem: Product Term Exhaustion**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Problem: Product Term Exhaustion**
 
 When a function requires more product terms than a single macro-cell provides (e.g., a function needing 6 product terms when the macro-cell has only 4):
 
@@ -736,18 +795,23 @@ Function Block B:
 | Technique | Extra Delay | Constraint |
 |-----------|-------------|------------|
 | Product term borrowing | None | Limited by neighbors' unused terms |
-| Expansion via feedback | $t_{GIM} + t_{AO}$ per level | Uses extra macro-cells and function block resources |
+| Expansion via feedback | <span class="arithmatex">\(t_{GIM} + t_{AO}\)</span> per level | Uses extra macro-cells and function block resources |
 
 **CPLD fitter tools** automatically choose between these techniques during compilation, optimizing for either speed or resource usage depending on user constraints.
 
----
+</div>
+</details>
 
-## Section D: LUT and CLB Design (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: LUT and CLB Design (4 problems)</h2>
 
-### Problem 13
-A 3-input LUT (LUT-3) can implement any Boolean function of 3 variables. Show the internal structure of a LUT-3 and program it to implement $F = A \oplus B \oplus C$ (3-input XOR).
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
+A 3-input LUT (LUT-3) can implement any Boolean function of 3 variables. Show the internal structure of a LUT-3 and program it to implement <span class="arithmatex">\(F = A \oplus B \oplus C\)</span> (3-input XOR).
 
-**Solution:** **LUT-3 Internal Structure:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**LUT-3 Internal Structure:**
 
 A LUT-3 is an 8-bit SRAM with a 3-input multiplexer tree:
 
@@ -779,11 +843,11 @@ C ──┘       ↑
         SRAM[0:7]
 ```
 
-**Programming for $F = A \oplus B \oplus C$:**
+**Programming for <span class="arithmatex">\(F = A \oplus B \oplus C\)</span>:**
 
 The truth table directly fills the SRAM:
 
-| Address | $A$ | $B$ | $C$ | $F = A \oplus B \oplus C$ | SRAM |
+| Address | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(F = A \oplus B \oplus C\)</span> | SRAM |
 |---------|-----|-----|-----|---------------------------|------|
 | 0 | 0 | 0 | 0 | 0 | 0 |
 | 1 | 0 | 0 | 1 | 1 | 1 |
@@ -794,35 +858,40 @@ The truth table directly fills the SRAM:
 | 6 | 1 | 1 | 0 | 0 | 0 |
 | 7 | 1 | 1 | 1 | 1 | 1 |
 
-**SRAM contents:** `0110_1001` (reading top to bottom) = $69_{16}$
+**SRAM contents:** `0110_1001` (reading top to bottom) = <span class="arithmatex">\(69_{16}\)</span>
 
-**Key insight:** The LUT does not care about Boolean minimization. Whether the function is $A \oplus B \oplus C$ (which requires many gates in SOP form) or a simple AND gate, the LUT uses exactly the same hardware — an 8-bit memory. Every function of 3 variables costs the same: one LUT-3.
+**Key insight:** The LUT does not care about Boolean minimization. Whether the function is <span class="arithmatex">\(A \oplus B \oplus C\)</span> (which requires many gates in SOP form) or a simple AND gate, the LUT uses exactly the same hardware — an 8-bit memory. Every function of 3 variables costs the same: one LUT-3.
 
-**LUT size formula:** A $k$-input LUT requires $2^k$ SRAM bits.
+**LUT size formula:** A <span class="arithmatex">\(k\)</span>-input LUT requires <span class="arithmatex">\(2^k\)</span> SRAM bits.
 
-- LUT-3: $2^3 = 8$ bits
-- LUT-4: $2^4 = 16$ bits
-- LUT-6: $2^6 = 64$ bits
+- LUT-3: <span class="arithmatex">\(2^3 = 8\)</span> bits
+- LUT-4: <span class="arithmatex">\(2^4 = 16\)</span> bits
+- LUT-6: <span class="arithmatex">\(2^6 = 64\)</span> bits
 
----
+</div>
+</details>
 
-### Problem 14
-A function $F(A, B, C, D, E) = ABCDE + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}$ has 5 inputs but the FPGA only has 4-input LUTs (LUT-4). Show how to decompose this function across multiple LUTs using the Shannon expansion.
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
+A function <span class="arithmatex">\(F(A, B, C, D, E) = ABCDE + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> has 5 inputs but the FPGA only has 4-input LUTs (LUT-4). Show how to decompose this function across multiple LUTs using the Shannon expansion.
 
-**Solution:** **Problem:** 5 inputs but only LUT-4 (4 inputs each).
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**Shannon expansion** on variable $A$:
+**Problem:** 5 inputs but only LUT-4 (4 inputs each).
 
-$$F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}$$
+**Shannon expansion** on variable <span class="arithmatex">\(A\)</span>:
+
+<span class="arithmatex">\[F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\]</span>
 
 where:
 
-- $F_A = F|_{A=1} = BCDE + 0 = BCDE$ (4 inputs — fits in one LUT-4)
-- $F_{\overline{A}} = F|_{A=0} = 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}$ (4 inputs — fits in one LUT-4)
+- <span class="arithmatex">\(F_A = F|_{A=1} = BCDE + 0 = BCDE\)</span> (4 inputs — fits in one LUT-4)
+- <span class="arithmatex">\(F_{\overline{A}} = F|_{A=0} = 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> (4 inputs — fits in one LUT-4)
 
-**Combining:** $F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}$
+**Combining:** <span class="arithmatex">\(F = A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\)</span>
 
-This combination is a 2:1 MUX controlled by $A$ — needs one more LUT.
+This combination is a 2:1 MUX controlled by <span class="arithmatex">\(A\)</span> — needs one more LUT.
 
 **Implementation with 3 LUT-4s:**
 
@@ -847,28 +916,33 @@ D ──┤ F_A' = B'C'D'E'
 E ──┘
 ```
 
-Wait — LUT #3 has 3 inputs ($A$, $F_A$, $F_{A'}$), which fits in a LUT-4.
+Wait — LUT #3 has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(F_A\)</span>, <span class="arithmatex">\(F_{A'}\)</span>), which fits in a LUT-4.
 
 **Final mapping:**
 
 | LUT | Inputs | Function | SRAM contents |
 |-----|--------|----------|---------------|
-| LUT #1 | $B, C, D, E$ | $F_A = BCDE$ | Only address 1111 = 1, rest = 0 |
-| LUT #2 | $B, C, D, E$ | $F_{\overline{A}} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}$ | Only address 0000 = 1, rest = 0 |
-| LUT #3 | $A, F_A, F_{\overline{A}}$ | $A \cdot F_A + \overline{A} \cdot F_{\overline{A}}$ | 2:1 MUX function |
+| LUT #1 | <span class="arithmatex">\(B, C, D, E\)</span> | <span class="arithmatex">\(F_A = BCDE\)</span> | Only address 1111 = 1, rest = 0 |
+| LUT #2 | <span class="arithmatex">\(B, C, D, E\)</span> | <span class="arithmatex">\(F_{\overline{A}} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> | Only address 0000 = 1, rest = 0 |
+| LUT #3 | <span class="arithmatex">\(A, F_A, F_{\overline{A}}\)</span> | <span class="arithmatex">\(A \cdot F_A + \overline{A} \cdot F_{\overline{A}}\)</span> | 2:1 MUX function |
 
 **Total: 3 LUT-4s** in 2 levels of logic.
 
-**Delay:** $2 \times t_{LUT}$ (two levels of LUT propagation).
+**Delay:** <span class="arithmatex">\(2 \times t_{LUT}\)</span> (two levels of LUT propagation).
 
-**General rule:** A function of $n$ inputs can be implemented in LUT-$k$ devices using Shannon expansion, requiring roughly $\lceil n/k \rceil$ levels and up to $2^{n-k}$ LUTs in the first level.
+**General rule:** A function of <span class="arithmatex">\(n\)</span> inputs can be implemented in LUT-<span class="arithmatex">\(k\)</span> devices using Shannon expansion, requiring roughly <span class="arithmatex">\(\lceil n/k \rceil\)</span> levels and up to <span class="arithmatex">\(2^{n-k}\)</span> LUTs in the first level.
 
----
+</div>
+</details>
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contains two 4-input LUTs, two flip-flops, and local routing. Explain the role of each component.
 
-**Solution:** **CLB Internal Structure:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**CLB Internal Structure:**
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -900,7 +974,7 @@ Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contain
 
 | Component | Role |
 |-----------|------|
-| **LUT-4 #1, #2** | Implement any Boolean function of 4 variables. Stores the truth table in $2^4 = 16$ SRAM bits. |
+| **LUT-4 #1, #2** | Implement any Boolean function of 4 variables. Stores the truth table in <span class="arithmatex">\(2^4 = 16\)</span> SRAM bits. |
 | **D Flip-Flop #1, #2** | Provide registered outputs for sequential logic (state machines, pipelines). Clocked by the global or regional clock. |
 | **Output MUX** | Selects between combinational output (directly from LUT) or registered output (from D FF). Configured by a configuration bit. |
 | **Local routing** | Fast interconnect within the CLB for carry chains (arithmetic) and feedback (sequential logic). Much faster than global routing. |
@@ -916,28 +990,33 @@ Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contain
 
 **Modern CLBs** (e.g., Xilinx Series 7) contain multiple "slices," each with four 6-input LUTs and eight flip-flops, plus carry logic, wide MUX resources, and distributed RAM capability.
 
----
+</div>
+</details>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
 An FPGA design requires implementing a 4-bit synchronous binary counter. Map the counter onto 4-input LUTs (LUT-4) and flip-flops. Determine how many LUTs and flip-flops are needed.
 
-**Solution:** **4-bit synchronous counter equations:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**4-bit synchronous counter equations:**
 
 Using T flip-flop behavior with D flip-flops:
 
-- $D_0 = \overline{Q_0}$ (always toggles)
-- $D_1 = Q_1 \oplus Q_0$
-- $D_2 = Q_2 \oplus (Q_1 \cdot Q_0)$
-- $D_3 = Q_3 \oplus (Q_2 \cdot Q_1 \cdot Q_0)$
+- <span class="arithmatex">\(D_0 = \overline{Q_0}\)</span> (always toggles)
+- <span class="arithmatex">\(D_1 = Q_1 \oplus Q_0\)</span>
+- <span class="arithmatex">\(D_2 = Q_2 \oplus (Q_1 \cdot Q_0)\)</span>
+- <span class="arithmatex">\(D_3 = Q_3 \oplus (Q_2 \cdot Q_1 \cdot Q_0)\)</span>
 
 **LUT mapping:**
 
 | D input | Function | # Inputs | LUT needed? |
 |---------|----------|----------|-------------|
-| $D_0 = \overline{Q_0}$ | Inverter | 1 | 1 LUT-4 (uses 1 of 4 inputs) |
-| $D_1 = Q_1 \oplus Q_0$ | XOR | 2 | 1 LUT-4 (uses 2 of 4 inputs) |
-| $D_2 = Q_2 \oplus (Q_1 Q_0)$ | XOR-AND | 3 | 1 LUT-4 (uses 3 of 4 inputs) |
-| $D_3 = Q_3 \oplus (Q_2 Q_1 Q_0)$ | XOR-AND3 | 4 | 1 LUT-4 (uses all 4 inputs) |
+| <span class="arithmatex">\(D_0 = \overline{Q_0}\)</span> | Inverter | 1 | 1 LUT-4 (uses 1 of 4 inputs) |
+| <span class="arithmatex">\(D_1 = Q_1 \oplus Q_0\)</span> | XOR | 2 | 1 LUT-4 (uses 2 of 4 inputs) |
+| <span class="arithmatex">\(D_2 = Q_2 \oplus (Q_1 Q_0)\)</span> | XOR-AND | 3 | 1 LUT-4 (uses 3 of 4 inputs) |
+| <span class="arithmatex">\(D_3 = Q_3 \oplus (Q_2 Q_1 Q_0)\)</span> | XOR-AND3 | 4 | 1 LUT-4 (uses all 4 inputs) |
 
 **Resource count:**
 
@@ -980,19 +1059,24 @@ Q3 ──[LUT]──[FF]── Q3
 
 **Timing comparison:**
 
-- Without carry chain: $t_{LUT} + t_{routing} + t_{LUT} + \ldots$ (grows with bit width)
-- With carry chain: $t_{LUT} + n \times t_{carry}$ where $t_{carry} \ll t_{routing}$
+- Without carry chain: <span class="arithmatex">\(t_{LUT} + t_{routing} + t_{LUT} + \ldots\)</span> (grows with bit width)
+- With carry chain: <span class="arithmatex">\(t_{LUT} + n \times t_{carry}\)</span> where <span class="arithmatex">\(t_{carry} \ll t_{routing}\)</span>
 
 For a 4-bit counter, the carry chain reduces the critical path delay significantly, enabling higher clock frequencies.
 
----
+</div>
+</details>
 
-## Section E: Design Flow and Device Selection (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Design Flow and Device Selection (4 problems)</h2>
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
 Describe each step of the FPGA design flow from HDL entry to final bitstream. For each step, explain what happens and what files are produced.
 
-**Solution:** **FPGA Design Flow:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**FPGA Design Flow:**
 
 ```
 ┌───────────────┐
@@ -1049,9 +1133,10 @@ Describe each step of the FPGA design flow from HDL entry to final bitstream. Fo
 | **7. Bitstream Generation** | Converts the placed-and-routed design into a binary configuration file that programs the FPGA's SRAM cells. | Produces `.bit` file. Size depends on FPGA: can be from hundreds of KB to tens of MB. |
 | **8. Device Programming** | Downloads bitstream to FPGA via JTAG, SPI, or other interface. SRAM-based FPGAs must be reprogrammed after every power cycle. | FPGA is now configured and operational. |
 
----
+</div>
+</details>
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the following applications. Justify each choice.
 
 (a) A simple 4-input, 2-output combinational function used in 100,000 units
@@ -1060,7 +1145,11 @@ An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the 
 (d) A glue-logic replacement connecting a microprocessor to memory chips
 (e) A function generator that must be field-reprogrammable
 
-**Solution:** **(a) Simple 4-input, 2-output function in 100,000 units:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) Simple 4-input, 2-output function in 100,000 units:**
 
 **Best choice: PAL (or mask-programmed ROM)**
 
@@ -1075,7 +1164,7 @@ An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the 
 
 **Best choice: ROM (EPROM or EEPROM)**
 
-- 4 inputs, 7 outputs: fits a $16 \times 8$ ROM perfectly
+- 4 inputs, 7 outputs: fits a <span class="arithmatex">\(16 \times 8\)</span> ROM perfectly
 - No minimization needed — just store the truth table
 - For prototyping, an EEPROM or EPROM allows easy reprogramming
 - Very fast design cycle: write truth table, program ROM, done
@@ -1122,9 +1211,10 @@ An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the 
 | Glue logic | CPLD | Deterministic timing, instant-on |
 | Field-reprogrammable | FPGA (SRAM) | Unlimited reprogramming |
 
----
+</div>
+</details>
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. For each of the following criteria, state which technology is preferred and why:
 
 (a) Power-on behavior
@@ -1134,7 +1224,11 @@ Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. 
 (e) Power consumption
 (f) Design iteration speed
 
-**Solution:** **Comparison Table:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Comparison Table:**
 
 | Criterion | SRAM-based FPGA | Flash-based FPGA | Preferred |
 |-----------|----------------|-----------------|-----------|
@@ -1172,9 +1266,10 @@ Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. 
 - SRAM: Six transistors per configuration bit contribute to static leakage current, which grows with density and shrinking process nodes.
 - Flash: Flash cells have near-zero leakage. Ideal for battery-powered and always-on applications.
 
----
+</div>
+</details>
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 An FPGA design fails timing analysis with the following report:
 
 ```
@@ -1187,7 +1282,11 @@ Slack:         6.0 - 7.2 - 0.3 = -1.5 ns (VIOLATION)
 
 Identify three techniques to fix this timing violation. For each technique, explain how it reduces the critical path delay.
 
-**Solution:** **Current critical path breakdown:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Current critical path breakdown:**
 
 ```
 RegA ──2.1ns──→ LUT1 ──0.8ns──→ LUT2 ──1.2ns──→ LUT3 ──0.9ns──→ LUT4 ──0.7ns──→ RegB
@@ -1228,7 +1327,7 @@ Methods:
 - Use resource sharing to merge logic
 - Rewrite HDL to avoid deep conditional chains (`if-else-if` cascades create long LUT chains)
 - Replace priority encoder structure with parallel one-hot MUX
-- Estimated savings: 1-2 LUT levels ($\approx$ 1.5-3.0 ns)
+- Estimated savings: 1-2 LUT levels (<span class="arithmatex">\(\approx\)</span> 1.5-3.0 ns)
 
 **Technique 3: Placement Constraints and Floorplanning**
 
@@ -1255,9 +1354,12 @@ Methods:
 | **Use dedicated resources** | Carry chains, DSP blocks are faster than LUTs | Consumes special resources |
 | **Increase target device** | Faster speed grade has lower intrinsic delays | Higher cost |
 
----
+</div>
+</details>
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -1267,5 +1369,7 @@ Methods:
 | D | LUT and CLB Design | 4 |
 | E | Design Flow and Device Selection | 4 |
 | **Total** | | **20** |
+
+</div>
 
 </div>

@@ -5,18 +5,25 @@ description: Practice problems for registers, counters, and finite state machine
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Sequential Circuit Design
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Sequential Circuit Design</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of registers, counters, and FSM design.
+</p>
 
 ---
 
-## Section A: Registers (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: Registers (4 problems)</h2>
 
-### Problem 1
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
 Design a 4-bit parallel-load register with load enable. Show the circuit using D flip-flops and describe its operation.
 
-**Solution:** **4-bit Parallel Load Register:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**4-bit Parallel Load Register:**
 
 **Components per bit:**
 
@@ -68,9 +75,13 @@ Q[3:0] ────┴──┴──┴──┘
 - 4 D flip-flops
 - 4 two-to-1 MUXes (or 8 AND gates + 4 OR gates)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 2
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
 Design a 4-bit shift register that supports:
 
 - Serial input (SI)
@@ -79,7 +90,12 @@ Design a 4-bit shift register that supports:
 
 Show the connections and trace through shifting the pattern 1011.
 
-**Solution:** **4-bit SISO Shift Register:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**4-bit SISO Shift Register:**
 
 ```
 SI → [D FF₃] → [D FF₂] → [D FF₁] → [D FF₀] → SO
@@ -113,9 +129,13 @@ Initial state: Q₃Q₂Q₁Q₀ = 0000
 **After 4 clocks:** Register contains 1101 (reversed: 1011)
 **Clocks 5-8:** Pattern shifts out SO as 1, 0, 1, 1
 
+
+</div>
+</details>
+
 ---
 
-### Problem 3
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
 Design a universal shift register with the following modes:
 
 - Mode 00: Hold
@@ -123,7 +143,12 @@ Design a universal shift register with the following modes:
 - Mode 10: Shift left
 - Mode 11: Parallel load
 
-**Solution:** **Universal Shift Register (4-bit):**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Universal Shift Register (4-bit):**
 
 Each bit needs a 4-to-1 MUX to select the source:
 
@@ -171,12 +196,21 @@ D_in[i] ─────────────┘        │
 - 4 D flip-flops
 - 4 four-to-1 MUXes
 
+
+</div>
+</details>
+
 ---
 
-### Problem 4
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
 A PISO (Parallel-In Serial-Out) shift register is used for serial communication. Design a 4-bit PISO register with Load and Shift controls.
 
-**Solution:** **PISO Register Operation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**PISO Register Operation:**
 
 - Load = 1: Parallel data loaded
 - Load = 0: Shift right, output LSB
@@ -212,14 +246,23 @@ D_in[0] ──[MUX]── D₀ ──[FF₀]── Q₀ ── Serial Out
 
 **Serial output sequence: 1, 0, 1, 1** (LSB first)
 
+
+</div>
+</details>
+
 ---
 
-## Section B: Counters (5 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: Counters (5 problems)</h2>
 
-### Problem 5
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
 Design a 3-bit synchronous binary up counter using T flip-flops. Show the state table and circuit.
 
-**Solution:** **3-bit Up Counter States:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**3-bit Up Counter States:**
 
 | Count | Q₂ | Q₁ | Q₀ |
 |-------|----|----|-----|
@@ -261,12 +304,21 @@ Design a 3-bit synchronous binary up counter using T flip-flops. Show the state 
 - T₁ = Q₀
 - T₂ = Q₀ · Q₁
 
+
+</div>
+</details>
+
 ---
 
-### Problem 6
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
 Design a mod-6 counter (counts 0 to 5, then resets to 0) using D flip-flops.
 
-**Solution:** **State sequence:** 0 → 1 → 2 → 3 → 4 → 5 → 0 (repeat)
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State sequence:** 0 → 1 → 2 → 3 → 4 → 5 → 0 (repeat)
 
 **State table:**
 
@@ -333,9 +385,7 @@ So D₀ = Q₀'
 - D₁ = Q₂'Q₁'Q₀ + Q₂'Q₁Q₀' = Q₂'(Q₁ ⊕ Q₀)
 - D₀ = Q₂'Q₀' + Q₂Q₁'Q₀' = Q₀'(Q₂' + Q₂Q₁') = Q₀'(Q₂' + Q₁')...
 
-Simplest: D₀ = Q₀' · (Q₂'+ (state≠5))
-
-Let me use: D₀ = Q₀' when not resetting, 0 when at state 5
+Simplest: D₀ = Q₀' when not resetting, 0 when at state 5
 
 **Simpler approach:** Use synchronous reset
 
@@ -343,12 +393,21 @@ Let me use: D₀ = Q₀' when not resetting, 0 when at state 5
 - D₁ = (Q₁ ⊕ Q₀) · RESET'
 - D₂ = (Q₂ ⊕ Q₁Q₀) · RESET'
 
+
+</div>
+</details>
+
 ---
 
-### Problem 7
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
 Design a ring counter with 4 bits. Show how it differs from a Johnson counter.
 
-**Solution:** **Ring Counter (4-bit):**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Ring Counter (4-bit):**
 
 **Structure:** Shift register with Q₀ fed back to D₃
 
@@ -407,12 +466,21 @@ Q₀'──→ D₃ ──[FF₃]── Q₃ ──→ D₂ ──[FF₂]── 
 | Decoding | 1-bit (one-hot) | 2-bit (adjacent) |
 | Self-starting | No | No |
 
+
+</div>
+</details>
+
 ---
 
-### Problem 8
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
 Design a BCD counter (0-9) with synchronous reset.
 
-**Solution:** **BCD Counter:** Counts 0-9, then resets to 0
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**BCD Counter:** Counts 0-9, then resets to 0
 
 **State sequence:** 0→1→2→3→4→5→6→7→8→9→0
 
@@ -465,15 +533,24 @@ D₃ = Q₃Q₀' + Q₃'Q₂Q₁Q₀
 - D₁ = Q₃'Q₁'Q₀ + Q₁Q₀'
 - D₀ = Q₀'
 
+
+</div>
+</details>
+
 ---
 
-### Problem 9
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
 Calculate the maximum clock frequency for a 4-bit ripple counter if each flip-flop has:
 
 - Propagation delay (tpd): 10 ns
 - Setup time: 5 ns
 
-**Solution:** **Ripple Counter Propagation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Ripple Counter Propagation:**
 
 In a ripple (asynchronous) counter, each flip-flop is clocked by the previous flip-flop's output.
 
@@ -511,14 +588,23 @@ Tclk > tpd + tlogic + tsu
 
 With tlogic = propagation through AND gates (for carry), typically faster than ripple.
 
+
+</div>
+</details>
+
 ---
 
-## Section C: Finite State Machines (6 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: Finite State Machines (6 problems)</h2>
 
-### Problem 10
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
 Design a sequence detector that outputs 1 when it detects the sequence "101" (overlapping allowed). Draw the state diagram, create the state table, and implement using D flip-flops.
 
-**Solution:** **State Diagram:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Diagram:**
 
 States represent what portion of "101" has been seen:
 
@@ -583,12 +669,21 @@ D₀ = X
 
 **Output:** Z = Q₁Q₀
 
+
+</div>
+</details>
+
 ---
 
-### Problem 11
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
 Explain the difference between Moore and Mealy machines. Convert the sequence detector from Problem 10 to a Mealy machine.
 
-**Solution:** **Moore vs Mealy:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Moore vs Mealy:**
 
 | Feature | Moore | Mealy |
 |---------|-------|-------|
@@ -647,9 +742,13 @@ From S2:
 
 Z = Q₁Q₀'X (output 1 when in S2 and input is 1)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 12
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
 Design an FSM for a traffic light controller with the following requirements:
 
 - Two states: Green (G) and Red (R)
@@ -657,7 +756,12 @@ Design an FSM for a traffic light controller with the following requirements:
 - Sensor input S: 1 when car waiting
 - Transitions: G→R when T=1, R→G when T=1 AND S=1
 
-**Solution:** **State Diagram:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Diagram:**
 
 ```
 G ←─────────────────────────┐
@@ -720,15 +824,24 @@ D = Q'T + Q(T' + S') = Q'T + QT' + QS'
 Green = Q'
 Red = Q
 
+
+</div>
+</details>
+
 ---
 
-### Problem 13
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
 Design a 2-bit up/down counter controlled by signal U:
 
 - U = 1: Count up
 - U = 0: Count down
 
-**Solution:** **State Sequence:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Sequence:**
 
 Up (U=1): 00 → 01 → 10 → 11 → 00
 Down (U=0): 00 → 11 → 10 → 01 → 00
@@ -792,12 +905,21 @@ U' ────────────┘        │
 CLK ────────────────────┘
 ```
 
+
+</div>
+</details>
+
 ---
 
-### Problem 14
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
 What is one-hot encoding for state machines? Give advantages and disadvantages.
 
-**Solution:** **One-Hot Encoding:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**One-Hot Encoding:**
 
 Each state uses one flip-flop; only one flip-flop is '1' at a time.
 
@@ -848,16 +970,25 @@ Each state uses one flip-flop; only one flip-flop is '1' at a time.
 | Few states (<8) | ✓ | |
 | Many states (>32) | | ✓ |
 
+
+</div>
+</details>
+
 ---
 
-### Problem 15
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
 Design a vending machine controller with the following specifications:
 
 - Accepts nickels (5¢) and dimes (10¢)
 - Dispenses item when 15¢ or more is deposited
 - Returns to idle after dispensing
 
-**Solution:** **States (based on amount deposited):**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**States (based on amount deposited):**
 
 - S0: 0¢ (idle)
 - S5: 5¢
@@ -913,14 +1044,23 @@ D₁ = Q₁'Q₀D + Q₁'D + Q₁Q₀'(N+D) + ...
 
 **Output:** DISP = Q₁Q₀
 
+
+</div>
+</details>
+
 ---
 
-## Section D: Design Problems (2 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: Design Problems (2 problems)</h2>
 
-### Problem 16
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
 Design a serial adder that adds two n-bit numbers bit by bit, starting from LSB. The circuit has inputs A, B (serial bits), outputs S (sum bit), and must handle carry.
 
-**Solution:** **Serial Adder Operation:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Serial Adder Operation:**
 
 Add one bit position per clock cycle, propagating carry to next cycle.
 
@@ -978,12 +1118,21 @@ CLK ──────────────────────┘
 - S = A ⊕ B ⊕ C
 - D = AB + C(A ⊕ B) = AB + AC + BC (majority function)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 17
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
 Design a sequence generator that outputs the repeating sequence: 1, 1, 0, 1, 0, 0
 
-**Solution:** **Sequence:** 1, 1, 0, 1, 0, 0 (period = 6)
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Sequence:** 1, 1, 0, 1, 0, 0 (period = 6)
 
 **Approach:** Use mod-6 counter with output decoder
 
@@ -1026,11 +1175,15 @@ On each clock, shift right, Q₀ feeds back to Q₅.
 
 **Output:** Q₀
 
+
+</div>
+</details>
+
 ---
 
-## Section E: Analysis Problems (3 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Analysis Problems (3 problems)</h2>
 
-### Problem 18
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
 Analyze the following circuit and determine its function:
 
 ```
@@ -1043,7 +1196,12 @@ CLK ┴──────┴────────────┘
 
 (D is input, CLK is shared, Q₀ output of FF₀ feeds D input of FF₁)
 
-**Solution:** **Circuit Analysis:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Circuit Analysis:**
 
 - FF₀: D input = external D, outputs Q₀
 - FF₁: D input = Q₀, outputs Q₁
@@ -1080,9 +1238,13 @@ At each clock edge:
 - Synchronizer (metastability prevention)
 - Pipeline stage
 
+
+</div>
+</details>
+
 ---
 
-### Problem 19
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
 What is the state sequence of this circuit? (Assume initial state 00)
 
 ```
@@ -1095,7 +1257,12 @@ D₁ = Q₀'
 Both share CLK
 ```
 
-**Solution:** **State Transition Analysis:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Transition Analysis:**
 
 | Present Q₁Q₀ | D₁=Q₀' | D₀=Q₁ | Next Q₁Q₀ |
 |--------------|--------|-------|-----------|
@@ -1127,9 +1294,13 @@ Both share CLK
 11 → 01 (Q₁ changes)
 01 → 00 (Q₀ changes)
 
+
+</div>
+</details>
+
 ---
 
-### Problem 20
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
 Given a Moore FSM with the following state diagram, derive the state table and implement with D flip-flops:
 
 ```
@@ -1140,7 +1311,12 @@ Transitions:
 - C: input 0 → A, input 1 → C
 ```
 
-**Solution:** **State Table:**
+
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**State Table:**
 
 | State | Input X | Next State | Output Z |
 |-------|---------|------------|----------|
@@ -1213,9 +1389,16 @@ X ──┘     │
 CLK ──────┴───────────────
 ```
 
+
+</div>
+</details>
+
 ---
 
-## Summary
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -1225,5 +1408,8 @@ CLK ──────┴───────────────
 | D | Design Problems | 2 |
 | E | Analysis Problems | 3 |
 | **Total** | | **20** |
+
+
+</div>
 
 </div>

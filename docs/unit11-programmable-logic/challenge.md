@@ -5,26 +5,34 @@ description: Challenge problems for programmable logic devices — answers only,
 
 <div class="problems-styled" markdown>
 
-# Challenge Problems: Programmable Logic Devices
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">Challenge Problems: Programmable Logic Devices</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
+</p>
 
 ---
 
-#### Challenge 1: ROM-Based Multi-Output Function Implementation
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-Implement the following 4-input, 4-output combinational circuit using a $16 \times 4$ ROM. Provide the complete ROM contents (all 16 addresses) in both binary and hexadecimal.
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 1: ROM-Based Multi-Output Function Implementation</p>
 
-- $F_0(A,B,C,D) = \sum m(0, 2, 5, 7, 8, 10, 13, 15)$
-- $F_1(A,B,C,D) = \sum m(1, 3, 4, 6, 9, 11, 12, 14)$
-- $F_2(A,B,C,D) = \sum m(0, 1, 2, 3, 8, 9, 10, 11)$
-- $F_3(A,B,C,D) = \sum m(0, 1, 4, 5, 8, 9, 12, 13)$
+<p style="color: #333; line-height: 1.75;">Implement the following 4-input, 4-output combinational circuit using a <span class="arithmatex">\(16 \times 4\)</span> ROM. Provide the complete ROM contents (all 16 addresses) in both binary and hexadecimal.</p>
 
-After filling in the ROM table, identify any pattern or simplification relating these outputs to the inputs.
+- <span class="arithmatex">\(F_0(A,B,C,D) = \sum m(0, 2, 5, 7, 8, 10, 13, 15)\)</span>
+- <span class="arithmatex">\(F_1(A,B,C,D) = \sum m(1, 3, 4, 6, 9, 11, 12, 14)\)</span>
+- <span class="arithmatex">\(F_2(A,B,C,D) = \sum m(0, 1, 2, 3, 8, 9, 10, 11)\)</span>
+- <span class="arithmatex">\(F_3(A,B,C,D) = \sum m(0, 1, 4, 5, 8, 9, 12, 13)\)</span>
 
-**Answer:** **ROM contents:**
+<p style="color: #333; line-height: 1.75;">After filling in the ROM table, identify any pattern or simplification relating these outputs to the inputs.</p>
 
-| Address | $A$ | $B$ | $C$ | $D$ | $F_3$ | $F_2$ | $F_1$ | $F_0$ | Hex |
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">ROM contents:</p>
+
+| Address | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(D\)</span> | <span class="arithmatex">\(F_3\)</span> | <span class="arithmatex">\(F_2\)</span> | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(F_0\)</span> | Hex |
 |---------|-----|-----|-----|-----|-------|-------|-------|-------|-----|
 | 0  | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 1 | D |
 | 1  | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 0 | E |
@@ -43,194 +51,229 @@ After filling in the ROM table, identify any pattern or simplification relating 
 | 14 | 1 | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 2 |
 | 15 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 1 | 1 |
 
-**Pattern identified:**
+<p style="color: #2E7D32; font-weight: 700; margin-top: 1rem;">Pattern identified:</p>
 
-- $F_0 = C \oplus D$ (XOR of two LSBs)
-- $F_1 = \overline{C \oplus D} = C \odot D$ (XNOR of two LSBs)
-- $F_2 = \overline{B}$ (complement of second input)
-- $F_3 = \overline{C}$ (complement of third input)
-- Note that $F_1 = \overline{F_0}$, and neither $F_2$ nor $F_3$ depends on $A$ or $D$.
-- The output at address $n$ equals the output at address $n+8$ for all $n$, confirming $A$ is a don't-care for all outputs.
+- <span class="arithmatex">\(F_0 = C \oplus D\)</span> (XOR of two LSBs)
+- <span class="arithmatex">\(F_1 = \overline{C \oplus D} = C \odot D\)</span> (XNOR of two LSBs)
+- <span class="arithmatex">\(F_2 = \overline{B}\)</span> (complement of second input)
+- <span class="arithmatex">\(F_3 = \overline{C}\)</span> (complement of third input)
+- Note that <span class="arithmatex">\(F_1 = \overline{F_0}\)</span>, and neither <span class="arithmatex">\(F_2\)</span> nor <span class="arithmatex">\(F_3\)</span> depends on <span class="arithmatex">\(A\)</span> or <span class="arithmatex">\(D\)</span>.
+- The output at address <span class="arithmatex">\(n\)</span> equals the output at address <span class="arithmatex">\(n+8\)</span> for all <span class="arithmatex">\(n\)</span>, confirming <span class="arithmatex">\(A\)</span> is a don't-care for all outputs.
 
-The ROM stores $16 \times 4 = 64$ bits total, but only 3 input variables actually matter. A ROM with only 3 address lines ($8 \times 4 = 32$ bits) could implement the same functions by ignoring input $A$.
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The ROM stores <span class="arithmatex">\(16 \times 4 = 64\)</span> bits total, but only 3 input variables actually matter. A ROM with only 3 address lines (<span class="arithmatex">\(8 \times 4 = 32\)</span> bits) could implement the same functions by ignoring input <span class="arithmatex">\(A\)</span>.</p>
+
+</div>
+</details>
+
+</div>
 
 ---
 
-#### Challenge 2: PLA Programming with Shared Product Terms
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-Design a PLA for the following three functions of four variables. Minimize each function, identify all shared product terms, and provide the final PLA programming table showing the AND-plane and OR-plane connections. State the total number of unique product terms required.
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 2: PLA Programming with Shared Product Terms</p>
 
-- $F_1(A,B,C,D) = \sum m(0, 1, 2, 3, 8, 9, 10, 11)$
-- $F_2(A,B,C,D) = \sum m(0, 1, 4, 5, 8, 9, 12, 13)$
-- $F_3(A,B,C,D) = \sum m(0, 2, 8, 10) + d(4, 6, 12, 14)$
+<p style="color: #333; line-height: 1.75;">Design a PLA for the following three functions of four variables. Minimize each function, identify all shared product terms, and provide the final PLA programming table showing the AND-plane and OR-plane connections. State the total number of unique product terms required.</p>
 
-**Answer:** **Minimized functions:**
+- <span class="arithmatex">\(F_1(A,B,C,D) = \sum m(0, 1, 2, 3, 8, 9, 10, 11)\)</span>
+- <span class="arithmatex">\(F_2(A,B,C,D) = \sum m(0, 1, 4, 5, 8, 9, 12, 13)\)</span>
+- <span class="arithmatex">\(F_3(A,B,C,D) = \sum m(0, 2, 8, 10) + d(4, 6, 12, 14)\)</span>
 
-- $F_1 = \overline{B}$ (minterms where $B=0$: 0,1,2,3,8,9,10,11)
-- $F_2 = \overline{C}$ (minterms where $C=0$: 0,1,4,5,8,9,12,13)
-- $F_3 = \overline{B}\,\overline{C}$ (minterms 0,2,8,10 with don't cares 4,6,12,14 allowing $F_3 = \overline{C}$ or $\overline{B}\,\overline{C}$; using don't cares optimally: $F_3 = \overline{B}\,\overline{C}$, or with all don't cares: $F_3 = \overline{C}$ shares with $F_2$)
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Taking $F_3 = \overline{B}\,\overline{C}$ for maximum product term sharing:
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Minimized functions:</p>
+
+- <span class="arithmatex">\(F_1 = \overline{B}\)</span> (minterms where <span class="arithmatex">\(B=0\)</span>: 0,1,2,3,8,9,10,11)
+- <span class="arithmatex">\(F_2 = \overline{C}\)</span> (minterms where <span class="arithmatex">\(C=0\)</span>: 0,1,4,5,8,9,12,13)
+- <span class="arithmatex">\(F_3 = \overline{B}\,\overline{C}\)</span> (minterms 0,2,8,10 with don't cares 4,6,12,14 allowing <span class="arithmatex">\(F_3 = \overline{C}\)</span> or <span class="arithmatex">\(\overline{B}\,\overline{C}\)</span>; using don't cares optimally: <span class="arithmatex">\(F_3 = \overline{B}\,\overline{C}\)</span>, or with all don't cares: <span class="arithmatex">\(F_3 = \overline{C}\)</span> shares with <span class="arithmatex">\(F_2\)</span>)
+
+Taking <span class="arithmatex">\(F_3 = \overline{B}\,\overline{C}\)</span> for maximum product term sharing:
 
 **Unique product terms:**
 
 | Term | Expression |
 |------|-----------|
-| $P_1$ | $\overline{B}$ |
-| $P_2$ | $\overline{C}$ |
-| $P_3$ | $\overline{B}\,\overline{C}$ |
+| <span class="arithmatex">\(P_1\)</span> | <span class="arithmatex">\(\overline{B}\)</span> |
+| <span class="arithmatex">\(P_2\)</span> | <span class="arithmatex">\(\overline{C}\)</span> |
+| <span class="arithmatex">\(P_3\)</span> | <span class="arithmatex">\(\overline{B}\,\overline{C}\)</span> |
 
-But since $P_3 = P_1 \cdot P_2$, the PLA AND plane must generate it as a separate product term (PLAs generate SOP, not multi-level).
+But since <span class="arithmatex">\(P_3 = P_1 \cdot P_2\)</span>, the PLA AND plane must generate it as a separate product term (PLAs generate SOP, not multi-level).
 
 **PLA AND-plane programming:**
 
-| Term | $A$ | $\overline{A}$ | $B$ | $\overline{B}$ | $C$ | $\overline{C}$ | $D$ | $\overline{D}$ |
+| Term | <span class="arithmatex">\(A\)</span> | <span class="arithmatex">\(\overline{A}\)</span> | <span class="arithmatex">\(B\)</span> | <span class="arithmatex">\(\overline{B}\)</span> | <span class="arithmatex">\(C\)</span> | <span class="arithmatex">\(\overline{C}\)</span> | <span class="arithmatex">\(D\)</span> | <span class="arithmatex">\(\overline{D}\)</span> |
 |------|-----|------|-----|------|-----|------|-----|------|
-| $P_1$ | -- | -- | -- | 1 | -- | -- | -- | -- |
-| $P_2$ | -- | -- | -- | -- | -- | 1 | -- | -- |
-| $P_3$ | -- | -- | -- | 1 | -- | 1 | -- | -- |
+| <span class="arithmatex">\(P_1\)</span> | -- | -- | -- | 1 | -- | -- | -- | -- |
+| <span class="arithmatex">\(P_2\)</span> | -- | -- | -- | -- | -- | 1 | -- | -- |
+| <span class="arithmatex">\(P_3\)</span> | -- | -- | -- | 1 | -- | 1 | -- | -- |
 
 **PLA OR-plane programming:**
 
-| Term | $F_1$ | $F_2$ | $F_3$ |
+| Term | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(F_2\)</span> | <span class="arithmatex">\(F_3\)</span> |
 |------|-------|-------|-------|
-| $P_1$ | 1 | -- | -- |
-| $P_2$ | -- | 1 | -- |
-| $P_3$ | -- | -- | 1 |
+| <span class="arithmatex">\(P_1\)</span> | 1 | -- | -- |
+| <span class="arithmatex">\(P_2\)</span> | -- | 1 | -- |
+| <span class="arithmatex">\(P_3\)</span> | -- | -- | 1 |
 
 **Total unique product terms: 3**
 
-Alternative (if $F_3$ uses don't cares to simplify to $\overline{C}$): only **2 product terms** ($\overline{B}$ and $\overline{C}$), with $F_3$ sharing $P_2$ with $F_2$. This is the better PLA solution since it minimizes product term count.
+Alternative (if <span class="arithmatex">\(F_3\)</span> uses don't cares to simplify to <span class="arithmatex">\(\overline{C}\)</span>): only **2 product terms** (<span class="arithmatex">\(\overline{B}\)</span> and <span class="arithmatex">\(\overline{C}\)</span>), with <span class="arithmatex">\(F_3\)</span> sharing <span class="arithmatex">\(P_2\)</span> with <span class="arithmatex">\(F_2\)</span>. This is the better PLA solution since it minimizes product term count.
 
-With $F_3 = \overline{C}$:
+With <span class="arithmatex">\(F_3 = \overline{C}\)</span>:
 
-| Term | $F_1$ | $F_2$ | $F_3$ |
+| Term | <span class="arithmatex">\(F_1\)</span> | <span class="arithmatex">\(F_2\)</span> | <span class="arithmatex">\(F_3\)</span> |
 |------|-------|-------|-------|
-| $P_1 = \overline{B}$ | 1 | -- | -- |
-| $P_2 = \overline{C}$ | -- | 1 | 1 |
+| <span class="arithmatex">\(P_1 = \overline{B}\)</span> | 1 | -- | -- |
+| <span class="arithmatex">\(P_2 = \overline{C}\)</span> | -- | 1 | 1 |
 
-**Optimal answer: 2 product terms**, with $P_2$ shared between $F_2$ and $F_3$.
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Optimal answer: 2 product terms, with <span class="arithmatex">\(P_2\)</span> shared between <span class="arithmatex">\(F_2\)</span> and <span class="arithmatex">\(F_3\)</span>.</p>
+
+</div>
+</details>
+
+</div>
 
 ---
 
-#### Challenge 3: PAL Timing and Fan-In Limitations
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-A PAL16L8 device has the following specifications:
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 3: PAL Timing and Fan-In Limitations</p>
+
+<p style="color: #333; line-height: 1.75;">A PAL16L8 device has the following specifications:</p>
 
 - 16 inputs (active low outputs, active high inputs)
 - 8 outputs, each with a maximum of 7 product terms
-- Maximum propagation delay: $t_{pd} = 25$ ns (input pin to output pin)
-- Each AND gate has a fan-in of 32 (16 inputs $\times$ 2 for true/complement)
+- Maximum propagation delay: <span class="arithmatex">\(t_{pd} = 25\)</span> ns (input pin to output pin)
+- Each AND gate has a fan-in of 32 (16 inputs <span class="arithmatex">\(\times\)</span> 2 for true/complement)
 
-A designer needs to implement the function:
+<p style="color: #333; line-height: 1.75;">A designer needs to implement the function:</p>
 
-$$G(A,B,C,D,E,F,H,I,J,K,L,M,N,P,Q,R) = \sum m(0, 1, 2, 3, 65534, 65535)$$
+<span class="arithmatex">\[G(A,B,C,D,E,F,H,I,J,K,L,M,N,P,Q,R) = \sum m(0, 1, 2, 3, 65534, 65535)\]</span>
 
-This is a 16-variable function. Determine:
+<p style="color: #333; line-height: 1.75;">This is a 16-variable function. Determine:</p>
 
 (a) Whether this function fits in a single PAL16L8 output.
 (b) The minimized SOP expression and number of product terms.
 (c) The maximum frequency at which this PAL can toggle the output.
 
-**Answer:** **(a)** The PAL16L8 has 16 inputs with fan-in of 32 per AND gate (16 true + 16 complement), so a product term can reference all 16 inputs. The question is whether $G$ requires $\leq 7$ product terms.
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**(b)** Minimized SOP:
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">(a)</p>
 
-$G = 1$ for minterms 0, 1, 2, 3, 65534, 65535.
+The PAL16L8 has 16 inputs with fan-in of 32 per AND gate (16 true + 16 complement), so a product term can reference all 16 inputs. The question is whether <span class="arithmatex">\(G\)</span> requires <span class="arithmatex">\(\leq 7\)</span> product terms.
 
-- Minterms 0-3: $A=B=C=D=E=F=H=I=J=K=L=M=N=P=0$, $QR \in \{00,01,10,11\}$
+<p style="color: #2E7D32; font-weight: 700;">(b) Minimized SOP:</p>
 
-    These combine to: $\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{H}\,\overline{I}\,\overline{J}\,\overline{K}\,\overline{L}\,\overline{M}\,\overline{N}\,\overline{P}$ (14-literal term, $Q$ and $R$ drop out)
+<span class="arithmatex">\(G = 1\)</span> for minterms 0, 1, 2, 3, 65534, 65535.
 
-- Minterm 65534 ($= 2^{16} - 2$): all 1s except LSB = $ABCDEFHIJKLMNPQ\overline{R}$
-- Minterm 65535 ($= 2^{16} - 1$): all 1s = $ABCDEFHIJKLMNPQR$
+- Minterms 0-3: <span class="arithmatex">\(A=B=C=D=E=F=H=I=J=K=L=M=N=P=0\)</span>, <span class="arithmatex">\(QR \in \{00,01,10,11\}\)</span>
 
-    These combine to: $ABCDEFHIJKLMNPQ$ (15-literal term, $R$ drops out)
+    These combine to: <span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{H}\,\overline{I}\,\overline{J}\,\overline{K}\,\overline{L}\,\overline{M}\,\overline{N}\,\overline{P}\)</span> (14-literal term, <span class="arithmatex">\(Q\)</span> and <span class="arithmatex">\(R\)</span> drop out)
 
-**Minimized:** $G = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{H}\,\overline{I}\,\overline{J}\,\overline{K}\,\overline{L}\,\overline{M}\,\overline{N}\,\overline{P} + ABCDEFHIJKLMNPQ$
+- Minterm 65534 (<span class="arithmatex">\(= 2^{16} - 2\)</span>): all 1s except LSB = <span class="arithmatex">\(ABCDEFHIJKLMNPQ\overline{R}\)</span>
+- Minterm 65535 (<span class="arithmatex">\(= 2^{16} - 1\)</span>): all 1s = <span class="arithmatex">\(ABCDEFHIJKLMNPQR\)</span>
+
+    These combine to: <span class="arithmatex">\(ABCDEFHIJKLMNPQ\)</span> (15-literal term, <span class="arithmatex">\(R\)</span> drops out)
+
+**Minimized:** <span class="arithmatex">\(G = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{H}\,\overline{I}\,\overline{J}\,\overline{K}\,\overline{L}\,\overline{M}\,\overline{N}\,\overline{P} + ABCDEFHIJKLMNPQ\)</span>
 
 **Number of product terms: 2.** This fits within the 7-term limit. **Yes, it fits in one PAL16L8 output.**
 
-Note: The PAL16L8 has active-low outputs (output is inverted). The designer must account for the output inversion, implementing $\overline{G}$ in the AND-OR array so the inverted output produces $G$. Since $\overline{G}$ has $2^{16} - 2 - 4 = 65530$ minterms, direct implementation of $\overline{G}$ is impractical. Instead, the designer should implement $G$ and accept the inverted output, or use a PAL with programmable output polarity.
+Note: The PAL16L8 has active-low outputs (output is inverted). The designer must account for the output inversion, implementing <span class="arithmatex">\(\overline{G}\)</span> in the AND-OR array so the inverted output produces <span class="arithmatex">\(G\)</span>. Since <span class="arithmatex">\(\overline{G}\)</span> has <span class="arithmatex">\(2^{16} - 2 - 4 = 65530\)</span> minterms, direct implementation of <span class="arithmatex">\(\overline{G}\)</span> is impractical. Instead, the designer should implement <span class="arithmatex">\(G\)</span> and accept the inverted output, or use a PAL with programmable output polarity.
 
-**(c)** Maximum toggle frequency:
+<p style="color: #2E7D32; font-weight: 700;">(c) Maximum toggle frequency:</p>
 
-$$f_{toggle} = \frac{1}{2 \times t_{pd}} = \frac{1}{2 \times 25 \text{ ns}} = \frac{1}{50 \text{ ns}} = \mathbf{20 \text{ MHz}}$$
+<span class="arithmatex">\[f_{toggle} = \frac{1}{2 \times t_{pd}} = \frac{1}{2 \times 25 \text{ ns}} = \frac{1}{50 \text{ ns}} = \mathbf{20 \text{ MHz}}\]</span>
 
-The factor of 2 accounts for the output needing one propagation delay to go high and one to go low for a complete toggle cycle.
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;">The factor of 2 accounts for the output needing one propagation delay to go high and one to go low for a complete toggle cycle.</p>
+
+</div>
+</details>
+
+</div>
 
 ---
 
-#### Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-An FPGA has 4-input LUTs (LUT-4). A design requires implementing the following 7-input function:
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity</p>
 
-$$H(A,B,C,D,E,F,G) = ABCD + EFGA + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$$
+<p style="color: #333; line-height: 1.75;">An FPGA has 4-input LUTs (LUT-4). A design requires implementing the following 7-input function:</p>
 
-Decompose this function using Shannon expansion to map it onto LUT-4 resources. Determine:
+<span class="arithmatex">\[H(A,B,C,D,E,F,G) = ABCD + EFGA + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\]</span>
+
+<p style="color: #333; line-height: 1.75;">Decompose this function using Shannon expansion to map it onto LUT-4 resources. Determine:</p>
 
 (a) The minimum number of LUT-4s required.
 (b) The number of logic levels (LUT depth).
 (c) The LUT contents for each LUT in the decomposition.
 
-**Answer:** **(a) and (b):**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-Apply Shannon expansion on variables $A$, $B$, $C$ to split the 7-variable function into sub-functions of at most 4 variables.
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">(a) and (b):</p>
 
-**First expansion on $A$:**
+Apply Shannon expansion on variables <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span> to split the 7-variable function into sub-functions of at most 4 variables.
 
-- $H_1 = H|_{A=1} = BCD + EFG + 0 = BCD + EFG$ (6 variables $\to$ still too wide)
-- $H_0 = H|_{A=0} = 0 + 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$ (6 variables $\to$ still too wide)
+**First expansion on <span class="arithmatex">\(A\)</span>:**
 
-**Second expansion of $H_1$ on $B$:**
+- <span class="arithmatex">\(H_1 = H|_{A=1} = BCD + EFG + 0 = BCD + EFG\)</span> (6 variables → still too wide)
+- <span class="arithmatex">\(H_0 = H|_{A=0} = 0 + 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (6 variables → still too wide)
 
-- $H_{11} = H_1|_{B=1} = CD + EFG$ (5 variables $\to$ still too wide)
-- $H_{10} = H_1|_{B=0} = EFG$ (3 variables $\to$ **fits LUT-4**)
+**Second expansion of <span class="arithmatex">\(H_1\)</span> on <span class="arithmatex">\(B\)</span>:**
 
-**Third expansion of $H_{11}$ on $C$:**
+- <span class="arithmatex">\(H_{11} = H_1|_{B=1} = CD + EFG\)</span> (5 variables → still too wide)
+- <span class="arithmatex">\(H_{10} = H_1|_{B=0} = EFG\)</span> (3 variables → **fits LUT-4**)
 
-- $H_{111} = H_{11}|_{C=1} = D + EFG$ (4 variables $\to$ **fits LUT-4**)
-- $H_{110} = H_{11}|_{C=0} = EFG$ (3 variables $\to$ **fits LUT-4**, same as $H_{10}$)
+**Third expansion of <span class="arithmatex">\(H_{11}\)</span> on <span class="arithmatex">\(C\)</span>:**
 
-**Second expansion of $H_0$ on $B$:**
+- <span class="arithmatex">\(H_{111} = H_{11}|_{C=1} = D + EFG\)</span> (4 variables → **fits LUT-4**)
+- <span class="arithmatex">\(H_{110} = H_{11}|_{C=0} = EFG\)</span> (3 variables → **fits LUT-4**, same as <span class="arithmatex">\(H_{10}\)</span>)
 
-- $H_{01} = H_0|_{B=1} = 0$ (constant $\to$ tie to 0, no LUT needed)
-- $H_{00} = H_0|_{B=0} = \overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$ (5 variables)
+**Second expansion of <span class="arithmatex">\(H_0\)</span> on <span class="arithmatex">\(B\)</span>:**
 
-**Third expansion of $H_{00}$ on $C$:**
+- <span class="arithmatex">\(H_{01} = H_0|_{B=1} = 0\)</span> (constant → tie to 0, no LUT needed)
+- <span class="arithmatex">\(H_{00} = H_0|_{B=0} = \overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (5 variables)
 
-- $H_{001} = H_{00}|_{C=1} = 0$ (constant)
-- $H_{000} = H_{00}|_{C=0} = \overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$ (4 variables $\to$ **fits LUT-4**)
+**Third expansion of <span class="arithmatex">\(H_{00}\)</span> on <span class="arithmatex">\(C\)</span>:**
+
+- <span class="arithmatex">\(H_{001} = H_{00}|_{C=1} = 0\)</span> (constant)
+- <span class="arithmatex">\(H_{000} = H_{00}|_{C=0} = \overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (4 variables → **fits LUT-4**)
 
 **Recombination LUTs (MUX trees):**
 
-- LUT for $H_{1}$: MUX($C$, $H_{110}$, $H_{111}$) then MUX($B$, $H_{10}$, result) $\to$ 2 LUTs
-- LUT for $H_{0}$: MUX($C$, 0, $H_{000}$) then MUX($B$, 0, result) $\to$ can merge into 1 LUT since $H_{01}=0$ and $H_{001}=0$
-- Final LUT: MUX($A$, $H_0$, $H_1$)
+- LUT for <span class="arithmatex">\(H_{1}\)</span>: MUX(<span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(H_{110}\)</span>, <span class="arithmatex">\(H_{111}\)</span>) then MUX(<span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(H_{10}\)</span>, result) → 2 LUTs
+- LUT for <span class="arithmatex">\(H_{0}\)</span>: MUX(<span class="arithmatex">\(C\)</span>, 0, <span class="arithmatex">\(H_{000}\)</span>) then MUX(<span class="arithmatex">\(B\)</span>, 0, result) → can merge into 1 LUT since <span class="arithmatex">\(H_{01}=0\)</span> and <span class="arithmatex">\(H_{001}=0\)</span>
+- Final LUT: MUX(<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(H_0\)</span>, <span class="arithmatex">\(H_1\)</span>)
 
 **Minimum LUT-4 count: 7**
 
 | LUT | Inputs | Function |
 |-----|--------|----------|
-| L1 | $E,F,G$ (+ 1 unused) | $EFG$ (shared for $H_{10}$ and $H_{110}$) |
-| L2 | $D,E,F,G$ | $D + EFG = H_{111}$ |
-| L3 | $D,E,F,G$ | $\overline{D}\,\overline{E}\,\overline{F}\,\overline{G} = H_{000}$ |
-| L4 | $C, L1, L2$ (+ 1 unused) | MUX: $C \cdot L2 + \overline{C} \cdot L1 = H_{11}$ |
-| L5 | $B, L1, L4$ (+ 1 unused) | MUX: $B \cdot L4 + \overline{B} \cdot L1 = H_1$ |
-| L6 | $B, C, L3$ (+ 1 unused) | $\overline{B}\,\overline{C} \cdot L3 = H_0$ |
-| L7 | $A, L5, L6$ (+ 1 unused) | MUX: $A \cdot L5 + \overline{A} \cdot L6 = H$ |
+| L1 | <span class="arithmatex">\(E,F,G\)</span> (+ 1 unused) | <span class="arithmatex">\(EFG\)</span> (shared for <span class="arithmatex">\(H_{10}\)</span> and <span class="arithmatex">\(H_{110}\)</span>) |
+| L2 | <span class="arithmatex">\(D,E,F,G\)</span> | <span class="arithmatex">\(D + EFG = H_{111}\)</span> |
+| L3 | <span class="arithmatex">\(D,E,F,G\)</span> | <span class="arithmatex">\(\overline{D}\,\overline{E}\,\overline{F}\,\overline{G} = H_{000}\)</span> |
+| L4 | <span class="arithmatex">\(C, L1, L2\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(C \cdot L2 + \overline{C} \cdot L1 = H_{11}\)</span> |
+| L5 | <span class="arithmatex">\(B, L1, L4\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(B \cdot L4 + \overline{B} \cdot L1 = H_1\)</span> |
+| L6 | <span class="arithmatex">\(B, C, L3\)</span> (+ 1 unused) | <span class="arithmatex">\(\overline{B}\,\overline{C} \cdot L3 = H_0\)</span> |
+| L7 | <span class="arithmatex">\(A, L5, L6\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(A \cdot L5 + \overline{A} \cdot L6 = H\)</span> |
 
 With sharing of L1, this can be done in **7 LUT-4s**.
 
 **(b) Number of logic levels (LUT depth): 4**
 
-Critical path: L1 (or L2 or L3) $\to$ L4 $\to$ L5 $\to$ L7, which is 4 LUT levels deep.
+Critical path: L1 (or L2 or L3) → L4 → L5 → L7, which is 4 LUT levels deep.
 
 **(c) LUT contents** (selected LUTs):
 
-**L2** ($D + EFG$, inputs $D,E,F,G$):
+**L2** (<span class="arithmatex">\(D + EFG\)</span>, inputs <span class="arithmatex">\(D,E,F,G\)</span>):
 
-| $DEFG$ | Output |
+| <span class="arithmatex">\(DEFG\)</span> | Output |
 |--------|--------|
 | 0000 | 0 |
 | 0001 | 0 |
@@ -249,15 +292,22 @@ Critical path: L1 (or L2 or L3) $\to$ L4 $\to$ L5 $\to$ L7, which is 4 LUT level
 | 1110 | 1 |
 | 1111 | 1 |
 
-SRAM = `0000_0001_1111_1111` = $01\text{FF}_{16}$
+SRAM = `0000_0001_1111_1111` = <span class="arithmatex">\(01\text{FF}_{16}\)</span>
 
-**L3** ($\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$, inputs $D,E,F,G$): Only address 0000 = 1, all others = 0. SRAM = $0001_{16}$.
+<p style="color: #333; line-height: 1.75; margin-bottom: 0;"><strong>L3</strong> (<span class="arithmatex">\(\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span>, inputs <span class="arithmatex">\(D,E,F,G\)</span>): Only address 0000 = 1, all others = 0. SRAM = <span class="arithmatex">\(0001_{16}\)</span>.</p>
+
+</div>
+</details>
+
+</div>
 
 ---
 
-#### Challenge 5: PLD Device Selection Comparison
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-A digital system has the following requirements:
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 5: PLD Device Selection Comparison</p>
+
+<p style="color: #333; line-height: 1.75;">A digital system has the following requirements:</p>
 
 - 20 input signals, 12 output signals
 - 8 outputs are combinational functions averaging 6 product terms each
@@ -267,9 +317,13 @@ A digital system has the following requirements:
 - Production volume: 500 units
 - Budget: $5 per unit for the programmable device
 
-Evaluate each PLD technology (ROM, PLA, PAL, CPLD, FPGA) against these requirements. State which device is selected and justify the decision by completing a comparison matrix.
+<p style="color: #333; line-height: 1.75;">Evaluate each PLD technology (ROM, PLA, PAL, CPLD, FPGA) against these requirements. State which device is selected and justify the decision by completing a comparison matrix.</p>
 
-**Answer:** **Requirements summary:**
+<details style="margin-top: 1rem;" markdown>
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Requirements summary:</p>
 
 - 20 inputs, 12 outputs (8 combinational + 4 registered)
 - Average 6 product terms per combinational output
@@ -281,22 +335,22 @@ Evaluate each PLD technology (ROM, PLA, PAL, CPLD, FPGA) against these requireme
 
 | Criterion | ROM | PLA | PAL | CPLD | FPGA (SRAM) |
 |-----------|-----|-----|-----|------|-------------|
-| 20 inputs supported? | No ($2^{20} = 1$M words, impractical) | Possible but limited density | Yes (PAL22V10) | Yes | Yes |
+| 20 inputs supported? | No (<span class="arithmatex">\(2^{20} = 1\)</span>M words, impractical) | Possible but limited density | Yes (PAL22V10) | Yes | Yes |
 | 12 outputs? | Yes (if ROM exists) | Limited (typ. 8-10) | PAL22V10 has 10 | Yes (64+ I/O) | Yes |
 | 6 product terms/output? | N/A (ROM stores all minterms) | Yes (shared terms) | Marginal (PAL22V10 has 8-16/output) | Yes | N/A (uses LUTs) |
 | Registered outputs? | No (ROM is combinational only) | No (basic PLA) | Yes (PAL22V10 has registered macrocells) | Yes | Yes |
 | Instant power-on? | Yes (mask ROM) | Yes (fuse-based) | Yes (fuse-based) | Yes (Flash/EEPROM) | **No** (needs bitstream load) |
-| 50 MHz? | $\sim$25-50 MHz | $\sim$15-30 MHz (slow, two programmable planes) | $\sim$50-100 MHz | $\sim$100+ MHz | $\sim$200+ MHz |
-| $5/unit at 500 qty? | No (custom mask cost) | $\sim$\$3-8 | $\sim$\$2-5 | $\sim$\$3-10 | $\sim$\$5-50 |
+| 50 MHz? | ~25-50 MHz | ~15-30 MHz (slow, two programmable planes) | ~50-100 MHz | ~100+ MHz | ~200+ MHz |
+| $5/unit at 500 qty? | No (custom mask cost) | ~$3-8 | ~$2-5 | ~$3-10 | ~$5-50 |
 
-**Elimination:**
+<p style="color: #2E7D32; font-weight: 700;">Elimination:</p>
 
-- **ROM:** Eliminated. 20 inputs means $2^{20} \times 12 = 12$ Mbit ROM. Commercially impractical and lacks registered outputs.
+- **ROM:** Eliminated. 20 inputs means <span class="arithmatex">\(2^{20} \times 12 = 12\)</span> Mbit ROM. Commercially impractical and lacks registered outputs.
 - **PLA:** Eliminated. Too slow for 50 MHz. Limited output count. No registered outputs in basic PLAs.
 - **FPGA (SRAM):** Eliminated. Fails instant power-on requirement. Also likely exceeds $5 budget for this design size at 500 units.
 - **PAL:** PAL22V10 has 22 inputs (OK), 10 outputs (not enough for 12). Could use two PAL22V10s but complicates design. Registered outputs available. Speed is borderline at 50 MHz depending on grade.
 
-**Selected device: CPLD**
+<p style="color: #2E7D32; font-weight: 700;">Selected device: CPLD</p>
 
 Justification:
 
@@ -308,7 +362,11 @@ Justification:
 - **Cost:** Small CPLDs are available for $2-5 at moderate volumes, within budget.
 - **Development:** Standard HDL design flow with free vendor tools.
 
-**Final answer: A small Flash-based CPLD** is the optimal choice, meeting all requirements with margin on speed, capacity, and cost.
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Final answer: A small Flash-based CPLD is the optimal choice, meeting all requirements with margin on speed, capacity, and cost.</p>
+
+</div>
+</details>
 
 </div>
 
+</div>
