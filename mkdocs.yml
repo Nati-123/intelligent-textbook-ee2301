@@ -89,6 +89,7 @@ nav:
       - Quiz: unit4-minterm-maxterm-expansions/quiz.md
       - Problems: unit4-minterm-maxterm-expansions/problems.md
       - Challenge: unit4-minterm-maxterm-expansions/challenge.md
+      - Glossary: unit4-minterm-maxterm-expansions/glossary.md
       - References: unit4-minterm-maxterm-expansions/references.md
       - Narration: videos/unit04-narration.md
     - Unit 5 - Karnaugh Maps:
@@ -96,6 +97,7 @@ nav:
       - Quiz: unit5-karnaugh-maps/quiz.md
       - Problems: unit5-karnaugh-maps/problems.md
       - Challenge: unit5-karnaugh-maps/challenge.md
+      - Glossary: unit5-karnaugh-maps/glossary.md
       - References: unit5-karnaugh-maps/references.md
       - Narration: videos/unit05-narration.md
     - Unit 6 - Quine-McCluskey Method:
@@ -103,6 +105,7 @@ nav:
       - Quiz: unit6-quine-mccluskey/quiz.md
       - Problems: unit6-quine-mccluskey/problems.md
       - Challenge: unit6-quine-mccluskey/challenge.md
+      - Glossary: unit6-quine-mccluskey/glossary.md
       - References: unit6-quine-mccluskey/references.md
       - Narration: videos/unit06-narration.md
     - Unit 7 - Multi-Level Gate Circuits:
@@ -118,6 +121,7 @@ nav:
       - Quiz: unit8-combinational-modules/quiz.md
       - Problems: unit8-combinational-modules/problems.md
       - Challenge: unit8-combinational-modules/challenge.md
+      - Glossary: unit8-combinational-modules/glossary.md
       - References: unit8-combinational-modules/references.md
       - Narration: videos/unit08-narration.md
     - Unit 9 - Sequential Logic Fundamentals:
@@ -125,6 +129,7 @@ nav:
       - Quiz: unit9-sequential-fundamentals/quiz.md
       - Problems: unit9-sequential-fundamentals/problems.md
       - Challenge: unit9-sequential-fundamentals/challenge.md
+      - Glossary: unit9-sequential-fundamentals/glossary.md
       - References: unit9-sequential-fundamentals/references.md
       - Narration: videos/unit09-narration.md
     - Unit 10 - Sequential Circuit Design:
@@ -132,6 +137,7 @@ nav:
       - Quiz: unit10-sequential-design/quiz.md
       - Problems: unit10-sequential-design/problems.md
       - Challenge: unit10-sequential-design/challenge.md
+      - Glossary: unit10-sequential-design/glossary.md
       - References: unit10-sequential-design/references.md
       - Narration: videos/unit10-narration.md
     - Unit 11 - Programmable Logic Devices:
@@ -139,6 +145,7 @@ nav:
       - Quiz: unit11-programmable-logic/quiz.md
       - Problems: unit11-programmable-logic/problems.md
       - Challenge: unit11-programmable-logic/challenge.md
+      - Glossary: unit11-programmable-logic/glossary.md
       - References: unit11-programmable-logic/references.md
       - Narration: videos/unit11-narration.md
     - Unit 12 - Introduction to VHDL:
@@ -146,6 +153,7 @@ nav:
       - Quiz: unit12-vhdl/quiz.md
       - Problems: unit12-vhdl/problems.md
       - Challenge: unit12-vhdl/challenge.md
+      - Glossary: unit12-vhdl/glossary.md
       - References: unit12-vhdl/references.md
       - Narration: videos/unit12-narration.md
     - Unit 13 - System Integration:
@@ -153,6 +161,7 @@ nav:
       - Quiz: unit13-system-integration/quiz.md
       - Problems: unit13-system-integration/problems.md
       - Challenge: unit13-system-integration/challenge.md
+      - Glossary: unit13-system-integration/glossary.md
       - References: unit13-system-integration/references.md
       - Narration: videos/unit13-narration.md
   - MicroSims:
