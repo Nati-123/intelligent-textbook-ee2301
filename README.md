@@ -40,14 +40,13 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | Units | 13 | Complete course units |
 | Concepts | 410 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
 | Glossary Terms | 398 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
+| Unit Glossaries | 13 | Every unit has a dedicated glossary (534 total entries) |
 | FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
-| Quiz Questions | 130 | Multiple-choice assessments |
-| Diagrams | 95 | Visual learning aids |
-| Equations | 4,402 | LaTeX expressions (inline and display) |
+| Quiz Questions | 130 | Multiple-choice assessments (10 per unit) |
+| Equations | 1,964+ | LaTeX/MathJax expressions |
 | MicroSims | 106 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 223,587 | Across all markdown files |
-| Links | 416 | Hyperlinks in markdown format |
-| Equivalent Pages | 971 | Estimated pages (250 words/page + visuals) |
+| Total Words | 380,623 | Across all markdown files |
+| Equivalent Pages | 1,577 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -169,9 +168,10 @@ intelligent-textbook-ee2301/
 │   │   ├── quiz.md                    # Multiple-choice quiz
 │   │   ├── problems.md                # Practice problems with solutions
 │   │   ├── challenge.md               # Challenge problems with answers
+│   │   ├── glossary.md                # Unit-specific glossary
 │   │   └── references.md              # Curated references
 │   ├── unit2-boolean-algebra/         # ... (same structure)
-│   ├── ...                            # Units 3-13 (all with quiz, problems, challenge, references)
+│   ├── ...                            # Units 3-13 (all with quiz, problems, challenge, glossary, references)
 │   ├── learning-graph/
 │   │   ├── concept-list.md            # 410 concepts
 │   │   ├── book-metrics.md            # Overall metrics

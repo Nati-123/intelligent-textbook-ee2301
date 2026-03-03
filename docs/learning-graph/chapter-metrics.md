@@ -1,34 +1,29 @@
-<div class="unit1-styled" markdown>
-
 # Chapter Metrics
 
-Per-unit breakdown of content metrics for EE 2301.
+This file contains unit-by-unit metrics for the intelligent textbook.
 
-| Unit | Name | Sections | Diagrams | Words |
-|------|------|----------|----------|-------|
-| 1 | Number Systems | 37 | 7 | 5,585 |
-| 2 | Boolean Algebra | 39 | 22 | 6,878 |
-| 3 | Applications of Boolean Algebra | 40 | 8 | 5,918 |
-| 4 | Minterm and Maxterm Expansions | 43 | 4 | 4,788 |
-| 5 | Karnaugh Maps | 51 | 5 | 5,230 |
-| 6 | Quine-McCluskey Method | 20 | 5 | 5,689 |
-| 7 | Multi-Level Gate Circuits | 61 | 7 | 8,333 |
-| 8 | Combinational Logic Modules | 51 | 6 | 7,457 |
-| 9 | Sequential Logic Fundamentals | 54 | 7 | 7,657 |
-| 10 | Sequential Circuit Design | 72 | 4 | 7,292 |
-| 11 | Programmable Logic Devices | 35 | 10 | 7,452 |
-| 12 | Introduction to VHDL | 51 | 5 | 4,646 |
-| 13 | System Integration and Design Projects | 34 | 5 | 5,231 |
-| **Total** | | **588** | **95** | **82,156** |
+| Unit | Name | Words | Glossary Terms | Quiz | MicroSims |
+|:----:|------|------:|:--------------:|:----:|:---------:|
+| 1 | [Number Systems](../unit1-number-systems/index.md) | 9,141 | 38 | 10 | 8 |
+| 2 | [Boolean Algebra](../unit2-boolean-algebra/index.md) | 11,120 | 58 | 10 | 23 |
+| 3 | [Applications of Boolean Algebra](../unit3-applications-boolean-algebra/index.md) | 6,466 | 43 | 10 | 9 |
+| 4 | [Minterm and Maxterm Expansions](../unit4-minterm-maxterm-expansions/index.md) | 7,755 | 43 | 10 | 5 |
+| 5 | [Karnaugh Maps](../unit5-karnaugh-maps/index.md) | 9,001 | 49 | 10 | 6 |
+| 6 | [Quine-McCluskey Method](../unit6-quine-mccluskey/index.md) | 12,629 | 42 | 10 | 6 |
+| 7 | [Multi-Level Gate Circuits](../unit7-multi-level-gates/index.md) | 11,153 | 41 | 10 | 5 |
+| 8 | [Combinational Logic Modules](../unit8-combinational-modules/index.md) | 8,417 | 37 | 10 | 6 |
+| 9 | [Sequential Logic Fundamentals](../unit9-sequential-fundamentals/index.md) | 8,754 | 35 | 10 | 5 |
+| 10 | [Sequential Circuit Design](../unit10-sequential-design/index.md) | 8,777 | 39 | 10 | 5 |
+| 11 | [Programmable Logic Devices](../unit11-programmable-logic/index.md) | 8,180 | 32 | 10 | 11 |
+| 12 | [Introduction to VHDL](../unit12-vhdl/index.md) | 7,353 | 36 | 10 | 6 |
+| 13 | [System Integration](../unit13-system-integration/index.md) | 6,673 | 41 | 10 | 10 |
+| | **Totals** | **115,419** | **534** | **130** | **106** |
 
 ## Metrics Explanation
 
-- **Sections**: Count of H2 and H3 headers in the unit index.md
-- **Diagrams**: Count of '#### Diagram:' headers in the unit
-- **Words**: Total word count for the unit index.md (excluding code blocks and URLs)
-
----
-
-*Generated: 2026-02-20*
-
-</div>
+- **Unit**: Unit number
+- **Name**: Unit title (linked to unit content)
+- **Words**: Word count of the unit index.md content
+- **Glossary Terms**: Number of terms in the unit's dedicated glossary.md
+- **Quiz**: Number of multiple-choice quiz questions
+- **MicroSims**: Number of interactive p5.js simulations for this unit
