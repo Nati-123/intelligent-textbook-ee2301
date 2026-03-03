@@ -387,7 +387,7 @@ function drawMealyTransitions(pos, r) {
   drawCurvedArrow(pos[2].x, pos[2].y, pos[0].x, pos[0].y, r, -15, '0/0', labelSize);
 
   // S2 -> S1 (1/1): bottom, going right -- this is the detection!
-  let isDetecting = (mealyState === 2 && detectedFlashMealy > 0);
+  let isDetecting = (detectedFlashMealy > 0);
   if (isDetecting) {
     stroke(colors.detected);
     strokeWeight(3);
@@ -630,6 +630,7 @@ function drawWaveformStep(x, y, w, h, val, col, bgCol) {
   textSize(min(9, canvasWidth * 0.012));
   textStyle(BOLD);
   text(val, x + w / 2, y + h / 2);
+  textStyle(NORMAL);
 }
 
 // ---- Arrow and curve drawing helpers ----

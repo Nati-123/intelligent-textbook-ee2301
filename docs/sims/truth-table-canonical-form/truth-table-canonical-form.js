@@ -21,6 +21,9 @@ let varNames = ['A', 'B', 'C', 'D'];
 let varButtons = [];
 let resetButton;
 
+// Table geometry (for click detection, set by drawTruthTable)
+let _tableX, _tableY, _colW, _rowH, _fColX, _rows;
+
 // Colors
 const COL_ON = [200, 240, 200];    // green for 1 (on-set)
 const COL_OFF = [255, 210, 210];   // red for 0 (off-set)
@@ -52,10 +55,12 @@ function createControls() {
   varButtons = [];
   if (resetButton) resetButton.remove();
 
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+
   // Variable count buttons
   for (let v = 2; v <= 4; v++) {
     let btn = createButton(v + ' Vars');
-    btn.position(margin + (v - 2) * 80, drawHeight + 10);
+    btn.position(mainRect.left + margin + (v - 2) * 80, mainRect.top + drawHeight + 10);
     btn.style('padding', '6px 16px');
     btn.style('font-size', '14px');
     btn.style('border-radius', '6px');
@@ -72,7 +77,7 @@ function createControls() {
 
   // Reset button
   resetButton = createButton('Reset All');
-  resetButton.position(margin + 3 * 80, drawHeight + 10);
+  resetButton.position(mainRect.left + margin + 3 * 80, mainRect.top + drawHeight + 10);
   resetButton.style('padding', '6px 16px');
   resetButton.style('font-size', '14px');
   resetButton.style('border-radius', '6px');
@@ -187,12 +192,12 @@ function drawTruthTable() {
   rect(tableX, tableY, tableW, (rows + 1) * rowH, 6);
 
   // Store table geometry for click detection
-  this._tableX = tableX;
-  this._tableY = tableY;
-  this._colW = colW;
-  this._rowH = rowH;
-  this._fColX = fColX;
-  this._rows = rows;
+  _tableX = tableX;
+  _tableY = tableY;
+  _colW = colW;
+  _rowH = rowH;
+  _fColX = fColX;
+  _rows = rows;
 
   // Row index label
   noStroke();
@@ -208,7 +213,7 @@ function drawTruthTable() {
 
 function drawCanonicalForms() {
   let rows = Math.pow(2, numVars);
-  let startY = Math.min(42 + (rows + 1) * this._rowH + 20, drawHeight * 0.52);
+  let startY = Math.min(42 + (rows + 1) * _rowH + 20, drawHeight * 0.52);
   let boxX = margin;
   let boxW = canvasWidth - 2 * margin;
   let lineH = 22;
@@ -353,13 +358,13 @@ function buildPOSExpression(maxterms) {
 
 function mousePressed() {
   // Check if click is in the output column
-  if (!this._tableX) return;
+  if (!_tableX) return;
 
-  let rows = this._rows;
-  let fColX = this._fColX;
-  let colW = this._colW;
-  let tableY = this._tableY;
-  let rowH = this._rowH;
+  let rows = _rows;
+  let fColX = _fColX;
+  let colW = _colW;
+  let tableY = _tableY;
+  let rowH = _rowH;
 
   for (let r = 0; r < rows; r++) {
     let y = tableY + (r + 1) * rowH;
@@ -377,6 +382,7 @@ function mousePressed() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, containerHeight);
+  createControls();
   redraw();
 }
 

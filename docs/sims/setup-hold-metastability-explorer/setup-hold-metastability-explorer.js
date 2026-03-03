@@ -160,7 +160,7 @@ function draw() {
     // Just past hold window => marginal
     status = 'marginal';
     violationType = 'hold';
-    qState = dataGoesHigh ? 1 : 0;
+    qState = dataGoesHigh ? 0 : 1; // captures old value (data hadn't settled at clock edge)
   } else {
     // Well after hold window => valid (but data changed after capture, so old value captured)
     status = 'valid';

@@ -28,7 +28,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - Original, student-friendly explanations of digital logic concepts
 - Step-by-step derivations and worked examples
 - Visual learning aids (logic diagrams, truth tables, K-maps, timing diagrams)
-- 106 interactive MicroSims for hands-on learning
+- 110 interactive MicroSims for hands-on learning
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
@@ -44,7 +44,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments (10 per unit) |
 | Equations | 1,964+ | LaTeX/MathJax expressions |
-| MicroSims | 106 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
+| MicroSims | 110 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
 | Total Words | 380,623 | Across all markdown files |
 | Equivalent Pages | 1,577 | Estimated pages (250 words/page + visuals) |
 
@@ -90,20 +90,20 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 
 ## Interactive MicroSims
 
-The textbook includes **106 interactive MicroSims** organized by unit:
+The textbook includes **110 interactive MicroSims** organized by unit:
 
 | Unit | MicroSims | Examples |
 |------|-----------|----------|
 | 1 - Number Systems | 8 | Base Converter, Binary Arithmetic, Overflow Detection |
 | 2 - Boolean Algebra | 9 | Logic Gate Simulator, Truth Table Generator, De Morgan's Visualizer |
 | 3 - Applications | 9 | Binary Adder, Seven Segment Decoder, Parity Circuit |
-| 4 - Minterms/Maxterms | 5 | Minterm Visualizer, SOP-POS Converter, Shannon Expansion |
+| 4 - Minterms/Maxterms | 6 | Minterm Visualizer, SOP-POS Converter, Truth Table Canonical Form |
 | 5 - Karnaugh Maps | 6 | K-Map Solver, Prime Implicant Finder, K-Map Practice |
 | 6 - Quine-McCluskey | 6 | QM Grouping, PI Chart Interactive, QM Walkthrough |
-| 7 - Multi-Level Gates | 5 | Universal Gate Simulator, Bubble Pushing, NAND-NOR Converter |
+| 7 - Multi-Level Gates | 6 | Universal Gate Simulator, Bubble Pushing, Critical Path Delay Explorer |
 | 8 - Combinational Modules | 6 | MUX Simulator, Decoder Simulator, Priority Encoder |
-| 9 - Sequential Fundamentals | 5 | SR Latch, D Flip-Flop, JK Flip-Flop, Timing Analyzer |
-| 10 - Sequential Design | 5 | Shift Register, Counter Simulator, FSM Designer |
+| 9 - Sequential Fundamentals | 6 | SR Latch, D Flip-Flop, Setup & Hold Time Explorer |
+| 10 - Sequential Design | 6 | Shift Register, Counter Simulator, Moore vs Mealy Comparison |
 | 11 - Programmable Logic | 11 | Programmable Connections, ROM Architecture, PLA, LUT Explorer, FPGA Design Flow |
 | 12 - VHDL | 6 | Entity-Architecture Explorer, VHDL Modeling Styles, VHDL FSM Mapper |
 | 13 - System Integration | 7 | Datapath-Controller, Timing Analysis, Digital Lock, UART Transmitter |

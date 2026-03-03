@@ -79,6 +79,7 @@ Interactive educational simulations for learning digital system design.
 | [SOP-POS Converter](sop-pos-converter/index.md) | L3 Apply | Convert between SOP and POS forms |
 | [Shannon Expansion Explorer](shannon-expansion-explorer/index.md) | L4 Analyze | Explore Shannon's expansion theorem |
 | [Minterm Expansion Walkthrough](minterm-expansion-walkthrough/index.md) | L3 Apply | Step-by-step minterm expansion walkthrough |
+| [Truth Table Canonical Form](truth-table-canonical-form/index.md) | L3 Apply | Click truth table outputs to generate canonical SOP and POS expressions |
 
 ## Unit 5: Karnaugh Maps
 
@@ -111,6 +112,7 @@ Interactive educational simulations for learning digital system design.
 | [NAND-NOR Converter](nand-nor-converter/index.md) | L3-L4 Apply | Convert between NAND/NOR implementations |
 | [Multi-Level Analyzer](multi-level-analyzer/index.md) | L4-L5 Evaluate | Analyze propagation delay and critical path |
 | [NAND Conversion Walkthrough](nand-conversion-walkthrough/index.md) | L3 Apply | Step-by-step NAND gate conversion walkthrough |
+| [Critical Path Delay Explorer](critical-path-delay-explorer/index.md) | L4 Analyze | Visualize propagation delay and critical path through multi-level gate circuits |
 
 ## Unit 8: Combinational Logic Modules
 
@@ -132,6 +134,7 @@ Interactive educational simulations for learning digital system design.
 | [JK Flip-Flop Simulator](jk-flipflop-simulator/index.md) | L2-L3 Apply | JK flip-flop with toggle |
 | [Timing Diagram Analyzer](timing-diagram-analyzer/index.md) | L3-L4 Analyze | Analyze flip-flop timing diagrams |
 | [Flip-Flop Timing Walkthrough](flipflop-timing-walkthrough/index.md) | L3 Apply | Step-by-step flip-flop timing analysis walkthrough |
+| [Setup & Hold Time Explorer](setup-hold-metastability-explorer/index.md) | L4 Analyze | Interactive setup time, hold time, and metastability visualization |
 
 ## Unit 10: Sequential Circuit Design
 
@@ -142,6 +145,7 @@ Interactive educational simulations for learning digital system design.
 | [FSM Designer](fsm-designer/index.md) | L2-L4 Analyze | Moore state machine simulator |
 | [Sequence Detector Demo](sequence-detector-demo/index.md) | L3-L4 Analyze | "101" pattern detector |
 | [Shift Register Walkthrough](shift-register-walkthrough/index.md) | L3 Apply | Step-by-step shift register design walkthrough |
+| [Moore vs Mealy Comparison](moore-mealy-comparison/index.md) | L4 Analyze | Side-by-side Moore and Mealy state machine comparison |
 
 ## Unit 11: Programmable Logic Devices
 
@@ -193,17 +197,17 @@ Interactive educational simulations for learning digital system design.
 | Unit 1: Number Systems | 8 | L2-L4 |
 | Unit 2: Boolean Algebra | 23 | L2-L5 |
 | Unit 3: Applications | 9 | L2-L6 |
-| Unit 4: Minterms/Maxterms | 5 | L2-L4 |
+| Unit 4: Minterms/Maxterms | 6 | L2-L4 |
 | Unit 5: Karnaugh Maps | 6 | L3-L4 |
 | Unit 6: Quine-McCluskey | 6 | L2-L6 |
-| Unit 7: Multi-Level Gates | 5 | L2-L5 |
+| Unit 7: Multi-Level Gates | 6 | L2-L5 |
 | Unit 8: Combinational Modules | 6 | L2-L3 |
-| Unit 9: Sequential Fundamentals | 5 | L2-L4 |
-| Unit 10: Sequential Design | 5 | L2-L4 |
+| Unit 9: Sequential Fundamentals | 6 | L2-L4 |
+| Unit 10: Sequential Design | 6 | L2-L4 |
 | Unit 11: Programmable Logic | 11 | L1-L5 |
 | Unit 12: VHDL | 6 | L2-L4 |
 | Unit 13: System Integration | 10 | L2-L6 |
-| **Total** | **106** | **L1-L6** |
+| **Total** | **110** | **L1-L6** |
 
 ## About MicroSims
 

@@ -12,7 +12,7 @@ This file contains overall metrics for the intelligent textbook.
 | Quiz Questions | 130 | - | 10 per unit across all 13 units |
 | Diagrams | 31 | - | Level 4 headers starting with '#### Diagram:' |
 | Equations | 1,964+ | - | LaTeX/MathJax expressions |
-| MicroSims | 106 | [Simulations](../sims/index.md) | Interactive p5.js simulations |
+| MicroSims | 110 | [Simulations](../sims/index.md) | Interactive p5.js simulations |
 | Total Words | 380,623 | - | Words in all markdown files |
 | Links | 250+ | - | Hyperlinks in markdown format |
 | Equivalent Pages | 1,577 | - | Estimated pages (250 words/page + visuals) |
