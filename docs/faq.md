@@ -14,9 +14,13 @@ This course provides a comprehensive introduction to the fundamentals of digital
 
 For full details, see the [Course Description](course-description.md).
 
+Start with [Unit 1 - Number Systems](unit1-number-systems/index.md) to begin building foundational skills.
+
 ### Who is this course designed for?
 
 This course is designed for sophomore and junior-level Electrical Engineering students, Computer Engineering students, students pursuing minors in electronics or embedded systems, and anyone seeking foundational knowledge in digital logic design. The material assumes a college-level audience with basic mathematical background.
+
+Begin with [Unit 1 - Number Systems](unit1-number-systems/index.md) to see the starting level of material covered.
 
 ### What prerequisites do I need before starting?
 
@@ -28,23 +32,25 @@ Before beginning this course, you should have:
 
 No prior knowledge of digital logic or Boolean algebra is assumed—the course builds these concepts from the ground up.
 
+No prior digital logic knowledge is needed—[Unit 1](unit1-number-systems/index.md) builds from the ground up.
+
 ### How is this textbook organized?
 
 The textbook is organized into thirteen units that build progressively:
 
-1. **Unit 1 - Number Systems**: Binary, octal, hexadecimal representations and arithmetic
-2. **Unit 2 - Boolean Algebra**: Logic operations, gates, and algebraic theorems
-3. **Unit 3 - Applications of Boolean Algebra**: Adders, subtractors, and combinational circuits
-4. **Unit 4 - Minterm & Maxterm Expansions**: Canonical forms (SOP/POS)
-5. **Unit 5 - Karnaugh Maps**: Visual simplification method
-6. **Unit 6 - Quine-McCluskey Method**: Algorithmic minimization
-7. **Unit 7 - Multi-Level Gate Circuits**: NAND/NOR conversions, bubble pushing, propagation delay
-8. **Unit 8 - Combinational Logic Modules**: MUX, decoders, encoders, comparators
-9. **Unit 9 - Sequential Logic Fundamentals**: Latches, flip-flops, timing parameters
-10. **Unit 10 - Sequential Circuit Design**: Registers, counters, finite state machines
-11. **Unit 11 - Programmable Logic Devices**: ROM, PLA, PAL, CPLD, FPGA
-12. **Unit 12 - Introduction to VHDL**: Hardware description language for digital design
-13. **Unit 13 - System Integration**: Top-down design, datapath-controller, verification
+1. **[Unit 1 - Number Systems](unit1-number-systems/index.md)**: Binary, octal, hexadecimal representations and arithmetic
+2. **[Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md)**: Logic operations, gates, and algebraic theorems
+3. **[Unit 3 - Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md)**: Adders, subtractors, and combinational circuits
+4. **[Unit 4 - Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md)**: Canonical forms (SOP/POS)
+5. **[Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md)**: Visual simplification method
+6. **[Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md)**: Algorithmic minimization
+7. **[Unit 7 - Multi-Level Gate Circuits](unit7-multi-level-gates/index.md)**: NAND/NOR conversions, bubble pushing, propagation delay
+8. **[Unit 8 - Combinational Logic Modules](unit8-combinational-modules/index.md)**: MUX, decoders, encoders, comparators
+9. **[Unit 9 - Sequential Logic Fundamentals](unit9-sequential-fundamentals/index.md)**: Latches, flip-flops, timing parameters
+10. **[Unit 10 - Sequential Circuit Design](unit10-sequential-design/index.md)**: Registers, counters, finite state machines
+11. **[Unit 11 - Programmable Logic Devices](unit11-programmable-logic/index.md)**: ROM, PLA, PAL, CPLD, FPGA
+12. **[Unit 12 - Introduction to VHDL](unit12-vhdl/index.md)**: Hardware description language for digital design
+13. **[Unit 13 - System Integration](unit13-system-integration/index.md)**: Top-down design, datapath-controller, verification
 
 Each unit includes content, worked examples, diagrams, a quiz, practice problems, and a challenge.
 
@@ -61,6 +67,8 @@ The textbook provides multiple learning resources:
 
 See the [Glossary](glossary.md) for term definitions.
 
+Each unit — starting with [Unit 1](unit1-number-systems/index.md) — includes content, quizzes, problems, a glossary, and references.
+
 ### How should I use the MicroSims?
 
 MicroSims are interactive simulations built with p5.js that let you explore concepts hands-on. They are particularly valuable for understanding the Quine-McCluskey method in Unit 6. Use them to:
@@ -70,6 +78,8 @@ MicroSims are interactive simulations built with p5.js that let you explore conc
 - Build intuition before working practice problems
 
 Access all simulations from the [MicroSims](sims/index.md) page.
+
+For example, the [Unit 6 - Quine-McCluskey](unit6-quine-mccluskey/index.md) MicroSims let you step through the algorithm interactively.
 
 ### What is the recommended study approach?
 
@@ -81,17 +91,25 @@ We recommend studying units in order since concepts build on each other. For eac
 4. Take the unit quiz to assess your knowledge
 5. Review any concepts you missed in the quiz
 
+Apply this approach starting with [Unit 1 - Number Systems](unit1-number-systems/index.md) and work through each unit in order.
+
 ### How do I navigate the textbook?
 
 Use the navigation menu on the left to access units, quizzes, and resources. The search feature (keyboard shortcut: `/`) helps find specific topics. Each page has a table of contents on the right for section navigation.
+
+Try starting with [Unit 1 - Number Systems](unit1-number-systems/index.md) to explore the layout.
 
 ### Can I use this textbook offline?
 
 The textbook is designed as an online resource, but you can clone the GitHub repository and build it locally using MkDocs. This allows offline access to all content except external links.
 
+After building locally, verify by opening [Unit 1](unit1-number-systems/index.md) to confirm all content renders.
+
 ### How is my learning assessed?
 
 Each unit includes a 10-question multiple-choice quiz aligned with Bloom's Taxonomy cognitive levels. Questions test Remember, Understand, Apply, and Analyze skills. Detailed explanations accompany each answer to support learning.
+
+Try the quiz in [Unit 1](unit1-number-systems/index.md) to experience the format firsthand.
 
 ---
 
@@ -107,9 +125,13 @@ For more details, see [Unit 1 - Number Systems](unit1-number-systems/index.md).
 
 Computers use binary because electronic circuits can reliably distinguish between two voltage states (high and low) but struggle to differentiate many voltage levels accurately. Binary representation offers excellent noise immunity—small voltage fluctuations don't change the logical interpretation. Additionally, binary arithmetic and logic are simpler to implement in hardware than decimal operations.
 
+See [Unit 1 - Number Systems](unit1-number-systems/index.md) for a full treatment of binary representation.
+
 ### What is positional notation?
 
 Positional notation is a number representation system where the value of each digit depends on both the digit itself and its position. In decimal (base 10), the number 247 means 2×100 + 4×10 + 7×1. The same principle applies to binary (base 2), octal (base 8), and hexadecimal (base 16). Each position represents a power of the base.
+
+See [Unit 1 - Number Systems](unit1-number-systems/index.md) for detailed coverage of positional notation across bases.
 
 ### What is the difference between signed and unsigned numbers?
 
@@ -118,6 +140,8 @@ Positional notation is a number representation system where the value of each di
 **Signed numbers** can represent both positive and negative values using encoding schemes like two's complement. An 8-bit two's complement number ranges from -128 to +127.
 
 The interpretation depends on context—the same bit pattern can represent different values depending on whether it's treated as signed or unsigned.
+
+See [Unit 1 - Number Systems](unit1-number-systems/index.md) for worked examples of each representation.
 
 ### What is two's complement and why is it important?
 
@@ -143,6 +167,8 @@ The three fundamental Boolean operations are:
 
 All other Boolean operations (NAND, NOR, XOR, XNOR) can be constructed from these three basic operations.
 
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for truth tables, gate symbols, and extended operations.
+
 ### What is DeMorgan's theorem?
 
 DeMorgan's theorem consists of two rules for complementing Boolean expressions:
@@ -152,13 +178,19 @@ DeMorgan's theorem consists of two rules for complementing Boolean expressions:
 
 These theorems are essential for simplifying Boolean expressions and converting between gate types. They extend to any number of variables.
 
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for proofs and [Unit 7 - Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) for gate conversion applications.
+
 ### What are universal gates?
 
 Universal gates are logic gates that can implement any Boolean function when used alone. **NAND** and **NOR** are both universal gates. Any circuit—including AND, OR, and NOT—can be built using only NAND gates or only NOR gates. This property is valuable in manufacturing because it allows entire circuits to be built with a single gate type.
 
+See [Unit 7 - Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) for NAND-only and NOR-only circuit design.
+
 ### What is a truth table?
 
 A truth table is a complete listing of all possible input combinations and their corresponding outputs for a logic function. For n inputs, the table has 2^n rows. Truth tables provide an unambiguous specification of circuit behavior and serve as the starting point for deriving Boolean expressions.
+
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for how truth tables derive Boolean expressions.
 
 ### What is combinational logic?
 
@@ -172,6 +204,8 @@ A **half adder** adds two single bits, producing a sum and carry output. It cann
 
 A **full adder** adds three bits (two operands plus a carry-in), producing a sum and carry-out. Full adders can be cascaded to build multi-bit adders like the ripple carry adder.
 
+See [Unit 3 - Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md) for complete adder designs with circuit diagrams.
+
 ### What is a minterm?
 
 A minterm is a product term containing ALL variables of a function, where each variable appears exactly once in either complemented or uncomplemented form. For function F(A,B,C), the minterm m₅ = A·B'·C corresponds to input combination 101 (where A=1, B=0, C=1). A function can be expressed as a sum of its minterms (SOP canonical form).
@@ -182,6 +216,8 @@ See [Unit 4 - Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/ind
 
 A maxterm is a sum term containing ALL variables of a function, where each variable appears exactly once. For function F(A,B,C), maxterm M₃ = A + B + C' corresponds to input 011. A function can be expressed as a product of its maxterms (POS canonical form). Note that the variable is complemented from its value in the input combination (opposite of minterms).
 
+See [Unit 4 - Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md) for maxterms, POS canonical forms, and the duality with minterms.
+
 ### What is the difference between SOP and POS forms?
 
 **Sum of Products (SOP)**: An OR of AND terms, like F = AB + A'C + BC. Each product term can contain any subset of variables.
@@ -189,6 +225,8 @@ A maxterm is a sum term containing ALL variables of a function, where each varia
 **Product of Sums (POS)**: An AND of OR terms, like F = (A+B)(A'+C). Each sum term can contain any subset of variables.
 
 Both forms can represent any Boolean function. The choice between them depends on which yields a simpler expression for the specific function.
+
+See [Unit 4](unit4-minterm-maxterm-expansions/index.md) for canonical forms and [Unit 5](unit5-karnaugh-maps/index.md) for simplification of both.
 
 ### What is a Karnaugh map?
 
@@ -200,9 +238,13 @@ Learn the technique in [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md).
 
 A prime implicant is a product term that covers one or more minterms of a function and cannot be combined with another term to form a larger implicant. In a K-map, a prime implicant corresponds to a group that cannot be made larger without including cells where the function is 0. Every minimal expression is composed of prime implicants.
 
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for visual identification and [Unit 6 - Quine-McCluskey](unit6-quine-mccluskey/index.md) for the tabular approach.
+
 ### What is an essential prime implicant?
 
 An essential prime implicant is the ONLY prime implicant covering at least one minterm. Essential prime implicants must appear in any minimal solution. In a K-map, if a 1-cell is covered by only one maximal group, that group represents an essential prime implicant.
+
+See [Unit 5](unit5-karnaugh-maps/index.md) and [Unit 6](unit6-quine-mccluskey/index.md) for identification techniques.
 
 ### What is the Quine-McCluskey method?
 
@@ -213,6 +255,8 @@ See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md).
 ### What are don't care conditions?
 
 Don't care conditions are input combinations for which the output value is unspecified—either because those inputs never occur or because the output doesn't matter. In optimization, don't cares can be treated as 1 or 0, whichever produces a simpler expression. For example, in a BCD decoder, inputs 1010-1111 are don't cares because they're invalid BCD values.
+
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for handling don't cares in K-map grouping.
 
 ---
 
@@ -227,6 +271,8 @@ Don't care conditions are input combinations for which the output value is unspe
 
 These terms describe data sizes at different granularities in computer systems.
 
+See [Unit 1 - Number Systems](unit1-number-systems/index.md) for how these data sizes appear in binary and hexadecimal contexts.
+
 ### How do I convert between number bases?
 
 **Decimal to binary**: Repeatedly divide by 2, collect remainders in reverse order.
@@ -239,6 +285,8 @@ These terms describe data sizes at different granularities in computer systems.
 
 See the [Glossary](glossary.md) for conversion examples.
 
+Step-by-step conversion methods are covered in [Unit 1 - Number Systems](unit1-number-systems/index.md).
+
 ### What is overflow and how do I detect it?
 
 Overflow occurs when an arithmetic result exceeds the range representable in the available bits. In two's complement:
@@ -248,6 +296,8 @@ Overflow occurs when an arithmetic result exceeds the range representable in the
 - Overflow CANNOT occur when adding numbers of opposite signs
 
 Detection: Compare the carry into the sign bit with the carry out. If they differ, overflow occurred.
+
+See [Unit 1 - Number Systems](unit1-number-systems/index.md) for overflow detection in two's complement arithmetic.
 
 ### What are the Boolean algebra laws I need to know?
 
@@ -262,6 +312,8 @@ Essential laws include:
 - **Absorption**: A+A·B=A
 - **DeMorgan's**: (A·B)'=A'+B', (A+B)'=A'·B'
 
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for proofs and applications of each law.
+
 ### What is operator precedence in Boolean algebra?
 
 The standard precedence (highest to lowest) is:
@@ -272,9 +324,13 @@ The standard precedence (highest to lowest) is:
 
 So A + B·C means A + (B·C), not (A+B)·C. Use parentheses when needed to override precedence.
 
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for how precedence applies in simplification.
+
 ### What is Gray code and why is it used?
 
 Gray code is a binary encoding where adjacent values differ by exactly one bit. The sequence is: 00, 01, 11, 10 (for 2 bits). Gray code is used in K-maps to ensure adjacent cells differ by one variable. It's also used in rotary encoders and other applications where minimizing bit transitions reduces errors.
+
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for how Gray code ordering enables K-map adjacency.
 
 ### What is the difference between logical and physical adjacency in K-maps?
 
@@ -284,6 +340,8 @@ Gray code is a binary encoding where adjacent values differ by exactly one bit. 
 
 Due to Gray code ordering and wraparound, physically distant cells (like opposite edges or corners) can be logically adjacent. Always consider wraparound when grouping.
 
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for complete coverage of wraparound adjacency.
+
 ### What group sizes are valid in K-maps?
 
 Valid group sizes must be powers of 2: 1, 2, 4, 8, 16, etc. Groups must also be rectangular. Valid configurations include:
@@ -292,9 +350,13 @@ Valid group sizes must be powers of 2: 1, 2, 4, 8, 16, etc. Groups must also be 
 
 Groups of 3, 5, 6, or other non-power-of-2 sizes are invalid.
 
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for grouping rules and variable elimination.
+
 ### What is Petrick's method?
 
 Petrick's method is an algebraic technique for finding minimum covers when a prime implicant chart has no essential prime implicants (cyclic chart). It creates a Boolean expression representing all valid covers, then finds the minimum-cost solutions by expanding and simplifying this expression.
+
+See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md) for a worked example with cyclic charts.
 
 ### How does the Quine-McCluskey algorithm work?
 
@@ -304,9 +366,13 @@ The QM algorithm has two main phases:
 
 2. **Find minimum cover**: Build a chart showing which minterms each PI covers. Select essential PIs (those uniquely covering a minterm). For remaining minterms, select additional PIs to achieve minimum cost.
 
+See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md) for a complete step-by-step walkthrough.
+
 ### What is the computational complexity of Quine-McCluskey?
 
 The QM algorithm has exponential complexity. For n variables, the maximum number of prime implicants is approximately 3^n/n. This makes QM impractical for functions with many variables (beyond ~15-20). For small functions, QM guarantees optimal results; for larger functions, heuristic methods are used.
+
+See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md) for algorithm complexity and practical limits.
 
 ---
 
@@ -323,6 +389,8 @@ Common mistakes include:
 
 Work through the conversion step-by-step and verify with decimal equivalents.
 
+Review [Unit 1 - Number Systems](unit1-number-systems/index.md) for worked examples of two's complement conversion and overflow detection.
+
 ### How do I simplify Boolean expressions algebraically?
 
 Apply these techniques systematically:
@@ -335,6 +403,8 @@ Apply these techniques systematically:
 
 Practice with simple expressions before tackling complex ones.
 
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for algebraic laws and worked simplification examples.
+
 ### Why won't my K-map groups simplify further?
 
 Check these common issues:
@@ -345,9 +415,13 @@ Check these common issues:
 4. **Not maximizing groups**: Each group should be as large as possible
 5. **Uncovered 1s**: Every 1-cell must belong to at least one group
 
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for systematic grouping rules and common mistakes.
+
 ### How do I handle don't cares in K-maps?
 
 Include don't care cells (marked X or d) in groups ONLY when it makes the group larger. You're not required to cover don't cares, but you can treat them as 1s if it helps simplification. Never group don't cares alone—only include them to expand groups of actual 1s.
+
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for worked examples with don't care cells.
 
 ### When should I use K-maps versus Quine-McCluskey?
 
@@ -362,9 +436,13 @@ Use **Quine-McCluskey** when:
 - Algorithm will be computerized
 - Multiple output functions share terms
 
+Review [Unit 5](unit5-karnaugh-maps/index.md) and [Unit 6](unit6-quine-mccluskey/index.md) to understand where each method excels.
+
 ### Why do I get different minimal expressions from K-maps?
 
 Multiple minimal expressions can exist for the same function. This happens when different grouping choices yield expressions with equal cost (same literal count). All valid minimal expressions are correct—they implement the same function. The QM method can find all minimum covers.
+
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for examples of multiple valid groupings.
 
 ### How do I convert between SOP and POS forms?
 
@@ -378,11 +456,15 @@ Multiple minimal expressions can exist for the same function. This happens when 
 
 **POS to SOP**: Similar process using rows where function = 1.
 
+See [Unit 4 - Minterm & Maxterm Expansions](unit4-minterm-maxterm-expansions/index.md) for the underlying minterm/maxterm duality.
+
 ### What if my K-map has all 1s or all 0s?
 
 - **All 1s**: The function equals 1 (constant). Expression: F = 1
 - **All 0s**: The function equals 0 (constant). Expression: F = 0
 - **Half 1s in a pattern**: Look for single-variable expressions like F = A or F = A'
+
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for degenerate cases and constant functions.
 
 ### How do I identify prime implicants in the QM method?
 
@@ -391,6 +473,8 @@ A term is a prime implicant if it:
 2. Cannot be combined further in subsequent iterations
 
 After completing all combination iterations, collect all unchecked terms from all columns. These are your prime implicants.
+
+See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md) for a complete worked example tracing prime implicant identification.
 
 ---
 
@@ -407,6 +491,8 @@ Follow this systematic approach:
 5. **Draw circuit**: Implement with logic gates
 6. **Verify**: Check against original truth table
 
+This process is demonstrated end-to-end in [Unit 3 - Applications of Boolean Algebra](unit3-applications-boolean-algebra/index.md).
+
 ### What is the most efficient way to simplify expressions?
 
 For efficiency:
@@ -418,6 +504,8 @@ For efficiency:
 
 Always verify your simplified expression against the original truth table.
 
+See [Unit 5](unit5-karnaugh-maps/index.md) for K-map techniques and [Unit 6](unit6-quine-mccluskey/index.md) for algorithmic minimization.
+
 ### When should I use NAND-only or NOR-only implementations?
 
 Use universal gate implementations when:
@@ -428,6 +516,8 @@ Use universal gate implementations when:
 
 Convert from SOP (for NAND) or POS (for NOR) using DeMorgan's theorem.
 
+See [Unit 7 - Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) for systematic NAND and NOR conversion procedures.
+
 ### How do I minimize literal count effectively?
 
 Strategies for literal minimization:
@@ -436,6 +526,8 @@ Strategies for literal minimization:
 2. **Exploit don't cares**: Include them to enlarge groups
 3. **Consider POS alternative**: Sometimes POS has fewer literals than SOP
 4. **Factor common terms**: A(B+C) has fewer literals than AB+AC
+
+See [Unit 5](unit5-karnaugh-maps/index.md) and [Unit 7](unit7-multi-level-gates/index.md) for literal and gate count minimization techniques.
 
 ### What makes a good circuit design?
 
@@ -446,6 +538,8 @@ Good designs balance:
 - **Minimal literals**: Reduces gate inputs
 - **Speed**: Consider propagation delay paths
 - **Testability**: Can faults be detected?
+
+See [Unit 7](unit7-multi-level-gates/index.md) for gate optimization and [Unit 13](unit13-system-integration/index.md) for verification and testability.
 
 ### How should I organize my K-map work?
 
@@ -458,6 +552,8 @@ Best practices:
 5. Clearly mark overlapping cells
 6. Check that all 1s are covered
 
+See [Unit 5 - Karnaugh Maps](unit5-karnaugh-maps/index.md) for worked examples demonstrating these practices.
+
 ### When are multiple solutions acceptable?
 
 Multiple minimal solutions are acceptable when:
@@ -468,6 +564,8 @@ Multiple minimal solutions are acceptable when:
 
 Document your solution clearly, noting that alternatives exist.
 
+See [Unit 5](unit5-karnaugh-maps/index.md) and [Unit 6](unit6-quine-mccluskey/index.md) for examples where multiple minimum covers exist.
+
 ---
 
 ## Advanced Topics Questions
@@ -475,6 +573,8 @@ Document your solution clearly, noting that alternatives exist.
 ### How does multi-output minimization work?
 
 Multi-output minimization finds shared product terms across several functions to reduce total gates. For example, if F₁ and F₂ both need term AB, implementing AB once and sharing it reduces gate count. The Quine-McCluskey method can be extended to find shared prime implicants.
+
+See [Unit 6 - Quine-McCluskey Method](unit6-quine-mccluskey/index.md) for multi-output extensions of the QM algorithm.
 
 ### What are the limits of K-map and QM methods?
 
@@ -490,9 +590,13 @@ Multi-output minimization finds shared product terms across several functions to
 
 Modern tools use heuristics like ESPRESSO for industrial-scale problems.
 
+See [Unit 5](unit5-karnaugh-maps/index.md) and [Unit 6](unit6-quine-mccluskey/index.md) for the practical boundaries of each method.
+
 ### How do hazards affect combinational circuits?
 
 Hazards are momentary incorrect outputs during signal transitions. **Static hazards** produce a brief glitch (0 or 1) when output should remain constant. They occur when two overlapping groups don't share a cell. Hazards can be eliminated by adding redundant groups to cover transition paths.
+
+See [Unit 7 - Multi-Level Gate Circuits](unit7-multi-level-gates/index.md) for hazard analysis and the redundant group elimination technique.
 
 ### What is the relationship between Boolean algebra and set theory?
 
@@ -505,6 +609,8 @@ Boolean algebra and set theory share algebraic structure:
 - 0 corresponds to empty set
 
 All Boolean theorems have set theory equivalents.
+
+See [Unit 2 - Boolean Algebra](unit2-boolean-algebra/index.md) for the axiomatic foundations of Boolean algebra.
 
 ### How do sequential circuits differ from combinational circuits?
 
@@ -658,6 +764,8 @@ Digital system design concepts apply to:
 - **Communication**: Protocol logic, encoding/decoding
 - **Embedded systems**: Sensor interfaces, control logic
 - **FPGA programming**: Hardware description languages use Boolean concepts
+
+See [Unit 11](unit11-programmable-logic/index.md), [Unit 12](unit12-vhdl/index.md), and [Unit 13](unit13-system-integration/index.md) for how these concepts are applied in real industry workflows.
 
 ---
 

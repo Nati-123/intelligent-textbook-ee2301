@@ -35,10 +35,10 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 34,Twos Complement,33,ARITH
 35,Sign Extension,30|14|12,ARITH
 36,Twos Complement Addition,34|26,ARITH
-37,Twos Complement Subtraction,34|27|36,ARITH
+37,Twos Complement Subtraction,34|27|36|35,ARITH
 38,Overflow Detection,36|37|30,ARITH
 39,Underflow,38,ARITH
-40,Range of Signed Numbers,30|32|33|34,ARITH
+40,Range of Signed Numbers,30|32|33|34|31,ARITH
 41,Boolean Algebra,3,BOOLF
 42,Boolean Variable,41,BOOLF
 43,Boolean Constant,41,BOOLF
@@ -78,7 +78,7 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 77,DeMorgans First Theorem,41|47|49,THEOR
 78,DeMorgans Second Theorem,41|48|49,THEOR
 79,Duality Principle,41|77|78,THEOR
-80,Algebraic Simplification,65|67|68|69|70|71|72|73|74|75,THEOR
+80,Algebraic Simplification,65|67|68|69|70|71|72|73|74|75|76,THEOR
 81,Literal,42|65,FORMS
 82,Product Term,47|81,FORMS
 83,Sum Term,48|81,FORMS
@@ -101,19 +101,19 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 100,Enable Signal,45|98,COMB
 101,Control Signal,100,COMB
 102,Half Adder,26|52|58,ACIR
-103,Full Adder,102|104,ACIR
+103,Full Adder,102|104|105,ACIR
 104,Carry Bit,26|102,ACIR
 105,Sum Bit,102|58,ACIR
 106,Ripple Carry Adder,103|89,ACIR
 107,Half Subtractor,27|58|55,ACIR
-108,Full Subtractor,107|109,ACIR
+108,Full Subtractor,107|109|110,ACIR
 109,Borrow Bit,27|107,ACIR
 110,Difference Bit,107|58,ACIR
 111,Adder Subtractor Circuit,106|108|101,ACIR
-112,Comparator Circuit,91|52|58,ACIR
+112,Comparator Circuit,91|52|58|59,ACIR
 113,Magnitude Comparator,112,ACIR
 114,Parity Generator,58|89,ACIR
-115,Parity Checker,114,ACIR
+115,Parity Checker,114|116|117,ACIR
 116,Even Parity,114,ACIR
 117,Odd Parity,114|55,ACIR
 118,Code Converter,91|95,ACIR
@@ -150,8 +150,8 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 149,Incompletely Specified,148|125,CANON
 150,Dont Care in SOP,148|138,CANON
 151,Dont Care in POS,148|139,CANON
-152,Converting SOP to POS,138|139|144,CANON
-153,Converting POS to SOP,139|138|144,CANON
+152,Converting SOP to POS,138|139|144|136,CANON
+153,Converting POS to SOP,139|138|144|137,CANON
 154,Expansion Theorem,74|144,CANON
 155,Shannon Expansion,154|42,CANON
 156,Cofactor,155|42,CANON
@@ -159,10 +159,10 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 158,Off-Set of Function,64|66|129,CANON
 159,DC-Set of Function,148|157|158,CANON
 160,Literal Count,81|65,FORMS
-161,Karnaugh Map,64|128|129,KMAP
+161,Karnaugh Map,64|128|129|146,KMAP
 162,K-Map Structure,161,KMAP
 163,K-Map Cell,162|128,KMAP
-164,K-Map Variables,162|42,KMAP
+164,K-Map Variables,162|42|163,KMAP
 165,Two Variable K-Map,162|164,KMAP
 166,Three Variable K-Map,165,KMAP
 167,Four Variable K-Map,166,KMAP
@@ -171,7 +171,7 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 170,K-Map Adjacency,162|169,KMAP
 171,Logical Adjacency,170,KMAP
 172,Physical Adjacency,170,KMAP
-173,K-Map Grouping,170|171,KMAP
+173,K-Map Grouping,170|171|172,KMAP
 174,Group of Ones,173|157,KMAP
 175,Group of Zeros,173|158,KMAP
 176,Valid Group Sizes,173,KMAP
@@ -182,24 +182,24 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 181,Prime Implicant,180,KMAP
 182,Essential Prime Implicant,181,KMAP
 183,Redundant Prime Implicant,181|182,KMAP
-184,K-Map SOP Simplification,174|181|182|138,KMAP
+184,K-Map SOP Simplification,174|181|182|138|127|179|152,KMAP
 185,K-Map POS Simplification,175|181|182|139,KMAP
 186,Minimal SOP Expression,184|160,KMAP
 187,Minimal POS Expression,185|160,KMAP
-188,K-Map with Dont Cares,161|148,KMAP
+188,K-Map with Dont Cares,161|148|159|149,KMAP
 189,Using Dont Cares,188|150|151,KMAP
 190,Overlapping Groups,173|180,KMAP
 191,Covering All Ones,174|190,KMAP
 192,Covering All Zeros,175|190,KMAP
-193,Multiple Solutions,184|185|191|192,KMAP
-194,Cost of Expression,160|186|187,KMAP
+193,Multiple Solutions,184|185|191|192|183,KMAP
+194,Cost of Expression,160|186|187|193,KMAP
 195,Gate Count Minimization,194|51,KMAP
 196,Literal Minimization,194|81,KMAP
 197,K-Map Limitations,167|168,KMAP
 198,Five Variable Technique,168|197,KMAP
-199,Entered Variable K-Map,161|42,KMAP
-200,K-Map vs Algebraic Method,80|184|185,KMAP
-201,Quine-McCluskey Algorithm,186|181|182,QM
+199,Entered Variable K-Map,161|42|198,KMAP
+200,K-Map vs Algebraic Method,80|184|185|79|189|199,KMAP
+201,Quine-McCluskey Algorithm,186|181|182|142|143,QM
 202,Tabular Minimization Method,201|128,QM
 203,Implicant Table Construction,202|180,QM
 204,Binary Representation of Minterms,128|3,QM
@@ -255,9 +255,9 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 254,8-to-1 Multiplexer,253|89,CMOD
 255,MUX Select Lines,251|101,CMOD
 256,MUX Data Lines,251|100,CMOD
-257,MUX Boolean Expression,252|84,CMOD
+257,MUX Boolean Expression,252|84|255|256,CMOD
 258,MUX-Based Function Implementation,257|95|66,CMOD
-259,Shannon Expansion for MUX,258|155,CMOD
+259,Shannon Expansion for MUX,258|155|156,CMOD
 260,MUX Tree Implementation,254|258|259,CMOD
 261,Decoder,91|93|128,CMOD
 262,2-to-4 Decoder,261|93,CMOD
@@ -272,7 +272,7 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 271,Magnitude Comparator Module,113|93,CMOD
 272,Cascading Comparators,271|265|90,CMOD
 273,Tri-State Buffer,60|101,CMOD
-274,Bus Architecture,273|90|101,CMOD
+274,Bus Architecture,273|90|101|270,CMOD
 275,Cascading Combinational Modules,265|272|90|89,CMOD
 276,Sequential vs Combinational Logic,91|92,SEQF
 277,Memory Element,276,SEQF
@@ -288,11 +288,11 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 287,Edge Triggering,286,SEQF
 288,Positive Edge Trigger,287,SEQF
 289,Negative Edge Trigger,287,SEQF
-290,D Flip-Flop,283|287,SEQF
+290,D Flip-Flop,283|287|284|288,SEQF
 291,JK Flip-Flop,290|281,SEQF
 292,T Flip-Flop,291,SEQF
-293,Master-Slave Flip-Flop,290|286,SEQF
-294,Setup Time,290|285,SEQF
+293,Master-Slave Flip-Flop,290|286|289,SEQF
+294,Setup Time,290|285|293,SEQF
 295,Hold Time,290|285,SEQF
 296,Clock-to-Q Delay,290|238,SEQF
 297,Metastability,294|295,SEQF
@@ -311,7 +311,7 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 310,SIPO Shift Register,308,SEQD
 311,PISO Shift Register,308|307,SEQD
 312,PIPO Shift Register,308|307,SEQD
-313,Binary Up Counter,306|304,SEQD
+313,Binary Up Counter,306|304|292,SEQD
 314,Binary Down Counter,313,SEQD
 315,Up-Down Counter,313|314,SEQD
 316,Modulo-N Counter,313|95,SEQD
@@ -326,13 +326,13 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 325,Binary State Encoding,324,SEQD
 326,One-Hot State Encoding,324,SEQD
 327,Gray Code State Encoding,324|325,SEQD
-328,State Minimization,321|186,SEQD
+328,State Minimization,321|186|327,SEQD
 329,Next-State Logic,302|324,SEQD
 330,Output Logic,329|322,SEQD
-331,FSM Design Procedure,320|321|324|329,SEQD
-332,Timing Analysis for Sequential Circuits,296|300|298,SEQD
-333,Counter Design Using FSM,316|331,SEQD
-334,Shift Register Applications,311|312,SEQD
+331,FSM Design Procedure,320|321|324|329|323|326|328|330,SEQD
+332,Timing Analysis for Sequential Circuits,296|300|298|297|299,SEQD
+333,Counter Design Using FSM,316|331|315|318,SEQD
+334,Shift Register Applications,311|312|309|310,SEQD
 335,Sequential Circuit Synthesis,331|302|94,SEQD
 336,Programmable Logic Overview,226|228,PLD
 337,Fuse Technology,336,PLD
@@ -348,17 +348,17 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 347,CPLD,345|339,PLD
 348,Function Block,347,PLD
 349,Interconnect Matrix,347|348,PLD
-350,FPGA,339|290,PLD
+350,FPGA,339|290|338,PLD
 351,Configurable Logic Block,350|226,PLD
 352,Lookup Table,351|64,PLD
 353,I/O Block,350|273,PLD
 354,Routing Resources,350|349,PLD
-355,FPGA Design Flow,350|93,PLD
+355,FPGA Design Flow,350|93|353|360,PLD
 356,Bitstream,355|339,PLD
 357,Device Programming,356|337,PLD
 358,In-System Programming,357|343,PLD
 359,FPGA vs CPLD Comparison,347|350,PLD
-360,CLB Interconnect,351|354,PLD
+360,CLB Interconnect,351|354|352,PLD
 361,Logic Capacity Metrics,350|347,PLD
 362,FPGA Timing Analysis,354|332,PLD
 363,Partial Reconfiguration,356|350,PLD
@@ -381,31 +381,31 @@ ConceptID,ConceptLabel,Dependencies,TaxonomyID
 380,If-Then-Else Statement,379,VHDL
 381,Case Statement,379,VHDL
 382,Variables vs Signals,373|378,VHDL
-383,Behavioral Modeling Style,378|380|381,VHDL
+383,Behavioral Modeling Style,378|380|381|382|391,VHDL
 384,Component Declaration,368|372,VHDL
 385,Component Instantiation,384,VHDL
 386,Port Map,385|370,VHDL
 387,Generic Map,384|386,VHDL
-388,Structural Modeling Style,385|386,VHDL
+388,Structural Modeling Style,385|386|387,VHDL
 389,std_logic Type,370|371,VHDL
 390,std_logic_vector,389,VHDL
 391,VHDL Operators,373|389,VHDL
 392,Type Conversion,389|390,VHDL
-393,Testbench,366|368|386,VHDL
+393,Testbench,366|368|386|377|392,VHDL
 394,Assert and Report,393|379,VHDL
-395,VHDL FSM Implementation,319|383|381,VHDL
+395,VHDL FSM Implementation,319|383|381|335,VHDL
 396,Top-Down Design Methodology,355|93,SYSI
 397,Hierarchical Decomposition,396|388,SYSI
-398,Datapath Design,306|313|397,SYSI
+398,Datapath Design,306|313|397|111,SYSI
 399,Controller Design,319|397,SYSI
 400,Datapath-Controller Partitioning,398|399,SYSI
 401,Control Signals,400|101,SYSI
 402,Status Signals,400|101,SYSI
-403,ASM Chart,319|320|321|399,SYSI
+403,ASM Chart,319|320|321|399|401|402,SYSI
 404,Timing Budget,238|294|295,SYSI
 405,Critical Path in System,404|241,SYSI
 406,Pipelining Concept,405|306|285,SYSI
-407,System Verification,393|400,SYSI
+407,System Verification,393|400|403|406,SYSI
 408,Design for Testability,407|348,SYSI
 409,UART Protocol Basics,308|285|384,SYSI
 410,System-Level Debugging,407|408|409,SYSI
