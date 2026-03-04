@@ -334,7 +334,7 @@ function performConversion() {
     if (isSigned && inputBase === 2) {
       decimalValue = parseSignedBinary(inputNumber);
     } else {
-      decimalValue = parseInt(inputNumber, inputBase);
+      decimalValue = parseAnyBaseFloat(inputNumber, inputBase);
     }
   } catch (e) {
     errorMessage = 'Conversion error';
@@ -355,20 +355,25 @@ function performConversion() {
   }
 
   // Convert to all bases
-  if (isSigned && decimalValue < 0) {
-    // Two's complement for negative numbers
-    let twosComp = (256 + decimalValue) >>> 0;
+  let isNeg = decimalValue < 0;
+  let absVal = Math.abs(decimalValue);
+  let sign = isNeg ? '-' : '';
+
+  if (isSigned && isNeg) {
+    // Two's complement for negative integers in signed mode
+    let intVal = Math.round(decimalValue);
+    let twosComp = (256 + intVal) >>> 0;
     results.base2 = twosComp.toString(2).padStart(8, '0');
     results.base8 = twosComp.toString(8);
-    results.base10 = decimalValue.toString();
+    results.base10 = intVal.toString();
     results.base16 = twosComp.toString(16).toUpperCase();
     results.custom = twosComp.toString(outputBase).toUpperCase();
   } else {
-    results.base2 = decimalValue.toString(2);
-    results.base8 = decimalValue.toString(8);
+    results.base2 = sign + convertToBase(absVal, 2);
+    results.base8 = sign + convertToBase(absVal, 8);
     results.base10 = decimalValue.toString();
-    results.base16 = decimalValue.toString(16).toUpperCase();
-    results.custom = decimalValue.toString(outputBase).toUpperCase();
+    results.base16 = sign + convertToBase(absVal, 16).toUpperCase();
+    results.custom = sign + convertToBase(absVal, outputBase).toUpperCase();
 
     if (isSigned) {
       results.base2 = results.base2.padStart(8, '0');
@@ -406,19 +411,76 @@ function parseSignedBinary(binaryStr) {
   return parseInt(binaryStr, 2);
 }
 
+// Parse a number string (possibly fractional, possibly negative) in any base to a decimal float
+function parseAnyBaseFloat(str, base) {
+  let isNeg = false;
+  let s = str;
+  if (s[0] === '-') {
+    isNeg = true;
+    s = s.substring(1);
+  }
+  let parts = s.split('.');
+  // Integer part
+  let intVal = parts[0].length > 0 ? parseInt(parts[0], base) : 0;
+  // Fractional part
+  let fracVal = 0;
+  if (parts.length === 2 && parts[1].length > 0) {
+    for (let i = 0; i < parts[1].length; i++) {
+      let ch = parts[1][i];
+      let digitVal;
+      if (ch >= '0' && ch <= '9') {
+        digitVal = ch.charCodeAt(0) - 48;
+      } else {
+        digitVal = ch.charCodeAt(0) - 55; // 'A'=65, so 65-55=10
+      }
+      fracVal += digitVal / Math.pow(base, i + 1);
+    }
+  }
+  let result = intVal + fracVal;
+  return isNeg ? -result : result;
+}
+
+// Convert a non-negative decimal float to a string in the given base (with up to 10 fractional digits)
+function convertToBase(absVal, base) {
+  let intPart = Math.floor(absVal);
+  let fracPart = absVal - intPart;
+  let intStr = intPart.toString(base);
+
+  if (fracPart < 1e-12) {
+    return intStr;
+  }
+
+  let fracStr = '';
+  let maxDigits = 10;
+  for (let i = 0; i < maxDigits; i++) {
+    fracPart *= base;
+    let digit = Math.floor(fracPart);
+    fracStr += digit.toString(base);
+    fracPart -= digit;
+    if (fracPart < 1e-12) break;
+  }
+  return intStr + '.' + fracStr;
+}
+
 function isValidInput(str, base) {
   if (!str || str.length === 0) return false;
 
-  // Allow leading minus for base 10 (signed mode)
+  // Allow leading minus for any base
   let digits = str;
-  if (base === 10 && str[0] === '-') {
-    digits = str.substring(1);
+  if (digits[0] === '-') {
+    digits = digits.substring(1);
     if (digits.length === 0) return false;
   }
 
-  // Valid characters for base N: 0-9 for positions up to 9, A-Z for 10-35
+  // Allow one decimal point for fractional numbers
+  let dotCount = 0;
   for (let i = 0; i < digits.length; i++) {
     let ch = digits[i];
+    if (ch === '.') {
+      dotCount++;
+      if (dotCount > 1) return false;
+      continue;
+    }
     let value;
     if (ch >= '0' && ch <= '9') {
       value = ch.charCodeAt(0) - '0'.charCodeAt(0);
@@ -429,6 +491,8 @@ function isValidInput(str, base) {
     }
     if (value >= base) return false;
   }
+  // Reject strings that are just a dot
+  if (digits === '.') return false;
   return true;
 }
 
