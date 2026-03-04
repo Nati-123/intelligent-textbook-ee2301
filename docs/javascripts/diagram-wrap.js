@@ -42,4 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     wrap.appendChild(btn);
   });
+
+  // Accessibility: add title attributes to all iframes for screen readers
+  document.querySelectorAll('iframe:not([title])').forEach(function (iframe) {
+    var src = iframe.getAttribute('src') || '';
+    var match = src.match(/sims\/([^/]+)\//);
+    if (match) {
+      var name = match[1].replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      iframe.title = name + ' Interactive Simulation';
+    }
+  });
 });

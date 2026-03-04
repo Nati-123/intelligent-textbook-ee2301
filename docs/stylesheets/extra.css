@@ -1184,3 +1184,17 @@ body.challenge-page label[for="__toc"] {
     height: 2.5rem;
   }
 }
+
+/* ===== ACCESSIBILITY: iframe focus indicators ===== */
+
+iframe:focus-visible {
+  outline: 3px solid #5A3EED;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+iframe:focus {
+  outline: 3px solid #5A3EED;
+  outline-offset: 2px;
+  border-radius: 8px;
+}

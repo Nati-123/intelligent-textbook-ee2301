@@ -4,30 +4,32 @@ This file contains overall metrics for the intelligent textbook.
 
 | Metric Name | Value | Link | Notes |
 |-------------|-------|------|-------|
-| Units | 13 | [Unit Modules](../unit1-number-systems/index.md) | Complete course units |
+| Units | 13 | [Units](../unit1-number-systems/index.md) | Number of unit directories |
 | Concepts | 410 | [Concept List](./concept-list.md) | Concepts from learning graph |
-| Glossary Terms | 398 | [Glossary](../glossary.md) | Master glossary (ISO 11179 compliant) |
-| Unit Glossaries | 13 | - | Every unit has a dedicated glossary |
+| Glossary Terms | 398 | [Glossary](../glossary.md) | Master glossary defined terms |
+| Unit Glossaries | 13 (544 entries) | - | Per-unit glossary files |
 | FAQs | 76 | [FAQ](../faq.md) | Frequently asked questions |
-| Quiz Questions | 130 | - | 10 per unit across all 13 units |
-| Diagrams | 31 | - | Level 4 headers starting with '#### Diagram:' |
-| Equations | 1,964+ | - | LaTeX/MathJax expressions |
-| MicroSims | 110 | [Simulations](../sims/index.md) | Interactive p5.js simulations |
-| Total Words | 380,623 | - | Words in all markdown files |
-| Links | 250+ | - | Hyperlinks in markdown format |
-| Equivalent Pages | 1,577 | - | Estimated pages (250 words/page + visuals) |
+| Quiz Questions | 130 | - | 10 questions per unit × 13 units |
+| Diagrams | 29 | - | Level 4 headers starting with '#### Diagram:' |
+| Equations | 2,821 | - | LaTeX expressions (inline and display) |
+| MicroSims | 110 | [Simulations](../sims/index.md) | Interactive MicroSims |
+| Total Words | 461,241 | - | Words in all markdown files |
+| Unit Content Words | 119,499 | - | Words in unit index.md files only |
+| Links | 351 | - | Hyperlinks in markdown format |
+| Equivalent Pages | 1,907 | - | Estimated pages (250 words/page + visuals) |
 
 ## Metrics Explanation
 
 - **Units**: Count of unit directories containing index.md files
 - **Concepts**: Number of rows in learning-graph.csv
-- **Glossary Terms**: Terms defined in docs/glossary.md (#### headers)
-- **Unit Glossaries**: Each unit has its own glossary.md with 30-58 relevant terms
-- **FAQs**: FAQ items in faq.md
-- **Quiz Questions**: 10 questions per unit × 13 units = 130 total
+- **Glossary Terms**: Defined terms in the master glossary
+- **Unit Glossaries**: Per-unit glossary files with ISO 11179-compliant definitions
+- **FAQs**: Frequently asked questions with detailed answers
+- **Quiz Questions**: Multiple-choice questions aligned to Bloom's Taxonomy
 - **Diagrams**: H4 headers starting with '#### Diagram:'
-- **Equations**: LaTeX expressions rendered via MathJax (arithmatex spans)
+- **Equations**: LaTeX expressions using $ and $$ delimiters
 - **MicroSims**: Directories in docs/sims/ with index.md files
 - **Total Words**: All words in markdown files (excluding code blocks and URLs)
+- **Unit Content Words**: Words in unit index.md files only (main instructional content)
 - **Links**: Markdown-formatted links `[text](url)`
 - **Equivalent Pages**: Based on 250 words/page + 0.25 page/diagram + 0.5 page/MicroSim

@@ -23,9 +23,13 @@ Key terms and definitions for Unit 13. Definitions follow ISO 11179 metadata reg
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">C</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Bus Arbitration</strong> — The process of resolving contention when multiple modules request access to a shared communication bus simultaneously, using priority-based, round-robin, or daisy-chain arbitration schemes to grant bus access to one requester at a time.</p>
+
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Clock Domain Crossing</strong> — The interface boundary where a signal generated in one clock domain is sampled by logic operating in a different clock domain, requiring synchronization to prevent metastability and data corruption.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Clock-to-Q Delay</strong> — The time elapsed from the active clock edge until the flip-flop output Q settles to its new valid logic level, representing the flip-flop's output propagation delay.</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Clock Gating</strong> — A power reduction technique that disables the clock signal to inactive circuit modules, eliminating unnecessary flip-flop toggling and reducing dynamic power consumption, typically implemented using vendor-specific clock buffer primitives on FPGAs.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Code Coverage</strong> — A verification metric that measures which portions of the HDL source code have been exercised during simulation, including statement, branch, condition, and expression coverage, to assess testbench thoroughness.</p>
 
@@ -41,7 +45,11 @@ Key terms and definitions for Unit 13. Definitions follow ISO 11179 metadata reg
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">D</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Data Forwarding</strong> — A pipeline hazard resolution technique that bypasses the normal register write-back path by routing a computed result directly from a later pipeline stage back to an earlier stage's input, avoiding the need to stall the pipeline while waiting for the result to be written to the register file.</p>
+
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Datapath</strong> — The portion of a digital system containing functional units such as registers, multiplexers, ALUs, and buses that perform data storage, transfer, and transformation operations under the direction of the control unit.</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Dynamic Power</strong> — The component of power dissipation in CMOS circuits caused by charging and discharging load capacitances during logic transitions, governed by P = αCV²f where α is switching activity, C is capacitance, V is supply voltage, and f is clock frequency.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Design for Testability</strong> — A collection of design techniques and added circuitry that make a manufactured integrated circuit easier to test by improving controllability and observability of internal nodes after fabrication.</p>
 
@@ -104,6 +112,8 @@ Key terms and definitions for Unit 13. Definitions follow ISO 11179 metadata reg
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">P</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Pipeline Hazard</strong> — A situation in a pipelined design where the next instruction or operation cannot execute in the expected clock cycle due to a data dependency (data hazard), a control flow change (control hazard), or a resource conflict (structural hazard), requiring stalls, forwarding, or speculation to resolve.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Pipelining</strong> — A design technique that divides a combinational logic path into multiple stages separated by registers, allowing each stage to process different data simultaneously, thereby increasing clock frequency and throughput at the cost of latency.</p>
 

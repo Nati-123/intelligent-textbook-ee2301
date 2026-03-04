@@ -43,6 +43,8 @@ Key terms and definitions for Unit 3. Definitions follow ISO 11179 metadata regi
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Carry Bit</strong> — The output of an adder circuit that represents the overflow from adding bits in a single column, to be propagated to the next more significant bit position.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Carry-Lookahead Adder (CLA)</strong> — An adder architecture that computes all carry bits simultaneously using generate and propagate signals, eliminating the sequential carry propagation delay of ripple carry adders and achieving logarithmic rather than linear delay growth with operand width.</p>
+
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Circuit Analysis</strong> — The process of starting with an existing logic circuit and determining its behavior by deriving its Boolean expression and truth table from the gate-level connections.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Circuit Synthesis</strong> — The process of starting with a behavioral specification and creating a logic circuit that implements it, following the systematic design flow of truth table, Boolean expression, simplification, and gate implementation.</p>
@@ -93,6 +95,8 @@ Key terms and definitions for Unit 3. Definitions follow ISO 11179 metadata regi
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">G</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Generate Signal</strong> — In a carry-lookahead adder, the signal G_i = A_i · B_i indicating that bit position i produces a carry output regardless of the incoming carry, because both inputs are 1.</p>
+
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Gray Code</strong> — A binary encoding in which consecutive values differ in exactly one bit position, eliminating ambiguous intermediate readings in applications such as rotary position encoders and providing the ordering used in Karnaugh maps.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Gray to Binary Converter</strong> — A circuit that converts a Gray code number back to standard binary by keeping the MSB unchanged and XORing each Gray code bit with the previously recovered binary bit.</p>
@@ -102,6 +106,8 @@ Key terms and definitions for Unit 3. Definitions follow ISO 11179 metadata regi
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">H</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Hamming Code</strong> — An error-correcting code that uses multiple parity bits, each covering a specific subset of data bits, enabling the receiver to detect and correct single-bit errors by analyzing which parity checks fail to form a syndrome pointing to the error position.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Half Adder</strong> — A combinational circuit that adds two single-bit inputs and produces a sum bit (via XOR) and a carry bit (via AND), called "half" because it has no carry-in and cannot be directly cascaded for multi-bit addition.</p>
 
@@ -131,11 +137,15 @@ Key terms and definitions for Unit 3. Definitions follow ISO 11179 metadata regi
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Odd Parity</strong> — An error-detection scheme in which the parity bit is chosen so that the total number of 1-bits in the data word (including the parity bit itself) is odd.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Overflow Detection</strong> — A technique for detecting signed arithmetic overflow by comparing the carry into the most significant bit (C_{n-1}) with the carry out (C_n); overflow is indicated when these two carries differ, computed as V = C_{n-1} XOR C_n.</p>
+
 </div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">P</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Propagate Signal</strong> — In a carry-lookahead adder, the signal P_i = A_i XOR B_i indicating that bit position i will pass an incoming carry through to the output, enabling parallel carry computation across all bit positions.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Parity</strong> — A simple error-detection property based on counting the number of 1-bits in a data word; it can detect any single-bit error but cannot detect an even number of simultaneous bit errors.</p>
 

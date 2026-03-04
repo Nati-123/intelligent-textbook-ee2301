@@ -40,13 +40,13 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | Units | 13 | Complete course units |
 | Concepts | 410 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
 | Glossary Terms | 398 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
-| Unit Glossaries | 13 | Every unit has a dedicated glossary (534 total entries) |
+| Unit Glossaries | 13 | Every unit has a dedicated glossary (544 total entries) |
 | FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
 | Quiz Questions | 130 | Multiple-choice assessments (10 per unit) |
-| Equations | 1,964+ | LaTeX/MathJax expressions |
+| Equations | 2,821 | LaTeX/MathJax expressions |
 | MicroSims | 110 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 380,623 | Across all markdown files |
-| Equivalent Pages | 1,577 | Estimated pages (250 words/page + visuals) |
+| Total Words | 461,241 | Across all markdown files |
+| Equivalent Pages | 1,907 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 
@@ -176,7 +176,7 @@ intelligent-textbook-ee2301/
 │   │   ├── concept-list.md            # 410 concepts
 │   │   ├── book-metrics.md            # Overall metrics
 │   │   └── quiz-generation-report.md  # Quiz quality report
-│   └── sims/                          # 106 Interactive MicroSims
+│   └── sims/                          # 110 Interactive MicroSims
 │       ├── index.md                   # MicroSims overview
 │       ├── base-converter/
 │       ├── logic-gate-simulator/
@@ -208,7 +208,7 @@ This textbook is designed for:
 |---------|-------------|
 | AI-Assisted Content | Generated with Claude Code for clarity and consistency |
 | Scaffolded Learning | Concepts build on explicit prerequisites |
-| Interactive MicroSims | 106 p5.js simulations you can run in your browser |
+| Interactive MicroSims | 110 p5.js simulations you can run in your browser |
 | Practice Problems | End-of-unit problems with detailed solutions |
 | Self-Assessment | 130 quiz questions with explanations |
 | Comprehensive Glossary | ISO 11179 compliant terminology |

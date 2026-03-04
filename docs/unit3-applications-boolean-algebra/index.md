@@ -221,6 +221,47 @@ Real design problems often begin as English descriptions. **Word problems to Boo
 
 $$F = DA + MAN$$
 
+### Example: Voting System
+
+**Problem:** A three-person committee approves proposals by majority vote. Design a circuit that outputs 1 when at least two of three members vote yes.
+
+**Step 1: Identify variables**
+
+- $A$ = Member A votes yes
+- $B$ = Member B votes yes
+- $C$ = Member C votes yes
+- $F$ = Proposal approved (output)
+
+**Step 2: Create truth table**
+
+| A | B | C | F | Reason |
+|:-:|:-:|:-:|:-:|--------|
+| 0 | 0 | 0 | 0 | No votes |
+| 0 | 0 | 1 | 0 | Only 1 vote |
+| 0 | 1 | 0 | 0 | Only 1 vote |
+| 0 | 1 | 1 | 1 | 2 votes (majority) |
+| 1 | 0 | 0 | 0 | Only 1 vote |
+| 1 | 0 | 1 | 1 | 2 votes (majority) |
+| 1 | 1 | 0 | 1 | 2 votes (majority) |
+| 1 | 1 | 1 | 1 | 3 votes (unanimous) |
+
+**Step 3: Derive Boolean expression** (SOP from rows where F = 1)
+
+$$F = \overline{A}BC + A\overline{B}C + AB\overline{C} + ABC$$
+
+**Step 4: Simplify** — factor and apply Boolean algebra:
+
+$$F = BC(\overline{A} + A) + AC(\overline{B} + B) + AB\overline{C} = BC + AC + AB\overline{C}$$
+
+Since $AB\overline{C} + ABC = AB$:
+
+$$F = AB + AC + BC$$
+
+This is the **majority function** — the output is 1 when any two (or more) inputs are 1. It requires three AND gates and one OR gate.
+
+!!! tip "The Majority Function"
+    The majority function $F = AB + AC + BC$ appears frequently in digital design. It is equivalent to the carry output of a full adder, which produces a carry when at least two of its three inputs are 1.
+
 ### Binary Decisions and Control Signals
 
 A **binary decision** is a circuit output that represents a yes/no choice based on input conditions. Many applications involve **enable signals** and **control signals** that activate or configure circuit behavior.
@@ -352,6 +393,35 @@ For an n-bit ripple carry adder:
 - Final $C_{out}$ indicates overflow (for unsigned) or is discarded (for signed with overflow detection)
 
 **Limitation:** The ripple carry adder is slow for wide operands because each stage must wait for the previous carry to propagate. An 8-bit addition requires 8 sequential carry propagations.
+
+### Carry-Lookahead Adder (Preview)
+
+The ripple carry adder's delay grows linearly with bit width because each carry depends on the previous stage. The **carry-lookahead adder (CLA)** eliminates this bottleneck by computing all carries simultaneously using two auxiliary signals for each bit position:
+
+- **Generate:** $G_i = A_i \cdot B_i$ — stage $i$ produces a carry regardless of carry-in
+- **Propagate:** $P_i = A_i \oplus B_i$ — stage $i$ passes an incoming carry through
+
+Using these signals, each carry can be expressed directly in terms of the original inputs:
+
+$$
+\begin{aligned}
+C_0 &= G_0 + P_0 C_{in} \\[4pt]
+C_1 &= G_1 + P_1 G_0 + P_1 P_0 C_{in} \\[4pt]
+C_2 &= G_2 + P_2 G_1 + P_2 P_1 G_0 + P_2 P_1 P_0 C_{in}
+\end{aligned}
+$$
+
+Each equation depends only on the original inputs $A_i$, $B_i$, and $C_{in}$ — not on the output of a previous stage. This means all carries are available after just two gate delays (one for G/P, one for the carry equation), regardless of the adder width.
+
+**Example (2-bit CLA):** For $A = 11$, $B = 01$, $C_{in} = 0$:
+
+- $G_0 = 1 \cdot 1 = 1$, $P_0 = 1 \oplus 1 = 0$ → $C_0 = 1 + 0 \cdot 0 = 1$
+- $G_1 = 1 \cdot 0 = 0$, $P_1 = 1 \oplus 0 = 1$ → $C_1 = 0 + 1 \cdot 1 = 1$
+
+Result: $S = 00$ with $C_{out} = 1$, confirming $3 + 1 = 4$. Both carries were computed in parallel, not sequentially.
+
+!!! note "CLA in Practice"
+    Commercial CLA ICs like the 74LS283 use this technique internally. For very wide adders (32+ bits), CLA blocks are cascaded using group-generate and group-propagate signals, keeping the delay logarithmic rather than linear. Detailed CLA design is covered in advanced digital design courses.
 
 #### Diagram: Binary Adder Visualizer
 
@@ -494,6 +564,28 @@ Setting $C_{in} = M$ adds 1 when subtracting, completing the two's complement op
 
 $$A - B = A + \overline{B} + 1$$
 
+### Overflow Detection
+
+When adding two signed (two's complement) numbers, the result can exceed the representable range. **Overflow** occurs when two positive numbers produce a negative result, or two negative numbers produce a positive result.
+
+The overflow flag $V$ can be computed by comparing the carry into the sign bit with the carry out of the sign bit:
+
+$$V = C_{n-1} \oplus C_n$$
+
+Where $C_{n-1}$ is the carry into the MSB (sign position) and $C_n$ is the carry out. When these two carries differ, the sign bit has been corrupted.
+
+**Example (4-bit signed):** Compute $7 + 1$:
+
+| | $C_3$ | $A_3$ | $B_3$ | $A_2$ | $B_2$ | $A_1$ | $B_1$ | $A_0$ | $B_0$ |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Values | | 0 | 0 | 1 | 0 | 1 | 0 | 1 | 1 |
+| Carries | $C_4=0$ | | | $C_3=1$ | | $C_2=1$ | | $C_1=1$ | |
+| Sum | | 1 | | 0 | | 0 | | 0 | |
+
+Result: $0111 + 0001 = 1000$ = $-8$ in two's complement. Since $V = C_3 \oplus C_4 = 1 \oplus 0 = 1$, overflow is detected. The result should be $+8$, which cannot be represented in 4-bit signed format ($-8$ to $+7$).
+
+In the adder-subtractor circuit, the overflow flag is generated by XORing the last two carries, providing automatic signed overflow detection for both addition and subtraction.
+
 #### Diagram: Adder-Subtractor Circuit Builder
 
 <iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -595,6 +687,41 @@ The less-than output is: $L = \overline{G} \cdot \overline{E}$ (or derive symmet
 !!! tip "Cascading Comparators"
     Commercial comparator ICs (like 74LS85) include cascade inputs that allow connecting multiple 4-bit comparators to compare larger numbers.
 
+### Design Walkthrough: 2-Bit Magnitude Comparator
+
+Let us design a 2-bit comparator from scratch. Inputs are $A = A_1A_0$ and $B = B_1B_0$; outputs are $G$ (A > B), $L$ (A < B), and $E$ (A = B).
+
+**Step 1: Truth table** (16 rows for two 2-bit inputs)
+
+| $A_1$ | $A_0$ | $B_1$ | $B_0$ | A (dec) | B (dec) | G | E | L |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 1 |
+| 0 | 0 | 1 | 0 | 0 | 2 | 0 | 0 | 1 |
+| 0 | 0 | 1 | 1 | 0 | 3 | 0 | 0 | 1 |
+| 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
+| 0 | 1 | 0 | 1 | 1 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 1 | 2 | 0 | 0 | 1 |
+| 0 | 1 | 1 | 1 | 1 | 3 | 0 | 0 | 1 |
+| 1 | 0 | 0 | 0 | 2 | 0 | 1 | 0 | 0 |
+| 1 | 0 | 0 | 1 | 2 | 1 | 1 | 0 | 0 |
+| 1 | 0 | 1 | 0 | 2 | 2 | 0 | 1 | 0 |
+| 1 | 0 | 1 | 1 | 2 | 3 | 0 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 3 | 0 | 1 | 0 | 0 |
+| 1 | 1 | 0 | 1 | 3 | 1 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 0 | 3 | 2 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 3 | 3 | 0 | 1 | 0 |
+
+**Step 2: Derive expressions** using the MSB-first comparison approach:
+
+$$E = (A_1 \odot B_1)(A_0 \odot B_0)$$
+
+$$G = A_1\overline{B_1} + (A_1 \odot B_1) A_0 \overline{B_0}$$
+
+$$L = \overline{A_1} B_1 + (A_1 \odot B_1) \overline{A_0} B_0$$
+
+**Step 3: Count gates** — $G$ requires 2 AND gates (one 2-input, one 3-input), 1 OR gate, 1 XNOR gate, and 1 inverter. The cascading approach used in the 74LS85 generalizes this pattern to 4 bits and adds cascade inputs for wider comparisons, which is more practical than expanding the truth table to 256 rows for an 8-bit comparator.
+
 Try the interactive magnitude comparator below — set the A and B inputs and observe the G, E, L outputs:
 
 <iframe src="../sims/magnitude-comparator/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -642,6 +769,30 @@ If the result is 0, parity is correct (even number of 1s). If the result is 1, a
 
 !!! warning "Parity Limitations"
     Parity can only detect an odd number of bit errors. If two bits flip, the parity remains unchanged and the error goes undetected. More sophisticated codes (Hamming, CRC) provide stronger error detection and correction.
+
+### Beyond Parity: Hamming Codes
+
+The limitation of parity — detecting but not correcting errors — motivated Richard Hamming to develop **Hamming codes** in 1950. A Hamming code adds multiple parity bits, each covering a different subset of data bits. By checking which parity bits fail, the receiver can identify and correct the exact bit that flipped.
+
+For a 7-bit Hamming code (4 data bits + 3 parity bits), each parity bit covers specific positions:
+
+| Parity Bit | Covers Positions | Check |
+|------------|-----------------|-------|
+| $P_1$ (pos 1) | 1, 3, 5, 7 | Odd positions |
+| $P_2$ (pos 2) | 2, 3, 6, 7 | Positions with bit 1 set in index |
+| $P_4$ (pos 4) | 4, 5, 6, 7 | Positions with bit 2 set in index |
+
+The **syndrome** — the binary number formed by the failing parity checks — directly gives the position of the error. For example, if $P_1$ and $P_4$ fail but $P_2$ passes, the syndrome is $101_2 = 5$, meaning position 5 is corrupt.
+
+### Practical Applications of Parity
+
+Parity checking appears in many real systems:
+
+- **UART serial communication** (Unit 13) optionally includes a parity bit after each 8-bit data byte, allowing the receiver to detect single-bit transmission errors
+- **Computer memory (ECC RAM)** uses extended Hamming codes to detect and correct single-bit errors in real time, which is critical for servers where memory errors could crash operating systems
+- **Hard drives and SSDs** use more powerful error-correcting codes (Reed-Solomon, LDPC) based on the same algebraic principles, enabling reliable storage despite physical media imperfections
+
+The progression from simple parity → Hamming codes → advanced ECC illustrates a common engineering theme: trading redundancy (extra bits) for reliability (error tolerance).
 
 #### Diagram: Parity Generator/Checker Simulator
 
@@ -883,6 +1034,31 @@ This can be simplified using Boolean algebra or K-maps (covered in Unit 5).
 !!! note "Active-Low vs Active-High"
     Some displays use active-low signals (segment lights when signal is 0). The decoder logic must be designed accordingly, or inverters added at outputs.
 
+### Active-Low Decoder Design
+
+Many real seven-segment displays are **common-anode**, meaning segments illuminate when their control signal is LOW (0). Designing for active-low output simply inverts the truth table — each segment output becomes 0 when the segment should be ON and 1 when OFF.
+
+For the active-high truth table above, the active-low version is obtained by complementing every output. Alternatively, design the active-high decoder first and add inverters at each output. Commercial ICs offer both: the 7448 drives common-cathode (active-high), while the 7447 drives common-anode (active-low).
+
+### BCD Input Validation
+
+Since BCD uses only codes 0000–1001, inputs 1010 through 1111 are invalid. A **BCD validation circuit** detects these invalid codes and can blank the display or signal an error:
+
+$$\text{Invalid} = B_3(B_2 + B_1)$$
+
+**Derivation:** An input is invalid when the decimal value exceeds 9. The six invalid codes (10–15) all have $B_3 = 1$ AND either $B_2 = 1$ or $B_1 = 1$:
+
+| Invalid BCD | $B_3$ | $B_2$ | $B_1$ | $B_2 + B_1$ |
+|:-----------:|:-----:|:-----:|:-----:|:----------:|
+| 1010 | 1 | 0 | 1 | 1 |
+| 1011 | 1 | 0 | 1 | 1 |
+| 1100 | 1 | 1 | 0 | 1 |
+| 1101 | 1 | 1 | 0 | 1 |
+| 1110 | 1 | 1 | 1 | 1 |
+| 1111 | 1 | 1 | 1 | 1 |
+
+This simple 3-gate circuit (one OR, one AND, one AND for the enable) protects the display from showing garbage when invalid data appears on the BCD bus — a practical necessity in any real decoder design.
+
 #### Diagram: Seven-Segment Decoder Simulator
 
 <iframe src="../sims/seven-segment-decoder/main.html?v=6" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -1088,6 +1264,21 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 ??? question "Self-Check: How do don't cares help circuit simplification?"
     Don't cares can be assigned either 0 or 1 during optimization. By strategically choosing these values, larger groups can be formed in K-maps, resulting in simpler Boolean expressions with fewer gates.
+
+??? question "Self-Check: Design a voting circuit for a 4-person panel that approves when at least 3 members vote yes."
+    With inputs $A$, $B$, $C$, $D$, the output is 1 when 3 or 4 inputs are 1. The SOP expression is: $F = BCD + ACD + ABD + ABC$. This can also be written as $F = AB(C+D) + CD(A+B)$, requiring fewer gates. Notice that this is a generalization of the 3-input majority function.
+
+??? question "Self-Check: What is the borrow output equation for a full subtractor?"
+    $B_{out} = \overline{A}B + \overline{A}B_{in} + BB_{in}$. A borrow is produced when the subtrahend bits ($B$ and $B_{in}$) "overpower" the minuend bit $A$. Compare this with the carry-out of a full adder: $C_{out} = AB + AC_{in} + BC_{in}$ — the borrow equation has the same structure but with $A$ complemented.
+
+??? question "Self-Check: Verify that Gray codes 0110 and 0111 differ by exactly one bit."
+    Gray code 0110 (decimal 4) and 0111 (decimal 5) differ only in bit position 0 — the rightmost bit changes from 0 to 1. This single-bit-change property holds for all adjacent Gray code values, which is why Gray codes prevent glitch errors in position encoders and are used for labeling K-map cells.
+
+??? question "Self-Check: For the seven-segment display, which segments are active to display the digit '7'?"
+    Segments a, b, and c are active (1) while segments d, e, f, and g are inactive (0). This matches the top horizontal bar, upper-right vertical, and lower-right vertical segments forming the numeral 7.
+
+??? question "Self-Check: How does the carry-lookahead adder avoid the ripple carry delay?"
+    Instead of waiting for each carry to propagate sequentially through every stage, the CLA computes generate ($G_i = A_i B_i$) and propagate ($P_i = A_i \oplus B_i$) signals for each bit. These allow every carry to be expressed as a function of the original inputs and $C_{in}$ only, so all carries are computed in parallel after just two gate delays regardless of adder width.
 
 ---
 

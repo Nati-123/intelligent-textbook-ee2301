@@ -204,6 +204,38 @@ Each leaf module is simple enough to design with the techniques from prior units
 !!! tip "Module Size Rule of Thumb"
     Each module should be small enough to understand at a glance—typically 50-200 lines of VHDL. If a module grows larger, it probably should be split into sub-modules. Conversely, modules that are too small (a single gate) add unnecessary hierarchy.
 
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: 4-Function Calculator Decomposition</h3>
+
+Consider a simple calculator that performs addition, subtraction, AND, and OR on two 8-bit numbers, displaying results on a seven-segment display. A top-down decomposition yields:
+
+```
+Calculator (top level)
+├── Input Interface
+│   ├── Keypad Decoder (4×4 matrix → 4-bit BCD)
+│   └── Input Registers (2 × 8-bit, load-enabled)
+├── ALU Module
+│   ├── 8-bit Adder-Subtractor (Unit 3)
+│   ├── Bitwise Logic Unit (AND/OR)
+│   └── Output MUX (selects operation result)
+├── Control FSM
+│   ├── State: ENTER_A → ENTER_B → SELECT_OP → DISPLAY
+│   └── Generates: load_A, load_B, alu_sel, display_en
+└── Output Interface
+    ├── Binary-to-BCD Converter
+    └── Seven-Segment Decoder (Unit 3)
+```
+
+Each leaf module is a component studied in earlier units. The hierarchy manages complexity: the top-level design sees only four blocks with well-defined interfaces, not the hundreds of gates inside them. If the ALU needs to support multiplication later, only the ALU Module subtree changes — the Control FSM needs a new opcode, but the Input and Output Interfaces remain untouched. This is the power of modular hierarchy.
+
+**Interface for the ALU Module:**
+
+| Port | Direction | Width | Description |
+|------|-----------|-------|-------------|
+| `a`, `b` | in | 8 bits | Operands from input registers |
+| `op_sel` | in | 2 bits | Operation: 00=Add, 01=Sub, 10=AND, 11=OR |
+| `result` | out | 8 bits | Computation result |
+| `flags` | out | 3 bits | Zero, Carry, Negative |
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.4 Datapath and Control Unit Separation</h2>
@@ -286,6 +318,30 @@ Data transfers only when BOTH valid AND ready are HIGH
 
 This pattern decouples the timing of producer and consumer, preventing data loss or duplication.
 
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: ALU Module Interface Specification</h3>
+
+A complete interface specification for an 8-bit ALU module documents everything another engineer needs to connect to it:
+
+**Port Specification:**
+
+| Port | Direction | Type | Description |
+|------|-----------|------|-------------|
+| `clk` | in | `std_logic` | System clock (rising-edge active) |
+| `rst` | in | `std_logic` | Synchronous reset (active high) |
+| `a` | in | `std_logic_vector(7 downto 0)` | First operand |
+| `b` | in | `std_logic_vector(7 downto 0)` | Second operand |
+| `op` | in | `std_logic_vector(2 downto 0)` | Operation select (see table in 13.12) |
+| `start` | in | `std_logic` | Pulse to begin operation |
+| `result` | out | `std_logic_vector(7 downto 0)` | Computation result |
+| `done` | out | `std_logic` | High for one cycle when result is valid |
+| `flags` | out | `std_logic_vector(3 downto 0)` | {Carry, Zero, Negative, Overflow} |
+
+**Timing:** Operands `a`, `b`, and `op` must be stable before the rising clock edge when `start` is asserted. The `result` and `flags` outputs are valid on the same clock edge that `done` is asserted (one cycle after `start` for single-cycle operations).
+
+**Reset behavior:** On `rst = '1'`, `result` is driven to `"00000000"`, all flags are cleared, and `done` is deasserted.
+
+This level of detail prevents integration bugs. Without it, one engineer might assume the result is available immediately (combinational), while another expects it one cycle later (registered) — a mismatch that causes intermittent failures.
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.6 Verification Planning</h2>
@@ -303,6 +359,25 @@ For the designs in this course, verification focuses on:
 2. **Timing correctness:** Does the design meet setup and hold time requirements at the target clock frequency?
 3. **Reset behavior:** Does the design initialize correctly?
 4. **Edge cases:** Does the design handle boundary conditions (overflow, maximum count, all-zeros, all-ones)?
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: Verification Plan for the Digital Lock</h3>
+
+A structured verification plan for the digital combination lock (Section 13.11) organizes tests by category:
+
+| Category | Test | Input Sequence | Expected Result |
+|----------|------|---------------|-----------------|
+| **Normal** | Correct code on first try | 3→7→1→9 | Unlock asserted |
+| **Normal** | Wrong first digit, then correct | 5→(reset)→3→7→1→9 | Unlock after retry |
+| **Boundary** | All zeros entered | 0→0→0→0 | Remain locked, attempt +1 |
+| **Boundary** | Correct code at attempt 3 | 2 wrong + correct | Unlock (just in time) |
+| **Error** | Three wrong attempts | Wrong × 3 | Lockout for 30 seconds |
+| **Error** | Enter pressed with no digit | Enter (no BCD change) | No state change |
+| **Reset** | Reset during code entry | 3→7→Reset | Return to IDLE, counters cleared |
+| **Reset** | Reset during lockout | Lockout → Reset | Return to IDLE |
+| **Timing** | Rapid button presses | 2 enters within 1 clock | Only one digit registered |
+| **Timing** | Lockout timer accuracy | Enter lockout → wait | Timeout at exactly 30s ± 1 cycle |
+
+Each test maps to specific `assert` statements in the testbench. A well-designed verification plan like this typically catches 90% of bugs before hardware testing — the remaining 10% often involve physical timing issues that only appear on real hardware.
 
 ---
 
@@ -462,6 +537,36 @@ The pipeline stage adds one clock cycle of delay but nearly doubles the throughp
 !!! note "Pipeline Design Considerations"
     Pipelining is not free. It adds flip-flops (area and power), increases latency, and requires all parallel data paths to be pipelined to the same depth to maintain synchronization. The designer must weigh these costs against the frequency improvement.
 
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: 3-Stage Multiply-Accumulate Pipeline</h3>
+
+Consider a multiply-accumulate (MAC) unit: $R = R + A \times B$. Without pipelining, the critical path includes the multiplier delay (15 ns) plus the adder delay (8 ns) plus register overhead:
+
+$$f_{max} = \frac{1}{2 + 23 + 1} = 38.5 \text{ MHz}$$
+
+Splitting into three pipeline stages:
+
+| Stage | Operation | Delay |
+|-------|-----------|-------|
+| Stage 1 | Partial products (first half of multiply) | 8 ns |
+| Stage 2 | Complete multiply (second half) | 7 ns |
+| Stage 3 | Accumulate (add to running total) | 8 ns |
+
+$$f_{max} = \frac{1}{2 + 8 + 1} = 90.9 \text{ MHz}$$
+
+**Results comparison:**
+
+| Metric | Unpipelined | 3-Stage Pipeline |
+|--------|:-----------:|:----------------:|
+| Clock frequency | 38.5 MHz | 90.9 MHz |
+| Latency per result | 1 cycle (26 ns) | 3 cycles (33 ns) |
+| Throughput | 38.5 M ops/sec | 90.9 M ops/sec |
+| Added flip-flops | — | 2 × register width |
+
+The pipeline achieves **2.36× throughput** at the cost of 2 extra cycles of latency and additional flip-flops. In a DSP application processing a continuous stream of audio samples, the extra latency is negligible (33 ns vs 26 ns), but the throughput gain allows processing 2.36× more channels.
+
+!!! warning "Pipeline Hazard"
+    In the MAC example, Stage 3 reads the accumulator register $R$ that it also writes. If a new multiply feeds the same accumulator, the result from Stage 3 must be forwarded back before the next addition. This **data hazard** requires either **forwarding logic** (adding a bypass MUX) or inserting a **pipeline stall** (bubble) to wait for the write to complete. Hazard resolution adds complexity but is essential for correctness.
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.10 Design Trade-offs</h2>
@@ -494,6 +599,25 @@ Cycle 2: MUX selects C,D → Adder → Store in S
 ```
 
 This halves the adder count but doubles the execution time and adds MUX area. Resource sharing is valuable when area is constrained and the operations don't need to happen simultaneously.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Clock Gating for Power Reduction</h3>
+
+Dynamic power in CMOS circuits is governed by:
+
+$$P_{dynamic} = \alpha C V_{DD}^2 f$$
+
+Where $\alpha$ is the switching activity (fraction of gates toggling per cycle), $C$ is total capacitance, $V_{DD}$ is supply voltage, and $f$ is clock frequency. Even when a module is idle, its flip-flops toggle on every clock edge, consuming power with no useful work.
+
+**Clock gating** disables the clock to unused modules, eliminating their switching activity entirely:
+
+```
+-- Clock gating in VHDL
+gated_clk <= clk and module_enable;
+```
+
+**Example:** In the 4-function calculator, the ALU is idle while the user enters operands (ENTER_A and ENTER_B states). Clock gating the ALU during these states eliminates its switching power — roughly 40% of total dynamic power if the ALU is the largest module.
+
+On FPGAs, vendor-specific clock buffer primitives (Xilinx `BUFGCE`, Intel `ALTCLKCTRL`) implement clock gating safely, avoiding the glitches that a simple AND gate would produce on the clock signal. The FPGA synthesis tools can also automatically infer clock enables from VHDL `if` statements when the enable covers an entire process.
 
 ---
 
@@ -848,6 +972,46 @@ This design applies:
 - BCD representation for display (Unit 3)
 - State encoding options: binary, one-hot (Unit 10)
 
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Transition Table</h3>
+
+The vending machine FSM uses states representing the accumulated credit in 5¢ increments:
+
+| Current State | Coin Input | Next State | Dispense | Change |
+|:-------------:|:----------:|:----------:|:--------:|:------:|
+| S0 (0¢) | Nickel | S5 | 0 | 0¢ |
+| S0 (0¢) | Dime | S10 | 0 | 0¢ |
+| S0 (0¢) | Quarter | S25 | 0 | 0¢ |
+| S5 (5¢) | Nickel | S10 | 0 | 0¢ |
+| S5 (5¢) | Dime | S15 | 0 | 0¢ |
+| S5 (5¢) | Quarter | S0 | 1 | 0¢ |
+| S10 (10¢) | Nickel | S15 | 0 | 0¢ |
+| S10 (10¢) | Dime | S20 | 0 | 0¢ |
+| S10 (10¢) | Quarter | S0 | 1 | 5¢ |
+| S15 (15¢) | Nickel | S20 | 0 | 0¢ |
+| S15 (15¢) | Dime | S25 | 0 | 0¢ |
+| S15 (15¢) | Quarter | S0 | 1 | 10¢ |
+| S20 (20¢) | Nickel | S25 | 0 | 0¢ |
+| S20 (20¢) | Dime | S0 | 1 | 0¢ |
+| S20 (20¢) | Quarter | S0 | 1 | 15¢ |
+| S25 (25¢) | Nickel | S0 | 1 | 0¢ |
+| S25 (25¢) | Dime | S0 | 1 | 5¢ |
+| S25 (25¢) | Quarter | S0 | 1 | 20¢ |
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Encoding and VHDL</h3>
+
+With 6 states, two encoding options are common:
+
+- **Binary encoding:** 3 bits (000–101). Uses fewer flip-flops (3 FFs) but requires more combinational logic for next-state decoding.
+- **One-hot encoding:** 6 bits (one FF per state). Uses more flip-flops (6 FFs) but simpler next-state logic — each transition is a single gate. FPGAs favor one-hot because LUTs are abundant but routing is expensive.
+
+```vhdl
+-- One-hot state encoding (FPGA-preferred)
+type vend_state is (S0, S5, S10, S15, S20, S25);
+attribute enum_encoding : string;
+attribute enum_encoding of vend_state : type is "one-hot";
+signal state : vend_state := S0;
+```
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.15 Design for Testability</h2>
@@ -867,6 +1031,28 @@ For FPGA designs, DFT includes:
 
 !!! tip "Design for Debug"
     Add a status register that captures the FSM state, error flags, and counter values. This register can be read through a simple interface (SPI, JTAG, or dedicated pins) and dramatically speeds up debugging when the design doesn't work in hardware.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">How Scan Chains Work</h3>
+
+A **scan chain** converts normal flip-flops into a shift register that can be loaded and read externally. Each flip-flop gets a multiplexer controlled by a `scan_enable` signal:
+
+- **Normal mode** (`scan_enable = 0`): The flip-flop loads data from the combinational logic (normal circuit operation).
+- **Shift mode** (`scan_enable = 1`): The flip-flop loads data from the previous flip-flop in the chain, forming a long shift register.
+
+To test a circuit with scan chains: (1) shift a test pattern into all flip-flops via the scan chain, (2) switch to normal mode for one clock cycle so the combinational logic responds, (3) switch back to shift mode and shift out the results for comparison. This gives full observability and controllability of every internal register.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FPGA Debug with Embedded Logic Analyzers</h3>
+
+FPGA vendors provide embedded logic analyzer tools — **SignalTap** (Intel/Altera) and **ChipScope/ILA** (Xilinx/AMD) — that insert a small logic analyzer IP core inside the FPGA alongside the user design. The analyzer samples selected internal signals at the system clock rate and stores them in on-chip block RAM. A trigger condition (e.g., "FSM enters LOCKOUT state") starts the capture, and the recorded waveforms are uploaded to the PC via JTAG for inspection.
+
+```vhdl
+-- Debug register for the digital lock (readable via JTAG or SPI)
+debug_reg <= state_encoding & std_logic_vector(digit_pos)
+           & std_logic_vector(attempts) & match & enter_pulse
+           & timeout & unlock;
+```
+
+This 12-bit debug register captures the complete system status in a single read. Industry experience confirms that **80% of FPGA development time is spent debugging**, making DFT and debug infrastructure critical investments that pay for themselves many times over.
 
 ---
 

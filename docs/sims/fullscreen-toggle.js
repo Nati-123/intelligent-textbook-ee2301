@@ -35,11 +35,13 @@
           'position:fixed;top:0;left:0;width:100vw;height:100vh;' +
           'z-index:99999;border:none;background:#fff;';
         btn.textContent = '\u2715 Exit Fullscreen';
+        btn.setAttribute('aria-label', 'Exit fullscreen');
         btn.style.opacity = '1';
         isFs = true;
       } else {
         iframe.style.cssText = origStyle;
         btn.textContent = '\u26F6 Fullscreen';
+        btn.setAttribute('aria-label', 'Toggle fullscreen');
         btn.style.opacity = '0.75';
         isFs = false;
       }
