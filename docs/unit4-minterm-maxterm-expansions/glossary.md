@@ -19,6 +19,8 @@ Key terms and definitions for Unit 4. Definitions follow ISO 11179 metadata regi
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Boolean Expression</strong> — A combination of Boolean variables, constants, and operators that evaluates to either 0 or 1.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Binary Decision Diagram</strong> — A directed acyclic graph that represents a Boolean function by repeated Shannon expansion, where each internal node tests one variable and terminal nodes are the constants 0 and 1.</p>
+
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Boolean Variable</strong> — A symbol in Boolean algebra that can assume only the value 0 or 1.</p>
 
 </div>
@@ -81,6 +83,8 @@ Key terms and definitions for Unit 4. Definitions follow ISO 11179 metadata regi
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Literal</strong> — A Boolean variable or its complement appearing in a Boolean expression.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Literal Count</strong> — The total number of variable appearances in a Boolean expression, used as a primary metric for expression complexity and implementation cost.</p>
+
 </div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -125,6 +129,8 @@ Key terms and definitions for Unit 4. Definitions follow ISO 11179 metadata regi
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">On-Set of Function</strong> — The set of input combinations for which a Boolean function evaluates to 1.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Ordered BDD</strong> — A Binary Decision Diagram in which every path from root to terminal tests variables in the same fixed order, enabling a canonical representation when fully reduced.</p>
+
 </div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -146,6 +152,8 @@ Key terms and definitions for Unit 4. Definitions follow ISO 11179 metadata regi
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">S</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Shannon Expansion</strong> — A theorem expressing a Boolean function as a sum of products involving a variable and its cofactors.</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Shannon Expansion Tree</strong> — The tree structure formed by recursively applying Shannon expansion to a Boolean function, where each level splits on one variable and leaf nodes hold the resulting sub-function values.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Sigma Notation</strong> — The summation notation using the Greek letter Σ to represent a Boolean function as a sum of minterms.</p>
 

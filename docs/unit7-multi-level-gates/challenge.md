@@ -173,4 +173,79 @@ $$F = AB + C + D + E$$
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: Critical Path Delay Calculation</p>
+
+<p style="color: #333; line-height: 1.75;">A circuit implements $F = (AB + CD)(E + F)$ using 2-input gates only. Each gate has a propagation delay of 2 ns. Calculate the critical path delay for the multi-level implementation. Then find a 2-level SOP form and compare the delay.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<strong>Multi-level:</strong> Level 1: AND(A,B), AND(C,D), OR(E,F). Level 2: OR(AB,CD). Level 3: AND(result, E+F). → <strong>3 levels × 2 ns = 6 ns</strong>.
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<strong>Two-level SOP:</strong> <span class="arithmatex">\(F = ABE + ABF + CDE + CDF\)</span> → <strong>2 levels = 4 ns</strong>, but uses 4 AND gates + 1 OR gate (5 gates vs 5 gates). Faster circuit, same gate count.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Fan-In Limitation with 2-Input NAND</p>
+
+<p style="color: #333; line-height: 1.75;">A technology library has only 2-input NAND gates. Implement the 4-input AND function $F = ABCD$ using only 2-input NAND gates. What is the minimum number of gates, and how many levels does the circuit have?</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Level 1: <span class="arithmatex">\(G_1 = \overline{AB}\)</span>, <span class="arithmatex">\(G_2 = \overline{CD}\)</span> (2 gates)
+</p>
+<p style="color: #333; line-height: 1.75;">
+Level 2: <span class="arithmatex">\(G_3 = \overline{G_1 \cdot G_2} = \overline{\overline{AB} \cdot \overline{CD}} = AB + CD\)</span> (1 gate — but this gives OR, not AND!)
+</p>
+<p style="color: #333; line-height: 1.75;">
+Correct approach: <span class="arithmatex">\(G_1 = \overline{AB}\)</span>, invert: <span class="arithmatex">\(G_2 = \overline{G_1 \cdot G_1} = AB\)</span>, similarly <span class="arithmatex">\(G_4 = CD\)</span>, then <span class="arithmatex">\(G_5 = \overline{G_2 \cdot G_4}\)</span>, <span class="arithmatex">\(F = \overline{G_5 \cdot G_5}\)</span>.
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Total: <strong>5 NAND gates, 4 levels</strong>. The NAND-NAND cascade naturally produces AND at even-numbered output levels.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: Factoring for Shared Subexpressions</p>
+
+<p style="color: #333; line-height: 1.75;">Two functions share inputs: $F_1 = AC + BC + \overline{A}\overline{B}D$ and $F_2 = AC + BC + ABD$. Factor these to maximize sharing of common subexpressions. What is the total gate count for implementing both functions with sharing vs without?</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Both share <span class="arithmatex">\(AC + BC = C(A+B)\)</span>. Let <span class="arithmatex">\(S = C(A+B)\)</span>.
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(F_1 = S + \overline{A}\,\overline{B}D\)</span>, <span class="arithmatex">\(F_2 = S + ABD\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<strong>With sharing:</strong> 2 gates for S + 2 inverters + 2 AND + 2 OR = <strong>8 gates</strong>. <strong>Without sharing:</strong> Each function independently needs 5-6 gates = <strong>~12 gates</strong>. Sharing saves ~33%.
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

@@ -142,4 +142,97 @@ Verification: <span class="arithmatex">\(879 + 586 = 1465\)</span> &#10003;
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: Sign Extension and Arithmetic</p>
+
+<p style="color: #333; line-height: 1.75;">A 6-bit two's complement number $101101_2$ needs to be sign-extended to 12 bits. Write the 12-bit result, then add it to the 12-bit two's complement representation of $+45_{10}$. Does overflow occur?</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+6-bit <span class="arithmatex">\(101101_2\)</span>: sign bit is 1 (negative). Value: <span class="arithmatex">\(-19_{10}\)</span>.
+</p>
+<p style="color: #333; line-height: 1.75;">
+Sign-extended to 12 bits: <span class="arithmatex">\(111111101101_2\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(+45_{10} = 000000101101_2\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Sum: <span class="arithmatex">\(111111101101 + 000000101101 = 000000011010_2 = +26_{10}\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<strong>No overflow</strong>. Both carry into and carry out of the sign bit position are 1, so they match. Result <span class="arithmatex">\(-19 + 45 = +26\)</span> is correct.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Fractional Base Conversion</p>
+
+<p style="color: #333; line-height: 1.75;">Convert the decimal number $27.6875_{10}$ to binary, then to hexadecimal. Verify your answer by converting the hexadecimal result back to decimal.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Integer part: <span class="arithmatex">\(27_{10} = 11011_2\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Fractional part: <span class="arithmatex">\(0.6875 \times 2 = 1.375 \to 1\)</span>; <span class="arithmatex">\(0.375 \times 2 = 0.75 \to 0\)</span>; <span class="arithmatex">\(0.75 \times 2 = 1.5 \to 1\)</span>; <span class="arithmatex">\(0.5 \times 2 = 1.0 \to 1\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Binary: <span class="arithmatex">\(11011.1011_2\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Group into nibbles: <span class="arithmatex">\(0001\ 1011.1011_2 = 1B.B_{16}\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Verify: <span class="arithmatex">\(1B.B_{16} = 1 \times 16 + 11 + 11/16 = 16 + 11 + 0.6875 = 27.6875_{10}\)</span> &#10003;
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: Excess-3 Code</p>
+
+<p style="color: #333; line-height: 1.75;">The <strong>Excess-3</strong> code represents each decimal digit by adding 3 to its value before converting to 4-bit binary. Encode the decimal number $496$ in Excess-3, then show that the 9's complement of each digit is obtained by simply inverting all bits.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Excess-3 encoding: <span class="arithmatex">\(4+3=7 \to 0111\)</span>, <span class="arithmatex">\(9+3=12 \to 1100\)</span>, <span class="arithmatex">\(6+3=9 \to 1001\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Excess-3 of 496: <span class="arithmatex">\(0111\ 1100\ 1001\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Bit-invert: <span class="arithmatex">\(1000\ 0011\ 0110\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Decode: <span class="arithmatex">\(8-3=5\)</span>, <span class="arithmatex">\(3-3=0\)</span>, <span class="arithmatex">\(6-3=3\)</span> → <span class="arithmatex">\(503\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+9's complement of 496 = <span class="arithmatex">\(999 - 496 = 503\)</span> &#10003;. The self-complementing property works because <span class="arithmatex">\((d+3) + (9-d+3) = 15 = 1111_2\)</span>.
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

@@ -181,4 +181,100 @@ Simplified: <span class="arithmatex">\(G = \overline{B}\,\overline{C} + \overlin
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: Canonical Form of XOR</p>
+
+<p style="color: #333; line-height: 1.75;">Express the 3-variable XOR function $F = A \oplus B \oplus C$ in both canonical SOP and canonical POS forms. What pattern do you notice about the minterm indices?</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<span class="arithmatex">\(A \oplus B \oplus C = 1\)</span> when an odd number of variables are 1.
+</p>
+<p style="color: #333; line-height: 1.75;">
+Minterms with odd number of 1s: 001(1), 010(2), 100(4), 111(7)
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+SOP: <span class="arithmatex">\(F = \Sigma m(1,2,4,7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+POS: <span class="arithmatex">\(F = \Pi M(0,3,5,6)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Pattern: The minterm indices are exactly those with an <strong>odd number of 1-bits</strong> in their binary representation (odd parity). The maxterm indices have an even number of 1-bits. This is the parity function.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Don't Cares and Dual Implementations</p>
+
+<p style="color: #333; line-height: 1.75;">A BCD digit detector outputs 1 for valid BCD digits (0–9). Express this function as $F(A,B,C,D) = \Sigma m(?) + d(?)$, where the don't cares correspond to invalid BCD codes. Find both the minimum SOP and minimum POS using don't cares.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Valid BCD: 0000–1001 (0–9). Invalid: 1010–1111 (10–15).
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(F = \Sigma m(0,1,2,3,4,5,6,7,8,9) + d(10,11,12,13,14,15)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+With don't cares set to 1: all 16 minterms are covered → <span class="arithmatex">\(F = 1\)</span>. But that's trivial.
+</p>
+<p style="color: #333; line-height: 1.75;">
+Actually, the function that detects <strong>invalid</strong> BCD is more interesting: <span class="arithmatex">\(G = \Sigma m(10,11,12,13,14,15)\)</span> (no don't cares).
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+Minimum SOP for valid BCD detector: <span class="arithmatex">\(F = \overline{A} + \overline{B}\,\overline{C} + \overline{B}\,\overline{D}\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Minimum POS: <span class="arithmatex">\(F = (\overline{A} + \overline{B})(\overline{A} + \overline{C} + \overline{D})\)</span>
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: Shannon Expansion Application</p>
+
+<p style="color: #333; line-height: 1.75;">Given $F(A,B,C,D) = \Sigma m(0,1,4,5,6,11,14,15)$, use Shannon expansion around variable $A$ to decompose $F$ into cofactors $F_A$ and $F_{\overline{A}}$. Express each cofactor as a minterm list over $\{B,C,D\}$.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Split minterms by A's value (A is the MSB in ABCD):
+</p>
+<p style="color: #333; line-height: 1.75;">
+<strong>A=0</strong> (minterms 0–7): {0,1,4,5,6} → <span class="arithmatex">\(F_{\overline{A}}(B,C,D) = \Sigma m(0,1,4,5,6)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+<strong>A=1</strong> (minterms 8–15, subtract 8): {11−8,14−8,15−8} = {3,6,7} → <span class="arithmatex">\(F_A(B,C,D) = \Sigma m(3,6,7)\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+<span class="arithmatex">\(F_{\overline{A}} = \overline{B}\,\overline{D} + \overline{B}\,\overline{C} + B\,C\,\overline{D}\)</span> (simplified)
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<span class="arithmatex">\(F_A = B\,C + \overline{B}\,C\,D = C(B + \overline{B}D) = C(B+D)\)</span> (simplified)
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

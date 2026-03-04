@@ -141,4 +141,116 @@ This can also be written as: <span class="arithmatex">\(F = D(\overline{B} + A\o
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: Dual of an Expression</p>
+
+<p style="color: #333; line-height: 1.75;">Find the <strong>dual</strong> of the following expression, then simplify both the original and the dual to verify the duality principle:</p>
+
+$$F = AB + A\overline{C} + BC$$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<strong>Dual:</strong> Swap AND↔OR (keep complements unchanged):
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(F_D = (A+B)(A+\overline{C})(B+C)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+<strong>Simplify original:</strong> By consensus theorem, <span class="arithmatex">\(BC\)</span> is redundant: <span class="arithmatex">\(F = AB + A\overline{C}\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<strong>Simplify dual:</strong> <span class="arithmatex">\(F_D = (A+B)(A+\overline{C})(B+C) = (A+B)(A+\overline{C})\)</span> — the dual of the consensus theorem removes the redundant factor <span class="arithmatex">\((B+C)\)</span>.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Universal Gate Implementation</p>
+
+<p style="color: #333; line-height: 1.75;">Implement the function $F = A \oplus B$ (XOR) using <strong>only NAND gates</strong>. Show the expression in terms of NAND operations and count the total number of 2-input NAND gates required.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<span class="arithmatex">\(A \oplus B = A\overline{B} + \overline{A}B\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Using NAND gates: Let <span class="arithmatex">\(W = \overline{A \cdot B}\)</span> (NAND gate 1).
+</p>
+<p style="color: #333; line-height: 1.75;">
+Then <span class="arithmatex">\(\overline{A \cdot W}\)</span> = NAND gate 2, and <span class="arithmatex">\(\overline{B \cdot W}\)</span> = NAND gate 3.
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Finally, <span class="arithmatex">\(F = \overline{\overline{A \cdot W} \cdot \overline{B \cdot W}}\)</span> = NAND gate 4. Total: <strong>4 NAND gates</strong>.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: Absorption and Simplification Chain</p>
+
+<p style="color: #333; line-height: 1.75;">Simplify the following expression step-by-step, citing the Boolean law used at each step:</p>
+
+$$F = A\overline{B}C + ABC + \overline{A}BC + A\overline{B}\overline{C} + AB\overline{C}$$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<span class="arithmatex">\(= A\overline{B}(C + \overline{C}) + AB(C + \overline{C}) + \overline{A}BC\)</span> (Factoring)
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(= A\overline{B} + AB + \overline{A}BC\)</span> (Complement: <span class="arithmatex">\(X + \overline{X} = 1\)</span>)
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(= A(\overline{B} + B) + \overline{A}BC = A + \overline{A}BC\)</span> (Complement)
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<span class="arithmatex">\(= A + BC\)</span> (Absorption: <span class="arithmatex">\(A + \overline{A}X = A + X\)</span>)
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 9: Four-Variable De Morgan's Application</p>
+
+<p style="color: #333; line-height: 1.75;">Apply De Morgan's theorem to complement the following 4-variable expression, then simplify the result:</p>
+
+$$F = (A + B)(C + D)(\overline{A} + \overline{D})$$
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Apply De Morgan's to the POS form (AND of ORs → OR of ANDs):
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+<span class="arithmatex">\(\overline{F} = \overline{A}\,\overline{B} + \overline{C}\,\overline{D} + AD\)</span> (minimum SOP, 3 terms, 6 literals)
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

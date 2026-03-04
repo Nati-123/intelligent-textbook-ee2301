@@ -966,6 +966,10 @@ Instructional Rationale: Tracing signal paths with visible delay values develops
 Implementation: p5.js with responsive canvas
 </details>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/critical-path-delay-explorer/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
+
 ---
 
 <h2 style="color: #5A3EED;">7.9 Level Reduction Techniques</h2>

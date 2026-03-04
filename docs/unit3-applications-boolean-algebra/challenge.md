@@ -163,4 +163,92 @@ $$F_3 = \overline{A}\,\overline{B}\,C + \overline{A}\,B\,\overline{C} + AB\overl
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: Carry-Lookahead Adder Design</p>
+
+<p style="color: #333; line-height: 1.75;">For a 4-bit carry-lookahead adder, derive the expression for carry $C_3$ (the carry into bit position 3) directly in terms of the generate ($G$) and propagate ($P$) signals and the initial carry $C_0$. How many gate levels does your expression require?</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Recursive carry equations: <span class="arithmatex">\(C_{i+1} = G_i + P_i C_i\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(C_1 = G_0 + P_0 C_0\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+<span class="arithmatex">\(C_2 = G_1 + P_1 G_0 + P_1 P_0 C_0\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+<span class="arithmatex">\(C_3 = G_2 + P_2 G_1 + P_2 P_1 G_0 + P_2 P_1 P_0 C_0\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+This requires only <strong>2 gate levels</strong> (one AND level, one OR level) after the P and G signals are computed — compared to 6 levels for a ripple-carry adder.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Seven-Segment Decoder with Don't Cares</p>
+
+<p style="color: #333; line-height: 1.75;">Design the logic for segment $g$ of a BCD-to-seven-segment decoder. Segment $g$ is the middle horizontal bar, which lights for digits 2, 3, 4, 5, 6, 8, 9. Write the function with don't cares for invalid BCD inputs (10–15) and find the minimum SOP expression.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+<span class="arithmatex">\(g(A,B,C,D) = \Sigma m(2,3,4,5,6,8,9) + d(10,11,12,13,14,15)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+Using don't cares optimally on a K-map:
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Minimum SOP: <span class="arithmatex">\(g = A + B\overline{C} + \overline{B}C + C\overline{D}\)</span>
+<br>Simplified further: <span class="arithmatex">\(g = A + B \oplus C + C\overline{D}\)</span>
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: Overflow Detection Circuit</p>
+
+<p style="color: #333; line-height: 1.75;">Design an overflow detection circuit for an 8-bit two's complement adder. The circuit receives the carry into the MSB position ($C_7$) and the carry out of the MSB position ($C_8$). Write the Boolean expression for the overflow flag $V$, draw the gate implementation, and explain why $V = C_7 \oplus C_8$ correctly detects overflow for both addition and subtraction.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">
+<span class="arithmatex">\(V = C_7 \oplus C_8\)</span> (single XOR gate)
+</p>
+<p style="color: #333; line-height: 1.75;">
+<strong>Why it works:</strong> Overflow occurs when the sign of the result is wrong. This happens only when:
+</p>
+<p style="color: #333; line-height: 1.75;">
+- Two positive numbers produce a negative result: <span class="arithmatex">\(C_7 = 1\)</span> (carry into sign bit flips it), <span class="arithmatex">\(C_8 = 0\)</span> → <span class="arithmatex">\(V = 1\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+- Two negative numbers produce a positive result: <span class="arithmatex">\(C_7 = 0\)</span>, <span class="arithmatex">\(C_8 = 1\)</span> → <span class="arithmatex">\(V = 1\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+When <span class="arithmatex">\(C_7 = C_8\)</span>, the carries are consistent and the sign bit is correct, so <span class="arithmatex">\(V = 0\)</span>. This works for subtraction because subtraction is implemented as addition with the two's complement of the subtrahend.
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

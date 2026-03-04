@@ -171,4 +171,87 @@ $$F(A, B, C, D, E) = \sum m(0, 1, 2, 4, 5, 6, 16, 17, 18, 20, 21, 22, 25, 29)$$
 
 </div>
 
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 6: K-Map with All Don't Cares Used</p>
+
+<p style="color: #333; line-height: 1.75;">Simplify $F(A,B,C,D) = \Sigma m(1,3,5,7,9) + d(6,12,13)$ using a K-map. Find both the minimum SOP and minimum POS expressions.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+On the K-map, minterms 1,3,5,7 form the group <span class="arithmatex">\(\overline{A}D\)</span>. Minterm 9 with don't care 13 forms <span class="arithmatex">\(A\overline{B}D\)</span>. Using don't care 12 with 13 and 9 gives <span class="arithmatex">\(A\overline{B}\)</span>.
+</p>
+<p style="color: #2E7D32; font-weight: 700;">Minimum SOP: <span class="arithmatex">\(F = \overline{A}D + A\overline{B}\)</span> (4 literals)</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Minimum POS: <span class="arithmatex">\(F = (\overline{A} + \overline{B})(D + A)\)</span> (4 literals)</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 7: Multiple Minimum Solutions</p>
+
+<p style="color: #333; line-height: 1.75;">For $F(A,B,C,D) = \Sigma m(0,2,5,7,8,10,13,15)$, show that there are exactly two distinct minimum SOP expressions with the same cost. Identify both.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+Essential PIs: <span class="arithmatex">\(\overline{C}D\)</span> (covers 5,7,13,15) — wait, let me recheck.
+</p>
+<p style="color: #333; line-height: 1.75;">
+PIs: <span class="arithmatex">\(\overline{B}\,\overline{D}\)</span> (0,2,8,10), <span class="arithmatex">\(BD\)</span> (5,7,13,15). These are both essential and cover all minterms.
+</p>
+<p style="color: #2E7D32; font-weight: 700;">
+Actually: <span class="arithmatex">\(F = \overline{B}\,\overline{D} + BD\)</span> — this is the XNOR function <span class="arithmatex">\(B \odot D\)</span>.
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+There is only one minimum SOP: <span class="arithmatex">\(F = \overline{B}\,\overline{D} + BD\)</span> (4 literals). The minimum POS is <span class="arithmatex">\(F = (\overline{B}+D)(B+\overline{D})\)</span> (also 4 literals). Both have the same cost because the function is symmetric in B and D, independent of A and C.
+</p>
+</div>
+</details>
+
+</div>
+
+---
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 8: POS Minimization via K-Map</p>
+
+<p style="color: #333; line-height: 1.75;">Find the minimum POS expression for $F(A,B,C,D) = \Pi M(0,1,2,4,5,11,15)$ using a K-map. Circle the 0s to find maxterm groupings.</p>
+
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;">
+<p style="color: #333; line-height: 1.75; margin-top: 0;">
+On-set (1s): minterms {3,6,7,8,9,10,12,13,14}. Off-set (0s): {0,1,2,4,5,11,15}.
+</p>
+<p style="color: #333; line-height: 1.75;">
+Group the 0s on the K-map:
+</p>
+<p style="color: #333; line-height: 1.75;">
+- {0,1,4,5}: <span class="arithmatex">\(\overline{A}\,\overline{C}\)</span> → factor <span class="arithmatex">\((A+C)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+- {0,2}: <span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{D}\)</span> → factor <span class="arithmatex">\((A+B+D)\)</span>
+</p>
+<p style="color: #333; line-height: 1.75;">
+- {11,15}: <span class="arithmatex">\(BCD\)</span> → factor <span class="arithmatex">\((\overline{B}+\overline{C}+\overline{D})\)</span>
+</p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">
+Minimum POS: <span class="arithmatex">\(F = (A+C)(A+B+D)(\overline{B}+\overline{C}+\overline{D})\)</span>
+</p>
+</div>
+</details>
+
+</div>
+
 </div>

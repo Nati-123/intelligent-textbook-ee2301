@@ -781,6 +781,12 @@ Adding more flip-flop stages increases the resolution time exponentially, reduci
 !!! warning "Design Rule"
     Never sample an asynchronous signal with a single flip-flop in a production design. Always use at least a two-stage synchronizer to reduce metastability risk to acceptable levels.
 
+#### Diagram: Setup/Hold Time & Metastability Explorer
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/setup-hold-metastability-explorer/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.14 Asynchronous Set and Reset</h2>

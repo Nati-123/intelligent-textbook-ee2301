@@ -7,17 +7,17 @@ Per-unit content breakdown for the intelligent textbook.
 | 1 | Number Systems | 9,141 | 38 | 8 | 10 |
 | 2 | Boolean Algebra | 11,120 | 58 | 23 | 10 |
 | 3 | Applications of Boolean Algebra | 8,679 | 48 | 9 | 10 |
-| 4 | Minterm/Maxterm Expansions | 7,755 | 43 | 6 | 10 |
+| 4 | Minterm/Maxterm Expansions | 9,122 | 47 | 7 | 10 |
 | 5 | Karnaugh Maps | 9,001 | 49 | 6 | 10 |
 | 6 | Quine-McCluskey | 12,629 | 42 | 6 | 10 |
-| 7 | Multi-Level Gates | 11,153 | 41 | 6 | 10 |
+| 7 | Multi-Level Gates | 11,181 | 41 | 7 | 10 |
 | 8 | Combinational Modules | 8,417 | 37 | 6 | 10 |
-| 9 | Sequential Fundamentals | 8,754 | 35 | 6 | 10 |
-| 10 | Sequential Design | 8,777 | 39 | 6 | 10 |
+| 9 | Sequential Fundamentals | 8,789 | 35 | 7 | 10 |
+| 10 | Sequential Design | 8,812 | 39 | 7 | 10 |
 | 11 | Programmable Logic | 8,180 | 32 | 11 | 10 |
-| 12 | VHDL | 7,353 | 36 | 6 | 10 |
-| 13 | System Integration | 8,540 | 46 | 10 | 10 |
-| | **Total** | **119,499** | **544** | **110** | **130** |
+| 12 | VHDL | 8,960 | 40 | 6 | 10 |
+| 13 | System Integration | 8,575 | 46 | 11 | 10 |
+| | **Total** | **122,606** | **552** | **110** | **130** |
 
 ## Notes
 

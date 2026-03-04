@@ -1052,6 +1052,35 @@ output <= '1' when current_state = S1 else '0';
 output <= '1' when (current_state = S1 and input = '1') else '0';
 ```
 
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Encoding Options</h3>
+
+When you declare an enumerated state type, the synthesis tool must assign a binary code to each state. The choice of encoding affects speed, area, and power consumption:
+
+| Encoding | Bits for N States | Description | Trade-off |
+|----------|:-----------------:|-------------|-----------|
+| Binary | ⌈log₂N⌉ | Sequential codes: 00, 01, 10, 11 | Fewest flip-flops, more combinational logic |
+| One-hot | N | One flip-flop per state: 0001, 0010, 0100, 1000 | More flip-flops, simpler next-state logic |
+| Gray | ⌈log₂N⌉ | Adjacent states differ by 1 bit | Reduces glitching during transitions |
+
+**Binary encoding** uses the fewest registers but requires a complex decoder to determine the current state, creating longer combinational paths. **One-hot encoding** uses one flip-flop per state, so the current state is identified by which single flip-flop is set — the next-state logic becomes a simple OR of transition conditions, yielding faster clock speeds. FPGAs, which have abundant flip-flops, favor one-hot encoding. **Gray encoding** minimizes bit transitions between adjacent states, reducing switching power and glitch hazards.
+
+Most synthesis tools choose the encoding automatically, but you can override the choice with vendor-specific attributes:
+
+```vhdl
+-- Xilinx: force one-hot encoding
+attribute fsm_encoding : string;
+attribute fsm_encoding of current_state : signal is "one_hot";
+
+-- Altera/Intel: force sequential (binary) encoding
+attribute syn_encoding : string;
+attribute syn_encoding of current_state : signal is "sequential";
+```
+
+For a 4-state FSM, one-hot encoding uses 4 flip-flops instead of 2, but the transition logic simplifies from decoding 2-bit codes to checking individual flip-flop outputs. In FPGA designs where flip-flops are plentiful, this trade-off typically improves maximum clock frequency.
+
+!!! tip "Choosing an Encoding"
+    For most FPGA designs, let the synthesis tool choose (it usually picks one-hot). For ASIC designs targeting minimum area, binary encoding may be preferable. For low-power applications with cyclic state sequences, consider Gray encoding.
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.17 Testbench Fundamentals</h2>
@@ -1110,6 +1139,89 @@ This process has no sensitivity list and no final `wait;`—it loops forever, ge
 
 !!! tip "Testbench Best Practices"
     Always write a testbench for every VHDL component. A design that simulates correctly is much more likely to work in hardware. Apply all critical input combinations, including edge cases and invalid inputs, to thoroughly verify the design.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Advanced Testbench Techniques</h3>
+
+Beyond basic stimulus generation, VHDL testbenches support powerful verification features that scale to complex designs.
+
+**Assert and Report Statements**
+
+The `assert` statement checks a Boolean condition during simulation and triggers a message when the condition is false:
+
+```vhdl
+-- Check that output matches expected value
+assert (y_out = expected)
+    report "Mismatch: expected " & integer'image(to_integer(unsigned(expected)))
+           & " but got " & integer'image(to_integer(unsigned(y_out)))
+    severity error;
+```
+
+VHDL defines four severity levels for `assert` and `report`:
+
+| Level | Purpose | Typical Action |
+|-------|---------|---------------|
+| `note` | Informational messages | Continue simulation |
+| `warning` | Non-critical issues | Continue with caution |
+| `error` | Functional failures | Continue (may stop depending on tool settings) |
+| `failure` | Critical errors | Stop simulation immediately |
+
+A standalone `report` statement (without `assert`) prints a message unconditionally, useful for progress tracking:
+
+```vhdl
+report "Starting test case 3: edge detection" severity note;
+```
+
+**File I/O for Test Vectors**
+
+For designs with many test cases, reading stimulus from an external file avoids hardcoding every test vector in the testbench. VHDL's `std.textio` library and `ieee.std_logic_textio` provide file reading capability:
+
+```vhdl
+use std.textio.all;
+use ieee.std_logic_textio.all;
+
+-- Inside the stimulus process:
+file test_data : text open read_mode is "test_vectors.txt";
+variable line_buf : line;
+variable v_input  : std_logic_vector(3 downto 0);
+variable v_expect : std_logic_vector(1 downto 0);
+
+-- Read each line of test vectors
+while not endfile(test_data) loop
+    readline(test_data, line_buf);
+    read(line_buf, v_input);
+    read(line_buf, v_expect);
+    input_sig <= v_input;
+    wait for 20 ns;
+    assert (output_sig = v_expect)
+        report "FAIL at input " & to_string(v_input)
+        severity error;
+end loop;
+```
+
+The test vector file (`test_vectors.txt`) contains space-separated input and expected output values, one test per line:
+
+```
+0000 00
+0001 01
+0010 01
+1111 11
+```
+
+This approach separates test data from testbench logic, making it easy to add new test cases without modifying VHDL code. It also enables automated regression testing where the same testbench runs against updated designs.
+
+**Configurable Clock Periods**
+
+Use a constant for the clock period so you can easily change timing parameters:
+
+```vhdl
+constant CLK_PERIOD : time := 10 ns;
+
+clk_gen: process
+begin
+    clk <= '0'; wait for CLK_PERIOD / 2;
+    clk <= '1'; wait for CLK_PERIOD / 2;
+end process;
+```
 
 ---
 
@@ -1176,6 +1288,79 @@ Canvas size: 800x500px, responsive
 
 Implementation: HTML/CSS/JavaScript
 </details>
+
+---
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Common Synthesis Warnings</h3>
+
+Understanding common synthesis warnings helps you write correct VHDL the first time. Pay close attention to these three warning categories:
+
+**1. Latch Inference from Incomplete Conditions**
+
+The most common and dangerous warning occurs when an `if` or `case` statement in a combinational process does not cover all cases:
+
+```vhdl
+-- WARNING: Latch inferred for signal 'y'
+comb: process(a, sel)
+begin
+    if sel = '1' then
+        y <= a;
+    end if;  -- No else clause: what is y when sel = '0'?
+end process;
+```
+
+The fix is to always provide a default assignment at the top of the process or include an `else` clause:
+
+```vhdl
+-- CORRECT: Default assignment prevents latch
+comb: process(a, sel)
+begin
+    y <= '0';          -- Default value
+    if sel = '1' then
+        y <= a;
+    end if;
+end process;
+```
+
+Similarly, a `case` statement must include a `when others =>` clause to cover all unspecified values of the selector.
+
+**2. Multi-Driven Nets**
+
+A signal driven by more than one concurrent statement or process creates a **multi-driven net**—an error in synthesis because two outputs would be connected together:
+
+```vhdl
+-- ERROR: Signal 'z' driven by two processes
+proc_A: process(a) begin z <= a; end process;
+proc_B: process(b) begin z <= b; end process;
+```
+
+Each signal must have exactly one driver. Use a multiplexer or conditional logic within a single process to select among multiple sources.
+
+**3. Combinational Loops**
+
+A combinational feedback loop occurs when a signal depends on itself without a clock edge:
+
+```vhdl
+-- WARNING: Combinational loop on signal 'count'
+process(count)  -- count reads itself with no clock
+begin
+    count <= count + 1;
+end process;
+```
+
+This creates unstable oscillation in hardware. The solution is to include a clock edge so that a register breaks the feedback loop:
+
+```vhdl
+process(clk)
+begin
+    if rising_edge(clk) then
+        count <= count + 1;
+    end if;
+end process;
+```
+
+!!! warning "Read Every Warning"
+    Synthesis tools process VHDL even when warnings exist, but the resulting hardware may not match your intent. Treat synthesis warnings as errors — resolve each one before trusting the design.
 
 ---
 
@@ -1275,7 +1460,98 @@ This example integrates:
 
 ---
 
-<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.20 Key Takeaways</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.20 Common VHDL Pitfalls</h2>
+
+Even experienced designers encounter these subtle bugs. Understanding them in advance will save you hours of debugging.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Signal vs Variable Assignment Timing</h3>
+
+Signals and variables behave differently inside processes, and confusing them is a common source of bugs:
+
+| Property | Signal (<=) | Variable (:=) |
+|----------|:-----------:|:-----------:|
+| Scope | Visible outside the process | Local to the process only |
+| Update timing | Updated at end of process (after all statements execute) | Updated immediately |
+| Drives hardware | Yes — represents a wire or register | No — temporary computation aid |
+
+The delayed update of signals catches many beginners:
+
+```vhdl
+process(clk)
+begin
+    if rising_edge(clk) then
+        sig_a <= input;      -- sig_a gets input's value...
+        sig_b <= sig_a;      -- ...but sig_b gets sig_a's OLD value (before this clock)
+    end if;
+end process;
+```
+
+This creates a two-stage pipeline (two flip-flops in series), not a direct connection from input to sig_b. If you need the updated value within the same clock cycle, use a **variable** for the intermediate computation:
+
+```vhdl
+process(clk)
+    variable v_temp : std_logic;
+begin
+    if rising_edge(clk) then
+        v_temp := input;     -- v_temp updates immediately
+        sig_b <= v_temp;     -- sig_b gets input's current value (one flip-flop)
+    end if;
+end process;
+```
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Incomplete Sensitivity Lists</h3>
+
+In VHDL-93 and earlier, you must manually list every signal read by a combinational process. Omitting a signal causes a **simulation-synthesis mismatch**: the simulator ignores changes to the missing signal, but the synthesized hardware responds to all inputs.
+
+```vhdl
+-- BUG: 'b' missing from sensitivity list
+process(a)
+begin
+    y <= a and b;  -- Simulator won't update y when b changes alone
+end process;
+```
+
+The simulation appears correct for some tests but fails when only `b` changes. The synthesized circuit, however, works correctly because hardware is always sensitive to all inputs. This mismatch makes the bug invisible during synthesis but detectable in simulation.
+
+**VHDL-2008 solution:** Use `process(all)` to automatically include all read signals — this eliminates sensitivity list bugs entirely.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Integer Range Overflow</h3>
+
+VHDL `integer` signals default to the range -2,147,483,647 to +2,147,483,647 (32-bit). When synthesis encounters an unconstrained integer, it must allocate 32 bits — wasting FPGA resources:
+
+```vhdl
+signal counter : integer;  -- Synthesizes as 32-bit register!
+```
+
+Always constrain integer ranges to the minimum needed:
+
+```vhdl
+signal counter : integer range 0 to 15;  -- Synthesizes as 4-bit register
+signal phase   : integer range 0 to 3;   -- Synthesizes as 2-bit register
+```
+
+Constraining ranges also enables the simulator to catch out-of-range errors during testing, rather than letting them slip through as subtle numerical bugs.
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Mixing Blocking Logic with Clock Edges</h3>
+
+Another common mistake is combining combinational and clocked logic in a single process without clear separation:
+
+```vhdl
+-- BAD: Mixing combinational and registered logic
+process(clk)
+begin
+    y <= a and b;            -- Intended as combinational, but no sensitivity to a, b
+    if rising_edge(clk) then
+        q <= d;
+    end if;
+end process;
+```
+
+This creates confusing behavior: `y` only updates on clock edges instead of responding immediately to `a` and `b`. The solution is to use separate processes for combinational and sequential logic, or use concurrent assignments for combinational outputs.
+
+---
+
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.21 Key Takeaways</h2>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 

@@ -369,6 +369,45 @@ $$\overline{m_5} = \overline{A\overline{B}C} = \overline{A} + B + \overline{C} =
 
 ---
 
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Why Canonical Forms Are Not Minimal</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Canonical forms are unique and easy to derive from truth tables, but they carry a high <strong style="color: #333;">literal count</strong> — the total number of variable appearances in the expression. Every term contains every variable, so an <em>n</em>-variable function with <em>k</em> minterms has <em>n × k</em> literals in its canonical SOP.
+</p>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Cost of Canonical Form</p>
+
+Consider the 3-variable function $F(A,B,C) = \Sigma m(3,5,6,7)$.
+
+**Canonical SOP** (12 literals, 4 AND gates, 1 OR gate):
+
+$$F = \overline{A}BC + A\overline{B}C + AB\overline{C} + ABC$$
+
+**Simplified SOP** (5 literals, 3 AND gates, 1 OR gate):
+
+$$F = BC + AC + AB$$
+
+The simplified form uses fewer than half the literals and one fewer gate. The saving comes from combining minterms that differ in exactly one variable — precisely the operation that Karnaugh maps (Unit 5) and Quine-McCluskey (Unit 6) automate.
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+The <strong style="color: #333;">gate count</strong> — the number of logic gates required — is closely related to literal count but not identical. Each AND term requires one AND gate with fan-in equal to the number of literals in that term. Reducing literal count almost always reduces gate count, but the relationship depends on whether the target technology uses 2-input gates or wider fan-in gates.
+</p>
+
+| Metric | Canonical SOP | Simplified SOP | Savings |
+|--------|:------------:|:--------------:|:-------:|
+| Literals | $n \times k$ | Minimized | 40–70% typical |
+| AND gates | $k$ (each $n$-input) | Fewer, narrower | Fewer transistors |
+| OR gate | 1 ($k$-input) | 1 (fewer inputs) | Reduced fan-in |
+| Propagation delay | Higher (wider gates) | Lower | Faster circuit |
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+This cost difference motivates the entire subject of Boolean minimization covered in Units 5 and 6. Canonical forms are the <strong>starting point</strong> — they guarantee correctness and uniqueness — while minimized forms are the <strong>implementation goal</strong>.
+</p>
+
+---
+
 <h2 id="44-canonical-sop-and-pos-forms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.4 Canonical SOP and POS Forms</h2>
 
 ### Sum of Minterms (Canonical SOP)
@@ -505,6 +544,12 @@ Instructional Rationale: Side-by-side construction of both canonical forms from 
 
 Implementation: p5.js with DOM elements for truth table
 </details>
+
+#### Diagram: Truth Table to Canonical Form Converter
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/truth-table-canonical-form/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
@@ -789,6 +834,62 @@ Instructional Rationale: Seeing both conversion methods helps students choose th
 Implementation: p5.js with DOM elements
 </details>
 
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Verifying Canonical Form Correctness</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+After converting between SOP and POS or simplifying a canonical expression, you need to verify the result is correct. Two systematic methods guarantee correctness.
+</p>
+
+**Method 1: Truth Table Cross-Check**
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Evaluate both the original and converted expressions for all $2^n$ input combinations. If every row matches, the expressions are equivalent.
+</p>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Verify SOP-POS Equivalence</p>
+
+Given: $F = \Sigma m(1,3,5,7) = \Pi M(0,2,4,6)$
+
+| A | B | C | $\Sigma m(1,3,5,7)$ | $\Pi M(0,2,4,6)$ | Match? |
+|:-:|:-:|:-:|:---:|:---:|:------:|
+| 0 | 0 | 0 | 0 | 0 | Yes |
+| 0 | 0 | 1 | 1 | 1 | Yes |
+| 0 | 1 | 0 | 0 | 0 | Yes |
+| 0 | 1 | 1 | 1 | 1 | Yes |
+| 1 | 0 | 0 | 0 | 0 | Yes |
+| 1 | 0 | 1 | 1 | 1 | Yes |
+| 1 | 1 | 0 | 0 | 0 | Yes |
+| 1 | 1 | 1 | 1 | 1 | Yes |
+
+All rows match, confirming $F = C$ (the function equals the variable $C$ alone).
+
+</div>
+
+**Method 2: Algebraic Proof**
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Use Boolean algebra laws to transform one expression into the other. This is faster for simple functions and provides deeper insight into the structure.
+</p>
+
+<div style="background: #EEF4FF; border-left: 4px solid #5A8DEE; border-radius: 8px; padding: 20px 24px; margin: 1.2rem 0;" markdown>
+
+**Prove:** $\overline{A}BC + A\overline{B}C + AB\overline{C} + ABC = AB + AC + BC$
+
+Starting from the left side, pair minterms that differ in one variable:
+
+- $\overline{A}BC + ABC = BC(A + \overline{A}) = BC$
+- $A\overline{B}C + ABC = AC(B + \overline{B}) = AC$
+- $AB\overline{C} + ABC = AB(C + \overline{C}) = AB$
+
+Therefore: $F = AB + AC + BC$ &#8718;
+
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Notice that the minterm $ABC$ was used three times in different pairings — this is valid because the OR operation is idempotent ($X + X = X$). This "sharing" of minterms between groups is exactly what K-maps exploit visually.
+</p>
+
 ---
 
 <h2 id="48-dont-cares-in-canonical-form" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.8 Don't Cares in Canonical Form</h2>
@@ -1021,6 +1122,66 @@ Instructional Rationale: Understanding Shannon expansion prepares students for a
 
 Implementation: p5.js with expression parser
 </details>
+
+<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Multi-Variable Shannon Expansion</h3>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Shannon expansion around a single variable produces two cofactors, each depending on $n-1$ variables. Applying the expansion recursively to each cofactor around a second variable produces four sub-functions of $n-2$ variables:
+</p>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 32px; margin: 1.2rem 0; text-align: center; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+$$F = A \cdot B \cdot F_{AB} + A \cdot \overline{B} \cdot F_{A\overline{B}} + \overline{A} \cdot B \cdot F_{\overline{A}B} + \overline{A} \cdot \overline{B} \cdot F_{\overline{A}\,\overline{B}}$$
+
+</div>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Each successive expansion doubles the number of branches. Expanding around all $n$ variables produces exactly $2^n$ branches — one per minterm — recovering the canonical form. This reveals that the <strong>canonical SOP is simply the complete Shannon expansion tree</strong>.
+</p>
+
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 24px; margin: 1.5rem 0;" markdown>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Two-Level Expansion</p>
+
+For $F(A,B,C) = AB + \overline{A}C$:
+
+**Level 1** — expand around $A$:
+
+- $F_A = B$ (set $A=1$)
+- $F_{\overline{A}} = C$ (set $A=0$)
+
+**Level 2** — expand each cofactor around $B$:
+
+- $F_{AB} = 1$, $F_{A\overline{B}} = 0$ (from $F_A = B$)
+- $F_{\overline{A}B} = C$, $F_{\overline{A}\overline{B}} = C$ (from $F_{\overline{A}} = C$)
+
+$$F = AB \cdot 1 + A\overline{B} \cdot 0 + \overline{A}B \cdot C + \overline{A}\overline{B} \cdot C = AB + \overline{A}C \quad \checkmark$$
+
+</div>
+
+**Connection to Multiplexer Trees**
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+Each level of Shannon expansion maps to one level of 2:1 multiplexers. A two-variable expansion uses a tree of three MUXes: two at the leaf level (selecting between the four sub-function values based on the second variable) and one root MUX (selecting between the two intermediate results based on the first variable). This structure directly implements any Boolean function using only multiplexers.
+</p>
+
+**Connection to Binary Decision Diagrams (BDDs)**
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+A <strong style="color: #333;">Binary Decision Diagram</strong> is a directed acyclic graph that represents Shannon expansion in a compact form. Each internal node tests one variable, with two outgoing edges for the 0 and 1 cofactors. The terminal nodes are the constants 0 and 1.
+</p>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+An <strong>Ordered BDD (OBDD)</strong> fixes a single variable ordering across all paths. A <strong>Reduced Ordered BDD (ROBDD)</strong> applies two simplification rules:
+</p>
+
+<ol style="margin: 0.8rem 0 1.5rem 1.5rem; line-height: 2.0; color: #333;">
+<li style="margin-bottom: 0.5rem;"><strong>Merge rule:</strong> Combine identical sub-graphs (nodes with the same variable, same 0-child, and same 1-child)</li>
+<li style="margin-bottom: 0.5rem;"><strong>Elimination rule:</strong> Remove a node whose 0-child and 1-child are identical (the variable has no effect)</li>
+</ol>
+
+<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
+ROBDDs are canonical for a given variable ordering — two functions are equivalent if and only if their ROBDDs are identical. This property makes BDDs the foundation of many modern verification and synthesis algorithms used by EDA tools. The variable ordering dramatically affects BDD size; finding the optimal ordering is NP-hard, but good heuristics exist.
+</p>
 
 ---
 

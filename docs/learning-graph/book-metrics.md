@@ -7,16 +7,16 @@ This file contains overall metrics for the intelligent textbook.
 | Units | 13 | [Units](../unit1-number-systems/index.md) | Number of unit directories |
 | Concepts | 410 | [Concept List](./concept-list.md) | Concepts from learning graph |
 | Glossary Terms | 398 | [Glossary](../glossary.md) | Master glossary defined terms |
-| Unit Glossaries | 13 (544 entries) | - | Per-unit glossary files |
+| Unit Glossaries | 13 (552 entries) | - | Per-unit glossary files |
 | FAQs | 76 | [FAQ](../faq.md) | Frequently asked questions |
 | Quiz Questions | 130 | - | 10 questions per unit × 13 units |
-| Diagrams | 29 | - | Level 4 headers starting with '#### Diagram:' |
+| Diagrams | 33 | - | Level 4 headers starting with '#### Diagram:' |
 | Equations | 2,821 | - | LaTeX expressions (inline and display) |
 | MicroSims | 110 | [Simulations](../sims/index.md) | Interactive MicroSims |
-| Total Words | 461,241 | - | Words in all markdown files |
-| Unit Content Words | 119,499 | - | Words in unit index.md files only |
+| Total Words | 468,212 | - | Words in all markdown files |
+| Unit Content Words | 122,606 | - | Words in unit index.md files only |
 | Links | 351 | - | Hyperlinks in markdown format |
-| Equivalent Pages | 1,907 | - | Estimated pages (250 words/page + visuals) |
+| Equivalent Pages | 1,936 | - | Estimated pages (250 words/page + visuals) |
 
 ## Metrics Explanation
 

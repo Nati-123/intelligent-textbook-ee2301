@@ -17,6 +17,8 @@ Key terms and definitions for Unit 12. Definitions follow ISO 11179 metadata reg
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Architecture Body</strong> — The section of a VHDL design unit that describes the internal behavior, structure, or dataflow implementation of an entity. It specifies how the entity's ports relate to one another through signals, processes, and component instantiations.</p>
 
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Assert Statement</strong> — A VHDL simulation construct that evaluates a Boolean condition and triggers a report message with a specified severity level (note, warning, error, or failure) when the condition is false, used in testbenches for automated verification.</p>
+
 </div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -81,6 +83,14 @@ Key terms and definitions for Unit 12. Definitions follow ISO 11179 metadata reg
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">G</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Gray Code Encoding</strong> — A state encoding scheme for finite state machines where adjacent states differ by exactly one bit, minimizing switching activity during state transitions and reducing dynamic power consumption and glitch hazards.</p>
+
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">H</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Hardware Description Language</strong> — A specialized programming language used to describe the structure and behavior of digital circuits at various levels of abstraction, enabling simulation, synthesis, and implementation of digital designs in FPGAs and ASICs.</p>
@@ -102,6 +112,14 @@ Key terms and definitions for Unit 12. Definitions follow ISO 11179 metadata reg
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">L</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Latch Inference</strong> — An unintended synthesis outcome where a level-sensitive latch is generated because a signal is not assigned a value on every possible execution path through a combinational process, creating implicit memory.</p>
+
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">O</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">One-Hot Encoding</strong> — A state encoding scheme for finite state machines that assigns one flip-flop per state, with exactly one flip-flop set to '1' at any time, simplifying next-state logic at the cost of additional registers.</p>
 
 </div>
 
@@ -162,6 +180,8 @@ Key terms and definitions for Unit 12. Definitions follow ISO 11179 metadata reg
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 18px;">V</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">VHDL</strong> — VHSIC Hardware Description Language, a standardized IEEE language (IEEE 1076) used to describe, simulate, and synthesize digital electronic systems at multiple levels of abstraction from behavioral to structural.</p>
+
+<p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">Variable</strong> — A VHDL object declared within a process that stores intermediate computation values. Unlike signals, variables update immediately upon assignment and are not visible outside the declaring process.</p>
 
 <p style="margin-bottom: 1rem; line-height: 1.75; color: #333;"><strong style="color: #5A3EED;">VHDL Design Unit</strong> — A self-contained, independently compilable section of VHDL source code. The five types are entity declarations, architecture bodies, package declarations, package bodies, and configuration declarations.</p>
 
