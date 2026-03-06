@@ -5,15 +5,20 @@ description: Practice problems for ROMs, PLAs, PALs, CPLDs, FPGAs, and design fl
 
 <div class="problems-styled" markdown>
 
-<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800; margin-bottom: 1.5rem;">End-of-Unit Problems: Programmable Logic Devices</h1>
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">End-of-Unit Problems: Programmable Logic Devices</h1>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of ROMs, PLAs, PALs, CPLDs, FPGAs, and the programmable logic design flow.
 </p>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section A: ROM and PLA Programming (4 problems)</h2>
+---
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 1</h3>
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section A: ROM and PLA Programming (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 1
+
 A combinational circuit has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>) and 2 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>) defined by:
 
 - <span class="arithmatex">\(F_1(A, B, C) = \sum m(1, 2, 4, 7)\)</span>
@@ -21,7 +26,7 @@ A combinational circuit has 3 inputs (<span class="arithmatex">\(A\)</span>, <sp
 
 Implement this circuit using an <span class="arithmatex">\(8 \times 2\)</span> ROM. Show the complete truth table and the contents of every ROM address.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -67,10 +72,17 @@ C ──┘       (fixed AND        m1 ── ·───── F1
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 2</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 2
+
 Compare the ROM implementation from Problem 1 to a PLA implementation of the same functions. Determine the minimum number of product terms needed in the PLA and show the AND-plane and OR-plane programming.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -135,7 +147,14 @@ With output inversion on <span class="arithmatex">\(F_2\)</span>: **4 product te
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 3</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 3
+
 A system requires a code converter that maps 4-bit BCD (0-9) to 7-segment display outputs (<span class="arithmatex">\(a\)</span>-<span class="arithmatex">\(g\)</span>). Show how to implement this using a ROM. Determine the ROM size and show the contents for digits 0, 1, 2, and 3.
 
 Segment mapping (active-high, common cathode):
@@ -152,7 +171,7 @@ e   c
  ─d─
 ```
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -200,14 +219,21 @@ D0 ──┘   (fixed AND    m2 ──── a b d e g   (digit 2)
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 4</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 4
+
 Design a PLA with 3 inputs (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>) and 3 outputs (<span class="arithmatex">\(F_1\)</span>, <span class="arithmatex">\(F_2\)</span>, <span class="arithmatex">\(F_3\)</span>) for the following functions. Identify shared product terms to minimize the total number of product terms.
 
 - <span class="arithmatex">\(F_1 = X\overline{Y} + XZ\)</span>
 - <span class="arithmatex">\(F_2 = X\overline{Y} + \overline{X}Z\)</span>
 - <span class="arithmatex">\(F_3 = XZ + \overline{X}Z\)</span>
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -277,9 +303,16 @@ Z ──┼──/──┼──┼──┐
 </div>
 </details>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section B: PAL Design (4 problems)</h2>
+</div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 5</h3>
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section B: PAL Design (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 5
+
 Implement the following functions using a PAL with 3 inputs and a maximum of 4 product terms per output:
 
 - <span class="arithmatex">\(F_1 = \overline{A}\,\overline{B}\,C + A\overline{B}\,\overline{C} + AB\overline{C} + ABC\)</span>
@@ -287,7 +320,7 @@ Implement the following functions using a PAL with 3 inputs and a maximum of 4 p
 
 Show the PAL programming table and verify that the functions fit within the PAL constraints.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -351,13 +384,20 @@ K-map for <span class="arithmatex">\(F_2\)</span>:
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 6</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 6
+
 A PAL device has 4 inputs (<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(D\)</span>) and 2 outputs, with a maximum of 3 product terms per output. Determine whether the following functions can be implemented directly. If not, explain what must be done.
 
 - <span class="arithmatex">\(F_1 = \overline{A}BCD + A\overline{B}CD + AB\overline{C}D + ABC\overline{D} + ABCD\)</span>
 - <span class="arithmatex">\(F_2 = \overline{A}\,\overline{B} + CD\)</span>
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -408,10 +448,17 @@ In SOP form, <span class="arithmatex">\(F_1\)</span> requires **minimum 4 produc
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 7</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 7
+
 Explain the difference between a PLA and a PAL in terms of architecture, speed, and cost. A function requires 6 product terms shared among 4 outputs. Compare the PLA and PAL implementations.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -480,14 +527,21 @@ Suppose the functions are:
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 8</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 8
+
 A PAL22V10 has 22 inputs and 10 outputs. Each output macro-cell contains a D flip-flop and can be configured as combinational or registered. If a specific output has 8 product terms available, implement the following registered output:
 
 <span class="arithmatex">\(D = A\overline{B}C + \overline{A}BC + ABD_{feedback} + \overline{A}\,\overline{B}\,\overline{C}\)</span>
 
 Explain how the output feedback works and draw the macro-cell structure.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -559,16 +613,23 @@ From AND array (up to 8 product terms):
 </div>
 </details>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section C: CPLD and FPGA Architecture (4 problems)</h2>
+</div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 9</h3>
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section C: CPLD and FPGA Architecture (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 9
+
 A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8 outputs (4 product terms per output). The function blocks are connected through a global interconnect matrix. Draw a block diagram and calculate:
 
 (a) Maximum number of inputs and outputs for the entire CPLD
 (b) Total number of product terms available
 (c) Total number of macro-cells
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -630,10 +691,17 @@ A CPLD contains 8 function blocks, each equivalent to a PAL with 16 inputs and 8
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 10</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 10
+
 Compare the CPLD architecture from Problem 9 to a basic FPGA structure. Explain the fundamental architectural differences in terms of logic elements, routing, and configuration.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -689,14 +757,21 @@ Compare the CPLD architecture from Problem 9 to a basic FPGA structure. Explain 
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 11</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 11
+
 A CPLD has a global interconnect matrix delay of 5 ns, a function block AND-OR delay of 8 ns, and a macro-cell register setup time of 3 ns and clock-to-output delay of 4 ns. Calculate:
 
 (a) Maximum combinational propagation delay (input pin to output pin)
 (b) Maximum registered clock frequency
 (c) The delay if a signal must pass through two function blocks in series
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -741,10 +816,17 @@ When a signal passes through two function blocks, it traverses the GIM and AND-O
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 12</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 12
+
 Explain what happens when a CPLD runs out of product terms in a single function block. Describe two techniques that CPLD fitters use to handle this situation.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -802,12 +884,19 @@ Function Block B:
 </div>
 </details>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section D: LUT and CLB Design (4 problems)</h2>
+</div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 13</h3>
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section D: LUT and CLB Design (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 13
+
 A 3-input LUT (LUT-3) can implement any Boolean function of 3 variables. Show the internal structure of a LUT-3 and program it to implement <span class="arithmatex">\(F = A \oplus B \oplus C\)</span> (3-input XOR).
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -871,10 +960,17 @@ The truth table directly fills the SRAM:
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 14</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 14
+
 A function <span class="arithmatex">\(F(A, B, C, D, E) = ABCDE + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\)</span> has 5 inputs but the FPGA only has 4-input LUTs (LUT-4). Show how to decompose this function across multiple LUTs using the Shannon expansion.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -935,10 +1031,17 @@ Wait — LUT #3 has 3 inputs (<span class="arithmatex">\(A\)</span>, <span class
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 15</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 15
+
 Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contains two 4-input LUTs, two flip-flops, and local routing. Explain the role of each component.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -993,10 +1096,17 @@ Draw the structure of a typical FPGA Configurable Logic Block (CLB) that contain
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 16</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 16
+
 An FPGA design requires implementing a 4-bit synchronous binary counter. Map the counter onto 4-input LUTs (LUT-4) and flip-flops. Determine how many LUTs and flip-flops are needed.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -1067,12 +1177,19 @@ For a 4-bit counter, the carry chain reduces the critical path delay significant
 </div>
 </details>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Section E: Design Flow and Device Selection (4 problems)</h2>
+</div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 17</h3>
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section E: Design Flow and Device Selection (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 17
+
 Describe each step of the FPGA design flow from HDL entry to final bitstream. For each step, explain what happens and what files are produced.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -1136,7 +1253,14 @@ Describe each step of the FPGA design flow from HDL entry to final bitstream. Fo
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 18</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 18
+
 An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the following applications. Justify each choice.
 
 (a) A simple 4-input, 2-output combinational function used in 100,000 units
@@ -1145,7 +1269,7 @@ An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the 
 (d) A glue-logic replacement connecting a microprocessor to memory chips
 (e) A function generator that must be field-reprogrammable
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -1214,7 +1338,14 @@ An engineer must choose between a ROM, PLA, PAL, CPLD, and FPGA for each of the 
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 19</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 19
+
 Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. For each of the following criteria, state which technology is preferred and why:
 
 (a) Power-on behavior
@@ -1224,7 +1355,7 @@ Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. 
 (e) Power consumption
 (f) Design iteration speed
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -1269,7 +1400,14 @@ Compare volatile (SRAM-based) and non-volatile (Flash-based) FPGA technologies. 
 </div>
 </details>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Problem 20</h3>
+</div>
+
+---
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
+### Problem 20
+
 An FPGA design fails timing analysis with the following report:
 
 ```
@@ -1282,7 +1420,7 @@ Slack:         6.0 - 7.2 - 0.3 = -1.5 ns (VIOLATION)
 
 Identify three techniques to fix this timing violation. For each technique, explain how it reduces the critical path delay.
 
-<details style="margin-top: 1rem;" markdown>
+<details style="margin-top: 1rem;">
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
@@ -1357,9 +1495,15 @@ Methods:
 </div>
 </details>
 
-<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">Summary</h2>
+</div>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+---
+
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Summary</h2>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 14px;">Problems Summary</p>
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
