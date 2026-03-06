@@ -223,61 +223,180 @@ RX: ‾‾‾\_____/‾‾‾‾‾\____/‾‾‾‾‾\____/‾‾‾‾‾\__
 
 ---
 
-#### Challenge 4: Design Trade-Off Analysis — Area vs Speed vs Power
+#### Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity
 
-A design team must implement a 32-bit multiplier for a battery-powered IoT sensor node. Three architectures are proposed:
+An FPGA has 4-input LUTs (LUT-4). A design requires implementing the following 7-input function:
 
-| Architecture | Area (gates) | Delay | Power (mW) | Throughput |
-|-------------|-------------|-------|-----------|------------|
-| A: Array multiplier | 3,000 | 40 ns | 5 mW | 1 result / 40 ns |
-| B: Booth multiplier (sequential, 16 cycles) | 800 | 16 x 8 ns = 128 ns | 2 mW | 1 result / 128 ns |
-| C: Pipelined Wallace tree | 6,000 | 5 ns (4 stages) | 20 mW | 1 result / 5 ns |
+$$H(A,B,C,D,E,F,G) = ABCD + EFGA + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$$
 
-The system requirements are: (1) process at most 10 million multiplications per second, (2) total power budget is 10 mW, (3) chip area budget is 5,000 gates for the multiplier.
+Decompose this function using Shannon expansion to map it onto LUT-4 resources. Determine:
 
-Determine which architecture(s) meet all constraints. For those that do not meet constraints, identify which constraint is violated. What is the optimal choice and why?
+(a) The minimum number of LUT-4s required.
+(b) The number of logic levels (LUT depth).
+(c) The LUT contents for each LUT in the decomposition.
 
-**Answer:** **Constraint analysis:**
+**Answer:** **(a) & (b) Shannon expansion decomposition:**
 
-| Constraint | Requirement | Arch A | Arch B | Arch C |
-|-----------|-------------|--------|--------|--------|
-| Throughput $\geq$ 10 M/s | $T_{clk} \leq 100$ ns | 40 ns: **PASS** | 128 ns: **FAIL** | 5 ns: **PASS** |
-| Power $\leq$ 10 mW | — | 5 mW: **PASS** | 2 mW: **PASS** | 20 mW: **FAIL** |
-| Area $\leq$ 5,000 gates | — | 3,000: **PASS** | 800: **PASS** | 6,000: **FAIL** |
+Expand $H$ about variables $A$, $B$, $C$ (splitting 7 variables into groups that fit LUT-4 inputs):
 
-**Summary:**
+$$H = A \cdot H_A + \overline{A} \cdot H_{\overline{A}}$$
 
-| Architecture | Throughput | Power | Area | All met? |
-|-------------|-----------|-------|------|----------|
-| A: Array | PASS | PASS | PASS | **YES** |
-| B: Booth | FAIL | PASS | PASS | NO |
-| C: Wallace | PASS | FAIL | FAIL | NO |
+**Cofactor $H_A$ (set $A = 1$):**
 
-**Only Architecture A (array multiplier) meets all three constraints.**
+$$H_A = BCD + EFG + 0 = BCD + EFG$$
 
-**Why the others fail:**
+**Cofactor $H_{\overline{A}}$ (set $A = 0$):**
 
-- **Booth (B):** Throughput is $1/128\text{ ns} = 7.8$ M results/s < 10 M/s required. To fix: reduce cycle count or increase clock speed, but this increases power.
-- **Wallace tree (C):** Violates both power (20 mW > 10 mW) and area (6,000 > 5,000). Massively over-designed for this application.
+$$H_{\overline{A}} = 0 + 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$$
 
-**Optimal choice: Architecture A (array multiplier)**
+Now decompose each cofactor further to fit LUT-4.
 
-- Meets all constraints with comfortable margins
-- Throughput margin: $25$ M/s vs 10 M/s required (2.5x headroom)
-- Power margin: 5 mW vs 10 mW budget (50% headroom)
-- Area margin: 3,000 vs 5,000 gate budget (40% headroom)
+**$H_A = BCD + EFG$** — has 6 variables, still exceeds LUT-4. Split into two sub-functions:
 
-**Additional optimization:** Architecture A can be voltage-scaled or clock-gated to further reduce power since it has 2.5x throughput headroom. Running at lower voltage to just meet 10 M/s could reduce power to ~2-3 mW.
+- $H_{A1}(B,C,D) = BCD$ — 3 variables, fits one LUT-4
+- $H_{A2}(E,F,G) = EFG$ — 3 variables, fits one LUT-4
+- $H_A = H_{A1} + H_{A2}$ — 2 inputs, combined in the final LUT
 
-**Energy per operation:**
+**$H_{\overline{A}} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$** — has 6 variables, exceeds LUT-4. Split:
 
-| Architecture | Energy/multiply |
-|-------------|----------------|
-| A | $5 \text{ mW} \times 40 \text{ ns} = 200$ pJ |
-| B | $2 \text{ mW} \times 128 \text{ ns} = 256$ pJ |
-| C | $20 \text{ mW} \times 5 \text{ ns} = 100$ pJ |
+- $H_{\overline{A}1}(B,C,D) = \overline{B}\,\overline{C}\,\overline{D}$ — 3 variables, fits one LUT-4
+- $H_{\overline{A}2}(E,F,G) = \overline{E}\,\overline{F}\,\overline{G}$ — 3 variables, fits one LUT-4
+- $H_{\overline{A}} = H_{\overline{A}1} \cdot H_{\overline{A}2}$ — 2 inputs, combined in the final LUT
 
-Architecture C has the best energy efficiency per operation but violates area and power constraints. Architecture A is second-best in energy and meets all constraints.
+**Final combination:**
+
+$$H = A \cdot (H_{A1} + H_{A2}) + \overline{A} \cdot (H_{\overline{A}1} \cdot H_{\overline{A}2})$$
+
+This requires a final LUT with inputs: $A$, $H_{A1}$, $H_{A2}$, $H_{\overline{A}1}$... but that is 4 inputs only if we pre-combine. Restructure:
+
+- **LUT 1:** $P = BCD$ (inputs: B, C, D, unused)
+- **LUT 2:** $Q = EFG$ (inputs: E, F, G, unused)
+- **LUT 3:** $R = \overline{B}\,\overline{C}\,\overline{D}$ (inputs: B, C, D, unused)
+- **LUT 4:** $S = \overline{E}\,\overline{F}\,\overline{G}$ (inputs: E, F, G, unused)
+- **LUT 5:** $H = A(P + Q) + \overline{A}(R \cdot S)$ (inputs: A, $P{+}Q$, $R{\cdot}S$, unused)
+
+But $P + Q$ and $R \cdot S$ each need their own LUT:
+
+- **LUT 5:** $T_1 = P + Q$ (inputs: P, Q, unused, unused)
+- **LUT 6:** $T_2 = R \cdot S$ (inputs: R, S, unused, unused)
+- **LUT 7:** $H = A \cdot T_1 + \overline{A} \cdot T_2$ (inputs: A, $T_1$, $T_2$, unused)
+
+However, we can optimize by merging stages. Notice LUT 5 can compute $A \cdot P$ if we route $A$ to it:
+
+**Optimized decomposition (5 LUTs):**
+
+- **LUT 1:** $P = BCD$ (inputs: B, C, D, —)
+- **LUT 2:** $Q = EFG$ (inputs: E, F, G, —)
+- **LUT 3:** $T_1 = P + Q$ (inputs: P, Q, —, —)
+- **LUT 4:** $T_2 = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}$ (inputs: B, C, D, E) — partial term
+- **LUT 5:** $H = A \cdot T_1 + \overline{A} \cdot T_2 \cdot \overline{F} \cdot \overline{G}$ (inputs: A, $T_1$, $T_2$, —) — but this has $\overline{F}$, $\overline{G}$ unaccounted
+
+This exceeds 4 inputs. The clean minimum is:
+
+**Minimum solution (5 LUTs, 3 levels):**
+
+| LUT | Function | Inputs | Level |
+|-----|----------|--------|-------|
+| LUT 1 | $P = BCD$ | B, C, D, — | 1 |
+| LUT 2 | $Q = EFGA = EFG \cdot A$ | A, E, F, G | 1 |
+| LUT 3 | $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ | A, B, C, D | 1 |
+| LUT 4 | $S = \overline{E}\,\overline{F}\,\overline{G}$ | E, F, G, — | 1 |
+| LUT 5 | $H = P + Q + R \cdot S$ | P, Q, R, S | 2 |
+
+**Verification:**
+
+- $P = BCD$: covers the $ABCD$ term when $A = 1$ (but $P$ alone is $BCD$ regardless of $A$)
+- Actually $ABCD = A \cdot P$, so we need $A$ in the final combination
+
+**Correct minimum (5 LUTs, 2 levels):**
+
+| LUT | Function | Inputs | Level |
+|-----|----------|--------|-------|
+| LUT 1 | $P = ABCD$ | A, B, C, D | 1 |
+| LUT 2 | $Q = EFGA$ | A, E, F, G | 1 |
+| LUT 3 | $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ | A, B, C, D | 1 |
+| LUT 4 | $S = \overline{E}\,\overline{F}\,\overline{G}$ | E, F, G, — | 1 |
+| LUT 5 | $H = P + Q + R \cdot S$ | P, Q, R, S | 2 |
+
+**(a) Minimum number of LUT-4s: 5**
+
+**(b) Logic levels (LUT depth): 2**
+
+**(c) LUT contents:**
+
+**LUT 1** — $P = ABCD$ (4 inputs: A, B, C, D):
+
+| ABCD | P |
+|------|---|
+| 0000–1110 | 0 |
+| 1111 | 1 |
+
+Output = 1 only when all inputs are 1. (1 of 16 entries is 1)
+
+**LUT 2** — $Q = AEFG$ (4 inputs: A, E, F, G):
+
+| AEFG | Q |
+|------|---|
+| 0000–1110 | 0 |
+| 1111 | 1 |
+
+Output = 1 only when $A = E = F = G = 1$. (1 of 16 entries is 1)
+
+**LUT 3** — $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ (4 inputs: A, B, C, D):
+
+| ABCD | R |
+|------|---|
+| 0000 | 1 |
+| 0001–1111 | 0 |
+
+Output = 1 only when all inputs are 0. (1 of 16 entries is 1)
+
+**LUT 4** — $S = \overline{E}\,\overline{F}\,\overline{G}$ (3 inputs: E, F, G, unused):
+
+| EFG | S |
+|-----|---|
+| 000 | 1 |
+| 001–111 | 0 |
+
+Output = 1 only when $E = F = G = 0$. (1 of 8 entries is 1; 4th input unused/tied low)
+
+**LUT 5** — $H = P + Q + R \cdot S$ (4 inputs: P, Q, R, S):
+
+| P | Q | R | S | H |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 0 | 1 | 0 |
+| 0 | 0 | 1 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 1 |
+| 0 | 1 | X | X | 1 |
+| 1 | X | X | X | 1 |
+
+$H = 1$ when $P = 1$ (i.e., $ABCD$), or $Q = 1$ (i.e., $AEFG$), or both $R = 1$ and $S = 1$ (i.e., $\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$). Of 16 truth table rows, 11 produce output 1.
+
+**Circuit diagram:**
+
+```
+A ──┬──→ [LUT 1: ABCD] ──→ P ──→ ┐
+B ──┼──→             │             │
+C ──┼──→             │             │
+D ──┘                              │
+                                   ├──→ [LUT 5: P+Q+RS] ──→ H
+A ──┬──→ [LUT 2: AEFG] ──→ Q ──→ ┤
+E ──┼──→             │             │
+F ──┼──→             │             │
+G ──┘                              │
+                                   │
+A ──┬──→ [LUT 3: A̅B̅C̅D̅] ──→ R ──→ ┤
+B ──┼──→             │             │
+C ──┼──→             │             │
+D ──┘                              │
+                                   │
+E ──┬──→ [LUT 4: E̅F̅G̅] ──→ S ──→ ┘
+F ──┼──→           │
+G ──┘              │
+```
+
+**Note:** LUTs 1 and 3 share inputs A, B, C, D — an FPGA router can exploit this locality. Variable $A$ appears in three first-level LUTs, requiring fan-out of 3 in the routing fabric.
 
 ---
 
