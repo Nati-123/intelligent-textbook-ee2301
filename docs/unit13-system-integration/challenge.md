@@ -5,13 +5,17 @@ description: Challenge problems for system integration — answers only, no solu
 
 <div class="problems-styled" markdown>
 
-# Challenge Problems: System Integration
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">Challenge Problems: System Integration</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
+</p>
 
 ---
 
-#### Challenge 1: GCD Calculator — Datapath-Controller Design
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 1: GCD Calculator — Datapath-Controller Design</p>
 
 Design a datapath and controller for a circuit that computes the Greatest Common Divisor (GCD) of two 8-bit unsigned numbers $A$ and $B$ using the subtraction-based Euclidean algorithm:
 
@@ -24,7 +28,11 @@ GCD = A
 
 Provide the complete datapath (registers, comparator, subtractor, MUX), controller FSM states, and control signal table. How many clock cycles does it take to compute GCD(12, 8)?
 
-**Answer:** **Datapath:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Datapath:**
 
 ```
 A_IN[7:0]──→[MUX_A]──→[Reg_A]──┬──→[Comparator]──→ A_EQ_B, A_GT_B
@@ -75,9 +83,16 @@ A_IN[7:0]──→[MUX_A]──→[Reg_A]──┬──→[Comparator]──→
 
 **Worst case for 8-bit inputs:** GCD(255, 1) takes 254 iterations. For faster computation, use the modulo-based algorithm ($A = A \mod B$) with a divider, reducing worst case to $O(\log(\min(A,B)))$ iterations.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 2: Multi-Stage Pipeline Timing with Clock Skew
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 2: Multi-Stage Pipeline Timing with Clock Skew</p>
 
 A 5-stage pipeline has the following stage delays (combinational logic only):
 
@@ -104,7 +119,11 @@ Clock distribution introduces the following skews at each pipeline register (pos
 (b) Identify any hold time violations.
 (c) What is the pipeline throughput and latency?
 
-**Answer:** **(a) Setup analysis per stage** (constraint: $T_{cq} + T_{comb} + T_{setup} \leq T_{clk} + \delta$):
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) Setup analysis per stage** (constraint: $T_{cq} + T_{comb} + T_{setup} \leq T_{clk} + \delta$):
 
 Required $T_{clk}$ per stage = $T_{cq} + T_{comb} + T_{setup} - \delta$:
 
@@ -141,9 +160,16 @@ Assuming $T_{comb,min} = 0$ for direct register-to-register paths:
 - **Throughput** = $1 / 5.8 \text{ ns}$ = **172.4 M results/s**
 - **Latency** = $5 \times 5.8$ = **29.0 ns** (5 pipeline stages)
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 3: UART Receiver FSM with Error Detection
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 3: UART Receiver FSM with Error Detection</p>
 
 Design a UART receiver FSM that receives 8-bit data at 9600 baud from a 50 MHz system clock. The receiver must:
 
@@ -154,7 +180,11 @@ Design a UART receiver FSM that receives 8-bit data at 9600 baud from a 50 MHz s
 
 Provide the FSM states, transitions, and outputs. Include the baud-rate counter values for center-of-bit sampling.
 
-**Answer:** **Baud-rate counter:** $50{,}000{,}000 / 9600 = 5208$ clocks per bit.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Baud-rate counter:** $50{,}000{,}000 / 9600 = 5208$ clocks per bit.
 
 **Center sampling:** Sample at count $5208 / 2 = 2604$ after bit start.
 
@@ -221,9 +251,16 @@ RX: ‾‾‾\_____/‾‾‾‾‾\____/‾‾‾‾‾\____/‾‾‾‾‾\__
 | False start | Start bit center sampled as 1 |
 | Noise | 16x oversampling + majority voting (optional enhancement) |
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity</p>
 
 An FPGA has 4-input LUTs (LUT-4). A design requires implementing the following 7-input function:
 
@@ -235,7 +272,11 @@ Decompose this function using Shannon expansion to map it onto LUT-4 resources. 
 (b) The number of logic levels (LUT depth).
 (c) The LUT contents for each LUT in the decomposition.
 
-**Answer:** **(a) & (b) Shannon expansion decomposition:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) & (b) Shannon expansion decomposition:**
 
 Expand $H$ about variables $A$, $B$, $C$ (splitting 7 variables into groups that fit LUT-4 inputs):
 
@@ -398,9 +439,16 @@ G ──┘              │
 
 **Note:** LUTs 1 and 3 share inputs A, B, C, D — an FPGA router can exploit this locality. Variable $A$ appears in three first-level LUTs, requiring fan-out of 3 in the routing fabric.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 5: Complete System Integration — Vending Machine with Display and Coin Handling
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 5: Complete System Integration — Vending Machine with Display and Coin Handling</p>
 
 Design a complete vending machine system with:
 
@@ -412,7 +460,11 @@ Design a complete vending machine system with:
 
 Provide: (1) the complete system block diagram with all modules and interconnections, (2) the controller FSM states and transitions, (3) the datapath for coin accumulation and change calculation, and (4) the display subsystem design.
 
-**Answer:** **(1) System block diagram:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(1) System block diagram:**
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -525,4 +577,8 @@ Binary-to-BCD conversion for values 0-255: Double-dabble algorithm or lookup ROM
 **Total module count:** 10 modules. The main controller FSM has 7 states requiring 3 flip-flops. The coin accumulator is 8 bits. The entire system uses approximately 200-300 gates plus the ROM/register file storage.
 
 </div>
+</details>
 
+</div>
+
+</div>
