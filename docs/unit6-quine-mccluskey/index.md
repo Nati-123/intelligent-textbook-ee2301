@@ -69,7 +69,7 @@ This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algor
 
 </div>
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before studying this unit, students should be familiar with:
 
@@ -81,7 +81,7 @@ Before studying this unit, students should be familiar with:
 
 ---
 
-## 6.1 Introduction to Algorithmic Minimization
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.1 Introduction to Algorithmic Minimization</h2>
 
 The Karnaugh map provides an elegant visual method for simplifying Boolean functions, but it has practical limitations. As the number of variables increases beyond four or five, K-maps become difficult to construct, visualize, and manipulate accurately. Additionally, the pattern-recognition approach that makes K-maps intuitive for humans does not translate easily into computer algorithms.
 
@@ -114,7 +114,7 @@ The QM method forms the theoretical foundation for modern Electronic Design Auto
 
 </div>
 
-## 6.2 Binary Representation and Grouping
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.2 Binary Representation and Grouping</h2>
 
 The QM method begins by representing each minterm in binary form. For a function of $n$ variables, each minterm corresponds to an $n$-bit binary number where the bit positions represent the complement or true form of each variable.
 
@@ -195,7 +195,7 @@ Canvas Size: 900x500 pixels, responsive to window width
 Implementation: p5.js
 </details>
 
-## 6.3 The Combination Process
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.3 The Combination Process</h2>
 
 Once minterms are grouped, the combination process begins. Two terms can be combined if and only if they:
 
@@ -252,7 +252,7 @@ The combination process continues iteratively:
 
 </div>
 
-## 6.4 Constructing the Implicant Table
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.4 Constructing the Implicant Table</h2>
 
 The implicant table organizes the systematic combination process. Let us work through the complete example.
 
@@ -356,7 +356,7 @@ Canvas Size: 950x600 pixels, responsive
 Implementation: p5.js
 </details>
 
-## 6.5 Identifying Prime Implicants
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.5 Identifying Prime Implicants</h2>
 
 After all possible combinations have been made, the **unchecked terms** from all columns are the prime implicants. These are the largest possible groupings of minterms that cannot be further combined.
 
@@ -398,7 +398,7 @@ From our example, the prime implicants are:
 
 </div>
 
-## 6.6 The Prime Implicant Chart
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.6 The Prime Implicant Chart</h2>
 
 The prime implicant chart (also called the selection table or covering table) determines which prime implicants to include in the final minimal expression. The chart has:
 
@@ -443,7 +443,7 @@ The prime implicant chart (also called the selection table or covering table) de
 
 </div>
 
-## 6.7 Row and Column Dominance
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.7 Row and Column Dominance</h2>
 
 After selecting essential prime implicants, we may need additional techniques to reduce the prime implicant chart before finding a minimum cover.
 
@@ -481,7 +481,7 @@ After selecting essential prime implicants, we may need additional techniques to
 
 </div>
 
-## 6.8 Petrick's Method
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.8 Petrick's Method</h2>
 
 When the prime implicant chart cannot be fully reduced by row/column dominance and essential prime implicant selection, **Petrick's method** provides an algebraic approach to finding all minimum covers.
 
@@ -586,7 +586,7 @@ Canvas Size: 900x550 pixels, responsive
 Implementation: p5.js with HTML table overlay
 </details>
 
-## 6.9 Cyclic Prime Implicant Charts
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.9 Cyclic Prime Implicant Charts</h2>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -634,7 +634,7 @@ Implementation: p5.js with HTML table overlay
 
 </div>
 
-## 6.10 Handling Don't Care Conditions
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.10 Handling Don't Care Conditions</h2>
 
 Don't care conditions are handled naturally in the QM method. During the combination phase, don't care minterms are included along with the required minterms. They participate in combinations, potentially creating larger prime implicants.
 
@@ -667,7 +667,7 @@ Don't care conditions are handled naturally in the QM method. During the combina
 
 </div>
 
-## 6.11 Computational Complexity
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.11 Computational Complexity</h2>
 
 The QM method, while systematic, has exponential worst-case complexity:
 
@@ -770,7 +770,7 @@ Implementation: Chart.js or p5.js
 Canvas Size: 800x450 pixels, responsive
 </details>
 
-## 6.12 Multi-Output Minimization
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.12 Multi-Output Minimization</h2>
 
 Many digital systems have multiple output functions sharing the same input variables. Multi-output minimization seeks to share product terms across multiple functions to minimize the total gate count.
 
@@ -808,7 +808,7 @@ Many digital systems have multiple output functions sharing the same input varia
 
 </div>
 
-## 6.13 QM Method Summary and Complete Example
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.13 QM Method Summary and Complete Example</h2>
 
 Let us work through a complete example systematically.
 
@@ -984,7 +984,7 @@ Canvas Size: 1000x700 pixels, responsive with collapsible panels
 Implementation: p5.js
 </details>
 
-## 6.14 Computer Implementation
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.14 Computer Implementation</h2>
 
 The QM method's systematic nature makes it well-suited for computer implementation. A basic implementation involves:
 
@@ -1060,7 +1060,7 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 </div>
 
-## 6.15 Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.15 Summary and Key Takeaways</h2>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1114,7 +1114,7 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 ---
 
-## Self-Check Questions
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Self-Check Questions</h2>
 
 ??? question "What determines which minterms can be combined in the QM method?"
     Two minterms (or implicants) can be combined if and only if:
@@ -1162,7 +1162,7 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through the Quine-McCluskey algorithm with grouping, combining, and PI chart:
 
@@ -1170,6 +1170,6 @@ Step through the Quine-McCluskey algorithm with grouping, combining, and PI char
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

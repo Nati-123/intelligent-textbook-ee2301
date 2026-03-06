@@ -70,7 +70,7 @@ This unit explores the implementation of Boolean functions using multi-level gat
 
 </div>
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before studying this unit, students should be familiar with:
 
@@ -82,7 +82,7 @@ Before studying this unit, students should be familiar with:
 
 ---
 
-## 7.1 Introduction to Multi-Level Circuits
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.1 Introduction to Multi-Level Circuits</h2>
 
 In previous units, we focused primarily on **two-level circuit implementations**—AND-OR circuits for Sum of Products (SOP) expressions and OR-AND circuits for Product of Sums (POS) expressions. These two-level circuits offer the minimum propagation delay since signals pass through only two gates from input to output. However, two-level implementations can demand gates with impractically many inputs and a large overall gate count, especially for complex functions with many product or sum terms.
 
@@ -195,7 +195,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 7.2 Universal Gates
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.2 Universal Gates</h2>
 
 A gate is called **universal** (or functionally complete) if any Boolean function can be implemented using only that gate type. Both the NAND gate and the NOR gate are universal. This property has profound practical significance: an entire integrated circuit can be fabricated using only one type of transistor configuration, simplifying manufacturing and reducing cost.
 
@@ -322,7 +322,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 7.3 AND-OR to NAND-NAND Conversion
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.3 AND-OR to NAND-NAND Conversion</h2>
 
 The most common conversion in digital design transforms a two-level AND-OR (SOP) circuit into an equivalent NAND-only implementation. This conversion is direct and elegant, relying on the double inversion principle and De Morgan's theorem.
 
@@ -457,7 +457,7 @@ Implementation: p5.js with animation timeline
 
 ---
 
-## 7.4 OR-AND to NOR-NOR Conversion
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.4 OR-AND to NOR-NOR Conversion</h2>
 
 Converting a two-level OR-AND (POS) circuit to an equivalent NOR-only implementation is the dual of the NAND-NAND conversion. The procedure mirrors the AND-OR conversion but operates on sum terms instead of product terms.
 
@@ -523,7 +523,7 @@ The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natur
 
 ---
 
-## 7.5 Mixed Gate Conversions
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.5 Mixed Gate Conversions</h2>
 
 Not all circuits fit neatly into two-level AND-OR or OR-AND structures. **Mixed gate conversions** handle circuits that contain a combination of AND, OR, NAND, NOR, and NOT gates, converting them to use a single gate type.
 
@@ -587,7 +587,7 @@ Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters.
 
 ---
 
-## 7.6 De Morgan's Theorem in Gate Conversion
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.6 De Morgan's Theorem in Gate Conversion</h2>
 
 De Morgan's theorems are the mathematical engine behind every gate conversion technique. Understanding how they transform gate types is essential for systematic circuit conversion.
 
@@ -651,7 +651,7 @@ This follows directly from the generalized form of De Morgan's first theorem. In
 
 ---
 
-## 7.7 The Bubble Pushing Technique
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.7 The Bubble Pushing Technique</h2>
 
 **Bubble pushing** is a visual method for converting circuits between gate types by systematically moving inversion "bubbles" through a circuit. It provides an intuitive alternative to algebraic manipulation for gate conversion.
 
@@ -773,7 +773,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-<h2 style="color: #5A3EED;">7.8 Multi-Level Circuit Analysis</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.8 Multi-Level Circuit Analysis</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -972,7 +972,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-<h2 style="color: #5A3EED;">7.9 Level Reduction Techniques</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.9 Level Reduction Techniques</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1037,7 +1037,7 @@ $$F = AC + AD + BC + BD + E = (A+B)(C+D) + E$$
 
 ---
 
-<h2 style="color: #5A3EED;">7.10 Gate Count Optimization</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.10 Gate Count Optimization</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1107,7 +1107,7 @@ The optimal form depends on the design priority — **delay**, **area**, or **po
 
 ---
 
-<h2 style="color: #5A3EED;">7.11 Factoring for Multi-Level Optimization</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.11 Factoring for Multi-Level Optimization</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1248,7 +1248,7 @@ Implementation: p5.js with DOM elements for expression input
 
 ---
 
-<h2 style="color: #5A3EED;">7.12 AOI and OAI Complex Gates</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.12 AOI and OAI Complex Gates</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1349,7 +1349,7 @@ Implementation: HTML/CSS/JavaScript with SVG gate symbols
 
 ---
 
-<h2 style="color: #5A3EED;">7.13 Wired Logic Implementations</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.13 Wired Logic Implementations</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1418,7 +1418,7 @@ Wired logic is less common in modern ASIC design due to speed and power disadvan
 
 ---
 
-<h2 style="color: #5A3EED;">7.14 Transmission Gate Circuits</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.14 Transmission Gate Circuits</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1493,7 +1493,7 @@ Transmission gates offer excellent area and power efficiency but can suffer from
 
 ---
 
-<h2 style="color: #5A3EED;">7.15 Technology Mapping</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.15 Technology Mapping</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1567,7 +1567,7 @@ Commercial synthesis tools like **Synopsys Design Compiler**, **Cadence Genus**,
 
 ---
 
-<h2 style="color: #5A3EED;">7.16 Multi-Level Synthesis Tools</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.16 Multi-Level Synthesis Tools</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1640,7 +1640,7 @@ These tools implement the same fundamental algorithms (factoring, decomposition,
 
 ---
 
-<h2 style="color: #5A3EED;">7.17 Summary and Key Takeaways</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.17 Summary and Key Takeaways</h2>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 16px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1693,7 +1693,7 @@ This unit covered the transformation of Boolean expressions into practical multi
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through converting an AND-OR circuit to all-NAND using bubble pushing:
 
@@ -1701,6 +1701,6 @@ Step through converting an AND-OR circuit to all-NAND using bubble pushing:
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

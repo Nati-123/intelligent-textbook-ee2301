@@ -83,7 +83,7 @@ This unit introduces the canonical forms for representing Boolean functions—th
 
 ---
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before beginning this unit, students should have:
 
@@ -1299,7 +1299,7 @@ This unit established canonical forms as the foundation for systematic Boolean f
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through expanding a Boolean expression into canonical minterm form:
 
@@ -1307,6 +1307,6 @@ Step through expanding a Boolean expression into canonical minterm form:
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

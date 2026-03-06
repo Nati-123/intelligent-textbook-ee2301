@@ -1180,6 +1180,6 @@ Step through implementing a Boolean function using a 4:1 multiplexer:
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

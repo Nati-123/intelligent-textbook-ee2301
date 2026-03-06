@@ -1095,6 +1095,15 @@ These memory elements are the building blocks for registers, counters, and finit
 
 </div>
 
+??? question "Self-Check: Why does a D latch cause problems in synchronous circuits that a D flip-flop avoids?"
+    A D latch is **transparent** while its enable is high—meaning changes on D pass directly to Q throughout the entire high phase. In a synchronous circuit, this transparency allows signals to race through multiple stages in a single clock cycle, creating unpredictable behavior. A D flip-flop samples D only at the **clock edge** (a single instant), then holds Q stable for the rest of the cycle. This single-sample-per-cycle behavior prevents races and ensures each stage sees stable inputs.
+
+??? question "Self-Check: What is the forbidden state in an SR latch, and why is it problematic?"
+    The forbidden state occurs when both S=1 and R=1 simultaneously (for a NOR-based SR latch). In this condition, both outputs Q and Q' are forced to 0, violating the requirement that Q' be the complement of Q. When both inputs return to 0, the latch enters a **race condition**—the final state depends on which gate is slightly faster, making the outcome unpredictable and non-deterministic.
+
+??? question "Self-Check: If a flip-flop has $t_{setup} = 3$ ns, $t_{hold} = 1$ ns, and $t_{cq} = 5$ ns, what is the minimum clock period for a circuit where the flip-flop output feeds back through combinational logic with 12 ns delay to its own input?"
+    The minimum clock period must satisfy: $T_{min} = t_{cq} + t_{comb} + t_{setup} = 5 + 12 + 3 = 20$ ns. This gives a maximum clock frequency of $1/20\text{ ns} = 50$ MHz. The hold time constraint ($t_{hold} \leq t_{cq} + t_{comb,min}$) is typically satisfied since $t_{cq}$ alone exceeds $t_{hold}$ in most practical designs.
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
@@ -1104,5 +1113,9 @@ Step through a D flip-flop timing diagram trace with clock edge analysis:
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/flipflop-timing-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
+
+---
+
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

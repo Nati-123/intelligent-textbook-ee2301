@@ -88,7 +88,7 @@ Karnaugh maps (K-maps) provide a powerful graphical method for simplifying Boole
 
 ---
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before beginning this unit, students should have:
 
@@ -99,7 +99,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 5.1 Introduction to Karnaugh Maps
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.1 Introduction to Karnaugh Maps</h2>
 
 A **Karnaugh map** (K-map) is a graphical tool for simplifying Boolean functions that arranges the truth table in a grid format where adjacent cells differ by exactly one variable. This arrangement makes it easy to identify groups of 1s (or 0s) that can be combined to eliminate variables.
 
@@ -133,7 +133,7 @@ K-maps become impractical beyond 5-6 variables due to the difficulty of visualiz
 
 ---
 
-## 5.2 Two-Variable K-Map
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.2 Two-Variable K-Map</h2>
 
 The **two-variable K-map** is the simplest form, with 4 cells arranged in a 2×2 grid.
 
@@ -171,7 +171,7 @@ Each cell contains the function value (0, 1, or X) for that minterm.
 
 ---
 
-## 5.3 Three-Variable K-Map
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.3 Three-Variable K-Map</h2>
 
 The **three-variable K-map** uses a 2×4 grid with one variable on rows and two on columns (or vice versa).
 
@@ -279,7 +279,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 5.4 Four-Variable K-Map
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.4 Four-Variable K-Map</h2>
 
 The **four-variable K-map** is the most commonly used size, with 16 cells in a 4×4 grid.
 
@@ -399,7 +399,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 5.5 Valid Groups and Grouping Rules
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.5 Valid Groups and Grouping Rules</h2>
 
 ### Valid Group Sizes
 
@@ -489,7 +489,7 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 
 ---
 
-## 5.6 Implicants and Prime Implicants
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.6 Implicants and Prime Implicants</h2>
 
 ### Implicants
 
@@ -609,7 +609,7 @@ Implementation: p5.js with data visualization
 
 ---
 
-## 5.7 K-Map SOP Simplification
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.7 K-Map SOP Simplification</h2>
 
 **K-Map SOP simplification** produces a minimal Sum of Products expression.
 
@@ -672,7 +672,7 @@ The goal is **covering all ones** with the minimum number of prime implicants. E
 
 ---
 
-## 5.8 K-Map POS Simplification
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.8 K-Map POS Simplification</h2>
 
 **K-Map POS simplification** produces a minimal Product of Sums expression by grouping 0s instead of 1s.
 
@@ -743,7 +743,7 @@ Compare the literal counts of minimal SOP and minimal POS — choose the simpler
 
 ---
 
-## 5.9 K-Maps with Don't Cares
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.9 K-Maps with Don't Cares</h2>
 
 **K-maps with don't cares** include cells marked with X (or d) representing input combinations where the output doesn't matter.
 
@@ -854,7 +854,7 @@ Implementation: p5.js with interactive canvas
 
 ---
 
-## 5.10 Five-Variable K-Maps
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.10 Five-Variable K-Maps</h2>
 
 The **five-variable K-map** extends the technique to 32 cells, typically displayed as two adjacent 4×4 maps.
 
@@ -924,7 +924,7 @@ The **five-variable technique** uses two 4×4 K-maps — one for the fifth varia
 
 ---
 
-## 5.11 Multiple Solutions and Cost Metrics
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.11 Multiple Solutions and Cost Metrics</h2>
 
 ### Multiple Solutions
 
@@ -991,7 +991,7 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 ---
 
-## 5.12 K-Map Limitations and Alternatives
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.12 K-Map Limitations and Alternatives</h2>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1148,7 +1148,7 @@ Implementation: p5.js with problem generation and verification
 
 ---
 
-## Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary and Key Takeaways</h2>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 28px 28px 12px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1181,7 +1181,7 @@ Implementation: p5.js with problem generation and verification
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through K-map simplification of a 4-variable function with grouping and term extraction:
 
@@ -1189,6 +1189,6 @@ Step through K-map simplification of a 4-variable function with grouping and ter
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

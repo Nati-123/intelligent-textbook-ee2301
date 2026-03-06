@@ -83,7 +83,7 @@ This unit bridges Boolean algebra theory with practical digital circuit design, 
 
 ---
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before beginning this unit, students should have:
 
@@ -94,7 +94,7 @@ Before beginning this unit, students should have:
 
 ---
 
-## 3.1 Combinational vs Sequential Logic
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.1 Combinational vs Sequential Logic</h2>
 
 Digital circuits are classified into two fundamental categories based on how they process information.
 
@@ -113,7 +113,7 @@ This unit focuses exclusively on **combinational logic**. A **logic circuit** is
 
 ---
 
-## 3.2 The Design Process: Specification to Circuit
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.2 The Design Process: Specification to Circuit</h2>
 
 The process of creating a digital circuit follows a systematic methodology, moving from informal requirements to a working implementation.
 
@@ -184,7 +184,7 @@ Implementation: HTML/CSS/JavaScript with SVG elements
 
 ---
 
-## 3.3 Word Problems to Boolean Expressions
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.3 Word Problems to Boolean Expressions</h2>
 
 Real design problems often begin as English descriptions. **Word problems to Boolean** conversion requires careful translation of natural language into precise logical statements.
 
@@ -334,7 +334,7 @@ Implementation: p5.js with DOM elements
 
 ---
 
-## 3.4 Arithmetic Circuits: Adders
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.4 Arithmetic Circuits: Adders</h2>
 
 Binary addition is fundamental to computer arithmetic. Digital systems implement addition using specialized circuits built from basic logic gates.
 
@@ -498,7 +498,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3.5 Arithmetic Circuits: Subtractors
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.5 Arithmetic Circuits: Subtractors</h2>
 
 Binary subtraction can be implemented directly with subtractor circuits or by using adders with two's complement representation.
 
@@ -648,7 +648,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3.6 Comparator Circuits
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.6 Comparator Circuits</h2>
 
 **Comparator circuits** determine the relationship between two binary numbers, producing outputs that indicate whether one number is greater than, less than, or equal to another.
 
@@ -728,7 +728,7 @@ Try the interactive magnitude comparator below — set the A and B inputs and ob
 
 ---
 
-## 3.7 Parity Circuits
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.7 Parity Circuits</h2>
 
 **Parity** is a simple error detection technique that adds a check bit to data, allowing detection of single-bit transmission errors.
 
@@ -854,7 +854,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3.8 Code Converters
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.8 Code Converters</h2>
 
 **Code converters** translate data from one binary representation to another. Different codes offer advantages for specific applications.
 
@@ -986,7 +986,7 @@ Implementation: p5.js with responsive canvas
 
 ---
 
-## 3.9 Seven-Segment Display Decoder
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.9 Seven-Segment Display Decoder</h2>
 
 A **seven-segment display** uses seven LED segments (plus optional decimal point) arranged to display decimal digits and some letters.
 
@@ -1117,7 +1117,7 @@ Implementation: p5.js with SVG seven-segment rendering
 
 ---
 
-## 3.10 Incompletely Specified Functions
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.10 Incompletely Specified Functions</h2>
 
 An **incompletely specified function** has some input combinations where the output doesn't matter—either because those inputs can never occur or because the output value for those inputs is irrelevant to the application.
 
@@ -1230,7 +1230,7 @@ Implementation: p5.js with DOM elements for truth table
 
 ---
 
-## Summary and Key Takeaways
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary and Key Takeaways</h2>
 
 This unit applied Boolean algebra to practical digital circuit design:
 
@@ -1282,7 +1282,7 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 ---
 
-## Interactive Walkthrough
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
 Step through the complete design of a full adder from truth table to gate circuit:
 
@@ -1290,6 +1290,6 @@ Step through the complete design of a full adder from truth table to gate circui
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

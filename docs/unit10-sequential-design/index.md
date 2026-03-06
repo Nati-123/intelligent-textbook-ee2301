@@ -1233,6 +1233,15 @@ These techniques, combined with the combinational design methods from earlier un
 
 </div>
 
+??? question "Self-Check: Why do synchronous counters have a higher maximum clock frequency than ripple (asynchronous) counters?"
+    In a ripple counter, each flip-flop is clocked by the output of the previous flip-flop, so delays **accumulate** through the chain. For an $n$-bit ripple counter, the total propagation delay is $n \times t_{cq}$. In a synchronous counter, all flip-flops share the same clock signal, so they all toggle simultaneously. The maximum delay is just one flip-flop's $t_{cq}$ plus the combinational logic delay for the toggle conditions, regardless of the counter width.
+
+??? question "Self-Check: What is the key difference between a Moore machine and a Mealy machine, and when might you prefer one over the other?"
+    In a **Moore machine**, outputs depend only on the current state, so they change synchronously with state transitions and are always stable between clock edges. In a **Mealy machine**, outputs depend on both the current state and inputs, allowing faster response (outputs can change as soon as inputs change, without waiting for a clock edge). Prefer Moore when output glitch-free stability matters (e.g., driving other synchronous logic). Prefer Mealy when you need fewer states or faster reaction to input changes.
+
+??? question "Self-Check: A Johnson counter with 4 flip-flops produces how many valid states, and why is this different from a ring counter with the same number of flip-flops?"
+    A Johnson counter with $n$ flip-flops produces $2n = 8$ valid states, while a ring counter produces only $n = 4$ states. The Johnson counter feeds back the **complement** of the last flip-flop to the first, creating a sequence where 1s gradually fill the register and then 0s gradually fill it back. This doubles the count length compared to a ring counter, which simply circulates a single 1-bit through the register. The trade-off is that Johnson counter state decoding requires 2-input AND gates, while ring counter states are inherently one-hot (no decoding needed).
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
@@ -1242,5 +1251,9 @@ Step through a 4-bit shift register loading serial data one bit at a time:
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/shift-register-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
+
+---
+
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

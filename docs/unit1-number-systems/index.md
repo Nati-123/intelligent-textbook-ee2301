@@ -86,7 +86,7 @@ Number systems form the mathematical foundation of digital system design, provid
 
 ---
 
-## Prerequisites
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
 Before beginning this unit, students should have:
 
@@ -1233,6 +1233,6 @@ Step through a complete base conversion problem with animated visuals:
 
 ---
 
-[See Annotated References](./references.md)
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

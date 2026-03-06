@@ -1097,7 +1097,7 @@ Each path builds directly on the foundation established in this course: Boolean 
 
 ---
 
-<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.18 Key Takeaways</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.18 Summary and Key Takeaways</h2>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -1123,5 +1123,9 @@ Design a datapath-controller system step-by-step, connecting registers, ALU, and
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/datapath-controller-walkthrough/main.html" width="100%" height="1010px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
+
+---
+
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>

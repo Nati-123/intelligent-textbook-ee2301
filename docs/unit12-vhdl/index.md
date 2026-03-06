@@ -1551,7 +1551,7 @@ This creates confusing behavior: `y` only updates on clock edges instead of resp
 
 ---
 
-<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.21 Key Takeaways</h2>
+<h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.21 Summary and Key Takeaways</h2>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -1578,5 +1578,9 @@ Design a VHDL finite state machine step-by-step, from state diagram to complete 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-fsm-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
+
+---
+
+[Take the Unit Quiz](./quiz.md) | [See Annotated References](./references.md)
 
 </div>
