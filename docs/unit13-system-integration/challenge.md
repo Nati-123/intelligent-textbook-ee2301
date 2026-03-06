@@ -276,80 +276,11 @@ Decompose this function using Shannon expansion to map it onto LUT-4 resources. 
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**(a) & (b) Shannon expansion decomposition:**
+**(a) & (b) Decomposition strategy:**
 
-Expand $H$ about variables $A$, $B$, $C$ (splitting 7 variables into groups that fit LUT-4 inputs):
+The function has 7 inputs but each LUT handles at most 4. Key observation: each product term shares variable $A$, so we can absorb $A$ into the first-level LUTs to minimize depth.
 
-$$H = A \cdot H_A + \overline{A} \cdot H_{\overline{A}}$$
-
-**Cofactor $H_A$ (set $A = 1$):**
-
-$$H_A = BCD + EFG + 0 = BCD + EFG$$
-
-**Cofactor $H_{\overline{A}}$ (set $A = 0$):**
-
-$$H_{\overline{A}} = 0 + 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$$
-
-Now decompose each cofactor further to fit LUT-4.
-
-**$H_A = BCD + EFG$** — has 6 variables, still exceeds LUT-4. Split into two sub-functions:
-
-- $H_{A1}(B,C,D) = BCD$ — 3 variables, fits one LUT-4
-- $H_{A2}(E,F,G) = EFG$ — 3 variables, fits one LUT-4
-- $H_A = H_{A1} + H_{A2}$ — 2 inputs, combined in the final LUT
-
-**$H_{\overline{A}} = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$** — has 6 variables, exceeds LUT-4. Split:
-
-- $H_{\overline{A}1}(B,C,D) = \overline{B}\,\overline{C}\,\overline{D}$ — 3 variables, fits one LUT-4
-- $H_{\overline{A}2}(E,F,G) = \overline{E}\,\overline{F}\,\overline{G}$ — 3 variables, fits one LUT-4
-- $H_{\overline{A}} = H_{\overline{A}1} \cdot H_{\overline{A}2}$ — 2 inputs, combined in the final LUT
-
-**Final combination:**
-
-$$H = A \cdot (H_{A1} + H_{A2}) + \overline{A} \cdot (H_{\overline{A}1} \cdot H_{\overline{A}2})$$
-
-This requires a final LUT with inputs: $A$, $H_{A1}$, $H_{A2}$, $H_{\overline{A}1}$... but that is 4 inputs only if we pre-combine. Restructure:
-
-- **LUT 1:** $P = BCD$ (inputs: B, C, D, unused)
-- **LUT 2:** $Q = EFG$ (inputs: E, F, G, unused)
-- **LUT 3:** $R = \overline{B}\,\overline{C}\,\overline{D}$ (inputs: B, C, D, unused)
-- **LUT 4:** $S = \overline{E}\,\overline{F}\,\overline{G}$ (inputs: E, F, G, unused)
-- **LUT 5:** $H = A(P + Q) + \overline{A}(R \cdot S)$ (inputs: A, $P{+}Q$, $R{\cdot}S$, unused)
-
-But $P + Q$ and $R \cdot S$ each need their own LUT:
-
-- **LUT 5:** $T_1 = P + Q$ (inputs: P, Q, unused, unused)
-- **LUT 6:** $T_2 = R \cdot S$ (inputs: R, S, unused, unused)
-- **LUT 7:** $H = A \cdot T_1 + \overline{A} \cdot T_2$ (inputs: A, $T_1$, $T_2$, unused)
-
-However, we can optimize by merging stages. Notice LUT 5 can compute $A \cdot P$ if we route $A$ to it:
-
-**Optimized decomposition (5 LUTs):**
-
-- **LUT 1:** $P = BCD$ (inputs: B, C, D, —)
-- **LUT 2:** $Q = EFG$ (inputs: E, F, G, —)
-- **LUT 3:** $T_1 = P + Q$ (inputs: P, Q, —, —)
-- **LUT 4:** $T_2 = \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}$ (inputs: B, C, D, E) — partial term
-- **LUT 5:** $H = A \cdot T_1 + \overline{A} \cdot T_2 \cdot \overline{F} \cdot \overline{G}$ (inputs: A, $T_1$, $T_2$, —) — but this has $\overline{F}$, $\overline{G}$ unaccounted
-
-This exceeds 4 inputs. The clean minimum is:
-
-**Minimum solution (5 LUTs, 3 levels):**
-
-| LUT | Function | Inputs | Level |
-|-----|----------|--------|-------|
-| LUT 1 | $P = BCD$ | B, C, D, — | 1 |
-| LUT 2 | $Q = EFGA = EFG \cdot A$ | A, E, F, G | 1 |
-| LUT 3 | $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ | A, B, C, D | 1 |
-| LUT 4 | $S = \overline{E}\,\overline{F}\,\overline{G}$ | E, F, G, — | 1 |
-| LUT 5 | $H = P + Q + R \cdot S$ | P, Q, R, S | 2 |
-
-**Verification:**
-
-- $P = BCD$: covers the $ABCD$ term when $A = 1$ (but $P$ alone is $BCD$ regardless of $A$)
-- Actually $ABCD = A \cdot P$, so we need $A$ in the final combination
-
-**Correct minimum (5 LUTs, 2 levels):**
+**Optimal decomposition (5 LUTs, 2 levels):**
 
 | LUT | Function | Inputs | Level |
 |-----|----------|--------|-------|
