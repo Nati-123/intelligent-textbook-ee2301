@@ -216,85 +216,99 @@ Note: The PAL16L8 has active-low outputs (output is inverted). The designer must
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">(a) and (b):</p>
+**(a) & (b) Decomposition strategy:**
 
-Apply Shannon expansion on variables <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span> to split the 7-variable function into sub-functions of at most 4 variables.
+The function has 7 inputs but each LUT handles at most 4. Key observation: each product term shares variable $A$, so we can absorb $A$ into the first-level LUTs to minimize depth.
 
-**First expansion on <span class="arithmatex">\(A\)</span>:**
+**Optimal decomposition (5 LUTs, 2 levels):**
 
-- <span class="arithmatex">\(H_1 = H|_{A=1} = BCD + EFG + 0 = BCD + EFG\)</span> (6 variables → still too wide)
-- <span class="arithmatex">\(H_0 = H|_{A=0} = 0 + 0 + \overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (6 variables → still too wide)
+| LUT | Function | Inputs | Level |
+|-----|----------|--------|-------|
+| LUT 1 | $P = ABCD$ | A, B, C, D | 1 |
+| LUT 2 | $Q = AEFG$ | A, E, F, G | 1 |
+| LUT 3 | $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ | A, B, C, D | 1 |
+| LUT 4 | $S = \overline{E}\,\overline{F}\,\overline{G}$ | E, F, G, — | 1 |
+| LUT 5 | $H = P + Q + R \cdot S$ | P, Q, R, S | 2 |
 
-**Second expansion of <span class="arithmatex">\(H_1\)</span> on <span class="arithmatex">\(B\)</span>:**
+**(a) Minimum number of LUT-4s: 5**
 
-- <span class="arithmatex">\(H_{11} = H_1|_{B=1} = CD + EFG\)</span> (5 variables → still too wide)
-- <span class="arithmatex">\(H_{10} = H_1|_{B=0} = EFG\)</span> (3 variables → **fits LUT-4**)
+**(b) Logic levels (LUT depth): 2**
 
-**Third expansion of <span class="arithmatex">\(H_{11}\)</span> on <span class="arithmatex">\(C\)</span>:**
+**(c) LUT contents:**
 
-- <span class="arithmatex">\(H_{111} = H_{11}|_{C=1} = D + EFG\)</span> (4 variables → **fits LUT-4**)
-- <span class="arithmatex">\(H_{110} = H_{11}|_{C=0} = EFG\)</span> (3 variables → **fits LUT-4**, same as <span class="arithmatex">\(H_{10}\)</span>)
+**LUT 1** — $P = ABCD$ (4 inputs: A, B, C, D):
 
-**Second expansion of <span class="arithmatex">\(H_0\)</span> on <span class="arithmatex">\(B\)</span>:**
-
-- <span class="arithmatex">\(H_{01} = H_0|_{B=1} = 0\)</span> (constant → tie to 0, no LUT needed)
-- <span class="arithmatex">\(H_{00} = H_0|_{B=0} = \overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (5 variables)
-
-**Third expansion of <span class="arithmatex">\(H_{00}\)</span> on <span class="arithmatex">\(C\)</span>:**
-
-- <span class="arithmatex">\(H_{001} = H_{00}|_{C=1} = 0\)</span> (constant)
-- <span class="arithmatex">\(H_{000} = H_{00}|_{C=0} = \overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span> (4 variables → **fits LUT-4**)
-
-**Recombination LUTs (MUX trees):**
-
-- LUT for <span class="arithmatex">\(H_{1}\)</span>: MUX(<span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(H_{110}\)</span>, <span class="arithmatex">\(H_{111}\)</span>) then MUX(<span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(H_{10}\)</span>, result) → 2 LUTs
-- LUT for <span class="arithmatex">\(H_{0}\)</span>: MUX(<span class="arithmatex">\(C\)</span>, 0, <span class="arithmatex">\(H_{000}\)</span>) then MUX(<span class="arithmatex">\(B\)</span>, 0, result) → can merge into 1 LUT since <span class="arithmatex">\(H_{01}=0\)</span> and <span class="arithmatex">\(H_{001}=0\)</span>
-- Final LUT: MUX(<span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(H_0\)</span>, <span class="arithmatex">\(H_1\)</span>)
-
-**Minimum LUT-4 count: 7**
-
-| LUT | Inputs | Function |
-|-----|--------|----------|
-| L1 | <span class="arithmatex">\(E,F,G\)</span> (+ 1 unused) | <span class="arithmatex">\(EFG\)</span> (shared for <span class="arithmatex">\(H_{10}\)</span> and <span class="arithmatex">\(H_{110}\)</span>) |
-| L2 | <span class="arithmatex">\(D,E,F,G\)</span> | <span class="arithmatex">\(D + EFG = H_{111}\)</span> |
-| L3 | <span class="arithmatex">\(D,E,F,G\)</span> | <span class="arithmatex">\(\overline{D}\,\overline{E}\,\overline{F}\,\overline{G} = H_{000}\)</span> |
-| L4 | <span class="arithmatex">\(C, L1, L2\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(C \cdot L2 + \overline{C} \cdot L1 = H_{11}\)</span> |
-| L5 | <span class="arithmatex">\(B, L1, L4\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(B \cdot L4 + \overline{B} \cdot L1 = H_1\)</span> |
-| L6 | <span class="arithmatex">\(B, C, L3\)</span> (+ 1 unused) | <span class="arithmatex">\(\overline{B}\,\overline{C} \cdot L3 = H_0\)</span> |
-| L7 | <span class="arithmatex">\(A, L5, L6\)</span> (+ 1 unused) | MUX: <span class="arithmatex">\(A \cdot L5 + \overline{A} \cdot L6 = H\)</span> |
-
-With sharing of L1, this can be done in **7 LUT-4s**.
-
-**(b) Number of logic levels (LUT depth): 4**
-
-Critical path: L1 (or L2 or L3) → L4 → L5 → L7, which is 4 LUT levels deep.
-
-**(c) LUT contents** (selected LUTs):
-
-**L2** (<span class="arithmatex">\(D + EFG\)</span>, inputs <span class="arithmatex">\(D,E,F,G\)</span>):
-
-| <span class="arithmatex">\(DEFG\)</span> | Output |
-|--------|--------|
-| 0000 | 0 |
-| 0001 | 0 |
-| 0010 | 0 |
-| 0011 | 0 |
-| 0100 | 0 |
-| 0101 | 0 |
-| 0110 | 0 |
-| 0111 | 1 |
-| 1000 | 1 |
-| 1001 | 1 |
-| 1010 | 1 |
-| 1011 | 1 |
-| 1100 | 1 |
-| 1101 | 1 |
-| 1110 | 1 |
+| ABCD | P |
+|------|---|
+| 0000–1110 | 0 |
 | 1111 | 1 |
 
-SRAM = `0000_0001_1111_1111` = <span class="arithmatex">\(01\text{FF}_{16}\)</span>
+Output = 1 only when all inputs are 1. (1 of 16 entries is 1)
 
-<p style="color: #333; line-height: 1.75; margin-bottom: 0;"><strong>L3</strong> (<span class="arithmatex">\(\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\)</span>, inputs <span class="arithmatex">\(D,E,F,G\)</span>): Only address 0000 = 1, all others = 0. SRAM = <span class="arithmatex">\(0001_{16}\)</span>.</p>
+**LUT 2** — $Q = AEFG$ (4 inputs: A, E, F, G):
+
+| AEFG | Q |
+|------|---|
+| 0000–1110 | 0 |
+| 1111 | 1 |
+
+Output = 1 only when $A = E = F = G = 1$. (1 of 16 entries is 1)
+
+**LUT 3** — $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ (4 inputs: A, B, C, D):
+
+| ABCD | R |
+|------|---|
+| 0000 | 1 |
+| 0001–1111 | 0 |
+
+Output = 1 only when all inputs are 0. (1 of 16 entries is 1)
+
+**LUT 4** — $S = \overline{E}\,\overline{F}\,\overline{G}$ (3 inputs: E, F, G, unused):
+
+| EFG | S |
+|-----|---|
+| 000 | 1 |
+| 001–111 | 0 |
+
+Output = 1 only when $E = F = G = 0$. (1 of 8 entries is 1; 4th input unused/tied low)
+
+**LUT 5** — $H = P + Q + R \cdot S$ (4 inputs: P, Q, R, S):
+
+| P | Q | R | S | H |
+|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 0 | 1 | 0 |
+| 0 | 0 | 1 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 1 |
+| 0 | 1 | X | X | 1 |
+| 1 | X | X | X | 1 |
+
+$H = 1$ when $P = 1$ (i.e., $ABCD$), or $Q = 1$ (i.e., $AEFG$), or both $R = 1$ and $S = 1$ (i.e., $\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$). Of 16 truth table rows, 11 produce output 1.
+
+**Circuit diagram:**
+
+```
+A ──┬──→ [LUT 1: ABCD] ──→ P ──→ ┐
+B ──┼──→             │             │
+C ──┼──→             │             │
+D ──┘                              │
+                                   ├──→ [LUT 5: P+Q+RS] ──→ H
+A ──┬──→ [LUT 2: AEFG] ──→ Q ──→ ┤
+E ──┼──→             │             │
+F ──┼──→             │             │
+G ──┘                              │
+                                   │
+A ──┬──→ [LUT 3: A̅B̅C̅D̅] ──→ R ──→ ┤
+B ──┼──→             │             │
+C ──┼──→             │             │
+D ──┘                              │
+                                   │
+E ──┬──→ [LUT 4: E̅F̅G̅] ──→ S ──→ ┘
+F ──┼──→           │
+G ──┘              │
+```
+
+**Note:** LUTs 1 and 3 share inputs A, B, C, D — an FPGA router can exploit this locality. Variable $A$ appears in three first-level LUTs, requiring fan-out of 3 in the routing fabric.
 
 </div>
 </details>
