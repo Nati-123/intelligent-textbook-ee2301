@@ -5,18 +5,27 @@ description: Practice problems for top-down design, datapath-controller, timing 
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: System Integration
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">End-of-Unit Problems: System Integration</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of top-down design, datapath-controller partitioning, timing analysis, pipelining, and system-level design trade-offs.
+</p>
 
 ---
 
-## Section A: Top-Down Design and Modularity (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section A: Top-Down Design and Modularity (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 1
+
 A digital combination lock accepts a 4-digit code (each digit 0-9) entered sequentially. Decompose the system using top-down design into hierarchical modules. Identify each module, its inputs, outputs, and its role in the system.
 
-**Solution:** **Level 0 — Top-level system:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Level 0 — Top-level system:**
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -64,12 +73,24 @@ Combination Lock System
 
 **Key design principle:** Each module has a well-defined interface. The controller FSM coordinates all modules without knowing their internal implementation.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 2
+
 Explain the difference between structural and behavioral decomposition in top-down design. For a 4-bit ALU that supports ADD, SUB, AND, OR, give both decompositions.
 
-**Solution:** **Structural decomposition** breaks the system into physical components and their interconnections. **Behavioral decomposition** breaks the system into functional operations without specifying implementation.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Structural decomposition** breaks the system into physical components and their interconnections. **Behavioral decomposition** breaks the system into functional operations without specifying implementation.
 
 **Behavioral decomposition of 4-bit ALU:**
 
@@ -126,9 +147,17 @@ Op[1:0]──┴─────────────→│    4-to-1 MUX     
 
 **Key difference:** Behavioral decomposition is technology-independent and focuses on specification. Structural decomposition commits to a specific implementation architecture.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 3
+
 A digital system must be designed with the following specifications. Identify all modules needed and draw the top-level block diagram showing interconnections.
 
 - Read temperature from an 8-bit ADC every 100 ms
@@ -136,7 +165,11 @@ A digital system must be designed with the following specifications. Identify al
 - Activate a cooling fan if temperature exceeds the threshold
 - Display current temperature on a 2-digit 7-segment display
 
-**Solution:** **Module identification:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Module identification:**
 
 | Module | Type | Function |
 |--------|------|----------|
@@ -188,12 +221,24 @@ ADC_START     ──→       │
 
 **Interface signals between modules are clearly defined,** allowing each module to be designed and tested independently.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 4
+
 What are the three key principles of modular design? For each principle, give a digital design example showing how violating it leads to problems.
 
-**Solution:** **The three key principles:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**The three key principles:**
 
 **1. Well-defined interfaces**
 
@@ -228,14 +273,26 @@ Each module performs one clearly defined function.
 
 Although the monolithic FSM uses one fewer flip-flop, its next-state logic is vastly more complex and nearly impossible to debug.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section B: Datapath and Controller Design (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section B: Datapath and Controller Design (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 5
+
 Explain the datapath-controller partitioning approach. For a circuit that computes $Y = A \times B + C$ where A, B, C are 8-bit inputs, design the datapath and controller separately.
 
-**Solution:** **Datapath-controller partitioning:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Datapath-controller partitioning:**
 
 - **Datapath:** Contains the components that store, transform, and route data (registers, ALUs, multiplexers, buses)
 - **Controller:** An FSM that generates control signals to orchestrate datapath operations each clock cycle
@@ -297,12 +354,24 @@ C[7:0] ──→ [Reg_C] ──────────────→ (zero-ext
 
 **Latency:** 4 clock cycles (load + multiply + add + done)
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 6
+
 Design the datapath and controller for a circuit that finds the maximum of three 8-bit unsigned numbers A, B, and C. Show the ASM (Algorithmic State Machine) chart.
 
-**Solution:** **Algorithm:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Algorithm:**
 
 1. Load A, B, C
 2. Compare A and B; keep the larger as TEMP
@@ -399,12 +468,24 @@ SEL_MC=0  SEL_MC=1
 
 **Total latency:** 4 clock cycles from START to VALID.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 7
+
 A datapath for a simple accumulator processor includes: an 8-bit register (ACC), an 8-bit adder, and a 2-to-1 MUX. The processor supports three operations: LOAD (ACC = input), ADD (ACC = ACC + input), CLEAR (ACC = 0). Design the datapath and the controller.
 
-**Solution:** **Datapath:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Datapath:**
 
 ```
 DATA_IN[7:0] ──→ ┐
@@ -476,12 +557,24 @@ For a single-cycle implementation, the controller is purely combinational:
 - SEL[1:0] = OP[1:0]
 - LD_ACC = (OP != NOP)
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 8
+
 Design the datapath and controller for a binary search circuit that finds whether a value KEY exists in a sorted 8-element array stored in a register file. Each element is 8 bits. Show the datapath components, control signals, and FSM state diagram.
 
-**Solution:** **Algorithm (binary search):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Algorithm (binary search):**
 
 1. Set LOW = 0, HIGH = 7
 2. Compute MID = (LOW + HIGH) / 2
@@ -557,11 +650,19 @@ S0 ──→ S1 ──→ S2 ──→ S3 ──→ EQ? ──→ S4 (FOUND)
 
 **Worst-case latency:** $\lceil\log_2 8\rceil = 3$ iterations, each 4-5 clock cycles, so approximately **12-15 clock cycles**.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section C: Timing Analysis (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section C: Timing Analysis (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 9
+
 A synchronous circuit uses D flip-flops with the following parameters:
 
 - Clock-to-Q delay: $T_{cq}$ = 0.5 ns
@@ -571,7 +672,11 @@ A synchronous circuit uses D flip-flops with the following parameters:
 
 Calculate the maximum clock frequency $f_{max}$ and verify the hold time constraint.
 
-**Solution:** **Setup time constraint (determines $f_{max}$):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Setup time constraint (determines $f_{max}$):**
 
 The data must arrive at the next flip-flop's D input at least $T_{setup}$ before the next clock edge.
 
@@ -614,9 +719,17 @@ FF2 D  ─────────────┤            ├────
 - $f_{max} = 277.8$ MHz
 - Hold time: satisfied (margin = 0.5 + 0 - 0.1 = 0.4 ns minimum)
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 10
+
 A digital system has three pipeline stages with the following delays:
 
 - Stage 1: $T_{cq}$ + 4.0 ns combinational
@@ -629,7 +742,11 @@ Flip-flop parameters: $T_{cq}$ = 0.4 ns, $T_{setup}$ = 0.3 ns.
 (b) What would $f_{max}$ be without pipelining (all logic in one stage)?
 (c) Calculate the throughput improvement from pipelining.
 
-**Solution:** **(a) Pipelined $f_{max}$:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) Pipelined $f_{max}$:**
 
 The clock frequency is limited by the **slowest stage**:
 
@@ -674,9 +791,17 @@ However, latency increases:
 | Latency | 14.2 ns | 21.6 ns |
 | Throughput | 70.4 M results/s | 138.9 M results/s |
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 11
+
 A system has the following timing parameters:
 
 - Clock period: 10 ns
@@ -688,7 +813,11 @@ A system has the following timing parameters:
 (a) What is the maximum allowable combinational delay?
 (b) Is hold time violated? What is the hold margin?
 
-**Solution:** **(a) Maximum combinational delay with clock skew:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) Maximum combinational delay with clock skew:**
 
 When the destination clock arrives late by $\delta$, the data has more time to propagate (positive skew helps setup):
 
@@ -735,14 +864,26 @@ $$\text{Hold margin} = 0.6 + 0 - 0.2 - 0.5 = -0.1 \text{ ns}$$
 | Setup margin | Helped | Helped |
 | Hold margin | Fine | Reduced (may violate) |
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 12
+
 Calculate the maximum clock frequency for a 16-bit ripple carry adder used in a registered pipeline stage. Each full adder has a gate delay of 2 ns (two gates on the carry path). The flip-flop has $T_{cq}$ = 0.5 ns and $T_{setup}$ = 0.3 ns.
 
 Then calculate $f_{max}$ if the design is changed to a 4-bit carry lookahead adder with four 4-bit CLA blocks and a second-level carry lookahead unit (2 gate levels for CLA + 2 gate levels for second-level group carry).
 
-**Solution:** **Ripple Carry Adder:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Ripple Carry Adder:**
 
 Each full adder's carry path delay = 2 ns (two gate levels per bit).
 
@@ -791,18 +932,30 @@ $$f_{max,CLA} = \frac{1}{8.8 \text{ ns}} = 113.6 \text{ MHz}$$
 
 **The CLA is 3.7x faster at the cost of significantly more hardware (carry lookahead logic).**
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section D: Pipelining and Optimization (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section D: Pipelining and Optimization (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 13
+
 A non-pipelined combinational circuit has four logic blocks in series with delays: 3 ns, 5 ns, 4 ns, 2 ns. Flip-flop overhead is $T_{cq}$ = 0.3 ns and $T_{setup}$ = 0.2 ns.
 
 (a) Calculate throughput without pipelining.
 (b) Pipeline the design into 4 stages (one block per stage). Calculate the new throughput and latency.
 (c) Pipeline into 2 stages by grouping blocks optimally. Calculate throughput and latency.
 
-**Solution:** **Original delays:** Block A = 3 ns, Block B = 5 ns, Block C = 4 ns, Block D = 2 ns
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Original delays:** Block A = 3 ns, Block B = 5 ns, Block C = 4 ns, Block D = 2 ns
 
 **Register overhead per stage:** $T_{cq} + T_{setup} = 0.3 + 0.2 = 0.5$ ns
 
@@ -864,9 +1017,17 @@ $$\text{Latency} = 2 \times 8.5 = 17.0 \text{ ns}$$
 
 **Key insight:** Pipelining improves throughput but increases latency. Unbalanced stages reduce the theoretical speedup (4-stage gives only 2.6x, not 4x).
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 14
+
 A 32-bit multiplier has a combinational delay of 20 ns. Registers have $T_{cq}$ = 0.4 ns and $T_{setup}$ = 0.3 ns.
 
 (a) What is $f_{max}$ without pipelining?
@@ -874,7 +1035,11 @@ A 32-bit multiplier has a combinational delay of 20 ns. Registers have $T_{cq}$ 
 (c) What is the pipeline latency?
 (d) If a feedback path exists (output feeds back to input), how does this affect pipeline throughput?
 
-**Solution:** **(a) Without pipelining:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**(a) Without pipelining:**
 
 $$T_{clk} = T_{cq} + 20 + T_{setup} = 0.4 + 20 + 0.3 = 20.7 \text{ ns}$$
 
@@ -920,9 +1085,17 @@ With feedback, the next computation that depends on the current result must wait
 
 **Solution approaches:** Loop unrolling, bypassing/forwarding (if partial results suffice), or accepting the latency penalty.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 15
+
 Compare the area, speed, and power trade-offs for three implementations of an 8-bit adder:
 
 1. Ripple carry adder (RCA)
@@ -931,7 +1104,11 @@ Compare the area, speed, and power trade-offs for three implementations of an 8-
 
 Assume a unit gate delay of 1 ns and each gate costs 1 area unit and consumes 1 power unit per switching event.
 
-**Solution:** **1. Ripple Carry Adder (RCA):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**1. Ripple Carry Adder (RCA):**
 
 - **Structure:** 8 cascaded full adders
 - **Delay:** Carry propagates through 8 stages, 2 gate delays each = $8 \times 2 = 16$ gate delays = **16 ns**
@@ -979,12 +1156,24 @@ Assume a unit gate delay of 1 ns and each gate costs 1 area unit and consumes 1 
 - **CLA:** Speed-critical designs where area overhead is acceptable
 - **CSLA:** Moderate speed improvement needed with simpler design than full CLA
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 16
+
 A design must process 200 million samples per second. The combinational logic takes 12 ns. Registers have $T_{cq}$ = 0.3 ns and $T_{setup}$ = 0.2 ns. Determine the minimum number of pipeline stages required and show how to partition the logic.
 
-**Solution:** **Required throughput:** 200 M samples/s
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Required throughput:** 200 M samples/s
 
 $$T_{clk,required} = \frac{1}{200 \times 10^6} = 5.0 \text{ ns}$$
 
@@ -1045,14 +1234,26 @@ Input ──→ [Reg] ──→ [Logic: 4ns] ──→ [Reg] ──→ [Logic: 4
 
 **Note:** If the logic cannot be split into exactly equal groups, the bottleneck stage determines $T_{clk}$. In that case, more stages may be needed to meet the 200 MHz target with unbalanced partitioning.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section E: System Design Problems (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section E: System Design Problems (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 17
+
 Design a UART transmitter that sends 8-bit data with 1 start bit, 8 data bits (LSB first), and 1 stop bit. The baud rate is 9600. The system clock is 50 MHz. Show the controller FSM and datapath.
 
-**Solution:** **UART frame format:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**UART frame format:**
 
 ```
 IDLE(1) | START(0) | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | STOP(1) | IDLE(1)...
@@ -1130,9 +1331,17 @@ $$T_{byte} = 10 \text{ bits} \times \frac{1}{9600} = 1.042 \text{ ms}$$
 
 Maximum data rate: $9600 / 10 = 960$ bytes/s.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 18
+
 Design a simple vending machine controller that:
 
 - Accepts nickels (5 cents) and dimes (10 cents)
@@ -1142,7 +1351,11 @@ Design a simple vending machine controller that:
 
 Provide the complete state diagram, state table, state encoding, and next-state equations.
 
-**Solution:** **States (based on amount collected):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**States (based on amount collected):**
 
 | State | Amount | Encoding |
 |-------|--------|----------|
@@ -1214,12 +1427,24 @@ $$D_0 = \overline{Q_2}(N \oplus Q_0) \cdot \text{(with correction for dime cases
 
 (DISP = 1 only in state S25 = 101)
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 19
+
 A self-checking testbench must verify a 4-bit counter. Describe the testbench architecture, the test vectors needed, and how to implement automatic checking in a hardware description approach.
 
-**Solution:** **Testbench architecture:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Testbench architecture:**
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -1319,12 +1544,24 @@ else:
 - Include a terminal count (TC) output and verify it at state 1111
 - Test at least two full counting sequences to verify rollover
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 20
+
 A complete digital system design flows from specification to implementation. List and describe each step in the design flow. For a 4-bit ALU with ADD, SUB, AND, OR, XOR operations, give a concrete example of what happens at each step.
 
-**Solution:** **Digital design flow — 8 steps:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Digital design flow — 8 steps:**
 
 **Step 1: Specification**
 
@@ -1429,9 +1666,16 @@ Final simulation with actual delays, then physical testing.
 | 7 | Place and Route | Layout / bitstream |
 | 8 | Verification and Test | Working hardware |
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Summary
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 14px;">Problems Summary</p>
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -1441,5 +1685,7 @@ Final simulation with actual delays, then physical testing.
 | D | Pipelining and Optimization | 4 |
 | E | System Design Problems | 4 |
 | **Total** | | **20** |
+
+</div>
 
 </div>
