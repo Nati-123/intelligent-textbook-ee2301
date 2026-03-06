@@ -5,18 +5,27 @@ description: Practice problems for VHDL entities, architectures, modeling styles
 
 <div class="problems-styled" markdown>
 
-# End-of-Unit Problems: Introduction to VHDL
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">End-of-Unit Problems: Introduction to VHDL</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 Work through these problems to reinforce your understanding of VHDL entities, architectures, concurrent and sequential statements, and synthesis inference.
+</p>
 
 ---
 
-## Section A: Entity and Architecture (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section A: Entity and Architecture (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 1
+
 Write a complete VHDL entity declaration for a 4-bit magnitude comparator with two 4-bit inputs $A$ and $B$, and three single-bit outputs: `gt` (greater than), `eq` (equal), and `lt` (less than). Use `std_logic` and `std_logic_vector` types.
 
-**Solution:** **Entity declaration:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Entity declaration:**
 
 ```vhdl
 library IEEE;
@@ -54,12 +63,24 @@ end architecture dataflow;
 
 The `>`, `=`, and `<` operators work on `std_logic_vector` when using the `IEEE.STD_LOGIC_1164` library, performing unsigned comparison based on bit position.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 2
+
 Explain the nine values of the `std_logic` type. For each value, state what real-world condition it models and whether it is synthesizable.
 
-**Solution:** **The nine values of `std_logic`:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**The nine values of `std_logic`:**
 
 | Value | Meaning | Real-World Condition | Synthesizable? |
 |-------|---------|---------------------|----------------|
@@ -87,9 +108,17 @@ When multiple drivers assign different values to the same `std_logic` signal, th
 - `'U'` and `'X'` are invaluable for catching simulation errors (an `'X'` in simulation means a design bug)
 - `std_logic` is preferred over the simpler `bit` type (which only has `'0'` and `'1'`) because it models real hardware behavior
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 3
+
 Given the following VHDL code, identify and correct all syntax errors:
 
 ```vhdl
@@ -111,7 +140,11 @@ begin
 end behave;
 ```
 
-**Solution:** **Errors identified and corrected:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Errors identified and corrected:**
 
 | Line | Error | Correction |
 |------|-------|------------|
@@ -149,12 +182,24 @@ end architecture behave;
 - The architecture name must reference the correct entity name
 - Adding `entity` and `architecture` keywords after `end` is optional but good practice
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 4
+
 Write an entity and architecture for a generic N-bit register with parallel load enable and asynchronous reset. Use the `generic` clause to make the width parameterizable.
 
-**Solution:** **Generic N-bit register:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Generic N-bit register:**
 
 ```vhdl
 library IEEE;
@@ -211,14 +256,26 @@ reg16: entity work.reg_n
     );
 ```
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section B: Concurrent Statements and Dataflow (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section B: Concurrent Statements and Dataflow (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 5
+
 Write a VHDL dataflow architecture for a 2-to-4 decoder with an enable input. The decoder has a 2-bit input `sel`, 1-bit `en`, and 4-bit output `y`. When `en = '0'`, all outputs are `'0'`.
 
-**Solution:** **Dataflow architecture using conditional signal assignment:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Dataflow architecture using conditional signal assignment:**
 
 ```vhdl
 library IEEE;
@@ -276,9 +333,17 @@ end architecture dataflow_v2;
 - `with...select` is a selected signal assignment (like a MUX)
 - Both synthesize to identical combinational logic
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 6
+
 Explain why the following VHDL code contains a potential error and show how to fix it:
 
 ```vhdl
@@ -290,7 +355,11 @@ begin
 end architecture bad;
 ```
 
-**Solution:** **The error: multiple drivers on signal `y`.**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**The error: multiple drivers on signal `y`.**
 
 In VHDL, concurrent signal assignments act as independent hardware drivers. Having two concurrent assignments to the same signal `y` creates two separate drivers, which is illegal for `std_logic` resolution in synthesis and produces a multiply-driven net error.
 
@@ -340,12 +409,24 @@ end architecture fix3;
 
 **Rule:** Each signal should have exactly one driver in synthesizable VHDL (except for tri-state buses using `'Z'`).
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 7
+
 Write a dataflow VHDL description of a 4-bit ripple carry adder using the `generate` statement. Assume a `full_adder` component is available.
 
-**Solution:** **Full adder component (assumed available):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Full adder component (assumed available):**
 
 ```vhdl
 entity full_adder is
@@ -421,16 +502,28 @@ A(0) B(0)    A(1) B(1)    A(2) B(2)    A(3) B(3)
 sum(0) cin   sum(1)       sum(2)       sum(3)
 ```
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 8
+
 Write VHDL concurrent signal assignments to implement the following Boolean equations. Use only basic logic operators (`and`, `or`, `not`, `xor`).
 
 - $F_1 = A \cdot B + \overline{C} \cdot D$
 - $F_2 = (A \oplus B) \cdot (C \oplus D)$
 - $F_3 = \overline{A \cdot B + C \cdot D}$
 
-**Solution:** **VHDL implementation:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**VHDL implementation:**
 
 ```vhdl
 library IEEE;
@@ -480,14 +573,26 @@ F1 <= (A and B) or ((not C) and D);
 | 1 | 1 | 1 | 0 | 1 | 0 | 1 |
 | 0 | 1 | 1 | 1 | 0 | 0 | 0 |
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section C: Process Statements and Behavioral Modeling (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section C: Process Statements and Behavioral Modeling (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 9
+
 Write a VHDL process that implements a 4-to-1 multiplexer using an `if-then-else` statement. The inputs are `d0`, `d1`, `d2`, `d3` (all `std_logic`), `sel` is `std_logic_vector(1 downto 0)`, and the output is `y`.
 
-**Solution:** **Behavioral 4-to-1 MUX using `if-then-else`:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Behavioral 4-to-1 MUX using `if-then-else`:**
 
 ```vhdl
 library IEEE;
@@ -543,9 +648,17 @@ end architecture behavioral_v2;
 - `when others` is required in `case` because `std_logic_vector` has more than 4 possible values (each bit has 9 values)
 - This process describes **combinational** logic because every path assigns a value to `y`
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 10
+
 What is wrong with the following VHDL process? Explain what hardware it infers and how to fix it.
 
 ```vhdl
@@ -557,7 +670,11 @@ begin
 end process;
 ```
 
-**Solution:** **Problem: Unintended latch inference.**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Problem: Unintended latch inference.**
 
 The `if` statement assigns `y` when `sel = '1'` but has no `else` clause. When `sel = '0'`, `y` is not assigned, so VHDL infers that `y` must **retain its previous value**. This requires memory, so the synthesizer creates a **latch**.
 
@@ -610,12 +727,24 @@ This also synthesizes to a 2-to-1 MUX. The default value acts as the implicit `e
 
 **Rule:** For combinational logic, ensure every signal is assigned a value on **every possible execution path** through the process.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 11
+
 Write a VHDL process for a priority encoder with 4 inputs. Input `req(3)` has highest priority and `req(0)` has lowest. Output `code` is a 2-bit encoding of the highest active request, and `valid` indicates at least one request is active.
 
-**Solution:** **Priority encoder:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Priority encoder:**
 
 ```vhdl
 library IEEE;
@@ -671,12 +800,24 @@ end architecture behavioral;
 - Only `req` is in the sensitivity list since it is the only input
 - This is a combinational process (no clock) that synthesizes to priority logic gates
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 12
+
 Explain the role of the sensitivity list in a VHDL process. Show what happens when a signal is accidentally omitted from the sensitivity list.
 
-**Solution:** **The sensitivity list** determines when a process "wakes up" and re-evaluates. A process suspends after executing its last statement and resumes only when a signal in the sensitivity list changes.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**The sensitivity list** determines when a process "wakes up" and re-evaluates. A process suspends after executing its last statement and resumes only when a signal in the sensitivity list changes.
 
 **Rules for sensitivity lists:**
 
@@ -745,14 +886,26 @@ begin
 end process;
 ```
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section D: Sequential Logic in VHDL (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section D: Sequential Logic in VHDL (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 13
+
 Write a VHDL description of a D flip-flop with synchronous reset and clock enable. Explain how the synthesizer maps this to hardware.
 
-**Solution:** **D flip-flop with synchronous reset and clock enable:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**D flip-flop with synchronous reset and clock enable:**
 
 ```vhdl
 library IEEE;
@@ -826,12 +979,24 @@ end process;
 
 Asynchronous reset is independent of the clock and uses the flip-flop's built-in clear pin.
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 14
+
 Write VHDL for a 4-bit binary up counter with synchronous reset and terminal count output. The terminal count `tc` should be `'1'` when the counter reaches its maximum value (15).
 
-**Solution:** **4-bit binary up counter:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**4-bit binary up counter:**
 
 ```vhdl
 library IEEE;
@@ -887,12 +1052,24 @@ tc:   0  0  0  0  0  0      0   1  0
 
 **Synthesis result:** The synthesizer creates 4 flip-flops with incrementer logic (chain of XOR gates and AND gates for carry propagation), plus a 4-input AND gate for terminal count detection ($tc = Q_3 \cdot Q_2 \cdot Q_1 \cdot Q_0$).
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 15
+
 Write VHDL for a Moore finite state machine that detects the sequence "110" on a serial input. Use enumerated types for states and include asynchronous reset.
 
-**Solution:** **Moore FSM for "110" detector:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Moore FSM for "110" detector:**
 
 ```vhdl
 library IEEE;
@@ -991,12 +1168,24 @@ end architecture behavioral;
 - **Moore output:** `det` depends only on `current_state`, so it is glitch-free and synchronized to the clock
 - **Overlapping detection:** From S110, input `'1'` goes to S1 (the last "0" cannot start "110", but the new "1" can)
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 16
+
 Write VHDL for an 8-bit shift register with parallel load, serial input, and bidirectional shift capability. Include a mode select input.
 
-**Solution:** **8-bit universal shift register:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**8-bit universal shift register:**
 
 ```vhdl
 library IEEE;
@@ -1076,14 +1265,26 @@ VHDL: `reg(6 downto 0) & si_left` concatenates the lower 7 bits with the serial 
 - `null` is a no-operation statement (used for "hold" mode)
 - `when others` covers the remaining `std_logic_vector` values beyond "00" through "11"
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Section E: Testbenches and Synthesis (4 problems)
+<h2 style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 1rem;">Section E: Testbenches and Synthesis (4 problems)</h2>
+
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
 
 ### Problem 17
+
 Write a VHDL testbench for the D flip-flop from Problem 13. Include clock generation, reset stimulus, and verification of synchronous reset behavior.
 
-**Solution:** **Testbench for D flip-flop:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Testbench for D flip-flop:**
 
 ```vhdl
 library IEEE;
@@ -1207,9 +1408,17 @@ end architecture sim;
 - **`wait;`** at the end stops the stimulus process (clock keeps running but no more changes)
 - **Signal initialization** (`'0'`) in declarations prevents `'U'` at time 0
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 18
+
 Identify whether each of the following VHDL constructs is synthesizable or non-synthesizable, and explain why.
 
 1. `wait for 10 ns;`
@@ -1219,7 +1428,11 @@ Identify whether each of the following VHDL constructs is synthesizable or non-s
 5. `while count > 0 loop`
 6. `after 5 ns`
 
-**Solution:** | # | Construct | Synthesizable? | Explanation |
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+| # | Construct | Synthesizable? | Explanation |
 |---|-----------|---------------|-------------|
 | 1 | `wait for 10 ns;` | **No** | Absolute time delays have no hardware equivalent. Time is a simulation concept; real hardware does not have a "wait 10 ns" element. Used only in testbenches. |
 | 2 | `rising_edge(clk)` | **Yes** | Recognized synthesis pattern for clock edge detection. Maps to the clock input of a flip-flop. |
@@ -1237,9 +1450,17 @@ Identify whether each of the following VHDL constructs is synthesizable or non-s
 - Initial values on signals (ignored by most FPGA synthesis tools, though some support them)
 - `wait until` with time expressions
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 19
+
 The following VHDL code is intended to describe a combinational circuit, but it infers latches. Identify all the latches and rewrite the code to be purely combinational.
 
 ```vhdl
@@ -1260,7 +1481,11 @@ begin
 end process;
 ```
 
-**Solution:** **Latch analysis:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Latch analysis:**
 
 Checking which signals are assigned in each branch:
 
@@ -1343,9 +1568,17 @@ begin
 end process;
 ```
 
+</div>
+</details>
+
+</div>
+
 ---
 
+<div style="background: #F8F6FF; border: 2px solid #D0C4FF; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,62,237,0.06);" markdown>
+
 ### Problem 20
+
 A designer writes the following VHDL for what they intend to be a flip-flop with enable. Explain what actually gets synthesized and write the corrected version.
 
 ```vhdl
@@ -1359,7 +1592,11 @@ begin
 end process;
 ```
 
-**Solution:** **What the designer intended:** A D flip-flop that only loads when `en = '1'`.
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Solution</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**What the designer intended:** A D flip-flop that only loads when `en = '1'`.
 
 **What actually gets synthesized:** This code is problematic because the `rising_edge(clk)` check is nested inside the `en` check. Most synthesis tools will either:
 
@@ -1424,9 +1661,16 @@ begin
 end process;
 ```
 
+</div>
+</details>
+
+</div>
+
 ---
 
-## Summary
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+
+<p style="color: #5A3EED; font-weight: 700; font-size: 1.1rem; margin-top: 0; margin-bottom: 14px;">Problems Summary</p>
 
 | Section | Topics Covered | Problem Count |
 |---------|---------------|---------------|
@@ -1436,5 +1680,7 @@ end process;
 | D | Sequential Logic in VHDL | 4 |
 | E | Testbenches and Synthesis | 4 |
 | **Total** | | **20** |
+
+</div>
 
 </div>

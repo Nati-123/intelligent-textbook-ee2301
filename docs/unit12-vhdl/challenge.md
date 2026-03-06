@@ -5,13 +5,17 @@ description: Challenge problems for VHDL — answers only, no solutions
 
 <div class="problems-styled" markdown>
 
-# Challenge Problems: Introduction to VHDL
+<h1 style="color: #5A3EED !important; border-bottom: 3px solid #5A3EED; padding-bottom: 0.4rem; font-weight: 800;">Challenge Problems: Introduction to VHDL</h1>
 
+<p style="color: #555; line-height: 1.85; font-size: 1.05rem; margin-bottom: 2rem;">
 These challenge problems test deeper understanding. Only final answers are provided — work through each problem on your own.
+</p>
 
 ---
 
-#### Challenge 1: Complete Entity-Architecture for a 4-bit ALU
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 1: Complete Entity-Architecture for a 4-bit ALU</p>
 
 Design a complete VHDL entity and architecture for a 4-bit ALU that supports the following operations based on a 3-bit operation select input `op`:
 
@@ -28,7 +32,11 @@ Design a complete VHDL entity and architecture for a 4-bit ALU that supports the
 
 The ALU should also produce a `zero` flag (`'1'` when $R = 0$) and a `carry` flag for ADD/SUB operations.
 
-**Answer:** ```vhdl
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+```vhdl
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -91,9 +99,16 @@ end architecture behavioral;
 - All paths assign `result`, so no latches are inferred
 - Default `carry <= '0'` prevents latch on carry for non-arithmetic operations
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 2: Identifying and Fixing Unintended Latch Inference
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 2: Identifying and Fixing Unintended Latch Inference</p>
 
 The following VHDL code is intended to implement a combinational address decoder for a memory-mapped I/O system. Identify every inferred latch, explain why each occurs, and provide the corrected code.
 
@@ -116,7 +131,11 @@ begin
 end process;
 ```
 
-**Answer:** **Latches inferred (5 total):**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**Latches inferred (5 total):**
 
 | Signal | Latch in branch | Reason |
 |--------|----------------|--------|
@@ -161,9 +180,16 @@ end process;
 
 In this corrected version, `reg0`, `reg1`, `reg2`, and `status` are proper flip-flops (inferred from `rising_edge(clk)`). Signals not assigned on a given clock edge simply retain their value, which is correct behavior for a register -- not a latch.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 3: Moore FSM in VHDL with State Encoding
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 3: Moore FSM in VHDL with State Encoding</p>
 
 Design a Moore FSM in VHDL for a vending machine controller with these specifications:
 
@@ -175,7 +201,11 @@ Design a Moore FSM in VHDL for a vending machine controller with these specifica
 
 Use explicit state encoding with `constant` declarations (not the default enumerated type encoding). Use 3-bit one-hot-like encoding.
 
-**Answer:** **States and encoding:**
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+**States and encoding:**
 
 | State | Meaning | Encoding (2 downto 0) |
 |-------|---------|----------------------|
@@ -266,9 +296,16 @@ end architecture behavioral;
 
 The explicit encoding using `constant` declarations forces the synthesizer to use the specified bit patterns instead of choosing its own encoding. The `next_state <= state` default at the top of the combinational process prevents latches.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 4: Structural Modeling with Component Instantiation
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 4: Structural Modeling with Component Instantiation</p>
 
 Write a structural VHDL architecture for a 4-bit carry-lookahead adder (CLA). Use component instantiation for the partial full adder (PFA) cells and the carry-lookahead logic (CLL) block. Show all generate ($G_i$) and propagate ($P_i$) signals and the carry equations.
 
@@ -281,7 +318,11 @@ The carry-lookahead equations are:
 - $C_3 = G_2 + P_2 \cdot G_1 + P_2 \cdot P_1 \cdot G_0 + P_2 \cdot P_1 \cdot P_0 \cdot C_0$
 - $C_4 = G_3 + P_3 \cdot G_2 + P_3 \cdot P_2 \cdot G_1 + P_3 \cdot P_2 \cdot P_1 \cdot G_0 + P_3 \cdot P_2 \cdot P_1 \cdot P_0 \cdot C_0$
 
-**Answer:** ```vhdl
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+```vhdl
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -404,9 +445,16 @@ B(3..0) ──┼──┼──┼──┼──┐
 
 The CLA computes all carries in parallel (2 gate delays for carry) versus the ripple adder's $2n$ gate delays. The structural style explicitly shows the component hierarchy and interconnections.
 
+</div>
+</details>
+
+</div>
+
 ---
 
-#### Challenge 5: Testbench with Self-Checking Assertions
+<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 5: Testbench with Self-Checking Assertions</p>
 
 Write a self-checking VHDL testbench for a 4-bit binary counter (counts 0 to 15 and wraps). The testbench should:
 
@@ -416,7 +464,11 @@ Write a self-checking VHDL testbench for a 4-bit binary counter (counts 0 to 15 
 - Report pass/fail status
 - Stop simulation after the test completes
 
-**Answer:** ```vhdl
+<details style="margin-top: 1rem;">
+<summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
+<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
+
+```vhdl
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -536,4 +588,8 @@ end architecture sim;
 - **Non-synthesizable constructs used:** `wait for`, `wait until`, `assert...report`, `severity`, `integer'image()` -- all are valid for testbenches
 
 </div>
+</details>
 
+</div>
+
+</div>
