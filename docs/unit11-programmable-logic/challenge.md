@@ -200,115 +200,115 @@ Note: The PAL16L8 has active-low outputs (output is inverted). The designer must
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);" markdown>
 
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 4: FPGA LUT Cascade for Functions Exceeding Single LUT Capacity</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Challenge 4: CPLD Macrocell Allocation and Product Term Borrowing</p>
 
-<p style="color: #333; line-height: 1.75;">An FPGA has 4-input LUTs (LUT-4). A design requires implementing the following 7-input function:</p>
+A CPLD has 4 function blocks, each containing 8 macrocells. Each macrocell has a base allocation of 5 product terms, and can borrow up to 5 additional product terms from neighboring macrocells within the same function block (at the cost of disabling those neighbors).
 
-<span class="arithmatex">\[H(A,B,C,D,E,F,G) = ABCD + EFGA + \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}\]</span>
+A design requires implementing the following 6 outputs:
 
-<p style="color: #333; line-height: 1.75;">Decompose this function using Shannon expansion to map it onto LUT-4 resources. Determine:</p>
+| Output | Function | Product Terms Required |
+|--------|----------|----------------------|
+| $F_1$ | $\sum m(0,1,2,3,4,5,6,7)$ | 1 (simplifies to $\overline{A}$) |
+| $F_2$ | $\sum m(1,3,5,7,8,10,12,14)$ | 4 |
+| $F_3$ | $\sum m(0,2,5,7,8,9,10,11,13,15)$ | 6 |
+| $F_4$ | $\sum m(1,2,3,4,6,7,9,11,12,13,14)$ | 8 |
+| $F_5$ | $\sum m(0,1,3,5,6,7,8,10,11,12,14,15)$ | 9 |
+| $F_6$ | $\sum m(2,3,4,5,6,7,8,9,10,11,12,13)$ | 3 (simplifies to $B \oplus C$... requires 3 SOP terms) |
 
-(a) The minimum number of LUT-4s required.
-(b) The number of logic levels (LUT depth).
-(c) The LUT contents for each LUT in the decomposition.
+All functions use 4 inputs ($A$, $B$, $C$, $D$).
+
+Determine:
+
+(a) Which outputs fit in a single macrocell without borrowing?
+(b) Which outputs require product term borrowing, and how many extra terms must be borrowed?
+(c) Can all 6 outputs fit in a single function block (8 macrocells)? Show the macrocell allocation map.
+(d) What is the minimum number of function blocks required?
 
 <details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 
-**(a) & (b) Decomposition strategy:**
+**(a) Outputs fitting in a single macrocell (≤ 5 product terms):**
 
-The function has 7 inputs but each LUT handles at most 4. Key observation: each product term shares variable $A$, so we can absorb $A$ into the first-level LUTs to minimize depth.
+| Output | Product Terms | Fits without borrowing? |
+|--------|:------------:|:-----------------------:|
+| $F_1$ | 1 | **Yes** |
+| $F_2$ | 4 | **Yes** |
+| $F_3$ | 6 | No (needs 1 extra) |
+| $F_4$ | 8 | No (needs 3 extra) |
+| $F_5$ | 9 | No (needs 4 extra) |
+| $F_6$ | 3 | **Yes** |
 
-**Optimal decomposition (5 LUTs, 2 levels):**
+**$F_1$, $F_2$, and $F_6$ fit in a single macrocell** without borrowing.
 
-| LUT | Function | Inputs | Level |
-|-----|----------|--------|-------|
-| LUT 1 | $P = ABCD$ | A, B, C, D | 1 |
-| LUT 2 | $Q = AEFG$ | A, E, F, G | 1 |
-| LUT 3 | $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ | A, B, C, D | 1 |
-| LUT 4 | $S = \overline{E}\,\overline{F}\,\overline{G}$ | E, F, G, — | 1 |
-| LUT 5 | $H = P + Q + R \cdot S$ | P, Q, R, S | 2 |
+**(b) Product term borrowing requirements:**
 
-**(a) Minimum number of LUT-4s: 5**
+| Output | Needed | Base | Borrowed | Donor macrocells disabled |
+|--------|:------:|:----:|:--------:|:-------------------------:|
+| $F_3$ | 6 | 5 | 1 | 1 macrocell (donates up to 5 terms) |
+| $F_4$ | 8 | 5 | 3 | 1 macrocell (donates 3 of its 5 terms) |
+| $F_5$ | 9 | 5 | 4 | 1 macrocell (donates 4 of its 5 terms) |
 
-**(b) Logic levels (LUT depth): 2**
+Total borrowed: 1 + 3 + 4 = **8 product terms** from **3 donor macrocells**.
 
-**(c) LUT contents:**
+**(c) Single function block allocation (8 macrocells):**
 
-**LUT 1** — $P = ABCD$ (4 inputs: A, B, C, D):
+| Macrocell | Assignment | Product Terms Used |
+|:---------:|------------|:------------------:|
+| MC0 | $F_1$ (output) | 1 of 5 |
+| MC1 | $F_2$ (output) | 4 of 5 |
+| MC2 | $F_6$ (output) | 3 of 5 |
+| MC3 | $F_3$ (output) | 5 base + 1 borrowed = 6 |
+| MC4 | *Donor for $F_3$* | Lends 1 term → disabled as output |
+| MC5 | $F_4$ (output) | 5 base + 3 borrowed = 8 |
+| MC6 | *Donor for $F_4$* | Lends 3 terms → disabled as output |
+| MC7 | $F_5$ (output) — **PROBLEM** | Needs 5 base + 4 borrowed = 9, but no remaining macrocell to borrow from |
 
-| ABCD | P |
-|------|---|
-| 0000–1110 | 0 |
-| 1111 | 1 |
+**No — all 6 outputs cannot fit in a single function block.** $F_5$ requires borrowing from a donor, but all 8 macrocells are already used (6 outputs + 2 donors). There is no macrocell left to donate to $F_5$.
 
-Output = 1 only when all inputs are 1. (1 of 16 entries is 1)
+**(d) Minimum number of function blocks: 1 function block is sufficient with re-arrangement.**
 
-**LUT 2** — $Q = AEFG$ (4 inputs: A, E, F, G):
+Re-allocating: move $F_5$ (the most demanding output) to get its donor first:
 
-| AEFG | Q |
-|------|---|
-| 0000–1110 | 0 |
-| 1111 | 1 |
+| Macrocell | Assignment | Product Terms Used |
+|:---------:|------------|:------------------:|
+| MC0 | $F_1$ (output) | 1 of 5 |
+| MC1 | $F_2$ (output) | 4 of 5 |
+| MC2 | $F_6$ (output) | 3 of 5 |
+| MC3 | $F_5$ (output) | 5 base + 4 borrowed = 9 |
+| MC4 | *Donor for $F_5$* | Lends 4 terms → disabled |
+| MC5 | $F_4$ (output) | 5 base + 3 borrowed = 8 |
+| MC6 | *Donor for $F_4$* | Lends 3 terms → disabled |
+| MC7 | $F_3$ (output) | 5 base + 1 borrowed... **no donor left** |
 
-Output = 1 only when $A = E = F = G = 1$. (1 of 16 entries is 1)
+Still fails. The fundamental issue: 6 outputs + 3 donors = **9 macrocells needed**, but only 8 are available per function block.
 
-**LUT 3** — $R = \overline{A}\,\overline{B}\,\overline{C}\,\overline{D}$ (4 inputs: A, B, C, D):
+**Minimum: 2 function blocks.**
 
-| ABCD | R |
-|------|---|
-| 0000 | 1 |
-| 0001–1111 | 0 |
+Optimal allocation across 2 function blocks:
 
-Output = 1 only when all inputs are 0. (1 of 16 entries is 1)
+**Function Block 1** (5 macrocells used):
 
-**LUT 4** — $S = \overline{E}\,\overline{F}\,\overline{G}$ (3 inputs: E, F, G, unused):
+| MC | Assignment | Terms |
+|:--:|-----------|:-----:|
+| MC0 | $F_5$ (output) | 9 (5 + 4 borrowed) |
+| MC1 | *Donor for $F_5$* | Lends 4 |
+| MC2 | $F_4$ (output) | 8 (5 + 3 borrowed) |
+| MC3 | *Donor for $F_4$* | Lends 3 |
+| MC4 | $F_3$ (output) | 6 (5 + 1 borrowed) |
+| MC5 | *Donor for $F_3$* | Lends 1 |
+| MC6–7 | Unused | — |
 
-| EFG | S |
-|-----|---|
-| 000 | 1 |
-| 001–111 | 0 |
+**Function Block 2** (3 macrocells used):
 
-Output = 1 only when $E = F = G = 0$. (1 of 8 entries is 1; 4th input unused/tied low)
+| MC | Assignment | Terms |
+|:--:|-----------|:-----:|
+| MC0 | $F_1$ (output) | 1 |
+| MC1 | $F_2$ (output) | 4 |
+| MC2 | $F_6$ (output) | 3 |
+| MC3–7 | Unused (available for future expansion) | — |
 
-**LUT 5** — $H = P + Q + R \cdot S$ (4 inputs: P, Q, R, S):
-
-| P | Q | R | S | H |
-|---|---|---|---|---|
-| 0 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 0 | 1 | 0 |
-| 0 | 0 | 1 | 0 | 0 |
-| 0 | 0 | 1 | 1 | 1 |
-| 0 | 1 | X | X | 1 |
-| 1 | X | X | X | 1 |
-
-$H = 1$ when $P = 1$ (i.e., $ABCD$), or $Q = 1$ (i.e., $AEFG$), or both $R = 1$ and $S = 1$ (i.e., $\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\,\overline{E}\,\overline{F}\,\overline{G}$). Of 16 truth table rows, 11 produce output 1.
-
-**Circuit diagram:**
-
-```
-A ──┬──→ [LUT 1: ABCD] ──→ P ──→ ┐
-B ──┼──→             │             │
-C ──┼──→             │             │
-D ──┘                              │
-                                   ├──→ [LUT 5: P+Q+RS] ──→ H
-A ──┬──→ [LUT 2: AEFG] ──→ Q ──→ ┤
-E ──┼──→             │             │
-F ──┼──→             │             │
-G ──┘                              │
-                                   │
-A ──┬──→ [LUT 3: A̅B̅C̅D̅] ──→ R ──→ ┤
-B ──┼──→             │             │
-C ──┼──→             │             │
-D ──┘                              │
-                                   │
-E ──┬──→ [LUT 4: E̅F̅G̅] ──→ S ──→ ┘
-F ──┼──→           │
-G ──┘              │
-```
-
-**Note:** LUTs 1 and 3 share inputs A, B, C, D — an FPGA router can exploit this locality. Variable $A$ appears in three first-level LUTs, requiring fan-out of 3 in the routing fabric.
+**Total: 2 function blocks, 9 macrocells** (6 outputs + 3 donors). The CPLD needs at least a 16-macrocell device (2 function blocks × 8 macrocells).
 
 </div>
 </details>
