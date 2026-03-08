@@ -24,12 +24,7 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 <details style="margin-top: 1rem;" markdown>
 <summary style="color: #5A3EED; font-weight: 700; cursor: pointer;">Show Answer</summary>
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Prime implicants (after combining with don't cares):</p>
-
-- <span class="arithmatex">\(\overline{B}\,\overline{C}\)</span> (covers 0, 1, 8, 9; with d: 3, 11)
-- <span class="arithmatex">\(\overline{A}\,\overline{C}\)</span> (covers 0, 1, 4, 5)... recalculate:
-
-<p style="color: #333; line-height: 1.75;">Minterms + don't cares: {0, 1, 2, 3, 5, 6, 7, 8, 9, 11, 14, 15}</p>
+<p style="color: #2E7D32; font-weight: 700; margin-top: 0;">Minterms + don't cares: {0, 1, 2, 3, 5, 6, 7, 8, 9, 11, 14, 15}</p>
 
 <p style="color: #333; line-height: 1.75;">Group 0 (0 ones): 0000</p>
 
@@ -41,13 +36,7 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 
 <p style="color: #333; line-height: 1.75;">Group 4 (4 ones): 1111</p>
 
-<p style="color: #333; line-height: 1.75;">After all combinations:</p>
-
-<p style="color: #2E7D32; font-weight: 700;">Minimum SOP: <span class="arithmatex">\(F = \overline{B}\,\overline{C} + \overline{A}\,D + \overline{A}\,B\,C + B\,C\,D\)</span></p>
-
-<p style="color: #333; line-height: 1.75;">Simplified: <span class="arithmatex">\(F = \overline{B}\,\overline{C} + \overline{A}\,\overline{B}\,D + \overline{A}\,B + BCD\)</span></p>
-
-<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Final minimum SOP: <span class="arithmatex">\(F = \overline{B}\,\overline{C} + \overline{A}\,D + \overline{A}\,B\,C + BCD\)</span></p>
+<p style="color: #2E7D32; font-weight: 700; margin-bottom: 0;">Minimum SOP: <span class="arithmatex">\(F = \overline{B}\,\overline{C} + \overline{A}\,D + \overline{A}\,B\,C + BCD\)</span></p>
 </div>
 </details>
 
@@ -72,15 +61,10 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 
 | PI | Minterms Covered | Expression |
 |---|---|---|
-| PI1 | 0, 4, 8 | <span class="arithmatex">\(\overline{B}\,\overline{C}\,\overline{D}\)</span> ... no, check adjacency |
-
-<p style="color: #333; line-height: 1.75;">Recompute carefully:</p>
-
-- <span class="arithmatex">\(\overline{A}\,B\)</span> &rarr; covers 4, 5, 6, 7
-- <span class="arithmatex">\(A\,B\,C\)</span> &rarr; covers 14, 15
-- <span class="arithmatex">\(A\,\overline{B}\,\overline{C}\)</span> &rarr; covers 8, 9
-- <span class="arithmatex">\(\overline{B}\,\overline{C}\,\overline{D}\)</span> &rarr; covers 0, 8
-- <span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{C}\,\overline{D}\)</span> &rarr; covered by above, not prime
+| PI1 | 4, 5, 6, 7 | <span class="arithmatex">\(\overline{A}\,B\)</span> |
+| PI2 | 14, 15 | <span class="arithmatex">\(A\,B\,C\)</span> |
+| PI3 | 8, 9 | <span class="arithmatex">\(A\,\overline{B}\,\overline{C}\)</span> |
+| PI4 | 0, 8 | <span class="arithmatex">\(\overline{B}\,\overline{C}\,\overline{D}\)</span> |
 
 <p style="color: #2E7D32; font-weight: 700;">Prime implicants: <span class="arithmatex">\(\overline{A}\,B\)</span>; <span class="arithmatex">\(A\,B\,C\)</span>; <span class="arithmatex">\(A\,\overline{B}\,\overline{C}\)</span>; <span class="arithmatex">\(\overline{B}\,\overline{C}\,\overline{D}\)</span></p>
 
@@ -116,14 +100,12 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 - <span class="arithmatex">\(\overline{X}\,\overline{Y}\,\overline{Z}\)</span> (covers 0, 8)
 - <span class="arithmatex">\(\overline{W}\,\overline{X}\,\overline{Y}\)</span> (covers 0, 1)
 - <span class="arithmatex">\(\overline{W}\,X\,Z\)</span> (covers 5, 7)
-- <span class="arithmatex">\(\overline{W}\,Y\,Z\)</span> (covers 5, 7)... wait, 5 = 0101, 7 = 0111
 - <span class="arithmatex">\(W\,\overline{X}\,\overline{Z}\)</span> (covers 8, 10)
 - <span class="arithmatex">\(W\,X\,Y\)</span> (covers 14, 15)
 - <span class="arithmatex">\(X\,Y\,\overline{Z}\)</span> (covers 10, 14)
 - <span class="arithmatex">\(\overline{W}\,\overline{Y}\,Z\)</span> (covers 1, 5)
-- <span class="arithmatex">\(\overline{W}\,X\,Y\)</span> (covers 7)... not prime if covered
 
-<p style="color: #333; line-height: 1.75;">After constructing the PI chart, essential PIs are: <span class="arithmatex">\(W\,X\,Y\)</span> (only cover for 15), <span class="arithmatex">\(\overline{W}\,\overline{X}\,\overline{Y}\)</span> (only cover for 1)... check each minterm.</p>
+<p style="color: #333; line-height: 1.75;">After constructing the PI chart, essential PIs are: <span class="arithmatex">\(W\,X\,Y\)</span> (only cover for 15), <span class="arithmatex">\(\overline{W}\,X\,Z\)</span> (only cover for 7).</p>
 
 <p style="color: #2E7D32; font-weight: 700;">Minimum SOP: <span class="arithmatex">\(F = \overline{X}\,\overline{Y}\,\overline{Z} + \overline{W}\,X\,Z + W\,X\,Y + W\,\overline{X}\,\overline{Z}\)</span></p>
 
@@ -148,30 +130,16 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 <div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin-top: 10px;" markdown>
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0;">By K-map and QM (both methods):</p>
 
-<p style="color: #333; line-height: 1.75;">Prime implicants: <span class="arithmatex">\(\overline{B}\,D\)</span>, <span class="arithmatex">\(B\,\overline{C}\,\overline{D}\)</span>, <span class="arithmatex">\(A\,C\,\overline{D}\)</span>... verify:</p>
+<p style="color: #333; line-height: 1.75;">Prime implicants (by QM and K-map):</p>
 
-- Minterm 1 (0001): <span class="arithmatex">\(\overline{A}\,\overline{B}\,\overline{C}\,D\)</span>
-- Minterm 3 (0011): <span class="arithmatex">\(\overline{A}\,\overline{B}\,C\,D\)</span>
-- Minterm 4 (0100): <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\,\overline{D}\)</span>
-- Minterm 5 (0101): <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\,D\)</span>
-- Minterm 9 (1001): <span class="arithmatex">\(A\,\overline{B}\,\overline{C}\,D\)</span>
-- Minterm 11 (1011): <span class="arithmatex">\(A\,\overline{B}\,C\,D\)</span>
-- Minterm 12 (1100): <span class="arithmatex">\(A\,B\,\overline{C}\,\overline{D}\)</span>
-- Minterm 14 (1110): <span class="arithmatex">\(A\,B\,C\,\overline{D}\)</span>
+- <span class="arithmatex">\(\overline{B}\,D\)</span> (covers 1, 3, 9, 11)
+- <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\)</span> (covers 4, 5)
+- <span class="arithmatex">\(B\,\overline{C}\,\overline{D}\)</span> (covers 4, 12)
+- <span class="arithmatex">\(A\,B\,C\,\overline{D}\)</span> (covers 14)
 
-<p style="color: #333; line-height: 1.75;">Groups: {1,3,9,11} = <span class="arithmatex">\(\overline{B}\,D\)</span>; {4,5,12} needs check &rarr; {4,12} = <span class="arithmatex">\(B\,\overline{C}\,\overline{D}\)</span>; {5} covered by <span class="arithmatex">\(\overline{A}\,\overline{C}\,D\)</span> with {1,5,9,13}... 13 not in set.</p>
+<p style="color: #2E7D32; font-weight: 700;">Minimum SOP: <span class="arithmatex">\(F = \overline{B}\,D + \overline{A}\,B\,\overline{C} + B\,\overline{C}\,\overline{D} + A\,B\,C\,\overline{D}\)</span></p>
 
-<p style="color: #2E7D32; font-weight: 700;">Minimum SOP: <span class="arithmatex">\(F = \overline{B}\,D + B\,\overline{C}\,\overline{D} + A\,B\,C\,\overline{D}\)</span></p>
-
-<p style="color: #333; line-height: 1.75;">Verify: covers {1,3,9,11} + {4,12} + {14} — missing minterm 5.</p>
-
-<p style="color: #333; line-height: 1.75;"><span class="arithmatex">\(5 = 0101\)</span>: <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\,D\)</span>. Add PI <span class="arithmatex">\(\overline{A}\,\overline{C}\,D\)</span> (covers 1, 5): but 1 already covered.</p>
-
-<p style="color: #2E7D32; font-weight: 700;">Correct minimum SOP: <span class="arithmatex">\(F = \overline{B}\,D + B\,\overline{C}\,\overline{D} + A\,B\,C\,\overline{D} + \overline{A}\,B\,\overline{C}\,D\)</span></p>
-
-<p style="color: #333; line-height: 1.75;">Simplify: <span class="arithmatex">\(\overline{B}\,D\)</span> covers 1,3,9,11. <span class="arithmatex">\(B\,\overline{C}\,\overline{D}\)</span> covers 4,12. <span class="arithmatex">\(A\,B\,C\,\overline{D}\)</span> covers 14. Minterm 5 = <span class="arithmatex">\(B\,\overline{C}\,D\)</span>... combine 4,5: <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\)</span>.</p>
-
-<p style="color: #2E7D32; font-weight: 700;">Final minimum SOP: <span class="arithmatex">\(F = \overline{B}\,D + \overline{A}\,B\,\overline{C} + B\,\overline{C}\,\overline{D} + A\,B\,C\,\overline{D}\)</span></p>
+<p style="color: #333; line-height: 1.75;">Coverage: <span class="arithmatex">\(\overline{B}\,D\)</span> covers {1,3,9,11}; <span class="arithmatex">\(\overline{A}\,B\,\overline{C}\)</span> covers {4,5}; <span class="arithmatex">\(B\,\overline{C}\,\overline{D}\)</span> covers {12}; <span class="arithmatex">\(A\,B\,C\,\overline{D}\)</span> covers {14}.</p>
 
 <p style="color: #333; line-height: 1.75; margin-bottom: 0;">Both K-map and QM confirm this result.</p>
 </div>
@@ -197,12 +165,6 @@ $$F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 14) + \sum d(3, 11, 15)$$
 - <span class="arithmatex">\(P_3\)</span>: <span class="arithmatex">\(\overline{B}\,C\,D\)</span> (covers 3, 11)
 - <span class="arithmatex">\(P_4\)</span>: <span class="arithmatex">\(A\,\overline{B}\,D\)</span> (covers 9, 11)
 - <span class="arithmatex">\(P_5\)</span>: <span class="arithmatex">\(A\,\overline{C}\,D\)</span> (covers 9, 13)
-- <span class="arithmatex">\(P_6\)</span>: <span class="arithmatex">\(A\,B\,D\)</span> (covers 11, 13)... wait 11 = 1011 (<span class="arithmatex">\(A\overline{B}CD\)</span>), so <span class="arithmatex">\(A\,B\,D\)</span> doesn't cover 11.
-- <span class="arithmatex">\(P_6\)</span>: <span class="arithmatex">\(A\,\overline{B}\,C\)</span> (covers 9,11)... 9=1001 doesn't have C.
-
-<p style="color: #333; line-height: 1.75;">Recompute: <span class="arithmatex">\(P_4\)</span>: <span class="arithmatex">\(A\,\overline{B}\,\overline{C}\,D\)</span> (covers 9), <span class="arithmatex">\(P_5\)</span>: <span class="arithmatex">\(A\,\overline{B}\,C\,D\)</span> (covers 11).</p>
-
-<p style="color: #333; line-height: 1.75;">After systematic QM, prime implicants are: <span class="arithmatex">\(\overline{A}\,\overline{B}\,C\)</span> {2,3}, <span class="arithmatex">\(\overline{A}\,CD\)</span> {3,7}, <span class="arithmatex">\(A\,\overline{C}\,D\)</span> {9,13}, <span class="arithmatex">\(A\,\overline{B}\,D\)</span> {9,11}, <span class="arithmatex">\(\overline{B}\,C\,D\)</span> {3,11}, <span class="arithmatex">\(A\,B\,\overline{C}\,D\)</span> {13}.</p>
 
 <p style="color: #2E7D32; font-weight: 700;">Petrick's method: Cover each minterm:</p>
 

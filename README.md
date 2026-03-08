@@ -36,17 +36,19 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 ## Site Metrics
 
 | Metric | Value | Description |
-|--------|-------|-------------|
+|--------|------:|-------------|
 | Units | 13 | Complete course units |
 | Concepts | 410 | Concepts in [learning graph](https://Nati-123.github.io/intelligent-textbook-ee2301/learning-graph/concept-list/) |
 | Glossary Terms | 398 | [ISO 11179 compliant definitions](https://Nati-123.github.io/intelligent-textbook-ee2301/glossary/) |
-| Unit Glossaries | 13 | Every unit has a dedicated glossary (552 total entries) |
+| Unit Glossaries | 13 | Every unit has a dedicated glossary |
 | FAQs | 76 | [Frequently asked questions](https://Nati-123.github.io/intelligent-textbook-ee2301/faq/) |
+| Practice Problems | 269 | Problems with detailed solutions |
+| Challenge Problems | 84 | Advanced problems with answers |
 | Quiz Questions | 130 | Multiple-choice assessments (10 per unit) |
-| Equations | 2,821 | LaTeX/MathJax expressions |
+| Equations | 4,394 | LaTeX/MathJax expressions |
 | MicroSims | 110 | [Interactive p5.js simulations](https://Nati-123.github.io/intelligent-textbook-ee2301/sims/) |
-| Total Words | 468,212 | Across all markdown files |
-| Equivalent Pages | 1,936 | Estimated pages (250 words/page + visuals) |
+| Total Words | 203,592 | Content words (excluding code, HTML, URLs) |
+| Equivalent Pages | 877 | Estimated pages (250 words/page + visuals) |
 
 ## Course Units
 

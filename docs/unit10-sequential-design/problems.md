@@ -403,37 +403,15 @@ D₁ = Q₂'Q₁Q₀' + Q₂'Q₁'Q₀ = Q₂'(Q₁⊕Q₀)
 | 0 | 1 | 0 | 0 | 1 |
 | 1 | 1 | 0 | X | X |
 
-D₀ = Q₀'Q₂' + Q₁'Q₀' = Q₀'(Q₂' + Q₁') = Q₀'(Q₂·Q₁)'
+From the K-map (with don't cares for states 6, 7):
 
-Actually simpler: D₀ = Q₁'Q₀' + Q₂'Q₁Q₀'
-
-Let me recalculate: D₀ = Q₀' (only when not in state 5)
-
-For state 5 (101): D₀ = 0 (to go to 000)
-For others: D₀ = Q₀'
-
-D₀ = Q₀' · (Q₂Q₀)' = Q₀'·Q₂' + Q₀'·Q₀ = Q₀'Q₂'
-
-Wait, that's not right either. Let me be more careful:
-
-D₀ = 1 for states 0,2,4 going to 1,3,5
-D₀ = 0 for states 1,3,5 going to 2,4,0
-
-So D₀ = Q₀'
+D₀ = Q₀'(Q₂' + Q₁') = Q₀' · (Q₂·Q₁)'
 
 **Final equations:**
 
 - D₂ = Q₂'Q₁Q₀
-- D₁ = Q₂'Q₁'Q₀ + Q₂'Q₁Q₀' = Q₂'(Q₁ ⊕ Q₀)
-- D₀ = Q₂'Q₀' + Q₂Q₁'Q₀' = Q₀'(Q₂' + Q₂Q₁') = Q₀'(Q₂' + Q₁')...
-
-Simplest: D₀ = Q₀' when not resetting, 0 when at state 5
-
-**Simpler approach:** Use synchronous reset
-
-- D₀ = Q₀' · RESET' where RESET = Q₂Q₀
-- D₁ = (Q₁ ⊕ Q₀) · RESET'
-- D₂ = (Q₂ ⊕ Q₁Q₀) · RESET'
+- D₁ = Q₂'(Q₁ ⊕ Q₀)
+- D₀ = Q₀'(Q₂' + Q₁')
 
 
 </div>
