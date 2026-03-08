@@ -34,9 +34,7 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - Comprehensive quizzes and practice problems with detailed explanations
   Add Architecture Diagram
   ## System Architecture
-
-## System Architecture
-
+  
 The intelligent textbook platform uses a static-site architecture combined with interactive simulations.
 
 Content Authoring
