@@ -39,10 +39,10 @@ The intelligent textbook platform uses a static-site architecture combined with 
 
 Content Authoring
       │
-      ▼
+      
 Markdown Course Content
       │
-      ▼
+      
 MkDocs Static Site Generator
       │
       ▼
