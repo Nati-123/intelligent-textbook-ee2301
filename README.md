@@ -35,14 +35,16 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
   Add Architecture Diagram
   ## System Architecture
 
+## System Architecture
+
 The intelligent textbook platform uses a static-site architecture combined with interactive simulations.
 
 Content Authoring
       │
-      
+      ▼
 Markdown Course Content
       │
-      
+      ▼
 MkDocs Static Site Generator
       │
       ▼
