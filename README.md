@@ -21,7 +21,7 @@
 
 ## Overview
 
-This is an AI-assisted intelligent interactive textbook for **EE 2301: Introduction to Digital System Design**. Built using MkDocs with the Material theme, this textbook provides modern, accessible learning materials for sophomore and junior-level Electrical and Computer Engineering students.
+TThis project is an interactive textbook for EE 2301: Introduction to Digital System Design. Built using MkDocs Material, the platform provides structured learning materials, interactive simulations, quizzes, and a concept dependency graph designed for electrical engineering students.
 
 The textbook leverages Claude Code to generate structured, consistent, and copyright-safe educational content including:
 
@@ -32,6 +32,31 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
+  Add Architecture Diagram
+  ## System Architecture
+
+The intelligent textbook platform is built using a static site architecture with interactive simulations.
+Content Authoring
+      │
+      ▼
+Markdown Course Content
+      │
+      ▼
+MkDocs Static Site Generator
+      │
+      ▼
+Material for MkDocs Theme
+      │
+      ▼
+GitHub Pages Deployment
+      │
+      ▼
+Interactive Textbook Website
+      │
+      ├── MicroSims (p5.js simulations)
+      ├── Math Rendering (MathJax)
+      ├── Quizzes and Practice Problems
+      └── Learning Graph Visualization
 
 ## Site Metrics
 
@@ -91,6 +116,14 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 | 13 | System Integration | Top-down design, datapath-controller, pipelining, UART |
 
 ## Interactive MicroSims
+
+### Example Simulation
+
+The following example shows one of the interactive MicroSim tools used in the textbook.
+
+<p align="center">
+<img width="900" alt="MicroSim Example" src="https://github.com/user-attachments/assets/97e06012-d5b7-455a-b603-a1c3d0d611cf">
+</p>
 
 The textbook includes **110 interactive MicroSims** organized by unit:
 
