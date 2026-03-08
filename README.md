@@ -35,7 +35,8 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
   Add Architecture Diagram
   ## System Architecture
 
-The intelligent textbook platform is built using a static site architecture with interactive simulations.
+The intelligent textbook platform uses a static-site architecture combined with interactive simulations.
+
 Content Authoring
       │
       ▼
