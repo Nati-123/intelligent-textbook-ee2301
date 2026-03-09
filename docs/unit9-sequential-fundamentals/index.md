@@ -177,6 +177,39 @@ When $S = R = 1$, both NOR gate outputs are forced to 0, so $Q = Q' = 0$. This v
 
 The constraint $S \cdot R = 0$ (S and R should never be simultaneously 1) is a design rule that must be enforced when using SR latches.
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: SR Latch State Diagram</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The following state diagram captures the three operating regions of the NOR-based SR latch and the transitions between them. The **Hold** condition (S=R=0) preserves whichever stable state the latch currently occupies, while S=1 or R=1 forces a transition. The **Invalid** condition (S=R=1) is shown as a distinct state to emphasize that it must be avoided.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "Q = 0\n(Reset)" as Reset
+    state "Q = 1\n(Set)" as Set
+    state "Q = Q' = 0\n(Invalid)" as Invalid
+
+    Reset --> Reset : S=0, R=0\n(Hold)
+    Reset --> Set : S=1, R=0\n(Set)
+    Reset --> Invalid : S=1, R=1\n(Forbidden)
+
+    Set --> Set : S=0, R=0\n(Hold)
+    Set --> Reset : S=0, R=1\n(Reset)
+    Set --> Invalid : S=1, R=1\n(Forbidden)
+
+    Invalid --> Reset : S=0, R=1
+    Invalid --> Set : S=1, R=0
+    Invalid --> Invalid : S=1, R=1
+
+    note right of Invalid
+        Avoid this state!
+        S·R must equal 0
+    end note
+```
+
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">MicroSim: SR Latch Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -339,6 +372,38 @@ The distinction between **level-sensitive** and **edge-triggered** devices is fu
 
 Edge-triggered devices are strongly preferred in synchronous design because they provide a single, well-defined sampling instant per clock cycle, eliminating race conditions.
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Latch vs Flip-Flop Behavior Comparison</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+This flowchart contrasts the two fundamental behaviors. A **latch** is transparent for the entire duration of the active clock level, allowing multiple output changes per cycle. A **flip-flop** samples once at the clock edge, producing exactly one output update per cycle.
+
+```mermaid
+flowchart TD
+    CLK["Clock Signal Arrives"]
+
+    CLK --> LATCH_PATH["<b>Latch (Level-Sensitive)</b>"]
+    CLK --> FF_PATH["<b>Flip-Flop (Edge-Sensitive)</b>"]
+
+    LATCH_PATH --> L1["Clock at active level?"]
+    L1 -->|Yes| L2["Q follows D continuously\n(transparent)"]
+    L2 --> L3["D changes propagate\nimmediately to Q"]
+    L1 -->|No| L4["Q holds previous value\n(opaque)"]
+
+    FF_PATH --> F1["Clock edge detected?"]
+    F1 -->|Yes| F2["Sample D at this instant"]
+    F2 --> F3["Update Q once"]
+    F3 --> F4["Hold Q until next edge"]
+    F1 -->|No| F5["Ignore all D changes\nQ holds value"]
+
+    style LATCH_PATH fill:#FFE4B5,stroke:#D4A017,color:#333
+    style FF_PATH fill:#B5D8FF,stroke:#4A86C8,color:#333
+    style L3 fill:#FFF3CD,stroke:#D4A017
+    style F4 fill:#CCE5FF,stroke:#4A86C8
+```
+
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.7 Clock Signals and Timing</h2>
@@ -443,6 +508,27 @@ where:
 - $D$ is the data input value at the moment of the clock edge
 
 This equation is evaluated only at the active clock edge. At all other times, $Q$ retains its previous value.
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: D Flip-Flop Timing Concept</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The D flip-flop operates in a strict four-phase cycle that repeats every clock period. This flowchart shows the sequence of events that occurs at each rising clock edge.
+
+```mermaid
+flowchart LR
+    A["<b>Rising Clock Edge</b>\n⏱ CLK goes 0→1"] --> B["<b>Sample D</b>\nCapture D input value\nat this instant"]
+    B --> C["<b>Update Q</b>\nQ takes sampled value\nafter t_cq delay"]
+    C --> D["<b>Hold Q</b>\nQ remains stable\nD changes are ignored"]
+    D --> A
+
+    style A fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style B fill:#D5F5E3,stroke:#27AE60,color:#333
+    style C fill:#D6EAF8,stroke:#2980B9,color:#333
+    style D fill:#FDEBD0,stroke:#E67E22,color:#333
+```
+
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">MicroSim: D Flip-Flop Simulator</h4>
 

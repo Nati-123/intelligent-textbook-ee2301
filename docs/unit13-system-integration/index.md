@@ -129,7 +129,34 @@ The top-down approach decomposes a complex problem into progressively smaller, m
 
 **Step 6: Implementation.** Synthesize, place, route, and program onto the target FPGA. Verify in hardware.
 
-<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Top-Down Design Flow</h4>
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Top-Down Design Methodology</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+```mermaid
+flowchart TD
+    A["<b>System Specification</b><br/><i>Define inputs, outputs,<br/>timing, constraints</i>"]
+    B["<b>Partition into Subsystems</b><br/><i>Identify datapath &amp; controller,<br/>define interfaces</i>"]
+    C["<b>Design Each Module</b><br/><i>RTL design in VHDL,<br/>unit-level simulation</i>"]
+    D["<b>Integrate</b><br/><i>Connect subsystems,<br/>structural VHDL</i>"]
+    E["<b>Verify</b><br/><i>Integration testbench,<br/>timing analysis</i>"]
+    F["<b>Implement</b><br/><i>Synthesize, place &amp; route,<br/>program FPGA</i>"]
+
+    A --> B --> C --> D --> E --> F
+    E -- "<i>Timing violation<br/>or bug found</i>" --> C
+    F -- "<i>Requirements<br/>change</i>" --> A
+
+    style A fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style B fill:#6B52EE,stroke:#5A3EED,color:#fff
+    style C fill:#7B68EE,stroke:#5A3EED,color:#fff
+    style D fill:#8B7CEE,stroke:#5A3EED,color:#fff
+    style E fill:#9B90EE,stroke:#5A3EED,color:#fff
+    style F fill:#ABA4EE,stroke:#5A3EED,color:#fff
+```
+
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 600;">Interactive Diagram: Top-Down Design Flow</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -253,7 +280,38 @@ This separation is powerful because:
 - Changes to the control sequence do not require redesigning the datapath hardware
 - The same datapath can be reused with different control units for different operations
 
-<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Datapath-Controller Architecture</h4>
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Datapath-Controller Architecture</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+```mermaid
+flowchart TD
+    subgraph CTRL["<b>Controller (FSM)</b>"]
+        FSM["State Register +<br/>Next-State Logic<br/><i>Generates: MUX_sel, Reg_load, ALU_op</i>"]
+    end
+
+    subgraph DP["<b>Datapath</b>"]
+        REG["<b>Registers</b><br/><i>R0, R1, ..., Rn</i>"]
+        MUX["<b>MUX</b><br/><i>Data Select</i>"]
+        ALU["<b>ALU</b><br/><i>Add, Sub,<br/>AND, OR</i>"]
+        REG --> MUX --> ALU
+        ALU -- "Result" --> REG
+    end
+
+    FSM -- "<b>Control Signals</b><br/><i>MUX_sel, Reg_load,<br/>ALU_op, Shift_en</i>" --> DP
+    DP -- "<b>Status Signals</b><br/><i>Zero, Carry,<br/>Overflow, Sign</i>" --> FSM
+
+    style FSM fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style CTRL fill:#F0ECFF,stroke:#5A3EED,color:#333
+    style DP fill:#F0ECFF,stroke:#5A3EED,color:#333
+    style REG fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style MUX fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style ALU fill:#EEF4FF,stroke:#A8C8FF,color:#333
+```
+
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 600;">Interactive Diagram: Datapath-Controller Architecture</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -566,6 +624,35 @@ The pipeline achieves **2.36× throughput** at the cost of 2 extra cycles of lat
 
 !!! warning "Pipeline Hazard"
     In the MAC example, Stage 3 reads the accumulator register $R$ that it also writes. If a new multiply feeds the same accumulator, the result from Stage 3 must be forwarded back before the next addition. This **data hazard** requires either **forwarding logic** (adding a bypass MUX) or inserting a **pipeline stall** (bubble) to wait for the write to complete. Hazard resolution adds complexity but is essential for correctness.
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Pipeline Stages</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+```mermaid
+flowchart LR
+    IN["<b>Input</b>"]
+    S1["<b>Stage 1</b><br/><i>Combinational<br/>Logic A</i>"]
+    R1["<b>Reg</b><br/><i>Pipeline<br/>Register</i>"]
+    S2["<b>Stage 2</b><br/><i>Combinational<br/>Logic B</i>"]
+    R2["<b>Reg</b><br/><i>Pipeline<br/>Register</i>"]
+    S3["<b>Stage 3</b><br/><i>Combinational<br/>Logic C</i>"]
+    OUT["<b>Output</b>"]
+
+    IN --> S1 --> R1 --> S2 --> R2 --> S3 --> OUT
+
+    style IN fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style S1 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style R1 fill:#FFD700,stroke:#DAA520,color:#333
+    style S2 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style R2 fill:#FFD700,stroke:#DAA520,color:#333
+    style S3 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style OUT fill:#5A3EED,stroke:#5A3EED,color:#fff
+```
+
+*Without pipelining, the critical path spans all three stages. With pipeline registers (gold), each stage runs independently at a higher clock frequency. Throughput increases at the cost of added latency and register area.*
+
+</div>
 
 ---
 

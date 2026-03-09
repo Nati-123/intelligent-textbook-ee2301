@@ -263,6 +263,49 @@ Notice the duality: NAND implements AND directly (2 gates) and OR with more effo
 
 </div>
 
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: NAND Gate Universality — Building AND, OR, NOT from NAND</h4>
+
+```mermaid
+graph LR
+    subgraph NOT["NOT from NAND"]
+        A1["A"] --> N1["NAND"]
+        A1 --> N1
+        N1 --> O1["A'"]
+    end
+
+    subgraph AND["AND from NAND"]
+        B1["A"] --> N2["NAND"]
+        B2["B"] --> N2
+        N2 --> N3["NAND<br/>(as NOT)"]
+        N3 --> N3
+        N3 --> O2["A · B"]
+    end
+
+    subgraph OR["OR from NAND"]
+        C1["A"] --> N4["NAND<br/>(as NOT)"]
+        C1 --> N4
+        C2["B"] --> N5["NAND<br/>(as NOT)"]
+        C2 --> N5
+        N4 --> N6["NAND"]
+        N5 --> N6
+        N6 --> O3["A + B"]
+    end
+
+    style NOT fill:#EEF4FF,stroke:#5A3EED
+    style AND fill:#EEF4FF,stroke:#5A3EED
+    style OR fill:#EEF4FF,stroke:#5A3EED
+    style N1 fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style N2 fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style N3 fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style N4 fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style N5 fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style N6 fill:#FFF7DD,stroke:#F0D87A,color:#333
+```
+
+</div>
+
 #### Diagram: Universal Gate Implementations
 
 <iframe src="../sims/universal-gate-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
@@ -708,6 +751,34 @@ Add a bubble to the output of the OR gate and to both of its inputs. The OR with
 <p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Bubble Pushing Shortcut</p>
 
 For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply **replace all gates with the target universal gate type**, then add inverters for any remaining unpaired bubbles.
+
+</div>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Bubble Pushing Rules Flowchart</h4>
+
+```mermaid
+graph TD
+    Start["Start: Identify gate<br/>with output bubble"] --> Step1["Move bubble from<br/>output to ALL inputs"]
+    Step1 --> Step2["Change gate type:<br/>AND ↔ OR"]
+    Step2 --> Check{"Check each<br/>bubble on<br/>connecting wires"}
+    Check -- "Bubble meets<br/>another bubble" --> Cancel["Paired bubbles cancel<br/>(no inversion needed)"]
+    Check -- "Bubble has<br/>no partner" --> Inverter["Insert explicit inverter<br/>at that input"]
+    Cancel --> Next{"More gates<br/>to convert?"}
+    Inverter --> Next
+    Next -- Yes --> Start
+    Next -- No --> Done["All gates converted<br/>to target type<br/>(NAND or NOR)"]
+
+    style Start fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style Step1 fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style Step2 fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style Check fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style Cancel fill:#E7F7E7,stroke:#81C784,color:#333
+    style Inverter fill:#FFF0F0,stroke:#E57373,color:#333
+    style Next fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style Done fill:#E7F7E7,stroke:#2E7D32,color:#333
+```
 
 </div>
 

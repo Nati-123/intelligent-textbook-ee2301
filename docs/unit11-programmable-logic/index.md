@@ -449,6 +449,32 @@ Choosing among SPLDs depends on the application:
 !!! note "The GAL Device"
     The **Generic Array Logic (GAL)** device, introduced by Lattice Semiconductor, is an electrically erasable PAL. The GAL16V8 and GAL22V10 became industry standards because they could emulate most PAL devices while being reprogrammable, dramatically reducing development costs.
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: PLD Family Hierarchy</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+```mermaid
+graph TD
+    PL["<b>Programmable Logic</b>"]
+    PL --> SPLD["<b>Simple PLDs (SPLDs)</b><br/><i>Single programmable array chip</i>"]
+    PL --> CPLD["<b>CPLD</b><br/><i>Multiple PLD blocks + interconnect<br/>Predictable timing, non-volatile</i>"]
+    PL --> FPGA["<b>FPGA</b><br/><i>LUT-based CLBs + routing fabric<br/>Massive capacity, SRAM-based</i>"]
+
+    SPLD --> ROM["<b>ROM</b><br/><i>Fixed AND (decoder)<br/>Programmable OR<br/>No minimization needed</i>"]
+    SPLD --> PLA["<b>PLA</b><br/><i>Programmable AND<br/>Programmable OR<br/>Shared product terms</i>"]
+    SPLD --> PAL["<b>PAL</b><br/><i>Programmable AND<br/>Fixed OR<br/>Fastest SPLD</i>"]
+
+    style PL fill:#5A3EED,stroke:#5A3EED,color:#fff,font-size:15px
+    style SPLD fill:#7B68EE,stroke:#5A3EED,color:#fff
+    style CPLD fill:#7B68EE,stroke:#5A3EED,color:#fff
+    style FPGA fill:#7B68EE,stroke:#5A3EED,color:#fff
+    style ROM fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style PLA fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style PAL fill:#EEF4FF,stroke:#A8C8FF,color:#333
+```
+
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.7 Complex PLD (CPLD) Architecture</h2>
@@ -792,6 +818,28 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 9. **Programming:** The bitstream is loaded into the FPGA (and optionally into an external flash for persistent storage).
 
 10. **Hardware Verification:** The configured FPGA is tested with real signals to verify correct operation in the target system.
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: FPGA Design Flow Overview</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+```mermaid
+flowchart LR
+    A["<b>HDL Code</b><br/><i>VHDL / Verilog</i>"] --> B["<b>Synthesis</b><br/><i>Boolean optimization<br/>Netlist generation</i>"]
+    B --> C["<b>Technology<br/>Mapping</b><br/><i>Map to LUTs,<br/>FFs, RAM</i>"]
+    C --> D["<b>Place &amp; Route</b><br/><i>Assign CLB locations<br/>Connect routing</i>"]
+    D --> E["<b>Bitstream</b><br/><i>Binary config<br/>file (.bit)</i>"]
+    E --> F["<b>Configure<br/>FPGA</b><br/><i>Download &amp;<br/>verify</i>"]
+
+    style A fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style B fill:#E8E0FF,stroke:#5A3EED,color:#333
+    style C fill:#D8CCFF,stroke:#5A3EED,color:#333
+    style D fill:#C8B8FF,stroke:#5A3EED,color:#333
+    style E fill:#B8A4FF,stroke:#5A3EED,color:#fff
+    style F fill:#5A3EED,stroke:#5A3EED,color:#fff
+```
+
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: FPGA Design Flow</h4>
 

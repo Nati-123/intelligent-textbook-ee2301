@@ -349,6 +349,44 @@ The data input values follow this logic:
 - If $F = 0$ when $C=0$ and $F = 1$ when $C=1$: connect to $C$
 - If $F = 1$ when $C=0$ and $F = 0$ when $C=1$: connect to $\overline{C}$
 
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: MUX as Universal Function Generator (4:1 MUX for 2-Variable Functions)</h4>
+
+```mermaid
+graph TD
+    F["F(A, B) — any 2-variable function"] --> TT["Truth table determines<br/>d0, d1, d2, d3 values"]
+    TT --> D0["d0 = F(0,0)"]
+    TT --> D1["d1 = F(0,1)"]
+    TT --> D2["d2 = F(1,0)"]
+    TT --> D3["d3 = F(1,1)"]
+
+    D0 --> MUX["4:1 MUX"]
+    D1 --> MUX
+    D2 --> MUX
+    D3 --> MUX
+
+    A["A → S1<br/>(select line 1)"] --> MUX
+    B["B → S0<br/>(select line 0)"] --> MUX
+
+    MUX --> OUT["Output F(A,B)"]
+
+    style F fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style TT fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style D0 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style D1 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style D2 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style D3 fill:#EEF4FF,stroke:#A8C8FF,color:#333
+    style MUX fill:#E7F7E7,stroke:#2E7D32,color:#333,stroke-width:3px
+    style A fill:#F8F6FF,stroke:#5A3EED,color:#333
+    style B fill:#F8F6FF,stroke:#5A3EED,color:#333
+    style OUT fill:#E7F7E7,stroke:#81C784,color:#333
+```
+
+Each data input d0--d3 is set to 0 or 1 from the truth table. Since there are 2^4 = 16 possible assignments, a single 4:1 MUX can implement all 16 functions of two variables.
+
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: MUX Function Implementation Tool</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -647,6 +685,49 @@ $$F_1 = Y_0 + Y_1 + Y_3$$
 $$F_2 = Y_2 + Y_3 + Y_5 + Y_7$$
 
 Note that minterm $m_3$ ($Y_3$) is shared between both functions—its output wire connects to both OR gates.
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Decoder-Based Function Implementation (SOP via Minterm Generation)</h4>
+
+```mermaid
+graph LR
+    A["A"] --> DEC["n-to-2ⁿ<br/>Decoder"]
+    B["B"] --> DEC
+    C["C"] --> DEC
+
+    DEC --> m0["m0"]
+    DEC --> m1["m1"]
+    DEC --> m2["m2"]
+    DEC --> m3["m3"]
+    DEC --> m4["m4"]
+    DEC --> m5["m5"]
+    DEC --> m6["m6"]
+    DEC --> m7["m7"]
+
+    m1 --> OR["OR Gate"]
+    m2 --> OR
+    m6 --> OR
+    m7 --> OR
+
+    OR --> F["F = Σm(1,2,6,7)"]
+
+    style DEC fill:#EEF4FF,stroke:#5A3EED,color:#333,stroke-width:3px
+    style OR fill:#FFF7DD,stroke:#F0D87A,color:#333,stroke-width:2px
+    style F fill:#E7F7E7,stroke:#2E7D32,color:#333
+    style m0 fill:#f9f9f9,stroke:#ccc,color:#999
+    style m1 fill:#E7F7E7,stroke:#81C784,color:#333
+    style m2 fill:#E7F7E7,stroke:#81C784,color:#333
+    style m3 fill:#f9f9f9,stroke:#ccc,color:#999
+    style m4 fill:#f9f9f9,stroke:#ccc,color:#999
+    style m5 fill:#f9f9f9,stroke:#ccc,color:#999
+    style m6 fill:#E7F7E7,stroke:#81C784,color:#333
+    style m7 fill:#E7F7E7,stroke:#81C784,color:#333
+```
+
+The decoder generates all 2^n minterms. Only the minterms present in the SOP expression (highlighted in green) connect to the OR gate to produce the output function. Unused minterms (grayed out) are left unconnected.
+
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Decoder vs. MUX for Function Implementation</h3>
 

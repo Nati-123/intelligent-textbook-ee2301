@@ -377,6 +377,30 @@ During this settling period, the counter outputs pass through intermediate inval
 
 **Synchronous counters** eliminate the ripple problem by connecting all flip-flops to the same clock signal. Every flip-flop transitions simultaneously at each clock edge, and combinational logic determines which flip-flops should toggle.
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Synchronous Counter Design Flow</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+Designing a synchronous counter follows a systematic procedure. Starting from the desired counting sequence, the designer builds a state table, simplifies the flip-flop input equations using K-maps, and finally implements the circuit.
+
+```mermaid
+flowchart TD
+    A["<b>1. Define Counting Sequence</b>\nSpecify the desired states\nand their order"] --> B["<b>2. Construct State Table</b>\nList present state, next state,\nand flip-flop inputs"]
+    B --> C["<b>3. K-map Simplification</b>\nCreate a K-map for each\nflip-flop input (T, D, J, K)"]
+    C --> D["<b>4. Derive Excitation Equations</b>\nExtract minimized Boolean\nexpressions from K-maps"]
+    D --> E["<b>5. Implement Circuit</b>\nConnect flip-flops with\ncombinational logic"]
+    E --> F["<b>6. Verify with Timing Diagram</b>\nConfirm correct counting\nsequence and timing"]
+
+    style A fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style B fill:#D6EAF8,stroke:#2980B9,color:#333
+    style C fill:#D5F5E3,stroke:#27AE60,color:#333
+    style D fill:#FDEBD0,stroke:#E67E22,color:#333
+    style E fill:#FADBD8,stroke:#E74C3C,color:#333
+    style F fill:#FCF3CF,stroke:#F1C40F,color:#333
+```
+
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.8.1 Binary Up Counter Design</h3>
 
 The key design insight is determining *when* each bit should toggle. Observing the binary counting sequence:
@@ -585,6 +609,32 @@ An FSM is formally defined by five elements:
 
 The two FSM models differ only in how outputs are generated.
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: General FSM Structure</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+Every FSM shares the same fundamental architecture: combinational logic computes the next state and outputs, while flip-flops store the current state. The feedback path from the flip-flop outputs back to the combinational logic input is what makes the circuit sequential.
+
+```mermaid
+flowchart LR
+    INPUT["<b>Inputs</b>"] --> CL["<b>Combinational Logic</b>\n(Next-State + Output)"]
+    CL -->|"Next State"| FF["<b>Flip-Flops</b>\n(State Register)"]
+    FF -->|"Current State\n(feedback)"| CL
+    FF -->|"State"| OL["<b>Output Logic</b>"]
+    INPUT -.->|"Mealy only"| OL
+    OL --> OUTPUT["<b>Outputs</b>"]
+    CLK["<b>Clock</b>"] --> FF
+
+    style INPUT fill:#D5F5E3,stroke:#27AE60,color:#333
+    style CL fill:#D6EAF8,stroke:#2980B9,color:#333
+    style FF fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style OL fill:#FDEBD0,stroke:#E67E22,color:#333
+    style OUTPUT fill:#FADBD8,stroke:#E74C3C,color:#333
+    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
+```
+
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.12 Moore Machine Model</h2>
@@ -664,6 +714,49 @@ In a Mealy state diagram, outputs are written **on the transition arrows** in th
 | Preferred for | Clean, synchronous outputs | Faster response, fewer states |
 
 Both models are equally powerful—any Moore machine can be converted to an equivalent Mealy machine and vice versa. The choice depends on design requirements.
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Moore vs Mealy Sequence Detector Comparison</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The following two state diagrams both implement a "01" sequence detector (output Z=1 when the input sequence "01" is detected). Compare how the **Moore machine** places the output inside each state, while the **Mealy machine** places the output on each transition arrow. Notice the Moore version needs an extra state (S2) to produce the detection output.
+
+**Moore Machine** -- output depends on state only (Z is labeled inside each state):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "S0\nZ=0" as S0
+    state "S1\nZ=0" as S1
+    state "S2\nZ=1" as S2
+
+    [*] --> S0
+    S0 --> S0 : input=1
+    S0 --> S1 : input=0
+    S1 --> S2 : input=1
+    S1 --> S1 : input=0
+    S2 --> S1 : input=0
+    S2 --> S0 : input=1
+```
+
+**Mealy Machine** -- output depends on state AND input (Z is labeled on each transition as input/output):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "S0" as M0
+    state "S1" as M1
+
+    [*] --> M0
+    M0 --> M0 : 1/0
+    M0 --> M1 : 0/0
+    M1 --> M0 : 1/1
+    M1 --> M1 : 0/0
+```
+
+The Mealy machine achieves the same detection with only 2 states (vs 3 for Moore) because it can produce the output immediately on the transition triggered by the detecting input.
+
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Moore vs Mealy State Diagrams</h4>
 

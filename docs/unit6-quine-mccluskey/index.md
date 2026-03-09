@@ -106,6 +106,42 @@ The QM method forms the theoretical foundation for modern Electronic Design Auto
 </tbody>
 </table>
 
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Quine-McCluskey Algorithm Flowchart</h4>
+
+```mermaid
+graph TD
+    A["List all minterms in<br/>binary representation"] --> B["Group minterms by<br/>number of 1s"]
+    B --> C["Compare adjacent groups:<br/>find pairs differing in 1 bit"]
+    C --> D["Combine pairs, replace<br/>differing bit with dash"]
+    D --> E{"Any new<br/>combinations<br/>found?"}
+    E -- Yes --> F["Mark combined terms<br/>with a check"]
+    F --> C
+    E -- No --> G["Extract prime implicants<br/>(unchecked terms)"]
+    G --> H["Build prime implicant<br/>chart (PIs vs minterms)"]
+    H --> I["Select essential PIs<br/>(single mark in column)"]
+    I --> J{"All minterms<br/>covered?"}
+    J -- Yes --> K["Minimum cover found:<br/>write final expression"]
+    J -- No --> L["Apply Petrick's method<br/>for remaining coverage"]
+    L --> K
+
+    style A fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style B fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style C fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style D fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style E fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style F fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style G fill:#E7F7E7,stroke:#81C784,color:#333
+    style H fill:#EEF4FF,stroke:#5A3EED,color:#333
+    style I fill:#E7F7E7,stroke:#81C784,color:#333
+    style J fill:#FFF7DD,stroke:#F0D87A,color:#333
+    style K fill:#E7F7E7,stroke:#2E7D32,color:#333
+    style L fill:#EEF4FF,stroke:#5A3EED,color:#333
+```
+
+</div>
+
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Historical Context</p>
