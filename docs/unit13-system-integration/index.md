@@ -146,12 +146,12 @@ flowchart TD
     E -- "<i>Timing violation<br/>or bug found</i>" --> C
     F -- "<i>Requirements<br/>change</i>" --> A
 
-    style A fill:#5A3EED,stroke:#5A3EED,color:#fff
-    style B fill:#6B52EE,stroke:#5A3EED,color:#fff
-    style C fill:#7B68EE,stroke:#5A3EED,color:#fff
-    style D fill:#8B7CEE,stroke:#5A3EED,color:#fff
-    style E fill:#9B90EE,stroke:#5A3EED,color:#fff
-    style F fill:#ABA4EE,stroke:#5A3EED,color:#fff
+    style A fill:#7E57C2,stroke:#5A3EED,color:#fff
+    style B fill:#8E6AC8,stroke:#5A3EED,color:#fff
+    style C fill:#9C7DD0,stroke:#5A3EED,color:#fff
+    style D fill:#AA90D8,stroke:#5A3EED,color:#fff
+    style E fill:#B8A3E0,stroke:#5A3EED,color:#333
+    style F fill:#C6B6E8,stroke:#5A3EED,color:#333
 ```
 
 </div>
