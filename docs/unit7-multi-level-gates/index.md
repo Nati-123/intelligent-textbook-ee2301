@@ -768,7 +768,7 @@ When a signal must drive many inputs, **buffer insertion** restores signal stren
 #### Diagram: Propagation Delay and Critical Path Analyzer
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/critical-path-delay-explorer/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/critical-path-delay-explorer/main.html" width="100%" height="580px" scrolling="yes" style="border:none; border-radius:8px;"></iframe>
 </div>
 
 ---
