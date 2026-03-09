@@ -523,13 +523,13 @@ flowchart LR
 
     IN --> S1 --> R1 --> S2 --> R2 --> S3 --> OUT
 
-    style IN fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style IN fill:#7E57C2,stroke:#5A3EED,color:#fff
     style S1 fill:#EEF4FF,stroke:#A8C8FF,color:#333
     style R1 fill:#FFD700,stroke:#DAA520,color:#333
     style S2 fill:#EEF4FF,stroke:#A8C8FF,color:#333
     style R2 fill:#FFD700,stroke:#DAA520,color:#333
     style S3 fill:#EEF4FF,stroke:#A8C8FF,color:#333
-    style OUT fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style OUT fill:#7E57C2,stroke:#5A3EED,color:#fff
 ```
 
 *Without pipelining, the critical path spans all three stages. With pipeline registers (gold), each stage runs independently at a higher clock frequency. Throughput increases at the cost of added latency and register area.*
