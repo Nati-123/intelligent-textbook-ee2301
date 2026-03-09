@@ -256,7 +256,7 @@ flowchart TD
     FSM -- "<b>Control Signals</b><br/><i>MUX_sel, Reg_load,<br/>ALU_op, Shift_en</i>" --> DP
     DP -- "<b>Status Signals</b><br/><i>Zero, Carry,<br/>Overflow, Sign</i>" --> FSM
 
-    style FSM fill:#5A3EED,stroke:#5A3EED,color:#fff
+    style FSM fill:#7E57C2,stroke:#5A3EED,color:#fff
     style CTRL fill:#F0ECFF,stroke:#5A3EED,color:#333
     style DP fill:#F0ECFF,stroke:#5A3EED,color:#333
     style REG fill:#EEF4FF,stroke:#A8C8FF,color:#333
