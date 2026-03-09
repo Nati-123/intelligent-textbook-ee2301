@@ -50,7 +50,7 @@ let animDirection = 1;       // 1 = forward (down), -1 = backward (up feedback)
 let animDotY = 0;            // Y position of animated dot
 
 // Colors
-const COLOR_STEP = '#5C6BC0';
+const COLOR_STEP = '#7E57C2';
 const COLOR_SELECTED = '#FFC107';
 const COLOR_FORWARD = '#2196F3';
 const COLOR_FEEDBACK = '#E91E63';
@@ -179,7 +179,7 @@ function draw() {
     let boxColor = isSelected ? COLOR_SELECTED : (isAnimActive ? COLOR_ANIMATE_DOT : COLOR_STEP);
 
     fill(boxColor);
-    stroke(isSelected ? '#E6A800' : '#3F51B5');
+    stroke(isSelected ? '#E6A800' : '#5A3EED');
     strokeWeight(isSelected ? 3 : 1.5);
     rect(flowX - boxW / 2, y, boxW, boxH, 10);
 
