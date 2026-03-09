@@ -550,6 +550,8 @@ flowchart LR
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.10 Design Trade-offs</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Every design decision involves trade-offs among three fundamental metrics:
 
 - **Area** (resource usage): How many LUTs, flip-flops, and routing resources does the design consume?
@@ -566,11 +568,15 @@ These metrics are interrelated:
 | Logic minimization | Decreases (fewer gates) | Increases (shorter paths) | Decreases |
 | Clock gating | No change | No change | Decreases |
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Resource Sharing</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Resource sharing** reuses a single hardware unit for multiple operations by time-multiplexing it with a control FSM and multiplexers:
 
-Instead of using two separate adders for $R = A + B$ and $S = C + D$, use one adder with a MUX:
+Instead of using two separate adders for <span class="arithmatex">\(R = A + B\)</span> and <span class="arithmatex">\(S = C + D\)</span>, use one adder with a MUX:
 
 ```
 Cycle 1: MUX selects A,B → Adder → Store in R
@@ -579,13 +585,17 @@ Cycle 2: MUX selects C,D → Adder → Store in S
 
 This halves the adder count but doubles the execution time and adds MUX area. Resource sharing is valuable when area is constrained and the operations don't need to happen simultaneously.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Clock Gating for Power Reduction</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Dynamic power in CMOS circuits is governed by:
 
 $$P_{dynamic} = \alpha C V_{DD}^2 f$$
 
-Where $\alpha$ is the switching activity (fraction of gates toggling per cycle), $C$ is total capacitance, $V_{DD}$ is supply voltage, and $f$ is clock frequency. Even when a module is idle, its flip-flops toggle on every clock edge, consuming power with no useful work.
+Where <span class="arithmatex">\(\alpha\)</span> is the switching activity (fraction of gates toggling per cycle), <span class="arithmatex">\(C\)</span> is total capacitance, <span class="arithmatex">\(V_{DD}\)</span> is supply voltage, and <span class="arithmatex">\(f\)</span> is clock frequency. Even when a module is idle, its flip-flops toggle on every clock edge, consuming power with no useful work.
 
 **Clock gating** disables the clock to unused modules, eliminating their switching activity entirely:
 
@@ -594,9 +604,17 @@ Where $\alpha$ is the switching activity (fraction of gates toggling per cycle),
 gated_clk <= clk and module_enable;
 ```
 
-**Example:** In the 4-function calculator, the ALU is idle while the user enters operands (ENTER_A and ENTER_B states). Clock gating the ALU during these states eliminates its switching power — roughly 40% of total dynamic power if the ALU is the largest module.
+</div>
+
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Example:</strong> In the 4-function calculator, the ALU is idle while the user enters operands (ENTER_A and ENTER_B states). Clock gating the ALU during these states eliminates its switching power — roughly 40% of total dynamic power if the ALU is the largest module.
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 On FPGAs, vendor-specific clock buffer primitives (Xilinx `BUFGCE`, Intel `ALTCLKCTRL`) implement clock gating safely, avoiding the glitches that a simple AND gate would produce on the clock signal. The FPGA synthesis tools can also automatically infer clock enables from VHDL `if` statements when the enable covers an entire process.
+
+</div>
 
 ---
 
