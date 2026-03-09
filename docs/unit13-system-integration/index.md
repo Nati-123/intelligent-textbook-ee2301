@@ -162,51 +162,6 @@ flowchart TD
 <iframe src="../sims/top-down-design-flow/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Top-Down Design Flow</summary>
-Type: workflow
-
-Bloom Level: Understand (L2)
-Bloom Verb: Describe, summarize
-
-Learning Objective: Describe the six steps of the top-down design methodology and how each step feeds into the next, understanding that verification occurs at every level—not just at the end.
-
-Process steps (vertical flow with verification feedback):
-1. "System Specification" - icon: document
-   Hover text: "Define inputs, outputs, timing, and performance requirements"
-   Verification: "Requirements review"
-
-2. "Architectural Design" - icon: block diagram
-   Hover text: "Partition into datapath and control; define subsystem interfaces"
-   Verification: "Architecture review"
-
-3. "Detailed RTL Design" - icon: VHDL code
-   Hover text: "Design each subsystem in VHDL; unit-level simulation"
-   Verification: "Unit testbenches"
-
-4. "System Integration" - icon: connected blocks
-   Hover text: "Connect subsystems via structural VHDL; integration testing"
-   Verification: "Integration testbench"
-
-5. "Synthesis & Implementation" - icon: FPGA chip
-   Hover text: "Synthesize, place, route; timing analysis"
-   Verification: "Timing closure, hardware test"
-
-6. "Hardware Verification" - icon: oscilloscope
-   Hover text: "Test on actual FPGA with real signals"
-   Verification: "System acceptance test"
-
-Feedback arrows:
-- From each verification step back to the corresponding design step labeled "Fix issues"
-- Major feedback arrow from hardware verification back to specification labeled "Requirements change"
-
-Visual style: Vertical flowchart with parallel verification track
-Color scheme: Design steps in blue, verification steps in green, feedback arrows in red
-Canvas size: 800x550px, responsive
-
-Implementation: HTML/CSS/JavaScript with SVG
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.3 Design Hierarchy and Modularity</h2>
@@ -316,43 +271,6 @@ flowchart TD
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/datapath-controller/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Datapath-Controller Architecture</summary>
-Type: microsim
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, differentiate
-
-Learning Objective: Examine the interaction between datapath and control unit in a digital system, differentiating the roles of each by tracing how control signals from the FSM direct data movement through registers, ALU, and multiplexers.
-
-Visual elements:
-- Top section: Control Unit FSM (state diagram with 4-5 states)
-- Bottom section: Datapath showing registers, ALU, MUX, and buses
-- Connecting lines: Control signals flowing from FSM to datapath components (MUX select, register load enable, ALU operation)
-- Status signals flowing from datapath back to FSM (zero flag, carry flag)
-
-Interactive controls:
-- "Clock" button to advance one cycle
-- Current state highlighted in FSM diagram
-- Active control signals highlighted on connecting lines
-- Data values visible in registers and on buses
-- Operation selector to choose different instruction sequences
-
-Data Visibility Requirements:
-Stage 1: Show FSM in initial state, all control signals inactive
-Stage 2: After clock pulse, show FSM transition and new control signals
-Stage 3: Show data flowing through the enabled path in the datapath
-Stage 4: Show result stored in destination register, status flags updated
-Stage 5: Show status flags feeding back to FSM for conditional transitions
-
-Instructional Rationale: Stepping through clock cycles and watching control signals activate specific datapath paths builds concrete understanding of the abstract datapath-controller separation. Students see that the FSM orchestrates the same hardware to perform different operations on different cycles.
-
-Color scheme: Control signals in red, data paths in blue, active components in gold, inactive in gray
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js
-</details>
 
 ---
 
@@ -533,42 +451,6 @@ This ensures that data doesn't change too quickly after the clock edge. Hold tim
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/timing-analysis-visualizer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Timing Analysis Visualizer</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Calculate, demonstrate
-
-Learning Objective: Calculate the maximum clock frequency of a synchronous circuit by identifying the critical path and applying the timing constraint equation, then demonstrate how adding pipeline stages improves achievable frequency.
-
-Visual elements:
-- Circuit diagram showing 2-3 flip-flops with combinational logic blocks between them
-- Each combinational block labeled with its propagation delay
-- Timing waveforms showing clock, data at FF inputs, and setup/hold windows
-- Critical path highlighted in red
-
-Interactive controls:
-- Sliders for: T_cq (2-10 ns), T_setup (1-5 ns), T_hold (0.5-3 ns)
-- Sliders for combinational delay of each path segment
-- Display: calculated f_max, setup slack, hold slack
-- Toggle: "Add pipeline register" to split the critical path
-- Timing diagram updates in real-time as parameters change
-
-Data Visibility Requirements:
-- Show the timing equation with current values substituted
-- Show setup slack = T_clk - (T_cq + T_comb + T_setup)
-- Show hold slack = T_cq + T_comb_min - T_hold
-- Highlight violation (red) or pass (green)
-
-Instructional Rationale: Interactive parameter exploration with real-time timing calculations helps students build intuition about the relationship between path delay, clock frequency, and timing margins—critical skills for FPGA implementation.
-
-Color scheme: Critical path in red, slack-positive paths in green, timing windows in blue shading
-Canvas size: 800x500px, responsive
-
-Implementation: p5.js
-</details>
 
 ---
 
@@ -776,45 +658,6 @@ On power-up the FSM enters IDLE and clears all counters. When the user presses a
 <iframe src="../sims/digital-lock-system/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Digital Lock System Architecture</summary>
-Type: microsim
-
-Bloom Level: Create (L6)
-Bloom Verb: Design, construct
-
-Learning Objective: Design a complete digital combination lock system by integrating input debouncing, BCD comparison, FSM control, and output display—applying concepts from Units 1 (BCD), 8 (comparators, MUX), 10 (FSM, counters), and 12 (VHDL) in a unified design.
-
-Visual elements:
-- Block diagram showing all subsystems from the architecture above
-- FSM state diagram for the control unit (5 states with transitions)
-- Timing diagram showing a successful unlock sequence
-- Active data path highlighted during simulation
-
-Interactive controls:
-- BCD digit input (buttons 0-9)
-- "Enter" button to submit a digit
-- "Reset" button to restart
-- Clock speed control (slow for visualization, fast for real-time)
-- Display showing: entered digits, current state, attempt count, lock status
-
-Data Visibility Requirements:
-Step 1: User presses digit → BCD value captured in input register
-Step 2: Enter pressed → edge detector triggers control FSM
-Step 3: FSM moves to CHECK state → comparator compares entered vs stored digit
-Step 4: Match → digit counter increments, FSM returns to WAIT_DIGIT
-Step 5: All 4 digits matched → FSM enters UNLOCK state
-Step 6: Wrong digit → attempt counter increments, FSM resets to IDLE
-Step 7: 3 failed attempts → FSM enters LOCKOUT, timer counts down
-
-Instructional Rationale: A simulation of a complete system with interactive input allows students to see how individual components (registers, comparators, FSMs, counters) coordinate through control signals to accomplish a system-level task. This reinforces the datapath-controller architecture and demonstrates that real designs are compositions of the building blocks from prior units.
-
-Color scheme: Input interface in green, datapath in blue, control unit in orange, output in purple
-Canvas size: 800x600px, responsive
-
-Implementation: p5.js
-</details>
-
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">VHDL Implementation (Simplified Control Unit)</h3>
 
 ```vhdl
@@ -990,45 +833,6 @@ This design combines:
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/uart-transmitter/main.html" width="100%" height="850px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>UART Transmission Protocol and Architecture</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Implement, practice
-
-Learning Objective: Implement a UART transmitter by tracing the shift register, baud rate counter, and control FSM operation as they convert a parallel byte into a serial bitstream with start and stop bits.
-
-Visual elements:
-- Top: 8-bit parallel data register showing the byte to transmit
-- Middle: Shift register showing serial output bit by bit
-- Bottom: Serial waveform showing the transmitted signal over time
-- Side: FSM state diagram (IDLE, START, DATA, STOP) with current state highlighted
-- Baud rate counter display
-
-Interactive controls:
-- 8-bit input (switches or hex entry) for the data byte
-- "Transmit" button to start transmission
-- Baud rate selector (9600, 19200, 115200)
-- Speed control: slow (see each bit), medium, fast
-- Display: current state, bit counter, transmitted bits, serial line level
-
-Data Visibility Requirements:
-Step 1: Show parallel data loaded into shift register
-Step 2: FSM enters START state → serial line goes LOW
-Step 3: FSM enters DATA state → LSB shifted out, bit counter = 0
-Step 4: Each baud period: next bit shifted out, counter increments
-Step 5: After 8 data bits, FSM enters STOP → serial line goes HIGH
-Step 6: FSM returns to IDLE
-
-Instructional Rationale: Step-through visualization of UART transmission connects the abstract concepts of shift registers, counters, and FSMs to a widely-used real-world protocol, demonstrating how prior units' building blocks combine into a functional communication system.
-
-Color scheme: Start bit in red, data bits in blue, stop bit in green, idle in gray
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js
-</details>
 
 #### Diagram: UART Transceiver (Transmitter + Receiver)
 

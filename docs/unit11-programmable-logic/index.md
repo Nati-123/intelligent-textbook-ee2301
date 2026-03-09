@@ -136,34 +136,6 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 <iframe src="../sims/programmable-connections/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Programmable Connection Technologies</summary>
-Type: diagram
-
-Bloom Level: Understand (L2)
-Bloom Verb: Compare, contrast
-
-Learning Objective: Compare the four programmable connection technologies (fuse, antifuse, SRAM, flash) by visualizing their physical structure and electrical behavior before and after programming.
-
-Components to show:
-- Four side-by-side panels, one for each technology
-- Each panel shows a "Before Programming" and "After Programming" state
-- Fuse: conductor that gets broken
-- Antifuse: insulator that becomes conductor
-- SRAM: transistor controlled by a memory cell
-- Flash: floating-gate transistor storing charge
-
-Visual style: Side-by-side comparison panels with before/after states
-Color scheme: Green for connected paths, red for open paths, blue for control elements
-Canvas size: 800x400px, responsive to window resize
-
-Interactive elements:
-- Click each technology to toggle between "before" and "after" states
-- Hover over components for tooltip explanation of the mechanism
-
-Implementation: p5.js or HTML/CSS/JavaScript
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.3 ROM as a Logic Device</h2>
@@ -205,41 +177,6 @@ Because the decoder generates **all** minterms, no minimization is needed. The t
 <iframe src="../sims/rom-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>ROM Internal Architecture</summary>
-Type: microsim
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain
-
-Learning Objective: Explain how a ROM implements combinational logic by mapping address inputs through a decoder (fixed AND array) to a programmable OR array that stores the truth table.
-
-Data Visibility Requirements:
-Stage 1: Show a 3-input ROM with address lines A2, A1, A0 entering a decoder
-Stage 2: Highlight one minterm line (e.g., address 011 = minterm 3) showing it active
-Stage 3: Show the OR array with programmable connections (dots for connected, empty for disconnected)
-Stage 4: Show the output values D1, D0 resulting from the selected address
-
-Instructional Rationale: Step-through with concrete addresses allows students to trace how a specific input combination propagates through the decoder to the OR plane and produces specific outputs, reinforcing the ROM-as-truth-table concept.
-
-Visual elements:
-- Left side: 3 input lines labeled A2, A1, A0
-- Center: 3-to-8 decoder block with 8 output lines (minterms m0 through m7)
-- Right: OR array grid showing programmable connections
-- Far right: 2 output lines D1, D0
-
-Interactive controls:
-- Three toggle switches for A2, A1, A0
-- Step-through button to trace signal propagation
-- Reset button
-- Display showing: current address, active minterm, output values
-
-Color scheme: Active paths in gold, inactive in gray, connection dots in blue
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js
-</details>
-
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ROM Variants</h3>
 
 Several ROM technologies exist, distinguished by how and when they are programmed:
@@ -280,46 +217,6 @@ The PLA consists of:
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pla-architecture/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>PLA Architecture and Programming</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Implement
-
-Learning Objective: Implement a set of Boolean functions on a PLA by configuring the AND plane (product terms) and OR plane (output connections) based on minimized SOP expressions.
-
-Visual elements:
-- Input buffer section showing n=3 inputs with true and complement lines (6 vertical lines)
-- AND plane grid (6 columns x k=4 rows) with programmable connection dots
-- OR plane grid (4 columns x m=2 rows) with programmable connection dots
-- Output lines with optional inversion
-
-Interactive controls:
-- Click on intersection points in AND plane to toggle connections (dot = connected)
-- Click on intersection points in OR plane to toggle connections (dot = connected)
-- Toggle switches for inputs A, B, C to test the programmed function
-- "Evaluate" button to trace signal flow and show outputs
-- "Load Example" dropdown with pre-configured functions
-- Reset button
-
-Default example:
-F1 = AB + AC (product terms: AB, AC)
-F2 = AB + BC (product terms: AB, BC, shared term AB)
-
-Data Visibility:
-- Show the SOP expression corresponding to current programming
-- Highlight active product terms for current input combination
-- Show output values
-
-Color scheme: AND plane in blue tones, OR plane in orange tones, active paths in gold
-Canvas size: 800x550px, responsive
-
-Instructional Rationale: Interactive PLA programming lets students directly connect the abstract concept of SOP expressions to physical device configuration, reinforcing the relationship between Boolean algebra and hardware implementation.
-
-Implementation: p5.js
-</details>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PLA Example</h3>
 
@@ -388,42 +285,6 @@ Some PAL outputs are registered (include a flip-flop), enabling sequential logic
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pla-vs-pal/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>PLA vs PAL Architecture Comparison</summary>
-Type: infographic
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Compare, distinguish
-
-Learning Objective: Compare and contrast PLA and PAL architectures by examining their AND and OR plane configurations, identifying when product term sharing matters, and understanding the speed-flexibility trade-off.
-
-Layout: Two side-by-side architectural diagrams
-
-Left panel (PLA):
-- Show 3 inputs with true/complement buffers (6 lines)
-- Programmable AND plane (show X marks at programmable intersections)
-- Programmable OR plane (show X marks at programmable intersections)
-- 2 outputs
-- Label: "Both planes programmable"
-
-Right panel (PAL):
-- Show 3 inputs with true/complement buffers (6 lines)
-- Programmable AND plane (show X marks at programmable intersections)
-- Fixed OR plane (show hardwired connections)
-- 2 outputs, each with dedicated AND gates
-- Label: "Only AND plane programmable"
-
-Interactive elements:
-- Hover over each plane to see tooltip: "Programmable: configured by user" or "Fixed: hardwired at manufacturing"
-- Toggle between "Shared term" example and "Dedicated term" example to see the difference
-- Speed comparison indicator showing propagation delay difference
-
-Color scheme: Programmable elements in blue, fixed elements in orange, shared terms highlighted in green
-Canvas size: 800x500px, responsive
-
-Implementation: HTML/CSS/JavaScript with SVG
-</details>
 
 ---
 
@@ -496,41 +357,6 @@ A CPLD consists of:
 <iframe src="../sims/cpld-architecture/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>CPLD Architecture Block Diagram</summary>
-Type: diagram
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain, describe
-
-Learning Objective: Explain how a CPLD integrates multiple PAL-like function blocks with a global interconnect matrix to implement larger digital designs on a single chip.
-
-Components to show:
-- 4 Function Blocks arranged in a 2x2 grid, each labeled "FB1" through "FB4"
-- Inside each function block: programmable AND array, OR gates, macrocells with flip-flops
-- Central Programmable Interconnect Matrix connecting all function blocks
-- I/O Blocks around the perimeter connected to external pins
-- Feedback paths from function block outputs back to the interconnect
-
-Connections:
-- Bidirectional arrows between each function block and the interconnect matrix
-- Arrows from I/O blocks to the interconnect matrix
-- Internal arrows within each function block (AND array → OR → macrocell → output)
-
-Style: Hierarchical block diagram with clear layering
-Labels: "Function Block", "Macrocell", "AND Array", "Interconnect Matrix", "I/O Block"
-Color scheme: Function blocks in blue, interconnect in orange, I/O in green, macrocells in purple
-
-Interactive elements:
-- Click on a function block to zoom in and see internal structure
-- Hover over interconnect to see routing explanation
-- Highlight signal path from input pin through function blocks to output pin
-
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js or vis-network
-</details>
-
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Characteristics</h3>
 
 - **Predictable timing:** Because the interconnect matrix provides fixed routing paths, propagation delays through a CPLD are predictable and consistent—critical for timing-sensitive designs.
@@ -581,42 +407,6 @@ A LUT-4 works exactly like the ROM described in Section 11.3, but with only 4 ad
 <iframe src="../sims/lut-explorer/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>4-Input LUT Structure and Operation</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Implement, demonstrate
-
-Learning Objective: Demonstrate how a 4-input lookup table implements any Boolean function by configuring its 16 memory cells to match a truth table, and verify operation by testing all input combinations.
-
-Visual elements:
-- Left side: 4 input toggle switches labeled A, B, C, D
-- Center: 16-cell memory array (4x4 grid) showing stored 0/1 values, with the currently addressed cell highlighted
-- A 16:1 MUX symbol showing the input selection lines
-- Right side: Output value display
-
-Interactive controls:
-- 4 input toggle switches (A, B, C, D) to select an address
-- Click any memory cell to toggle its stored value (0 or 1)
-- "Load Function" dropdown: select from preset functions (AND, OR, XOR, Majority, custom SOP)
-- "Test All" button: automatically cycles through all 16 combinations and shows the truth table
-- Display: current Boolean expression inferred from LUT contents
-
-Data Visibility Requirements:
-- Show the 4-bit address formed by current inputs
-- Highlight the addressed memory cell
-- Show the path from address to output through the MUX
-- Display the equivalent SOP expression
-
-Instructional Rationale: Allowing students to manually configure LUT contents and observe the resulting Boolean function reinforces that a LUT is simply a truth table in hardware. The "Load Function" dropdown connects familiar Boolean expressions to LUT programming.
-
-Color scheme: Memory cells in light blue (0) and gold (1), active cell highlighted with border, MUX in gray
-Canvas size: 800x500px, responsive
-
-Implementation: p5.js
-</details>
-
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Why LUTs Are Powerful</h3>
 
 The LUT approach has a remarkable property: **any** Boolean function of $k$ inputs requires exactly one $k$-input LUT, regardless of the function's complexity. Whether the function is a simple AND gate or a complex expression with many product terms, the LUT implements it in constant time with identical propagation delay.
@@ -653,44 +443,6 @@ The versatility of CLBs means that the same physical hardware can implement comb
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/clb-architecture/main.html" width="100%" height="630px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>CLB Internal Architecture</summary>
-Type: diagram
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, deconstruct
-
-Learning Objective: Examine the internal architecture of a Configurable Logic Block by deconstructing it into its constituent LUTs, flip-flops, multiplexers, and carry chain, understanding how each component contributes to the CLB's versatility.
-
-Components to show:
-- 2 LUT-4 blocks with 4 inputs each (labeled LUT-A and LUT-B)
-- 2 D flip-flops (one after each LUT output)
-- 2 output multiplexers choosing between LUT output (combinational) and flip-flop output (registered)
-- 1 function-combining MUX for creating 5-input functions
-- Carry chain input and output for arithmetic
-- Clock input to both flip-flops
-- CLB output pins
-
-Connections:
-- LUT inputs from routing fabric
-- LUT outputs to flip-flop D inputs and to output MUX
-- Flip-flop Q outputs to output MUX
-- Carry chain passing through
-- Output MUX outputs to routing fabric
-
-Style: Detailed block diagram with signal flow arrows
-Color scheme: LUTs in blue, flip-flops in purple, MUXes in orange, carry chain in green
-Labels: All signals labeled with bit widths
-
-Interactive elements:
-- Toggle "Combinational / Registered" mode to see MUX configuration change
-- Toggle "Independent / Combined" LUT mode
-
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js
-</details>
 
 ---
 
@@ -755,44 +507,6 @@ The two dominant FPGA configuration technologies present a fundamental trade-off
 <iframe src="../sims/fpga-config-flow/main.html" width="100%" height="470px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>FPGA Configuration and Operation Flow</summary>
-Type: workflow
-
-Bloom Level: Understand (L2)
-Bloom Verb: Describe, summarize
-
-Learning Objective: Describe the complete FPGA configuration process from power-up through bitstream loading to functional operation, contrasting SRAM-based and flash-based approaches.
-
-Process steps:
-1. Start: "Power Applied"
-   Hover text: "FPGA receives power supply voltage"
-
-2. Decision: "SRAM or Flash?"
-   Hover text: "Device type determines configuration method"
-
-3a. Process (SRAM path): "Load Bitstream from External Flash"
-   Hover text: "Configuration data transferred from flash ROM to SRAM cells; takes ms to seconds"
-
-3b. Process (Flash path): "Configuration Already Present"
-   Hover text: "Flash-based FPGA retains configuration; operational within microseconds"
-
-4. Process: "Initialize CLBs, Routing, I/O"
-   Hover text: "LUT contents loaded, MUX settings applied, routing switches configured"
-
-5. Process: "Release Global Reset"
-   Hover text: "All flip-flops released from reset; designed logic begins operating"
-
-6. End: "FPGA Operational"
-   Hover text: "Device is now functioning as the configured digital circuit"
-
-Visual style: Flowchart with decision diamond and parallel paths
-Color scheme: SRAM path in blue, Flash path in green, common steps in gray
-Canvas size: 800x450px, responsive
-
-Implementation: HTML/CSS/JavaScript
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.14 FPGA Design Flow</h2>
@@ -846,40 +560,6 @@ flowchart LR
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/fpga-design-flow/main.html" width="100%" height="620px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>FPGA Design Flow</summary>
-Type: workflow
-
-Bloom Level: Remember (L1)
-Bloom Verb: List, identify
-
-Learning Objective: Identify the sequential steps in the FPGA design flow from HDL entry through synthesis, mapping, placement, routing, timing analysis, and bitstream generation to hardware programming.
-
-Process steps (vertical flowchart):
-1. "Design Entry (HDL)" - icon: code file
-2. "Functional Simulation" - icon: waveform, with feedback arrow back to step 1 labeled "Fix bugs"
-3. "Synthesis" - icon: logic gate
-4. "Technology Mapping" - icon: LUT symbol
-5. "Placement" - icon: grid with placed blocks
-6. "Routing" - icon: connected paths
-7. "Timing Analysis" - icon: clock, with feedback arrow back to step 1 labeled "Timing violation"
-8. "Bitstream Generation" - icon: binary file
-9. "FPGA Programming" - icon: chip
-10. "Hardware Verification" - icon: oscilloscope
-
-Visual style: Vertical flowchart with icons at each step and feedback loops
-Color scheme: Design steps in blue gradient (darker as process advances), feedback arrows in red
-Labels: Each step labeled with its tool name (e.g., "Vivado Synthesis", "Place & Route")
-
-Interactive elements:
-- Hover over each step to see a 2-3 sentence description of what happens
-- Click to see input/output file types for each step
-
-Canvas size: 700x600px, responsive
-
-Implementation: HTML/CSS/JavaScript with SVG
-</details>
 
 ---
 
@@ -936,38 +616,6 @@ Choosing the right programmable logic device for a project involves evaluating s
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pld-selection-tree/main.html" width="100%" height="520px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>PLD Selection Decision Tree</summary>
-Type: infographic
-
-Bloom Level: Evaluate (L5)
-Bloom Verb: Assess, recommend
-
-Learning Objective: Assess project requirements and recommend the most appropriate programmable logic device by navigating a decision tree that considers logic capacity, speed, power, volatility, and cost constraints.
-
-Layout: Interactive decision tree with branching paths
-
-Decision nodes:
-1. "How many equivalent gates?" → <500: SPLD path, 500-50K: CPLD path, >50K: FPGA path
-2. SPLD path: "Product term sharing needed?" → Yes: PLA, No: PAL/GAL
-3. CPLD path: "Predictable timing critical?" → Yes: CPLD, Consider: FPGA with timing constraints
-4. FPGA path: "Instant-on required?" → Yes: Flash FPGA, No: SRAM FPGA
-5. FPGA path: "Volume >100K units?" → Yes: Consider ASIC, No: Stay with FPGA
-
-Interactive elements:
-- Click through decision points to navigate the tree
-- Each endpoint shows a recommended device family with key characteristics
-- "Start Over" button to reset
-- Hover over each decision for explanation of the criterion
-
-Visual style: Tree diagram with colored nodes for each device family
-Color scheme: ROM in red, PLA in orange, PAL in yellow, CPLD in green, FPGA in blue, ASIC in purple
-
-Canvas size: 800x500px, responsive
-
-Implementation: HTML/CSS/JavaScript with SVG
-</details>
 
 ---
 

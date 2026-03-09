@@ -140,59 +140,6 @@ The key advantages of multi-level circuits include:
 
 <iframe src="../sims/multi-level-analyzer/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
-<details markdown="1">
-<summary>Two-Level vs Multi-Level Circuit Comparison</summary>
-Type: microsim
-
-Purpose: Compare two-level and multi-level implementations of the same Boolean function side by side
-
-Bloom Level: Understand (L2)
-Bloom Verb: Compare, contrast
-
-Learning Objective: Students will be able to compare two-level and multi-level implementations of a Boolean function and explain the trade-offs between delay and gate count.
-
-Canvas Layout:
-- Top: Function selector dropdown with preset expressions
-- Left panel: Two-level implementation showing AND-OR structure
-- Right panel: Multi-level (factored) implementation
-- Bottom: Comparison metrics table
-
-Visual Elements:
-- Gate symbols drawn in standard notation
-- Wire connections with signal values shown
-- Input toggle switches shared between both circuits
-- Output indicators (LEDs) for both implementations
-- Gate count, level count, and fan-in displayed below each circuit
-- Signal propagation animation showing delay difference
-
-Interactive Controls:
-- Function selector dropdown with 4-5 preset functions
-- Toggle input switches to verify both circuits produce identical outputs
-- "Show Propagation" button to animate signal flow through both circuits
-- Speed slider for animation
-
-Data Visibility Requirements:
-- Gate count for each implementation
-- Maximum fan-in for each implementation
-- Number of levels for each implementation
-- Total propagation delay (in gate delays) for each implementation
-- Side-by-side truth table verification
-
-Default Parameters:
-- Function: F = ABCD + ABCE + ABCF
-- All inputs initially 0
-
-Behavior:
-- Both circuits update simultaneously when inputs toggle
-- Propagation animation highlights the critical path
-- Metrics table updates when function changes
-- Output indicators show matching results
-
-Instructional Rationale: Side-by-side comparison with identical inputs and outputs demonstrates that multi-level circuits implement the same function while using fewer and smaller gates, reinforcing the concept of functional equivalence with different implementations.
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.2 Universal Gates</h2>
@@ -310,59 +257,6 @@ graph LR
 
 <iframe src="../sims/universal-gate-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
 
-<details markdown="1">
-<summary>Universal Gate Circuit Diagrams</summary>
-Type: microsim
-
-Purpose: Demonstrate how NAND and NOR gates implement all basic Boolean operations
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain, demonstrate
-
-Learning Objective: Students will be able to explain how NAND and NOR gates achieve universality by implementing NOT, AND, and OR operations.
-
-Canvas Layout:
-- Top: Gate type selector (NAND or NOR)
-- Left column: Operation selector (NOT, AND, OR)
-- Center: Circuit diagram showing the implementation
-- Right: Truth table verification
-
-Visual Elements:
-- Gate symbols using standard notation
-- Input toggles for A and B
-- Wire connections with signal values displayed at each node
-- Color coding: NAND gates in blue, NOR gates in green
-- Output LED indicator
-- Equivalent Boolean expression displayed
-
-Interactive Controls:
-- Toggle between NAND and NOR universal gate
-- Select operation to implement (NOT, AND, OR)
-- Toggle input A and input B
-- "Verify All" button to cycle through all input combinations
-
-Data Visibility Requirements:
-- Signal values at every wire junction
-- Gate count used for each implementation
-- Boolean expression being implemented
-- Complete truth table with current row highlighted
-
-Default Parameters:
-- Gate type: NAND
-- Operation: AND
-- Inputs: A=0, B=0
-
-Behavior:
-- Instant visual feedback when inputs toggle
-- Signal values propagate through gates with brief animation
-- Truth table row highlights to match current inputs
-- Switching gate type redraws the circuit
-
-Instructional Rationale: Interactive exploration with visible signal values at every node lets students trace the logic and understand how inversions combine through De Morgan's theorem to produce each basic operation.
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.3 AND-OR to NAND-NAND Conversion</h2>
@@ -444,59 +338,6 @@ This requires: one NAND inverter for $A$, one 2-input NAND for $BC$, and one 2-i
 #### Diagram: AND-OR to NAND-NAND Conversion
 
 <iframe src="../sims/nand-nor-converter/main.html" width="100%" height="530px" scrolling="no"></iframe>
-
-<details markdown="1">
-<summary>Step-by-step AND-OR to NAND Conversion</summary>
-Type: microsim
-
-Purpose: Animated step-by-step conversion of AND-OR circuits to NAND-only implementations
-
-Bloom Level: Apply (L3)
-Bloom Verb: Apply, execute, implement
-
-Learning Objective: Students will be able to convert any SOP expression to a NAND-only implementation by applying the double inversion method systematically.
-
-Canvas Layout:
-- Top: Expression input field and preset selector
-- Center: Circuit diagram area showing conversion stages
-- Bottom: Step controls and Boolean expression display
-
-Visual Elements:
-- Gate symbols transforming through stages
-- Inversion bubbles appearing and canceling
-- Wire connections with signal propagation
-- Step indicator (1 of 4, 2 of 4, etc.)
-- Boolean expression shown at each stage
-
-Interactive Controls:
-- Preset expression dropdown (5 common SOP expressions)
-- Custom expression input field
-- "Next Step" and "Previous Step" buttons
-- "Auto Play" button with speed control
-- "Reset" button
-- Input toggles to verify equivalence at each stage
-
-Data Visibility Requirements:
-- Stage 1: Original AND-OR circuit with expression
-- Stage 2: Double inversion applied (bubbles shown at all gate outputs and inputs)
-- Stage 3: Bubble cancellation highlighted
-- Stage 4: Final NAND-only circuit with verified expression
-
-Default Parameters:
-- Expression: F = AB + CD
-- Stage: 1
-
-Behavior:
-- Smooth animation between stages
-- Bubbles appear/disappear with visual emphasis
-- Gate shapes morph when type changes
-- Expression updates at each stage
-- Input toggles verify output matches at every stage
-
-Instructional Rationale: Step-by-step visualization with concrete expressions demystifies the conversion process, allowing students to see exactly where each inversion appears and cancels.
-
-Implementation: p5.js with animation timeline
-</details>
 
 ---
 
@@ -786,62 +627,6 @@ graph TD
 
 <iframe src="../sims/bubble-pushing-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
 
-<details markdown="1">
-<summary>Interactive Bubble Pushing Simulator</summary>
-Type: microsim
-
-Purpose: Provide hands-on practice with the bubble pushing technique for gate conversion
-
-Bloom Level: Apply (L3)
-Bloom Verb: Apply, implement, solve
-
-Learning Objective: Students will be able to apply bubble pushing rules to convert circuits between different gate types and identify where additional inverters are needed.
-
-Canvas Layout:
-- Top: Circuit selector and tool palette
-- Center: Interactive circuit diagram workspace
-- Bottom: Expression display and verification panel
-
-Visual Elements:
-- Standard gate symbols (AND, OR, NAND, NOR)
-- Inversion bubbles as small circles on gate terminals
-- Wire connections between gates
-- Color feedback: green for valid configurations, red for errors
-- Paired bubbles highlighted in yellow before cancellation
-- Step counter and instruction text
-
-Interactive Controls:
-- Circuit preset selector (5 circuits of increasing complexity)
-- "Add Bubble" tool: click a gate terminal to add/remove a bubble
-- "Push Bubble" tool: click a gate to push output bubble to inputs (or vice versa)
-- "Cancel Bubbles" tool: click paired bubbles to cancel them
-- "Check Solution" button to verify the conversion
-- "Hint" button for guided assistance
-- "Reset" button
-
-Data Visibility Requirements:
-- Current Boolean expression updates in real time
-- Target gate type displayed (NAND-only or NOR-only)
-- Number of remaining unpaired bubbles shown
-- Gate count comparison (original vs. converted)
-
-Default Parameters:
-- Circuit: AND-OR for F = AB + CD
-- Target: NAND-only conversion
-- Tool: Add Bubble
-
-Behavior:
-- Adding a bubble to a gate output and all inputs simultaneously preserves function
-- Gate symbols morph when pushed (AND ↔ OR)
-- Paired bubbles flash before canceling
-- Invalid bubble placements show error feedback
-- Solution check compares truth tables
-
-Instructional Rationale: Hands-on bubble manipulation builds intuition for De Morgan's theorem by making the abstract algebraic concept tangible and visual. Students learn through discovery rather than memorization.
-
-Implementation: p5.js with interactive canvas
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.8 Multi-Level Circuit Analysis</h2>
@@ -981,61 +766,6 @@ When a signal must drive many inputs, **buffer insertion** restores signal stren
 </div>
 
 #### Diagram: Propagation Delay and Critical Path Analyzer
-
-<details markdown="1">
-<summary>Critical Path Analysis Tool</summary>
-Type: microsim
-
-Purpose: Visualize propagation delay through multi-level circuits and identify the critical path
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, differentiate, distinguish
-
-Learning Objective: Students will be able to identify the critical path in a multi-level circuit and calculate the total propagation delay.
-
-Canvas Layout:
-- Top: Circuit selector with 4 preset multi-level circuits
-- Center: Circuit diagram with annotated gate delays
-- Right: Path analysis panel showing all input-to-output paths
-- Bottom: Timing diagram showing signal arrival times
-
-Visual Elements:
-- Gate symbols with delay values labeled (e.g., "2ns" per gate)
-- Critical path highlighted in red
-- Non-critical paths in gray
-- Signal arrival time shown at each node
-- Timing diagram at bottom showing waveforms for each signal
-- Fan-out indicators at each node
-
-Interactive Controls:
-- Circuit preset selector
-- Click any input to trace all paths from that input to the output
-- Toggle "Show All Paths" vs. "Show Critical Path Only"
-- Slider to adjust gate delay values
-- "Animate Signal Propagation" button
-
-Data Visibility Requirements:
-- Gate delay for each gate
-- Cumulative delay at each node
-- All input-to-output paths listed with total delay
-- Critical path clearly identified with total delay value
-- Fan-out count at each internal node
-
-Default Parameters:
-- Circuit: 4-level NAND implementation
-- Gate delay: 2ns per gate
-- View: Critical path highlighted
-
-Behavior:
-- Clicking an input highlights all paths from that input
-- Critical path automatically identified and highlighted in red
-- Delay values update when gate delay slider changes
-- Animation shows signal propagation with timing
-
-Instructional Rationale: Tracing signal paths with visible delay values develops the analytical skill of identifying critical paths, essential for timing-aware circuit design.
-
-Implementation: p5.js with responsive canvas
-</details>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/critical-path-delay-explorer/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
@@ -1262,61 +992,6 @@ $$F = AB\overline{h} + \overline{A}Bh + ABh = AB\overline{h} + Bh(\overline{A} +
 
 #### Diagram: Factoring and Decomposition Explorer
 
-<details markdown="1">
-<summary>Factoring and Decomposition Explorer</summary>
-Type: microsim
-
-Purpose: Interactive tool for exploring how factoring transforms two-level expressions into optimized multi-level forms
-
-Bloom Level: Apply (L3)
-Bloom Verb: Apply, solve, demonstrate
-
-Learning Objective: Students will be able to apply factoring techniques to reduce gate count and fan-in in Boolean circuits, and evaluate the resulting trade-offs in delay vs. area.
-
-Canvas Layout:
-- Top: Expression input with preset selector
-- Left panel: Step-by-step factoring workspace
-- Right panel: Circuit visualization showing current form
-- Bottom: Metrics comparison table
-
-Visual Elements:
-- Expression display with factoring steps highlighted
-- Circuit diagram updating as factoring progresses
-- Metrics bar chart comparing original vs. factored forms (gate count, fan-in, levels)
-- Common sub-expressions highlighted in matching colors
-- Undo/redo stack for factoring steps
-
-Interactive Controls:
-- Enter custom expression or select from presets
-- Click terms to select them for factoring
-- "Factor Selected" button to extract common factor
-- "Expand" button to reverse a factoring step
-- "Compare" button to show original vs. current metrics side by side
-- Difficulty presets (simple 3-variable to complex 6-variable)
-
-Data Visibility Requirements:
-- Gate count for current form
-- Maximum fan-in for current form
-- Number of levels for current form
-- Literal count for current form
-- Comparison metrics: original vs. factored
-
-Default Parameters:
-- Expression: F = ACD + ADE + BCD + BDE
-- Display: original two-level form
-
-Behavior:
-- Circuit diagram redraws after each factoring step
-- Metrics update in real time
-- Multiple valid factoring paths accepted
-- Color-coded terms highlight common factors
-- Undo allows exploring different factoring strategies
-
-Instructional Rationale: Allowing students to choose which terms to factor and immediately see the circuit impact builds understanding of the trade-offs involved in multi-level optimization.
-
-Implementation: p5.js with DOM elements for expression input
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.12 AOI and OAI Complex Gates</h2>
@@ -1379,44 +1054,6 @@ Complex gates are fundamental building blocks in standard cell libraries. Logic 
 </div>
 
 #### Diagram: AOI and OAI Gate Structures
-
-<details markdown="1">
-<summary>AOI/OAI Gate Symbol and Function Reference</summary>
-Type: infographic
-
-Purpose: Visual reference showing AOI and OAI gate symbols, their Boolean expressions, and transistor-level structure
-
-Bloom Level: Remember (L1)
-Bloom Verb: Identify, recognize, name
-
-Learning Objective: Students will be able to identify AOI and OAI gate types from their symbols and recall their corresponding Boolean expressions.
-
-Layout:
-- 2×4 grid showing common complex gates
-- Top row: AOI21, AOI22, AOI211, AOI221
-- Bottom row: OAI21, OAI22, OAI211, OAI221
-
-For each gate cell:
-- Gate symbol (block diagram with internal AND/OR structure)
-- Boolean expression
-- Input labels (A, B, C, D as applicable)
-- Output label F
-- Transistor count
-
-Color coding:
-- AND sections: blue
-- OR sections: green
-- Inversion bubble: red
-
-Interactive Elements:
-- Hover over any gate to see enlarged view with expression
-- Click to see truth table for that gate
-- Toggle between logic symbol and transistor schematic views
-
-Responsive: Adapts from 4-column to 2-column on narrow screens
-
-Implementation: HTML/CSS/JavaScript with SVG gate symbols
-</details>
 
 ---
 

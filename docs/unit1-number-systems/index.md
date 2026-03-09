@@ -125,44 +125,6 @@ The foundation of all digital systems is the <strong style="color: #333;">binary
 <iframe src="../sims/analog-vs-digital-signals/main.html" width="100%" height="480px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Analog vs Digital Signal Comparison</summary>
-Type: diagram
-
-Purpose: Visually demonstrate the fundamental difference between continuous analog signals and discrete digital signals
-
-Bloom Level: Understand (L2)
-Bloom Verb: Compare, contrast
-
-Learning Objective: Students will be able to explain the difference between analog and digital signal representations and identify why digital signals are preferred in computing systems.
-
-Visual Elements:
-- Split canvas showing two signal displays side by side
-- Left panel: Smooth sinusoidal analog waveform (continuous curve)
-- Right panel: Stepped digital signal showing only HIGH (1) and LOW (0) levels
-- Time axis (x-axis) labeled for both panels
-- Amplitude/Voltage axis (y-axis) for both panels
-- Noise band visualization showing how analog signals can be corrupted
-- Threshold lines on digital side showing valid HIGH and LOW regions
-
-Interactive Elements:
-- Slider to add noise to both signals
-- Toggle to show/hide threshold regions
-- Button to animate signal progression over time
-
-Color Scheme:
-- Analog signal: Blue gradient
-- Digital signal: Green for HIGH, gray for LOW
-- Noise: Red overlay
-- Background: Light gray grid
-
-Data Visibility Requirements:
-- Show actual voltage values at cursor position
-- Display whether digital interpretation is valid despite noise
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 id="12-positional-number-systems" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.2 Positional Number Systems</h2>
@@ -252,61 +214,6 @@ A = 10 &nbsp;&nbsp; B = 11 &nbsp;&nbsp; C = 12 &nbsp;&nbsp; D = 13 &nbsp;&nbsp; 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/positional-notation-explorer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Positional Notation Interactive Explorer</summary>
-Type: microsim
-
-Purpose: Help students understand how positional notation works by showing the expanded form and place values for any number in any base
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain, interpret
-
-Learning Objective: Students will be able to explain how positional notation represents numerical values and calculate the decimal equivalent of a number in any base.
-
-Canvas Layout:
-- Top section: Input area for number and base selection
-- Middle section: Visual breakdown showing each digit with its position, power, and contribution
-- Bottom section: Running calculation and final decimal result
-
-Visual Elements:
-- Input field for entering a number (up to 8 digits)
-- Dropdown or radio buttons for base selection (2, 8, 10, 16)
-- Grid showing each digit in a separate cell
-- Below each digit: position index (0, 1, 2, ...)
-- Below position: base raised to that power (e.g., 2³)
-- Below power: actual value of that power (e.g., 8)
-- Below value: digit × power contribution (e.g., 1 × 8 = 8)
-- Sum line showing all contributions being added
-
-Interactive Controls:
-- Text input for the number
-- Base selector (2, 8, 10, 16)
-- "Step Through" button to reveal calculation one digit at a time
-- "Show All" button to display complete expansion
-- Reset button
-
-Data Visibility Requirements:
-Stage 1: Show the input number with positions labeled
-Stage 2: Show the power of the base for each position
-Stage 3: Show the numerical value of each power
-Stage 4: Show digit × power for each position
-Stage 5: Show sum of all contributions = final decimal value
-
-Default Parameters:
-- Initial number: 1011
-- Initial base: 2
-
-Behavior:
-- Validate input (only allow valid digits for selected base)
-- Hex input accepts both uppercase and lowercase A-F
-- Animate transitions when stepping through calculation
-- Highlight current position being calculated
-
-Instructional Rationale: Step-through with worked examples is appropriate because the Understand/explain objective requires learners to trace the positional notation expansion with concrete values.
-
-Implementation: p5.js with responsive canvas, DOM elements for input
-</details>
 
 ---
 
@@ -449,60 +356,6 @@ Result: <span class="arithmatex">\(10111010_2 = \text{BA}_{16}\)</span>
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/base-converter/main.html" width="100%" height="450px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Base Conversion Calculator</summary>
-Type: microsim
-
-Purpose: Interactive tool for practicing and verifying base conversions between decimal, binary, octal, and hexadecimal
-
-Bloom Level: Apply (L3)
-Bloom Verb: Calculate, use, execute
-
-Learning Objective: Students will be able to convert numbers between decimal, binary, octal, and hexadecimal systems using appropriate methods.
-
-Canvas Layout:
-- Top: Four input/output fields arranged horizontally (Decimal, Binary, Octal, Hex)
-- Middle: Visual representation of the conversion process
-- Bottom: Step-by-step explanation panel
-
-Visual Elements:
-- Four labeled input fields with base indicators
-- Bidirectional arrows between fields showing conversion relationships
-- Conversion method display showing intermediate steps
-- Binary grouping visualization (nibbles highlighted for hex, triplets for octal)
-- Color-coded digit groups matching between representations
-
-Interactive Controls:
-- Enter a number in any field to see conversions in all other fields
-- Toggle "Show Steps" to reveal detailed conversion method
-- Toggle "Show Groupings" to highlight binary digit groupings
-- Dropdown to select which conversion method to display in detail
-- Clear/Reset button
-
-Data Visibility Requirements:
-- Show the entered value in the source base
-- Display conversion steps appropriate to the method (division remainders, positional expansion, or grouping)
-- Show the final result in all four bases simultaneously
-- Highlight digit correspondences between bases
-
-Default Parameters:
-- Initial value: empty (awaiting user input)
-- Show Steps: enabled
-- Show Groupings: enabled for binary field
-
-Behavior:
-- Real-time conversion as user types
-- Input validation (reject invalid digits for selected base)
-- Highlight active input field
-- Animate step-by-step calculation when requested
-- Support fractional numbers (with radix point)
-- Handle numbers up to 32 bits
-
-Instructional Rationale: This Apply-level MicroSim provides immediate feedback on conversion attempts, allowing students to practice the procedural skill and verify their manual calculations.
-
-Implementation: p5.js with responsive canvas, DOM input elements
-</details>
 
 ---
 
@@ -657,63 +510,6 @@ Result: <span class="arithmatex">\(101_2 \times 11_2 = 1111_2\)</span> (5 × 3 =
 <iframe src="../sims/binary-arithmetic-practice/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Binary Arithmetic Practice</summary>
-Type: microsim
-
-Purpose: Interactive practice environment for binary arithmetic operations with step-by-step visualization
-
-Bloom Level: Apply (L3)
-Bloom Verb: Execute, calculate, practice
-
-Learning Objective: Students will be able to perform binary addition, subtraction, multiplication, and division correctly, including tracking carries and borrows.
-
-Canvas Layout:
-- Top: Operation selector and operand inputs
-- Middle: Working area showing the calculation in progress
-- Right: Step-by-step explanation panel
-- Bottom: Result display and verification
-
-Visual Elements:
-- Two binary number input fields (8 bits each)
-- Operation selector (Add, Subtract, Multiply, Divide)
-- Traditional vertical arrangement of operands
-- Carry/borrow row displayed above addition/subtraction
-- Partial products displayed for multiplication
-- Color coding: carries in red, borrows in blue, result in green
-- Decimal equivalents shown alongside binary for verification
-
-Interactive Controls:
-- Input operands manually or use "Random" button
-- "Next Step" button to advance calculation one step at a time
-- "Complete" button to show final result
-- "Check Answer" for practice mode where student enters the result
-- Difficulty selector (4-bit, 6-bit, 8-bit operands)
-
-Data Visibility Requirements:
-Stage 1: Show both operands aligned vertically
-Stage 2: For each column (right to left), show the calculation and any carry/borrow
-Stage 3: Show cumulative result building up
-Stage 4: Show final result with decimal verification
-
-Default Parameters:
-- Operand A: 1011 (11)
-- Operand B: 0101 (5)
-- Operation: Addition
-- Bit width: 8
-
-Behavior:
-- Validate binary input (only 0 and 1 allowed)
-- Highlight current column being processed
-- Animate carry/borrow propagation
-- Show overflow indication when result exceeds bit width
-- Practice mode generates random problems
-
-Instructional Rationale: Step-by-step execution with concrete binary values helps students internalize the algorithmic process of binary arithmetic operations.
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 id="16-signed-number-representations" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.6 Signed Number Representations</h2>
@@ -812,61 +608,6 @@ Two's complement has a single representation of zero and allows addition and sub
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/signed-number-comparison/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Signed Number Representation Comparison</summary>
-Type: microsim
-
-Purpose: Visualize and compare how the same decimal value is represented in sign-magnitude, one's complement, and two's complement formats
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Compare, differentiate, contrast
-
-Learning Objective: Students will be able to differentiate between sign-magnitude, one's complement, and two's complement representations and explain why two's complement is preferred for arithmetic operations.
-
-Canvas Layout:
-- Top: Decimal input slider (-8 to +7 for 4-bit, expandable)
-- Middle: Three parallel representations showing the binary encoding
-- Bottom: Number line visualization showing all values and their encodings
-
-Visual Elements:
-- Decimal value display with +/- indicator
-- Three rows showing the same value in each representation:
-  - Sign-Magnitude: sign bit colored differently, magnitude bits highlighted
-  - One's Complement: show inversion from positive form
-  - Two's Complement: show inversion + 1 process
-- Bit width selector (4, 8 bits)
-- Number line at bottom showing all possible values
-- Highlight the "two zeros" issue in sign-magnitude and one's complement
-- Show the asymmetric range of two's complement
-
-Interactive Controls:
-- Slider or input for decimal value
-- Bit width selector (4 or 8 bits)
-- "Animate Conversion" to show step-by-step two's complement derivation
-- Toggle to highlight which values have multiple representations
-
-Data Visibility Requirements:
-Stage 1: Display the positive binary representation
-Stage 2: For negative numbers, show the inversion step
-Stage 3: For two's complement, show the +1 step
-Stage 4: Display final representation in all three formats
-
-Default Parameters:
-- Decimal value: 5
-- Bit width: 4
-
-Behavior:
-- Update all representations instantly as slider moves
-- Highlight sign bit in red for negative numbers
-- Show animation of bit inversion for negative conversions
-- Display range limits and indicate when value is out of range
-- Highlight zero representations (showing two zeros for sign-mag and one's comp)
-
-Instructional Rationale: Side-by-side comparison enables students to analyze the structural differences between representations and understand the advantages of two's complement.
-
-Implementation: p5.js with responsive canvas
-</details>
 
 ---
 
@@ -1024,63 +765,6 @@ Undetected overflow can cause catastrophic failures in safety-critical systems. 
 <iframe src="../sims/overflow-detection-simulator/main.html" width="100%" height="660px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Overflow Detection Simulator</summary>
-Type: microsim
-
-Purpose: Demonstrate overflow and underflow conditions in two's complement arithmetic with visual carry tracking
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, distinguish, detect
-
-Learning Objective: Students will be able to detect overflow conditions in two's complement addition by examining the carry bits and explain why overflow occurs.
-
-Canvas Layout:
-- Top: Two operand inputs with decimal values
-- Middle: Binary addition visualization with carry chain
-- Bottom: Result analysis showing overflow detection logic
-
-Visual Elements:
-- Two operand displays (decimal and binary)
-- Vertical addition layout with carry row clearly visible
-- Carry-in to MSB highlighted in yellow
-- Carry-out from MSB highlighted in orange
-- XOR gate symbol showing overflow detection
-- Result display with overflow/underflow indicator
-- Number line showing the "wrapping" when overflow occurs
-- Valid range indicator for the bit width
-
-Interactive Controls:
-- Two decimal input fields (or sliders) for operands
-- Bit width selector (4, 8 bits)
-- "Add" button to perform calculation
-- "Find Overflow Example" button to automatically set operands that cause overflow
-- Step-through mode to trace the addition column by column
-
-Data Visibility Requirements:
-Stage 1: Show both operands in binary with sign indicated
-Stage 2: Show column-by-column addition with carries
-Stage 3: Highlight the carry into MSB (Cin) and carry out of MSB (Cout)
-Stage 4: Show XOR comparison: if Cin ≠ Cout, overflow occurred
-Stage 5: Display correct mathematical result vs. the (incorrect) computed result
-
-Default Parameters:
-- Operand A: 7
-- Operand B: 3
-- Bit width: 4 (demonstrating overflow)
-
-Behavior:
-- Real-time update as operands change
-- Visual alarm (red border, warning icon) when overflow detected
-- Show the "wrapped" result and the expected result
-- Animate the carry propagation
-- Provide explanation text based on the specific overflow case
-
-Instructional Rationale: Visualizing the carry chain and XOR detection helps students understand the mechanism behind overflow detection, not just the rule.
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 id="19-practical-applications" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">1.9 Practical Applications</h2>
@@ -1116,52 +800,6 @@ Number systems and binary arithmetic form the foundation for all digital hardwar
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/number-systems-concept-map/main.html" width="100%" height="670px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>Number Systems Concept Map</summary>
-Type: infographic
-
-Purpose: Provide a visual overview of all concepts in Unit 1 and their relationships
-
-Bloom Level: Understand (L2)
-Bloom Verb: Summarize, organize, classify
-
-Learning Objective: Students will be able to explain the relationships between number system concepts and identify the foundational dependencies between topics.
-
-Visual Elements:
-- Central node: "Number Systems"
-- Four main branches:
-  1. Number Bases (Decimal, Binary, Octal, Hex)
-  2. Data Units (Bit, Nibble, Byte, Word, MSB/LSB)
-  3. Conversions (with sub-nodes for each conversion type)
-  4. Signed Representations (Sign-Mag, 1's Comp, 2's Comp)
-  5. Arithmetic (Addition, Subtraction, Multiplication, Division, Overflow)
-- Connection lines showing prerequisites/dependencies
-- Color coding by topic area
-- Icons representing each major concept
-
-Interactive Elements:
-- Hover over any node to highlight its connections
-- Click a node to expand its definition (tooltip from glossary)
-- Zoom and pan for exploring the full map
-- Filter by topic area
-- Progress indicators showing which concepts have been mastered
-
-Layout:
-- Force-directed graph with hierarchical tendencies
-- More fundamental concepts positioned left/top
-- More advanced concepts positioned right/bottom
-- Related concepts clustered together
-
-Color Scheme:
-- Blue: Number bases and positional notation
-- Green: Data units and binary organization
-- Orange: Conversion methods
-- Purple: Signed number representations
-- Red: Arithmetic operations and overflow
-
-Implementation: vis-network JavaScript library with responsive container
-</details>
 
 ---
 

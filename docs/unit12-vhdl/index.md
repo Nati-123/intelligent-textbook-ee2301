@@ -243,41 +243,6 @@ The statement `y <= a and b;` is a **concurrent signal assignment**. The symbol 
 <iframe src="../sims/entity-architecture/main.html" width="100%" height="1040px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>Entity-Architecture Relationship</summary>
-Type: infographic
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain, interpret
-
-Learning Objective: Explain the relationship between VHDL entity declarations (external interface) and architecture bodies (internal implementation) by mapping them to the familiar concept of a circuit symbol (outside view) and its internal schematic (inside view).
-
-Layout: Two-panel visualization
-
-Left panel - "Entity (Outside View)":
-- Show a black-box rectangle representing a component
-- Input ports shown as arrows entering the left side with labels and types
-- Output ports shown as arrows leaving the right side with labels and types
-- Entity name displayed at the top of the box
-- VHDL entity code displayed below the diagram
-
-Right panel - "Architecture (Inside View)":
-- Show the same rectangle but transparent, revealing internal logic gates
-- Internal signals shown as wires connecting gates
-- Signal declarations shown as labels on internal wires
-- VHDL architecture code displayed below the diagram
-
-Interactive elements:
-- Click on a port in the entity view to highlight the corresponding signal in the architecture view
-- Toggle between three example circuits: AND gate (simple), 4-bit adder (medium), counter (sequential)
-- Hover over VHDL keywords for tooltip definitions
-
-Color scheme: Entity border in blue, ports in green (input) and orange (output), internal logic in gray
-Canvas size: 800x450px, responsive
-
-Implementation: HTML/CSS/JavaScript
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.6 VHDL Data Types</h2>
@@ -480,47 +445,6 @@ end architecture behavioral;
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-modeling-styles/main.html" width="100%" height="910px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>VHDL Modeling Styles Comparison</summary>
-Type: infographic
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Compare, classify
-
-Learning Objective: Compare the three VHDL modeling styles (dataflow, structural, behavioral) by examining the same circuit (full adder) described in each style, and classify when each style is most appropriate.
-
-Layout: Three-column comparison with a shared circuit diagram at top
-
-Top section:
-- Circuit diagram of a full adder (from Unit 3) with inputs a, b, cin and outputs sum, cout
-
-Three columns:
-Column 1 - "Dataflow":
-- VHDL code showing concurrent signal assignments
-- Callout boxes linking each assignment to the corresponding gate in the circuit
-- Label: "Best for: Simple combinational logic, Boolean equations"
-
-Column 2 - "Structural":
-- VHDL code showing component instantiation
-- Callout boxes linking each component to a block in the circuit
-- Label: "Best for: Hierarchical designs, reusing components"
-
-Column 3 - "Behavioral":
-- VHDL code showing process with case statement
-- Callout boxes linking to the overall input-output behavior
-- Label: "Best for: Complex logic, sequential circuits, state machines"
-
-Interactive elements:
-- Click on any VHDL keyword to see tooltip definition
-- Hover over code lines to highlight corresponding hardware in the circuit diagram
-- Toggle between full adder example and 4:1 MUX example
-
-Color scheme: Dataflow in blue, structural in green, behavioral in purple
-Canvas size: 800x500px, responsive
-
-Implementation: HTML/CSS/JavaScript
-</details>
 
 ---
 
@@ -774,41 +698,6 @@ The synchronous reset is **not** in the sensitivity list—it is evaluated only 
 <iframe src="../sims/vhdl-flipflop-patterns/main.html" width="100%" height="570px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
-<details markdown="1">
-<summary>VHDL Flip-Flop Patterns</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Implement, demonstrate
-
-Learning Objective: Implement D flip-flop variants in VHDL by writing process statements with appropriate sensitivity lists and clock/reset patterns, then verify correct behavior through simulated waveforms.
-
-Visual elements:
-- Top section: VHDL code editor showing flip-flop process code (editable dropdown to select variant)
-- Middle section: Circuit diagram showing the synthesized flip-flop with inputs/outputs
-- Bottom section: Timing diagram showing clk, rst, d, and q waveforms
-
-Interactive controls:
-- Dropdown: Select variant (Basic DFF, DFF with Async Reset, DFF with Sync Reset, DFF with Enable)
-- "Simulate" button: Runs 16 clock cycles with predefined input pattern
-- Toggle switches for d, rst, en to manually set values
-- "Clock Pulse" button to manually advance one clock cycle
-- Waveform display showing signal history
-
-Data Visibility Requirements:
-Stage 1: Show VHDL code for selected variant
-Stage 2: Show the circuit diagram it synthesizes to
-Stage 3: Show clock edge detection moment in waveform
-Stage 4: Show output change (or not) based on inputs at that edge
-
-Instructional Rationale: Connecting VHDL code to both the synthesized circuit and the resulting waveforms helps students see how textual descriptions become physical hardware with specific timing behavior.
-
-Color scheme: Clock in blue, reset in red, data in green, output in orange
-Canvas size: 800x500px, responsive
-
-Implementation: p5.js
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">12.14 Registers in VHDL</h2>
@@ -1003,39 +892,6 @@ end architecture rtl;
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-fsm-mapper/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>FSM VHDL Code-to-State Diagram Mapper</summary>
-Type: microsim
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, deconstruct
-
-Learning Objective: Analyze the correspondence between VHDL FSM code (state type declaration, state register process, and combinational next-state/output process) and the equivalent state diagram, tracing how each case branch maps to a state transition arc.
-
-Visual elements:
-- Left panel: VHDL code with syntax highlighting, showing the two-process FSM template
-- Right panel: State diagram (circles for states, arrows for transitions, labels for conditions/outputs)
-- Highlighting: when a code section is selected, the corresponding state diagram element highlights
-
-Interactive controls:
-- Click on a state in the diagram to highlight the corresponding case branch in the code
-- Click on a transition arrow to highlight the corresponding if-then branch
-- "Simulate" mode: step through clock cycles with input toggles, showing current state highlighted in both code and diagram
-- Toggle between Moore and Mealy output display
-
-Data Visibility Requirements:
-- Show current state, next state, and output at each simulation step
-- Show the active code branch being executed
-- Show the state transition happening in the diagram
-
-Instructional Rationale: Dual-view mapping between code and diagram helps students translate between the abstract state diagram design (Unit 10) and the concrete VHDL implementation, reinforcing that VHDL is describing hardware behavior, not writing software.
-
-Color scheme: Current state in gold, next state in light blue, active transition in green, output in orange
-Canvas size: 800x550px, responsive
-
-Implementation: p5.js or vis-network
-</details>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Moore vs Mealy in VHDL</h3>
 
@@ -1256,38 +1112,6 @@ The synthesis tool reads the VHDL code and infers hardware structures:
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/vhdl-synthesis-inference/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
-
-<details markdown="1">
-<summary>VHDL Code to Hardware Inference</summary>
-Type: infographic
-
-Bloom Level: Understand (L2)
-Bloom Verb: Interpret, explain
-
-Learning Objective: Interpret common VHDL coding patterns and explain what hardware structures the synthesis tool infers from each pattern—connecting textual code to the physical gates, multiplexers, and flip-flops studied in prior units.
-
-Layout: Two-column matching display
-
-Left column: VHDL code snippets (6 patterns)
-1. `y <= a and b;` → AND gate
-2. `if sel = '0' then y <= a; else y <= b;` → 2:1 MUX
-3. `if rising_edge(clk) then q <= d;` → D flip-flop
-4. `cnt <= cnt + 1;` → Adder + register
-5. `if en = '1' then q <= d;` (inside clocked process) → FF with enable
-6. `if sel = '1' then y <= a;` (no else clause) → Latch (warning!)
-
-Right column: Circuit diagrams showing inferred hardware for each pattern
-
-Interactive elements:
-- Hover over a code pattern to highlight the corresponding circuit
-- Click a pattern to see a detailed explanation of the inference
-- Warning icon on the latch pattern with tooltip: "Missing else clause creates unintended latch"
-
-Color scheme: Combinational patterns in blue, sequential patterns in purple, warning pattern in red
-Canvas size: 800x500px, responsive
-
-Implementation: HTML/CSS/JavaScript
-</details>
 
 ---
 

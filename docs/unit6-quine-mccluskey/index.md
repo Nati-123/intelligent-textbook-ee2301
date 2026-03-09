@@ -192,45 +192,6 @@ The first step is to list all minterms in their binary representations:
 
 <iframe src="../sims/qm-grouping-visualization/main.html" width="100%" height="532px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
-<details markdown="1">
-<summary>QM Grouping Visualization Specification</summary>
-Type: microsim
-
-Bloom Level: Understand (L2)
-Bloom Verb: Classify, organize
-
-Learning Objective: Students will be able to classify minterms into groups based on the number of 1s in their binary representation and explain why this grouping facilitates the combination process.
-
-Visual Elements:
-- Left panel: Input area where students enter minterms (comma-separated list)
-- Center panel: Binary representation table showing each minterm, its binary form, and 1-count
-- Right panel: Grouped display showing minterms organized by number of 1s in stacked boxes
-- Color coding: Each group has a distinct color (Group 0: light blue, Group 1: light green, Group 2: yellow, Group 3: orange, Group 4: red)
-
-Interactive Controls:
-- Text input: Enter minterm numbers (e.g., "0,1,2,5,6,7,8,9,10,14")
-- Dropdown: Select number of variables (3, 4, 5, or 6)
-- Button: "Generate Groups"
-- Button: "Reset"
-- Checkbox: "Show binary representation"
-
-Behavior:
-- When minterms are entered and "Generate Groups" is clicked, display the binary representation table
-- Animate minterms moving from the table into their respective group boxes
-- Highlight adjacent groups with connecting arrows to show which groups will be compared
-- Display count of minterms in each group
-
-Data Visibility Requirements:
-- Stage 1: Show raw minterm list
-- Stage 2: Show conversion to binary with bit counting
-- Stage 3: Show final grouped arrangement
-
-Instructional Rationale: Grouping is a classification task that helps students understand the efficiency of the QM method. The animation showing minterms moving into groups reinforces the organizational principle.
-
-Canvas Size: 900x500 pixels, responsive to window width
-Implementation: p5.js
-</details>
-
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.3 The Combination Process</h2>
 
 Once minterms are grouped, the combination process begins. Two terms can be combined if and only if they:
@@ -345,52 +306,6 @@ The implicant table organizes the systematic combination process. Let us work th
 #### Diagram: QM Combination Process Simulator
 
 <iframe src="../sims/qm-combination-simulator/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
-
-<details markdown="1">
-<summary>QM Combination Process Simulator Specification</summary>
-Type: microsim
-
-Bloom Level: Apply (L3)
-Bloom Verb: Execute, implement
-
-Learning Objective: Students will be able to execute the QM combination process step-by-step, identifying which terms can be combined and correctly applying dash notation.
-
-Visual Elements:
-- Three-column layout showing progressive combination stages
-- Column 1: Original minterms grouped by number of 1s
-- Column 2: First-level combinations (1 dash)
-- Column 3: Second-level combinations (2 dashes)
-- Each term displays: minterm coverage, binary/dash pattern, check mark if combined
-- Connecting lines between columns showing which terms combined
-- Prime implicant highlight (unchecked terms in gold)
-
-Interactive Controls:
-- Input: Minterm list entry
-- Dropdown: Number of variables (3, 4, 5)
-- Button: "Step" - advance one combination at a time
-- Button: "Run All" - complete all combinations
-- Button: "Reset"
-- Toggle: "Show combination details" - displays which bit differs when combining
-
-Step-by-Step Behavior:
-- Step 1: Display grouped minterms in Column 1
-- Step 2-N: Each step attempts one combination, showing:
-  - The two terms being compared
-  - Whether they can combine (highlighting the differing bit)
-  - The resulting term with dash notation
-  - Check marks added to combined source terms
-- Final: Highlight all unchecked terms as prime implicants
-
-Data Visibility Requirements:
-- Before combination: Show both source terms with binary patterns
-- During combination: Highlight the differing bit position
-- After combination: Show result with dash, update check marks
-
-Instructional Rationale: Step-through execution allows students to practice the mechanical process of QM combination. Seeing each comparison explicitly builds procedural fluency before attempting problems independently.
-
-Canvas Size: 950x600 pixels, responsive
-Implementation: p5.js
-</details>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.5 Identifying Prime Implicants</h2>
 
@@ -572,56 +487,6 @@ $$P = P_5 + P_1P_6 + P_2P_6$$
 
 <iframe src="../sims/pi-chart-interactive/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
-<details markdown="1">
-<summary>Prime Implicant Chart Interactive Specification</summary>
-Type: microsim
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Examine, differentiate
-
-Learning Objective: Students will be able to analyze a prime implicant chart to identify essential prime implicants, apply row and column dominance, and determine a minimum cover.
-
-Visual Elements:
-- Main display: Interactive prime implicant chart as a grid
-- Columns: Minterms (numbered)
-- Rows: Prime implicants (labeled with pattern and Boolean expression)
-- Marks: × symbols showing coverage
-- Color coding:
-  - Essential PI rows: Green background
-  - Selected PIs: Blue background
-  - Eliminated PIs: Red strikethrough
-  - Covered minterms: Gray columns
-  - Single-cover columns (indicates EPI): Gold highlight
-
-Interactive Controls:
-- Input: Enter minterms and prime implicants, or use example
-- Button: "Find Essential PIs" - highlights columns with single ×
-- Button: "Apply Row Dominance" - identifies and optionally removes dominated rows
-- Button: "Apply Column Dominance" - identifies and optionally removes dominated columns
-- Clickable rows: Select/deselect prime implicants manually
-- Display: Running count of selected PIs, literals, and remaining uncovered minterms
-- Button: "Check Solution" - verifies if all minterms are covered
-- Button: "Reset"
-
-Behavior:
-- When "Find Essential PIs" clicked, scan columns and highlight those with single ×
-- Auto-select essential PIs and gray out covered minterm columns
-- Row/column dominance shows relationships with dotted lines before removal
-- Manual selection updates the "uncovered minterms" display in real-time
-- "Check Solution" validates coverage and displays result
-
-Data Visibility Requirements:
-- Initial: Full chart with all PIs and minterms
-- After EPI selection: Show which minterms are now covered
-- After dominance: Show reduced chart
-- Solution: Show final selected PIs and Boolean expression
-
-Instructional Rationale: The chart analysis process requires students to examine relationships between prime implicants and minterms. Interactive exploration allows trying different selection strategies to find minimum solutions.
-
-Canvas Size: 900x550 pixels, responsive
-Implementation: p5.js with HTML table overlay
-</details>
-
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.9 Cyclic Prime Implicant Charts</h2>
 
 <div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -748,63 +613,6 @@ The QM method, while systematic, has exponential worst-case complexity:
 #### Diagram: QM Complexity Visualization
 
 <iframe src="../sims/qm-complexity-chart/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
-
-<details markdown="1">
-<summary>QM Complexity Visualization Specification</summary>
-Type: chart
-
-Bloom Level: Evaluate (L5)
-Bloom Verb: Assess, compare
-
-Learning Objective: Students will be able to assess when the QM method is practical versus when heuristic methods are preferred based on problem size.
-
-Chart Type: Dual-axis line chart
-
-Purpose: Visualize the exponential growth of QM computational requirements as variable count increases, compared to heuristic methods.
-
-X-axis: Number of variables (2 to 20)
-Y-axis 1 (left, logarithmic): Computation time (relative units)
-Y-axis 2 (right, logarithmic): Maximum number of prime implicants
-
-Data Series:
-1. QM Method Time (red line, exponential growth)
-   - 2 vars: 1
-   - 4 vars: 10
-   - 6 vars: 100
-   - 8 vars: 2,000
-   - 10 vars: 50,000
-   - 15 vars: 10,000,000
-   - 20 vars: 10,000,000,000
-
-2. ESPRESSO Heuristic Time (green line, polynomial growth)
-   - 2 vars: 1
-   - 4 vars: 5
-   - 6 vars: 20
-   - 8 vars: 80
-   - 10 vars: 300
-   - 15 vars: 2,000
-   - 20 vars: 10,000
-
-3. Max Prime Implicants (blue dashed line)
-   - Following 3^n / n formula
-
-Annotations:
-- Vertical line at n=6: "K-map practical limit"
-- Vertical line at n=15: "QM practical limit"
-- Shaded region for "Exact methods practical"
-- Shaded region for "Heuristics recommended"
-
-Title: "Computational Complexity: Exact vs. Heuristic Minimization"
-Legend: Position bottom
-
-Interactive features (if implemented as MicroSim):
-- Hover to see exact values
-- Toggle series visibility
-- Slider to adjust scale
-
-Implementation: Chart.js or p5.js
-Canvas Size: 800x450 pixels, responsive
-</details>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.12 Multi-Output Minimization</h2>
 
@@ -967,58 +775,6 @@ Let us work through a complete example systematically.
 #### Diagram: Complete QM Method Walkthrough
 
 <iframe src="../sims/qm-complete-walkthrough/main.html" width="100%" height="652px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
-
-<details markdown="1">
-<summary>Complete QM Method Walkthrough Specification</summary>
-Type: microsim
-
-Bloom Level: Create (L6)
-Bloom Verb: Construct, develop
-
-Learning Objective: Students will be able to construct a complete QM minimization solution from start to finish, including grouping, combination, prime implicant identification, chart construction, and minimum cover selection.
-
-Visual Elements:
-- Four-panel layout:
-  1. Top-left: Minterm input and grouping table
-  2. Top-right: Combination table with iterative columns
-  3. Bottom-left: Prime implicant chart
-  4. Bottom-right: Solution summary with Boolean expression
-
-Interactive Controls:
-- Input field: Enter minterm list
-- Input field: Enter don't care list (optional)
-- Dropdown: Number of variables (3, 4, 5, 6)
-- Mode selector: "Step-by-step" or "Automatic"
-- Step-by-step controls:
-  - "Next Step" button
-  - "Previous Step" button
-  - Current step indicator
-- "Generate Full Solution" button
-- "Export Solution" button (copy to clipboard)
-- "New Problem" button
-
-Step-by-Step Sequence:
-1. Enter minterms → Display grouped table
-2. First combination → Show all possible pairs, highlight valid combinations
-3. Second combination → Continue combining
-4. Mark prime implicants → Highlight unchecked terms
-5. Build PI chart → Display coverage matrix
-6. Find essential PIs → Highlight single-cover columns
-7. Apply dominance (if applicable)
-8. Select remaining PIs → Show minimum cover options
-9. Display final expression
-
-Data Visibility Requirements:
-- Each step shows intermediate results clearly
-- Transitions highlight what changed
-- Final summary shows all prime implicants used and Boolean expression
-- Cost metrics: number of terms, number of literals
-
-Instructional Rationale: The Create level requires students to synthesize all QM steps into a complete solution. This comprehensive simulator serves as both a learning tool and a verification system for hand-computed solutions.
-
-Canvas Size: 1000x700 pixels, responsive with collapsible panels
-Implementation: p5.js
-</details>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.14 Computer Implementation</h2>
 

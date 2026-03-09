@@ -218,44 +218,6 @@ stateDiagram-v2
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: SR Latch NOR Gate Implementation</h4>
 
-<details markdown="1">
-<summary>SR Latch NOR Gate Implementation</summary>
-Type: MicroSim
-
-Bloom Level: Understand (L2)
-Bloom Verb: explain, observe
-
-Learning objective: Understand SR latch operation by observing how feedback between cross-coupled NOR gates creates memory behavior and how Set, Reset, Hold, and Invalid states manifest.
-
-Data Visibility Requirements:
-Stage 1: Show initial state with S=0, R=0, Q holding previous value
-Stage 2: Apply S=1, show NOR gate outputs propagating — Q' forced to 0, then Q driven to 1 through feedback
-Stage 3: Return to S=0, R=0, show Q holding at 1 (memory demonstrated)
-Stage 4: Apply R=1, show Q forced to 0 through NOR propagation
-Stage 5: Apply S=1 and R=1 simultaneously, show both outputs at 0 (invalid)
-Stage 6: Release S and R simultaneously, show unpredictable resolution
-
-Interaction: Step-through with Next/Previous buttons. At each stage, display the voltage at every node (S, R, Q, Q') and highlight which NOR gate is being evaluated. Show the Boolean equation being computed at each gate.
-
-Controls:
-- S and R toggle buttons
-- Step-through mode with Next/Previous
-- Animation speed slider
-- Reset button
-
-Visual elements:
-- Two NOR gate symbols with standard IEEE shapes
-- Cross-coupled feedback paths drawn as colored wires
-- Signal color coding: 1 = green, 0 = red, transitioning = yellow
-- State label showing current operation mode (Hold/Set/Reset/Invalid)
-- Warning indicator when S=R=1
-
-Instructional Rationale: Step-through with explicit signal values is appropriate because understanding SR latch operation requires tracing the feedback propagation path with concrete logic levels. Animation would obscure the cause-and-effect chain through the cross-coupled gates.
-
-Canvas: 600×400px responsive
-Implementation: p5.js
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.4 SR Latch with NAND Gates</h2>
@@ -447,34 +409,6 @@ Most modern sequential circuits are **positive-edge-triggered**, meaning state c
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Clock Signal Terminology</h4>
 
-<details markdown="1">
-<summary>Clock Signal Waveform with Labeled Features</summary>
-Type: diagram
-
-Bloom Level: Remember (L1)
-Bloom Verb: identify, label
-
-Learning objective: Identify and label the key features of a clock waveform including rising edge, falling edge, period, frequency, duty cycle, and high/low times.
-
-Visual elements:
-- Ideal square wave clock signal showing 3-4 complete cycles
-- Rising edges marked with upward arrows and label "Rising Edge (Positive Edge)"
-- Falling edges marked with downward arrows and label "Falling Edge (Negative Edge)"
-- Period bracket spanning one full cycle, labeled "$T$"
-- High time and low time brackets
-- Duty cycle annotation
-- Frequency formula displayed: $f = 1/T$
-- Zoomed inset showing finite rise time on a real clock edge
-
-Visual specifications:
-- Canvas: 650×300px responsive
-- Clock signal in blue
-- Annotations in black with red arrows for edges
-- Shaded regions for high time (light blue) and low time (light gray)
-
-Implementation: p5.js or SVG
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.8 Edge-Triggered D Flip-Flop</h2>
@@ -561,44 +495,6 @@ The net effect is that $D$ is sampled once per clock cycle, precisely at the ris
 | HIGH | Closed (holds value) | Transparent (but stable input) | Q remains stable |
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Master-Slave D Flip-Flop Internal Architecture</h4>
-
-<details markdown="1">
-<summary>Master-Slave D Flip-Flop Internal Architecture</summary>
-Type: MicroSim
-
-Bloom Level: Analyze (L4)
-Bloom Verb: examine, differentiate
-
-Learning objective: Analyze how two level-sensitive D latches with complementary enables create edge-triggered behavior, differentiating the roles of master and slave during each clock phase.
-
-Data Visibility Requirements:
-Stage 1: Clock LOW — Show master latch transparent (highlighted), slave closed. D input value shown propagating through master. Slave output Q unchanged.
-Stage 2: Clock rising edge — Show master closing (capturing D value), slave opening. Arrow showing data transfer from master output to slave output.
-Stage 3: Clock HIGH — Show master closed (grayed out), slave transparent but with stable input from master. Q now shows new value.
-Stage 4: Next clock LOW — Master reopens, begins tracking new D value. Slave closes, holds Q.
-
-Interaction: Step-through with Next/Previous buttons. Each stage shows which latch is transparent (green border) and which is closed (red border). Display D, master output, and Q values at each stage.
-
-Components:
-- Master D latch (left) with internal state visible
-- Slave D latch (right) with internal state visible
-- Clock input with waveform display
-- Inverter between clock and master enable
-- D input toggle button
-- Q output LED indicator
-- Intermediate signal display (master output)
-
-Controls:
-- Step-through mode with Next/Previous buttons
-- Free-running mode with adjustable clock speed
-- D input toggle
-- Reset button
-
-Instructional Rationale: Step-through mode with explicit latch states is appropriate because the Analyze objective requires students to trace data through two sequential stages and understand why the complementary enables prevent transparency problems. Continuous animation would blur the critical distinction between clock phases.
-
-Canvas: 700×500px responsive
-Implementation: p5.js
-</details>
 
 ---
 
@@ -701,45 +597,6 @@ Each flip-flop type can be constructed from any other type by adding appropriate
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Flip-Flop Family Relationships</h4>
 
-<details markdown="1">
-<summary>Flip-Flop Family Relationships</summary>
-Type: infographic
-
-Bloom Level: Understand (L2)
-Bloom Verb: compare, classify
-
-Learning objective: Compare and classify the four flip-flop types by understanding how each can be derived from the others through input logic modifications.
-
-Layout: Central hub-and-spoke diagram with four flip-flop types as nodes connected by directed edges showing conversion logic.
-
-Nodes:
-- SR Flip-Flop (top) — blue circle
-- D Flip-Flop (right) — green circle
-- JK Flip-Flop (bottom) — orange circle
-- T Flip-Flop (left) — purple circle
-
-Edges (conversion logic shown on hover):
-- D → SR: S=D, R=D'
-- D → JK: D=JQ'+K'Q
-- D → T: D=T⊕Q
-- JK → T: J=K=T
-- JK → SR: J=S, K=R (with SR=0 constraint)
-- JK → D: J=D, K=D'
-
-Interactive features:
-- Hover over any node to highlight all conversion paths from that type
-- Hover over any edge to see the conversion equation in a tooltip
-- Click a node to show its characteristic table, truth table, and excitation table side by side
-
-Visual specifications:
-- Canvas: 600×500px responsive
-- Clean lines with arrow endpoints
-- Color-coded nodes matching the table above
-- Equations rendered in clear monospace font
-
-Implementation: HTML/CSS/JavaScript with SVG or p5.js
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.12 Flip-Flop Timing Parameters</h2>
@@ -784,41 +641,6 @@ where:
 - $f_{max}$ is the maximum operating frequency
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Timing Parameter Visualization</h4>
-
-<details markdown="1">
-<summary>Flip-Flop Timing Parameters Diagram</summary>
-Type: diagram
-
-Bloom Level: Analyze (L4)
-Bloom Verb: examine, differentiate
-
-Learning objective: Examine the temporal relationships between clock edges, data transitions, and output changes to understand why setup and hold time violations cause failures.
-
-Visual elements:
-- Three horizontally-aligned signal traces (top to bottom):
-  1. CLK: Square wave with rising edge highlighted by vertical dashed line
-  2. D: Data signal with a transition, showing stable region before and after clock edge
-  3. Q: Output signal showing transition after clock-to-Q delay
-- Setup time bracket (shaded yellow region before clock edge)
-- Hold time bracket (shaded orange region after clock edge)
-- Clock-to-Q delay arrow from clock edge to Q transition
-- "Valid data window" label spanning setup + hold region
-- Magnified inset of the clock edge region
-
-Annotations:
-- $t_{setup}$ label with bracket
-- $t_{hold}$ label with bracket
-- $t_{cq}$ label with arrow
-- "Data must be stable in this window" callout
-- Optional toggle to show violation scenario (D changing during setup window)
-
-Visual specifications:
-- Canvas: 700×450px responsive
-- Time axis with gridlines and scale markers
-- Color coding: clock (blue), data (green), output (red), timing regions (yellow/orange shading)
-
-Implementation: p5.js with interactive time scale zoom
-</details>
 
 ---
 
@@ -1010,46 +832,6 @@ The pattern is clear: $T = Q \oplus Q_{next}$. Toggle (T=1) when the state needs
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Characteristic vs Excitation Table Interactive Explorer</h4>
 
-<details markdown="1">
-<summary>Characteristic vs Excitation Table Interactive Explorer</summary>
-Type: infographic
-
-Bloom Level: Understand (L2)
-Bloom Verb: compare, explain
-
-Learning objective: Explain the difference between characteristic and excitation tables and understand how excitation tables serve as the "inverse" lookup for sequential circuit design.
-
-Layout: Split-screen interactive display
-
-Left panel - Characteristic Table Mode:
-- Dropdown to select flip-flop type (D, JK, T, SR)
-- User selects input values (e.g., J=1, K=0) and current state Q
-- System highlights the matching row and shows Q_next
-- Arrow labeled "Given inputs → Find next state"
-
-Right panel - Excitation Table Mode:
-- Same flip-flop type selector (linked to left panel)
-- User selects current state Q and desired Q_next
-- System highlights the matching row and shows required inputs
-- Arrow labeled "Given transition → Find required inputs"
-- Don't care values highlighted in yellow with tooltip: "Either 0 or 1 works"
-
-Interactive features:
-- Click any cell in either table to highlight the corresponding row
-- Toggle between flip-flop types updates both panels simultaneously
-- Highlight don't cares with explanation tooltip
-- "Quiz mode" button: system randomly selects a transition, student must identify required inputs
-
-Visual specifications:
-- Canvas: 700×450px responsive
-- Clean table styling with alternating row colors
-- Active row highlighted in blue
-- Don't care cells in yellow
-- Matching entries connected by a visual bridge between panels
-
-Implementation: HTML/CSS/JavaScript
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">9.17 Timing Diagram Analysis</h2>
@@ -1100,44 +882,6 @@ For T flip-flops:
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Interactive Timing Diagram Practice Tool</h4>
-
-<details markdown="1">
-<summary>Interactive Timing Diagram Practice Tool</summary>
-Type: MicroSim
-
-Bloom Level: Apply (L3)
-Bloom Verb: solve, practice
-
-Learning objective: Apply flip-flop characteristic equations to predict output waveforms given input waveforms and clock signals, practicing the timing diagram analysis procedure.
-
-Features:
-- Pre-drawn clock waveform (8-10 cycles)
-- Pre-drawn input waveforms (D, or J and K, or T) with random but pedagogically chosen values
-- User draws predicted Q output by clicking on waveform grid
-- "Check Answer" button compares user's Q waveform against correct solution
-- Correct edges highlighted green, incorrect edges highlighted red
-- "Show Solution" button reveals correct Q waveform with step-by-step annotations
-
-Controls:
-- Flip-flop type selector: D, JK, T
-- "New Problem" button generates random input waveforms
-- "Show Clock Edges" toggle: draws vertical dashed lines at rising edges
-- "Show Sampling Points" toggle: highlights D values at each clock edge
-- Difficulty selector: Easy (D only), Medium (JK), Hard (T with initial state unknown)
-- Speed control for animated solution playback
-
-Visual elements:
-- Four signal traces: CLK, Inputs (D or J,K or T), Q (user-drawn), Q (solution)
-- Grid background for precise waveform drawing
-- Vertical dashed lines at clock edges (toggleable)
-- Sampling point indicators (dots on input waveform at clock edges)
-- Score display: "X of Y edges correct"
-
-Instructional Rationale: Active problem-solving with immediate feedback is appropriate for an Apply-level objective. Students must execute the timing analysis procedure themselves rather than passively watching. The step-through solution provides scaffolding for incorrect attempts.
-
-Canvas: 700×500px responsive
-Implementation: p5.js
-</details>
 
 ---
 

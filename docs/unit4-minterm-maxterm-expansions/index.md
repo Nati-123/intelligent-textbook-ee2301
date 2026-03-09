@@ -224,58 +224,6 @@ Each minterm equals 1 for exactly one input combination and 0 for all others. Th
 
 <iframe src="../sims/minterm-visualizer/main.html" width="100%" height="800px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
-<details markdown="1">
-<summary>Minterm Visualizer</summary>
-Type: microsim
-
-Purpose: Interactive visualization of minterm construction showing the relationship between input values and minterm structure
-
-Bloom Level: Understand (L2)
-Bloom Verb: Explain, construct, identify
-
-Learning Objective: Students will be able to construct any minterm from its index number and explain why each minterm equals 1 for exactly one input combination.
-
-Canvas Layout:
-- Top: Variable count selector (2, 3, or 4 variables)
-- Middle: Visual minterm construction area
-- Bottom: Complete minterm table with highlighting
-
-Visual Elements:
-- Binary input display with variable labels (A, B, C, ...)
-- Step-by-step minterm construction:
-  - For each variable, show: value → complemented or not
-  - Build the product term progressively
-- Highlight showing the single "1" in the minterm's truth table column
-- Complete minterm reference table
-
-Interactive Controls:
-- Variable count selector (2, 3, 4)
-- Click on any minterm index (0 to 2^n - 1) to see its construction
-- Binary input toggles to build minterm interactively
-- "Show All Minterms" table view
-- Animation to cycle through all minterms
-
-Data Visibility Requirements:
-- Show the decimal index prominently
-- Show the binary equivalent
-- Show each variable's contribution (1→uncomplemented, 0→complemented)
-- Display the final minterm expression
-- Highlight the single "1" in a mini truth table
-
-Default Parameters:
-- Variables: 3 (A, B, C)
-- Selected minterm: m5
-
-Behavior:
-- Real-time minterm update as index or bits change
-- Highlight the relationship between binary value and complement usage
-- Show that the minterm evaluates to 1 only for its index input
-
-Instructional Rationale: Seeing the systematic construction process helps students internalize the minterm pattern without memorization.
-
-Implementation: p5.js with responsive canvas
-</details>
-
 ---
 
 <h2 id="43-maxterms" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">4.3 Maxterms</h2>
@@ -488,62 +436,6 @@ Both canonical forms — the <strong style="color: #333;">sum of minterms</stron
 #### Diagram: Minterm/Maxterm Converter
 
 <iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="900px" style="border:none; border-radius:8px;"></iframe>
-
-<details markdown="1">
-<summary>Canonical Form Generator</summary>
-Type: microsim
-
-Purpose: Generate canonical SOP and POS forms from truth table inputs with step-by-step explanation
-
-Bloom Level: Apply (L3)
-Bloom Verb: Derive, construct, generate
-
-Learning Objective: Students will be able to derive both canonical SOP (sum of minterms) and canonical POS (product of maxterms) expressions from any truth table.
-
-Canvas Layout:
-- Left: Interactive truth table with editable outputs
-- Right: Generated canonical expressions (SOP and POS)
-- Bottom: Step-by-step derivation panel
-
-Visual Elements:
-- Truth table with toggle outputs (0, 1, X)
-- Rows highlighted by output value:
-  - Green highlight for F=1 rows (contribute to SOP)
-  - Red highlight for F=0 rows (contribute to POS)
-  - Gray for don't cares
-- Canonical SOP expression built term by term
-- Canonical POS expression built term by term
-- Minterm/Maxterm index list
-- Expandable view showing full minterm/maxterm expressions
-
-Interactive Controls:
-- Variable count selector (2, 3, 4)
-- Click truth table outputs to toggle 0/1/X
-- "Random Function" button
-- Toggle between showing indices only vs full expressions
-- "Step Through SOP" / "Step Through POS" buttons
-- Copy expression button
-
-Data Visibility Requirements:
-- For SOP: highlight each F=1 row as its minterm is added
-- For POS: highlight each F=0 row as its maxterm is added
-- Show running expression as terms are added
-- Display both compact notation and expanded form
-
-Default Parameters:
-- Variables: 3
-- Function: F = Σm(1,3,5)
-
-Behavior:
-- Real-time expression update as truth table changes
-- Animation option for step-by-step derivation
-- Verify equivalence of SOP and POS (same truth table)
-- Count and display number of terms in each form
-
-Instructional Rationale: Side-by-side construction of both canonical forms from the same truth table reinforces the duality between minterms and maxterms.
-
-Implementation: p5.js with DOM elements for truth table
-</details>
 
 #### Diagram: Truth Table to Canonical Form Converter
 
@@ -779,61 +671,6 @@ F &= (A+B)(A+C) \\[8pt]
 
 <iframe src="../sims/sop-pos-converter/main.html" width="100%" height="900px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 
-<details markdown="1">
-<summary>SOP-POS Converter</summary>
-Type: microsim
-
-Purpose: Convert between SOP and POS forms showing both truth table and algebraic methods
-
-Bloom Level: Apply (L3)
-Bloom Verb: Convert, transform, apply
-
-Learning Objective: Students will be able to convert Boolean expressions between SOP and POS forms using either truth table or algebraic methods.
-
-Canvas Layout:
-- Top: Expression input with form selector (SOP/POS)
-- Middle: Conversion workspace showing method steps
-- Bottom: Result display with verification
-
-Visual Elements:
-- Input expression field
-- Method selector (Truth Table / Algebraic)
-- Step-by-step conversion display:
-  - For truth table: show table with highlighted rows
-  - For algebraic: show DeMorgan's applications
-- Output expression in target form
-- Verification panel (both expressions produce same truth table)
-
-Interactive Controls:
-- Enter expression in either SOP or POS form
-- Select target form (convert TO SOP or TO POS)
-- Method toggle (truth table vs algebraic)
-- "Step Through" for detailed walkthrough
-- "Verify Equivalence" button
-- Example expression buttons
-
-Data Visibility Requirements:
-- Show intermediate steps clearly
-- For truth table method: highlight F=1 rows (SOP) or F=0 rows (POS)
-- For algebraic: show each transformation with rule applied
-- Display both expressions and their common truth table
-
-Default Parameters:
-- Input: AB + A'C (SOP)
-- Target: POS
-- Method: Truth Table
-
-Behavior:
-- Parse and validate input expression
-- Generate conversion steps based on method
-- Verify that input and output have same truth table
-- Handle both standard and canonical forms
-
-Instructional Rationale: Seeing both conversion methods helps students choose the appropriate approach based on expression complexity.
-
-Implementation: p5.js with DOM elements
-</details>
-
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Verifying Canonical Form Correctness</h3>
 
 <p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
@@ -1066,62 +903,6 @@ The reconstructed expression $AB + \overline{A}C$ appears different from the ori
 #### Diagram: Shannon Expansion Explorer
 
 <iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="840px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
-
-<details markdown="1">
-<summary>Shannon Expansion Explorer</summary>
-Type: microsim
-
-Purpose: Demonstrate Shannon expansion and cofactor computation for any Boolean function
-
-Bloom Level: Analyze (L4)
-Bloom Verb: Decompose, analyze, derive
-
-Learning Objective: Students will be able to apply Shannon expansion to decompose a Boolean function into cofactors and verify the expansion by reconstruction.
-
-Canvas Layout:
-- Top: Function input field
-- Middle: Expansion variable selector and cofactor display
-- Bottom: Verification and MUX implementation view
-
-Visual Elements:
-- Input function display
-- Variable selector (which variable to expand around)
-- Cofactor computation showing substitution:
-  - F_X with X=1 substitution highlighted
-  - F_X̄ with X=0 substitution highlighted
-- Reconstructed expression: X·F_X + X̄·F_X̄
-- Equivalence verification (truth tables match)
-- 2:1 MUX diagram showing implementation
-
-Interactive Controls:
-- Enter any Boolean expression
-- Select expansion variable from dropdown
-- "Compute Cofactors" button
-- "Verify Expansion" to check equivalence
-- "Show MUX" to see hardware implementation
-- "Expand Further" to recursively expand cofactors
-
-Data Visibility Requirements:
-- Show original function
-- Show step-by-step substitution for each cofactor
-- Show simplified cofactor expressions
-- Display reconstructed expansion
-- Verify via truth table comparison
-
-Default Parameters:
-- Function: AB + A'C + BC
-- Expansion variable: A
-
-Behavior:
-- Parse and validate input expression
-- Compute cofactors with simplification
-- Show that X·F_X + X̄·F_X̄ = F
-- Optionally show recursive expansion tree
-
-Instructional Rationale: Understanding Shannon expansion prepares students for advanced topics like BDDs and provides insight into multiplexer-based implementations.
-
-Implementation: p5.js with expression parser
-</details>
 
 <h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Multi-Variable Shannon Expansion</h3>
 

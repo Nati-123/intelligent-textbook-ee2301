@@ -164,38 +164,6 @@ where:
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Bit Parallel Load Register</h4>
 
-<details markdown="1">
-<summary>4-Bit Parallel Load Register Structure</summary>
-Type: diagram
-
-Bloom Level: Understand (L2)
-Bloom Verb: explain, describe
-
-Learning objective: Explain how a parallel load register uses multiplexers at each flip-flop input to select between loading new data and holding the current value.
-
-Components to show:
-- 4 D flip-flops arranged horizontally, labeled FF3 through FF0
-- 4 two-to-one multiplexers, one before each flip-flop
-- Common clock line connected to all flip-flops
-- Load signal connected to all MUX select inputs
-- Data inputs D3-D0 connected to MUX "1" inputs
-- Feedback paths from each Q output back to its MUX "0" input
-- Outputs Q3-Q0
-
-Labels:
-- "Load = 0: Hold (Q feeds back)" on MUX "0" path
-- "Load = 1: Load (D passes through)" on MUX "1" path
-- Clock symbol on common clock line
-
-Visual specifications:
-- Canvas: 650×350px responsive
-- Standard flip-flop rectangle symbols with CLK triangle
-- MUX shown as trapezoid shapes
-- Color coding: data path (blue), feedback path (orange), control (green)
-
-Implementation: p5.js or SVG
-</details>
-
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">10.4 Shift Register Operation</h2>
@@ -760,45 +728,6 @@ The Mealy machine achieves the same detection with only 2 states (vs 3 for Moore
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Moore vs Mealy State Diagrams</h4>
 
-<details markdown="1">
-<summary>Moore vs Mealy State Diagram Comparison</summary>
-Type: diagram
-
-Bloom Level: Understand (L2)
-Bloom Verb: compare, contrast
-
-Learning objective: Compare and contrast Moore and Mealy state diagram representations for the same sequential behavior, understanding where outputs are specified in each model.
-
-Layout: Side-by-side diagrams for a simple "01" sequence detector
-
-Left panel — Moore Machine:
-- State S0 (output Z=0): Initial state, no pattern detected
-- State S1 (output Z=0): Received "0"
-- State S2 (output Z=1): Received "01" — detection!
-- Transitions labeled with input values only
-- Outputs written inside state circles
-
-Right panel — Mealy Machine:
-- State S0: Initial state
-- State S1: Received "0"
-- Transitions labeled with input/output format (e.g., "1/1")
-- Outputs written on transition arrows
-- Note: fewer states (2 vs 3)
-
-Annotations:
-- Callout highlighting "Outputs are IN states" (Moore)
-- Callout highlighting "Outputs are ON transitions" (Mealy)
-- Both diagrams process the same example input sequence "1001" and show matching output behavior
-
-Visual specifications:
-- Canvas: 700×400px responsive
-- State circles with distinct colors (Moore: blue, Mealy: green)
-- Clear arrow labels with input/output notation
-- Example trace shown below each diagram
-
-Implementation: p5.js or SVG
-</details>
-
 #### Diagram: Moore vs Mealy Interactive Comparison
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -971,59 +900,6 @@ Build the circuit:
 - Verify with timing simulation
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: FSM Design Procedure Flowchart</h4>
-
-<details markdown="1">
-<summary>Complete FSM Design Workflow</summary>
-Type: workflow
-
-Bloom Level: Apply (L3)
-Bloom Verb: execute, implement
-
-Learning objective: Apply the systematic FSM design procedure by following the seven-step workflow from behavioral specification through circuit implementation.
-
-Layout: Vertical flowchart with seven main steps connected by downward arrows
-
-Steps:
-1. Rectangle: "Problem Specification"
-Hover text: "Identify inputs, outputs, and desired behavior. Choose Moore or Mealy model."
-
-2. Rectangle: "State Diagram"
-Hover text: "Draw states as circles, transitions as arrows. Verify completeness: every state has a transition for every input."
-
-3. Rectangle: "State Table"
-Hover text: "Convert diagram to table: rows = state×input combinations, columns = next state and output."
-
-4. Diamond: "State Minimization"
-Hover text: "Can any states be merged? Two states are equivalent if they have same outputs and equivalent next states for all inputs."
-
-5. Rectangle: "State Assignment"
-Hover text: "Map abstract states to binary codes. Choose binary, Gray code, or one-hot encoding."
-
-6. Rectangle: "Next-State & Output Logic"
-Hover text: "Use K-maps or Boolean algebra to derive flip-flop input equations and output equations."
-
-7. Rectangle: "Circuit Implementation"
-Hover text: "Place flip-flops, build combinational logic, add reset. Verify with timing simulation."
-
-Side annotations:
-- Arrow from Step 7 back to Step 1 labeled "Verify against specification"
-- Note at Step 5: "Use excitation tables for JK flip-flops"
-- Note at Step 6: "D flip-flop: D_i = Q_i^+"
-
-Color coding:
-- Specification steps (1-2): light blue
-- Table/assignment steps (3-5): light green
-- Logic/circuit steps (6-7): light orange
-- Verification loop: red dashed arrow
-
-Visual specifications:
-- Canvas: 550×650px responsive
-- Rounded rectangles for process steps
-- Diamond for decision point
-- Clear directional arrows
-
-Implementation: p5.js or SVG
-</details>
 
 <h4 style="color: #5A3EED; font-weight: 600;">MicroSim: FSM Designer</h4>
 
@@ -1213,47 +1089,6 @@ The output correctly goes high whenever the pattern "101" has been received, and
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Sequence Detector Interactive State Machine</h4>
-
-<details markdown="1">
-<summary>101 Sequence Detector Interactive State Machine</summary>
-Type: MicroSim
-
-Bloom Level: Apply (L3)
-Bloom Verb: solve, demonstrate
-
-Learning objective: Apply FSM design principles by tracing input sequences through the "101" sequence detector, predicting state transitions and output values before observing the simulation results.
-
-Features:
-- State diagram with four states (S0-S3) visually displayed
-- Current state highlighted with animation
-- Input buttons: "0" and "1" to feed serial bits
-- Input history displayed as a scrolling bit string
-- Output LED indicator: lights up green when Z=1 (pattern "101" detected)
-- State transition animation showing the arrow being traversed
-- Transition table displayed alongside, with current row highlighted
-
-Controls:
-- "Input 0" button: feeds a 0 bit
-- "Input 1" button: feeds a 1 bit
-- "Auto-run Random" toggle: automatically feeds random bits at adjustable speed
-- "Reset" button: returns to S0
-- Speed slider for auto-run mode
-- "Predict Mode" toggle: asks student to predict next state before revealing
-
-Visual elements:
-- Four state circles arranged in a diamond pattern
-- Directed arrows with input labels
-- Output value shown inside each state (Moore convention)
-- Current state: bright green fill
-- Previous state: fading yellow
-- Input history: scrolling ticker tape at bottom
-- Detection counter: "Patterns found: X"
-
-Instructional Rationale: Active input-by-input interaction with prediction mode is appropriate for an Apply-level objective. Students execute the FSM transition rules manually, building procedural fluency. The predict-then-reveal cycle reinforces the state table lookup process.
-
-Canvas: 700×550px responsive
-Implementation: p5.js
-</details>
 
 ---
 
