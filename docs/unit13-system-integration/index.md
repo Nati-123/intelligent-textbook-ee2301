@@ -456,30 +456,37 @@ This ensures that data doesn't change too quickly after the clock edge. Hold tim
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">13.9 Pipelining for Performance</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 When the critical path limits clock frequency to an unacceptable level, **pipelining** breaks the critical path by inserting registers at intermediate points. This trades **latency** (more clock cycles to complete one operation) for **throughput** (higher clock frequency, more operations per second).
 
 **Without pipelining:**
 
-- Critical path delay: $T_{comb} = 20$ ns
-- With $T_{cq} = 2$ ns, $T_{setup} = 1$ ns
-- $f_{max} = 1/(2 + 20 + 1) = 43.5$ MHz
+- Critical path delay: <span class="arithmatex">\(T_{comb} = 20\)</span> ns
+- With <span class="arithmatex">\(T_{cq} = 2\)</span> ns, <span class="arithmatex">\(T_{setup} = 1\)</span> ns
+- <span class="arithmatex">\(f_{max} = 1/(2 + 20 + 1) = 43.5\)</span> MHz
 - Throughput: 43.5 million operations/second
 
 **With one pipeline stage (splitting the combinational logic in half):**
 
-- Each stage: $T_{comb} = 10$ ns
-- $f_{max} = 1/(2 + 10 + 1) = 76.9$ MHz
+- Each stage: <span class="arithmatex">\(T_{comb} = 10\)</span> ns
+- <span class="arithmatex">\(f_{max} = 1/(2 + 10 + 1) = 76.9\)</span> MHz
 - Latency: 2 clock cycles per result
-- Throughput: 76.9 million operations/second (1.77x improvement)
+- Throughput: 76.9 million operations/second (1.77× improvement)
 
-The pipeline stage adds one clock cycle of delay but nearly doubles the throughput. This is the same principle used in modern processors, which may have 10-20+ pipeline stages.
+The pipeline stage adds one clock cycle of delay but nearly doubles the throughput. This is the same principle used in modern processors, which may have 10–20+ pipeline stages.
 
-!!! note "Pipeline Design Considerations"
-    Pipelining is not free. It adds flip-flops (area and power), increases latency, and requires all parallel data paths to be pipelined to the same depth to maintain synchronization. The designer must weigh these costs against the frequency improvement.
+</div>
+
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Pipeline Design Considerations:</strong> Pipelining is not free. It adds flip-flops (area and power), increases latency, and requires all parallel data paths to be pipelined to the same depth to maintain synchronization. The designer must weigh these costs against the frequency improvement.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: 3-Stage Multiply-Accumulate Pipeline</h3>
 
-Consider a multiply-accumulate (MAC) unit: $R = R + A \times B$. Without pipelining, the critical path includes the multiplier delay (15 ns) plus the adder delay (8 ns) plus register overhead:
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+Consider a multiply-accumulate (MAC) unit: <span class="arithmatex">\(R = R + A \times B\)</span>. Without pipelining, the critical path includes the multiplier delay (15 ns) plus the adder delay (8 ns) plus register overhead:
 
 $$f_{max} = \frac{1}{2 + 23 + 1} = 38.5 \text{ MHz}$$
 
@@ -504,8 +511,11 @@ $$f_{max} = \frac{1}{2 + 8 + 1} = 90.9 \text{ MHz}$$
 
 The pipeline achieves **2.36× throughput** at the cost of 2 extra cycles of latency and additional flip-flops. In a DSP application processing a continuous stream of audio samples, the extra latency is negligible (33 ns vs 26 ns), but the throughput gain allows processing 2.36× more channels.
 
-!!! warning "Pipeline Hazard"
-    In the MAC example, Stage 3 reads the accumulator register $R$ that it also writes. If a new multiply feeds the same accumulator, the result from Stage 3 must be forwarded back before the next addition. This **data hazard** requires either **forwarding logic** (adding a bypass MUX) or inserting a **pipeline stall** (bubble) to wait for the write to complete. Hazard resolution adds complexity but is essential for correctness.
+</div>
+
+<div style="background: #FFF0F0; border-left: 4px solid #E57373; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #C62828;">Pipeline Hazard:</strong> In the MAC example, Stage 3 reads the accumulator register <span class="arithmatex">\(R\)</span> that it also writes. If a new multiply feeds the same accumulator, the result from Stage 3 must be forwarded back before the next addition. This <strong>data hazard</strong> requires either <strong>forwarding logic</strong> (adding a bypass MUX) or inserting a <strong>pipeline stall</strong> (bubble) to wait for the write to complete. Hazard resolution adds complexity but is essential for correctness.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: Pipeline Stages</h4>
 
