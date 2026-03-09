@@ -689,9 +689,15 @@ This example integrates concepts from across the course into a complete system.
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Architecture</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The digital combination lock employs a **datapath-controller** architecture. The controller — a five-state finite state machine (FSM) — orchestrates all sequencing decisions, while the datapath performs digit storage, comparison, and counting under the controller's direction. Four subsystems are organized in a pipeline from input conditioning through output indication.
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Input Subsystem</h4>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The input subsystem conditions raw external signals into clean, synchronous events for the datapath and controller.
 
@@ -701,7 +707,11 @@ The input subsystem conditions raw external signals into clean, synchronous even
 | Edge Detector | Sequential | Converts the debounced Enter signal into a single-clock-cycle pulse (`enter_pulse`) |
 | BCD Input Register | Sequential | 4-bit register; latches the current BCD digit when the controller asserts `load_digit` |
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Datapath</h4>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The datapath contains both combinational comparison logic and sequential counters. The controller drives all counter enables and clears.
 
@@ -712,7 +722,11 @@ The datapath contains both combinational comparison logic and sequential counter
 | Digit Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_digit_ctr`, cleared by `clr_digit_ctr` |
 | Attempt Counter | Sequential | 2-bit up-counter (0&ndash;3); incremented by `inc_attempt`, cleared by `clr_attempt` |
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Control Unit (FSM)</h4>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The controller is a Mealy/Moore hybrid FSM with five states. It reads status signals from the datapath and issues control signals in return.
 
@@ -725,7 +739,11 @@ The controller is a Mealy/Moore hybrid FSM with five states. It reads status sig
 
 The FSM also contains a **Lockout Timer** — a sequential down-counter that generates `timeout` after 30 seconds, returning the system from LOCKOUT to IDLE.
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Output Subsystem</h4>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 | Block | Type | Function |
 |---|---|---|
@@ -733,9 +751,15 @@ The FSM also contains a **Lockout Timer** — a sequential down-counter that gen
 | Progress Display | Combinational | Decodes `digit_count` to show entered positions (e.g., "3 7 _ _") |
 | Status LEDs | Combinational | Green = unlocked, Red = locked, Flashing Red = lockout active |
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">System Operation</h4>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 On power-up the FSM enters IDLE and clears all counters. When the user presses a BCD digit and hits Enter, the edge detector produces `enter_pulse`, advancing the FSM to CHECK. The controller asserts `load_digit`, latching the digit into the input register. The comparator evaluates the latched digit against the ROM value at the address selected by the digit counter and drives `match` accordingly. On a match the FSM asserts `inc_digit_ctr` and returns to WAIT_DIGIT; once the digit counter reaches 3 (`digit_done`), the FSM transitions to UNLOCK and asserts `unlock_en`. On a mismatch the FSM asserts `inc_attempt` and `clr_digit_ctr`, restarting the sequence. If the attempt counter saturates (`max_attempts`), the FSM enters LOCKOUT, asserts `start_timer`, and waits for `timeout` before returning to IDLE.
+
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Digital Lock System Architecture</h4>
 
@@ -879,13 +903,16 @@ begin
 end architecture rtl;
 ```
 
-This ALU directly applies:
-
-- Binary addition and subtraction (Unit 1, Unit 3)
-- Boolean operations (Unit 2)
-- Shift operations (Unit 10)
-- Multiplexer-like selection via case statement (Unit 8)
-- Status flag generation (Units 1, 3)
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">This ALU directly applies:</strong>
+<ul style="margin: 8px 0 0 0;">
+<li>Binary addition and subtraction (Unit 1, Unit 3)</li>
+<li>Boolean operations (Unit 2)</li>
+<li>Shift operations (Unit 10)</li>
+<li>Multiplexer-like selection via case statement (Unit 8)</li>
+<li>Status flag generation (Units 1, 3)</li>
+</ul>
+</div>
 
 ---
 
@@ -906,6 +933,8 @@ A **Universal Asynchronous Receiver/Transmitter (UART)** is one of the most comm
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Architecture</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 ```
 UART Transmitter
 ├── Baud Rate Generator (counter that divides clock to baud rate)
@@ -914,12 +943,17 @@ UART Transmitter
 └── Control FSM (sequences: idle → start → data × 8 → stop → idle)
 ```
 
-This design combines:
+</div>
 
-- Counter design (Unit 10) for baud rate generation
-- Shift register (Unit 10) for parallel-to-serial conversion
-- FSM (Unit 10) for transmission control
-- All implemented in VHDL (Unit 12)
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">This design combines:</strong>
+<ul style="margin: 8px 0 0 0;">
+<li>Counter design (Unit 10) for baud rate generation</li>
+<li>Shift register (Unit 10) for parallel-to-serial conversion</li>
+<li>FSM (Unit 10) for transmission control</li>
+<li>All implemented in VHDL (Unit 12)</li>
+</ul>
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: UART Transmission Protocol and Architecture</h4>
 
@@ -927,7 +961,7 @@ This design combines:
 <iframe src="../sims/uart-transmitter/main.html" width="100%" height="850px" scrolling="yes" style="border:none; border-radius:8px;"></iframe>
 </div>
 
-#### Diagram: UART Transceiver (Transmitter + Receiver)
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: UART Transceiver (Transmitter + Receiver)</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/uart-transceiver/main.html" width="100%" height="530px" scrolling="yes" style="border:none; border-radius:8px;"></iframe>
@@ -953,20 +987,29 @@ A vending machine controller is a classic FSM design problem that exercises many
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Diagram — Interactive Simulation</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The FSM tracks the accumulated amount. Insert coins using the buttons below, then press **Step (Clock)** to advance the FSM one cycle at a time. Watch the state transitions, control signals, and datapath operations update in real time. When the total reaches or exceeds 30¢, the machine dispenses the item, outputs change, and returns to IDLE.
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/vending-machine-fsm/main.html" width="100%" height="1140px" scrolling="no" style="border:none;border-radius:8px;"></iframe>
 </div>
 
-This design applies:
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/vending-machine-fsm/main.html" width="100%" height="1140px" scrolling="yes" style="border:none;border-radius:8px;"></iframe>
+</div>
 
-- FSM design methodology (Unit 10)
-- Binary arithmetic for change calculation (Unit 1)
-- BCD representation for display (Unit 3)
-- State encoding options: binary, one-hot (Unit 10)
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">This design applies:</strong>
+<ul style="margin: 8px 0 0 0;">
+<li>FSM design methodology (Unit 10)</li>
+<li>Binary arithmetic for change calculation (Unit 1)</li>
+<li>BCD representation for display (Unit 3)</li>
+<li>State encoding options: binary, one-hot (Unit 10)</li>
+</ul>
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Transition Table</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The vending machine FSM uses states representing the accumulated credit in 5¢ increments:
 
@@ -991,7 +1034,11 @@ The vending machine FSM uses states representing the accumulated credit in 5¢ i
 | S25 (25¢) | Dime | S0 | 1 | 5¢ |
 | S25 (25¢) | Quarter | S0 | 1 | 20¢ |
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">State Encoding and VHDL</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 With 6 states, two encoding options are common:
 
@@ -1005,6 +1052,8 @@ attribute enum_encoding : string;
 attribute enum_encoding of vend_state : type is "one-hot";
 signal state : vend_state := S0;
 ```
+
+</div>
 
 ---
 
@@ -1033,6 +1082,8 @@ For FPGA designs, DFT includes:
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">How Scan Chains Work</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **scan chain** converts normal flip-flops into a shift register that can be loaded and read externally. Each flip-flop gets a multiplexer controlled by a `scan_enable` signal:
 
 - **Normal mode** (`scan_enable = 0`): The flip-flop loads data from the combinational logic (normal circuit operation).
@@ -1040,9 +1091,15 @@ A **scan chain** converts normal flip-flops into a shift register that can be lo
 
 To test a circuit with scan chains: (1) shift a test pattern into all flip-flops via the scan chain, (2) switch to normal mode for one clock cycle so the combinational logic responds, (3) switch back to shift mode and shift out the results for comparison. This gives full observability and controllability of every internal register.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FPGA Debug with Embedded Logic Analyzers</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 FPGA vendors provide embedded logic analyzer tools — **SignalTap** (Intel/Altera) and **ChipScope/ILA** (Xilinx/AMD) — that insert a small logic analyzer IP core inside the FPGA alongside the user design. The analyzer samples selected internal signals at the system clock rate and stores them in on-chip block RAM. A trigger condition (e.g., "FSM enters LOCKOUT state") starts the capture, and the recorded waveforms are uploaded to the PC via JTAG for inspection.
+
+</div>
 
 ```vhdl
 -- Debug register for the digital lock (readable via JTAG or SPI)
@@ -1051,7 +1108,9 @@ debug_reg <= state_encoding & std_logic_vector(digit_pos)
            & timeout & unlock;
 ```
 
-This 12-bit debug register captures the complete system status in a single read. Industry experience confirms that **80% of FPGA development time is spent debugging**, making DFT and debug infrastructure critical investments that pay for themselves many times over.
+<div style="background: #FFF0F0; border-left: 4px solid #E57373; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #C62828;">Key Statistic:</strong> This 12-bit debug register captures the complete system status in a single read. Industry experience confirms that <strong>80% of FPGA development time is spent debugging</strong>, making DFT and debug infrastructure critical investments that pay for themselves many times over.
+</div>
 
 ---
 
