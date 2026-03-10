@@ -71,6 +71,8 @@ This unit introduces the Quine-McCluskey (QM) method, a systematic tabular algor
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Before studying this unit, students should be familiar with:
 
 - Minterms, maxterms, and canonical forms (Unit 4)
@@ -79,9 +81,13 @@ Before studying this unit, students should be familiar with:
 - Binary number representation (Unit 1)
 - Boolean algebra fundamentals (Unit 2)
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.1 Introduction to Algorithmic Minimization</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The Karnaugh map provides an elegant visual method for simplifying Boolean functions, but it has practical limitations. As the number of variables increases beyond four or five, K-maps become difficult to construct, visualize, and manipulate accurately. Additionally, the pattern-recognition approach that makes K-maps intuitive for humans does not translate easily into computer algorithms.
 
@@ -105,6 +111,8 @@ The QM method forms the theoretical foundation for modern Electronic Design Auto
 <tr style="background: #f4f4ff;"><td style="padding: 8px 14px; font-weight: 600;">Speed for large functions</td><td style="padding: 8px 14px;">Impractical</td><td style="padding: 8px 14px;">Computationally intensive</td></tr>
 </tbody>
 </table>
+
+</div>
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -152,6 +160,8 @@ graph TD
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.2 Binary Representation and Grouping</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The QM method begins by representing each minterm in binary form. For a function of $n$ variables, each minterm corresponds to an $n$-bit binary number where the bit positions represent the complement or true form of each variable.
 
 Consider a function $F(A, B, C, D) = \sum m(0, 1, 2, 5, 6, 7, 8, 9, 10, 14)$.
@@ -173,6 +183,8 @@ The first step is to list all minterms in their binary representations:
 <tr style="background: #fff3e0;"><td style="padding: 6px 12px; font-weight: 600;">m<sub>14</sub></td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">1</td><td style="padding: 6px 12px; text-align: center;">0</td><td style="padding: 6px 12px; text-align: center; font-weight: 700; color: #5A3EED;">3</td></tr>
 </tbody>
 </table>
+
+</div>
 
 <div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -196,12 +208,16 @@ The first step is to list all minterms in their binary representations:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.3 The Combination Process</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Once minterms are grouped, the combination process begins. Two terms can be combined if and only if they:
 
 1. Differ in exactly one bit position
 2. Have identical values in all other bit positions
 
 When two terms are combined, the differing bit position is replaced with a dash (-), indicating that the variable is eliminated from the product term. This dash notation represents a "don't care" for that particular variable position.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -253,7 +269,11 @@ The combination process continues iteratively:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.4 Constructing the Implicant Table</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The implicant table organizes the systematic combination process. Let us work through the complete example.
+
+</div>
 
 <p style="color: #5A3EED; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px;">Initial Grouping (Column 1):</p>
 
@@ -313,6 +333,8 @@ The implicant table organizes the systematic combination process. Let us work th
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.5 Identifying Prime Implicants</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 After all possible combinations have been made, the **unchecked terms** from all columns are the prime implicants. These are the largest possible groupings of minterms that cannot be further combined.
 
 From our example, the prime implicants are:
@@ -329,6 +351,8 @@ From our example, the prime implicants are:
 <tr><td style="padding: 6px 14px; font-weight: 600;">PI<sub>7</sub></td><td style="padding: 6px 14px; font-family: monospace;">--10</td><td style="padding: 6px 14px;">2, 6, 10, 14</td><td style="padding: 6px 14px;"><span class="arithmatex">\(C\bar{D}\)</span></td></tr>
 </tbody>
 </table>
+
+</div>
 
 <div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -355,6 +379,8 @@ From our example, the prime implicants are:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.6 The Prime Implicant Chart</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The prime implicant chart (also called the selection table or covering table) determines which prime implicants to include in the final minimal expression. The chart has:
 
 - **Rows:** One for each prime implicant
@@ -373,6 +399,8 @@ The prime implicant chart (also called the selection table or covering table) de
 <tr style="background: #d4edda;"><td style="padding: 5px 10px; font-weight: 700; color: #2E7D32;">PI<sub>7</sub></td><td style="padding: 5px 10px; font-family: monospace; font-weight: 700;">--10</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;"></td><td style="padding: 5px 10px; text-align: center;">&times;</td><td style="padding: 5px 10px; text-align: center; font-weight: 700; color: #2E7D32;">&times;</td></tr>
 </tbody>
 </table>
+
+</div>
 
 <div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -400,7 +428,11 @@ The prime implicant chart (also called the selection table or covering table) de
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.7 Row and Column Dominance</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 After selecting essential prime implicants, we may need additional techniques to reduce the prime implicant chart before finding a minimum cover.
+
+</div>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div style="flex: 1; min-width: 250px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
@@ -438,7 +470,11 @@ After selecting essential prime implicants, we may need additional techniques to
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.8 Petrick's Method</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 When the prime implicant chart cannot be fully reduced by row/column dominance and essential prime implicant selection, **Petrick's method** provides an algebraic approach to finding all minimum covers.
+
+</div>
 
 <div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -543,7 +579,11 @@ $$P = P_5 + P_1P_6 + P_2P_6$$
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.10 Handling Don't Care Conditions</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Don't care conditions are handled naturally in the QM method. During the combination phase, don't care minterms are included along with the required minterms. They participate in combinations, potentially creating larger prime implicants.
+
+</div>
 
 <div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -576,7 +616,11 @@ Don't care conditions are handled naturally in the QM method. During the combina
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.11 Computational Complexity</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The QM method, while systematic, has exponential worst-case complexity:
+
+</div>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div style="flex: 1; min-width: 200px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
@@ -624,7 +668,11 @@ The QM method, while systematic, has exponential worst-case complexity:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.12 Multi-Output Minimization</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Many digital systems have multiple output functions sharing the same input variables. Multi-output minimization seeks to share product terms across multiple functions to minimize the total gate count.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -662,7 +710,11 @@ Many digital systems have multiple output functions sharing the same input varia
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.13 QM Method Summary and Complete Example</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Let us work through a complete example systematically.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -788,7 +840,11 @@ Let us work through a complete example systematically.
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.14 Computer Implementation</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The QM method's systematic nature makes it well-suited for computer implementation. A basic implementation involves:
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
