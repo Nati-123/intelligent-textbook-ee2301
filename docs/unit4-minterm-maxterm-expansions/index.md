@@ -190,7 +190,7 @@ Each minterm equals 1 for exactly one input combination and 0 for all others. Th
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: Minterm Visualizer</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="800px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/minterm-visualizer/main.html" width="100%" height="820px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
@@ -373,13 +373,13 @@ Both canonical forms — the **sum of minterms** (SOP) and the **product of maxt
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: Minterm/Maxterm Converter</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="900px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/minterm-maxterm-converter/main.html" width="100%" height="950px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: Truth Table to Canonical Form Converter</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/truth-table-canonical-form/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/truth-table-canonical-form/main.html" width="100%" height="720px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
@@ -545,7 +545,7 @@ F &= (A+B)(A+C) \\[8pt]
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: SOP-POS Converter</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="900px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/sop-pos-converter/main.html" width="100%" height="920px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Verifying Canonical Form Correctness</h3>
@@ -715,7 +715,7 @@ The reconstructed expression $AB + \overline{A}C$ appears different from the ori
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: Shannon Expansion Explorer</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="840px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/shannon-expansion-explorer/main.html" width="100%" height="860px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Multi-Variable Shannon Expansion</h3>
@@ -850,7 +850,7 @@ Step through expanding a Boolean expression into canonical minterm form:
 </div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/minterm-expansion-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/minterm-expansion-walkthrough/main.html" width="100%" height="630px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
