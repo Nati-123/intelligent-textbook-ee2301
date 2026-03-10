@@ -864,34 +864,55 @@ A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Seven-Segment Display Convention</h3>
 
-<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-The seven segments are labeled $a$ through $g$:
+<p style="color: #333; margin-top: 0;">The seven segments are labeled <strong>a</strong> through <strong>g</strong>:</p>
 
-```
-   aaa
-  f   b
-  f   b
-   ggg
-  e   c
-  e   c
-   ddd
-```
+<div style="display: flex; justify-content: center; margin: 1.5rem 0;">
+<div style="position: relative; width: 120px; height: 200px; background: #1a1a2e; border-radius: 12px; padding: 20px;">
+  <!-- Segment a (top) -->
+  <div style="position: absolute; top: 12px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 1px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">a</div>
+  <!-- Segment b (top-right) -->
+  <div style="position: absolute; top: 26px; right: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 46px; right: 2px; color: #fff; font-size: 12px; font-weight: 700;">b</div>
+  <!-- Segment f (top-left) -->
+  <div style="position: absolute; top: 26px; left: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 46px; left: 4px; color: #fff; font-size: 12px; font-weight: 700;">f</div>
+  <!-- Segment g (middle) -->
+  <div style="position: absolute; top: 92px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 88px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">g</div>
+  <!-- Segment c (bottom-right) -->
+  <div style="position: absolute; top: 108px; right: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 128px; right: 2px; color: #fff; font-size: 12px; font-weight: 700;">c</div>
+  <!-- Segment e (bottom-left) -->
+  <div style="position: absolute; top: 108px; left: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; top: 128px; left: 4px; color: #fff; font-size: 12px; font-weight: 700;">e</div>
+  <!-- Segment d (bottom) -->
+  <div style="position: absolute; bottom: 14px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
+  <div style="position: absolute; bottom: 2px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">d</div>
+</div>
+</div>
 
-Each digit (0–9) requires a specific combination of active segments:
+<p style="color: #333;">Each digit (0–9) requires a specific combination of active segments:</p>
 
-| Digit | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ | Display |
-|-------|-----|-----|-----|-----|-----|-----|-----|---------|
-| 0 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 |
-| 1 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 1 |
-| 2 | 1 | 1 | 0 | 1 | 1 | 0 | 1 | 2 |
-| 3 | 1 | 1 | 1 | 1 | 0 | 0 | 1 | 3 |
-| 4 | 0 | 1 | 1 | 0 | 0 | 1 | 1 | 4 |
-| 5 | 1 | 0 | 1 | 1 | 0 | 1 | 1 | 5 |
-| 6 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 6 |
-| 7 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 7 |
-| 8 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 8 |
-| 9 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 9 |
+<table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse; width: 95%; text-align: center;">
+<thead><tr style="background: #6A5BFF; color: #fff;">
+<th style="padding: 8px 10px;">Digit</th><th style="padding: 8px 6px;">a</th><th style="padding: 8px 6px;">b</th><th style="padding: 8px 6px;">c</th><th style="padding: 8px 6px;">d</th><th style="padding: 8px 6px;">e</th><th style="padding: 8px 6px;">f</th><th style="padding: 8px 6px;">g</th><th style="padding: 8px 10px;">Display</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">0</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">1</td></tr>
+<tr><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">2</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">2</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">3</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">3</td></tr>
+<tr><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">4</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">4</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">5</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">5</td></tr>
+<tr><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">6</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">6</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">7</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #C62828;">0</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">7</td></tr>
+<tr><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 600;">8</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; color: #2E7D32;">1</td><td style="padding: 6px; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">8</td></tr>
+<tr style="background: #f4f4ff;"><td style="padding: 6px; font-weight: 600;">9</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; color: #C62828;">0</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; color: #2E7D32;">1</td><td style="padding: 6px; font-weight: 700; font-size: 1.1rem;">9</td></tr>
+</tbody>
+</table>
 
 </div>
 
