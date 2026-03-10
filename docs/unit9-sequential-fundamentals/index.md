@@ -137,13 +137,63 @@ The concept of memory in digital circuits reduces to a deceptively simple questi
 
 When the output of a logic gate is connected back to one of its inputs, the circuit can sustain a value without any external input—it feeds its own output back to maintain its state. The simplest example is two inverters connected in a loop:
 
-```
-    +------+     +------+
---->| INV  |---->| INV  |---+--> Q
-    +------+     +------+   |
-         ^                  |
-         +------------------+
-```
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 520 200" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .inv-block { fill: #EEF4FF; stroke: #5A3EED; stroke-width: 2; rx: 10; ry: 10; }
+      .inv-label { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #5A3EED; }
+      .node-label { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #1565C0; }
+      .fb-label { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #E53935; }
+      .wire { stroke: #455A64; stroke-width: 2.2; fill: none; }
+      .fb-wire { stroke: #E53935; stroke-width: 2.4; fill: none; stroke-dasharray: 7,4; transition: stroke-width 0.2s, filter 0.2s; }
+      .fb-wire:hover { stroke-width: 3.5; filter: drop-shadow(0 0 5px rgba(229,57,53,0.5)); }
+      .node-dot { fill: #455A64; }
+      .caption { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #666; font-style: italic; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="520" height="200" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Input wire -->
+  <line x1="30" y1="75" x2="110" y2="75" class="wire"/>
+  <!-- Input arrow -->
+  <polygon points="105,71 113,75 105,79" fill="#455A64"/>
+
+  <!-- Inverter 1 -->
+  <rect x="115" y="50" width="90" height="50" class="inv-block"/>
+  <text x="160" y="80" text-anchor="middle" class="inv-label">INV</text>
+
+  <!-- Wire between inverters -->
+  <line x1="205" y1="75" x2="295" y2="75" class="wire"/>
+  <!-- Arrow between inverters -->
+  <polygon points="290,71 298,75 290,79" fill="#455A64"/>
+
+  <!-- Inverter 2 -->
+  <rect x="300" y="50" width="90" height="50" class="inv-block"/>
+  <text x="345" y="80" text-anchor="middle" class="inv-label">INV</text>
+
+  <!-- Output wire -->
+  <line x1="390" y1="75" x2="490" y2="75" class="wire"/>
+  <!-- Output arrow -->
+  <polygon points="485,71 493,75 485,79" fill="#455A64"/>
+
+  <!-- Junction dot at output split -->
+  <circle cx="430" cy="75" r="4" class="node-dot"/>
+
+  <!-- Feedback path (down, left, up) -->
+  <path d="M 430,75 L 430,155 L 80,155 L 80,75 L 110,75" class="fb-wire"/>
+  <!-- Feedback arrow near input -->
+  <polygon points="105,71 113,75 105,79" fill="#E53935"/>
+
+  <!-- Labels -->
+  <text x="30" y="63" class="node-label">Input</text>
+  <text x="490" y="63" text-anchor="end" class="node-label">Q</text>
+  <text x="255" y="168" text-anchor="middle" class="fb-label">Feedback Path</text>
+</svg>
+<p style="margin-top: 0.5rem; color: #555; font-size: 0.92rem; font-style: italic;">Two inverters connected in a feedback loop can form a bistable storage element.</p>
+</div>
 
 This cross-coupled inverter pair is a **bistable** element, meaning it has exactly two stable operating points:
 
