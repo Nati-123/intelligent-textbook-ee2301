@@ -4,7 +4,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 420;
+let drawHeight = 500;
 let controlHeight = 60;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -87,10 +87,10 @@ function draw() {
 }
 
 function drawEncoder() {
-  let encX = 140;
+  let encX = canvasWidth / 2 - 40;
   let encY = 90;
   let encW = 80;
-  let encH = 200;
+  let encH = 260;
 
   // Encoder body
   fill(colors.encoder);
@@ -116,8 +116,10 @@ function drawEncoder() {
 }
 
 function drawInputs(highestPriority) {
-  let startX = 50;
-  let startY = 130;
+  let encX = canvasWidth / 2 - 40;
+  let startX = encX - 110;
+  let startY = 140;
+  let inputSpacing = 60;
 
   fill(colors.text);
   noStroke();
@@ -128,7 +130,7 @@ function drawInputs(highestPriority) {
   text('(Priority: D3 > D2 > D1 > D0)', startX, startY - 22);
 
   for (let i = 0; i < 4; i++) {
-    let y = startY + i * 45;
+    let y = startY + i * inputSpacing;
     let isHighest = i === highestPriority;
 
     // Input circle
@@ -159,13 +161,13 @@ function drawInputs(highestPriority) {
     // Wire to encoder
     stroke(inputs[i] ? colors.high : colors.wire);
     strokeWeight(isHighest && inputs[i] ? 3 : 1);
-    line(startX + 22, y, 140, y);
+    line(startX + 22, y, encX, y);
   }
 }
 
 function drawOutputs(y1, y0, valid) {
-  let encX = 220;
-  let startY = 150;
+  let encX = canvasWidth / 2 + 40;
+  let startY = 160;
 
   // Y1 output
   stroke(colors.wire);
@@ -242,11 +244,13 @@ function drawOutputs(y1, y0, valid) {
 }
 
 function mousePressed() {
-  let startX = 50;
-  let startY = 130;
+  let encX = canvasWidth / 2 - 40;
+  let startX = encX - 110;
+  let startY = 140;
+  let inputSpacing = 60;
 
   for (let i = 0; i < 4; i++) {
-    let y = startY + i * 45;
+    let y = startY + i * inputSpacing;
     if (dist(mouseX, mouseY, startX, y) < 22) {
       inputs[i] = !inputs[i];
       return;
