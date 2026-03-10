@@ -101,9 +101,11 @@ Before beginning this unit, students should have:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.1 Introduction to Karnaugh Maps</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **Karnaugh map** (K-map) is a graphical tool for simplifying Boolean functions that arranges the truth table in a grid format where adjacent cells differ by exactly one variable. This arrangement makes it easy to identify groups of 1s (or 0s) that can be combined to eliminate variables.
 
-### K-Map Structure
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">K-Map Structure</h3>
 
 The **K-map structure** consists of:
 
@@ -113,11 +115,19 @@ The **K-map structure** consists of:
 
 The power of K-maps lies in their **adjacency** property: cells that are physically adjacent on the map are also **logically adjacent**, meaning their minterms differ in exactly one variable. When two logically adjacent minterms are ORed together, the differing variable cancels out.
 
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+
 **Example:** Minterms $m_5 = A\overline{B}C$ and $m_7 = ABC$ differ only in B:
 
 $$m_5 + m_7 = A\overline{B}C + ABC = AC(\overline{B} + B) = AC$$
 
-### K-Map Variables
+</div>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">K-Map Variables</h3>
 
 **K-map variables** determine the map dimensions:
 
@@ -131,9 +141,13 @@ $$m_5 + m_7 = A\overline{B}C + ABC = AC(\overline{B} + B) = AC$$
 
 K-maps become impractical beyond 5-6 variables due to the difficulty of visualizing adjacencies.
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.2 Two-Variable K-Map</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The **two-variable K-map** is the simplest form, with 4 cells arranged in a 2×2 grid.
 
@@ -146,6 +160,8 @@ The **two-variable K-map** is the simplest form, with 4 cells arranged in a 2×2
 </table>
 
 Each cell contains the function value (0, 1, or X) for that minterm.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -173,6 +189,8 @@ Each cell contains the function value (0, 1, or X) for that minterm.
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.3 Three-Variable K-Map</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The **three-variable K-map** uses a 2×4 grid with one variable on rows and two on columns (or vice versa).
 
 <table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse;">
@@ -185,13 +203,15 @@ The **three-variable K-map** uses a 2×4 grid with one variable on rows and two 
 
 Note the **Gray code order** for BC: 00, 01, 11, 10 (not binary order 00, 01, 10, 11). This ensures adjacent columns differ by exactly one bit.
 
-### K-Map Adjacency in 3-Variable Maps
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">K-Map Adjacency in 3-Variable Maps</h3>
 
 **Physical adjacency** on the map corresponds to **logical adjacency** (differing by one variable):
 
 - Horizontally adjacent cells differ in one column variable
 - Vertically adjacent cells differ in the row variable
 - **The left and right edges wrap around** (column 00 is adjacent to column 10)
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -215,13 +235,17 @@ Note the **Gray code order** for BC: 00, 01, 11, 10 (not binary order 00, 01, 10
 
 </div>
 
-#### Diagram: 3-Variable K-Map Simulator
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: 3-Variable K-Map Simulator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/kmap-3var-simulator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.4 Four-Variable K-Map</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The **four-variable K-map** is the most commonly used size, with 16 cells in a 4×4 grid.
 
@@ -237,7 +261,7 @@ The **four-variable K-map** is the most commonly used size, with 16 cells in a 4
 
 Both row labels (AB) and column labels (CD) use Gray code order: 00, 01, 11, 10.
 
-### Adjacencies in 4-Variable K-Maps
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Adjacencies in 4-Variable K-Maps</h3>
 
 In a 4-variable K-map:
 
@@ -247,13 +271,11 @@ In a 4-variable K-map:
 
 The 4-variable K-map forms a **torus** topology—imagine wrapping the map into a donut shape where both top/bottom and left/right edges connect.
 
-### Wrapping in K-Maps
+</div>
 
-**Wrapping** is a critical concept: the edges of the K-map connect to form adjacencies:
-
-- **Horizontal wrap:** Column 00 is adjacent to column 10
-- **Vertical wrap:** Row 00 is adjacent to row 10
-- **Corner wrap:** Cells at the four corners (m₀, m₂, m₈, m₁₀) are all mutually adjacent
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight — Wrapping:</strong> The edges of the K-map connect to form adjacencies. Column 00 is adjacent to column 10 (horizontal wrap), row 00 is adjacent to row 10 (vertical wrap), and all four corner cells (m₀, m₂, m₈, m₁₀) are mutually adjacent (corner wrap).
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -273,15 +295,19 @@ The 4-variable K-map forms a **torus** topology—imagine wrapping the map into 
 
 </div>
 
-#### Diagram: K-Map Solver
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: K-Map Solver</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/kmap-solver/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.5 Valid Groups and Grouping Rules</h2>
 
-### Valid Group Sizes
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Valid Group Sizes</h3>
 
 Groups in a K-map must contain a **power of 2** cells: 1, 2, 4, 8, 16, etc. Each doubling of group size eliminates one variable from the product term.
 
@@ -296,14 +322,18 @@ Groups in a K-map must contain a **power of 2** cells: 1, 2, 4, 8, 16, etc. Each
 </tbody>
 </table>
 
-### Rectangular Groups
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Rectangular Groups</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Groups must form **rectangles** (including squares) on the K-map. The rectangle can wrap around edges but must maintain its rectangular shape conceptually.
 
 <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0;">
 
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 20px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Valid groups:</p>
+<div style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 20px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Valid groups:</p>
 <ul style="margin: 0; color: #333; line-height: 1.85; padding-left: 1.2rem;">
 <li>1&times;1 (single cell)</li>
 <li>1&times;2 or 2&times;1 (pair)</li>
@@ -313,7 +343,7 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 </ul>
 </div>
 
-<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 16px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 16px 20px;">
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Invalid groups:</p>
 <ul style="margin: 0; color: #333; line-height: 1.85; padding-left: 1.2rem;">
 <li>L-shaped</li>
@@ -325,7 +355,9 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 
 </div>
 
-### Grouping for SOP vs POS
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Grouping for SOP vs POS</h3>
 
 <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0;">
 
@@ -334,16 +366,20 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 <p style="color: #333; line-height: 1.75; margin-bottom: 0;">Each group of 1s becomes a <strong>product term</strong> in the sum.</p>
 </div>
 
-<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 20px;">
 <p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">POS &mdash; Group the 0s</p>
 <p style="color: #333; line-height: 1.75; margin-bottom: 0;">Each group of 0s becomes a <strong>sum term</strong> in the product.</p>
 </div>
 
 </div>
 
-### Overlapping Groups
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Overlapping Groups</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Overlapping groups** are allowed and often necessary for minimal expressions. A cell can belong to multiple groups—this doesn't duplicate it in the final expression; it just means that cell's minterm is covered by multiple product terms.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -371,9 +407,13 @@ Groups must form **rectangles** (including squares) on the K-map. The rectangle 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.6 Implicants and Prime Implicants</h2>
 
-### Implicants
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Implicants</h3>
 
 An **implicant** is any product term that covers one or more minterms of the function. Every minterm is an implicant, and any valid K-map group represents an implicant.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -387,7 +427,9 @@ An **implicant** is any product term that covers one or more minterms of the fun
 
 </div>
 
-### Prime Implicants
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Prime Implicants</h3>
 
 A **prime implicant** is an implicant that cannot be combined with another implicant to form a larger group. It represents the largest possible grouping containing a particular set of minterms.
 
@@ -395,26 +437,32 @@ A **prime implicant** is an implicant that cannot be combined with another impli
 
 In the example above, $C$ is the only prime implicant—it covers all 1s and cannot be made larger.
 
-### Essential Prime Implicants
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Essential Prime Implicants</h3>
 
 An **essential prime implicant** is a prime implicant that covers at least one minterm not covered by any other prime implicant. Essential prime implicants **must** be included in any minimal solution.
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 22px; margin: 1rem 0;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Finding Essential PIs:</p>
-<ol style="margin: 0; color: #333; line-height: 2; padding-left: 1.5rem;">
+</div>
+
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Finding Essential PIs:</strong>
+<ol style="margin: 0.5rem 0 0; color: #333; line-height: 2; padding-left: 1.5rem;">
 <li>Identify all prime implicants</li>
 <li>For each minterm, list which PIs cover it</li>
 <li>If a minterm is covered by only one PI, that PI is essential</li>
 </ol>
 </div>
 
-### Redundant Prime Implicants
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Redundant Prime Implicants</h3>
 
 A **redundant prime implicant** is a prime implicant that is not needed because all its minterms are already covered by essential prime implicants or other selected PIs.
 
-### Systematic Minimization Procedure
+</div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 22px 26px; margin: 1rem 0;">
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Systematic Minimization Procedure</h3>
+
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 22px 26px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 <ol style="margin: 0; color: #333; line-height: 2.2; padding-left: 1.5rem;">
 <li><strong>Find all prime implicants</strong> (largest possible groups)</li>
 <li><strong>Identify essential prime implicants</strong> (must include)</li>
@@ -423,19 +471,22 @@ A **redundant prime implicant** is a prime implicant that is not needed because 
 </ol>
 </div>
 
-#### Diagram: Prime Implicant Finder
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Prime Implicant Finder</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/prime-implicant-finder/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.7 K-Map SOP Simplification</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **K-Map SOP simplification** produces a minimal Sum of Products expression.
 
-### Procedure for Minimal SOP
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Procedure for Minimal SOP</h3>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 22px 26px; margin: 1rem 0;">
 <ol style="margin: 0; color: #333; line-height: 2.2; padding-left: 1.5rem;">
 <li><strong>Plot the function:</strong> Place 1s in cells corresponding to minterms where F = 1</li>
 <li><strong>Identify all prime implicants:</strong> Find all maximal groups of 1s</li>
@@ -443,9 +494,10 @@ A **redundant prime implicant** is a prime implicant that is not needed because 
 <li><strong>Cover remaining minterms:</strong> Add minimum additional PIs</li>
 <li><strong>Write the expression:</strong> OR together the product terms from selected groups</li>
 </ol>
+
 </div>
 
-### Reading Product Terms from Groups
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Reading Product Terms from Groups</h3>
 
 For each group, identify the variables that have **constant value** across the group:
 
@@ -461,9 +513,13 @@ For each group, identify the variables that have **constant value** across the g
 **Example:** A group covering cells where A=1, B varies, C=0, D varies:
 The term is $A\overline{C}$ (only A and C are constant).
 
-### Covering All Ones
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Covering All Ones</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The goal is **covering all ones** with the minimum number of prime implicants. Every cell containing 1 must be included in at least one selected group.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
@@ -496,7 +552,7 @@ The goal is **covering all ones** with the minimum number of prime implicants. E
 
 **K-Map POS simplification** produces a minimal Product of Sums expression by grouping 0s instead of 1s.
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Procedure for Minimal POS</p>
 
@@ -533,7 +589,7 @@ The goal is **covering all ones** with the minimum number of prime implicants. E
 
 </div>
 
-### Choosing SOP vs POS
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Choosing SOP vs POS</h3>
 
 Compare the literal counts of minimal SOP and minimal POS — choose the simpler form.
 
@@ -542,12 +598,12 @@ Compare the literal counts of minimal SOP and minimal POS — choose the simpler
 <p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">SOP likely simpler</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Few 1s, many 0s &mdash; fewer product terms to cover</p>
 </div>
-<div style="flex: 1; min-width: 180px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 180px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">POS likely simpler</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Few 0s, many 1s &mdash; fewer sum terms to cover</p>
 </div>
-<div style="flex: 1; min-width: 180px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Balanced</p>
+<div style="flex: 1; min-width: 180px; background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #5A3EED; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Balanced</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Always check <strong>both</strong> SOP and POS forms</p>
 </div>
 </div>
@@ -565,11 +621,15 @@ Compare the literal counts of minimal SOP and minimal POS — choose the simpler
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.9 K-Maps with Don't Cares</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **K-maps with don't cares** include cells marked with X (or d) representing input combinations where the output doesn't matter.
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+</div>
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Using Don't Cares</p>
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Using Don't Cares</p>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px;">
 <div style="flex: 1; min-width: 200px; background: #fff; border-radius: 8px; padding: 14px 16px;">
@@ -613,9 +673,11 @@ Compare the literal counts of minimal SOP and minimal POS — choose the simpler
 
 </div>
 
-#### Diagram: K-Map with Don't Cares
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: K-Map with Don't Cares</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/kmap-dont-cares/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
@@ -623,7 +685,9 @@ Compare the literal counts of minimal SOP and minimal POS — choose the simpler
 
 The **five-variable K-map** extends the technique to 32 cells, typically displayed as two adjacent 4×4 maps.
 
-### Five-Variable Technique
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Five-Variable Technique</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The **five-variable technique** uses two 4×4 K-maps — one for the fifth variable = 0 and one for = 1:
 
@@ -657,30 +721,25 @@ The **five-variable technique** uses two 4×4 K-maps — one for the fifth varia
 
 </div>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-
-<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Adjacencies in 5-Variable K-Maps</p>
-
-<p style="color: #333; margin-bottom: 10px;">Cells in <strong>corresponding positions</strong> of the two maps are adjacent (they differ only in E).</p>
-
-<p style="color: #333; margin-bottom: 6px;"><strong>Example:</strong> m<sub>5</sub> (in E=0 map) is adjacent to m<sub>21</sub> (in E=1 map) because:</p>
-<p style="color: #5A3EED; font-weight: 600; margin-bottom: 0; font-family: monospace; font-size: 1rem;">&nbsp;&nbsp;m<sub>5</sub> = 0&#x200B;0101 &nbsp;and&nbsp; m<sub>21</sub> = 1&#x200B;0101 &nbsp;&mdash;&nbsp; differ only in E bit</p>
-
 </div>
 
-### Grouping Across Maps
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight — 5-Variable Adjacency:</strong> Cells in <strong>corresponding positions</strong> of the two maps are adjacent (they differ only in E). For example, m<sub>5</sub> (in E=0 map) is adjacent to m<sub>21</sub> (in E=1 map) because m<sub>5</sub> = 0&#x200B;0101 and m<sub>21</sub> = 1&#x200B;0101 — they differ only in the E bit.
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Grouping Across Maps</h3>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div style="flex: 1; min-width: 200px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">E = 0 map only</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(\overline{E}\)</span> appears in the product term</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">E = 1 map only</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(E\)</span> appears in the product term</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Both maps (corresponding)</p>
+<div style="flex: 1; min-width: 200px; background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #5A3EED; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Both maps (corresponding)</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;"><span class="arithmatex">\(E\)</span> is <strong>eliminated</strong> from the term</p>
 </div>
 </div>
@@ -691,9 +750,13 @@ The **five-variable technique** uses two 4×4 K-maps — one for the fifth varia
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.11 Multiple Solutions and Cost Metrics</h2>
 
-### Multiple Solutions
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Multiple Solutions</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Some functions have **multiple solutions** — different groupings that produce expressions with the same minimal cost. Both are equally valid minimal forms.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -705,26 +768,30 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 </div>
 
-### Cost of Expression
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cost of Expression</h3>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div style="flex: 1; min-width: 180px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Literal Count</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Total number of variable appearances</p>
 </div>
-<div style="flex: 1; min-width: 180px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 180px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Term Count</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Number of product terms (SOP) or sum terms (POS)</p>
 </div>
-<div style="flex: 1; min-width: 180px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 180px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Gate Count</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Number of logic gates needed for implementation</p>
 </div>
 </div>
 
-### Gate Count Minimization
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Gate Count Minimization</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Gate count minimization** considers implementation details:
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -742,13 +809,17 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 </div>
 
-### Literal Minimization
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Literal Minimization</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Literal minimization** is often the primary goal because it directly reduces gate input counts, correlates with wiring complexity, and is simple to count and compare.
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+</div>
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">K-maps guarantee minimal two-level SOP/POS</p>
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">K-maps guarantee minimal two-level SOP/POS</p>
 
 <p style="color: #333; margin-bottom: 0;">K-map minimization produces expressions optimal for two-level AND-OR (SOP) or OR-AND (POS) implementations. Multi-level implementations may be more efficient but require different techniques.</p>
 
@@ -758,7 +829,7 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">5.12 K-Map Limitations and Alternatives</h2>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">K-Map Limitations</p>
 
@@ -774,11 +845,11 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 </div>
 
-### Alternatives for Large Functions
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Alternatives for Large Functions</h3>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">For functions with many variables:</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">For functions with many variables:</p>
 
 <ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
 <li><strong style="color: #5A3EED;">Quine-McCluskey algorithm:</strong> Systematic tabular method (works for any number of variables)</li>
@@ -788,9 +859,13 @@ Some functions have **multiple solutions** — different groupings that produce 
 
 </div>
 
-### Entered Variable K-Maps
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Entered Variable K-Maps</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 An **entered variable K-map** reduces the map size by placing variables (not just 0/1) in cells. This allows an n-variable function to be represented on an (n&minus;1)-variable map.
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -808,7 +883,7 @@ An **entered variable K-map** reduces the map size by placing variables (not jus
 
 </div>
 
-### K-Map vs Algebraic Method
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">K-Map vs Algebraic Method</h3>
 
 <table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
 <thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Criterion</th><th style="padding: 8px 14px;">K-Map</th><th style="padding: 8px 14px;">Algebraic</th></tr></thead>
@@ -831,7 +906,7 @@ An **entered variable K-map** reduces the map size by placing variables (not jus
 <li>Visual verification desired</li>
 </ul>
 </div>
-<div style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 220px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">When to use algebraic methods</p>
 <ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
 <li>Many variables</li>
@@ -841,9 +916,11 @@ An **entered variable K-map** reduces the map size by placing variables (not jus
 </div>
 </div>
 
-#### Diagram: K-Map Practice Challenge
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: K-Map Practice Challenge</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/kmap-practice-challenge/main.html" width="100%" height="650px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
@@ -884,7 +961,9 @@ An **entered variable K-map** reduces the map size by placing variables (not jus
 
 Step through K-map simplification of a 4-variable function with grouping and term extraction:
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/kmap-simplification-walkthrough/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
