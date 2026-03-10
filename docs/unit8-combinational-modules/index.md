@@ -866,35 +866,80 @@ A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #333; margin-top: 0;">The seven segments are labeled <strong>a</strong> through <strong>g</strong>:</p>
+<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Seven-Segment Display Layout</p>
+
+<p style="color: #333; margin-top: 0;">The seven segments are labeled <strong>a</strong> through <strong>g</strong>. Hover over any segment to highlight it.</p>
 
 <div style="display: flex; justify-content: center; margin: 1.5rem 0;">
-<div style="position: relative; width: 120px; height: 200px; background: #1a1a2e; border-radius: 12px; padding: 20px;">
-  <!-- Segment a (top) -->
-  <div style="position: absolute; top: 12px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 1px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">a</div>
-  <!-- Segment b (top-right) -->
-  <div style="position: absolute; top: 26px; right: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 46px; right: 2px; color: #fff; font-size: 12px; font-weight: 700;">b</div>
-  <!-- Segment f (top-left) -->
-  <div style="position: absolute; top: 26px; left: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 46px; left: 4px; color: #fff; font-size: 12px; font-weight: 700;">f</div>
-  <!-- Segment g (middle) -->
-  <div style="position: absolute; top: 92px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 88px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">g</div>
-  <!-- Segment c (bottom-right) -->
-  <div style="position: absolute; top: 108px; right: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 128px; right: 2px; color: #fff; font-size: 12px; font-weight: 700;">c</div>
-  <!-- Segment e (bottom-left) -->
-  <div style="position: absolute; top: 108px; left: 16px; width: 10px; height: 60px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; top: 128px; left: 4px; color: #fff; font-size: 12px; font-weight: 700;">e</div>
-  <!-- Segment d (bottom) -->
-  <div style="position: absolute; bottom: 14px; left: 28px; width: 60px; height: 10px; background: #E57373; border-radius: 4px;"></div>
-  <div style="position: absolute; bottom: 2px; left: 48px; color: #fff; font-size: 12px; font-weight: 700;">d</div>
-</div>
+<svg viewBox="0 0 280 320" style="max-width: 320px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .seg { fill: #546E7A; stroke: #37474F; stroke-width: 1; transition: fill 0.2s, filter 0.2s; cursor: pointer; }
+      .seg:hover { fill: #5A3EED; filter: drop-shadow(0 0 6px rgba(90,62,237,0.5)); }
+      .seg-label { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #5A3EED; }
+      .seg-label-sub { font-family: Arial, sans-serif; font-size: 11px; fill: #78909C; }
+      .display-bg { fill: #ECEFF1; stroke: #B0BEC5; stroke-width: 2; rx: 12; }
+    </style>
+  </defs>
+
+  <!-- Display housing -->
+  <rect class="display-bg" x="60" y="20" width="160" height="260" />
+
+  <!-- Segment a (top horizontal) -->
+  <polygon class="seg" points="95,42 105,32 155,32 165,42 155,52 105,52">
+    <title>Segment a (top)</title>
+  </polygon>
+  <text class="seg-label" x="130" y="26" text-anchor="middle">a</text>
+  <text class="seg-label-sub" x="130" y="14" text-anchor="middle">top</text>
+
+  <!-- Segment f (top-left vertical) -->
+  <polygon class="seg" points="88,50 98,60 98,120 88,130 78,120 78,60">
+    <title>Segment f (upper-left)</title>
+  </polygon>
+  <text class="seg-label" x="62" y="95" text-anchor="middle">f</text>
+  <text class="seg-label-sub" x="42" y="95" text-anchor="middle">upper-left</text>
+
+  <!-- Segment b (top-right vertical) -->
+  <polygon class="seg" points="172,50 182,60 182,120 172,130 162,120 162,60">
+    <title>Segment b (upper-right)</title>
+  </polygon>
+  <text class="seg-label" x="198" y="95" text-anchor="middle">b</text>
+  <text class="seg-label-sub" x="222" y="95" text-anchor="middle">upper-right</text>
+
+  <!-- Segment g (middle horizontal) -->
+  <polygon class="seg" points="95,138 105,128 155,128 165,138 155,148 105,148">
+    <title>Segment g (middle)</title>
+  </polygon>
+  <text class="seg-label" x="38" y="142" text-anchor="middle">g</text>
+  <text class="seg-label-sub" x="222" y="142" text-anchor="middle">middle</text>
+  <line x1="52" y1="138" x2="78" y2="138" stroke="#5A3EED" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" />
+
+  <!-- Segment e (bottom-left vertical) -->
+  <polygon class="seg" points="88,146 98,156 98,216 88,226 78,216 78,156">
+    <title>Segment e (lower-left)</title>
+  </polygon>
+  <text class="seg-label" x="62" y="191" text-anchor="middle">e</text>
+  <text class="seg-label-sub" x="42" y="191" text-anchor="middle">lower-left</text>
+
+  <!-- Segment c (bottom-right vertical) -->
+  <polygon class="seg" points="172,146 182,156 182,216 172,226 162,216 162,156">
+    <title>Segment c (lower-right)</title>
+  </polygon>
+  <text class="seg-label" x="198" y="191" text-anchor="middle">c</text>
+  <text class="seg-label-sub" x="222" y="191" text-anchor="middle">lower-right</text>
+
+  <!-- Segment d (bottom horizontal) -->
+  <polygon class="seg" points="95,234 105,224 155,224 165,234 155,244 105,244">
+    <title>Segment d (bottom)</title>
+  </polygon>
+  <text class="seg-label" x="130" y="266" text-anchor="middle">d</text>
+  <text class="seg-label-sub" x="130" y="280" text-anchor="middle">bottom</text>
+</svg>
 </div>
 
-<p style="color: #333;">Each digit (0–9) requires a specific combination of active segments:</p>
+<p style="color: #666; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 0.5rem; font-style: italic;">Standard labeling of segments in a seven-segment display.</p>
+
+<p style="color: #333; margin-top: 1.2rem;">Each digit (0–9) requires a specific combination of active segments:</p>
 
 <table style="font-size: 0.92rem; margin: 1rem auto; border-collapse: collapse; width: 95%; text-align: center;">
 <thead><tr style="background: #6A5BFF; color: #fff;">
