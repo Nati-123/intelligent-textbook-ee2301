@@ -4,13 +4,14 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 400;
-let controlHeight = 70;
+let drawHeight = 380;
+let controlHeight = 60;
 let canvasHeight = drawHeight + controlHeight;
 
 let J = false, K = false;
 let Q = false;
-let clockBtn;
+let clockBtn, resetBtn;
+let edgeFlash = 0; // countdown for edge indicator
 
 const colors = {
   high: '#4CAF50',
@@ -31,6 +32,9 @@ function setup() {
   clockBtn = createButton('⬆ Clock Pulse');
   clockBtn.mousePressed(triggerClock);
 
+  resetBtn = createButton('Reset');
+  resetBtn.mousePressed(resetSim);
+
   positionUIElements();
   describe('Interactive JK flip-flop simulator', LABEL);
 }
@@ -38,19 +42,27 @@ function setup() {
 function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
   clockBtn.position(mainRect.left + 20, mainRect.top + drawHeight + 15);
+  resetBtn.position(mainRect.left + 150, mainRect.top + drawHeight + 15);
 }
 
 function triggerClock() {
-  // JK flip-flop logic
   if (!J && !K) {
-    // Hold - no change
+    // Hold
   } else if (!J && K) {
-    Q = false; // Reset
+    Q = false;
   } else if (J && !K) {
-    Q = true; // Set
+    Q = true;
   } else {
-    Q = !Q; // Toggle
+    Q = !Q;
   }
+  edgeFlash = 30; // flash for ~0.5s at 60fps
+}
+
+function resetSim() {
+  J = false;
+  K = false;
+  Q = false;
+  edgeFlash = 0;
 }
 
 function draw() {
@@ -66,6 +78,9 @@ function draw() {
   stroke('silver');
   rect(0, drawHeight, canvasWidth, controlHeight);
 
+  // Decrement flash
+  if (edgeFlash > 0) edgeFlash--;
+
   // Title
   fill(colors.text);
   noStroke();
@@ -79,146 +94,164 @@ function draw() {
                   (J && !K) ? 'SET' : 'TOGGLE';
   textSize(12);
   fill(operation === 'TOGGLE' ? colors.toggle : '#666');
-  text(`J=${J?1:0}, K=${K?1:0} → ${operation}`, canvasWidth / 2, 35);
+  text('J=' + (J?1:0) + ', K=' + (K?1:0) + ' → ' + operation, canvasWidth / 2, 35);
 
-  // Draw flip-flop
+  // Layout: flip-flop left, truth table right
   drawFlipFlop();
-
-  // Draw truth table
   drawTruthTable();
 
   // Instructions
   fill(colors.text);
-  textAlign(LEFT, CENTER);
+  textAlign(CENTER, CENTER);
   textSize(10);
-  text('Click J/K inputs to toggle, then clock', 150, drawHeight + 40);
+  text('Click J/K inputs to toggle, then press Clock Pulse', canvasWidth / 2, drawHeight + 42);
 }
 
 function drawFlipFlop() {
-  let ffX = 130;
-  let ffY = 80;
-  let ffW = 100;
-  let ffH = 120;
+  let cx = canvasWidth * 0.32; // center of flip-flop area
+  let ffW = 110;
+  let ffH = 130;
+  let ffX = cx - ffW / 2;
+  let ffY = 70;
 
-  // J input
+  let inputX = ffX - 80;
+
+  // J input circle
   fill(J ? colors.high : colors.low);
   stroke(colors.wire);
   strokeWeight(2);
-  ellipse(50, ffY + 25, 40);
+  ellipse(inputX, ffY + 28, 38);
   fill('white');
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(16);
-  text(J ? '1' : '0', 50, ffY + 25);
+  textSize(15);
+  text(J ? '1' : '0', inputX, ffY + 28);
   fill(colors.text);
-  textSize(12);
-  text('J', 50, ffY + 55);
+  textSize(11);
+  text('J', inputX, ffY + 55);
 
-  // K input
+  // K input circle
   fill(K ? colors.high : colors.low);
   stroke(colors.wire);
   strokeWeight(2);
-  ellipse(50, ffY + 95, 40);
+  ellipse(inputX, ffY + 100, 38);
   fill('white');
   noStroke();
-  textSize(16);
-  text(K ? '1' : '0', 50, ffY + 95);
+  textSize(15);
+  text(K ? '1' : '0', inputX, ffY + 100);
   fill(colors.text);
-  textSize(12);
-  text('K', 50, ffY + 125);
+  textSize(11);
+  text('K', inputX, ffY + 127);
 
-  // Wires
+  // Wires to FF
   stroke(J ? colors.high : colors.low);
   strokeWeight(2);
-  line(70, ffY + 25, ffX, ffY + 25);
+  line(inputX + 19, ffY + 28, ffX, ffY + 28);
   stroke(K ? colors.high : colors.low);
-  line(70, ffY + 95, ffX, ffY + 95);
+  line(inputX + 19, ffY + 100, ffX, ffY + 100);
 
   // Flip-flop body
   fill(colors.ff);
   stroke('#00838F');
   strokeWeight(2);
-  rect(ffX, ffY, ffW, ffH, 5);
+  rect(ffX, ffY, ffW, ffH, 6);
 
-  // Clock triangle
+  // Clock triangle with edge flash
+  if (edgeFlash > 0) {
+    fill(255, 235, 59, map(edgeFlash, 0, 30, 80, 255));
+    noStroke();
+    triangle(ffX, ffY + 58, ffX + 18, ffY + 65, ffX, ffY + 72);
+  }
   fill('white');
   noStroke();
-  triangle(ffX, ffY + 55, ffX + 15, ffY + 60, ffX, ffY + 65);
+  triangle(ffX, ffY + 60, ffX + 15, ffY + 65, ffX, ffY + 70);
 
-  // Labels
+  // Edge indicator arrow (flashes on clock)
+  if (edgeFlash > 0) {
+    let alpha = map(edgeFlash, 0, 30, 0, 255);
+    fill(255, 235, 59, alpha);
+    noStroke();
+    textSize(16);
+    textAlign(CENTER, CENTER);
+    text('↑', ffX - 14, ffY + 65);
+  }
+
+  // Labels inside FF
   fill('white');
   textSize(11);
   textAlign(LEFT, CENTER);
-  text('J', ffX + 8, ffY + 25);
-  text('K', ffX + 8, ffY + 95);
-  text('CLK', ffX + 8, ffY + 60);
+  text('J', ffX + 8, ffY + 28);
+  text('K', ffX + 8, ffY + 100);
+  text('CLK', ffX + 8, ffY + 65);
 
   textAlign(RIGHT, CENTER);
-  text('Q', ffX + ffW - 8, ffY + 35);
-  text("Q'", ffX + ffW - 8, ffY + 85);
+  text('Q', ffX + ffW - 8, ffY + 38);
+  text("Q'", ffX + ffW - 8, ffY + 90);
 
   textAlign(CENTER, CENTER);
-  textSize(14);
-  text('JK FF', ffX + ffW/2, ffY + ffH/2);
+  textSize(13);
+  text('JK Flip-Flop', ffX + ffW / 2, ffY + ffH / 2 + 2);
 
-  // Outputs
+  // Q output
   stroke(Q ? colors.high : colors.low);
   strokeWeight(2);
-  line(ffX + ffW, ffY + 35, ffX + ffW + 40, ffY + 35);
+  line(ffX + ffW, ffY + 38, ffX + ffW + 35, ffY + 38);
 
   fill(Q ? colors.high : colors.low);
   stroke(colors.wire);
-  ellipse(ffX + ffW + 60, ffY + 35, 40);
+  ellipse(ffX + ffW + 55, ffY + 38, 38);
   fill('white');
   noStroke();
-  textSize(16);
-  text(Q ? '1' : '0', ffX + ffW + 60, ffY + 35);
+  textSize(15);
+  text(Q ? '1' : '0', ffX + ffW + 55, ffY + 38);
   fill(colors.text);
-  textSize(12);
-  text('Q', ffX + ffW + 60, ffY + 65);
+  textSize(11);
+  text('Q', ffX + ffW + 55, ffY + 65);
 
+  // Q' output
   stroke(!Q ? colors.high : colors.low);
   strokeWeight(2);
-  line(ffX + ffW, ffY + 85, ffX + ffW + 40, ffY + 85);
+  line(ffX + ffW, ffY + 90, ffX + ffW + 35, ffY + 90);
 
   fill(!Q ? colors.high : colors.low);
   stroke(colors.wire);
-  ellipse(ffX + ffW + 60, ffY + 85, 40);
+  ellipse(ffX + ffW + 55, ffY + 90, 38);
   fill('white');
   noStroke();
-  textSize(16);
-  text(!Q ? '1' : '0', ffX + ffW + 60, ffY + 85);
+  textSize(15);
+  text(!Q ? '1' : '0', ffX + ffW + 55, ffY + 90);
   fill(colors.text);
-  textSize(12);
-  text("Q'", ffX + ffW + 60, ffY + 115);
+  textSize(11);
+  text("Q'", ffX + ffW + 55, ffY + 117);
 }
 
 function drawTruthTable() {
-  let tableX = 40;
+  let tableW = 175;
+  let tableX = canvasWidth * 0.68 - tableW / 2;
   let tableY = 240;
-  let cellW = 40;
+  let cols = [35, 35, 50, 55];
   let cellH = 24;
 
+  // Title
   fill(colors.text);
   noStroke();
   textAlign(CENTER, CENTER);
-  textSize(12);
-  text('JK Flip-Flop Truth Table', canvasWidth / 2, tableY - 20);
+  textSize(11);
+  text('Truth Table', tableX + tableW / 2, tableY - 14);
 
   // Header
-  let headers = ['J', 'K', 'Q(next)', 'Operation'];
-  fill('#e0f7fa');
-  stroke('#80deea');
+  let headers = ['J', 'K', 'Q(next)', 'Mode'];
+  let hx = tableX;
   for (let i = 0; i < 4; i++) {
-    rect(tableX + i * cellW, tableY, cellW, cellH);
+    fill('#b2ebf2');
+    stroke('#4dd0e1');
+    rect(hx, tableY, cols[i], cellH);
+    fill(colors.text);
+    noStroke();
+    textSize(9);
+    text(headers[i], hx + cols[i] / 2, tableY + cellH / 2);
+    hx += cols[i];
   }
-
-  fill(colors.text);
-  noStroke();
-  textSize(9);
-  headers.forEach((h, i) => {
-    text(h, tableX + cellW * (i + 0.5), tableY + cellH/2);
-  });
 
   // Rows
   let rows = [
@@ -230,38 +263,72 @@ function drawTruthTable() {
 
   rows.forEach((row, idx) => {
     let y = tableY + cellH * (idx + 1);
-    let isCurrentRow = (row.j === (J ? 1 : 0)) && (row.k === (K ? 1 : 0));
+    let isActive = (row.j === (J ? 1 : 0)) && (row.k === (K ? 1 : 0));
 
-    fill(isCurrentRow ? '#fff9c4' : 'white');
-    stroke('#bdbdbd');
+    let hx = tableX;
     for (let i = 0; i < 4; i++) {
-      rect(tableX + i * cellW, y, cellW, cellH);
+      if (isActive) {
+        fill('#fff176');
+        stroke('#fdd835');
+        strokeWeight(2);
+      } else {
+        fill('white');
+        stroke('#bdbdbd');
+        strokeWeight(1);
+      }
+      rect(hx, y, cols[i], cellH);
+      hx += cols[i];
     }
 
-    fill(colors.text);
+    fill(isActive ? '#333' : colors.text);
     noStroke();
     textSize(9);
-    text(row.j, tableX + cellW * 0.5, y + cellH/2);
-    text(row.k, tableX + cellW * 1.5, y + cellH/2);
-    text(row.q, tableX + cellW * 2.5, y + cellH/2);
-    text(row.op, tableX + cellW * 3.5, y + cellH/2);
+    textStyle(isActive ? BOLD : NORMAL);
+    hx = tableX;
+    let vals = [row.j, row.k, row.q, row.op];
+    for (let i = 0; i < 4; i++) {
+      text(vals[i], hx + cols[i] / 2, y + cellH / 2);
+      hx += cols[i];
+    }
+    textStyle(NORMAL);
   });
 
-  // Equation
+  // Active row indicator arrow
+  let activeIdx = (!J && !K) ? 0 : (!J && K) ? 1 : (J && !K) ? 2 : 3;
+  fill(colors.toggle);
+  noStroke();
+  textSize(12);
+  textAlign(RIGHT, CENTER);
+  text('▸', tableX - 4, tableY + cellH * (activeIdx + 1) + cellH / 2);
+
+  // Equation box
+  let eqY = tableY + cellH * 5 + 8;
+  fill('#e0f7fa');
+  stroke('#4dd0e1');
+  strokeWeight(1);
+  rect(tableX, eqY, tableW, 28, 6);
+
   fill(colors.text);
-  textSize(10);
-  textAlign(CENTER, TOP);
-  text("Q+ = JQ' + K'Q", canvasWidth / 2, tableY + cellH * 5.5);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(11);
+  textStyle(BOLD);
+  text("Q⁺ = J·Q' + K'·Q", tableX + tableW / 2, eqY + 14);
+  textStyle(NORMAL);
 }
 
 function mousePressed() {
-  // Check J click
-  if (dist(mouseX, mouseY, 50, 105) < 22) {
+  let cx = canvasWidth * 0.32;
+  let ffW = 110;
+  let ffX = cx - ffW / 2;
+  let ffY = 70;
+  let inputX = ffX - 80;
+
+  if (dist(mouseX, mouseY, inputX, ffY + 28) < 19) {
     J = !J;
     return;
   }
-  // Check K click
-  if (dist(mouseX, mouseY, 50, 175) < 22) {
+  if (dist(mouseX, mouseY, inputX, ffY + 100) < 19) {
     K = !K;
     return;
   }
