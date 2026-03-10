@@ -259,30 +259,98 @@ The constraint $S \cdot R = 0$ (S and R should never be simultaneously 1) is a d
 
 The following state diagram captures the three operating regions of the NOR-based SR latch and the transitions between them. The **Hold** condition (S=R=0) preserves whichever stable state the latch currently occupies, while S=1 or R=1 forces a transition. The **Invalid** condition (S=R=1) is shown as a distinct state to emphasize that it must be avoided.
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    state "Q = 0\n(Reset)" as Reset
-    state "Q = 1\n(Set)" as Set
-    state "Q = Q' = 0\n(Invalid)" as Invalid
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 540 340" style="max-width: 540px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .st-lbl { font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; font-weight: 700; fill: #fff; }
+      .st-sub { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11.5px; font-weight: 600; fill: rgba(255,255,255,0.9); }
+      .tr-lbl { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10.5px; font-weight: 600; fill: #333; }
+      .tr-sub { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9.5px; fill: #666; }
+      .warn-lbl { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; font-weight: 700; fill: #B71C1C; }
+      .arrow { fill: none; stroke-width: 2; }
+      .arrow-norm { stroke: #5A3EED; }
+      .arrow-warn { stroke: #E53935; }
+      .arrowhead { stroke: none; }
+    </style>
+    <!-- Arrowhead markers -->
+    <marker id="ah-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#5A3EED"/>
+    </marker>
+    <marker id="ah-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E53935"/>
+    </marker>
+  </defs>
 
-    Reset --> Reset : S=0, R=0\n(Hold)
-    Reset --> Set : S=1, R=0\n(Set)
-    Reset --> Invalid : S=1, R=1\n(Forbidden)
+  <!-- Background -->
+  <rect x="0" y="0" width="540" height="340" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    Set --> Set : S=0, R=0\n(Hold)
-    Set --> Reset : S=0, R=1\n(Reset)
-    Set --> Invalid : S=1, R=1\n(Forbidden)
+  <!-- ===== STATES ===== -->
 
-    Invalid --> Reset : S=0, R=1
-    Invalid --> Set : S=1, R=0
-    Invalid --> Invalid : S=1, R=1
+  <!-- Reset State (left) -->
+  <rect x="40" y="60" width="140" height="60" rx="30" fill="#5A3EED" stroke="#4527A0" stroke-width="2"/>
+  <text x="110" y="85" text-anchor="middle" class="st-lbl">Q = 0</text>
+  <text x="110" y="103" text-anchor="middle" class="st-sub">(Reset)</text>
 
-    note right of Invalid
-        Avoid this state!
-        S·R must equal 0
-    end note
-```
+  <!-- Set State (right) -->
+  <rect x="360" y="60" width="140" height="60" rx="30" fill="#5A3EED" stroke="#4527A0" stroke-width="2"/>
+  <text x="430" y="85" text-anchor="middle" class="st-lbl">Q = 1</text>
+  <text x="430" y="103" text-anchor="middle" class="st-sub">(Set)</text>
+
+  <!-- Invalid State (bottom center) -->
+  <rect x="185" y="230" width="170" height="60" rx="30" fill="#E53935" stroke="#B71C1C" stroke-width="2.5"/>
+  <text x="270" y="255" text-anchor="middle" class="st-lbl">Q = Q' = 0</text>
+  <text x="270" y="273" text-anchor="middle" class="st-sub">(Invalid)</text>
+
+  <!-- ===== SELF-LOOPS (Hold) ===== -->
+
+  <!-- Reset Hold (loop on left) -->
+  <path d="M 65,60 C 50,20 155,20 140,60" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="103" y="30" text-anchor="middle" class="tr-lbl">S=0, R=0</text>
+  <text x="103" y="42" text-anchor="middle" class="tr-sub">(Hold)</text>
+
+  <!-- Set Hold (loop on right) -->
+  <path d="M 385,60 C 370,20 475,20 460,60" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="423" y="30" text-anchor="middle" class="tr-lbl">S=0, R=0</text>
+  <text x="423" y="42" text-anchor="middle" class="tr-sub">(Hold)</text>
+
+  <!-- Invalid Hold (loop on bottom) -->
+  <path d="M 220,290 C 205,325 335,325 320,290" class="arrow arrow-warn" marker-end="url(#ah-red)"/>
+  <text x="270" y="320" text-anchor="middle" class="tr-lbl" style="fill:#B71C1C;">S=1, R=1</text>
+
+  <!-- ===== TRANSITIONS BETWEEN STATES ===== -->
+
+  <!-- Reset → Set (top, left to right) -->
+  <path d="M 180,75 L 352,75" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="270" y="68" text-anchor="middle" class="tr-lbl">S=1, R=0</text>
+  <text x="270" y="80" text-anchor="middle" class="tr-sub">(Set)</text>
+
+  <!-- Set → Reset (top, right to left, curved below) -->
+  <path d="M 360,105 C 310,135 230,135 180,105" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="270" y="140" text-anchor="middle" class="tr-lbl">S=0, R=1</text>
+  <text x="270" y="152" text-anchor="middle" class="tr-sub">(Reset)</text>
+
+  <!-- Reset → Invalid (diagonal down-right) -->
+  <path d="M 130,120 L 210,228" class="arrow arrow-warn" marker-end="url(#ah-red)"/>
+  <text x="142" y="180" text-anchor="middle" class="tr-lbl" style="fill:#B71C1C;">S=1, R=1</text>
+
+  <!-- Set → Invalid (diagonal down-left) -->
+  <path d="M 410,120 L 330,228" class="arrow arrow-warn" marker-end="url(#ah-red)"/>
+  <text x="398" y="180" text-anchor="middle" class="tr-lbl" style="fill:#B71C1C;">S=1, R=1</text>
+
+  <!-- Invalid → Reset (diagonal up-left) -->
+  <path d="M 200,235 L 130,125" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="140" y="205" text-anchor="middle" class="tr-lbl">S=0, R=1</text>
+
+  <!-- Invalid → Set (diagonal up-right) -->
+  <path d="M 340,235 L 410,125" class="arrow arrow-norm" marker-end="url(#ah-purple)"/>
+  <text x="400" y="205" text-anchor="middle" class="tr-lbl">S=1, R=0</text>
+
+  <!-- Warning badge -->
+  <text x="270" y="210" text-anchor="middle" class="warn-lbl">⚠ Avoid: S·R must = 0</text>
+</svg>
+<p style="margin-top: 0.5rem; color: #555; font-size: 0.92rem; font-style: italic;">SR Latch state diagram — red paths indicate transitions to the forbidden invalid state.</p>
+</div>
 
 </div>
 
