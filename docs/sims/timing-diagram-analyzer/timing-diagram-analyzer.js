@@ -30,7 +30,7 @@ function setup() {
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
-  newPatternBtn = createButton('Generate New Pattern');
+  newPatternBtn = createButton('Generate Random Timing Pattern');
   newPatternBtn.mousePressed(generatePattern);
 
   positionUIElements();
@@ -86,7 +86,7 @@ function draw() {
 
   textSize(12);
   fill('#666');
-  text('D Flip-Flop: Q captures D at rising clock edge', canvasWidth / 2, 35);
+  text('D Flip-Flop: Q captures D at each rising clock edge', canvasWidth / 2, 35);
 
   // Draw timing diagram
   drawTimingDiagram();
@@ -98,7 +98,7 @@ function draw() {
   fill(colors.text);
   textAlign(LEFT, CENTER);
   textSize(10);
-  text('Click edges to see sampling points', 190, drawHeight + 30);
+  text('Pink dots show D value captured at each rising edge', 220, drawHeight + 30);
 }
 
 function drawTimingDiagram() {
@@ -118,13 +118,27 @@ function drawTimingDiagram() {
   }
 
   // Signal labels
-  fill(colors.text);
+  fill(colors.clock);
   noStroke();
   textAlign(RIGHT, CENTER);
   textSize(12);
+  textStyle(BOLD);
   text('CLK', startX - 10, startY + signalH / 2);
+  fill(colors.d);
   text('D', startX - 10, startY + signalGap + signalH / 2);
+  fill(colors.q);
   text('Q', startX - 10, startY + signalGap * 2 + signalH / 2);
+  textStyle(NORMAL);
+
+  // Draw vertical dashed sampling lines at each rising edge
+  for (let i = 0; i < numCycles; i++) {
+    let edgeX = startX + i * cycleW + cycleW / 2;
+    stroke(colors.edge);
+    strokeWeight(1);
+    drawingContext.setLineDash([4, 4]);
+    line(edgeX, startY - 8, edgeX, startY + signalGap * 2 + signalH + 8);
+    drawingContext.setLineDash([]);
+  }
 
   // Draw clock signal
   stroke(colors.clock);
@@ -142,12 +156,22 @@ function drawTimingDiagram() {
       line(x + cycleW, startY + 5, x + cycleW, startY + signalH - 5);
     }
 
-    // Mark rising edge
+    // Rising edge arrow
     fill(colors.edge);
     noStroke();
     triangle(x + cycleW / 2 - 5, startY + signalH + 5,
              x + cycleW / 2 + 5, startY + signalH + 5,
              x + cycleW / 2, startY + signalH - 2);
+
+    // "↑" label above first rising edge
+    if (i === 0) {
+      fill(colors.clock);
+      textAlign(LEFT, CENTER);
+      textSize(8);
+      textStyle(BOLD);
+      text('↑ Rising Edge', x + cycleW / 2 + 4, startY - 2);
+      textStyle(NORMAL);
+    }
   }
 
   // Draw D signal
@@ -180,22 +204,37 @@ function drawTimingDiagram() {
     }
   }
 
-  // Draw sampling indicators
+  // Draw sampling indicators with captured value highlight
   for (let i = 0; i < numCycles; i++) {
     let edgeX = startX + i * cycleW + cycleW / 2;
-    let dY = startY + signalGap + (dPattern[i * 2] ? 5 : signalH - 5);
+    let sampledVal = dPattern[i * 2];
+    let dY = startY + signalGap + (sampledVal ? 5 : signalH - 5);
 
-    // Dashed line from D to sampling point
-    stroke(colors.edge);
-    strokeWeight(1);
-    drawingContext.setLineDash([3, 3]);
-    line(edgeX, dY, edgeX, startY + signalGap * 2 - 10);
-    drawingContext.setLineDash([]);
-
-    // Sampling dot
+    // Sampling dot on D
     fill(colors.edge);
     noStroke();
-    ellipse(edgeX, dY, 8);
+    ellipse(edgeX, dY, 10);
+
+    // Captured value label inside dot
+    fill('white');
+    textAlign(CENTER, CENTER);
+    textSize(7);
+    textStyle(BOLD);
+    text(sampledVal ? '1' : '0', edgeX, dY);
+    textStyle(NORMAL);
+
+    // Small arrow from D sample down to Q
+    let qY = startY + signalGap * 2 + (sampledVal ? 5 : signalH - 5);
+    stroke(colors.edge);
+    strokeWeight(1);
+    drawingContext.setLineDash([2, 2]);
+    line(edgeX, dY + 6, edgeX, qY - 6);
+    drawingContext.setLineDash([]);
+
+    // Small dot on Q where value appears
+    fill(colors.edge);
+    noStroke();
+    ellipse(edgeX, qY, 6);
   }
 
   // Time labels
@@ -215,45 +254,55 @@ function drawLegend() {
   fill('#fff');
   stroke('#e0e0e0');
   strokeWeight(1);
-  rect(legendX - 10, legendY - 10, 280, 70, 5);
+  rect(legendX - 10, legendY - 10, 310, 70, 5);
 
   fill(colors.text);
   noStroke();
   textAlign(LEFT, CENTER);
   textSize(11);
+  textStyle(BOLD);
   text('Legend:', legendX, legendY + 5);
+  textStyle(NORMAL);
 
   // Clock
   stroke(colors.clock);
   strokeWeight(3);
   line(legendX, legendY + 25, legendX + 30, legendY + 25);
-  fill(colors.text);
+  fill(colors.clock);
   noStroke();
   textSize(10);
-  text('Clock (CLK)', legendX + 40, legendY + 25);
+  text('CLK (blue)', legendX + 36, legendY + 25);
 
   // D
   stroke(colors.d);
   strokeWeight(3);
   line(legendX + 130, legendY + 25, legendX + 160, legendY + 25);
-  fill(colors.text);
+  fill(colors.d);
   noStroke();
-  text('Data (D)', legendX + 170, legendY + 25);
+  text('D (orange)', legendX + 166, legendY + 25);
 
   // Q
   stroke(colors.q);
   strokeWeight(3);
   line(legendX, legendY + 45, legendX + 30, legendY + 45);
-  fill(colors.text);
+  fill(colors.q);
   noStroke();
-  text('Output (Q)', legendX + 40, legendY + 45);
+  text('Q (purple)', legendX + 36, legendY + 45);
 
   // Sampling point
   fill(colors.edge);
   noStroke();
-  ellipse(legendX + 145, legendY + 45, 8);
+  ellipse(legendX + 145, legendY + 45, 9);
+  fill('white');
+  textSize(6);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text('1', legendX + 145, legendY + 45);
+  textStyle(NORMAL);
   fill(colors.text);
-  text('Sample point', legendX + 160, legendY + 45);
+  textAlign(LEFT, CENTER);
+  textSize(10);
+  text('Sampling point (↑)', legendX + 156, legendY + 45);
 }
 
 function windowResized() {
