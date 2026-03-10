@@ -85,6 +85,8 @@ This unit bridges Boolean algebra theory with practical digital circuit design, 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Before beginning this unit, students should have:
 
 - Mastery of Boolean algebra operations and theorems (Unit 2)
@@ -92,13 +94,17 @@ Before beginning this unit, students should have:
 - Understanding of logic gates and their symbols
 - Familiarity with binary number representations (Unit 1)
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.1 Combinational vs Sequential Logic</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Digital circuits are classified into two fundamental categories based on how they process information.
 
-**Combinational logic** circuits produce outputs that depend solely on the current input values. There is no memory—the same inputs always produce the same outputs, regardless of what happened before. Examples include adders, decoders, and multiplexers.
+**Combinational logic** circuits produce outputs that depend solely on the current input values. There is no memory — the same inputs always produce the same outputs, regardless of what happened before. Examples include adders, decoders, and multiplexers.
 
 **Sequential logic** circuits produce outputs that depend on both current inputs AND the circuit's previous state (history). These circuits contain memory elements like flip-flops. Examples include counters, registers, and state machines.
 
@@ -111,19 +117,25 @@ Digital circuits are classified into two fundamental categories based on how the
 
 This unit focuses exclusively on **combinational logic**. A **logic circuit** is any arrangement of logic gates that implements a Boolean function, and our goal is to design circuits that correctly realize specified behavior.
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.2 The Design Process: Specification to Circuit</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The process of creating a digital circuit follows a systematic methodology, moving from informal requirements to a working implementation.
 
-### Circuit Analysis vs Synthesis
-
-**Circuit analysis** starts with an existing circuit and determines its behavior—deriving the Boolean expression and truth table from the gate connections. This is useful for understanding, verifying, or documenting circuits.
+**Circuit analysis** starts with an existing circuit and determines its behavior — deriving the Boolean expression and truth table from the gate connections. This is useful for understanding, verifying, or documenting circuits.
 
 **Circuit synthesis** starts with a specification (what the circuit should do) and creates a circuit that implements it. This is the primary design activity.
 
-### The Synthesis Process
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The Synthesis Process</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Specification to circuit** follows these steps:
 
@@ -136,17 +148,21 @@ The process of creating a digital circuit follows a systematic methodology, movi
 
 A **switching function** is the formal name for a Boolean function that describes circuit behavior, mapping binary inputs to binary outputs.
 
-#### Diagram: Design Flow Visualization
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Design Flow Visualization</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/design-flow-visualization/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.3 Word Problems to Boolean Expressions</h2>
 
-Real design problems often begin as English descriptions. **Word problems to Boolean** conversion requires careful translation of natural language into precise logical statements.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-### Translation Guidelines
+Real design problems often begin as English descriptions. **Word problems to Boolean** conversion requires careful translation of natural language into precise logical statements.
 
 | English Phrase | Boolean Equivalent |
 |----------------|-------------------|
@@ -159,17 +175,17 @@ Real design problems often begin as English descriptions. **Word problems to Boo
 | "exactly one of A, B" | $A \oplus B$ (XOR) |
 | "neither A nor B" | $\overline{A} \cdot \overline{B}$ |
 
-### Example: Security System
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: Security System</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 
 **Problem:** An alarm should sound if the door is open while the system is armed, OR if motion is detected while the system is armed at night.
 
 **Step 1: Identify variables**
 
-- $D$ = Door is open
-- $A$ = System is armed
-- $M$ = Motion detected
-- $N$ = Night time
-- $F$ = Alarm sounds (output)
+- $D$ = Door is open, $A$ = System is armed, $M$ = Motion detected, $N$ = Night time, $F$ = Alarm sounds (output)
 
 **Step 2: Translate to Boolean**
 
@@ -179,16 +195,15 @@ Real design problems often begin as English descriptions. **Word problems to Boo
 
 $$F = DA + MAN$$
 
-### Example: Voting System
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Example: Voting System</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 
 **Problem:** A three-person committee approves proposals by majority vote. Design a circuit that outputs 1 when at least two of three members vote yes.
 
-**Step 1: Identify variables**
-
-- $A$ = Member A votes yes
-- $B$ = Member B votes yes
-- $C$ = Member C votes yes
-- $F$ = Proposal approved (output)
+**Step 1: Identify variables** — $A$, $B$, $C$ = member votes yes; $F$ = proposal approved
 
 **Step 2: Create truth table**
 
@@ -217,10 +232,15 @@ $$F = AB + AC + BC$$
 
 This is the **majority function** — the output is 1 when any two (or more) inputs are 1. It requires three AND gates and one OR gate.
 
-!!! tip "The Majority Function"
-    The majority function $F = AB + AC + BC$ appears frequently in digital design. It is equivalent to the carry output of a full adder, which produces a carry when at least two of its three inputs are 1.
+</div>
 
-### Binary Decisions and Control Signals
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight — The Majority Function:</strong> The majority function $F = AB + AC + BC$ appears frequently in digital design. It is equivalent to the carry output of a full adder, which produces a carry when at least two of its three inputs are 1.
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Binary Decisions and Control Signals</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **binary decision** is a circuit output that represents a yes/no choice based on input conditions. Many applications involve **enable signals** and **control signals** that activate or configure circuit behavior.
 
@@ -230,17 +250,27 @@ $$\text{Output} = \text{Enable} \cdot \text{Function}$$
 
 A **control signal** selects between different operating modes, such as choosing between addition and subtraction in an ALU.
 
-#### Diagram: Word Problem Translator
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Word Problem Translator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/word-problem-translator/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.4 Arithmetic Circuits: Adders</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Binary addition is fundamental to computer arithmetic. Digital systems implement addition using specialized circuits built from basic logic gates.
 
-### Half Adder
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Half Adder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **half adder** adds two single-bit inputs (A and B) and produces two outputs: the **sum bit** (S) and the **carry bit** (C). It is called "half" because it cannot accept a carry-in from a previous stage.
 
@@ -258,7 +288,11 @@ From the truth table:
 
 The half adder requires one XOR gate and one AND gate.
 
-### Full Adder
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Full Adder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **full adder** adds three single-bit inputs: A, B, and a carry-in ($C_{in}$) from a previous stage. It produces a sum bit (S) and a carry-out ($C_{out}$).
 
@@ -284,7 +318,11 @@ $$
 
 A full adder can be built from two half adders and an OR gate, or directly from the Boolean expressions.
 
-### Ripple Carry Adder
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Ripple Carry Adder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **ripple carry adder** connects multiple full adders to add multi-bit numbers. The carry-out of each stage connects to the carry-in of the next stage, with carries "rippling" through the chain.
 
@@ -296,7 +334,11 @@ For an n-bit ripple carry adder:
 
 **Limitation:** The ripple carry adder is slow for wide operands because each stage must wait for the previous carry to propagate. An 8-bit addition requires 8 sequential carry propagations.
 
-### Carry-Lookahead Adder (Preview)
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Carry-Lookahead Adder (Preview)</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The ripple carry adder's delay grows linearly with bit width because each carry depends on the previous stage. The **carry-lookahead adder (CLA)** eliminates this bottleneck by computing all carries simultaneously using two auxiliary signals for each bit position:
 
@@ -315,6 +357,10 @@ $$
 
 Each equation depends only on the original inputs $A_i$, $B_i$, and $C_{in}$ — not on the output of a previous stage. This means all carries are available after just two gate delays (one for G/P, one for the carry equation), regardless of the adder width.
 
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+
 **Example (2-bit CLA):** For $A = 11$, $B = 01$, $C_{in} = 0$:
 
 - $G_0 = 1 \cdot 1 = 1$, $P_0 = 1 \oplus 1 = 0$ → $C_0 = 1 + 0 \cdot 0 = 1$
@@ -322,20 +368,31 @@ Each equation depends only on the original inputs $A_i$, $B_i$, and $C_{in}$ —
 
 Result: $S = 00$ with $C_{out} = 1$, confirming $3 + 1 = 4$. Both carries were computed in parallel, not sequentially.
 
-!!! note "CLA in Practice"
-    Commercial CLA ICs like the 74LS283 use this technique internally. For very wide adders (32+ bits), CLA blocks are cascaded using group-generate and group-propagate signals, keeping the delay logarithmic rather than linear. Detailed CLA design is covered in advanced digital design courses.
+</div>
 
-#### Diagram: Binary Adder Visualizer
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">CLA in Practice:</strong> Commercial CLA ICs like the 74LS283 use this technique internally. For very wide adders (32+ bits), CLA blocks are cascaded using group-generate and group-propagate signals, keeping the delay logarithmic rather than linear.
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Binary Adder Visualizer</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/binary-adder-visualizer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.5 Arithmetic Circuits: Subtractors</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Binary subtraction can be implemented directly with subtractor circuits or by using adders with two's complement representation.
 
-### Half Subtractor
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Half Subtractor</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **half subtractor** subtracts one bit (B) from another (A), producing a **difference bit** (D) and a **borrow bit** ($B_{out}$).
 
@@ -357,7 +414,11 @@ $$
 
 Note: The difference is identical to the sum in a half adder (XOR), but the borrow differs from carry.
 
-### Full Subtractor
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Full Subtractor</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **full subtractor** subtracts B from A while also accounting for a borrow-in ($B_{in}$) from a previous stage.
 
@@ -381,7 +442,11 @@ B_{out} &= \overline{A}\,B + B_{in}\!\left(\overline{A \oplus B}\right) = \overl
 \end{aligned}
 $$
 
-### Adder-Subtractor Circuit
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Adder-Subtractor Circuit</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 An **adder-subtractor circuit** uses a single set of full adders to perform both addition and subtraction, controlled by a mode signal M:
 
@@ -397,7 +462,11 @@ Setting $C_{in} = M$ adds 1 when subtracting, completing the two's complement op
 
 $$A - B = A + \overline{B} + 1$$
 
-### Overflow Detection
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Overflow Detection</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 When adding two signed (two's complement) numbers, the result can exceed the representable range. **Overflow** occurs when two positive numbers produce a negative result, or two negative numbers produce a positive result.
 
@@ -406,6 +475,10 @@ The overflow flag $V$ can be computed by comparing the carry into the sign bit w
 $$V = C_{n-1} \oplus C_n$$
 
 Where $C_{n-1}$ is the carry into the MSB (sign position) and $C_n$ is the carry out. When these two carries differ, the sign bit has been corrupted.
+
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 
 **Example (4-bit signed):** Compute $7 + 1$:
 
@@ -417,19 +490,31 @@ Where $C_{n-1}$ is the carry into the MSB (sign position) and $C_n$ is the carry
 
 Result: $0111 + 0001 = 1000$ = $-8$ in two's complement. Since $V = C_3 \oplus C_4 = 1 \oplus 0 = 1$, overflow is detected. The result should be $+8$, which cannot be represented in 4-bit signed format ($-8$ to $+7$).
 
-In the adder-subtractor circuit, the overflow flag is generated by XORing the last two carries, providing automatic signed overflow detection for both addition and subtraction.
+</div>
 
-#### Diagram: Adder-Subtractor Circuit Builder
+<div style="background: #FFF0F0; border-left: 4px solid #E57373; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #C62828;">Watch for Overflow:</strong> In the adder-subtractor circuit, the overflow flag is generated by XORing the last two carries, providing automatic signed overflow detection for both addition and subtraction. Always check the overflow flag when working with signed arithmetic.
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Adder-Subtractor Circuit Builder</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/adder-subtractor-builder/main.html" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.6 Comparator Circuits</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Comparator circuits** determine the relationship between two binary numbers, producing outputs that indicate whether one number is greater than, less than, or equal to another.
 
-### Single-Bit Comparator
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Single-Bit Comparator</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 For two single bits A and B, three relationships are possible:
 
@@ -439,13 +524,15 @@ For two single bits A and B, three relationships are possible:
 | A < B | L | $\overline{A} \cdot B$ |
 | A = B | E | $\overline{A \oplus B} = A \odot B$ |
 
-### Magnitude Comparator
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Magnitude Comparator</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **magnitude comparator** compares multi-bit numbers. For n-bit inputs, it produces three outputs: $G$ (A > B), $L$ (A < B), and $E$ (A = B).
 
-**Design approach for 4-bit comparator:**
-
-The comparison proceeds from the most significant bit to least significant:
+**Design approach for 4-bit comparator:** The comparison proceeds from the most significant bit to least significant:
 
 1. If $A_3 > B_3$, then $A > B$ regardless of other bits
 2. If $A_3 < B_3$, then $A < B$ regardless of other bits
@@ -461,10 +548,15 @@ $$G = A_3\overline{B_3} + (A_3 \odot B_3)A_2\overline{B_2} + (A_3 \odot B_3)(A_2
 
 The less-than output is: $L = \overline{G} \cdot \overline{E}$ (or derive symmetrically).
 
-!!! tip "Cascading Comparators"
-    Commercial comparator ICs (like 74LS85) include cascade inputs that allow connecting multiple 4-bit comparators to compare larger numbers.
+</div>
 
-### Design Walkthrough: 2-Bit Magnitude Comparator
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Cascading Comparators:</strong> Commercial comparator ICs (like 74LS85) include cascade inputs that allow connecting multiple 4-bit comparators to compare larger numbers.
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Design Walkthrough: 2-Bit Magnitude Comparator</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 
 Let us design a 2-bit comparator from scratch. Inputs are $A = A_1A_0$ and $B = B_1B_0$; outputs are $G$ (A > B), $L$ (A < B), and $E$ (A = B).
 
@@ -499,21 +591,23 @@ $$L = \overline{A_1} B_1 + (A_1 \odot B_1) \overline{A_0} B_0$$
 
 **Step 3: Count gates** — $G$ requires 2 AND gates (one 2-input, one 3-input), 1 OR gate, 1 XNOR gate, and 1 inverter. The cascading approach used in the 74LS85 generalizes this pattern to 4 bits and adds cascade inputs for wider comparisons, which is more practical than expanding the truth table to 256 rows for an 8-bit comparator.
 
-Try the interactive magnitude comparator below — set the A and B inputs and observe the G, E, L outputs:
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Magnitude Comparator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/magnitude-comparator/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.7 Parity Circuits</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Parity** is a simple error detection technique that adds a check bit to data, allowing detection of single-bit transmission errors.
 
-### Even and Odd Parity
-
-**Even parity** sets the parity bit so the total number of 1s (including the parity bit) is even.
-
-**Odd parity** sets the parity bit so the total number of 1s is odd.
+**Even parity** sets the parity bit so the total number of 1s (including the parity bit) is even. **Odd parity** sets the parity bit so the total number of 1s is odd.
 
 | Data Bits | Count of 1s | Even Parity Bit | Odd Parity Bit |
 |-----------|-------------|-----------------|----------------|
@@ -526,7 +620,11 @@ Try the interactive magnitude comparator below — set the A and B inputs and ob
 | 110 | 2 | 0 | 1 |
 | 111 | 3 | 1 | 0 |
 
-### Parity Generator
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Parity Generator</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **parity generator** creates the parity bit for a given data word. For even parity with n data bits:
 
@@ -536,7 +634,11 @@ The parity bit is simply the XOR of all data bits. This produces a 1 when the co
 
 For odd parity, invert the result: $P = \overline{D_{n-1} \oplus D_{n-2} \oplus \ldots \oplus D_0}$
 
-### Parity Checker
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Parity Checker</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **parity checker** verifies that received data (including the parity bit) has correct parity. For even parity:
 
@@ -544,10 +646,15 @@ $$\text{Error} = D_{n-1} \oplus D_{n-2} \oplus \ldots \oplus D_0 \oplus P$$
 
 If the result is 0, parity is correct (even number of 1s). If the result is 1, an error is detected.
 
-!!! warning "Parity Limitations"
-    Parity can only detect an odd number of bit errors. If two bits flip, the parity remains unchanged and the error goes undetected. More sophisticated codes (Hamming, CRC) provide stronger error detection and correction.
+</div>
 
-### Beyond Parity: Hamming Codes
+<div style="background: #FFF0F0; border-left: 4px solid #E57373; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #C62828;">Parity Limitations:</strong> Parity can only detect an odd number of bit errors. If two bits flip, the parity remains unchanged and the error goes undetected. More sophisticated codes (Hamming, CRC) provide stronger error detection and correction.
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Beyond Parity: Hamming Codes</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The limitation of parity — detecting but not correcting errors — motivated Richard Hamming to develop **Hamming codes** in 1950. A Hamming code adds multiple parity bits, each covering a different subset of data bits. By checking which parity bits fail, the receiver can identify and correct the exact bit that flipped.
 
@@ -561,7 +668,11 @@ For a 7-bit Hamming code (4 data bits + 3 parity bits), each parity bit covers s
 
 The **syndrome** — the binary number formed by the failing parity checks — directly gives the position of the error. For example, if $P_1$ and $P_4$ fail but $P_2$ passes, the syndrome is $101_2 = 5$, meaning position 5 is corrupt.
 
-### Practical Applications of Parity
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Practical Applications of Parity</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Parity checking appears in many real systems:
 
@@ -571,17 +682,27 @@ Parity checking appears in many real systems:
 
 The progression from simple parity → Hamming codes → advanced ECC illustrates a common engineering theme: trading redundancy (extra bits) for reliability (error tolerance).
 
-#### Diagram: Parity Generator/Checker Simulator
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Parity Generator/Checker Simulator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/parity-circuit-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.8 Code Converters</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Code converters** translate data from one binary representation to another. Different codes offer advantages for specific applications.
 
-### BCD Code
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">BCD Code</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **BCD (Binary Coded Decimal)** represents each decimal digit with its 4-bit binary equivalent. Unlike pure binary, BCD maintains the decimal place value structure.
 
@@ -596,7 +717,11 @@ The progression from simple parity → Hamming codes → advanced ECC illustrate
 
 BCD simplifies decimal I/O but is less efficient than pure binary (wastes 6 codes per digit).
 
-### Gray Code
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Gray Code</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Gray code** is an ordering of binary numbers where adjacent values differ in exactly one bit. This property is valuable for position encoders and Karnaugh maps.
 
@@ -611,7 +736,11 @@ BCD simplifies decimal I/O but is less efficient than pure binary (wastes 6 code
 | 6 | 0110 | 0101 |
 | 7 | 0111 | 0100 |
 
-### Binary to Gray Conversion
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Binary to Gray Conversion</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The **binary to Gray converter** uses XOR gates:
 
@@ -630,7 +759,11 @@ G_0 &= B_1 \oplus B_0
 \end{aligned}
 $$
 
-### Gray to Binary Conversion
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Gray to Binary Conversion</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The reverse conversion:
 
@@ -638,7 +771,11 @@ $$B_n = G_n$$
 
 $$B_i = B_{i+1} \oplus G_i$$
 
-### BCD to Binary Conversion
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">BCD to Binary Conversion</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **BCD to binary converter** is more complex, requiring arithmetic operations to combine the weighted digit values. For 2-digit BCD (00-99):
 
@@ -646,13 +783,19 @@ $$\text{Binary} = 10 \times \text{tens digit} + \text{units digit}$$
 
 This requires multipliers and adders, making the circuit significantly more complex than Gray code converters.
 
-#### Diagram: Code Converter Demonstrator
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Code Converter Demonstrator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/code-converter-demo/main.html" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.9 Seven-Segment Display Decoder</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **seven-segment display** uses seven LED segments (plus optional decimal point) arranged to display decimal digits and some letters.
 
@@ -670,7 +813,11 @@ e│   │c
    d
 ```
 
-### Seven-Segment Decoder Design
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Seven-Segment Decoder Design</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **seven-segment decoder** converts a 4-bit BCD input to the seven segment control signals. Each segment requires its own Boolean function.
 
@@ -689,7 +836,11 @@ A **seven-segment decoder** converts a 4-bit BCD input to the seven segment cont
 
 For BCD inputs 1010-1111 (invalid BCD), the outputs can be defined as don't cares, enabling simplification.
 
-### Deriving Segment Equations
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Deriving Segment Equations</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Each segment output is a function of the 4 BCD input bits ($B_3 B_2 B_1 B_0$):
 
@@ -697,16 +848,25 @@ $$a = \sum m(0,2,3,5,6,7,8,9)$$
 
 This can be simplified using Boolean algebra or K-maps (covered in Unit 5).
 
-!!! note "Active-Low vs Active-High"
-    Some displays use active-low signals (segment lights when signal is 0). The decoder logic must be designed accordingly, or inverters added at outputs.
+</div>
 
-### Active-Low Decoder Design
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Active-Low vs Active-High:</strong> Some displays use active-low signals (segment lights when signal is 0). The decoder logic must be designed accordingly, or inverters added at outputs.
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Active-Low Decoder Design</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Many real seven-segment displays are **common-anode**, meaning segments illuminate when their control signal is LOW (0). Designing for active-low output simply inverts the truth table — each segment output becomes 0 when the segment should be ON and 1 when OFF.
 
 For the active-high truth table above, the active-low version is obtained by complementing every output. Alternatively, design the active-high decoder first and add inverters at each output. Commercial ICs offer both: the 7448 drives common-cathode (active-high), while the 7447 drives common-anode (active-low).
 
-### BCD Input Validation
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">BCD Input Validation</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Since BCD uses only codes 0000–1001, inputs 1010 through 1111 are invalid. A **BCD validation circuit** detects these invalid codes and can blank the display or signal an error:
 
@@ -725,23 +885,31 @@ $$\text{Invalid} = B_3(B_2 + B_1)$$
 
 This simple 3-gate circuit (one OR, one AND, one AND for the enable) protects the display from showing garbage when invalid data appears on the BCD bus — a practical necessity in any real decoder design.
 
-#### Diagram: Seven-Segment Decoder Simulator
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Seven-Segment Decoder Simulator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/seven-segment-decoder/main.html?v=6" width="100%" height="700px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">3.10 Incompletely Specified Functions</h2>
 
-An **incompletely specified function** has some input combinations where the output doesn't matter—either because those inputs can never occur or because the output value for those inputs is irrelevant to the application.
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-### Don't Care Conditions
+An **incompletely specified function** has some input combinations where the output doesn't matter — either because those inputs can never occur or because the output value for those inputs is irrelevant to the application.
+
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Don't Care Conditions</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Don't care** conditions (marked as X or d in truth tables) indicate outputs that can be assigned either 0 or 1 during optimization, whichever leads to a simpler circuit.
 
-**Example: BCD to Seven-Segment Decoder**
-
-BCD only uses input combinations 0000-1001 (0-9). The combinations 1010-1111 (10-15) are invalid BCD and will never occur in a properly designed system. These six input combinations are don't cares.
+**Example: BCD to Seven-Segment Decoder** — BCD only uses input combinations 0000-1001 (0-9). The combinations 1010-1111 (10-15) are invalid BCD and will never occur in a properly designed system. These six input combinations are don't cares.
 
 | BCD Input | Digit | Segment a | Notes |
 |-----------|-------|-----------|-------|
@@ -753,7 +921,11 @@ BCD only uses input combinations 0000-1001 (0-9). The combinations 1010-1111 (10
 | 1110 | — | X | Invalid BCD |
 | 1111 | — | X | Invalid BCD |
 
-### Using Don't Cares for Simplification
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Using Don't Cares for Simplification</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 When deriving Boolean expressions:
 
@@ -762,7 +934,11 @@ When deriving Boolean expressions:
 
 The optimizer chooses the assignment (0 or 1) that minimizes the final expression.
 
-**Example:** Function with don't cares
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+
+**Example: Function with don't cares**
 
 | A | B | C | F |
 |---|---|---|---|
@@ -783,39 +959,39 @@ $$F = \overline{A}\overline{C} + \overline{A}B + AB = \overline{A}\overline{C} +
 
 **Result:** $F = \overline{A}\overline{C} + B$ (3 literals — simpler than without don't cares!)
 
-K-maps (Unit 5) provide a systematic visual method for exploiting don't cares optimally.
+</div>
 
-#### Diagram: Don't Care Optimizer
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight:</strong> K-maps (Unit 5) provide a systematic visual method for exploiting don't cares optimally. Don't cares are one of the most powerful tools for circuit simplification.
+</div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Don't Care Optimizer</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/dont-care-optimizer/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Summary and Key Takeaways</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 This unit applied Boolean algebra to practical digital circuit design:
 
 - **Combinational logic** circuits have outputs determined solely by current inputs, with no memory of past states.
-
 - **Circuit synthesis** follows a systematic process: specification → truth table → Boolean expression → simplification → circuit implementation.
-
 - **Word problem translation** requires careful mapping of English statements to Boolean operators using a consistent variable assignment.
-
 - **Half adders** add two bits producing sum and carry; **full adders** include a carry-in for multi-bit addition.
-
 - **Ripple carry adders** chain full adders for multi-bit addition, with carry propagating through stages.
-
 - **Adder-subtractor circuits** use XOR gates with a control signal to perform either addition or two's complement subtraction using shared hardware.
-
 - **Magnitude comparators** determine greater-than, less-than, or equal relationships between binary numbers by comparing from MSB to LSB.
-
 - **Parity generators** create check bits by XORing all data bits; **parity checkers** detect single-bit errors using the same XOR operation.
-
 - **Code converters** translate between representations: BCD for decimal I/O, Gray code for position encoding with minimal bit changes.
-
 - **Seven-segment decoders** convert BCD inputs to segment drive signals, with invalid BCD codes as don't cares.
-
 - **Incompletely specified functions** have don't care conditions that enable simpler implementations by choosing optimal output values.
+
+</div>
 
 ??? question "Self-Check: What is the Boolean expression for the carry output of a full adder?"
     $C_{out} = AB + AC_{in} + BC_{in}$. The carry is produced when at least two of the three inputs are 1.
@@ -845,9 +1021,15 @@ This unit applied Boolean algebra to practical digital circuit design:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Step through the complete design of a full adder from truth table to gate circuit:
 
+</div>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/full-adder-walkthrough/main.html" width="100%" height="640px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
