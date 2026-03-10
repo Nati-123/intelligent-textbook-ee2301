@@ -404,8 +404,11 @@ A 1-to-$2^n$ demultiplexer has:
 **Boolean Expressions:**
 
 $$Y_0 = \overline{S_1}\,\overline{S_0} \cdot D$$
+
 $$Y_1 = \overline{S_1}\,S_0 \cdot D$$
+
 $$Y_2 = S_1\,\overline{S_0} \cdot D$$
+
 $$Y_3 = S_1\,S_0 \cdot D$$
 
 | $S_1$ | $S_0$ | Active Output |
@@ -421,17 +424,16 @@ All non-selected outputs remain at 0. Only the selected output carries the data 
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The DEMUX-Decoder Relationship</h3>
 
-<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<div markdown style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
 <strong style="color: #B8860B;">Key Insight:</strong> Comparing the DEMUX equations above with a 2-to-4 decoder with enable $E$:
 
 $$Y_i(\text{decoder with enable}) = E \cdot m_i(S_1, S_0)$$
 
 These are identical if we substitute $D = E$. This reveals an important equivalence:
 
-<ul>
-<li>A <strong>DEMUX</strong> with data input $D$ = a <strong>decoder</strong> with enable input $E = D$</li>
-<li>A <strong>decoder</strong> with enable held at 1 = a <strong>DEMUX</strong> with data always 1 (which is just a decoder)</li>
-</ul>
+- A **DEMUX** with data input $D$ = a **decoder** with enable input $E = D$
+- A **decoder** with enable held at 1 = a **DEMUX** with data always 1 (which is just a decoder)
+
 </div>
 
 !!! tip "Practical Consequence"
@@ -467,8 +469,11 @@ The simplest useful decoder has two inputs ($A_1$, $A_0$) and four outputs ($Y_0
 **Boolean Expressions:**
 
 $$Y_0 = \overline{A_1}\,\overline{A_0} = m_0$$
+
 $$Y_1 = \overline{A_1}\,A_0 = m_1$$
+
 $$Y_2 = A_1\,\overline{A_0} = m_2$$
+
 $$Y_3 = A_1\,A_0 = m_3$$
 
 Each output is a **minterm** of the input variables. This is the key insight that makes decoders so useful for function implementation.
@@ -609,6 +614,7 @@ A single decoder can implement **multiple functions** of the same variables simu
 **Example:** Implement both $F_1 = \sum m(0, 1, 3)$ and $F_2 = \sum m(2, 3, 5, 7)$ with one 3-to-8 decoder:
 
 $$F_1 = Y_0 + Y_1 + Y_3$$
+
 $$F_2 = Y_2 + Y_3 + Y_5 + Y_7$$
 
 Note that minterm $m_3$ ($Y_3$) is shared between both functions—its output wire connects to both OR gates.
@@ -692,6 +698,7 @@ A 4-to-2 encoder has four inputs ($D_0$ through $D_3$) and two outputs ($Y_1$, $
 **Boolean Expressions:**
 
 $$Y_1 = D_2 + D_3$$
+
 $$Y_0 = D_1 + D_3$$
 
 | Active Input | $Y_1$ | $Y_0$ | Binary Code |
@@ -707,13 +714,14 @@ The encoder simply generates the binary index of the active input. It is impleme
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Limitations of Basic Encoders</h3>
 
-<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<div markdown style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
 <strong style="color: #B8860B;">Limitations:</strong> Basic encoders have two significant limitations:
-<ol>
-<li><strong>No input active:</strong> When no input is HIGH, the output is 00—which is indistinguishable from $D_0$ being active</li>
-<li><strong>Multiple inputs active:</strong> If more than one input is HIGH simultaneously, the output is incorrect (the OR gates produce unpredictable results)</li>
-</ol>
+
+1. **No input active:** When no input is HIGH, the output is 00—which is indistinguishable from $D_0$ being active
+2. **Multiple inputs active:** If more than one input is HIGH simultaneously, the output is incorrect (the OR gates produce unpredictable results)
+
 These limitations motivate the priority encoder.
+
 </div>
 
 ---
@@ -792,6 +800,7 @@ The Boolean expressions for the outputs use don't care conditions extensively, m
 **Conversion formulas (binary $B$ to Gray $G$):**
 
 $$G_{n-1} = B_{n-1}$$
+
 $$G_i = B_{i+1} \oplus B_i \quad \text{for } i = n-2, n-3, ..., 0$$
 
 The most significant bit is copied directly; each subsequent Gray bit is the XOR of two adjacent binary bits.
@@ -830,6 +839,7 @@ The circuit implementation requires only $n-1$ XOR gates, making it extremely ef
 The inverse conversion reconstructs binary from Gray code:
 
 $$B_{n-1} = G_{n-1}$$
+
 $$B_i = B_{i+1} \oplus G_i \quad \text{for } i = n-2, n-3, ..., 0$$
 
 Note the key difference: each binary bit depends on the **previously computed binary bit** (not the input Gray bit), creating a cascaded dependency. This means the Gray-to-binary converter has a ripple structure where the MSB must be computed before the next bit can be determined.
@@ -923,7 +933,9 @@ Each segment function is simplified independently. The 7447 is a classic BCD-to-
 For two 1-bit inputs $A$ and $B$, the three comparison outputs are:
 
 $$\text{Equal: } E = A \odot B = AB + \overline{A}\,\overline{B}$$
+
 $$\text{Greater: } G = A\overline{B}$$
+
 $$\text{Less: } L = \overline{A}B$$
 
 | $A$ | $B$ | $G$ $(A>B)$ | $E$ $(A=B)$ | $L$ $(A<B)$ |
@@ -956,7 +968,9 @@ A **magnitude comparator** extends the comparison to multi-bit numbers. For two 
 Define the per-bit equality: $x_i = A_i \odot B_i = A_iB_i + \overline{A_i}\,\overline{B_i}$
 
 $$(A > B) = A_3\overline{B_3} + x_3 A_2\overline{B_2} + x_3 x_2 A_1\overline{B_1} + x_3 x_2 x_1 A_0\overline{B_0}$$
+
 $$(A = B) = x_3 x_2 x_1 x_0$$
+
 $$(A < B) = \overline{A_3}B_3 + x_3 \overline{A_2}B_2 + x_3 x_2 \overline{A_1}B_1 + x_3 x_2 x_1 \overline{A_0}B_0$$
 
 The 7485 is a standard 4-bit magnitude comparator IC with cascade inputs for building larger comparators.
