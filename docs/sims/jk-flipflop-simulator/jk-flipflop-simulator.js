@@ -4,7 +4,7 @@
 
 let containerWidth;
 let canvasWidth = 400;
-let drawHeight = 380;
+let drawHeight = 530;
 let controlHeight = 60;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -12,6 +12,8 @@ let J = false, K = false;
 let Q = false;
 let clockBtn, resetBtn;
 let edgeFlash = 0; // countdown for edge indicator
+let history = [];
+const maxHistory = 20;
 
 const colors = {
   high: '#4CAF50',
@@ -36,6 +38,12 @@ function setup() {
   resetBtn.mousePressed(resetSim);
 
   positionUIElements();
+
+  // Initialize history
+  for (let i = 0; i < maxHistory; i++) {
+    history.push({ j: false, k: false, clk: false, q: false });
+  }
+
   describe('Interactive JK flip-flop simulator', LABEL);
 }
 
@@ -55,7 +63,17 @@ function triggerClock() {
   } else {
     Q = !Q;
   }
-  edgeFlash = 30; // flash for ~0.5s at 60fps
+  edgeFlash = 30;
+
+  // Record rising edge
+  history.push({ j: J, k: K, clk: true, q: Q });
+  if (history.length > maxHistory) history.shift();
+
+  // Record falling edge after brief delay
+  setTimeout(() => {
+    history.push({ j: J, k: K, clk: false, q: Q });
+    if (history.length > maxHistory) history.shift();
+  }, 100);
 }
 
 function resetSim() {
@@ -63,6 +81,10 @@ function resetSim() {
   K = false;
   Q = false;
   edgeFlash = 0;
+  history = [];
+  for (let i = 0; i < maxHistory; i++) {
+    history.push({ j: false, k: false, clk: false, q: false });
+  }
 }
 
 function draw() {
@@ -99,6 +121,7 @@ function draw() {
   // Layout: flip-flop left, truth table right
   drawFlipFlop();
   drawTruthTable();
+  drawTimingDiagram();
 
   // Instructions
   fill(colors.text);
@@ -315,6 +338,56 @@ function drawTruthTable() {
   textStyle(BOLD);
   text("Q⁺ = J·Q' + K'·Q", tableX + tableW / 2, eqY + 14);
   textStyle(NORMAL);
+}
+
+function drawTimingDiagram() {
+  let diagramY = 375;
+  let signalH = 25;
+  let gap = 8;
+  let startX = 50;
+  let w = canvasWidth - 80;
+  let labels = ['CLK', 'J', 'K', 'Q'];
+  let sigColors = ['#2196F3', colors.high, colors.low, '#9C27B0'];
+
+  // Title
+  fill(colors.text);
+  noStroke();
+  textAlign(CENTER, TOP);
+  textSize(12);
+  text('Timing Diagram', canvasWidth / 2, diagramY - 18);
+
+  let stepW = w / maxHistory;
+
+  for (let s = 0; s < 4; s++) {
+    let baseY = diagramY + s * (signalH + gap);
+
+    // Label
+    fill(colors.text);
+    noStroke();
+    textAlign(RIGHT, CENTER);
+    textSize(10);
+    text(labels[s], startX - 8, baseY + signalH / 2);
+
+    // Waveform
+    stroke(sigColors[s]);
+    strokeWeight(2);
+    for (let i = 0; i < history.length - 1; i++) {
+      let x1 = startX + i * stepW;
+      let x2 = startX + (i + 1) * stepW;
+
+      let val1, val2;
+      if (s === 0) { val1 = history[i].clk; val2 = history[i + 1].clk; }
+      else if (s === 1) { val1 = history[i].j; val2 = history[i + 1].j; }
+      else if (s === 2) { val1 = history[i].k; val2 = history[i + 1].k; }
+      else { val1 = history[i].q; val2 = history[i + 1].q; }
+
+      let y1 = baseY + (val1 ? 3 : signalH - 3);
+      let y2 = baseY + (val2 ? 3 : signalH - 3);
+
+      line(x1, y1, x2, y1);
+      if (y1 !== y2) line(x2, y1, x2, y2);
+    }
+  }
 }
 
 function mousePressed() {
