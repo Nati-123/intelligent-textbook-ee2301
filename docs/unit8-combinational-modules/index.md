@@ -774,7 +774,7 @@ The Boolean expressions for the outputs use don't care conditions extensively, m
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Priority Encoder Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/priority-encoder-simulator/main.html" width="100%" height="900px" scrolling="auto" style="border:none; border-radius:8px;"></iframe>
+<iframe src="../sims/priority-encoder-simulator/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
