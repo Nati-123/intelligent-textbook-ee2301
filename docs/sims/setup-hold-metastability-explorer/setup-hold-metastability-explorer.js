@@ -97,8 +97,8 @@ function draw() {
   textAlign(LEFT, CENTER);
   textSize(12);
   let controlY = drawHeight + 28;
-  text('Setup Time (tsu): ' + tsu + ' px', 20, controlY);
-  text('Hold Time (th): ' + th + ' px', 280, controlY);
+  text('tSU (setup time): ' + tsu + ' px', 20, controlY);
+  text('tH (hold time): ' + th + ' px', 280, controlY);
 
   // Title
   fill(COL_PURPLE);
@@ -110,7 +110,7 @@ function draw() {
   textStyle(NORMAL);
   textSize(11);
   fill('#666');
-  text('Drag the orange marker to move the data transition relative to the clock edge', canvasWidth / 2, 32);
+  text('Drag the orange marker ◀▸ to slide the data transition before or after the clock edge', canvasWidth / 2, 32);
 
   // Compute key x-positions
   let waveWidth = canvasWidth - WAVE_LEFT - 40;
@@ -224,7 +224,7 @@ function drawFlipFlopSymbol(status) {
   textAlign(CENTER, CENTER);
   textSize(14);
   textStyle(BOLD);
-  text('D FF', ffX + ffW / 2, ffY + ffH / 2 - 2);
+  text('D Flip-Flop', ffX + ffW / 2, ffY + ffH / 2 - 2);
   textStyle(NORMAL);
 
   // D input wire and value
@@ -267,7 +267,7 @@ function drawFlipFlopSymbol(status) {
     text('Marginal timing - unreliable', canvasWidth / 2, ffY + ffH + 8);
   } else {
     fill(COL_RED);
-    text('METASTABLE - Q is unknown!', canvasWidth / 2, ffY + ffH + 8);
+    text('Metastable state – output may resolve unpredictably.', canvasWidth / 2, ffY + ffH + 8);
   }
 }
 
@@ -310,6 +310,14 @@ function drawTimingDiagram(clockEdgeX, waveWidth, status) {
   fill(COL_BLUE);
   noStroke();
   triangle(clockEdgeX - 4, clkHigh + 10, clockEdgeX + 4, clkHigh + 10, clockEdgeX, clkHigh + 2);
+
+  // Clock sampling edge label
+  textAlign(LEFT, CENTER);
+  textSize(9);
+  fill(COL_BLUE);
+  textStyle(BOLD);
+  text('↑ Sampling Edge', clockEdgeX + 6, clkHigh + 6);
+  textStyle(NORMAL);
 
   // ---- D signal ----
   let dY = TIMING_TOP + SIGNAL_H + SIGNAL_GAP;
@@ -459,7 +467,7 @@ function drawTimingWindows(clockEdgeX, waveWidth) {
   textAlign(CENTER, BOTTOM);
   textSize(10);
   textStyle(BOLD);
-  text('tsu', (setupLeft + clockEdgeX) / 2, bracketY - 1);
+  text('tSU', (setupLeft + clockEdgeX) / 2, bracketY - 1);
   textStyle(NORMAL);
 
   // Hold time window (after clock edge)
@@ -479,7 +487,7 @@ function drawTimingWindows(clockEdgeX, waveWidth) {
   textAlign(CENTER, BOTTOM);
   textSize(10);
   textStyle(BOLD);
-  text('th', (clockEdgeX + holdRight) / 2, bracketY - 1);
+  text('tH', (clockEdgeX + holdRight) / 2, bracketY - 1);
   textStyle(NORMAL);
 
   // Vertical dashed line at clock edge through all signals
@@ -511,10 +519,12 @@ function drawMarker(clockEdgeX, waveWidth) {
   triangle(markerX - 8, markerBot + 18, markerX + 8, markerBot + 18, markerX, markerBot + 6);
 
   // Drag label
-  textSize(8);
+  textSize(9);
   textAlign(CENTER, BOTTOM);
-  fill('#FF9800');
-  text('DRAG', markerX, markerTop - 19);
+  fill(hovered || isDragging ? '#E65100' : '#FF9800');
+  textStyle(BOLD);
+  text('◀ DRAG ▸', markerX, markerTop - 19);
+  textStyle(NORMAL);
 }
 
 function drawStatusPanel(clockEdgeX, status, violationType) {
@@ -547,10 +557,10 @@ function drawStatusPanel(clockEdgeX, status, violationType) {
     bgCol = color(255, 235, 238);
     borderCol = color(239, 154, 154);
     textCol = color(COL_RED);
-    statusText = 'TIMING VIOLATION - METASTABLE';
+    statusText = 'TIMING VIOLATION – METASTABLE';
     detailText = violationType === 'setup'
-      ? 'Data changes inside setup window! Flip-flop may enter metastable state.'
-      : 'Data changes inside hold window! Flip-flop may enter metastable state.';
+      ? 'Data changes inside tSU window! Metastable state – output may resolve unpredictably.'
+      : 'Data changes inside tH window! Metastable state – output may resolve unpredictably.';
   }
 
   fill(bgCol);
@@ -576,7 +586,7 @@ function drawStatusPanel(clockEdgeX, status, violationType) {
   let offset_ns = dataOffset.toFixed(0);
   let sign = dataOffset >= 0 ? '+' : '';
   text('Offset: ' + sign + offset_ns + ' px', panelX + panelW - 14, panelY + 10);
-  text('tsu req: ' + tsu + ' px  |  th req: ' + th + ' px', panelX + panelW - 14, panelY + 26);
+  text('tSU req: ' + tsu + ' px  |  tH req: ' + th + ' px', panelX + panelW - 14, panelY + 26);
 
   // Violation type indicator
   if (violationType) {
