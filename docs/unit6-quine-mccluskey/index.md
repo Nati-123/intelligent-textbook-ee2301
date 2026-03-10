@@ -174,9 +174,9 @@ The first step is to list all minterms in their binary representations:
 </tbody>
 </table>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Why Group by Number of 1s?</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Why Group by Number of 1s?</p>
 
 <ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
 <li>Two minterms can only be combined if they differ in exactly <strong>one bit position</strong></li>
@@ -188,9 +188,11 @@ The first step is to list all minterms in their binary representations:
 
 </div>
 
-#### Diagram: QM Grouping Visualization
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: QM Grouping Visualization</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/qm-grouping-visualization/main.html" width="100%" height="532px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.3 The Combination Process</h2>
 
@@ -225,17 +227,17 @@ The combination process continues iteratively:
 <p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">1st Iteration</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Combine minterms &rarr; 2-cell implicants (one dash)</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">2nd Iteration</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Combine 2-cell implicants &rarr; 4-cell (two dashes)</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Continue&hellip;</p>
+<div style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Continue&hellip;</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Until no more combinations are possible</p>
 </div>
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Combination Rule</p>
 
@@ -303,9 +305,11 @@ The implicant table organizes the systematic combination process. Let us work th
 </tbody>
 </table>
 
-#### Diagram: QM Combination Process Simulator
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: QM Combination Process Simulator</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/qm-combination-simulator/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.5 Identifying Prime Implicants</h2>
 
@@ -326,9 +330,9 @@ From our example, the prime implicants are:
 </tbody>
 </table>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Converting Pattern to Boolean Expression</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Converting Pattern to Boolean Expression</p>
 
 <table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 90%;">
 <thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Pattern Value</th><th style="padding: 8px 16px;">Meaning</th></tr></thead>
@@ -341,7 +345,7 @@ From our example, the prime implicants are:
 
 </div>
 
-<div style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF0F0; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #C62828; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Common Mistake</p>
 
@@ -370,9 +374,9 @@ The prime implicant chart (also called the selection table or covering table) de
 </tbody>
 </table>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Finding Essential Prime Implicants</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Finding Essential Prime Implicants</p>
 
 <p style="color: #333; margin-bottom: 10px;">Look for columns with only <strong>one &times; mark</strong> &mdash; the PI in that row is essential.</p>
 
@@ -403,7 +407,7 @@ After selecting essential prime implicants, we may need additional techniques to
 <p style="color: #1565C0; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Column Dominance</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Column <em>j</em> dominates column <em>k</em> if every PI that covers <em>k</em> also covers <em>j</em>. Remove the dominated column <em>j</em>.</p>
 </div>
-<div style="flex: 1; min-width: 250px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 250px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Row Dominance</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Row <span class="arithmatex">\(P_i\)</span> dominates <span class="arithmatex">\(P_j\)</span> if <span class="arithmatex">\(P_i\)</span> covers every minterm that <span class="arithmatex">\(P_j\)</span> covers. Eliminate the dominated row.</p>
 </div>
@@ -436,7 +440,7 @@ After selecting essential prime implicants, we may need additional techniques to
 
 When the prime implicant chart cannot be fully reduced by row/column dominance and essential prime implicant selection, **Petrick's method** provides an algebraic approach to finding all minimum covers.
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Petrick's Method Procedure</p>
 
@@ -483,13 +487,15 @@ $$P = P_5 + P_1P_6 + P_2P_6$$
 
 </div>
 
-#### Diagram: Prime Implicant Chart Interactive
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Prime Implicant Chart Interactive</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/pi-chart-interactive/main.html" width="100%" height="582px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.9 Cyclic Prime Implicant Charts</h2>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">When Does a Cyclic Chart Occur?</p>
 
@@ -539,9 +545,9 @@ $$P = P_5 + P_1P_6 + P_2P_6$$
 
 Don't care conditions are handled naturally in the QM method. During the combination phase, don't care minterms are included along with the required minterms. They participate in combinations, potentially creating larger prime implicants.
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Rules for Don't Cares in QM</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Rules for Don't Cares in QM</p>
 
 <table style="font-size: 0.92rem; margin: 0.8rem auto; border-collapse: collapse; width: 95%;">
 <thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 16px;">Phase</th><th style="padding: 8px 16px;">Don't Care Treatment</th></tr></thead>
@@ -573,15 +579,15 @@ Don't care conditions are handled naturally in the QM method. During the combina
 The QM method, while systematic, has exponential worst-case complexity:
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Prime Implicants</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Can be as large as <span class="arithmatex">\(3^n / n\)</span> for <span class="arithmatex">\(n\)</span> variables</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">PI Chart</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">Can have exponentially many rows and columns</p>
 </div>
-<div style="flex: 1; min-width: 200px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 200px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Minimum Cover</p>
 <p style="color: #333; margin: 0; font-size: 0.95rem;">NP-complete in general</p>
 </div>
@@ -598,9 +604,9 @@ The QM method, while systematic, has exponential worst-case complexity:
 </tbody>
 </table>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Why QM Still Matters</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Why QM Still Matters</p>
 
 <ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
 <li>Provides the <strong>theoretical foundation</strong> for understanding minimization</li>
@@ -610,9 +616,11 @@ The QM method, while systematic, has exponential worst-case complexity:
 
 </div>
 
-#### Diagram: QM Complexity Visualization
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: QM Complexity Visualization</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/qm-complexity-chart/main.html" width="100%" height="550px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.12 Multi-Output Minimization</h2>
 
@@ -637,7 +645,7 @@ Many digital systems have multiple output functions sharing the same input varia
 
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">QM Extension for Multi-Output</p>
 
@@ -772,9 +780,11 @@ Let us work through a complete example systematically.
 
 </div>
 
-#### Diagram: Complete QM Method Walkthrough
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Complete QM Method Walkthrough</h4>
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/qm-complete-walkthrough/main.html" width="100%" height="652px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">6.14 Computer Implementation</h2>
 
@@ -838,9 +848,9 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 </div>
 
-<div style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Functions</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Functions</p>
 
 <ul style="margin: 0; line-height: 2.2; color: #333; padding-left: 1.5rem;">
 <li><code>can_combine(a, b)</code>: Check if two terms differ in exactly one bit (dashes must align)</li>
@@ -873,8 +883,8 @@ The QM method's systematic nature makes it well-suited for computer implementati
 </div>
 
 <div style="display: flex; gap: 18px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div style="flex: 1; min-width: 250px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 18px 20px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Advantages</p>
+<div style="flex: 1; min-width: 250px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 18px 20px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Advantages</p>
 <ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
 <li>Works for any number of variables</li>
 <li>Guarantees finding all prime implicants</li>
@@ -882,7 +892,7 @@ The QM method's systematic nature makes it well-suited for computer implementati
 <li>Foundation for CAD tools</li>
 </ul>
 </div>
-<div style="flex: 1; min-width: 250px; background: #FFEBEE; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
+<div style="flex: 1; min-width: 250px; background: #FFF0F0; border: 2px solid #E57373; border-radius: 10px; padding: 18px 20px;">
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Limitations</p>
 <ul style="margin: 0; padding-left: 1.2rem; color: #333; line-height: 1.9; font-size: 0.95rem;">
 <li>Exponential worst-case complexity</li>
@@ -892,7 +902,7 @@ The QM method's systematic nature makes it well-suited for computer implementati
 </div>
 </div>
 
-### When to Use
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">When to Use</h3>
 
 <table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
 <thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Method</th><th style="padding: 8px 14px;">Best For</th></tr></thead>
@@ -958,7 +968,9 @@ The QM method's systematic nature makes it well-suited for computer implementati
 
 Step through the Quine-McCluskey algorithm with grouping, combining, and PI chart:
 
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/qm-method-walkthrough/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
