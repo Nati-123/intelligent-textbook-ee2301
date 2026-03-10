@@ -902,8 +902,7 @@ A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (
 
   <!-- Segment g — middle horizontal -->
   <polygon class="ss-seg" points="82,144 92,134 148,134 158,144 148,154 92,154" />
-  <line class="ss-line" x1="64" y1="144" x2="38" y2="144" />
-  <text class="ss-lbl" x="30" y="148" text-anchor="middle">g</text>
+  <text class="ss-lbl" x="120" y="148" text-anchor="middle" fill="#fff">g</text>
 
   <!-- Segment e — lower-left vertical -->
   <polygon class="ss-seg" points="76,152 86,162 86,222 76,232 66,222 66,162" />
