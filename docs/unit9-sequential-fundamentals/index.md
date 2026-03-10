@@ -518,29 +518,127 @@ Edge-triggered devices are strongly preferred in synchronous design because they
 
 This flowchart contrasts the two fundamental behaviors. A **latch** is transparent for the entire duration of the active clock level, allowing multiple output changes per cycle. A **flip-flop** samples once at the clock edge, producing exactly one output update per cycle.
 
-```mermaid
-flowchart TD
-    CLK["Clock Signal Arrives"]
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 560 420" style="max-width: 560px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .fc-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 700; fill: #fff; }
+      .fc-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; font-weight: 600; fill: #333; }
+      .fc-sm { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #555; }
+      .fc-yn { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; font-weight: 700; }
+      .fc-key { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11.5px; font-weight: 800; letter-spacing: 0.5px; }
+    </style>
+    <marker id="ah-o" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#C77600"/>
+    </marker>
+    <marker id="ah-b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#1565C0"/>
+    </marker>
+    <marker id="ah-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#555"/>
+    </marker>
+  </defs>
 
-    CLK --> LATCH_PATH["<b>Latch (Level-Sensitive)</b>"]
-    CLK --> FF_PATH["<b>Flip-Flop (Edge-Sensitive)</b>"]
+  <!-- Background -->
+  <rect x="0" y="0" width="560" height="420" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    LATCH_PATH --> L1["Clock at active level?"]
-    L1 -->|Yes| L2["Q follows D continuously\n(transparent)"]
-    L2 --> L3["D changes propagate\nimmediately to Q"]
-    L1 -->|No| L4["Q holds previous value\n(opaque)"]
+  <!-- ===== CLOCK BOX (top center) ===== -->
+  <rect x="200" y="16" width="160" height="38" rx="19" fill="#5A3EED" stroke="#4527A0" stroke-width="2"/>
+  <text x="280" y="40" text-anchor="middle" class="fc-title">Clock Signal Arrives</text>
 
-    FF_PATH --> F1["Clock edge detected?"]
-    F1 -->|Yes| F2["Sample D at this instant"]
-    F2 --> F3["Update Q once"]
-    F3 --> F4["Hold Q until next edge"]
-    F1 -->|No| F5["Ignore all D changes\nQ holds value"]
+  <!-- Split arrows from clock -->
+  <line x1="240" y1="54" x2="140" y2="84" stroke="#555" stroke-width="2" marker-end="url(#ah-g)"/>
+  <line x1="320" y1="54" x2="420" y2="84" stroke="#555" stroke-width="2" marker-end="url(#ah-g)"/>
 
-    style LATCH_PATH fill:#FFE4B5,stroke:#D4A017,color:#333
-    style FF_PATH fill:#B5D8FF,stroke:#4A86C8,color:#333
-    style L3 fill:#FFF3CD,stroke:#D4A017
-    style F4 fill:#CCE5FF,stroke:#4A86C8
-```
+  <!-- ===== LATCH BRANCH (left) ===== -->
+
+  <!-- Latch header -->
+  <rect x="30" y="88" width="220" height="36" rx="18" fill="#E67E22" stroke="#C77600" stroke-width="2"/>
+  <text x="140" y="111" text-anchor="middle" class="fc-title">Latch (Level-Sensitive)</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="124" x2="140" y2="148" stroke="#C77600" stroke-width="2" marker-end="url(#ah-o)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="140,152 210,182 140,212 70,182" fill="#FFF3E0" stroke="#E67E22" stroke-width="2"/>
+  <text x="140" y="179" text-anchor="middle" class="fc-text" style="fill:#A85600;">Clock at</text>
+  <text x="140" y="192" text-anchor="middle" class="fc-text" style="fill:#A85600;">active level?</text>
+
+  <!-- Yes branch (left-down) -->
+  <line x1="105" y1="197" x2="75" y2="235" stroke="#C77600" stroke-width="2" marker-end="url(#ah-o)"/>
+  <text x="78" y="218" class="fc-yn" fill="#2E7D32">Yes</text>
+
+  <!-- No branch (right-down) -->
+  <line x1="175" y1="197" x2="205" y2="235" stroke="#C77600" stroke-width="2" marker-end="url(#ah-o)"/>
+  <text x="198" y="218" class="fc-yn" fill="#C62828">No</text>
+
+  <!-- Yes: Transparent box -->
+  <rect x="10" y="240" width="130" height="48" rx="8" fill="#FFF3E0" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="75" y="258" text-anchor="middle" class="fc-text">Q follows D</text>
+  <text x="75" y="272" text-anchor="middle" class="fc-sm">(transparent)</text>
+
+  <!-- Arrow to result -->
+  <line x1="75" y1="288" x2="75" y2="312" stroke="#C77600" stroke-width="2" marker-end="url(#ah-o)"/>
+
+  <!-- Result: multiple changes -->
+  <rect x="5" y="316" width="140" height="48" rx="8" fill="#FFE0B2" stroke="#E67E22" stroke-width="2"/>
+  <text x="75" y="335" text-anchor="middle" class="fc-text" style="fill:#BF360C;">Multiple changes</text>
+  <text x="75" y="349" text-anchor="middle" class="fc-text" style="fill:#BF360C;">per cycle</text>
+
+  <!-- No: Hold box -->
+  <rect x="150" y="240" width="120" height="48" rx="8" fill="#FFF3E0" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="210" y="258" text-anchor="middle" class="fc-text">Q holds value</text>
+  <text x="210" y="272" text-anchor="middle" class="fc-sm">(opaque)</text>
+
+  <!-- ===== FLIP-FLOP BRANCH (right) ===== -->
+
+  <!-- FF header -->
+  <rect x="310" y="88" width="220" height="36" rx="18" fill="#1565C0" stroke="#0D47A1" stroke-width="2"/>
+  <text x="420" y="111" text-anchor="middle" class="fc-title">Flip-Flop (Edge-Triggered)</text>
+
+  <!-- Arrow down -->
+  <line x1="420" y1="124" x2="420" y2="148" stroke="#1565C0" stroke-width="2" marker-end="url(#ah-b)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="420,152 490,182 420,212 350,182" fill="#E3F2FD" stroke="#1565C0" stroke-width="2"/>
+  <text x="420" y="179" text-anchor="middle" class="fc-text" style="fill:#0D47A1;">Clock edge</text>
+  <text x="420" y="192" text-anchor="middle" class="fc-text" style="fill:#0D47A1;">detected?</text>
+
+  <!-- Yes branch (left-down) -->
+  <line x1="385" y1="197" x2="355" y2="235" stroke="#1565C0" stroke-width="2" marker-end="url(#ah-b)"/>
+  <text x="358" y="218" class="fc-yn" fill="#2E7D32">Yes</text>
+
+  <!-- No branch (right-down) -->
+  <line x1="455" y1="197" x2="485" y2="235" stroke="#1565C0" stroke-width="2" marker-end="url(#ah-b)"/>
+  <text x="478" y="218" class="fc-yn" fill="#C62828">No</text>
+
+  <!-- Yes: Sample box -->
+  <rect x="290" y="240" width="130" height="48" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="355" y="258" text-anchor="middle" class="fc-text">Sample D once</text>
+  <text x="355" y="272" text-anchor="middle" class="fc-sm">(update Q)</text>
+
+  <!-- Arrow to result -->
+  <line x1="355" y1="288" x2="355" y2="312" stroke="#1565C0" stroke-width="2" marker-end="url(#ah-b)"/>
+
+  <!-- Result: single update -->
+  <rect x="285" y="316" width="140" height="48" rx="8" fill="#BBDEFB" stroke="#1565C0" stroke-width="2"/>
+  <text x="355" y="335" text-anchor="middle" class="fc-text" style="fill:#0D47A1;">Exactly one update</text>
+  <text x="355" y="349" text-anchor="middle" class="fc-text" style="fill:#0D47A1;">per cycle</text>
+
+  <!-- No: Hold box -->
+  <rect x="430" y="240" width="120" height="48" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="490" y="258" text-anchor="middle" class="fc-text">Ignore D</text>
+  <text x="490" y="272" text-anchor="middle" class="fc-sm">(Q holds)</text>
+
+  <!-- ===== KEY LABELS ===== -->
+  <rect x="25" y="383" width="120" height="24" rx="12" fill="#FFE0B2" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="85" y="399" text-anchor="middle" class="fc-key" style="fill:#BF360C;">LEVEL-SENSITIVE</text>
+
+  <rect x="415" y="383" width="120" height="24" rx="12" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="475" y="399" text-anchor="middle" class="fc-key" style="fill:#0D47A1;">EDGE-TRIGGERED</text>
+</svg>
+<p style="margin-top: 0.5rem; color: #555; font-size: 0.92rem; font-style: italic;">Latch vs Flip-Flop — the key difference is <strong>when</strong> the output can change relative to the clock.</p>
+</div>
 
 </div>
 
