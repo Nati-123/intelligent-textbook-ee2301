@@ -862,102 +862,137 @@ Logic gates can accept more than two inputs. <strong>Multiple input gates</stron
 The associative property guarantees that <span class="arithmatex">\((A \cdot B) \cdot C = A \cdot (B \cdot C)\)</span>, allowing gates to be extended to any number of inputs.
 </p>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Cascading Gates</h3>
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.8rem; margin-bottom: 0.6rem;">Cascading Gates</h3>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-When a single gate cannot handle all required inputs, <strong>cascading gates</strong> connects multiple gates in series. For example, a 4-input AND using 2-input gates:
-</p>
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
+When a single gate cannot handle all required inputs, **cascading gates** connects multiple gates in series. For example, a 4-input AND using 2-input gates:
 
 $$F = ((A \cdot B) \cdot C) \cdot D$$
 
-</div>
+This requires three 2-input AND gates connected in cascade. The general formula for cascading 2-input gates to build an *n*-input function requires <span class="arithmatex">\(n - 1\)</span> gates and introduces <span class="arithmatex">\(\lceil \log_2 n \rceil\)</span> levels of gate delay in a tree structure.
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-This requires three 2-input AND gates connected in cascade.
-</p>
+**Tree cascading** (balanced) versus **chain cascading** (linear):
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Fan-In and Fan-Out</h3>
-
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-<strong>Fan-in</strong> refers to the number of inputs a gate can accept. Physical limitations (speed, power) restrict maximum fan-in, typically 8–12 inputs for standard logic families.
-</p>
-
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-<strong>Fan-out</strong> refers to the number of gate inputs that a single output can drive. Exceeding fan-out specifications causes signal degradation. Standard TTL gates typically support fan-out of 10.
-</p>
-
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
-<p style="color: #1565C0; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Fan-In and Fan-Out Limits</p>
-
-| Parameter | Definition | Typical Limit |
-|-----------|------------|---------------|
-| Fan-In | Maximum inputs per gate | 8–12 |
-| Fan-Out | Maximum loads per output | 10 |
+| Structure | Gates Required | Propagation Delay Levels | Best For |
+|-----------|:-:|:-:|-----------|
+| Chain (series) | <span class="arithmatex">\(n - 1\)</span> | <span class="arithmatex">\(n - 1\)</span> | Simple layouts, small *n* |
+| Tree (balanced) | <span class="arithmatex">\(n - 1\)</span> | <span class="arithmatex">\(\lceil \log_2 n \rceil\)</span> | Speed-critical designs |
 
 </div>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-When designs exceed these limits, buffer gates provide signal restoration and current amplification.
-</p>
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Design Tip:</strong> For high-speed circuits, prefer tree cascading over chain cascading. An 8-input AND requires 7 gates either way, but a tree structure has only 3 levels of delay compared to 7 levels in a chain — a significant speed advantage.
+</div>
 
-<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Gate Cascading and Fan-Out Simulator</h4>
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.8rem; margin-bottom: 0.6rem;">Fan-In and Fan-Out</h3>
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+**Fan-in** refers to the number of inputs a gate can accept. Physical limitations (speed, power) restrict maximum fan-in, typically 8–12 inputs for standard logic families. Each additional input adds parasitic capacitance and increases propagation delay.
+
+**Fan-out** refers to the number of gate inputs that a single output can drive. Exceeding fan-out specifications causes signal degradation — voltage levels may not reach valid logic thresholds, leading to unreliable operation. Standard TTL gates typically support a fan-out of 10.
+
+| Parameter | Definition | Typical Limit | What Happens When Exceeded |
+|-----------|------------|:---:|------------|
+| Fan-In | Maximum inputs per gate | 8–12 | Increased delay, reduced noise margin |
+| Fan-Out | Maximum loads per output | 10 | Signal degradation, invalid logic levels |
+
+When designs exceed these limits, **buffer gates** provide signal restoration and current amplification. Buffers act as fan-out expanders — a single output drives a buffer, which then drives additional loads.
+
+</div>
+
+<div style="background: #FFF0F0; border-left: 4px solid #E57373; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #C62828;">Common Pitfall:</strong> Exceeding fan-out is one of the most common errors in physical circuit design. A circuit that simulates correctly may fail on hardware if fan-out limits are violated, because simulators often ignore electrical loading effects.
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Gate Cascading and Fan-Out Simulator</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/gate-cascade-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
 
-<h2 id="211-circuit-analysis-and-synthesis" style="color: #5A3EED !important; border-left: none !important; border-bottom: 2px solid #5A3EED; padding-left: 0 !important; padding-bottom: 0.4rem; font-weight: 800; margin-top: 2.2rem; margin-bottom: 0.8rem;">2.11 Circuit Analysis and Synthesis</h2>
+<h2 id="211-circuit-analysis-and-synthesis" style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">2.11 Circuit Analysis and Synthesis</h2>
 
-<p style="color: #555; line-height: 1.85; font-size: 1.02rem; margin-bottom: 1.2rem;">
-Boolean algebra bridges the gap between circuit diagrams and mathematical expressions, enabling both <strong>circuit analysis</strong> (deriving the expression from a circuit) and <strong>circuit synthesis</strong> (building a circuit from an expression).
-</p>
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Circuit Analysis Procedure</h3>
+Boolean algebra bridges the gap between circuit diagrams and mathematical expressions, enabling two complementary processes:
 
-<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Label all gate outputs with intermediate variables</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Write the Boolean expression for each gate's output</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> Substitute intermediate expressions to get the final output</li>
-<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> Simplify if desired</li>
-</ul>
+- **Circuit analysis** — deriving the Boolean expression from an existing circuit diagram
+- **Circuit synthesis** — building a circuit from a given Boolean expression
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Analyze this circuit</p>
-<ul style="list-style: none; padding-left: 0; margin: 0;">
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 1 (AND): receives inputs A and B, output = AB</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 2 (NOT): receives input C, output = <span class="arithmatex">\(\overline{C}\)</span></li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Gate 3 (OR): receives Gate 1 and Gate 2 outputs</li>
-<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> Final output: <span class="arithmatex">\(F = AB + \overline{C}\)</span></li>
-</ul>
+These are inverse operations: analysis reads hardware and produces math; synthesis reads math and produces hardware. Mastering both directions is essential for any digital designer.
+
 </div>
 
-<h3 style="color: #5A3EED; font-weight: 700; margin-top: 1.8rem; margin-bottom: 0.6rem;">Circuit Synthesis Procedure</h3>
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Circuit Analysis Procedure</h3>
 
-<ul style="list-style: none; padding-left: 0; margin: 0.8rem 0 1.2rem 0;">
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">1.</span> Start with the Boolean expression</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">2.</span> Identify the required gates from the operations</li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">3.</span> Connect inputs to appropriate gates</li>
-<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">4.</span> Connect gate outputs according to expression structure</li>
-</ul>
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
-<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Example: Synthesize <span class="arithmatex">\(F = A\overline{B} + BC\)</span></p>
-<p style="color: #333; line-height: 1.85; margin: 0 0 10px 0;">Required gates:</p>
-<ul style="list-style: none; padding-left: 0; margin: 0;">
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> NOT gate for <span class="arithmatex">\(\overline{B}\)</span></li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> AND gate for <span class="arithmatex">\(A\overline{B}\)</span></li>
-<li style="margin-bottom: 0.6rem; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> AND gate for <span class="arithmatex">\(BC\)</span></li>
-<li style="margin-bottom: 0; line-height: 1.8; color: #333; padding-left: 1.4rem; text-indent: -1.4rem;"><span style="color: #5A3EED; font-weight: 700; margin-right: 0.4rem;">&#9679;</span> OR gate for final sum</li>
-</ul>
+The systematic procedure for analyzing a logic circuit:
+
+1. **Label** all gate outputs with intermediate variables (e.g., <span class="arithmatex">\(P, Q, R\)</span>)
+2. **Write** the Boolean expression for each gate's output in terms of its inputs
+3. **Substitute** intermediate expressions progressively until reaching the final output
+4. **Simplify** the resulting expression using Boolean algebra laws (if desired)
+
 </div>
 
-<h4 style="color: #5A3EED; font-weight: 700; margin-top: 2rem; margin-bottom: 0.8rem;">Diagram: Circuit Analysis and Synthesis Tool</h4>
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
 
-<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+**Example: Analyze a 3-gate circuit**
+
+Consider a circuit with three gates receiving inputs A, B, and C:
+
+- Gate 1 (AND): inputs A and B → output <span class="arithmatex">\(P = AB\)</span>
+- Gate 2 (NOT): input C → output <span class="arithmatex">\(Q = \overline{C}\)</span>
+- Gate 3 (OR): inputs P and Q → output <span class="arithmatex">\(F = P + Q\)</span>
+
+Substituting: <span class="arithmatex">\(F = AB + \overline{C}\)</span>
+
+This expression tells us the output is HIGH when both A and B are HIGH, *or* when C is LOW.
+
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Circuit Synthesis Procedure</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
+The systematic procedure for synthesizing a circuit from a Boolean expression:
+
+1. **Start** with the Boolean expression (simplify first if possible)
+2. **Identify** the required gates from the operations (AND, OR, NOT)
+3. **Connect** inputs to the appropriate gates
+4. **Connect** gate outputs according to the expression's hierarchical structure
+
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+
+**Example: Synthesize** <span class="arithmatex">\(F = A\overline{B} + BC\)</span>
+
+Parsing the expression reveals the required gates:
+
+| Step | Operation | Gate | Inputs |
+|:---:|-----------|------|--------|
+| 1 | <span class="arithmatex">\(\overline{B}\)</span> | NOT | B |
+| 2 | <span class="arithmatex">\(A\overline{B}\)</span> | AND | A, output of step 1 |
+| 3 | <span class="arithmatex">\(BC\)</span> | AND | B, C |
+| 4 | <span class="arithmatex">\(A\overline{B} + BC\)</span> | OR | outputs of steps 2, 3 |
+
+**Gate count:** 1 NOT + 2 AND + 1 OR = 4 gates total, arranged in a two-level structure with the NOT feeding into the first AND gate.
+
+</div>
+
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight:</strong> Sum-of-Products expressions always synthesize into a two-level AND-OR structure (plus inverters). This predictable structure is why SOP form is preferred for systematic circuit design — the number of gate levels (and thus propagation delay) is always the same regardless of expression complexity.
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Circuit Analysis and Synthesis Tool</h4>
+
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/circuit-analysis-synthesis/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
