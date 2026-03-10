@@ -11,7 +11,7 @@ let canvasHeight = drawHeight + controlHeight;
 let D = false;
 let Q = false;
 let clock = false;
-let clockBtn, dBtn;
+let clockBtn, dBtn, resetBtn;
 let history = []; // Store timing diagram history
 const maxHistory = 20;
 
@@ -37,6 +37,9 @@ function setup() {
   dBtn = createButton('Toggle D');
   dBtn.mousePressed(() => D = !D);
 
+  resetBtn = createButton('Reset');
+  resetBtn.mousePressed(resetSim);
+
   positionUIElements();
 
   // Initialize history
@@ -51,6 +54,7 @@ function positionUIElements() {
   let mainRect = document.querySelector('main').getBoundingClientRect();
   clockBtn.position(mainRect.left + 20, mainRect.top + drawHeight + 15);
   dBtn.position(mainRect.left + 140, mainRect.top + drawHeight + 15);
+  resetBtn.position(mainRect.left + 240, mainRect.top + drawHeight + 15);
 }
 
 function triggerClock() {
@@ -66,6 +70,15 @@ function triggerClock() {
     history.push({ d: D, clk: false, q: Q });
     if (history.length > maxHistory) history.shift();
   }, 100);
+}
+
+function resetSim() {
+  D = false;
+  Q = false;
+  history = [];
+  for (let i = 0; i < maxHistory; i++) {
+    history.push({ d: false, clk: false, q: false });
+  }
 }
 
 function draw() {
