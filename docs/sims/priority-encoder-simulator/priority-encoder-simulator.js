@@ -118,16 +118,17 @@ function drawEncoder() {
 function drawInputs(highestPriority) {
   let encX = canvasWidth / 2 - 40;
   let startX = encX - 110;
-  let startY = 140;
+  let labelY = 105;
+  let startY = 155;
   let inputSpacing = 60;
 
   fill(colors.text);
   noStroke();
   textAlign(CENTER, TOP);
   textSize(11);
-  text('Inputs', startX, startY - 35);
+  text('Inputs', startX, labelY);
   textSize(9);
-  text('(Priority: D3 > D2 > D1 > D0)', startX, startY - 22);
+  text('(Priority: D3 > D2 > D1 > D0)', startX, labelY + 14);
 
   for (let i = 0; i < 4; i++) {
     let y = startY + i * inputSpacing;
