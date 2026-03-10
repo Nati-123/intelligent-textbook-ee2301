@@ -72,6 +72,8 @@ This unit explores the implementation of Boolean functions using multi-level gat
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Before studying this unit, students should be familiar with:
 
 - Boolean algebra fundamentals (Unit 2)
@@ -80,13 +82,19 @@ Before studying this unit, students should be familiar with:
 - K-map and QM simplification methods (Units 5-6)
 - De Morgan's theorems (Unit 2)
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.1 Introduction to Multi-Level Circuits</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 In previous units, we focused primarily on **two-level circuit implementations**—AND-OR circuits for Sum of Products (SOP) expressions and OR-AND circuits for Product of Sums (POS) expressions. These two-level circuits offer the minimum propagation delay since signals pass through only two gates from input to output. However, two-level implementations can demand gates with impractically many inputs and a large overall gate count, especially for complex functions with many product or sum terms.
 
 **Multi-level circuits** use more than two levels of logic gates between inputs and outputs. Although they introduce additional gate delays, multi-level circuits provide significant practical advantages that make them the preferred choice in real integrated circuit design.
+
+</div>
 
 <table style="font-size: 0.92rem; margin: 1.2rem auto; border-collapse: collapse; width: 95%;">
 <thead><tr style="background: #6A5BFF; color: #fff;"><th style="padding: 8px 14px;">Circuit Type</th><th style="padding: 8px 14px;">Levels</th><th style="padding: 8px 14px;">Delay</th><th style="padding: 8px 14px;">Gate Count</th><th style="padding: 8px 14px;">Fan-in Required</th></tr></thead>
@@ -110,25 +118,25 @@ Consider $F = ABCDE + ABCDF + ABCDG$. A two-level SOP needs three 5-input AND ga
 The key advantages of multi-level circuits include:
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced gate count</p>
+<div markdown style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced gate count</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Sharing common sub-expressions</p>
 </div>
-<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Lower fan-in</p>
+<div markdown style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Lower fan-in</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Within standard gate library constraints</p>
 </div>
-<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Better utilization</p>
+<div markdown style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Better utilization</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">Most standard cells have 2&ndash;4 inputs</p>
 </div>
-<div markdown style="flex: 1; min-width: 200px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 10px; padding: 16px 18px;">
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced chip area</p>
+<div markdown style="flex: 1; min-width: 200px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Reduced chip area</p>
 <p style="color: #333; margin: 0; font-size: 0.93rem;">In VLSI implementations</p>
 </div>
 </div>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Practical Consideration</p>
 
@@ -136,17 +144,23 @@ The key advantages of multi-level circuits include:
 
 </div>
 
-#### Diagram: Two-Level vs Multi-Level Comparison
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Two-Level vs Multi-Level Comparison</h4>
 
-<iframe src="../sims/multi-level-analyzer/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/multi-level-analyzer/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.2 Universal Gates</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A gate is called **universal** (or functionally complete) if any Boolean function can be implemented using only that gate type. Both the NAND gate and the NOR gate are universal. This property has profound practical significance: an entire integrated circuit can be fabricated using only one type of transistor configuration, simplifying manufacturing and reducing cost.
 
-### 7.2.1 NAND Gate Universality Proof
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">7.2.1 NAND Gate Universality Proof</h3>
 
 To prove that the NAND gate is universal, we must show it can implement the three basic operations—NOT, AND, and OR—since any Boolean function can be expressed using these operations.
 
@@ -174,7 +188,7 @@ $$\overline{\overline{A} \cdot \overline{B}} = A + B$$
 
 </div>
 
-### 7.2.2 NOR Gate Universality Proof
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">7.2.2 NOR Gate Universality Proof</h3>
 
 The NOR gate universality proof follows a dual structure. We demonstrate that NOT, OR, and AND can all be built from NOR gates alone.
 
@@ -190,9 +204,9 @@ $$\overline{\overline{A + B}} = A + B$$
 
 $$\overline{\overline{A} + \overline{B}} = A \cdot B$$
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">NOR Universality Summary</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">NOR Universality Summary</p>
 
 | Operation | NOR Implementation | Gates |
 |-----------|-------------------|:-----:|
@@ -202,7 +216,7 @@ $$\overline{\overline{A} + \overline{B}} = A \cdot B$$
 
 </div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 8px;">Duality Principle</p>
 
@@ -253,19 +267,25 @@ graph LR
 
 </div>
 
-#### Diagram: Universal Gate Implementations
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Universal Gate Implementations</h4>
 
-<iframe src="../sims/universal-gate-simulator/main.html" width="100%" height="500px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/universal-gate-simulator/main.html" width="100%" height="500px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.3 AND-OR to NAND-NAND Conversion</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The most common conversion in digital design transforms a two-level AND-OR (SOP) circuit into an equivalent NAND-only implementation. This conversion is direct and elegant, relying on the double inversion principle and De Morgan's theorem.
 
-### Conversion Procedure
+</div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Conversion Procedure</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">SOP → NAND-NAND Conversion Steps</p>
 
@@ -280,9 +300,9 @@ Starting with an SOP expression, apply these steps:
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
 
 The general rule is remarkably simple: **replace every AND gate and the OR gate with NAND gates.** No additional inverters are needed for a standard two-level SOP form.
 
@@ -304,19 +324,19 @@ This requires three first-level NAND gates (for $XY$, $X'Z$, and $YZ$) feeding o
 
 </div>
 
-### Handling Complemented Inputs and Single Literals
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Handling Complemented Inputs and Single Literals</h3>
 
 Two special cases require attention:
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div markdown style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="flex: 1; min-width: 220px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Complemented Variables</p>
 
 Use a NAND gate as an inverter (both inputs tied to $A$) to produce $\overline{A}$.
 
 </div>
-<div markdown style="flex: 1; min-width: 220px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
+<div markdown style="flex: 1; min-width: 220px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 10px; padding: 16px 18px;">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Single Literal Terms</p>
 
@@ -335,19 +355,25 @@ This requires: one NAND inverter for $A$, one 2-input NAND for $BC$, and one 2-i
 
 </div>
 
-#### Diagram: AND-OR to NAND-NAND Conversion
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: AND-OR to NAND-NAND Conversion</h4>
 
-<iframe src="../sims/nand-nor-converter/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/nand-nor-converter/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.4 OR-AND to NOR-NOR Conversion</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Converting a two-level OR-AND (POS) circuit to an equivalent NOR-only implementation is the dual of the NAND-NAND conversion. The procedure mirrors the AND-OR conversion but operates on sum terms instead of product terms.
 
-### Conversion Procedure
+</div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Conversion Procedure</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">POS → NOR-NOR Conversion Steps</p>
 
@@ -360,9 +386,9 @@ Converting a two-level OR-AND (POS) circuit to an equivalent NOR-only implementa
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight</p>
 
 The general rule: **replace every OR gate and the AND gate with NOR gates.**
 
@@ -382,7 +408,7 @@ Three first-level NOR gates feed one second-level NOR gate. The complemented var
 
 </div>
 
-### Conversion Summary Table
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Conversion Summary Table</h3>
 
 <div markdown style="background: #f9f9ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -409,12 +435,16 @@ The first two conversions (<span style="color: #2E7D32; font-weight: 600;">natur
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.5 Mixed Gate Conversions</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Not all circuits fit neatly into two-level AND-OR or OR-AND structures. **Mixed gate conversions** handle circuits that contain a combination of AND, OR, NAND, NOR, and NOT gates, converting them to use a single gate type.
 
-### Cross Conversions
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cross Conversions</h3>
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div markdown style="flex: 1; min-width: 260px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
+<div markdown style="flex: 1; min-width: 260px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">SOP → NOR-Only</p>
 
@@ -446,7 +476,7 @@ Requires **3 levels** of NAND gates + input inverters.
 </div>
 </div>
 
-<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF0F0; border: 2px solid #E57373; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #C62828; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Design Guideline</p>
 
@@ -454,9 +484,9 @@ Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters.
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight: Natural vs Cross Conversions</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Insight: Natural vs Cross Conversions</p>
 
 | Conversion | Levels | Complexity |
 |:-----------|:------:|:-----------|
@@ -473,9 +503,13 @@ Cross conversions (SOP→NOR or POS→NAND) add extra gate levels and inverters.
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.6 De Morgan's Theorem in Gate Conversion</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 De Morgan's theorems are the mathematical engine behind every gate conversion technique. Understanding how they transform gate types is essential for systematic circuit conversion.
 
-### The Two Forms
+</div>
+
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The Two Forms</h3>
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div markdown style="flex: 1; min-width: 250px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
@@ -487,9 +521,9 @@ $$\overline{A \cdot B} = \overline{A} + \overline{B}$$
 A **NAND** gate is equivalent to an **OR** gate with inverted inputs.
 
 </div>
-<div markdown style="flex: 1; min-width: 250px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px;">
+<div markdown style="flex: 1; min-width: 250px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Second Theorem</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Second Theorem</p>
 
 $$\overline{A + B} = \overline{A} \cdot \overline{B}$$
 
@@ -498,7 +532,7 @@ A **NOR** gate is equivalent to an **AND** gate with inverted inputs.
 </div>
 </div>
 
-### Graphical Interpretation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Graphical Interpretation</h3>
 
 Each theorem provides two equivalent gate symbols:
 
@@ -513,7 +547,7 @@ Each theorem provides two equivalent gate symbols:
 
 </div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Takeaway</p>
 
@@ -537,11 +571,15 @@ This follows directly from the generalized form of De Morgan's first theorem. In
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">7.7 The Bubble Pushing Technique</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Bubble pushing** is a visual method for converting circuits between gate types by systematically moving inversion "bubbles" through a circuit. It provides an intuitive alternative to algebraic manipulation for gate conversion.
 
-### Rules for Bubble Pushing
+</div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Rules for Bubble Pushing</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Three Rules of Bubble Pushing</p>
 
@@ -551,7 +589,7 @@ This follows directly from the generalized form of De Morgan's first theorem. In
 
 </div>
 
-### Step-by-Step Example
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Step-by-Step Example</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -571,7 +609,7 @@ Add a bubble to the output of the OR gate and to both of its inputs. The OR with
 
 </div>
 
-### Extended Example with Single Literal
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Extended Example with Single Literal</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -587,9 +625,9 @@ Add a bubble to the output of the OR gate and to both of its inputs. The OR with
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Bubble Pushing Shortcut</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 10px;">Bubble Pushing Shortcut</p>
 
 For two-level conversions, bubble pushing always yields the same result as the algebraic method: simply **replace all gates with the target universal gate type**, then add inverters for any remaining unpaired bubbles.
 
@@ -623,9 +661,11 @@ graph TD
 
 </div>
 
-#### Diagram: Bubble Pushing Interactive Demo
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Bubble Pushing Interactive Demo</h4>
 
-<iframe src="../sims/bubble-pushing-simulator/main.html" width="100%" height="530px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/bubble-pushing-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
@@ -639,7 +679,7 @@ Analyzing multi-level circuits requires systematically tracing signals through m
 
 <h3 style="color: #5A3EED;">7.8.1 Deriving the Boolean Expression</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Analysis Procedure</p>
 
@@ -667,7 +707,7 @@ This three-level implementation uses gates with max fan-in of 2, whereas the two
 
 <h3 style="color: #5A3EED;">7.8.2 Critical Path and Propagation Delay</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Concept: Propagation Delay &amp; Critical Path</p>
 
@@ -710,7 +750,7 @@ The **critical path has 3 gate delays**. Input $E$ arrives fastest (1 delay), wh
 <h3 style="color: #5A3EED;">7.8.3 Fan-in and Fan-out Constraints</h3>
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div markdown style="flex: 1; min-width: 250px; background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
+<div markdown style="flex: 1; min-width: 250px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 10px;">Fan-in</p>
 
@@ -745,7 +785,11 @@ The number of gate inputs driven by a single output. Exceeding limits causes:
 
 <h3 style="color: #5A3EED;">7.8.4 Gate Loading Effects</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Gate loading** refers to the electrical impact of connecting gate outputs to gate inputs. Each input presents a capacitive load to the driving output. As fan-out increases, the driving gate must charge/discharge more capacitance, slowing its transition time.
+
+</div>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -757,15 +801,15 @@ where $t_{pd0}$ is the intrinsic delay, $k$ is a technology-dependent constant, 
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Buffer Insertion</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Buffer Insertion</p>
 
 When a signal must drive many inputs, **buffer insertion** restores signal strength. A buffer (two cascaded inverters) adds one gate delay but restores the output drive capability.
 
 </div>
 
-#### Diagram: Propagation Delay and Critical Path Analyzer
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Propagation Delay and Critical Path Analyzer</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/critical-path-delay-explorer/main.html" width="100%" height="580px" scrolling="yes" style="border:none; border-radius:8px;"></iframe>
@@ -781,7 +825,7 @@ When a multi-level circuit has too many levels (and therefore too much delay), *
 
 </div>
 
-### Flattening
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Flattening</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -797,11 +841,15 @@ The two-level form requires higher fan-in (3-input AND, 3-input OR) but achieves
 
 </div>
 
-### Partial Flattening
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Partial Flattening</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 When full flattening creates impractical fan-in, **partial flattening** expands only select portions to reduce levels without exceeding fan-in constraints.
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Example</p>
 
@@ -821,11 +869,11 @@ For a 5-level circuit, reduce to 3 levels by expanding the innermost nesting whi
 
 </div>
 
-### Algebraic Restructuring
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Algebraic Restructuring</h3>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Alternative Factoring</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Alternative Factoring</p>
 
 Sometimes an expression can be rewritten in an alternative factored form that uses fewer levels:
 
@@ -846,7 +894,7 @@ $$F = AC + AD + BC + BD + E = (A+B)(C+D) + E$$
 
 </div>
 
-### Sharing Common Sub-expressions
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Sharing Common Sub-expressions</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -868,9 +916,9 @@ The shared term $C+D$ appears **once** in the circuit, driving both $F_1$ and $F
 
 </div>
 
-### Literal Count vs Gate Count Trade-offs
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Literal Count vs Gate Count Trade-offs</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Concept</p>
 
@@ -898,9 +946,9 @@ The POS form wins on both gates and literals — but requires recognizing that $
 
 </div>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Design Takeaway</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Design Takeaway</p>
 
 The optimal form depends on the design priority — **delay**, **area**, or **power**. Always evaluate multiple forms before committing to an implementation.
 
@@ -916,7 +964,7 @@ The optimal form depends on the design priority — **delay**, **area**, or **po
 
 </div>
 
-### Common Factor Extraction
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Common Factor Extraction</h3>
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
 <div markdown style="flex: 1; min-width: 260px; background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px;">
@@ -958,9 +1006,9 @@ Factor each pair first, then extract the common $D(C+E)$.
 
 </div>
 
-### Decomposition Techniques
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Decomposition Techniques</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">When to Use Decomposition</p>
 
@@ -990,7 +1038,7 @@ $$F = AB\overline{h} + \overline{A}Bh + ABh = AB\overline{h} + Bh(\overline{A} +
 
 </div>
 
-#### Diagram: Factoring and Decomposition Explorer
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Factoring and Decomposition Explorer</h4>
 
 ---
 
@@ -1016,9 +1064,9 @@ AND groups of inputs, OR results, then invert. The numbers indicate group sizes.
 **AOI221:** $F = \overline{AB + CD + E}$
 
 </div>
-<div markdown style="flex: 1; min-width: 260px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px;">
+<div markdown style="flex: 1; min-width: 260px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px;">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">OAI Gates (OR-AND-Invert)</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.05rem; margin-top: 0; margin-bottom: 12px;">OAI Gates (OR-AND-Invert)</p>
 
 OR groups of inputs, AND results, then invert. The numbers indicate group sizes.
 
@@ -1029,7 +1077,7 @@ OR groups of inputs, AND results, then invert. The numbers indicate group sizes.
 </div>
 </div>
 
-### Advantages of Complex Gates
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Advantages of Complex Gates</h3>
 
 <div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1042,9 +1090,13 @@ OR groups of inputs, AND results, then invert. The numbers indicate group sizes.
 
 </div>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Complex gates are fundamental building blocks in standard cell libraries. Logic synthesis tools automatically identify opportunities to use AOI and OAI cells during technology mapping.
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+</div>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Example: Implement F = AB + CD (inverted)</p>
 
@@ -1053,7 +1105,7 @@ Complex gates are fundamental building blocks in standard cell libraries. Logic 
 
 </div>
 
-#### Diagram: AOI and OAI Gate Structures
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: AOI and OAI Gate Structures</h4>
 
 ---
 
@@ -1065,7 +1117,7 @@ Complex gates are fundamental building blocks in standard cell libraries. Logic 
 
 </div>
 
-### Open-Collector/Open-Drain Outputs
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Open-Collector/Open-Drain Outputs</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1079,11 +1131,11 @@ where $G_1$, $G_2$, $G_3$ are individual gate outputs. Output is LOW if **any** 
 
 </div>
 
-### Wired-AND with NAND Gates
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Wired-AND with NAND Gates</h3>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Free AOI Gate</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Free AOI Gate</p>
 
 Connecting open-collector NAND outputs creates composite functions. If Gate 1 outputs $\overline{AB}$ and Gate 2 outputs $\overline{CD}$:
 
@@ -1093,9 +1145,9 @@ This implements an **AND-OR-Invert** function without a separate OR gate — eff
 
 </div>
 
-### Limitations of Wired Logic
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Limitations of Wired Logic</h3>
 
-<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF0F0; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Drawbacks</p>
 
@@ -1116,7 +1168,7 @@ This implements an **AND-OR-Invert** function without a separate OR gate — eff
 
 </div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Modern Usage</p>
 
@@ -1134,9 +1186,9 @@ A **transmission gate** (also called a pass gate) is a CMOS switch that can pass
 
 </div>
 
-### Structure and Operation
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Structure and Operation</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Four Terminals</p>
 
@@ -1151,7 +1203,7 @@ When $C = 0$: Both transistors OFF → **high-impedance** (disconnected).
 
 </div>
 
-### Multiplexer Using Transmission Gates
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Multiplexer Using Transmission Gates</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1167,11 +1219,11 @@ Uses only **4 transistors** (2 per TG) + inverter for $\overline{S}$, compared t
 
 </div>
 
-### XOR Using Transmission Gates
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">XOR Using Transmission Gates</h3>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Efficient XOR</p>
+<p style="color: #B8860B; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Key Insight: Efficient XOR</p>
 
 $$F = A \oplus B$$
 
@@ -1191,7 +1243,7 @@ Using a transmission gate controlled by $B$: when $B=0$, pass $A$; when $B=1$, p
 
 </div>
 
-<div markdown style="background: #FFEBEE; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF0F0; border: 2px solid #E57373; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #C62828; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Design Trade-off</p>
 
@@ -1209,9 +1261,9 @@ Transmission gates offer excellent area and power efficiency but can suffer from
 
 </div>
 
-### The Technology Mapping Flow
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The Technology Mapping Flow</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Four Phases</p>
 
@@ -1222,9 +1274,13 @@ Transmission gates offer excellent area and power efficiency but can suffer from
 
 </div>
 
-### Decomposition
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Decomposition</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Any Boolean network can be decomposed into 2-input NAND gates and inverters. This uniform representation enables systematic pattern matching against library cells.
+
+</div>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1236,9 +1292,13 @@ This is: INV(NAND(INV(NAND(A,B)), C)) = **NAND2 + INV + NAND2 + INV**
 
 </div>
 
-### Library Cells and Cost
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Library Cells and Cost</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A typical standard cell library contains cells ranging from simple inverters to complex gates:
+
+</div>
 
 <div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1255,17 +1315,17 @@ A typical standard cell library contains cells ranging from simple inverters to 
 
 </div>
 
-### Covering Algorithm
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Covering Algorithm</h3>
 
-<div markdown style="background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Concept</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Key Concept</p>
 
 The covering problem selects library cells to minimize total cost (area, delay, or weighted combination). For **tree-structured** networks, dynamic programming finds the optimal covering in polynomial time. For **DAG** networks with shared nodes, the problem is NP-hard and heuristic approaches are used.
 
 </div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Industry Practice</p>
 
@@ -1283,9 +1343,9 @@ Modern digital design relies on **automated synthesis tools** that perform multi
 
 </div>
 
-### Logic Synthesis Flow
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Logic Synthesis Flow</h3>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; font-size: 1.08rem; margin-top: 0; margin-bottom: 14px;">Synthesis Pipeline</p>
 
@@ -1297,7 +1357,7 @@ Modern digital design relies on **automated synthesis tools** that perform multi
 
 </div>
 
-### Common Optimization Commands
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Common Optimization Commands</h3>
 
 <div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -1312,33 +1372,33 @@ Modern digital design relies on **automated synthesis tools** that perform multi
 
 </div>
 
-### Open-Source Tools
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Open-Source Tools</h3>
 
 <div markdown style="display: flex; gap: 14px; flex-wrap: wrap; margin: 1.2rem 0;">
-<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
+<div markdown style="flex: 1; min-width: 170px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 16px 20px;">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">ABC (Berkeley)</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">ABC (Berkeley)</p>
 
 Academic logic synthesis and verification tool
 
 </div>
-<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
+<div markdown style="flex: 1; min-width: 170px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 16px 20px;">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Yosys</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">Yosys</p>
 
 Open-source synthesis suite for Verilog
 
 </div>
-<div markdown style="flex: 1; min-width: 170px; background: #E7F7E7; border: 2px solid #81C784; border-radius: 12px; padding: 16px 20px;">
+<div markdown style="flex: 1; min-width: 170px; background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 16px 20px;">
 
-<p style="color: #2E7D32; font-weight: 700; margin-top: 0; margin-bottom: 6px;">OpenSTA</p>
+<p style="color: #B8860B; font-weight: 700; margin-top: 0; margin-bottom: 6px;">OpenSTA</p>
 
 Static timing analysis
 
 </div>
 </div>
 
-<div markdown style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 <p style="color: #8D6E00; font-weight: 700; margin-top: 0; margin-bottom: 8px;">Why This Matters</p>
 
@@ -1388,7 +1448,7 @@ This unit covered the transformation of Boolean expressions into practical multi
 
 </div>
 
-### Self-Check Questions
+<h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Self-Check Questions</h3>
 
 ??? question "Why can't you simply replace all gates with NANDs in any circuit?"
     The direct replacement only works for two-level AND-OR (SOP) circuits because the double inversion principle creates matching pairs of inversions that cancel. For arbitrary multi-level circuits or for cross conversions (SOP→NOR), additional inverters or gate levels are required to handle unpaired inversions.
@@ -1405,7 +1465,9 @@ This unit covered the transformation of Boolean expressions into practical multi
 
 Step through converting an AND-OR circuit to all-NAND using bubble pushing:
 
-<iframe src="../sims/nand-conversion-walkthrough/main.html" width="100%" height="580px" scrolling="no"></iframe>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+<iframe src="../sims/nand-conversion-walkthrough/main.html" width="100%" height="580px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+</div>
 
 ---
 
