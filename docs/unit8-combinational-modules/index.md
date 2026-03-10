@@ -73,7 +73,7 @@ This unit introduces medium-scale integration (MSI) combinational logic modules 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Prerequisites</h2>
 
-<div style="background: #FFF7DD; border: 2px solid #F0D87A; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(184,134,11,0.08);" markdown>
+<div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);" markdown>
 
 Before studying this unit, students should be familiar with:
 
@@ -88,6 +88,8 @@ Before studying this unit, students should be familiar with:
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.1 Introduction to Combinational Building Blocks</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Digital systems are constructed from a hierarchy of modules, ranging from individual logic gates to complex subsystems. In previous units, we designed circuits directly from Boolean expressions using basic gates. While this approach works for small functions, larger designs demand a higher level of abstraction. **Combinational building blocks** are pre-designed functional units that perform common operations, allowing designers to think in terms of data selection, routing, and code conversion rather than individual gates.
 
@@ -108,12 +110,16 @@ These modules are available as discrete ICs in the 74-series TTL and 4000-series
 - **Custom implementations:** Some designs require modified versions of standard modules
 - **Function implementation:** MUX and decoder modules can implement arbitrary Boolean functions, often more efficiently than gate-level designs
 
+</div>
+
 !!! info "Design Philosophy"
     Modern digital design often instantiates these modules directly from HDL (Verilog/VHDL) rather than designing equivalent gate-level circuits. Synthesis tools recognize these patterns and map them to optimized library cells.
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.2 Multiplexer Fundamentals</h2>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **multiplexer (MUX)** is a data selector that chooses one of several input signals and forwards it to a single output based on select (control) signals. It functions as a digitally controlled multi-position switch: the select inputs determine which data input is connected to the output.
 
@@ -129,7 +135,11 @@ $$Y = \sum_{i=0}^{2^n - 1} m_i \cdot D_i$$
 
 where $m_i$ is the $i$-th minterm of the select inputs.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.1 The 2-to-1 Multiplexer</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The simplest multiplexer has two data inputs ($D_0$, $D_1$), one select input ($S$), and one output ($Y$).
 
@@ -146,7 +156,11 @@ When $S = 0$, the output equals $D_0$. When $S = 1$, the output equals $D_1$.
 
 The gate-level implementation requires one inverter, two AND gates, and one OR gate—a total of 4 gates. In CMOS, a 2:1 MUX can also be implemented efficiently using transmission gates (as discussed in Unit 7), requiring only 4 transistors plus an inverter.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.2 The 4-to-1 Multiplexer</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A 4-to-1 MUX has four data inputs ($D_0$ through $D_3$), two select inputs ($S_1$, $S_0$), and one output.
 
@@ -171,7 +185,11 @@ The gate-level structure consists of:
 
 Total: 7 gates.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.2.3 The 8-to-1 and Larger Multiplexers</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 An 8-to-1 MUX extends the pattern to eight data inputs ($D_0$ through $D_7$) with three select inputs ($S_2$, $S_1$, $S_0$):
 
@@ -188,6 +206,8 @@ For even larger multiplexers (16-to-1 and beyond), gate-level implementation bec
 | 8:1 | 3 | 8 | 4-input | 74151 |
 | 16:1 | 4 | 16 | 5-input | 74150 |
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Multiplexer Interactive Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -198,9 +218,15 @@ For even larger multiplexers (16-to-1 and beyond), gate-level implementation bec
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.3 Multiplexer Tree Expansion</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 When the required MUX size exceeds available components, smaller multiplexers can be cascaded to build larger ones. This technique, called **multiplexer tree expansion**, uses a hierarchical structure where the output of lower-level MUXes feeds the data inputs of higher-level MUXes.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Building a 16-to-1 MUX from 4-to-1 MUXes</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A 16-to-1 MUX requires 4 select lines ($S_3, S_2, S_1, S_0$). Using 4-to-1 MUXes:
 
@@ -215,7 +241,11 @@ A 16-to-1 MUX requires 4 select lines ($S_3, S_2, S_1, S_0$). Using 4-to-1 MUXes
 
 Total: 5 four-to-1 MUXes implement a 16-to-1 MUX.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">General Tree Construction</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 To build a $2^n$-to-1 MUX from $2^k$-to-1 MUXes:
 
@@ -231,13 +261,21 @@ If the second level itself requires expansion, the process recurses.
 | 16:1 | 4:1 | 4 | 1 | 5 |
 | 32:1 | 8:1 | 4 | 1 (4:1) | 5 |
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.4 Implementing Boolean Functions with Multiplexers</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 One of the most powerful applications of multiplexers is implementing arbitrary Boolean functions. A $2^n$-to-1 MUX can implement any $n$-variable function by connecting the input variables to the select lines and the truth table output values to the data inputs.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Direct Implementation (Full-Size MUX)</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 For an $n$-variable function, use a $2^n$-to-1 MUX:
 
@@ -259,7 +297,12 @@ Connect $A, B, C$ to $S_2, S_1, S_0$. From the truth table:
 | 1 | 1 | 0 | 1 | $D_6 = 1$ |
 | 1 | 1 | 1 | 1 | $D_7 = 1$ |
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Shannon Expansion Method (Reduced MUX)</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+<strong style="color: #B8860B;">Shannon Expansion Procedure:</strong>
 
 A more efficient approach uses an $n$-variable function with a $2^{n-1}$-to-1 MUX. The **Shannon expansion theorem** states:
 
@@ -291,6 +334,8 @@ The data input values follow this logic:
 - If $F = 1$ for both $C=0$ and $C=1$: connect to 1
 - If $F = 0$ when $C=0$ and $F = 1$ when $C=1$: connect to $C$
 - If $F = 1$ when $C=0$ and $F = 0$ when $C=1$: connect to $\overline{C}$
+
+</div>
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -340,6 +385,8 @@ Each data input d0--d3 is set to 0 or 1 from the truth table. Since there are 2^
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.5 Demultiplexer Fundamentals</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **demultiplexer (DEMUX)** performs the inverse function of a multiplexer—it routes a single data input to one of several outputs based on select signals. While a MUX is a "many-to-one" selector, a DEMUX is a "one-to-many" distributor.
 
 A 1-to-$2^n$ demultiplexer has:
@@ -348,7 +395,11 @@ A 1-to-$2^n$ demultiplexer has:
 - $n$ select inputs ($S_{n-1}, ..., S_1, S_0$)
 - $2^n$ outputs ($Y_0, Y_1, ..., Y_{2^n-1}$)
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">1-to-4 Demultiplexer</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Boolean Expressions:**
 
@@ -366,34 +417,50 @@ $$Y_3 = S_1\,S_0 \cdot D$$
 
 All non-selected outputs remain at 0. Only the selected output carries the data signal.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">The DEMUX-Decoder Relationship</h3>
 
-Comparing the DEMUX equations above with a 2-to-4 decoder with enable $E$:
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Key Insight:</strong> Comparing the DEMUX equations above with a 2-to-4 decoder with enable $E$:
 
 $$Y_i(\text{decoder with enable}) = E \cdot m_i(S_1, S_0)$$
 
 These are identical if we substitute $D = E$. This reveals an important equivalence:
 
-- A **DEMUX** with data input $D$ = a **decoder** with enable input $E = D$
-- A **decoder** with enable held at 1 = a **DEMUX** with data always 1 (which is just a decoder)
+<ul>
+<li>A <strong>DEMUX</strong> with data input $D$ = a <strong>decoder</strong> with enable input $E = D$</li>
+<li>A <strong>decoder</strong> with enable held at 1 = a <strong>DEMUX</strong> with data always 1 (which is just a decoder)</li>
+</ul>
+</div>
 
 !!! tip "Practical Consequence"
     IC manufacturers often sell a single chip that can serve as either a decoder or a demultiplexer depending on how the enable/data input is used. The 74138 (3-to-8 decoder) is a common example.
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Applications of Demultiplexers</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 - **Data distribution:** Sending serial data to one of several destinations
 - **Time-division demultiplexing:** Routing time-multiplexed channels to separate outputs
 - **Address decoding:** Selecting one of several memory chips or peripheral devices
 - **LED display multiplexing:** Routing data to individual display digits
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.6 Decoder Fundamentals</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **decoder** converts an $n$-bit binary input code into $2^n$ output lines, activating exactly one output for each input combination. This produces a **one-hot encoding** where only the output corresponding to the binary input value is active.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.1 The 2-to-4 Decoder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The simplest useful decoder has two inputs ($A_1$, $A_0$) and four outputs ($Y_0$ through $Y_3$).
 
@@ -415,7 +482,11 @@ Each output is a **minterm** of the input variables. This is the key insight tha
 
 The gate-level implementation requires 2 inverters and 4 two-input AND gates.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.2 The 3-to-8 Decoder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A 3-to-8 decoder has three inputs ($A_2$, $A_1$, $A_0$) and eight outputs ($Y_0$ through $Y_7$), generating all eight 3-variable minterms.
 
@@ -425,7 +496,11 @@ The gate-level implementation requires 3 inverters and 8 three-input AND gates.
 
 **Common IC:** The 74138 is a 3-to-8 decoder with three enable inputs ($G_1$, $\overline{G_{2A}}$, $\overline{G_{2B}}$) and active-low outputs.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.6.3 Decoder Enable Inputs</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Many decoders include **enable** inputs that control whether the decoder is active. When disabled, all outputs go to their inactive state (0 for active-high, 1 for active-low outputs).
 
@@ -444,6 +519,8 @@ Enable inputs serve multiple purposes:
 - **DEMUX operation:** Use the enable as a data input for demultiplexer functionality
 - **Glitch prevention:** Disable outputs during input transitions
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Decoder Interactive Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -454,9 +531,15 @@ Enable inputs serve multiple purposes:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.7 Decoder Tree Expansion</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Just as multiplexers can be cascaded into trees, decoders can be expanded using enable inputs to build larger decoders from smaller ones.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Building a 4-to-16 Decoder from 3-to-8 Decoders</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A 4-to-16 decoder requires 4 input bits ($A_3, A_2, A_1, A_0$) and produces 16 outputs ($Y_0$ through $Y_{15}$).
 
@@ -470,7 +553,11 @@ When $A_3 = 0$: the lower decoder is active, producing minterms $m_0$ through $m
 
 When $A_3 = 1$: the upper decoder is active, producing minterms $m_8$ through $m_{15}$. The lower decoder is disabled.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">General Decoder Expansion</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 To build a $(n+k)$-to-$2^{n+k}$ decoder from $n$-to-$2^n$ decoders:
 
@@ -484,13 +571,22 @@ To build a $(n+k)$-to-$2^{n+k}$ decoder from $n$-to-$2^n$ decoders:
 | 5-to-32 | 3-to-8 | 4 | 2-to-4 |
 | 6-to-64 | 3-to-8 | 8 | 3-to-8 |
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.8 Implementing Functions with Decoders</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Since an $n$-to-$2^n$ decoder generates all $2^n$ minterms of its $n$ input variables, any Boolean function of those variables can be implemented by combining (OR-ing) the appropriate minterm outputs. This is called **minterm generation** and provides a direct, systematic method for function implementation.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Procedure</h3>
+
+<div markdown style="background: #FFF8E1; border: 2px solid #F0D87A; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(212,160,23,0.10);">
+<strong style="color: #B8860B;">Decoder-Based Function Implementation Procedure:</strong>
 
 1. Express the function in canonical SOP form: $F = \sum m(...)$
 2. Use an $n$-to-$2^n$ decoder with the function variables as inputs
@@ -502,7 +598,11 @@ $$F = m_1 + m_2 + m_6 + m_7 = Y_1 + Y_2 + Y_6 + Y_7$$
 
 Connect outputs $Y_1$, $Y_2$, $Y_6$, and $Y_7$ to a 4-input OR gate. All other outputs are unused.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Multiple Function Implementation</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A single decoder can implement **multiple functions** of the same variables simultaneously, since all minterms are available. Each function simply uses a different OR gate connected to its respective minterms.
 
@@ -512,6 +612,8 @@ $$F_1 = Y_0 + Y_1 + Y_3$$
 $$F_2 = Y_2 + Y_3 + Y_5 + Y_7$$
 
 Note that minterm $m_3$ ($Y_3$) is shared between both functions—its output wire connects to both OR gates.
+
+</div>
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
@@ -558,6 +660,8 @@ The decoder generates all 2^n minterms. Only the minterms present in the SOP exp
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Decoder vs. MUX for Function Implementation</h3>
 
+<div markdown style="background: #f5f0ff; border: 2px solid #d1c4e9; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 | Feature | Decoder + OR | MUX |
 |---------|-------------|-----|
 | Module size for $n$ variables | $n$-to-$2^n$ decoder + OR | $2^{n-1}$-to-1 MUX (Shannon) |
@@ -565,13 +669,21 @@ The decoder generates all 2^n minterms. Only the minterms present in the SOP exp
 | Multiple outputs | Yes (share decoder) | No (one MUX per output) |
 | Best for | Multiple functions of same variables | Single functions |
 
+</div>
+
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.9 Encoder Fundamentals</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 An **encoder** performs the inverse function of a decoder—it converts a set of input lines (typically one-hot) into a compact binary code. If $2^n$ input lines are provided, the encoder produces an $n$-bit binary output representing which input is active.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Basic 4-to-2 Encoder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A 4-to-2 encoder has four inputs ($D_0$ through $D_3$) and two outputs ($Y_1$, $Y_0$).
 
@@ -591,22 +703,32 @@ $$Y_0 = D_1 + D_3$$
 
 The encoder simply generates the binary index of the active input. It is implemented with OR gates—one for each output bit.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Limitations of Basic Encoders</h3>
 
-Basic encoders have two significant limitations:
-
-1. **No input active:** When no input is HIGH, the output is 00—which is indistinguishable from $D_0$ being active
-2. **Multiple inputs active:** If more than one input is HIGH simultaneously, the output is incorrect (the OR gates produce unpredictable results)
-
+<div style="background: #FFF8E1; border-left: 4px solid #F0D87A; border-radius: 8px; padding: 16px 20px; margin: 1rem 0;">
+<strong style="color: #B8860B;">Limitations:</strong> Basic encoders have two significant limitations:
+<ol>
+<li><strong>No input active:</strong> When no input is HIGH, the output is 00—which is indistinguishable from $D_0$ being active</li>
+<li><strong>Multiple inputs active:</strong> If more than one input is HIGH simultaneously, the output is incorrect (the OR gates produce unpredictable results)</li>
+</ol>
 These limitations motivate the priority encoder.
+</div>
 
 ---
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.10 Priority Encoder</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **priority encoder** resolves the multiple-active-input problem by assigning priorities to the inputs and encoding only the highest-priority active input. By convention, higher-numbered inputs have higher priority.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Priority Encoder Operation</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 For a 4-to-2 priority encoder:
 
@@ -622,7 +744,11 @@ The **Valid** output ($V$) indicates whether any input is active, solving the "n
 
 The X entries in the truth table indicate "don't care"—once a higher-priority input is found active, lower-priority inputs are ignored.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8-to-3 Priority Encoder</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 An 8-to-3 priority encoder accepts 8 inputs ($D_0$ through $D_7$) and produces a 3-bit binary code plus a valid flag.
 
@@ -635,6 +761,8 @@ The Boolean expressions for the outputs use don't care conditions extensively, m
 - **Leading-one detection:** Find the position of the most significant 1 bit (used in floating-point normalization)
 - **Keyboard encoding:** Convert key press matrix position to scan code
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Priority Encoder Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -645,9 +773,15 @@ The Boolean expressions for the outputs use don't care conditions extensively, m
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.11 Code Converters</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Code converters** translate data from one binary coding scheme to another. These are combinational circuits designed for specific code-to-code translations, implemented using logic derived from the conversion rules.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.11.1 Binary-to-Gray Code Converter</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Gray code** (also called reflected binary code) has the property that successive code words differ in exactly one bit position. This property is valuable in:
 
@@ -687,7 +821,11 @@ Notice that each consecutive Gray code pair differs by exactly one bit—verify 
 
 The circuit implementation requires only $n-1$ XOR gates, making it extremely efficient.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">8.11.2 Gray-to-Binary Code Converter</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The inverse conversion reconstructs binary from Gray code:
 
@@ -695,6 +833,8 @@ $$B_{n-1} = G_{n-1}$$
 $$B_i = B_{i+1} \oplus G_i \quad \text{for } i = n-2, n-3, ..., 0$$
 
 Note the key difference: each binary bit depends on the **previously computed binary bit** (not the input Gray bit), creating a cascaded dependency. This means the Gray-to-binary converter has a ripple structure where the MSB must be computed before the next bit can be determined.
+
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Binary-Gray Code Converter</h4>
 
@@ -706,9 +846,15 @@ Note the key difference: each binary bit depends on the **previously computed bi
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.12 BCD-to-Seven-Segment Decoder</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (representing digits 0–9) into seven outputs that drive the individual segments of a seven-segment LED or LCD display.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Seven-Segment Display Convention</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The seven segments are labeled $a$ through $g$:
 
@@ -737,7 +883,11 @@ Each digit (0–9) requires a specific combination of active segments:
 | 8 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 8 |
 | 9 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 9 |
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Design Using Don't Cares</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 BCD inputs 10–15 (1010 through 1111) are invalid and never occur in a properly functioning BCD system. These can be treated as **don't care** conditions for K-map simplification, potentially yielding simpler Boolean expressions for each segment.
 
@@ -751,6 +901,8 @@ $$a = A_3 + A_1 + A_2A_0 + \overline{A_2}\,\overline{A_0}$$
 
 Each segment function is simplified independently. The 7447 is a classic BCD-to-seven-segment decoder IC with open-collector outputs for driving common-anode displays.
 
+</div>
+
 !!! note "Active-High vs. Active-Low"
     Seven-segment decoders come in two varieties: active-high outputs (for common-cathode displays, like the 7448) and active-low outputs (for common-anode displays, like the 7447). The logic design is the same; only the output polarity differs.
 
@@ -758,9 +910,15 @@ Each segment function is simplified independently. The 7447 is a classic BCD-to-
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.13 Comparator Circuits</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Comparators** determine the magnitude relationship between two binary numbers. They produce outputs indicating whether the first number is greater than, equal to, or less than the second number.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">1-Bit Comparator</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 For two 1-bit inputs $A$ and $B$, the three comparison outputs are:
 
@@ -777,7 +935,11 @@ $$\text{Less: } L = \overline{A}B$$
 
 Note that $G + E + L = 1$ always—exactly one relationship holds for any input pair.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Magnitude Comparator Design</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **magnitude comparator** extends the comparison to multi-bit numbers. For two $n$-bit numbers $A = A_{n-1}...A_1A_0$ and $B = B_{n-1}...B_1B_0$, comparison proceeds from the most significant bit downward.
 
@@ -799,6 +961,8 @@ $$(A < B) = \overline{A_3}B_3 + x_3 \overline{A_2}B_2 + x_3 x_2 \overline{A_1}B_
 
 The 7485 is a standard 4-bit magnitude comparator IC with cascade inputs for building larger comparators.
 
+</div>
+
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Magnitude Comparator Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -809,20 +973,34 @@ The 7485 is a standard 4-bit magnitude comparator IC with cascade inputs for bui
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">8.14 Cascading Combinational Modules</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Real-world designs frequently require functionality beyond what a single MSI module provides. **Cascading** connects multiple modules to handle wider data paths, more inputs, or combined functions.
+
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Multiplexers</h3>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 As covered in Section 8.3, multiplexer trees expand MUX size. The key principle: lower-level MUXes handle the least significant select bits, and upper-level MUXes handle the most significant bits.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Decoders</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Decoder expansion uses enable inputs to create larger address spaces:
 
 - Two 3-to-8 decoders → one 4-to-16 decoder (using MSB as enable selector)
 - Four 3-to-8 decoders + one 2-to-4 decoder → one 5-to-32 decoder
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Magnitude Comparators</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 For comparing numbers wider than a single comparator can handle, cascade inputs propagate the comparison result from less significant stages to more significant stages.
 
@@ -834,7 +1012,11 @@ For comparing numbers wider than a single comparator can handle, cascade inputs 
 
 The upper comparator first checks its own bits. If they are equal ($A_{7..4} = B_{7..4}$), it passes through the cascade inputs (the lower comparator's result). If the upper bits differ, the cascade inputs are ignored.
 
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Cascading Priority Encoders</h3>
+
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Multiple priority encoders cascade for wider input ranges. The 74148 includes cascade outputs (GS and EO) that facilitate expansion:
 
@@ -849,6 +1031,8 @@ Using these signals, a higher-level encoder determines which group contains the 
 | Decoder expansion | Enable chaining | Enable from address MSBs |
 | Comparator expansion | Cascade inputs | G, E, L from lower stage |
 | Priority encoder expansion | GS/EO chaining | Group select signals |
+
+</div>
 
 !!! tip "Design Hierarchy"
     Cascading is an example of the broader digital design principle of hierarchy—building complex systems from simpler, well-understood components. This same principle extends from MSI modules to entire processor architectures.
@@ -908,7 +1092,11 @@ This unit covered the essential MSI combinational building blocks that form the 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">Interactive Walkthrough</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Step through implementing a Boolean function using a 4:1 multiplexer:
+
+</div>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 <iframe src="../sims/mux-function-walkthrough/main.html" width="100%" height="600px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
