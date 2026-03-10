@@ -871,69 +871,54 @@ A **BCD-to-seven-segment decoder** converts a 4-bit Binary Coded Decimal input (
 <p style="color: #333; margin-top: 0;">The seven segments are labeled <strong>a</strong> through <strong>g</strong>. Hover over any segment to highlight it.</p>
 
 <div style="display: flex; justify-content: center; margin: 1.5rem 0;">
-<svg viewBox="0 0 280 320" style="max-width: 320px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 240 300" style="max-width: 280px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .seg { fill: #546E7A; stroke: #37474F; stroke-width: 1; transition: fill 0.2s, filter 0.2s; cursor: pointer; }
-      .seg:hover { fill: #5A3EED; filter: drop-shadow(0 0 6px rgba(90,62,237,0.5)); }
-      .seg-label { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #5A3EED; }
-      .seg-label-sub { font-family: Arial, sans-serif; font-size: 11px; fill: #78909C; }
-      .display-bg { fill: #ECEFF1; stroke: #B0BEC5; stroke-width: 2; rx: 12; }
+      .ss-seg { fill: #455A64; stroke: #263238; stroke-width: 0.8; stroke-linejoin: round; transition: fill 0.2s, filter 0.2s; cursor: pointer; }
+      .ss-seg:hover { fill: #E53935; filter: drop-shadow(0 0 8px rgba(229,57,53,0.6)); }
+      .ss-lbl { font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; font-weight: 700; fill: #1565C0; pointer-events: none; }
+      .ss-line { stroke: #90CAF9; stroke-width: 1; stroke-dasharray: 4,3; }
     </style>
   </defs>
 
   <!-- Display housing -->
-  <rect class="display-bg" x="60" y="20" width="160" height="260" />
+  <rect x="55" y="25" width="130" height="250" rx="10" fill="#1B2631" stroke="#0D1B2A" stroke-width="2.5" />
+  <rect x="60" y="30" width="120" height="240" rx="7" fill="#1C2833" stroke="none" />
 
-  <!-- Segment a (top horizontal) -->
-  <polygon class="seg" points="95,42 105,32 155,32 165,42 155,52 105,52">
-    <title>Segment a (top)</title>
-  </polygon>
-  <text class="seg-label" x="130" y="26" text-anchor="middle">a</text>
-  <text class="seg-label-sub" x="130" y="14" text-anchor="middle">top</text>
+  <!-- Segment a — top horizontal -->
+  <polygon class="ss-seg" points="82,48 92,38 148,38 158,48 148,58 92,58" />
+  <line class="ss-line" x1="120" y1="36" x2="120" y2="18" />
+  <text class="ss-lbl" x="120" y="14" text-anchor="middle">a</text>
 
-  <!-- Segment f (top-left vertical) -->
-  <polygon class="seg" points="88,50 98,60 98,120 88,130 78,120 78,60">
-    <title>Segment f (upper-left)</title>
-  </polygon>
-  <text class="seg-label" x="62" y="95" text-anchor="middle">f</text>
-  <text class="seg-label-sub" x="42" y="95" text-anchor="middle">upper-left</text>
+  <!-- Segment f — upper-left vertical -->
+  <polygon class="ss-seg" points="76,56 86,66 86,126 76,136 66,126 66,66" />
+  <line class="ss-line" x1="64" y1="96" x2="38" y2="96" />
+  <text class="ss-lbl" x="30" y="100" text-anchor="middle">f</text>
 
-  <!-- Segment b (top-right vertical) -->
-  <polygon class="seg" points="172,50 182,60 182,120 172,130 162,120 162,60">
-    <title>Segment b (upper-right)</title>
-  </polygon>
-  <text class="seg-label" x="198" y="95" text-anchor="middle">b</text>
-  <text class="seg-label-sub" x="222" y="95" text-anchor="middle">upper-right</text>
+  <!-- Segment b — upper-right vertical -->
+  <polygon class="ss-seg" points="164,56 174,66 174,126 164,136 154,126 154,66" />
+  <line class="ss-line" x1="176" y1="96" x2="202" y2="96" />
+  <text class="ss-lbl" x="212" y="100" text-anchor="middle">b</text>
 
-  <!-- Segment g (middle horizontal) -->
-  <polygon class="seg" points="95,138 105,128 155,128 165,138 155,148 105,148">
-    <title>Segment g (middle)</title>
-  </polygon>
-  <text class="seg-label" x="38" y="142" text-anchor="middle">g</text>
-  <text class="seg-label-sub" x="222" y="142" text-anchor="middle">middle</text>
-  <line x1="52" y1="138" x2="78" y2="138" stroke="#5A3EED" stroke-width="1" stroke-dasharray="3,2" opacity="0.5" />
+  <!-- Segment g — middle horizontal -->
+  <polygon class="ss-seg" points="82,144 92,134 148,134 158,144 148,154 92,154" />
+  <line class="ss-line" x1="64" y1="144" x2="38" y2="144" />
+  <text class="ss-lbl" x="30" y="148" text-anchor="middle">g</text>
 
-  <!-- Segment e (bottom-left vertical) -->
-  <polygon class="seg" points="88,146 98,156 98,216 88,226 78,216 78,156">
-    <title>Segment e (lower-left)</title>
-  </polygon>
-  <text class="seg-label" x="62" y="191" text-anchor="middle">e</text>
-  <text class="seg-label-sub" x="42" y="191" text-anchor="middle">lower-left</text>
+  <!-- Segment e — lower-left vertical -->
+  <polygon class="ss-seg" points="76,152 86,162 86,222 76,232 66,222 66,162" />
+  <line class="ss-line" x1="64" y1="192" x2="38" y2="192" />
+  <text class="ss-lbl" x="30" y="196" text-anchor="middle">e</text>
 
-  <!-- Segment c (bottom-right vertical) -->
-  <polygon class="seg" points="172,146 182,156 182,216 172,226 162,216 162,156">
-    <title>Segment c (lower-right)</title>
-  </polygon>
-  <text class="seg-label" x="198" y="191" text-anchor="middle">c</text>
-  <text class="seg-label-sub" x="222" y="191" text-anchor="middle">lower-right</text>
+  <!-- Segment c — lower-right vertical -->
+  <polygon class="ss-seg" points="164,152 174,162 174,222 164,232 154,222 154,162" />
+  <line class="ss-line" x1="176" y1="192" x2="202" y2="192" />
+  <text class="ss-lbl" x="212" y="196" text-anchor="middle">c</text>
 
-  <!-- Segment d (bottom horizontal) -->
-  <polygon class="seg" points="95,234 105,224 155,224 165,234 155,244 105,244">
-    <title>Segment d (bottom)</title>
-  </polygon>
-  <text class="seg-label" x="130" y="266" text-anchor="middle">d</text>
-  <text class="seg-label-sub" x="130" y="280" text-anchor="middle">bottom</text>
+  <!-- Segment d — bottom horizontal -->
+  <polygon class="ss-seg" points="82,240 92,230 148,230 158,240 148,250 92,250" />
+  <line class="ss-line" x1="120" y1="252" x2="120" y2="274" />
+  <text class="ss-lbl" x="120" y="288" text-anchor="middle">d</text>
 </svg>
 </div>
 
