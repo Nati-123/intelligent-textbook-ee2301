@@ -5,7 +5,7 @@
 
 let containerWidth;
 let canvasWidth = 800;
-let drawHeight = 580;
+let drawHeight = 600;
 let controlHeight = 50;
 let canvasHeight = drawHeight + controlHeight;
 
@@ -29,7 +29,7 @@ const mooreStates = [
   { name: 'S0', label: 'S0/0', output: 0, desc: 'Start' },
   { name: 'S1', label: 'S1/0', output: 0, desc: 'Seen "1"' },
   { name: 'S2', label: 'S2/0', output: 0, desc: 'Seen "10"' },
-  { name: 'S3', label: 'S3/1', output: 1, desc: 'Seen "101"' }
+  { name: 'S3', label: 'S3/1', output: 1, desc: 'Detected "101"' }
 ];
 
 // Moore transitions: [state][input] = next_state
@@ -181,7 +181,7 @@ function draw() {
   textSize(min(12, canvasWidth * 0.017));
   textStyle(NORMAL);
   fill('#666');
-  text('"101" Sequence Detector  |  Click Input 0 or Input 1 to step through', canvasWidth / 2, 32);
+  text('Both machines detect the "101" pattern in a serial bit stream — click Input 0 or Input 1 to step through', canvasWidth / 2, 32);
 
   // Divider line
   stroke(colors.purple);
@@ -203,20 +203,41 @@ function draw() {
   text('Output on STATES', halfW / 2, 68);
   text('Output on TRANSITIONS', halfW + halfW / 2, 68);
 
+  // Legend
+  drawLegend(canvasWidth / 2, 82);
+
   // Draw state diagrams
-  drawMooreStateDiagram(halfW / 2, 185);
-  drawMealyStateDiagram(halfW + halfW / 2, 185);
+  drawMooreStateDiagram(halfW / 2, 195);
+  drawMealyStateDiagram(halfW + halfW / 2, 195);
 
   // Draw info panels
-  drawMooreInfo(10, 320, halfW - 20);
-  drawMealyInfo(halfW + 10, 320, halfW - 20);
+  drawMooreInfo(10, 330, halfW - 20);
+  drawMealyInfo(halfW + 10, 330, halfW - 20);
 
   // Draw timing comparison at bottom
-  drawTimingComparison(10, 440, canvasWidth - 20);
+  drawTimingComparison(10, 450, canvasWidth - 20);
 
   // Decrement flash timers
   if (detectedFlashMoore > 0) detectedFlashMoore--;
   if (detectedFlashMealy > 0) detectedFlashMealy--;
+}
+
+function drawLegend(cx, y) {
+  let legendW = min(420, canvasWidth * 0.55);
+  let legendH = 22;
+  let lx = cx - legendW / 2;
+
+  fill('#F5F5FF');
+  stroke(colors.purple);
+  strokeWeight(1);
+  rect(lx, y, legendW, legendH, 6);
+
+  noStroke();
+  fill(colors.text);
+  textAlign(CENTER, CENTER);
+  textSize(min(10, canvasWidth * 0.013));
+  textStyle(NORMAL);
+  text('Moore labels: input only (e.g. 0, 1)  |  Mealy labels: input / output (e.g. 1/1)', cx, y + legendH / 2);
 }
 
 function drawMooreStateDiagram(cx, cy) {
@@ -551,9 +572,9 @@ function drawTimingComparison(x, y, w) {
   fill(colors.text);
   text('Input:', startX - 8, topY + rowH * 0.5);
   fill(colors.purple);
-  text('Moore Out:', startX - 8, topY + rowH * 1.5);
+  text('Moore Output:', startX - 8, topY + rowH * 1.5);
   fill('#E65100');
-  text('Mealy Out:', startX - 8, topY + rowH * 2.5);
+  text('Mealy Output:', startX - 8, topY + rowH * 2.5);
 
   // Key difference label
   textAlign(LEFT, TOP);

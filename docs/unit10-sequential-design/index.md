@@ -872,7 +872,7 @@ The Mealy machine achieves the same detection with only **2 states** (vs 3 for M
 #### Diagram: Moore vs Mealy Interactive Comparison
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/moore-mealy-comparison/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/moore-mealy-comparison/main.html" width="100%" height="690px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
