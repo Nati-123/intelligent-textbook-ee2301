@@ -409,15 +409,16 @@ During this settling period, the counter outputs pass through intermediate inval
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
-Designing a synchronous counter follows a systematic procedure. Starting from the desired counting sequence, the designer builds a state table, simplifies the flip-flop input equations using K-maps, and finally implements the circuit.
+Designing a synchronous counter follows a systematic procedure. Starting from the desired counting sequence, the designer constructs a state table, determines the required flip-flop inputs using excitation tables, simplifies those inputs with K-maps, and finally implements and verifies the circuit.
 
 ```mermaid
 flowchart TD
-    A["<b>1. Define Counting Sequence</b>\nSpecify the desired states\nand their order"] --> B["<b>2. Construct State Table</b>\nList present state, next state,\nand flip-flop inputs"]
-    B --> C["<b>3. K-map Simplification</b>\nCreate a K-map for each\nflip-flop input (T, D, J, K)"]
-    C --> D["<b>4. Derive Excitation Equations</b>\nExtract minimized Boolean\nexpressions from K-maps"]
-    D --> E["<b>5. Implement Circuit</b>\nConnect flip-flops with\ncombinational logic"]
-    E --> F["<b>6. Verify with Timing Diagram</b>\nConfirm correct counting\nsequence and timing"]
+    A["<b>1. Define Counting Sequence</b>\nSpecify the desired states\nand their order (e.g. 0→1→…→15→0)"] --> B["<b>2. Construct State Table</b>\nList each present state and\nits corresponding next state"]
+    B --> C["<b>3. Determine Flip-Flop Inputs</b>\nUse excitation tables to find\nrequired D, T, J, K inputs\nfor each state transition"]
+    C --> D["<b>4. K-map Simplification</b>\nCreate a K-map for each\nflip-flop input and simplify"]
+    D --> E["<b>5. Derive Logic Equations</b>\nExtract minimized Boolean\nexpressions from K-maps"]
+    E --> F["<b>6. Implement Counter Circuit</b>\nConnect flip-flops with the\nderived combinational logic"]
+    F --> G["<b>7. Verify with Timing Diagram</b>\nSimulate to confirm correct\ncounting sequence and timing"]
 
     style A fill:#E8DAEF,stroke:#7D3C98,color:#333
     style B fill:#D6EAF8,stroke:#2980B9,color:#333
@@ -425,6 +426,7 @@ flowchart TD
     style D fill:#FDEBD0,stroke:#E67E22,color:#333
     style E fill:#FADBD8,stroke:#E74C3C,color:#333
     style F fill:#FCF3CF,stroke:#F1C40F,color:#333
+    style G fill:#D4E6F1,stroke:#2E86C1,color:#333
 ```
 
 </div>
