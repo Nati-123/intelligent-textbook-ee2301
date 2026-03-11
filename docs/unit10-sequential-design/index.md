@@ -435,18 +435,18 @@ flowchart TD
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-The key design insight is determining *when* each bit should toggle. Observing the binary counting sequence:
+The key design insight is determining *when* each bit should toggle. Look carefully at the first several values of the 4-bit binary counting sequence and notice how each column behaves:
 
-```
-0000
-0001
-0010
-0011
-0100
-...
-```
+| Decimal | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | What toggles on the **next** clock edge |
+|---------|-------|-------|-------|-------|-----------------------------------------|
+| 0 | 0 | 0 | 0 | 0 | $Q_0$ (always toggles) |
+| 1 | 0 | 0 | 0 | 1 | $Q_1$ and $Q_0$ (because $Q_0 = 1$) |
+| 2 | 0 | 0 | 1 | 0 | $Q_0$ |
+| 3 | 0 | 0 | 1 | 1 | $Q_2$, $Q_1$, $Q_0$ (because $Q_1 Q_0 = 11$) |
+| 4 | 0 | 1 | 0 | 0 | $Q_0$ |
+| ... | | | | | |
 
-A bit at position $i$ toggles when all lower-order bits ($Q_0$ through $Q_{i-1}$) are simultaneously 1. This observation yields the toggle equations:
+The **pattern**: a bit at position $i$ toggles when **all** of the lower-order bits ($Q_0$ through $Q_{i-1}$) are simultaneously **1** — that is, when the lower portion of the counter is about to overflow and carry into bit $i$.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Synchronous Up Counter Toggle Equations</h4>
 
@@ -458,17 +458,22 @@ $T_2 = Q_0 \cdot Q_1$
 
 $T_3 = Q_0 \cdot Q_1 \cdot Q_2$
 
-In general:
+In general, the toggle input for bit $i$ is the AND (logical product) of every lower-order output:
 
 $T_i = \prod_{j=0}^{i-1} Q_j$
 
 where:
 
 - $T_i$ is the toggle input for flip-flop $i$
-- $Q_j$ is the output of flip-flop $j$
-- The product represents a logical AND of all lower-order outputs
+- $Q_j$ is the current output of flip-flop $j$
+- The $\prod$ symbol denotes a logical AND (product) of all terms from $j = 0$ to $j = i - 1$
 
-The least significant bit ($Q_0$) toggles on every clock edge. $Q_1$ toggles only when $Q_0 = 1$. $Q_2$ toggles only when $Q_0 = Q_1 = 1$, and so on.
+Reading the equations in plain language:
+
+- $Q_0$ toggles on **every** clock edge ($T_0 = 1$, always true).
+- $Q_1$ toggles only when $Q_0 = 1$ (the ones place is about to carry).
+- $Q_2$ toggles only when $Q_0 = Q_1 = 1$ (the two lowest bits are both 1).
+- $Q_3$ toggles only when $Q_0 = Q_1 = Q_2 = 1$ (the three lowest bits are all 1).
 
 </div>
 
@@ -478,7 +483,7 @@ The least significant bit ($Q_0$) toggles on every clock edge. $Q_1$ toggles onl
 
 A **down counter** counts in reverse: $1111 \rightarrow 1110 \rightarrow 1101 \rightarrow \cdots \rightarrow 0000 \rightarrow 1111$.
 
-The toggle conditions for a down counter use the complements of the lower-order bits:
+The logic mirrors the up counter, but with **complemented** outputs. A bit at position $i$ toggles when all lower-order bits are simultaneously **0** — meaning the lower portion is about to underflow and borrow from bit $i$:
 
 $T_0 = 1$
 
@@ -488,7 +493,7 @@ $T_2 = Q_0' \cdot Q_1'$
 
 $T_3 = Q_0' \cdot Q_1' \cdot Q_2'$
 
-A bit at position $i$ toggles when all lower-order bits are simultaneously 0 (about to borrow).
+In plain language: $Q_1$ toggles when $Q_0 = 0$, $Q_2$ toggles when $Q_0 = Q_1 = 0$, and so on. Compare this directly with the up counter — the only change is replacing each $Q_j$ with its complement $Q_j'$.
 
 </div>
 
@@ -496,10 +501,12 @@ A bit at position $i$ toggles when all lower-order bits are simultaneously 0 (ab
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-An **up/down counter** combines both counting directions with a direction control signal $Dir$:
+An **up/down counter** combines both counting directions into a single circuit using a direction control signal $Dir$:
 
-- When $Dir = 1$: Count up (use $Q_j$ in toggle terms)
-- When $Dir = 0$: Count down (use $Q_j'$ in toggle terms)
+- When $Dir = 1$: Count **up** — use $Q_j$ in the toggle terms (carry logic)
+- When $Dir = 0$: Count **down** — use $Q_j'$ in the toggle terms (borrow logic)
+
+The idea is to place a multiplexer-like expression at each stage that selects between $Q_j$ (for up) and $Q_j'$ (for down), controlled by $Dir$.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Up/Down Counter Toggle Equation</h4>
 
@@ -507,15 +514,14 @@ $T_i = \prod_{j=0}^{i-1} (Dir \cdot Q_j + Dir' \cdot Q_j')$
 
 where:
 
-- $Dir$ is the direction control (1 = up, 0 = down)
-- The MUX-like expression selects between $Q_j$ and $Q_j'$
+- $Dir$ is the direction control signal (1 = count up, 0 = count down)
+- The expression $(Dir \cdot Q_j + Dir' \cdot Q_j')$ acts like a 2-to-1 MUX: it passes $Q_j$ when $Dir = 1$ and $Q_j'$ when $Dir = 0$
+- The $\prod$ (logical AND) chains these MUX terms together, just as in the individual up and down counters
 
-Each AND chain includes a multiplexer-like term that selects $Q_j$ (for up counting) or $Q_j'$ (for down counting) based on the direction signal.
-
-| Dir | Counting Direction | Toggle Condition for Bit $i$ |
-|-----|-------------------|------------------------------|
-| 1 | Up | All lower bits are 1 |
-| 0 | Down | All lower bits are 0 |
+| Dir | Counting Direction | Toggle Condition for Bit $i$ | Logic Used |
+|-----|-------------------|------------------------------|------------|
+| 1 | Up | All lower bits are 1 (carry) | $Q_j$ terms |
+| 0 | Down | All lower bits are 0 (borrow) | $Q_j'$ terms |
 
 </div>
 
