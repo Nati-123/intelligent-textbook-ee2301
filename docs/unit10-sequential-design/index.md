@@ -1268,67 +1268,90 @@ Consider a 3-state Moore FSM with binary assignment $S_0 = 00$, $S_1 = 01$, $S_2
 <h4 style="color: #5A3EED; font-weight: 600;">K-map for $D_1$ ($Q_1^+$)</h4>
 
 <div style="text-align: center; margin: 1.2rem 0;">
-<svg viewBox="0 0 420 230" style="max-width: 400px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 520 310" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .km-cell { stroke: #455A64; stroke-width: 1.5; rx: 2; }
-      .km-text { font-family: 'Courier New', monospace; font-size: 16px; font-weight: 700; text-anchor: middle; }
-      .km-var  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 700; }
-      .km-head { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 600; fill: #555; text-anchor: middle; }
-      .km-group { fill: none; stroke-width: 2.5; rx: 8; ry: 8; }
+      .km-cell { stroke: #455A64; stroke-width: 1.5; }
+      .km-text { font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+      .km-var  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; }
+      .km-head { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; fill: #333; text-anchor: middle; dominant-baseline: central; }
+      .km-group { fill: none; stroke-width: 3; rx: 10; ry: 10; }
+      .km-note { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; }
     </style>
   </defs>
-  <rect x="0" y="0" width="420" height="230" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="0" y="0" width="520" height="310" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
   <!-- Title -->
-  <text x="210" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">K-map for D₁ (Q₁⁺)</text>
+  <text x="260" y="24" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="700" fill="#5A3EED">K-map for D₁ (Q₁⁺)  — 3-State FSM Example</text>
 
-  <!-- Column headers: Q₁Q₀ -->
-  <text x="100" y="52" class="km-var" fill="#2980B9">Q₁Q₀ \ X</text>
-  <text x="210" y="52" class="km-head">X=0</text>
-  <text x="310" y="52" class="km-head">X=1</text>
+  <!-- Axis labels -->
+  <text x="135" y="55" class="km-var" fill="#2980B9">Q₁ Q₀</text>
+  <text x="290" y="42" class="km-var" fill="#E67E22">X</text>
 
-  <!-- Row headers -->
-  <text x="140" y="83" class="km-head">00</text>
-  <text x="140" y="123" class="km-head">01</text>
-  <text x="140" y="163" class="km-head">11</text>
-  <text x="140" y="203" class="km-head">10</text>
+  <!-- Column headers -->
+  <text x="230" y="65" class="km-head">0</text>
+  <text x="340" y="65" class="km-head">1</text>
 
-  <!-- Grid cells -->
-  <!-- Row 00 -->
-  <rect x="170" y="60" width="80" height="30" class="km-cell" fill="#FFF"/>
-  <text x="210" y="81" class="km-text" fill="#999">0</text>
-  <rect x="270" y="60" width="80" height="30" class="km-cell" fill="#FFF"/>
-  <text x="310" y="81" class="km-text" fill="#999">0</text>
+  <!-- Gray code bar under X label -->
+  <line x1="190" y1="52" x2="380" y2="52" stroke="#E67E22" stroke-width="2"/>
 
-  <!-- Row 01 -->
-  <rect x="170" y="100" width="80" height="30" class="km-cell" fill="#E8F5E9"/>
-  <text x="210" y="121" class="km-text" fill="#2E7D32">1</text>
-  <rect x="270" y="100" width="80" height="30" class="km-cell" fill="#FFF"/>
-  <text x="310" y="121" class="km-text" fill="#999">0</text>
+  <!-- Row headers with Gray code ordering -->
+  <text x="155" y="105" class="km-head">0 0</text>
+  <text x="155" y="150" class="km-head">0 1</text>
+  <text x="155" y="195" class="km-head">1 1</text>
+  <text x="155" y="240" class="km-head">1 0</text>
 
-  <!-- Row 11 (don't care - unused state) -->
-  <rect x="170" y="140" width="80" height="30" class="km-cell" fill="#FFF8E1"/>
-  <text x="210" y="161" class="km-text" fill="#F57F17">X</text>
-  <rect x="270" y="140" width="80" height="30" class="km-cell" fill="#FFF8E1"/>
-  <text x="310" y="161" class="km-text" fill="#F57F17">X</text>
+  <!-- Gray code bar beside Q₁Q₀ label -->
+  <line x1="135" y1="70" x2="135" y2="258" stroke="#2980B9" stroke-width="2"/>
 
-  <!-- Row 10 -->
-  <rect x="170" y="180" width="80" height="30" class="km-cell" fill="#FFF"/>
-  <text x="210" y="201" class="km-text" fill="#999">0</text>
-  <rect x="270" y="180" width="80" height="30" class="km-cell" fill="#FFF"/>
-  <text x="310" y="201" class="km-text" fill="#999">0</text>
+  <!-- Grid cells (larger, clearer) -->
+  <!-- Row Q₁Q₀ = 00 -->
+  <rect x="190" y="80" width="90" height="40" class="km-cell" fill="#FFF"/>
+  <text x="235" y="100" class="km-text" fill="#BDBDBD">0</text>
+  <rect x="300" y="80" width="90" height="40" class="km-cell" fill="#FFF"/>
+  <text x="345" y="100" class="km-text" fill="#BDBDBD">0</text>
 
-  <!-- Group 1: Q₀·X' (cells 01/X=0 and 11/X=0) -->
-  <rect x="167" y="97" width="86" height="76" class="km-group" stroke="#4CAF50" stroke-dasharray="0"/>
+  <!-- Row Q₁Q₀ = 01 -->
+  <rect x="190" y="130" width="90" height="40" class="km-cell" fill="#E8F5E9"/>
+  <text x="235" y="150" class="km-text" fill="#2E7D32">1</text>
+  <rect x="300" y="130" width="90" height="40" class="km-cell" fill="#FFF"/>
+  <text x="345" y="150" class="km-text" fill="#BDBDBD">0</text>
 
-  <!-- Group label -->
-  <text x="390" y="135" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#4CAF50">Q₀·X'</text>
-  <line x1="256" y1="130" x2="382" y2="130" stroke="#4CAF50" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Row Q₁Q₀ = 11 (don't care — unused state) -->
+  <rect x="190" y="175" width="90" height="40" class="km-cell" fill="#FFF8E1"/>
+  <text x="235" y="195" class="km-text" fill="#F57F17">d</text>
+  <rect x="300" y="175" width="90" height="40" class="km-cell" fill="#FFF8E1"/>
+  <text x="345" y="195" class="km-text" fill="#F57F17">d</text>
+
+  <!-- Row Q₁Q₀ = 10 -->
+  <rect x="190" y="220" width="90" height="40" class="km-cell" fill="#FFF"/>
+  <text x="235" y="240" class="km-text" fill="#BDBDBD">0</text>
+  <rect x="300" y="220" width="90" height="40" class="km-cell" fill="#FFF"/>
+  <text x="345" y="240" class="km-text" fill="#BDBDBD">0</text>
+
+  <!-- Group: Q₀·X' (cells at rows 01 and 11, column X=0) -->
+  <rect x="186" y="126" width="98" height="93" class="km-group" stroke="#4CAF50"/>
+
+  <!-- Group label with arrow -->
+  <text x="450" y="170" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#4CAF50">Q₀ · X'</text>
+  <line x1="288" y1="170" x2="440" y2="170" stroke="#4CAF50" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <polygon points="288,167 280,170 288,173" fill="#4CAF50"/>
+
+  <!-- Don't-care legend -->
+  <rect x="190" y="275" width="18" height="14" rx="2" fill="#FFF8E1" stroke="#F57F17" stroke-width="1"/>
+  <text x="215" y="286" class="km-note" fill="#555">d = don't care (state 11 is unused, can be treated as 0 or 1)</text>
+
+  <!-- 1-cell legend -->
+  <rect x="190" y="293" width="18" height="14" rx="2" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="215" y="304" class="km-note" fill="#555">1 = Q₁⁺ is 1 for this input combination</text>
 </svg>
 </div>
 
-From the K-map, the 1-cell at $Q_1Q_0 = 01, X = 0$ groups with the don't-care at $Q_1Q_0 = 11, X = 0$, yielding the term $Q_0 \cdot X'$. For the 3-state example, this is the only group:
+**Reading the K-map:** The single 1-cell sits at row $Q_1Q_0 = 01$, column $X = 0$. It groups vertically with the don't-care cell at row $Q_1Q_0 = 11$ (same column $X = 0$). Grouping these two adjacent cells eliminates the variable $Q_1$ (which changes between the two rows), leaving the common variables $Q_0 = 1$ and $X = 0$:
+
+**Result:** $D_1 = Q_0 \cdot X'$
+
+Since this is the only group, no OR operation is needed. For the 3-state example, the remaining equations are:
 
 $D_1 = Q_0 \cdot X'$
 
