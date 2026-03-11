@@ -259,7 +259,7 @@ After 4 clock cycles, the first bit entered (1) appears at the serial output.
 <h4 style="color: #5A3EED; font-weight: 600;">MicroSim: Shift Register Simulator</h4>
 
 <div style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 18px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
-<iframe src="../sims/shift-register-simulator/main.html" width="100%" height="530px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
+<iframe src="../sims/shift-register-simulator/main.html" width="100%" height="560px" scrolling="no" style="border:none; border-radius:8px; overflow:hidden;"></iframe>
 </div>
 
 ---
