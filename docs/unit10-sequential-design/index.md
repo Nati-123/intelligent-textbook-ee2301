@@ -1128,6 +1128,92 @@ The **next-state logic** is the combinational circuit that computes the next sta
 
 </div>
 
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Next-State Logic Block Diagram</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The following block diagram shows the general architecture of an FSM implemented with D flip-flops. The input $X$ and the current state outputs ($Q_1, Q_0$) feed into the **next-state combinational logic**, which computes the D inputs ($D_1, D_0$). On each rising clock edge, the flip-flops capture these values as the new state. The **output logic** derives $Z$ from the state variables (Moore) or from both state and input (Mealy).
+
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 680 310" style="max-width: 660px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .fsm-block { rx: 8; ry: 8; stroke-width: 2; }
+      .fsm-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .fsm-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #555; }
+      .fsm-sig   { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; }
+      .fsm-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .fsm-fb    { stroke: #E53935; stroke-width: 2.2; fill: none; stroke-dasharray: 7,4; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="680" height="310" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Input -->
+  <text x="28" y="120" class="fsm-sig" fill="#1565C0">X</text>
+  <line x1="42" y1="116" x2="120" y2="116" class="fsm-wire"/>
+  <polygon points="116,112 124,116 116,120" fill="#455A64"/>
+
+  <!-- Next-State Logic block -->
+  <rect x="125" y="70" width="170" height="120" class="fsm-block" fill="#D6EAF8" stroke="#2980B9"/>
+  <text x="210" y="120" text-anchor="middle" class="fsm-label" font-size="14" fill="#2980B9">Next-State</text>
+  <text x="210" y="138" text-anchor="middle" class="fsm-label" font-size="14" fill="#2980B9">Combinational Logic</text>
+  <text x="135" y="92" class="fsm-small">Inputs: X, Q₁, Q₀</text>
+  <text x="135" y="170" class="fsm-small">Outputs: D₁, D₀</text>
+
+  <!-- Wires from Next-State to Flip-Flops -->
+  <line x1="295" y1="110" x2="370" y2="110" class="fsm-wire"/>
+  <polygon points="366,106 374,110 366,114" fill="#455A64"/>
+  <text x="325" y="104" class="fsm-sig" fill="#333">D₁</text>
+
+  <line x1="295" y1="150" x2="370" y2="150" class="fsm-wire"/>
+  <polygon points="366,146 374,150 366,154" fill="#455A64"/>
+  <text x="325" y="144" class="fsm-sig" fill="#333">D₀</text>
+
+  <!-- State Register (Flip-Flops) -->
+  <rect x="375" y="70" width="130" height="120" class="fsm-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="440" y="115" text-anchor="middle" class="fsm-label" font-size="14" fill="#7D3C98">State Register</text>
+  <text x="440" y="135" text-anchor="middle" class="fsm-label" font-size="13" fill="#7D3C98">(D Flip-Flops)</text>
+
+  <!-- Clock input -->
+  <text x="410" y="210" class="fsm-sig" fill="#F1C40F">CLK</text>
+  <line x1="440" y1="198" x2="440" y2="190" class="fsm-wire" stroke="#F1C40F"/>
+  <polygon points="436,193 440,185 444,193" fill="#F1C40F"/>
+
+  <!-- Wires from FFs to Output Logic -->
+  <line x1="505" y1="110" x2="560" y2="110" class="fsm-wire"/>
+  <polygon points="556,106 564,110 556,114" fill="#455A64"/>
+  <text x="523" y="104" class="fsm-sig" fill="#333">Q₁</text>
+
+  <line x1="505" y1="150" x2="560" y2="150" class="fsm-wire"/>
+  <polygon points="556,146 564,150 556,154" fill="#455A64"/>
+  <text x="523" y="144" class="fsm-sig" fill="#333">Q₀</text>
+
+  <!-- Output Logic block -->
+  <rect x="565" y="85" width="95" height="80" class="fsm-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="612" y="120" text-anchor="middle" class="fsm-label" font-size="13" fill="#E67E22">Output</text>
+  <text x="612" y="137" text-anchor="middle" class="fsm-label" font-size="13" fill="#E67E22">Logic</text>
+
+  <!-- Output Z -->
+  <line x1="640" y1="125" x2="670" y2="125" class="fsm-wire" stroke="#E67E22" stroke-width="2.5"/>
+  <text x="668" y="120" class="fsm-sig" fill="#E67E22">Z</text>
+
+  <!-- Feedback path (Q back to next-state logic) -->
+  <line x1="530" y1="130" x2="530" y2="270" class="fsm-fb"/>
+  <line x1="530" y1="270" x2="90" y2="270" class="fsm-fb"/>
+  <line x1="90" y1="270" x2="90" y2="145" class="fsm-fb"/>
+  <line x1="90" y1="145" x2="125" y2="145" class="fsm-fb"/>
+  <polygon points="121,141 129,145 121,149" fill="#E53935"/>
+  <text x="300" y="288" text-anchor="middle" class="fsm-small" style="fill:#E53935; font-weight:600;">Current State Feedback (Q₁, Q₀)</text>
+
+  <!-- Q+ label on next-state output side -->
+  <text x="210" y="56" text-anchor="middle" class="fsm-small" style="fill:#2980B9; font-weight:600;">Computes Q⁺ = next state</text>
+</svg>
+</div>
+
+The red dashed feedback path is what makes the circuit sequential — the current state outputs feed back into the next-state logic, creating a loop that is broken only by the clock edge.
+
+</div>
+
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.18.1 Using D Flip-Flops</h3>
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
@@ -1177,7 +1263,72 @@ Consider a 3-state Moore FSM with binary assignment $S_0 = 00$, $S_1 = 01$, $S_2
 
 (State 11 is unused — marked as don't care)
 
-**K-map simplification yields:**
+**K-map simplification:**
+
+<h4 style="color: #5A3EED; font-weight: 600;">K-map for $D_1$ ($Q_1^+$)</h4>
+
+<div style="text-align: center; margin: 1.2rem 0;">
+<svg viewBox="0 0 420 230" style="max-width: 400px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .km-cell { stroke: #455A64; stroke-width: 1.5; rx: 2; }
+      .km-text { font-family: 'Courier New', monospace; font-size: 16px; font-weight: 700; text-anchor: middle; }
+      .km-var  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 700; }
+      .km-head { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 600; fill: #555; text-anchor: middle; }
+      .km-group { fill: none; stroke-width: 2.5; rx: 8; ry: 8; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="420" height="230" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="210" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">K-map for D₁ (Q₁⁺)</text>
+
+  <!-- Column headers: Q₁Q₀ -->
+  <text x="100" y="52" class="km-var" fill="#2980B9">Q₁Q₀ \ X</text>
+  <text x="210" y="52" class="km-head">X=0</text>
+  <text x="310" y="52" class="km-head">X=1</text>
+
+  <!-- Row headers -->
+  <text x="140" y="83" class="km-head">00</text>
+  <text x="140" y="123" class="km-head">01</text>
+  <text x="140" y="163" class="km-head">11</text>
+  <text x="140" y="203" class="km-head">10</text>
+
+  <!-- Grid cells -->
+  <!-- Row 00 -->
+  <rect x="170" y="60" width="80" height="30" class="km-cell" fill="#FFF"/>
+  <text x="210" y="81" class="km-text" fill="#999">0</text>
+  <rect x="270" y="60" width="80" height="30" class="km-cell" fill="#FFF"/>
+  <text x="310" y="81" class="km-text" fill="#999">0</text>
+
+  <!-- Row 01 -->
+  <rect x="170" y="100" width="80" height="30" class="km-cell" fill="#E8F5E9"/>
+  <text x="210" y="121" class="km-text" fill="#2E7D32">1</text>
+  <rect x="270" y="100" width="80" height="30" class="km-cell" fill="#FFF"/>
+  <text x="310" y="121" class="km-text" fill="#999">0</text>
+
+  <!-- Row 11 (don't care - unused state) -->
+  <rect x="170" y="140" width="80" height="30" class="km-cell" fill="#FFF8E1"/>
+  <text x="210" y="161" class="km-text" fill="#F57F17">X</text>
+  <rect x="270" y="140" width="80" height="30" class="km-cell" fill="#FFF8E1"/>
+  <text x="310" y="161" class="km-text" fill="#F57F17">X</text>
+
+  <!-- Row 10 -->
+  <rect x="170" y="180" width="80" height="30" class="km-cell" fill="#FFF"/>
+  <text x="210" y="201" class="km-text" fill="#999">0</text>
+  <rect x="270" y="180" width="80" height="30" class="km-cell" fill="#FFF"/>
+  <text x="310" y="201" class="km-text" fill="#999">0</text>
+
+  <!-- Group 1: Q₀·X' (cells 01/X=0 and 11/X=0) -->
+  <rect x="167" y="97" width="86" height="76" class="km-group" stroke="#4CAF50" stroke-dasharray="0"/>
+
+  <!-- Group label -->
+  <text x="390" y="135" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#4CAF50">Q₀·X'</text>
+  <line x1="256" y1="130" x2="382" y2="130" stroke="#4CAF50" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>
+</div>
+
+From the K-map, the 1-cell at $Q_1Q_0 = 01, X = 0$ groups with the don't-care at $Q_1Q_0 = 11, X = 0$, yielding the term $Q_0 \cdot X'$. For the 3-state example, this is the only group:
 
 $D_1 = Q_0 \cdot X'$
 
@@ -1223,6 +1374,130 @@ Derive output expressions using K-maps with both state variables and input varia
 
 !!! tip "Output-Based State Assignment"
     Sometimes choosing state codes so that the output value matches one or more state bits can eliminate the output logic entirely. For example, if a Moore machine has $Z = 1$ in states $S_2$ and $S_3$ and $Z = 0$ in $S_0$ and $S_1$, assigning $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, $S_3 = 11$ makes $Z = Q_1$ — a free output with no additional gates.
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: Complete FSM Hardware Circuit (3-State Example)</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+This circuit implements the 3-state Moore FSM from Section 10.18.3 using the derived equations: $D_1 = Q_0 \cdot X'$, $D_0 = X$, and $Z = Q_1$. Notice how simple the output logic is — $Z$ is just the $Q_1$ wire, requiring no additional gates.
+
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 660 340" style="max-width: 640px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .hw-block { rx: 6; ry: 6; stroke-width: 2; }
+      .hw-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .hw-sig   { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; }
+      .hw-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .hw-eq    { font-family: 'Courier New', monospace; font-size: 11px; fill: #333; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="660" height="340" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="330" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">3-State Moore FSM — Hardware Implementation</text>
+
+  <!-- Input X -->
+  <text x="15" y="105" class="hw-sig" fill="#1565C0">X</text>
+  <line x1="30" y1="100" x2="85" y2="100" class="hw-wire"/>
+
+  <!-- NOT gate for X' -->
+  <rect x="88" y="55" width="55" height="30" class="hw-block" fill="#FFF3E0" stroke="#E67E22"/>
+  <text x="115" y="74" text-anchor="middle" class="hw-label" font-size="11" fill="#E67E22">NOT</text>
+  <line x1="55" y1="100" x2="55" y2="70" class="hw-wire"/>
+  <line x1="55" y1="70" x2="88" y2="70" class="hw-wire"/>
+  <polygon points="84,66 92,70 84,74" fill="#455A64"/>
+  <!-- X' output -->
+  <line x1="143" y1="70" x2="165" y2="70" class="hw-wire"/>
+  <text x="150" y="62" class="hw-sig" fill="#333">X'</text>
+
+  <!-- AND gate: Q₀ · X' -->
+  <rect x="168" y="50" width="65" height="40" class="hw-block" fill="#E8F5E9" stroke="#4CAF50"/>
+  <text x="200" y="74" text-anchor="middle" class="hw-label" font-size="11" fill="#388E3C">AND</text>
+
+  <!-- Q₀ feedback into AND -->
+  <line x1="168" y1="80" x2="148" y2="80" class="hw-wire"/>
+  <text x="150" y="92" class="hw-sig" fill="#E53935">Q₀</text>
+
+  <!-- AND output = D₁ -->
+  <line x1="233" y1="70" x2="300" y2="70" class="hw-wire"/>
+  <polygon points="296,66 304,70 296,74" fill="#455A64"/>
+  <text x="260" y="62" class="hw-sig" fill="#333">D₁</text>
+
+  <!-- D Flip-Flop 1 -->
+  <rect x="305" y="45" width="90" height="70" class="hw-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="350" y="72" text-anchor="middle" class="hw-label" font-size="12" fill="#7D3C98">D FF₁</text>
+  <text x="315" y="62" font-family="Courier New" font-size="10" fill="#7D3C98">D</text>
+  <text x="380" y="62" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <!-- Clock triangle -->
+  <polygon points="305,100 315,95 305,90" fill="#F1C40F" stroke="#F1C40F" stroke-width="1"/>
+
+  <!-- Q₁ output -->
+  <line x1="395" y1="70" x2="470" y2="70" class="hw-wire"/>
+  <text x="420" y="62" class="hw-sig" fill="#333">Q₁</text>
+
+  <!-- D₀ = X wire to FF₀ -->
+  <line x1="85" y1="100" x2="85" y2="200" class="hw-wire"/>
+  <line x1="85" y1="200" x2="300" y2="200" class="hw-wire"/>
+  <polygon points="296,196 304,200 296,204" fill="#455A64"/>
+  <text x="260" y="192" class="hw-sig" fill="#333">D₀ = X</text>
+
+  <!-- Junction dot at X split -->
+  <circle cx="55" cy="100" r="3.5" fill="#455A64"/>
+  <circle cx="85" cy="100" r="3.5" fill="#455A64"/>
+
+  <!-- D Flip-Flop 0 -->
+  <rect x="305" y="175" width="90" height="70" class="hw-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="350" y="202" text-anchor="middle" class="hw-label" font-size="12" fill="#7D3C98">D FF₀</text>
+  <text x="315" y="192" font-family="Courier New" font-size="10" fill="#7D3C98">D</text>
+  <text x="380" y="192" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <!-- Clock triangle -->
+  <polygon points="305,230 315,225 305,220" fill="#F1C40F" stroke="#F1C40F" stroke-width="1"/>
+
+  <!-- Q₀ output -->
+  <line x1="395" y1="200" x2="470" y2="200" class="hw-wire"/>
+  <text x="420" y="192" class="hw-sig" fill="#333">Q₀</text>
+
+  <!-- Clock line -->
+  <text x="260" y="280" class="hw-sig" fill="#F1C40F">CLK</text>
+  <line x1="285" y1="276" x2="350" y2="276" class="hw-wire" stroke="#F1C40F"/>
+  <line x1="350" y1="276" x2="350" y2="245" class="hw-wire" stroke="#F1C40F"/>
+  <line x1="350" y1="276" x2="350" y2="276" class="hw-wire" stroke="#F1C40F"/>
+  <!-- CLK to FF1 -->
+  <line x1="350" y1="276" x2="350" y2="246" class="hw-wire" stroke="#F1C40F"/>
+  <line x1="350" y1="115" x2="350" y2="135" class="hw-wire" stroke="#F1C40F"/>
+  <circle cx="350" cy="276" r="3" fill="#F1C40F"/>
+  <!-- CLK vertical to FF0 -->
+  <line x1="350" y1="135" x2="290" y2="135" class="hw-wire" stroke="#F1C40F" stroke-dasharray="4,3"/>
+  <text x="278" y="140" font-family="Segoe UI" font-size="9" fill="#F1C40F" font-weight="600">CLK</text>
+
+  <!-- Q₁ feedback for Q₀ into AND gate -->
+  <line x1="440" y1="200" x2="440" y2="290" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="440" y1="290" x2="130" y2="290" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="130" y1="290" x2="130" y2="80" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="130" y1="80" x2="148" y2="80" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <circle cx="440" cy="200" r="3" fill="#E53935"/>
+
+  <!-- Output: Z = Q₁ -->
+  <rect x="500" y="50" width="80" height="40" class="hw-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="540" y="74" text-anchor="middle" class="hw-label" font-size="11" fill="#E67E22">Z = Q₁</text>
+  <line x1="470" y1="70" x2="500" y2="70" class="hw-wire"/>
+  <line x1="580" y1="70" x2="630" y2="70" class="hw-wire" stroke="#E67E22" stroke-width="2.5"/>
+  <text x="635" y="74" class="hw-sig" fill="#E67E22">Z</text>
+  <circle cx="470" cy="70" r="3" fill="#455A64"/>
+
+  <!-- Equation summary -->
+  <text x="500" y="160" class="hw-eq">D₁ = Q₀ · X'</text>
+  <text x="500" y="178" class="hw-eq">D₀ = X</text>
+  <text x="500" y="196" class="hw-eq">Z  = Q₁</text>
+  <rect x="493" y="145" width="120" height="60" rx="6" fill="none" stroke="#5A3EED" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="553" y="140" text-anchor="middle" font-family="Segoe UI" font-size="9" font-weight="600" fill="#5A3EED">Design Equations</text>
+</svg>
+</div>
+
+The circuit has only three logic elements beyond the flip-flops: one NOT gate (to produce $X'$), one AND gate (to compute $D_1 = Q_0 \cdot X'$), and a direct wire for $D_0 = X$. The output $Z = Q_1$ requires no gate at all — the state encoding was chosen so that $Q_1$ directly represents the output.
+
+</div>
 
 ---
 
@@ -1316,19 +1591,84 @@ $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, $S_3 = 11$
 
 **For $D_1 = Q_1^+$:**
 
-Using a 3-variable K-map with variables $Q_1$, $Q_0$, $X$:
+<div style="text-align: center; margin: 1.2rem 0;">
+<svg viewBox="0 0 460 240" style="max-width: 440px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .km2-cell { stroke: #455A64; stroke-width: 1.5; rx: 2; }
+      .km2-text { font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; text-anchor: middle; }
+      .km2-head { font-family: 'Courier New', monospace; font-size: 11px; font-weight: 600; fill: #555; text-anchor: middle; }
+      .km2-var  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 700; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="460" height="240" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="230" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">K-map for D₁ (101 Sequence Detector)</text>
 
-$D_1 = Q_0' \cdot Q_1' \cdot X' \cdot 0 + \ldots$
+  <!-- Headers -->
+  <text x="95" y="48" class="km2-var" fill="#2980B9">Q₁Q₀ \ X</text>
+  <text x="205" y="48" class="km2-head">X=0</text>
+  <text x="295" y="48" class="km2-head">X=1</text>
 
-Simplifying:
+  <!-- Row headers (Gray code order) -->
+  <text x="140" y="78" class="km2-head">00</text>
+  <text x="140" y="118" class="km2-head">01</text>
+  <text x="140" y="158" class="km2-head">11</text>
+  <text x="140" y="198" class="km2-head">10</text>
+
+  <!-- Row 00: Q₁⁺ = 0, 0 -->
+  <rect x="165" y="58" width="80" height="30" class="km2-cell" fill="#FFF"/>
+  <text x="205" y="78" class="km2-text" fill="#999">0</text>
+  <rect x="255" y="58" width="80" height="30" class="km2-cell" fill="#FFF"/>
+  <text x="295" y="78" class="km2-text" fill="#999">0</text>
+
+  <!-- Row 01: Q₁⁺ = 1, 0 -->
+  <rect x="165" y="98" width="80" height="30" class="km2-cell" fill="#E8F5E9"/>
+  <text x="205" y="118" class="km2-text" fill="#2E7D32">1</text>
+  <rect x="255" y="98" width="80" height="30" class="km2-cell" fill="#FFF"/>
+  <text x="295" y="118" class="km2-text" fill="#999">0</text>
+
+  <!-- Row 11: Q₁⁺ = 1, 0 -->
+  <rect x="165" y="138" width="80" height="30" class="km2-cell" fill="#E3F2FD"/>
+  <text x="205" y="158" class="km2-text" fill="#1565C0">1</text>
+  <rect x="255" y="138" width="80" height="30" class="km2-cell" fill="#FFF"/>
+  <text x="295" y="158" class="km2-text" fill="#999">0</text>
+
+  <!-- Row 10: Q₁⁺ = 0, 1 -->
+  <rect x="165" y="178" width="80" height="30" class="km2-cell" fill="#FFF"/>
+  <text x="205" y="198" class="km2-text" fill="#999">0</text>
+  <rect x="255" y="178" width="80" height="30" class="km2-cell" fill="#E3F2FD"/>
+  <text x="295" y="198" class="km2-text" fill="#1565C0">1</text>
+
+  <!-- Group 1: Q₀·X' (rows 01,11 col X=0) — green -->
+  <rect x="162" y="95" width="86" height="76" rx="8" fill="none" stroke="#4CAF50" stroke-width="2.5"/>
+  <text x="400" y="125" font-family="Segoe UI" font-size="11" font-weight="700" fill="#4CAF50">Q₀ · X'</text>
+  <line x1="251" y1="130" x2="392" y2="125" stroke="#4CAF50" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Group 2: Q₁·Q₀'·X (row 10, col X=1) — blue -->
+  <rect x="252" y="175" width="86" height="36" rx="8" fill="none" stroke="#1565C0" stroke-width="2.5"/>
+  <text x="400" y="198" font-family="Segoe UI" font-size="11" font-weight="700" fill="#1565C0">Q₁ · Q₀' · X</text>
+  <line x1="341" y1="193" x2="392" y2="196" stroke="#1565C0" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>
+</div>
+
+Two groups emerge from the K-map:
+
+- **Green group** (rows 01 and 11, column $X = 0$): The common variables are $Q_0 = 1$ and $X = 0$, giving the term $Q_0 \cdot X'$
+- **Blue group** (row 10, column $X = 1$): This isolated cell gives $Q_1 \cdot Q_0' \cdot X$
+
+Combining both groups with OR:
 
 $D_1 = Q_0 X' + Q_1 Q_0' X$
 
 **For $D_0 = Q_0^+$:**
 
+Constructing the K-map for $D_0$ reveals that $Q_0^+ = 1$ whenever $X = 1$, regardless of the current state. Therefore:
+
 $D_0 = X$
 
 **For output $Z$:**
+
+Since this is a Moore machine, $Z$ depends only on the state. From the transition table, $Z = 1$ only when $Q_1 = 1$ and $Q_0 = 1$ (state $S_3$):
 
 $Z = Q_1 Q_0$
 
@@ -1350,6 +1690,160 @@ Let's trace the input sequence $X = 1, 0, 1, 0, 1$ starting from $S_0$:
 | 5 | 1 | $S_3$ | 11 | **1** | "101" detected again! |
 
 The output correctly goes high whenever the pattern "101" has been received, and overlapping detection works as specified.
+
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: "101" Sequence Detector — State Diagram</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The Moore state diagram for the "101" sequence detector with overlapping detection. Each state shows its output value, and transitions are labeled with the input bit.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "S0 — Idle\nZ = 0" as S0
+    state "S1 — Got '1'\nZ = 0" as S1
+    state "S2 — Got '10'\nZ = 0" as S2
+    state "S3 — Got '101'\nZ = 1" as S3
+
+    [*] --> S0
+    S0 --> S0 : 0
+    S0 --> S1 : 1
+    S1 --> S1 : 1
+    S1 --> S2 : 0
+    S2 --> S0 : 0
+    S2 --> S3 : 1
+    S3 --> S2 : 0
+    S3 --> S1 : 1
+```
+
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 700;">Diagram: "101" Sequence Detector — Hardware Circuit</h4>
+
+<div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
+
+The complete hardware implementation using D flip-flops with the derived equations: $D_1 = Q_0 X' + Q_1 Q_0' X$, $D_0 = X$, and $Z = Q_1 Q_0$.
+
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 700 370" style="max-width: 680px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .sd-block { rx: 6; ry: 6; stroke-width: 2; }
+      .sd-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .sd-sig   { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; }
+      .sd-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .sd-eq    { font-family: 'Courier New', monospace; font-size: 11px; fill: #333; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="700" height="370" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="350" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">"101" Sequence Detector — Moore FSM Circuit</text>
+
+  <!-- Input X -->
+  <text x="12" y="140" class="sd-sig" fill="#1565C0">X</text>
+  <line x1="28" y1="136" x2="80" y2="136" class="sd-wire"/>
+  <circle cx="60" cy="136" r="3" fill="#455A64"/>
+
+  <!-- Next-State Logic Block -->
+  <rect x="85" y="55" width="180" height="170" class="sd-block" fill="#D6EAF8" stroke="#2980B9"/>
+  <text x="175" y="78" text-anchor="middle" class="sd-label" font-size="13" fill="#2980B9">Next-State Logic</text>
+
+  <!-- Equations inside the block -->
+  <text x="100" y="105" class="sd-eq" fill="#2980B9">D₁ = Q₀·X' + Q₁·Q₀'·X</text>
+  <text x="100" y="130" class="sd-eq" fill="#2980B9">D₀ = X</text>
+
+  <!-- Gate symbols (simplified) -->
+  <rect x="100" y="145" width="50" height="22" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+  <text x="125" y="160" text-anchor="middle" font-family="Segoe UI" font-size="9" font-weight="600" fill="#388E3C">AND/OR</text>
+
+  <rect x="165" y="145" width="40" height="22" rx="4" fill="#FFF3E0" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="185" y="160" text-anchor="middle" font-family="Segoe UI" font-size="9" font-weight="600" fill="#E67E22">NOT</text>
+
+  <!-- Inputs to NSL -->
+  <line x1="60" y1="136" x2="60" y2="110" class="sd-wire"/>
+  <line x1="60" y1="110" x2="85" y2="110" class="sd-wire"/>
+  <polygon points="81,106 89,110 81,114" fill="#455A64"/>
+
+  <!-- D₁ output -->
+  <line x1="265" y1="100" x2="340" y2="100" class="sd-wire"/>
+  <polygon points="336,96 344,100 336,104" fill="#455A64"/>
+  <text x="295" y="93" class="sd-sig" fill="#333">D₁</text>
+
+  <!-- D₀ output -->
+  <line x1="265" y1="195" x2="340" y2="195" class="sd-wire"/>
+  <polygon points="336,191 344,195 336,199" fill="#455A64"/>
+  <text x="295" y="188" class="sd-sig" fill="#333">D₀</text>
+
+  <!-- D Flip-Flop 1 -->
+  <rect x="345" y="70" width="95" height="65" class="sd-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="392" y="97" text-anchor="middle" class="sd-label" font-size="12" fill="#7D3C98">D FF₁</text>
+  <text x="355" y="88" font-family="Courier New" font-size="10" fill="#7D3C98">D</text>
+  <text x="425" y="88" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <polygon points="345,122 355,117 345,112" fill="#F1C40F" stroke="#F1C40F" stroke-width="1"/>
+
+  <!-- D Flip-Flop 0 -->
+  <rect x="345" y="168" width="95" height="65" class="sd-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="392" y="195" text-anchor="middle" class="sd-label" font-size="12" fill="#7D3C98">D FF₀</text>
+  <text x="355" y="186" font-family="Courier New" font-size="10" fill="#7D3C98">D</text>
+  <text x="425" y="186" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <polygon points="345,220 355,215 345,210" fill="#F1C40F" stroke="#F1C40F" stroke-width="1"/>
+
+  <!-- Clock -->
+  <text x="300" y="295" class="sd-sig" fill="#F1C40F">CLK ↑</text>
+  <line x1="392" y1="283" x2="392" y2="233" class="sd-wire" stroke="#F1C40F"/>
+  <line x1="392" y1="168" x2="392" y2="135" class="sd-wire" stroke="#F1C40F"/>
+  <circle cx="392" cy="283" r="3" fill="#F1C40F"/>
+
+  <!-- Q₁ output -->
+  <line x1="440" y1="100" x2="510" y2="100" class="sd-wire"/>
+  <text x="463" y="93" class="sd-sig" fill="#333">Q₁</text>
+  <circle cx="490" cy="100" r="3" fill="#455A64"/>
+
+  <!-- Q₀ output -->
+  <line x1="440" y1="195" x2="510" y2="195" class="sd-wire"/>
+  <text x="463" y="188" class="sd-sig" fill="#333">Q₀</text>
+  <circle cx="490" cy="195" r="3" fill="#455A64"/>
+
+  <!-- Output Logic: AND gate for Z = Q₁·Q₀ -->
+  <rect x="530" y="120" width="70" height="50" class="sd-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="565" y="142" text-anchor="middle" class="sd-label" font-size="11" fill="#E67E22">AND</text>
+  <text x="565" y="158" text-anchor="middle" font-family="Segoe UI" font-size="9" fill="#E67E22">Z = Q₁·Q₀</text>
+
+  <!-- Q₁ to AND -->
+  <line x1="510" y1="100" x2="510" y2="135" class="sd-wire"/>
+  <line x1="510" y1="135" x2="530" y2="135" class="sd-wire"/>
+  <polygon points="526,131 534,135 526,139" fill="#455A64"/>
+
+  <!-- Q₀ to AND -->
+  <line x1="510" y1="195" x2="510" y2="155" class="sd-wire"/>
+  <line x1="510" y1="155" x2="530" y2="155" class="sd-wire"/>
+  <polygon points="526,151 534,155 526,159" fill="#455A64"/>
+
+  <!-- Z output -->
+  <line x1="600" y1="145" x2="665" y2="145" class="sd-wire" stroke="#E67E22" stroke-width="2.5"/>
+  <text x="670" y="149" class="sd-sig" fill="#E67E22">Z</text>
+
+  <!-- Feedback paths -->
+  <line x1="490" y1="100" x2="490" y2="330" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="490" y1="330" x2="50" y2="330" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="50" y1="330" x2="50" y2="180" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="50" y1="180" x2="85" y2="180" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <polygon points="81,176 89,180 81,184" fill="#E53935"/>
+
+  <line x1="490" y1="195" x2="490" y2="345" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="490" y1="345" x2="40" y2="345" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="40" y1="345" x2="40" y2="200" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <line x1="40" y1="200" x2="85" y2="200" stroke="#E53935" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+  <polygon points="81,196 89,200 81,204" fill="#E53935"/>
+
+  <text x="260" y="348" text-anchor="middle" font-family="Segoe UI" font-size="10" font-weight="600" fill="#E53935">State Feedback (Q₁, Q₀ → Next-State Logic)</text>
+</svg>
+</div>
+
+The circuit uses two D flip-flops for the two state bits, combinational logic (AND, OR, NOT gates) to implement $D_1 = Q_0 X' + Q_1 Q_0' X$, a direct connection for $D_0 = X$, and a single AND gate for the output $Z = Q_1 Q_0$. The red dashed feedback paths carry the current state back to the next-state logic, completing the sequential loop.
 
 </div>
 
