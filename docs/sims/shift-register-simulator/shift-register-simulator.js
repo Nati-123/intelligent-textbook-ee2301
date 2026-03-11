@@ -5,7 +5,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 440;
-let controlHeight = 90;
+let controlHeight = 110;
 let canvasHeight = drawHeight + controlHeight;
 
 let bits = [false, false, false, false];
