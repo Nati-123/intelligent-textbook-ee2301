@@ -697,13 +697,13 @@ Every FSM shares the same fundamental architecture: combinational logic computes
 
 ```mermaid
 flowchart LR
-    INPUT["<b>Inputs</b>"] --> CL["<b>Combinational Logic</b>\n(Next-State + Output)"]
-    CL -->|"Next State"| FF["<b>Flip-Flops</b>\n(State Register)"]
-    FF -->|"Current State\n(feedback)"| CL
+    INPUT["<b>Inputs</b>"] --> CL["<b>Next-State Logic</b>"]
+    CL -->|"Next State"| FF["<b>State Register</b>\n(Flip-Flops)"]
+    FF -->|"Current State"| CL
     FF -->|"State"| OL["<b>Output Logic</b>"]
-    INPUT -.->|"Mealy only"| OL
+    INPUT -.->|"Direct Input Path\n(Mealy Machines Only)"| OL
     OL --> OUTPUT["<b>Outputs</b>"]
-    CLK["<b>Clock</b>"] --> FF
+    CLK["<b>Clock</b>\n(State Update)"] --> FF
 
     style INPUT fill:#D5F5E3,stroke:#27AE60,color:#333
     style CL fill:#D6EAF8,stroke:#2980B9,color:#333
