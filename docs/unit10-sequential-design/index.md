@@ -762,7 +762,7 @@ Notice that the output value ($Z$) appears **inside** each state box, not on the
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-In a **Mealy machine**, outputs depend on **both the current state and the current inputs**.
+In a **Mealy machine**, the outputs depend on **both the current state and the current inputs**. Unlike a Moore machine — where knowing the state alone determines the output — a Mealy machine's output can change immediately whenever an input changes, even in the middle of a clock period. This direct input-to-output path gives Mealy machines faster response but also makes their outputs more sensitive to input noise.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Mealy Output Function</h4>
 
@@ -773,23 +773,29 @@ where:
 - $O$ is the output vector
 - $S$ is the current state
 - $I$ is the current input vector
-- $\lambda$ is the output function
+- $\lambda$ is the output function (maps each state-and-input combination to an output value)
 
 **Key characteristics:**
 
-- Outputs are associated with transitions, not states
-- Outputs can change asynchronously whenever inputs change (even within a clock period)
-- Mealy machines often require fewer states than equivalent Moore machines
-- Outputs may respond one clock cycle earlier than a Moore equivalent
-- More susceptible to output glitches if inputs change asynchronously
+- Outputs are tied to **transitions**, not to states — the same state can produce different outputs depending on the current input values
+- Outputs can change **asynchronously** whenever inputs change, even between clock edges
+- Mealy machines often require **fewer states** than an equivalent Moore machine, because a single state can produce multiple output values via different transitions
+- Outputs may respond **one clock cycle earlier** than a Moore equivalent, since they react to inputs immediately rather than waiting for a state change
+- More susceptible to **output glitches** if inputs change asynchronously or arrive with different propagation delays
 
-In a Mealy state diagram, outputs are written **on the transition arrows** in the format input/output:
+In a Mealy state diagram, outputs are written **on the transition arrows** using the notation **input/output**. Each arrow is labeled with the input condition that triggers the transition and the output produced during that transition:
 
 ```
-   +--------+            +--------+
-   |   S0   |---0/0----->|   S1   |
-   +--------+            +--------+
+   ┌────────────┐              ┌────────────┐
+   │            │   0 / 0      │            │
+   │     S0     │─────────────▶│     S1     │
+   │            │              │            │
+   └────────────┘              └────────────┘
+     ▲  1 / 0                    │  1 / 1
+     └───────────────────────────┘
 ```
+
+Notice that each arrow carries **both** the input and the output (separated by a slash), while the state boxes contain only the state name. This is the hallmark of a Mealy diagram — if you need to know the output, look at the arrow, not the state.
 
 </div>
 
