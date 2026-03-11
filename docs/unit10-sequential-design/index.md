@@ -1102,15 +1102,13 @@ Derive the combinational logic equations:
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-Build the circuit:
+After deriving the state transitions and logic equations, the final step is to implement the hardware circuit. The implementation includes five key components:
 
-- Place flip-flops for state storage
-- Implement next-state combinational logic
-- Implement output combinational logic
-- Add reset/initialization circuitry
-- Verify with timing simulation
-
-<h4 style="color: #5A3EED; font-weight: 600;">Diagram: FSM Design Procedure Flowchart</h4>
+- **Flip-flops** to store the current state — one flip-flop per state bit (e.g., two D flip-flops for a 4-state FSM with binary encoding)
+- **Next-state combinational logic** to compute the next state from the current state and inputs, using the minimized equations from Step 6
+- **Output logic** to generate the FSM outputs — derived from state variables only (Moore) or from state variables and inputs (Mealy)
+- **Reset circuitry** to initialize the machine to a known starting state on power-up or when a reset signal is asserted
+- **Timing simulation** to verify that the circuit produces the correct state sequence and outputs for all input scenarios before committing to hardware
 
 </div>
 
