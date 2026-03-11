@@ -721,7 +721,7 @@ flowchart LR
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-In a **Moore machine**, outputs depend **only on the current state**, not on the current inputs.
+In a **Moore machine**, the outputs depend **only on the current state** — the input values have no direct effect on the outputs. This means that once the FSM enters a particular state, the outputs are fully determined and remain constant until the machine transitions to a different state at the next clock edge. This is the key distinction from a Mealy machine, where outputs can change immediately in response to input changes even within the same state.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Moore Output Function</h4>
 
@@ -731,24 +731,28 @@ where:
 
 - $O$ is the output vector
 - $S$ is the current state
-- $\lambda$ is the output function
+- $\lambda$ is the output function (maps each state to a fixed output value)
 
 **Key characteristics:**
 
-- Outputs are associated with states, not transitions
-- Outputs change synchronously—only when the state changes at a clock edge
-- Output values are stable for the entire duration of each state
-- Moore machines tend to require more states than equivalent Mealy machines (because different outputs require different states)
-- Less prone to output glitches due to synchronous output changes
+- Outputs are associated with **states**, not with transitions
+- Outputs change **synchronously** — they update only when the state changes at a clock edge
+- Output values remain **stable** for the entire duration of each state, making Moore machines inherently glitch-resistant
+- Moore machines often require **more states** than an equivalent Mealy machine, because each distinct output combination must correspond to its own state
+- Preferred when **clean, glitch-free outputs** are needed (e.g., outputs that drive other synchronous logic)
 
-In a Moore state diagram, outputs are written **inside the state circles** or listed below the state name:
+In a Moore state diagram, outputs are written **inside the state circles** (or listed below the state name), because the output belongs to the state itself:
 
 ```
-   +--------+
-   | S0     |
-   | Z = 0  |---input=1--->
-   +--------+
+   ┌────────────┐                ┌────────────┐
+   │    S0      │   input = 1    │    S1      │
+   │   Z = 0    │───────────────▶│   Z = 1    │
+   └────────────┘                └────────────┘
+     ▲  input = 0                  │  input = 0
+     └─────────────────────────────┘
 ```
+
+Notice that the output value ($Z$) is labeled inside each state, not on the arrows. The arrows carry only the input condition that triggers the transition.
 
 </div>
 
