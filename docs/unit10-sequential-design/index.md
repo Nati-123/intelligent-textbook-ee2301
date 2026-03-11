@@ -721,7 +721,7 @@ flowchart LR
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-In a **Moore machine**, the outputs depend **only on the current state** — the input values have no direct effect on the outputs. This means that once the FSM enters a particular state, the outputs are fully determined and remain constant until the machine transitions to a different state at the next clock edge. This is the key distinction from a Mealy machine, where outputs can change immediately in response to input changes even within the same state.
+In a **Moore machine**, the outputs depend **only on the current state** — the current input values have no direct influence on the outputs. Once the FSM enters a given state, its outputs are fully determined and remain constant until the machine transitions to a different state on the next active clock edge. By contrast, a Mealy machine allows outputs to depend on both the current state *and* the current inputs, which can produce faster responses but also introduces the possibility of output glitches between clock edges.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Moore Output Function</h4>
 
@@ -735,11 +735,11 @@ where:
 
 **Key characteristics:**
 
-- Outputs are associated with **states**, not with transitions
-- Outputs change **synchronously** — they update only when the state changes at a clock edge
-- Output values remain **stable** for the entire duration of each state, making Moore machines inherently glitch-resistant
-- Moore machines often require **more states** than an equivalent Mealy machine, because each distinct output combination must correspond to its own state
-- Preferred when **clean, glitch-free outputs** are needed (e.g., outputs that drive other synchronous logic)
+- Outputs are tied to **states**, not to transitions — every time the machine is in a given state, the output is the same regardless of input values
+- Outputs change **synchronously** — they update only at a clock edge when the state itself changes
+- Output values remain **stable** for the entire clock period, making Moore machines inherently resistant to output glitches
+- Moore machines often require **more states** than an equivalent Mealy machine, because each unique output value must map to a distinct state
+- Preferred when **clean, glitch-free outputs** are critical (e.g., outputs driving other synchronous logic or external devices)
 
 In a Moore state diagram, outputs are written **inside the state circles** (or listed below the state name), because the output belongs to the state itself:
 
@@ -752,7 +752,7 @@ In a Moore state diagram, outputs are written **inside the state circles** (or l
      └─────────────────────────────┘
 ```
 
-Notice that the output value ($Z$) is labeled inside each state, not on the arrows. The arrows carry only the input condition that triggers the transition.
+Notice that the output value ($Z$) appears **inside** each state box, not on the transition arrows. The arrows carry only the input condition that triggers the transition. This is the hallmark of a Moore diagram — if you need to know the output, look at the state, not the arrow.
 
 </div>
 
