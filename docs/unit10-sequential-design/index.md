@@ -821,42 +821,49 @@ Both models are equally powerful—any Moore machine can be converted to an equi
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
-The following two state diagrams both implement a "01" sequence detector (output Z=1 when the input sequence "01" is detected). Compare how the **Moore machine** places the output inside each state, while the **Mealy machine** places the output on each transition arrow. Notice the Moore version needs an extra state (S2) to produce the detection output.
+Both diagrams below implement a **"01" sequence detector** — the output $Z = 1$ whenever the two most recent input bits form the pattern "01". Compare how the Moore machine places the output **inside each state**, while the Mealy machine places it **on each transition arrow**. Notice the Moore version requires an extra state (S2) solely to produce the detection output.
 
-**Moore Machine** -- output depends on state only (Z is labeled inside each state):
+**Moore Machine** — output depends on state only (Z is labeled inside each state):
 
 ```mermaid
 stateDiagram-v2
     direction LR
-    state "S0\nZ=0" as S0
-    state "S1\nZ=0" as S1
-    state "S2\nZ=1" as S2
+    state "S0 — Idle\nZ = 0" as S0
+    state "S1 — Got '0'\nZ = 0" as S1
+    state "S2 — Got '01'\nZ = 1" as S2
 
     [*] --> S0
-    S0 --> S0 : input=1
-    S0 --> S1 : input=0
-    S1 --> S2 : input=1
-    S1 --> S1 : input=0
-    S2 --> S1 : input=0
-    S2 --> S0 : input=1
+    S0 --> S0 : 1
+    S0 --> S1 : 0
+    S1 --> S1 : 0
+    S1 --> S2 : 1
+    S2 --> S1 : 0
+    S2 --> S0 : 1
 ```
 
-**Mealy Machine** -- output depends on state AND input (Z is labeled on each transition as input/output):
+- **S0 (Idle):** No part of "01" received. Input 0 moves to S1; input 1 stays in S0.
+- **S1 (Got '0'):** First bit matches. Input 1 completes the pattern → S2; input 0 stays in S1.
+- **S2 (Got '01'):** Pattern detected, $Z = 1$. Input 0 starts a new attempt → S1; input 1 resets → S0.
+
+**Mealy Machine** — output depends on state AND input (each transition is labeled **input / output**):
 
 ```mermaid
 stateDiagram-v2
     direction LR
-    state "S0" as M0
-    state "S1" as M1
+    state "S0 — Idle" as M0
+    state "S1 — Got '0'" as M1
 
     [*] --> M0
-    M0 --> M0 : 1/0
-    M0 --> M1 : 0/0
-    M1 --> M0 : 1/1
-    M1 --> M1 : 0/0
+    M0 --> M0 : 1 / 0
+    M0 --> M1 : 0 / 0
+    M1 --> M0 : 1 / 1
+    M1 --> M1 : 0 / 0
 ```
 
-The Mealy machine achieves the same detection with only 2 states (vs 3 for Moore) because it can produce the output immediately on the transition triggered by the detecting input.
+- **S0 (Idle):** Input 0 moves to S1 with output 0; input 1 stays in S0 with output 0.
+- **S1 (Got '0'):** Input 1 completes the pattern and produces $Z = 1$ immediately on the transition back to S0; input 0 stays in S1 with output 0.
+
+The Mealy machine achieves the same detection with only **2 states** (vs 3 for Moore) because it produces the output immediately on the detecting transition, eliminating the need for a separate "detection" state.
 
 </div>
 
