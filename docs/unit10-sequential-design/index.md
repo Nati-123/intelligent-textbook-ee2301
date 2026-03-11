@@ -1259,9 +1259,10 @@ Consider a 3-state Moore FSM with binary assignment $S_0 = 00$, $S_1 = 01$, $S_2
 | 0 | 1 | 1 | 0 | 1 | 0 |
 | 1 | 0 | 0 | 0 | 0 | 1 |
 | 1 | 0 | 1 | 0 | 1 | 1 |
-| 1 | 1 | X | X | X | X |
+| 1 | 1 | 0 | d | d | d |
+| 1 | 1 | 1 | d | d | d |
 
-(State 11 is unused — marked as don't care)
+State $Q_1 Q_0 = 11$ is unused — all its entries are **don't cares** (marked "d"), meaning the designer is free to assign 0 or 1 to simplify the logic equations.
 
 **K-map simplification:**
 
