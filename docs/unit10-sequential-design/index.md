@@ -676,26 +676,116 @@ where:
 - $Q_{i-1}$ is the right-neighbor output (shift left source)
 - $D_i$ is the parallel data input
 
-```mermaid
-flowchart TB
-    subgraph USR["Universal Shift Register (74194)"]
-        direction LR
-        SR["Serial In\n(Right)"] --> MUX["4:1 MUX\nat each bit"]
-        SL["Serial In\n(Left)"] --> MUX
-        PI["Parallel\nInputs D₃-D₀"] --> MUX
-        MUX --> FFS["4 D Flip-Flops\n(Common CLK)"]
-        FFS --> OUT["Q₃ Q₂ Q₁ Q₀"]
-        FFS -.->|"Feedback\n(Hold)"| MUX
-    end
+<h4 style="color: #5A3EED; font-weight: 600;">Diagram: Single Bit-Slice of Universal Shift Register</h4>
 
-    MODE["S₁S₀ Mode Select\n00=Hold  01=Right\n10=Left   11=Load"] -.->|"Controls\nMUX select"| MUX
+The following diagram shows the internal structure of **one bit position** ($i$). Each of the four flip-flops in the 74194 has an identical 4:1 MUX driving its D input. The four MUX inputs correspond directly to the four terms of the input equation above.
 
-    style USR fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style MODE fill:#FCF3CF,stroke:#F1C40F,color:#333
-    style SR fill:#D5F5E3,stroke:#27AE60,color:#333
-    style SL fill:#D6EAF8,stroke:#2980B9,color:#333
-    style PI fill:#FADBD8,stroke:#E74C3C,color:#333
-```
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 520 400" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .us-block { stroke-width: 2; }
+      .us-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .us-sig   { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; }
+      .us-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; }
+      .us-tiny  { font-family: 'Courier New', monospace; font-size: 10px; font-weight: 600; }
+      .us-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .us-fb    { stroke: #E53935; stroke-width: 1.8; fill: none; stroke-dasharray: 5,3; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="520" height="400" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="260" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">Universal Shift Register — Bit i Structure</text>
+
+  <!-- ======== 4:1 MUX ======== -->
+  <rect x="155" y="80" width="210" height="160" rx="8" class="us-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="260" y="105" text-anchor="middle" class="us-label" font-size="14" fill="#E67E22">4:1 MUX</text>
+
+  <!-- MUX input labels (inside, left-aligned) -->
+  <!-- Input 00: Hold — Q_i -->
+  <rect x="170" y="115" width="180" height="24" rx="4" fill="#FFF" stroke="#bbb" stroke-width="1"/>
+  <text x="180" y="131" class="us-tiny" fill="#E67E22">00</text>
+  <text x="210" y="131" class="us-tiny" fill="#333">Q_i</text>
+  <text x="340" y="131" text-anchor="end" class="us-small" fill="#888">Hold</text>
+
+  <!-- Input 01: Shift Right — Q_{i+1} -->
+  <rect x="170" y="143" width="180" height="24" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="180" y="159" class="us-tiny" fill="#E67E22">01</text>
+  <text x="210" y="159" class="us-tiny" fill="#2E7D32">Q_{i+1}</text>
+  <text x="340" y="159" text-anchor="end" class="us-small" fill="#2E7D32">Shift Right</text>
+
+  <!-- Input 10: Shift Left — Q_{i-1} -->
+  <rect x="170" y="171" width="180" height="24" rx="4" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="180" y="187" class="us-tiny" fill="#E67E22">10</text>
+  <text x="210" y="187" class="us-tiny" fill="#1565C0">Q_{i-1}</text>
+  <text x="340" y="187" text-anchor="end" class="us-small" fill="#1565C0">Shift Left</text>
+
+  <!-- Input 11: Parallel Load — D_i -->
+  <rect x="170" y="199" width="180" height="24" rx="4" fill="#FCE4EC" stroke="#C62828" stroke-width="1"/>
+  <text x="180" y="215" class="us-tiny" fill="#E67E22">11</text>
+  <text x="210" y="215" class="us-tiny" fill="#C62828">D_i</text>
+  <text x="340" y="215" text-anchor="end" class="us-small" fill="#C62828">Parallel Load</text>
+
+  <!-- ======== MUX input source arrows (from left) ======== -->
+  <!-- Q_i (hold) — feedback, dashed red -->
+  <line x1="60" y1="127" x2="170" y2="127" class="us-fb"/>
+  <polygon points="166,123 174,127 166,131" fill="#E53935"/>
+  <text x="50" y="131" text-anchor="end" class="us-sig" fill="#E53935">Q_i</text>
+
+  <!-- Q_{i+1} (shift right) — green -->
+  <line x1="60" y1="155" x2="170" y2="155" stroke="#2E7D32" stroke-width="2"/>
+  <polygon points="166,151 174,155 166,159" fill="#2E7D32"/>
+  <text x="50" y="159" text-anchor="end" class="us-sig" fill="#2E7D32">Q_{i+1}</text>
+
+  <!-- Q_{i-1} (shift left) — blue -->
+  <line x1="60" y1="183" x2="170" y2="183" stroke="#1565C0" stroke-width="2"/>
+  <polygon points="166,179 174,183 166,187" fill="#1565C0"/>
+  <text x="50" y="187" text-anchor="end" class="us-sig" fill="#1565C0">Q_{i-1}</text>
+
+  <!-- D_i (parallel load) — red -->
+  <line x1="60" y1="211" x2="170" y2="211" stroke="#C62828" stroke-width="2"/>
+  <polygon points="166,207 174,211 166,215" fill="#C62828"/>
+  <text x="50" y="215" text-anchor="end" class="us-sig" fill="#C62828">D_i</text>
+
+  <!-- ======== S₁S₀ select (from top) ======== -->
+  <text x="260" y="55" text-anchor="middle" class="us-sig" fill="#E67E22">S₁ S₀</text>
+  <line x1="260" y1="60" x2="260" y2="80" stroke="#E67E22" stroke-width="2.5"/>
+  <polygon points="256,76 260,84 264,76" fill="#E67E22"/>
+  <text x="280" y="72" class="us-small" fill="#E67E22">select</text>
+
+  <!-- ======== MUX output → D FF ======== -->
+  <line x1="260" y1="240" x2="260" y2="275" class="us-wire"/>
+  <polygon points="256,271 260,279 264,271" fill="#455A64"/>
+  <text x="275" y="260" class="us-sig" fill="#333">D_i^FF</text>
+
+  <!-- ======== D Flip-Flop ======== -->
+  <rect x="210" y="279" width="100" height="55" rx="6" class="us-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="260" y="304" text-anchor="middle" class="us-label" font-size="13" fill="#7D3C98">D FF_i</text>
+  <text x="222" y="296" font-family="Courier New" font-size="10" fill="#7D3C98">D</text>
+  <text x="298" y="296" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <!-- Clock triangle -->
+  <polygon points="210,324 220,319 210,314" fill="#7D3C98" stroke="#7D3C98" stroke-width="1"/>
+  <text x="195" y="323" text-anchor="end" class="us-sig" fill="#7D3C98">CLK</text>
+
+  <!-- ======== Q_i output ======== -->
+  <line x1="260" y1="334" x2="260" y2="370" class="us-wire"/>
+  <text x="260" y="385" text-anchor="middle" class="us-sig" fill="#333">Q_i</text>
+  <circle cx="260" cy="358" r="3" fill="#455A64"/>
+
+  <!-- ======== Feedback path (Q_i back to MUX "00" input) ======== -->
+  <line x1="260" y1="358" x2="410" y2="358" class="us-fb"/>
+  <line x1="410" y1="358" x2="410" y2="50" class="us-fb"/>
+  <line x1="410" y1="50" x2="40" y2="50" class="us-fb"/>
+  <line x1="40" y1="50" x2="40" y2="127" class="us-fb"/>
+  <line x1="40" y1="127" x2="60" y2="127" class="us-fb"/>
+  <text x="425" y="200" class="us-small" fill="#E53935" transform="rotate(90, 425, 200)">feedback</text>
+
+  <!-- ======== "×4" annotation ======== -->
+  <rect x="430" y="155" width="70" height="30" rx="6" fill="#F3E5F5" stroke="#7D3C98" stroke-width="1.5"/>
+  <text x="465" y="174" text-anchor="middle" class="us-label" font-size="12" fill="#7D3C98">× 4 bits</text>
+</svg>
+</div>
 
 </div>
 
