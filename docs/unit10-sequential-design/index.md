@@ -666,7 +666,7 @@ The **74194** is the classic TTL implementation of a 4-bit universal shift regis
 
 <h4 style="color: #5A3EED; font-weight: 600;">Input Equation for Bit $i$</h4>
 
-$D_i^{FF} = S_1'S_0'Q_i + S_1'S_0 Q_{i+1} + S_1 S_0'Q_{i-1} + S_1 S_0 D_i$
+$$D_i^{FF} = \overline{S_1}\,\overline{S_0}\,Q_i + \overline{S_1}\,S_0\,Q_{i+1} + S_1\,\overline{S_0}\,Q_{i-1} + S_1\,S_0\,D_i$$
 
 where:
 
