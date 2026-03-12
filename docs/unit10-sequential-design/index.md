@@ -831,40 +831,163 @@ In an **asynchronous** or **ripple** counter, only the first flip-flop receives 
 
 **Structure:**
 
-- 4 T flip-flops, each with $T = 1$ (always toggle)
-- $FF_0$ clocked by the external clock
-- $FF_1$ clocked by $Q_0$'s falling edge
-- $FF_2$ clocked by $Q_1$'s falling edge
-- $FF_3$ clocked by $Q_2$'s falling edge
+- 4 T flip-flops, each permanently set to $T = 1$ (always toggle on every active clock edge)
+- $FF_0$ is clocked by the **external clock** — it is the only flip-flop that receives the system clock directly
+- $FF_1$ is clocked by the **falling edge of $Q_0$**
+- $FF_2$ is clocked by the **falling edge of $Q_1$**
+- $FF_3$ is clocked by the **falling edge of $Q_2$**
 
-**Counting sequence:** $0000 \rightarrow 0001 \rightarrow 0010 \rightarrow \cdots \rightarrow 1111 \rightarrow 0000$
+Because each flip-flop toggles at half the frequency of its clock source, every stage acts as a **divide-by-2** circuit. This cascading division naturally produces the binary counting sequence.
 
-Each bit position toggles at half the frequency of the previous bit, naturally producing the binary counting sequence.
+<h4 style="color: #5A3EED; font-weight: 600;">Circuit Diagram</h4>
 
-```mermaid
-flowchart LR
-    CLK["CLK"] --> FF0["T FF₀\nT=1"]
-    FF0 -->|"Q₀ ↓"| FF1["T FF₁\nT=1"]
-    FF1 -->|"Q₁ ↓"| FF2["T FF₂\nT=1"]
-    FF2 -->|"Q₂ ↓"| FF3["T FF₃\nT=1"]
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 680 310" style="max-width: 660px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .rc-block { stroke-width: 2; }
+      .rc-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .rc-sig   { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; }
+      .rc-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; }
+      .rc-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .rc-clk   { stroke: #E67E22; stroke-width: 2.5; fill: none; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="680" height="310" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    FF0 --> Q0["Q₀\n(LSB)"]
-    FF1 --> Q1["Q₁"]
-    FF2 --> Q2["Q₂"]
-    FF3 --> Q3["Q₃\n(MSB)"]
+  <!-- Title -->
+  <text x="340" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">4-Bit Asynchronous (Ripple) Up Counter</text>
 
-    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
-    style FF0 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF1 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF2 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style Q0 fill:#D6EAF8,stroke:#2980B9,color:#333
-    style Q1 fill:#D6EAF8,stroke:#2980B9,color:#333
-    style Q2 fill:#D6EAF8,stroke:#2980B9,color:#333
-    style Q3 fill:#D6EAF8,stroke:#2980B9,color:#333
-```
+  <!-- ======== CLK input ======== -->
+  <text x="18" y="128" class="rc-sig" fill="#E67E22">CLK</text>
+  <line x1="42" y1="124" x2="75" y2="124" class="rc-clk"/>
+  <polygon points="71,120 79,124 71,128" fill="#E67E22"/>
+  <text x="58" y="144" class="rc-small" fill="#E67E22">Clock input</text>
 
-Each flip-flop's falling edge (↓) clocks the next stage, creating the "ripple" effect.
+  <!-- ======== FF₀ (x=120) ======== -->
+  <rect x="80" y="85" width="80" height="75" rx="6" class="rc-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="120" y="108" text-anchor="middle" class="rc-label" font-size="12" fill="#7D3C98">T FF₀</text>
+  <!-- T=1 label -->
+  <text x="90" y="122" class="rc-sig" fill="#7D3C98">T=1</text>
+  <!-- Q label -->
+  <text x="148" y="108" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <!-- Clock triangle (falling edge — bubble + triangle) -->
+  <polygon points="80,148 90,143 80,138" fill="#E67E22" stroke="#E67E22" stroke-width="1"/>
+  <circle cx="78" cy="143" r="4" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="120" y="175" text-anchor="middle" class="rc-small" fill="#7D3C98">Toggle</text>
+
+  <!-- Q₀ output wire to junction -->
+  <line x1="160" y1="105" x2="195" y2="105" class="rc-wire"/>
+  <circle cx="195" cy="105" r="3" fill="#455A64"/>
+  <!-- Q₀ output down -->
+  <line x1="195" y1="105" x2="195" y2="228" class="rc-wire"/>
+  <text x="195" y="244" text-anchor="middle" class="rc-sig" fill="#2980B9">Q₀</text>
+  <text x="195" y="258" text-anchor="middle" class="rc-small" fill="#2980B9">(LSB)</text>
+  <!-- Q₀ frequency annotation -->
+  <text x="195" y="274" text-anchor="middle" class="rc-small" fill="#888">f/2</text>
+
+  <!-- Q₀ → FF₁ clock (falling edge wire) -->
+  <line x1="195" y1="105" x2="195" y2="65" class="rc-clk"/>
+  <line x1="195" y1="65" x2="215" y2="65" class="rc-clk"/>
+  <line x1="215" y1="65" x2="215" y2="124" class="rc-clk"/>
+  <line x1="215" y1="124" x2="230" y2="124" class="rc-clk"/>
+  <text x="215" y="55" text-anchor="middle" class="rc-small" fill="#E67E22">Q₀ falling edge</text>
+
+  <!-- ======== FF₁ (x=270) ======== -->
+  <rect x="230" y="85" width="80" height="75" rx="6" class="rc-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="270" y="108" text-anchor="middle" class="rc-label" font-size="12" fill="#7D3C98">T FF₁</text>
+  <text x="240" y="122" class="rc-sig" fill="#7D3C98">T=1</text>
+  <text x="298" y="108" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <polygon points="230,148 240,143 230,138" fill="#E67E22" stroke="#E67E22" stroke-width="1"/>
+  <circle cx="228" cy="143" r="4" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="270" y="175" text-anchor="middle" class="rc-small" fill="#7D3C98">Toggle</text>
+
+  <!-- Q₁ output -->
+  <line x1="310" y1="105" x2="345" y2="105" class="rc-wire"/>
+  <circle cx="345" cy="105" r="3" fill="#455A64"/>
+  <line x1="345" y1="105" x2="345" y2="228" class="rc-wire"/>
+  <text x="345" y="244" text-anchor="middle" class="rc-sig" fill="#2980B9">Q₁</text>
+  <text x="345" y="274" text-anchor="middle" class="rc-small" fill="#888">f/4</text>
+
+  <!-- Q₁ → FF₂ clock -->
+  <line x1="345" y1="105" x2="345" y2="65" class="rc-clk"/>
+  <line x1="345" y1="65" x2="365" y2="65" class="rc-clk"/>
+  <line x1="365" y1="65" x2="365" y2="124" class="rc-clk"/>
+  <line x1="365" y1="124" x2="380" y2="124" class="rc-clk"/>
+  <text x="365" y="55" text-anchor="middle" class="rc-small" fill="#E67E22">Q₁ falling edge</text>
+
+  <!-- ======== FF₂ (x=420) ======== -->
+  <rect x="380" y="85" width="80" height="75" rx="6" class="rc-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="420" y="108" text-anchor="middle" class="rc-label" font-size="12" fill="#7D3C98">T FF₂</text>
+  <text x="390" y="122" class="rc-sig" fill="#7D3C98">T=1</text>
+  <text x="448" y="108" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <polygon points="380,148 390,143 380,138" fill="#E67E22" stroke="#E67E22" stroke-width="1"/>
+  <circle cx="378" cy="143" r="4" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="420" y="175" text-anchor="middle" class="rc-small" fill="#7D3C98">Toggle</text>
+
+  <!-- Q₂ output -->
+  <line x1="460" y1="105" x2="495" y2="105" class="rc-wire"/>
+  <circle cx="495" cy="105" r="3" fill="#455A64"/>
+  <line x1="495" y1="105" x2="495" y2="228" class="rc-wire"/>
+  <text x="495" y="244" text-anchor="middle" class="rc-sig" fill="#2980B9">Q₂</text>
+  <text x="495" y="274" text-anchor="middle" class="rc-small" fill="#888">f/8</text>
+
+  <!-- Q₂ → FF₃ clock -->
+  <line x1="495" y1="105" x2="495" y2="65" class="rc-clk"/>
+  <line x1="495" y1="65" x2="515" y2="65" class="rc-clk"/>
+  <line x1="515" y1="65" x2="515" y2="124" class="rc-clk"/>
+  <line x1="515" y1="124" x2="530" y2="124" class="rc-clk"/>
+  <text x="515" y="55" text-anchor="middle" class="rc-small" fill="#E67E22">Q₂ falling edge</text>
+
+  <!-- ======== FF₃ (x=570) ======== -->
+  <rect x="530" y="85" width="80" height="75" rx="6" class="rc-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="570" y="108" text-anchor="middle" class="rc-label" font-size="12" fill="#7D3C98">T FF₃</text>
+  <text x="540" y="122" class="rc-sig" fill="#7D3C98">T=1</text>
+  <text x="598" y="108" font-family="Courier New" font-size="10" fill="#7D3C98">Q</text>
+  <polygon points="530,148 540,143 530,138" fill="#E67E22" stroke="#E67E22" stroke-width="1"/>
+  <circle cx="528" cy="143" r="4" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+  <text x="570" y="175" text-anchor="middle" class="rc-small" fill="#7D3C98">Toggle</text>
+
+  <!-- Q₃ output -->
+  <line x1="610" y1="105" x2="635" y2="105" class="rc-wire"/>
+  <line x1="635" y1="105" x2="635" y2="228" class="rc-wire"/>
+  <text x="635" y="244" text-anchor="middle" class="rc-sig" fill="#2980B9">Q₃</text>
+  <text x="635" y="258" text-anchor="middle" class="rc-small" fill="#2980B9">(MSB)</text>
+  <text x="635" y="274" text-anchor="middle" class="rc-small" fill="#888">f/16</text>
+
+  <!-- ======== Signal flow arrow ======== -->
+  <line x1="60" y1="295" x2="650" y2="295" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="646,292 654,295 646,298" fill="#999"/>
+  <text x="355" y="305" text-anchor="middle" class="rc-small" fill="#888">Signal flow: CLK → Q₀ → Q₁ → Q₂ → Q₃ (each stage adds t_cq delay = "ripple")</text>
+</svg>
+</div>
+
+Each output toggles at **half the frequency** of its clock input, acting as a divide-by-2 stage. The state change "ripples" through the chain — $Q_0$ changes first, then $Q_1$ after one $t_{cq}$ delay, then $Q_2$ after two, and $Q_3$ after three. This accumulated delay is the fundamental tradeoff of the ripple counter: simple structure, but slow settling.
+
+<h4 style="color: #5A3EED; font-weight: 600;">Frequency Division</h4>
+
+| Output | Frequency | Division | Toggles per CLK cycle |
+|--------|-----------|----------|-----------------------|
+| $Q_0$ | $f_{CLK}/2$ | ÷ 2 | Every clock edge |
+| $Q_1$ | $f_{CLK}/4$ | ÷ 4 | Every 2nd clock edge |
+| $Q_2$ | $f_{CLK}/8$ | ÷ 8 | Every 4th clock edge |
+| $Q_3$ | $f_{CLK}/16$ | ÷ 16 | Every 8th clock edge |
+
+<h4 style="color: #5A3EED; font-weight: 600;">Counting Sequence (first 8 of 16 states)</h4>
+
+| Clock Pulse | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | Decimal |
+|-------------|-------|-------|-------|-------|---------|
+| 0 | 0 | 0 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 | 1 | 1 |
+| 2 | 0 | 0 | 1 | 0 | 2 |
+| 3 | 0 | 0 | 1 | 1 | 3 |
+| 4 | 0 | 1 | 0 | 0 | 4 |
+| 5 | 0 | 1 | 0 | 1 | 5 |
+| 6 | 0 | 1 | 1 | 0 | 6 |
+| 7 | 0 | 1 | 1 | 1 | 7 |
+| ... | ... | ... | ... | ... | ... |
+| 15 | 1 | 1 | 1 | 1 | 15 |
+| 16 | 0 | 0 | 0 | 0 | 0 (wraps) |
 
 </div>
 
