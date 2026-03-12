@@ -1277,7 +1277,7 @@ $$000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarro
 
   <!-- Skipped states annotation -->
   <rect x="425" y="38" width="200" height="30" rx="5" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
-  <text x="525" y="57" text-anchor="middle" class="mc-small" fill="#C62828">States 110, 111 skipped (unused)</text>
+  <text x="525" y="57" text-anchor="middle" class="mc-small" fill="#C62828">Reset at 110 prevents reaching 111</text>
 </svg>
 </div>
 
@@ -1287,14 +1287,14 @@ The idea is straightforward: build a normal 3-bit binary counter, then add a sma
 
 **Step-by-step:**
 
-1. A standard 3-bit counter counts normally: $000 \rightarrow 001 \rightarrow \cdots \rightarrow 101 \rightarrow 110$
-2. When the counter reaches state **110**, the detection logic produces a **Reset = 1** signal
-3. This signal forces all flip-flops to **000** on the same (synchronous) or next (asynchronous) clock edge
-4. The counter then starts the sequence again from 000
+1. A standard 3-bit binary counter has 8 states: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 110 \rightarrow 111$
+2. For a mod-6 counter, we only need the first 6 states (000–101). When the counter reaches state **110** (the first unwanted state), the detection logic produces a **Reset = 1** signal, **preventing the counter from ever reaching 111**
+3. The Reset signal is connected directly to the **asynchronous CLR inputs** of all flip-flops, forcing an immediate return to **000** — no clock edge is needed
+4. The counter then restarts the sequence from 000, giving the repeating cycle: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow (110 \rightarrow 000)$
 
 **Reset detection logic:**
 
-The counter needs to reset when $Q_2 Q_1 Q_0 = 110$. This requires detecting $Q_2 = 1$, $Q_1 = 1$, and $Q_0 = 0$ simultaneously:
+The counter must reset when $Q_2 Q_1 Q_0 = 110$. We detect $Q_2 = 1$, $Q_1 = 1$, and $Q_0 = 0$ simultaneously, then feed the result to the **asynchronous CLR** inputs of all flip-flops:
 
 $$\text{Reset} = Q_2 \cdot Q_1 \cdot \overline{Q_0}$$
 
@@ -1343,7 +1343,7 @@ $$\text{Reset} = Q_2 \cdot Q_1 \cdot \overline{Q_0}$$
   <!-- Reset label -->
   <rect x="315" y="60" width="100" height="36" class="rd-block" fill="#FFEBEE" stroke="#C62828"/>
   <text x="365" y="83" text-anchor="middle" class="rd-sig" fill="#C62828">Reset</text>
-  <text x="365" y="55" text-anchor="middle" class="rd-small" fill="#C62828">→ CLR on all FFs</text>
+  <text x="365" y="55" text-anchor="middle" class="rd-small" fill="#C62828">→ async CLR on all FFs</text>
 
   <!-- Equation -->
   <text x="220" y="142" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">Reset = Q₂ · Q₁ · Q̄₀</text>
@@ -1357,8 +1357,9 @@ $$\text{Reset} = Q_2 \cdot Q_1 \cdot \overline{Q_0}$$
 | Flip-flops | 3 | 3 |
 | Total states | 8 (000–111) | 6 (000–101) |
 | Extra logic | None | AND gate + NOT gate |
-| Sequence | 000 → 001 → ... → 111 → 000 | 000 → 001 → ... → 101 → 000 |
-| Skipped states | None | 110, 111 |
+| Sequence | 000 → 001 → ... → 111 → 000 | 000 → 001 → ... → 101 → (110 → 000) |
+| Reset method | None | Async CLR via AND + NOT |
+| Skipped states | None | 110 (momentary), 111 (never reached) |
 
 </div>
 
@@ -1402,11 +1403,11 @@ Two special counter types use shift register feedback to generate non-binary cou
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-A **ring counter** is a circular shift register with a single 1 bit that circulates through the stages. In an $n$-bit ring counter, exactly one flip-flop is 1 at any time, producing a **one-hot** sequence.
+A **ring counter** is a circular shift register where the output of the last flip-flop feeds back to the input of the first. **Initialization is critical:** the counter must start with exactly one flip-flop set to 1 and all others cleared to 0. Once initialized, that single 1 bit circulates through the stages — in an $n$-bit ring counter, exactly one flip-flop is 1 at any time, producing a **one-hot** encoded sequence. This means each counter state can be identified by reading a single flip-flop output, eliminating the need for decoding logic.
 
 **4-Bit Ring Counter Sequence:**
 
-| Clock | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | Active State |
+| Clock Cycle | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | Active State |
 |-------|-------|-------|-------|-------|-------------|
 | 0 | 1 | 0 | 0 | 0 | State 0 |
 | 1 | 0 | 1 | 0 | 0 | State 1 |
@@ -1419,22 +1420,76 @@ A **ring counter** is a circular shift register with a single 1 bit that circula
 - $n$ flip-flops produce $n$ states (inefficient use of flip-flops)
 - Each state is decoded by a single flip-flop output (no decoding logic needed)
 - One-hot encoding is inherently glitch-free
-- Must be initialized to a valid state (exactly one 1)
+- Must be initialized to a valid one-hot state (exactly one flip-flop set to 1, all others 0)
 
-```mermaid
-flowchart LR
-    FF3["D FF₃"] -->|"Q₃ → D₂"| FF2["D FF₂"]
-    FF2 -->|"Q₂ → D₁"| FF1["D FF₁"]
-    FF1 -->|"Q₁ → D₀"| FF0["D FF₀"]
-    FF0 -->|"Q₀ → D₃\n(feedback)"| FF3
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 520 160" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .rc-ff   { fill: #E8DAEF; stroke: #7D3C98; stroke-width: 2; rx: 6; }
+      .rc-sig  { font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; }
+      .rc-lbl  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #555; }
+      .rc-wire { stroke: #455A64; stroke-width: 2; fill: none; }
+      .rc-fb   { stroke: #C62828; stroke-width: 2; fill: none; stroke-dasharray: 6,3; }
+    </style>
+    <marker id="rc-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#455A64"/>
+    </marker>
+    <marker id="rc-farr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#C62828"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="520" height="160" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF2 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF1 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF0 fill:#E8DAEF,stroke:#7D3C98,color:#333
-```
+  <!-- Title -->
+  <text x="260" y="18" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#5A3EED">4-Bit Ring Counter</text>
 
-The single "1" circulates: **1000 → 0100 → 0010 → 0001 → 1000 ...**
+  <!-- FF3 -->
+  <rect x="30" y="40" width="80" height="50" class="rc-ff"/>
+  <text x="70" y="60" text-anchor="middle" class="rc-sig" fill="#7D3C98">D FF₃</text>
+  <text x="36" y="78" class="rc-lbl">D₃</text>
+  <text x="96" y="78" class="rc-lbl" text-anchor="end">Q₃</text>
+
+  <!-- FF2 -->
+  <rect x="150" y="40" width="80" height="50" class="rc-ff"/>
+  <text x="190" y="60" text-anchor="middle" class="rc-sig" fill="#7D3C98">D FF₂</text>
+  <text x="156" y="78" class="rc-lbl">D₂</text>
+  <text x="216" y="78" class="rc-lbl" text-anchor="end">Q₂</text>
+
+  <!-- FF1 -->
+  <rect x="270" y="40" width="80" height="50" class="rc-ff"/>
+  <text x="310" y="60" text-anchor="middle" class="rc-sig" fill="#7D3C98">D FF₁</text>
+  <text x="276" y="78" class="rc-lbl">D₁</text>
+  <text x="336" y="78" class="rc-lbl" text-anchor="end">Q₁</text>
+
+  <!-- FF0 -->
+  <rect x="390" y="40" width="80" height="50" class="rc-ff"/>
+  <text x="430" y="60" text-anchor="middle" class="rc-sig" fill="#7D3C98">D FF₀</text>
+  <text x="396" y="78" class="rc-lbl">D₀</text>
+  <text x="456" y="78" class="rc-lbl" text-anchor="end">Q₀</text>
+
+  <!-- Wires: Q₃→D₂ -->
+  <line x1="110" y1="72" x2="150" y2="72" class="rc-wire" marker-end="url(#rc-arr)"/>
+  <text x="130" y="68" text-anchor="middle" class="rc-lbl">Q₃→D₂</text>
+
+  <!-- Wires: Q₂→D₁ -->
+  <line x1="230" y1="72" x2="270" y2="72" class="rc-wire" marker-end="url(#rc-arr)"/>
+  <text x="250" y="68" text-anchor="middle" class="rc-lbl">Q₂→D₁</text>
+
+  <!-- Wires: Q₁→D₀ -->
+  <line x1="350" y1="72" x2="390" y2="72" class="rc-wire" marker-end="url(#rc-arr)"/>
+  <text x="370" y="68" text-anchor="middle" class="rc-lbl">Q₁→D₀</text>
+
+  <!-- Feedback: Q₀→D₃ (dashed red, routes below) -->
+  <path d="M 470,72 L 490,72 L 490,120 L 20,120 L 20,72 L 30,72" class="rc-fb" marker-end="url(#rc-farr)"/>
+  <text x="260" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="700" fill="#C62828">Feedback: Q₀ → D₃</text>
+
+  <!-- Clock label -->
+  <text x="260" y="105" text-anchor="middle" class="rc-lbl">All FFs share a common CLK</text>
+</svg>
+</div>
+
+The single "1" circulates through the register: **1000 → 0100 → 0010 → 0001 → 1000 ...** This is a classic example of **one-hot encoding**, where each state has exactly one bit set — making state decoding trivial.
 
 </div>
 
