@@ -1635,23 +1635,99 @@ The two FSM models differ only in how outputs are generated.
 
 Every FSM shares the same fundamental architecture: combinational logic computes the next state and outputs, while flip-flops store the current state. The feedback path from the flip-flop outputs back to the combinational logic input is what makes the circuit sequential.
 
-```mermaid
-flowchart LR
-    INPUT["<b>Inputs</b>"] --> CL["<b>Next-State Logic</b>"]
-    CL -->|"Next State"| FF["<b>State Register</b>\n(Flip-Flops)"]
-    FF -->|"Current State"| CL
-    FF -->|"State"| OL["<b>Output Logic</b>"]
-    INPUT -.->|"Direct Input Path\n(Mealy Machines Only)"| OL
-    OL --> OUTPUT["<b>Outputs</b>"]
-    CLK["<b>Clock</b>\n(State Update)"] --> FF
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 580 300" style="max-width: 560px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .ga-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; }
+      .ga-name  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 700; }
+      .ga-type  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; font-style: italic; }
+      .ga-lbl   { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; font-weight: 600; }
+      .ga-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; }
+      .ga-wire  { stroke: #37474F; stroke-width: 2; fill: none; }
+      .ga-mealy { stroke: #E67E22; stroke-width: 2; fill: none; stroke-dasharray: 7,4; }
+      .ga-fb    { stroke: #7D3C98; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="ga-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37474F"/>
+    </marker>
+    <marker id="ga-am" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E67E22"/>
+    </marker>
+    <marker id="ga-af" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#7D3C98"/>
+    </marker>
+  </defs>
 
-    style INPUT fill:#D5F5E3,stroke:#27AE60,color:#333
-    style CL fill:#D6EAF8,stroke:#2980B9,color:#333
-    style FF fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style OL fill:#FDEBD0,stroke:#E67E22,color:#333
-    style OUTPUT fill:#FADBD8,stroke:#E74C3C,color:#333
-    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
-```
+  <!-- Background -->
+  <rect x="0" y="0" width="580" height="300" rx="12" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="290" y="22" text-anchor="middle" class="ga-title" fill="#5A3EED">General FSM Architecture</text>
+
+  <!-- ════════ INPUT ARROWS (left edge) ════════ -->
+  <line x1="10" y1="120" x2="70" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
+  <text x="12" y="112" class="ga-lbl" fill="#27AE60">Inputs (X)</text>
+
+  <!-- ════════ NEXT-STATE LOGIC ════════ -->
+  <rect x="75" y="80" width="130" height="90" rx="10" fill="#D6EAF8" stroke="#2980B9" stroke-width="2"/>
+  <text x="140" y="115" text-anchor="middle" class="ga-name" fill="#1A5276">Next-State</text>
+  <text x="140" y="132" text-anchor="middle" class="ga-name" fill="#1A5276">Logic</text>
+  <text x="140" y="158" text-anchor="middle" class="ga-type" fill="#5B9BD5">combinational</text>
+
+  <!-- Next-State Logic → State Register -->
+  <line x1="205" y1="120" x2="260" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
+  <text x="232" y="112" text-anchor="middle" class="ga-lbl" fill="#1A5276">Next State</text>
+  <text x="232" y="100" text-anchor="middle" class="ga-small" fill="#1A5276">(D inputs)</text>
+
+  <!-- ════════ STATE REGISTER ════════ -->
+  <rect x="265" y="80" width="120" height="90" rx="10" fill="#E8DAEF" stroke="#7D3C98" stroke-width="2.5"/>
+  <text x="325" y="112" text-anchor="middle" class="ga-name" fill="#6C3483">State</text>
+  <text x="325" y="129" text-anchor="middle" class="ga-name" fill="#6C3483">Register</text>
+  <text x="325" y="158" text-anchor="middle" class="ga-type" fill="#9B59B6">sequential (flip-flops)</text>
+  <!-- Clock triangle symbol on bottom -->
+  <polygon points="318,170 325,163 332,170" fill="none" stroke="#7D3C98" stroke-width="1.5"/>
+
+  <!-- State Register → Output Logic -->
+  <line x1="385" y1="120" x2="430" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
+  <text x="408" y="112" text-anchor="middle" class="ga-lbl" fill="#6C3483">Present</text>
+  <text x="408" y="100" text-anchor="middle" class="ga-lbl" fill="#6C3483">State (Q)</text>
+
+  <!-- ════════ OUTPUT LOGIC ════════ -->
+  <rect x="435" y="80" width="120" height="90" rx="10" fill="#FDEBD0" stroke="#E67E22" stroke-width="2"/>
+  <text x="495" y="115" text-anchor="middle" class="ga-name" fill="#AF601A">Output</text>
+  <text x="495" y="132" text-anchor="middle" class="ga-name" fill="#AF601A">Logic</text>
+  <text x="495" y="158" text-anchor="middle" class="ga-type" fill="#E67E22">combinational</text>
+
+  <!-- Output Logic → Outputs -->
+  <line x1="555" y1="120" x2="570" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
+  <text x="555" y="112" class="ga-lbl" fill="#C0392B">Outputs (Z)</text>
+
+  <!-- ════════ CLK INPUT ════════ -->
+  <line x1="325" y1="210" x2="325" y2="175" class="ga-wire" marker-end="url(#ga-a)"/>
+  <rect x="300" y="210" width="50" height="28" rx="6" fill="#FCF3CF" stroke="#F1C40F" stroke-width="2"/>
+  <text x="325" y="229" text-anchor="middle" class="ga-name" fill="#7D6608">CLK</text>
+
+  <!-- ════════ FEEDBACK PATH (below blocks) ════════ -->
+  <path d="M 355,170 L 355,195 L 50,195 L 50,135 L 75,135" class="ga-fb" marker-end="url(#ga-af)"/>
+  <text x="200" y="208" text-anchor="middle" class="ga-lbl" fill="#7D3C98">Present State (Q) — feedback</text>
+
+  <!-- ════════ MEALY PATH (above blocks, dashed orange) ════════ -->
+  <path d="M 40,105 L 40,50 L 495,50 L 495,80" class="ga-mealy" marker-end="url(#ga-am)"/>
+  <text x="270" y="44" text-anchor="middle" class="ga-lbl" fill="#E67E22">Input → Output path (Mealy machines only)</text>
+
+  <!-- ════════ LEGEND ════════ -->
+  <rect x="15" y="255" width="550" height="34" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <line x1="25" y1="275" x2="55" y2="275" stroke="#37474F" stroke-width="2"/>
+  <text x="60" y="279" class="ga-small" fill="#555">Data path</text>
+  <line x1="130" y1="275" x2="160" y2="275" stroke="#7D3C98" stroke-width="2"/>
+  <text x="165" y="279" class="ga-small" fill="#7D3C98">State feedback</text>
+  <line x1="260" y1="275" x2="290" y2="275" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4"/>
+  <text x="295" y="279" class="ga-small" fill="#E67E22">Mealy-only path</text>
+  <polygon points="397,272 404,275 397,278" fill="none" stroke="#7D3C98" stroke-width="1.5"/>
+  <text x="410" y="279" class="ga-small" fill="#7D3C98">Clock edge trigger</text>
+</svg>
+</div>
 
 </div>
 
