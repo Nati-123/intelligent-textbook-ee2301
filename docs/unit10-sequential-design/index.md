@@ -430,36 +430,202 @@ A **bidirectional shift register** can shift data in either direction—left or 
 
 A 2-to-1 multiplexer at each flip-flop's D input selects between the left-neighbor output (for shift right) and the right-neighbor output (for shift left).
 
-```mermaid
-flowchart LR
-    SIR["Serial In\n(Right)"] --> M3
-    subgraph REG["Bidirectional Shift Register"]
-        direction LR
-        M3["MUX₃"] --> FF3["D FF₃"]
-        M2["MUX₂"] --> FF2["D FF₂"]
-        M1["MUX₁"] --> FF1["D FF₁"]
-        M0["MUX₀"] --> FF0["D FF₀"]
-    end
-    SIL["Serial In\n(Left)"] --> M0
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 680 390" style="max-width: 660px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bs-block { stroke-width: 2; }
+      .bs-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .bs-sig   { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; }
+      .bs-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #555; }
+      .bs-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .bs-sr    { stroke: #2E7D32; stroke-width: 2; fill: none; }
+      .bs-sl    { stroke: #1565C0; stroke-width: 2; fill: none; }
+      .bs-bus   { stroke-width: 2.5; fill: none; }
+    </style>
+    <!-- Arrowhead markers -->
+    <marker id="ah-sr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0,0 7,2.5 0,5" fill="#2E7D32"/></marker>
+    <marker id="ah-sl" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="7,0 0,2.5 7,5" fill="#1565C0"/></marker>
+    <marker id="ah-d"  markerWidth="7" markerHeight="5" refX="3.5" refY="5" orient="auto"><polygon points="0,0 3.5,5 7,0" fill="#455A64"/></marker>
+  </defs>
+  <rect x="0" y="0" width="680" height="390" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    FF3 -->|"Shift Right"| M2
-    FF2 -->|"Shift Right"| M1
-    FF1 -->|"Shift Right"| M0
+  <!-- Title -->
+  <text x="340" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">4-Bit Bidirectional Shift Register</text>
 
-    FF0 -->|"Shift Left"| M1
-    FF1 -->|"Shift Left"| M2
-    FF2 -->|"Shift Left"| M3
+  <!-- ====== DIRECTION BUS (horizontal, top) ====== -->
+  <line x1="42" y1="52" x2="598" y2="52" class="bs-bus" stroke="#E67E22"/>
+  <text x="28" y="57" class="bs-sig" fill="#E67E22" text-anchor="end">Dir</text>
+  <text x="28" y="70" class="bs-small" fill="#E67E22" text-anchor="end">0=R, 1=L</text>
+  <!-- Taps to each MUX -->
+  <line x1="120" y1="52" x2="120" y2="110" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="120" cy="52" r="3" fill="#E67E22"/>
+  <text x="120" y="107" text-anchor="middle" class="bs-small" fill="#E67E22">sel</text>
+  <line x1="270" y1="52" x2="270" y2="110" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="270" cy="52" r="3" fill="#E67E22"/>
+  <text x="270" y="107" text-anchor="middle" class="bs-small" fill="#E67E22">sel</text>
+  <line x1="420" y1="52" x2="420" y2="110" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="420" cy="52" r="3" fill="#E67E22"/>
+  <text x="420" y="107" text-anchor="middle" class="bs-small" fill="#E67E22">sel</text>
+  <line x1="570" y1="52" x2="570" y2="110" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="570" cy="52" r="3" fill="#E67E22"/>
+  <text x="570" y="107" text-anchor="middle" class="bs-small" fill="#E67E22">sel</text>
 
-    DIR["Direction\n0=Right, 1=Left"] -.->|"Select"| M3
-    DIR -.->|"Select"| M2
-    DIR -.->|"Select"| M1
-    DIR -.->|"Select"| M0
+  <!-- ====== SERIAL IN RIGHT (enters MUX₃ from left) ====== -->
+  <text x="16" y="130" class="bs-sig" fill="#2E7D32">SR_IN</text>
+  <line x1="52" y1="126" x2="80" y2="126" class="bs-sr" marker-end="url(#ah-sr)"/>
 
-    style REG fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style DIR fill:#FCF3CF,stroke:#F1C40F,color:#333
-    style SIR fill:#D5F5E3,stroke:#27AE60,color:#333
-    style SIL fill:#D6EAF8,stroke:#2980B9,color:#333
-```
+  <!-- ====== SERIAL IN LEFT (enters MUX₀ from right) ====== -->
+  <text x="630" y="145" class="bs-sig" fill="#1565C0">SL_IN</text>
+  <line x1="625" y1="141" x2="600" y2="141" class="bs-sl" marker-end="url(#ah-sl)"/>
+
+  <!-- ================================================================ -->
+  <!-- BIT 3 (MSB, leftmost)                                            -->
+  <!-- ================================================================ -->
+  <!-- MUX₃ -->
+  <rect x="83" y="113" width="74" height="44" rx="6" class="bs-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="120" y="139" text-anchor="middle" class="bs-label" font-size="11" fill="#E67E22">2:1 MUX</text>
+  <!-- MUX → FF wire -->
+  <line x1="120" y1="157" x2="120" y2="180" class="bs-wire"/>
+  <polygon points="116,176 120,184 124,176" fill="#455A64"/>
+  <!-- D FF₃ -->
+  <rect x="80" y="184" width="80" height="50" rx="6" class="bs-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="120" y="206" text-anchor="middle" class="bs-label" font-size="11" fill="#7D3C98">D FF₃</text>
+  <text x="90" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="148" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="80,224 90,219 80,214" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <!-- Q₃ output down -->
+  <line x1="120" y1="234" x2="120" y2="265" class="bs-wire"/>
+  <text x="120" y="278" text-anchor="middle" class="bs-sig" fill="#333">Q₃</text>
+  <!-- Junction dot on Q₃ -->
+  <circle cx="120" cy="250" r="3" fill="#455A64"/>
+
+  <!-- ================================================================ -->
+  <!-- BIT 2                                                            -->
+  <!-- ================================================================ -->
+  <rect x="233" y="113" width="74" height="44" rx="6" class="bs-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="270" y="139" text-anchor="middle" class="bs-label" font-size="11" fill="#E67E22">2:1 MUX</text>
+  <line x1="270" y1="157" x2="270" y2="180" class="bs-wire"/>
+  <polygon points="266,176 270,184 274,176" fill="#455A64"/>
+  <rect x="230" y="184" width="80" height="50" rx="6" class="bs-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="270" y="206" text-anchor="middle" class="bs-label" font-size="11" fill="#7D3C98">D FF₂</text>
+  <text x="240" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="298" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="230,224 240,219 230,214" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="270" y1="234" x2="270" y2="265" class="bs-wire"/>
+  <text x="270" y="278" text-anchor="middle" class="bs-sig" fill="#333">Q₂</text>
+  <circle cx="270" cy="250" r="3" fill="#455A64"/>
+
+  <!-- ================================================================ -->
+  <!-- BIT 1                                                            -->
+  <!-- ================================================================ -->
+  <rect x="383" y="113" width="74" height="44" rx="6" class="bs-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="420" y="139" text-anchor="middle" class="bs-label" font-size="11" fill="#E67E22">2:1 MUX</text>
+  <line x1="420" y1="157" x2="420" y2="180" class="bs-wire"/>
+  <polygon points="416,176 420,184 424,176" fill="#455A64"/>
+  <rect x="380" y="184" width="80" height="50" rx="6" class="bs-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="420" y="206" text-anchor="middle" class="bs-label" font-size="11" fill="#7D3C98">D FF₁</text>
+  <text x="390" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="448" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="380,224 390,219 380,214" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="420" y1="234" x2="420" y2="265" class="bs-wire"/>
+  <text x="420" y="278" text-anchor="middle" class="bs-sig" fill="#333">Q₁</text>
+  <circle cx="420" cy="250" r="3" fill="#455A64"/>
+
+  <!-- ================================================================ -->
+  <!-- BIT 0 (LSB, rightmost)                                           -->
+  <!-- ================================================================ -->
+  <rect x="533" y="113" width="74" height="44" rx="6" class="bs-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="570" y="139" text-anchor="middle" class="bs-label" font-size="11" fill="#E67E22">2:1 MUX</text>
+  <line x1="570" y1="157" x2="570" y2="180" class="bs-wire"/>
+  <polygon points="566,176 570,184 574,176" fill="#455A64"/>
+  <rect x="530" y="184" width="80" height="50" rx="6" class="bs-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="570" y="206" text-anchor="middle" class="bs-label" font-size="11" fill="#7D3C98">D FF₀</text>
+  <text x="540" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="598" y="198" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="530,224 540,219 530,214" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="570" y1="234" x2="570" y2="265" class="bs-wire"/>
+  <text x="570" y="278" text-anchor="middle" class="bs-sig" fill="#333">Q₀</text>
+  <circle cx="570" cy="250" r="3" fill="#455A64"/>
+
+  <!-- ================================================================ -->
+  <!-- SHIFT-RIGHT PATHS (green, upper row: Q_{i+1} → MUX_i)           -->
+  <!-- Run along y=88, above the MUX boxes                             -->
+  <!-- ================================================================ -->
+  <!-- Q₃ up to shift-right rail, then right to MUX₂ -->
+  <line x1="120" y1="250" x2="145" y2="250" class="bs-sr"/>
+  <line x1="145" y1="250" x2="145" y2="88" class="bs-sr"/>
+  <line x1="145" y1="88" x2="248" y2="88" class="bs-sr"/>
+  <line x1="248" y1="88" x2="248" y2="113" class="bs-sr"/>
+  <polygon points="244,109 248,117 252,109" fill="#2E7D32"/>
+
+  <!-- Q₂ up to shift-right rail, then right to MUX₁ -->
+  <line x1="270" y1="250" x2="295" y2="250" class="bs-sr"/>
+  <line x1="295" y1="250" x2="295" y2="84" class="bs-sr"/>
+  <line x1="295" y1="84" x2="398" y2="84" class="bs-sr"/>
+  <line x1="398" y1="84" x2="398" y2="113" class="bs-sr"/>
+  <polygon points="394,109 398,117 402,109" fill="#2E7D32"/>
+
+  <!-- Q₁ up to shift-right rail, then right to MUX₀ -->
+  <line x1="420" y1="250" x2="445" y2="250" class="bs-sr"/>
+  <line x1="445" y1="250" x2="445" y2="80" class="bs-sr"/>
+  <line x1="445" y1="80" x2="548" y2="80" class="bs-sr"/>
+  <line x1="548" y1="80" x2="548" y2="113" class="bs-sr"/>
+  <polygon points="544,109 548,117 552,109" fill="#2E7D32"/>
+
+  <!-- ================================================================ -->
+  <!-- SHIFT-LEFT PATHS (blue, lower row: Q_{i-1} → MUX_i)             -->
+  <!-- Run along y=300+, below the FF boxes                            -->
+  <!-- ================================================================ -->
+  <!-- Q₀ down to shift-left rail, then left to MUX₁ -->
+  <line x1="570" y1="250" x2="595" y2="250" class="bs-sl"/>
+  <line x1="595" y1="250" x2="595" y2="296" class="bs-sl"/>
+  <line x1="595" y1="296" x2="442" y2="296" class="bs-sl"/>
+  <line x1="442" y1="296" x2="442" y2="157" class="bs-sl"/>
+  <line x1="442" y1="157" x2="457" y2="141" class="bs-sl"/>
+  <polygon points="454,146 460,138 460,146" fill="#1565C0"/>
+
+  <!-- Q₁ down to shift-left rail, then left to MUX₂ -->
+  <line x1="420" y1="250" x2="395" y2="250" class="bs-sl"/>
+  <line x1="395" y1="250" x2="395" y2="300" class="bs-sl"/>
+  <line x1="395" y1="300" x2="292" y2="300" class="bs-sl"/>
+  <line x1="292" y1="300" x2="292" y2="157" class="bs-sl"/>
+  <line x1="292" y1="157" x2="307" y2="141" class="bs-sl"/>
+  <polygon points="304,146 310,138 310,146" fill="#1565C0"/>
+
+  <!-- Q₂ down to shift-left rail, then left to MUX₃ -->
+  <line x1="270" y1="250" x2="245" y2="250" class="bs-sl"/>
+  <line x1="245" y1="250" x2="245" y2="304" class="bs-sl"/>
+  <line x1="245" y1="304" x2="142" y2="304" class="bs-sl"/>
+  <line x1="142" y1="304" x2="142" y2="157" class="bs-sl"/>
+  <line x1="142" y1="157" x2="157" y2="141" class="bs-sl"/>
+  <polygon points="154,146 160,138 160,146" fill="#1565C0"/>
+
+  <!-- ====== CLK BUS (horizontal, bottom) ====== -->
+  <line x1="42" y1="335" x2="598" y2="335" class="bs-bus" stroke="#7D3C98"/>
+  <text x="28" y="340" class="bs-sig" fill="#7D3C98" text-anchor="end">CLK</text>
+  <line x1="120" y1="335" x2="120" y2="265" stroke="#7D3C98" stroke-width="1.5"/>
+  <circle cx="120" cy="335" r="3" fill="#7D3C98"/>
+  <line x1="270" y1="335" x2="270" y2="265" stroke="#7D3C98" stroke-width="1.5"/>
+  <circle cx="270" cy="335" r="3" fill="#7D3C98"/>
+  <line x1="420" y1="335" x2="420" y2="265" stroke="#7D3C98" stroke-width="1.5"/>
+  <circle cx="420" cy="335" r="3" fill="#7D3C98"/>
+  <line x1="570" y1="335" x2="570" y2="265" stroke="#7D3C98" stroke-width="1.5"/>
+  <circle cx="570" cy="335" r="3" fill="#7D3C98"/>
+
+  <!-- ====== LEGEND ====== -->
+  <line x1="55" y1="370" x2="80" y2="370" class="bs-sr"/>
+  <polygon points="76,367 83,370 76,373" fill="#2E7D32"/>
+  <text x="88" y="374" class="bs-small" fill="#2E7D32">Shift right (Dir=0)</text>
+  <line x1="250" y1="370" x2="275" y2="370" class="bs-sl"/>
+  <polygon points="254,367 247,370 254,373" fill="#1565C0"/>
+  <text x="280" y="374" class="bs-small" fill="#1565C0">Shift left (Dir=1)</text>
+  <line x1="430" y1="370" x2="455" y2="370" class="bs-bus" stroke="#E67E22"/>
+  <text x="460" y="374" class="bs-small" fill="#E67E22">Direction bus</text>
+  <line x1="560" y1="370" x2="585" y2="370" class="bs-bus" stroke="#7D3C98"/>
+  <text x="590" y="374" class="bs-small" fill="#7D3C98">CLK bus</text>
+</svg>
+</div>
 
 </div>
 
