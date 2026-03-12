@@ -1818,122 +1818,147 @@ Both models are equally powerful—any Moore machine can be converted to an equi
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1rem 0;" markdown>
 
-Both diagrams below implement a **"01" sequence detector** — the output $Z = 1$ whenever the two most recent input bits form the pattern "01". Compare how the Moore machine places the output **inside each state**, while the Mealy machine places it **on each transition arrow**. Notice the Moore version requires an extra state (S2) solely to produce the detection output.
+Both diagrams below detect the **"01" pattern** — the output $Z = 1$ whenever the two most recent input bits form "01". The Moore machine places the output **inside each state circle**, while the Mealy machine places it **on each transition arrow** as *input/output*.
 
-**Moore Machine** — output depends on state only (Z is labeled inside each state):
+**Moore Machine — "01" Detector** (output depends on state only)
 
 <div style="text-align: center; margin: 1.5rem 0;">
-<svg viewBox="0 0 520 200" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 540 210" style="max-width: 520px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <marker id="mo-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="sd-ma" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#37474F"/>
+    </marker>
+    <marker id="sd-mo" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E67E22"/>
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect x="0" y="0" width="520" height="200" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
-  <text x="260" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Moore "01" Sequence Detector (3 states)</text>
+  <rect x="0" y="0" width="540" height="210" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+  <text x="270" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Moore "01" Detector — 3 States</text>
 
-  <!-- S0 -->
-  <circle cx="100" cy="105" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
-  <text x="100" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">S0</text>
-  <text x="100" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
-  <text x="100" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
+  <!-- ── S0 (Idle, Z=0) ── -->
+  <circle cx="110" cy="110" r="40" fill="#E8F4FD" stroke="#2980B9" stroke-width="2"/>
+  <text x="110" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S0</text>
+  <text x="110" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
+  <line x1="80" y1="128" x2="140" y2="128" stroke="#2980B9" stroke-width="1"/>
+  <text x="110" y="142" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
 
-  <!-- S1 -->
-  <circle cx="260" cy="105" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
-  <text x="260" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">S1</text>
-  <text x="260" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen '0'</text>
-  <text x="260" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
+  <!-- ── S1 (Seen 0, Z=0) ── -->
+  <circle cx="270" cy="110" r="40" fill="#E8F4FD" stroke="#2980B9" stroke-width="2"/>
+  <text x="270" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S1</text>
+  <text x="270" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen 0</text>
+  <line x1="240" y1="128" x2="300" y2="128" stroke="#2980B9" stroke-width="1"/>
+  <text x="270" y="142" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
 
-  <!-- S2 -->
-  <circle cx="420" cy="105" r="38" fill="#FFF3E0" stroke="#E67E22" stroke-width="2.5"/>
-  <text x="420" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#E65100">S2</text>
-  <text x="420" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#E65100">Detected '01'</text>
-  <text x="420" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#E67E22">Z = 1</text>
+  <!-- ── S2 (Detected 01, Z=1) ── -->
+  <circle cx="430" cy="110" r="40" fill="#FFF3E0" stroke="#E67E22" stroke-width="2.5"/>
+  <text x="430" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#E65100">S2</text>
+  <text x="430" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#E65100">Detected 01</text>
+  <line x1="400" y1="128" x2="460" y2="128" stroke="#E67E22" stroke-width="1"/>
+  <text x="430" y="142" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#E67E22">Z = 1</text>
 
   <!-- Initial arrow → S0 -->
-  <line x1="25" y1="105" x2="60" y2="105" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <line x1="28" y1="110" x2="68" y2="110" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <text x="48" y="103" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#555">start</text>
 
   <!-- S0 → S1: input 0 -->
-  <line x1="138" y1="95" x2="220" y2="95" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="179" y="88" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+  <line x1="150" y1="100" x2="228" y2="100" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <rect x="175" y="86" width="20" height="16" rx="3" fill="#FAFBFF" stroke="none"/>
+  <text x="185" y="98" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">0</text>
 
   <!-- S1 → S2: input 1 -->
-  <line x1="298" y1="95" x2="380" y2="95" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="339" y="88" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+  <line x1="310" y1="100" x2="388" y2="100" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <rect x="335" y="86" width="20" height="16" rx="3" fill="#FAFBFF" stroke="none"/>
+  <text x="345" y="98" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">1</text>
 
-  <!-- S0 self-loop: input 1 (top) -->
-  <path d="M 82,70 C 70,30 130,30 118,70" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="100" y="40" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+  <!-- S0 self-loop: input 1 -->
+  <path d="M 90,73 C 78,32 142,32 130,73" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <text x="110" y="40" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">1</text>
 
-  <!-- S1 self-loop: input 0 (top) -->
-  <path d="M 242,70 C 230,30 290,30 278,70" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="260" y="40" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+  <!-- S1 self-loop: input 0 -->
+  <path d="M 250,73 C 238,32 302,32 290,73" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <text x="270" y="40" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">0</text>
 
-  <!-- S2 → S1: input 0 (bottom curve) -->
-  <path d="M 390,135 C 370,175 310,175 290,135" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="340" y="178" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+  <!-- S2 → S1: input 0 (below, short) -->
+  <path d="M 400,145 C 382,182 318,182 300,145" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <text x="350" y="185" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">0</text>
 
-  <!-- S2 → S0: input 1 (long bottom curve) -->
-  <path d="M 395,140 C 360,195 140,195 115,140" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
-  <text x="260" y="197" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+  <!-- S2 → S0: input 1 (below, long) -->
+  <path d="M 400,150 C 375,205 145,205 120,150" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ma)"/>
+  <text x="260" y="207" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">1</text>
 </svg>
 </div>
 
-- **S0 (Idle):** No part of "01" received. Input 0 moves to S1; input 1 stays in S0.
-- **S1 (Seen '0'):** First bit matches. Input 1 completes the pattern → S2; input 0 stays in S1.
-- **S2 (Detected '01'):** Pattern detected, $Z = 1$. Input 0 starts a new attempt → S1; input 1 resets → S0.
+- **S0 (Idle):** No part of "01" seen. Input 0 → S1; input 1 → stay in S0.
+- **S1 (Seen 0):** Got a '0'. Input 1 completes "01" → S2; input 0 → stay in S1.
+- **S2 (Detected 01):** Output $Z = 1$. Input 0 → S1 (new attempt); input 1 → S0 (reset).
 
-**Mealy Machine** — output depends on state AND input (each transition is labeled **input / output**):
+**Mealy Machine — "01" Detector** (output depends on state + input)
 
 <div style="text-align: center; margin: 1.5rem 0;">
-<svg viewBox="0 0 400 200" style="max-width: 380px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 420 195" style="max-width: 400px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <marker id="me-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="sd-ya" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#37474F"/>
+    </marker>
+    <marker id="sd-yo" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E67E22"/>
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect x="0" y="0" width="400" height="200" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
-  <text x="200" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Mealy "01" Sequence Detector (2 states)</text>
+  <rect x="0" y="0" width="420" height="195" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+  <text x="210" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Mealy "01" Detector — 2 States</text>
 
-  <!-- S0 -->
-  <circle cx="120" cy="110" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
-  <text x="120" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S0</text>
-  <text x="120" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
+  <!-- ── S0 (Idle) ── -->
+  <circle cx="130" cy="108" r="40" fill="#E8F4FD" stroke="#2980B9" stroke-width="2"/>
+  <text x="130" y="104" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S0</text>
+  <text x="130" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
 
-  <!-- S1 -->
-  <circle cx="280" cy="110" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
-  <text x="280" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S1</text>
-  <text x="280" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen '0'</text>
+  <!-- ── S1 (Seen 0) ── -->
+  <circle cx="290" cy="108" r="40" fill="#E8F4FD" stroke="#2980B9" stroke-width="2"/>
+  <text x="290" y="104" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S1</text>
+  <text x="290" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen 0</text>
 
   <!-- Initial arrow → S0 -->
-  <line x1="30" y1="110" x2="80" y2="110" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
+  <line x1="35" y1="108" x2="88" y2="108" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ya)"/>
+  <text x="60" y="101" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#555">start</text>
 
   <!-- S0 → S1: 0/0 (top arc) -->
-  <path d="M 155,98 C 175,68 225,68 245,98" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
-  <text x="200" y="72" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0 / 0</text>
+  <path d="M 167,93 C 190,60 230,60 253,93" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ya)"/>
+  <rect x="192" y="58" width="38" height="16" rx="3" fill="#FAFBFF" stroke="none"/>
+  <text x="210" y="70" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">0 / 0</text>
 
-  <!-- S1 → S0: 1/1 (bottom arc, detection!) -->
-  <path d="M 245,125 C 225,158 175,158 155,125" fill="none" stroke="#E67E22" stroke-width="2.5" marker-end="url(#me-a)"/>
-  <text x="200" y="168" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#E65100">1 / 1  ← detected!</text>
+  <!-- S1 → S0: 1/1 (bottom arc — detection!) -->
+  <path d="M 253,126 C 230,162 190,162 167,126" fill="none" stroke="#E67E22" stroke-width="2.5" marker-end="url(#sd-yo)"/>
+  <rect x="183" y="154" width="56" height="16" rx="3" fill="#FFF3E0" stroke="none"/>
+  <text x="210" y="166" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#E65100">1 / 1</text>
+  <text x="210" y="183" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="600" fill="#E67E22">↑ pattern detected</text>
 
-  <!-- S0 self-loop: 1/0 (left) -->
-  <path d="M 102,75 C 90,35 150,35 138,75" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
-  <text x="120" y="42" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1 / 0</text>
+  <!-- S0 self-loop: 1/0 -->
+  <path d="M 110,71 C 98,30 162,30 150,71" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ya)"/>
+  <text x="130" y="38" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">1 / 0</text>
 
-  <!-- S1 self-loop: 0/0 (right) -->
-  <path d="M 262,75 C 250,35 310,35 298,75" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
-  <text x="280" y="42" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0 / 0</text>
+  <!-- S1 self-loop: 0/0 -->
+  <path d="M 270,71 C 258,30 322,30 310,71" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#sd-ya)"/>
+  <text x="290" y="38" text-anchor="middle" font-family="Courier New" font-size="12" font-weight="700" fill="#333">0 / 0</text>
 </svg>
 </div>
 
-- **S0 (Idle):** Input 0 moves to S1 with output 0; input 1 stays in S0 with output 0.
-- **S1 (Seen '0'):** Input 1 completes the pattern and produces $Z = 1$ immediately on the transition back to S0; input 0 stays in S1 with output 0.
+- **S0 (Idle):** Input 0 → S1 (output 0); input 1 → stay in S0 (output 0).
+- **S1 (Seen 0):** Input 1 → S0 with **output $Z = 1$** (pattern detected on the transition); input 0 → stay in S1 (output 0).
 
-The Mealy machine achieves the same detection with only **2 states** (vs 3 for Moore) because it produces the output immediately on the detecting transition, eliminating the need for a separate "detection" state.
+**Comparison: Moore vs Mealy for "01" Detector**
+
+| Feature | Moore | Mealy |
+|---------|-------|-------|
+| Number of states | 3 (S0, S1, S2) | 2 (S0, S1) |
+| Output labeled | Inside state circles | On transition arrows (input/output) |
+| Detection output | Appears in S2 (one clock cycle after "01" arrives) | Appears immediately on the S1→S0 transition |
+| Output timing | Synchronous — changes only at clock edges | Asynchronous — can change between clock edges |
+| Output stability | Glitch-free | May glitch if input changes between clock edges |
+| Why the difference? | Needs a dedicated state to hold Z=1 | Produces Z=1 directly on the detecting transition |
+
+The Mealy machine uses **fewer states** because it produces the output immediately on the detecting transition, eliminating the need for a separate "detection" state. The Moore machine is **safer** because its outputs are purely synchronous.
 
 </div>
 
