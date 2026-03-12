@@ -5,8 +5,7 @@
 let containerWidth;
 let canvasWidth = 400;
 let drawHeight = 450;
-let controlHeight = 70;
-let canvasHeight = drawHeight + controlHeight;
+let canvasHeight = drawHeight;
 
 let currentState = 0;
 let inputSequence = [];
@@ -48,28 +47,30 @@ function setup() {
   var mainElement = document.querySelector('main');
   canvas.parent(mainElement);
 
+  // Create a button container div below the canvas
+  let btnContainer = createDiv('');
+  btnContainer.parent(mainElement);
+  btnContainer.style('padding', '10px 20px');
+  btnContainer.style('display', 'flex');
+  btnContainer.style('gap', '10px');
+
   input0Btn = createButton('Input 0');
+  input0Btn.parent(btnContainer);
   input0Btn.mousePressed(() => applyInput(0));
 
   input1Btn = createButton('Input 1');
+  input1Btn.parent(btnContainer);
   input1Btn.mousePressed(() => applyInput(1));
 
   clearBtn = createButton('Clear');
+  clearBtn.parent(btnContainer);
   clearBtn.mousePressed(() => {
     currentState = 0;
     inputSequence = [];
     detections = [];
   });
 
-  positionUIElements();
   describe('101 sequence detector demonstration', LABEL);
-}
-
-function positionUIElements() {
-  let mainRect = document.querySelector('main').getBoundingClientRect();
-  input0Btn.position(mainRect.left + 20, mainRect.top + drawHeight + 15);
-  input1Btn.position(mainRect.left + 100, mainRect.top + drawHeight + 15);
-  clearBtn.position(mainRect.left + 180, mainRect.top + drawHeight + 15);
 }
 
 function applyInput(inp) {
@@ -96,11 +97,6 @@ function draw() {
   noStroke();
   rect(0, 0, canvasWidth, drawHeight);
 
-  // Control area
-  fill('white');
-  stroke('silver');
-  rect(0, drawHeight, canvasWidth, controlHeight);
-
   // Title
   fill(colors.text);
   noStroke();
@@ -122,11 +118,6 @@ function draw() {
   // Draw current state info
   drawCurrentState();
 
-  // Instructions
-  fill(colors.text);
-  textAlign(LEFT, CENTER);
-  textSize(10);
-  text('Enter bits to detect "101" pattern', 260, drawHeight + 30);
 }
 
 function drawStateDiagram() {
@@ -312,7 +303,6 @@ function drawCurrentState() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(containerWidth, canvasHeight);
-  positionUIElements();
 }
 
 function updateCanvasSize() {
