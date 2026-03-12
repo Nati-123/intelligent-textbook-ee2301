@@ -1183,37 +1183,187 @@ Load a specific starting value to skip unwanted states:
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-A mod-6 counter counts: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 000$
+A standard 3-bit binary counter has **8 states** (000 through 111). A **mod-6 counter** uses only **6 of those 8 states** (000 through 101), then resets back to 000 — skipping states 110 and 111 entirely.
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    state "000\n(0)" as S0
-    state "001\n(1)" as S1
-    state "010\n(2)" as S2
-    state "011\n(3)" as S3
-    state "100\n(4)" as S4
-    state "101\n(5)" as S5
+**Counting sequence:**
 
-    [*] --> S0
-    S0 --> S1
-    S1 --> S2
-    S2 --> S3
-    S3 --> S4
-    S4 --> S5
-    S5 --> S0 : Reset when\n110 detected
-```
+$$000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 000 \text{ (reset)}$$
 
-**Using the reset method:**
+<h4 style="color: #5A3EED; font-weight: 600;">State Diagram</h4>
 
-- Normal 3-bit counter counts 000 through 111
-- Detect state 110 (decimal 6): $Q_2 \cdot Q_1 \cdot Q_0'$
-- Use this signal to reset all flip-flops to 000
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 640 220" style="max-width: 620px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .mc-state  { stroke-width: 2; }
+      .mc-label  { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; text-anchor: middle; }
+      .mc-dec    { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; fill: #888; text-anchor: middle; }
+      .mc-small  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; }
+      .mc-wire   { stroke: #455A64; stroke-width: 2; fill: none; }
+      .mc-reset  { stroke: #C62828; stroke-width: 2.5; fill: none; }
+    </style>
+    <marker id="mc-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#455A64"/>
+    </marker>
+    <marker id="mc-rarr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#C62828"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="640" height="220" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="320" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Mod-6 Counter State Diagram</text>
+
+  <!-- States: 6 circles in two rows -->
+  <!-- Row 1: S0, S1, S2, S3 -->
+  <!-- Row 2: S4, S5, then dashed S6 (detected & reset) -->
+
+  <!-- S0 -->
+  <circle cx="80" cy="80" r="30" class="mc-state" fill="#D5F5E3" stroke="#27AE60"/>
+  <text x="80" y="77" class="mc-label" fill="#333">000</text>
+  <text x="80" y="93" class="mc-dec">(0)</text>
+  <!-- Initial arrow -->
+  <line x1="30" y1="80" x2="48" y2="80" class="mc-wire" marker-end="url(#mc-arr)"/>
+  <text x="30" y="72" class="mc-small" fill="#888">start</text>
+
+  <!-- S0 → S1 -->
+  <line x1="110" y1="80" x2="148" y2="80" class="mc-wire" marker-end="url(#mc-arr)"/>
+
+  <!-- S1 -->
+  <circle cx="180" cy="80" r="30" class="mc-state" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="180" y="77" class="mc-label" fill="#333">001</text>
+  <text x="180" y="93" class="mc-dec">(1)</text>
+
+  <!-- S1 → S2 -->
+  <line x1="210" y1="80" x2="248" y2="80" class="mc-wire" marker-end="url(#mc-arr)"/>
+
+  <!-- S2 -->
+  <circle cx="280" cy="80" r="30" class="mc-state" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="280" y="77" class="mc-label" fill="#333">010</text>
+  <text x="280" y="93" class="mc-dec">(2)</text>
+
+  <!-- S2 → S3 -->
+  <line x1="310" y1="80" x2="348" y2="80" class="mc-wire" marker-end="url(#mc-arr)"/>
+
+  <!-- S3 -->
+  <circle cx="380" cy="80" r="30" class="mc-state" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="380" y="77" class="mc-label" fill="#333">011</text>
+  <text x="380" y="93" class="mc-dec">(3)</text>
+
+  <!-- S3 → S4 (down-right) -->
+  <line x1="397" y1="106" x2="423" y2="134" class="mc-wire" marker-end="url(#mc-arr)"/>
+
+  <!-- S4 -->
+  <circle cx="440" cy="160" r="30" class="mc-state" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="440" y="157" class="mc-label" fill="#333">100</text>
+  <text x="440" y="173" class="mc-dec">(4)</text>
+
+  <!-- S4 → S5 -->
+  <line x1="470" y1="160" x2="508" y2="160" class="mc-wire" marker-end="url(#mc-arr)"/>
+
+  <!-- S5 (last valid state) -->
+  <circle cx="540" cy="160" r="30" class="mc-state" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="540" y="157" class="mc-label" fill="#333">101</text>
+  <text x="540" y="173" class="mc-dec">(5)</text>
+
+  <!-- S5 → S6 (momentary, dashed) -->
+  <line x1="570" y1="155" x2="580" y2="145" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
+  <text x="598" y="130" class="mc-small" fill="#C62828" font-weight="700">110 (6)</text>
+  <text x="598" y="143" class="mc-small" fill="#C62828">detected!</text>
+
+  <!-- Reset arrow: S5 back to S0 (bottom arc) -->
+  <path d="M 540,192 C 540,215 80,215 80,112" class="mc-reset" marker-end="url(#mc-rarr)"/>
+  <text x="310" y="212" text-anchor="middle" class="mc-small" fill="#C62828" font-weight="700">RESET: 110 detected → force 000</text>
+
+  <!-- Skipped states annotation -->
+  <rect x="425" y="38" width="200" height="30" rx="5" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="525" y="57" text-anchor="middle" class="mc-small" fill="#C62828">States 110, 111 skipped (unused)</text>
+</svg>
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 600;">Design Using the Reset Method</h4>
+
+The idea is straightforward: build a normal 3-bit binary counter, then add a small combinational circuit that **detects** the first unwanted state (110 = decimal 6) and immediately **resets** all flip-flops to 000.
+
+**Step-by-step:**
+
+1. A standard 3-bit counter counts normally: $000 \rightarrow 001 \rightarrow \cdots \rightarrow 101 \rightarrow 110$
+2. When the counter reaches state **110**, the detection logic produces a **Reset = 1** signal
+3. This signal forces all flip-flops to **000** on the same (synchronous) or next (asynchronous) clock edge
+4. The counter then starts the sequence again from 000
+
+**Reset detection logic:**
+
+The counter needs to reset when $Q_2 Q_1 Q_0 = 110$. This requires detecting $Q_2 = 1$, $Q_1 = 1$, and $Q_0 = 0$ simultaneously:
+
+$$\text{Reset} = Q_2 \cdot Q_1 \cdot \overline{Q_0}$$
+
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 440 150" style="max-width: 420px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .rd-block { stroke-width: 2; rx: 6; }
+      .rd-sig   { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; }
+      .rd-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; }
+      .rd-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="440" height="150" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="220" y="18" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#5A3EED">Reset Detection Logic</text>
+
+  <!-- Input Q₂ -->
+  <text x="30" y="52" class="rd-sig" fill="#333">Q₂</text>
+  <line x1="52" y1="48" x2="140" y2="48" class="rd-wire"/>
+
+  <!-- Input Q₁ -->
+  <text x="30" y="78" class="rd-sig" fill="#333">Q₁</text>
+  <line x1="52" y1="74" x2="140" y2="74" class="rd-wire"/>
+
+  <!-- Input Q₀ with NOT bubble -->
+  <text x="30" y="108" class="rd-sig" fill="#333">Q₀</text>
+  <line x1="52" y1="104" x2="90" y2="104" class="rd-wire"/>
+  <!-- NOT gate -->
+  <rect x="93" y="92" width="40" height="24" class="rd-block" fill="#FFF3E0" stroke="#E67E22"/>
+  <text x="113" y="108" text-anchor="middle" font-family="Segoe UI" font-size="10" font-weight="700" fill="#E67E22">NOT</text>
+  <!-- NOT output -->
+  <line x1="133" y1="104" x2="140" y2="104" class="rd-wire"/>
+  <text x="130" y="125" class="rd-small" fill="#E67E22">Q̄₀</text>
+
+  <!-- 3-input AND gate -->
+  <rect x="145" y="40" width="80" height="75" class="rd-block" fill="#E8F5E9" stroke="#4CAF50"/>
+  <text x="185" y="73" text-anchor="middle" font-family="Segoe UI" font-size="12" font-weight="700" fill="#388E3C">AND</text>
+  <text x="185" y="88" text-anchor="middle" class="rd-small" fill="#388E3C">3-input</text>
+
+  <!-- AND output → Reset -->
+  <line x1="225" y1="78" x2="310" y2="78" class="rd-wire"/>
+  <polygon points="306,74 314,78 306,82" fill="#455A64"/>
+
+  <!-- Reset label -->
+  <rect x="315" y="60" width="100" height="36" class="rd-block" fill="#FFEBEE" stroke="#C62828"/>
+  <text x="365" y="83" text-anchor="middle" class="rd-sig" fill="#C62828">Reset</text>
+  <text x="365" y="55" text-anchor="middle" class="rd-small" fill="#C62828">→ CLR on all FFs</text>
+
+  <!-- Equation -->
+  <text x="220" y="142" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">Reset = Q₂ · Q₁ · Q̄₀</text>
+</svg>
+</div>
+
+<h4 style="color: #5A3EED; font-weight: 600;">Normal 3-Bit Counter vs Mod-6 Counter</h4>
+
+| Property | Normal 3-Bit Counter | Mod-6 Counter |
+|----------|---------------------|---------------|
+| Flip-flops | 3 | 3 |
+| Total states | 8 (000–111) | 6 (000–101) |
+| Extra logic | None | AND gate + NOT gate |
+| Sequence | 000 → 001 → ... → 111 → 000 | 000 → 001 → ... → 101 → 000 |
+| Skipped states | None | 110, 111 |
 
 </div>
 
 !!! warning "Glitch Consideration"
-    The reset method causes a brief glitch: the counter momentarily enters the "overflow" state before resetting. In synchronous designs, this glitch is resolved within the same clock cycle and causes no problems. In asynchronous designs, external circuits may see the transient state.
+    The reset method causes a brief glitch: the counter momentarily enters state 110 before the reset logic forces it back to 000. In **synchronous** designs (where the Reset signal drives the synchronous clear input), this transient is resolved within the same clock cycle. In **asynchronous** designs (where Reset drives an asynchronous clear), the 110 state appears for approximately one gate delay — external circuits may see this transient.
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.9.3 BCD Counter (Decade Counter)</h3>
 
