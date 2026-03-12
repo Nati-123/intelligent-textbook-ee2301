@@ -182,65 +182,158 @@ where:
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Bit Parallel Load Register</h4>
 
-```mermaid
-flowchart LR
-    subgraph INPUTS["Data Inputs"]
-        D3["D₃"]
-        D2["D₂"]
-        D1["D₁"]
-        D0["D₀"]
-    end
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 620 340" style="max-width: 600px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .pr-block { stroke-width: 2; }
+      .pr-label { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+      .pr-sig   { font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; }
+      .pr-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #555; }
+      .pr-wire  { stroke: #455A64; stroke-width: 2; fill: none; }
+      .pr-fb    { stroke: #E53935; stroke-width: 1.8; fill: none; stroke-dasharray: 5,3; }
+      .pr-bus   { stroke-width: 2.5; fill: none; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="620" height="340" rx="12" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    subgraph MUX["2:1 MUX at Each Bit"]
-        M3["MUX₃"]
-        M2["MUX₂"]
-        M1["MUX₁"]
-        M0["MUX₀"]
-    end
+  <!-- Title -->
+  <text x="310" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#5A3EED">4-Bit Parallel Load Register</text>
 
-    subgraph FF["D Flip-Flops (Common CLK)"]
-        FF3["D FF₃"]
-        FF2["D FF₂"]
-        FF1["D FF₁"]
-        FF0["D FF₀"]
-    end
+  <!-- ============ LOAD BUS (horizontal, top) ============ -->
+  <line x1="30" y1="52" x2="530" y2="52" class="pr-bus" stroke="#E67E22"/>
+  <text x="18" y="57" class="pr-sig" fill="#E67E22" text-anchor="end">Load</text>
+  <!-- Taps down to each MUX select -->
+  <line x1="100" y1="52" x2="100" y2="100" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="100" cy="52" r="3" fill="#E67E22"/>
+  <line x1="230" y1="52" x2="230" y2="100" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="230" cy="52" r="3" fill="#E67E22"/>
+  <line x1="360" y1="52" x2="360" y2="100" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="360" cy="52" r="3" fill="#E67E22"/>
+  <line x1="490" y1="52" x2="490" y2="100" stroke="#E67E22" stroke-width="1.5"/>
+  <circle cx="490" cy="52" r="3" fill="#E67E22"/>
+  <text x="100" y="96" text-anchor="middle" class="pr-small" fill="#E67E22">sel</text>
+  <text x="230" y="96" text-anchor="middle" class="pr-small" fill="#E67E22">sel</text>
+  <text x="360" y="96" text-anchor="middle" class="pr-small" fill="#E67E22">sel</text>
+  <text x="490" y="96" text-anchor="middle" class="pr-small" fill="#E67E22">sel</text>
 
-    subgraph OUTPUTS["Outputs"]
-        Q3["Q₃"]
-        Q2["Q₂"]
-        Q1["Q₁"]
-        Q0["Q₀"]
-    end
+  <!-- ============ BIT 3 (leftmost) ============ -->
+  <!-- Data input D₃ -->
+  <text x="75" y="78" class="pr-sig" fill="#27AE60">D₃</text>
+  <line x1="75" y1="82" x2="75" y2="100" class="pr-wire"/>
+  <polygon points="71,96 75,104 79,96" fill="#455A64"/>
+  <!-- MUX -->
+  <rect x="55" y="104" width="90" height="44" rx="6" class="pr-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="100" y="130" text-anchor="middle" class="pr-label" font-size="12" fill="#E67E22">2:1 MUX</text>
+  <!-- MUX to FF wire -->
+  <line x1="100" y1="148" x2="100" y2="172" class="pr-wire"/>
+  <polygon points="96,168 100,176 104,168" fill="#455A64"/>
+  <!-- D Flip-Flop -->
+  <rect x="60" y="176" width="80" height="50" rx="6" class="pr-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="100" y="198" text-anchor="middle" class="pr-label" font-size="11" fill="#7D3C98">D FF₃</text>
+  <text x="70" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="128" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <!-- Clock triangle -->
+  <polygon points="60,216 70,211 60,206" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <!-- Q₃ output -->
+  <line x1="100" y1="226" x2="100" y2="260" class="pr-wire"/>
+  <text x="100" y="274" text-anchor="middle" class="pr-sig" fill="#2980B9">Q₃</text>
+  <!-- Feedback: Q₃ back to MUX -->
+  <line x1="100" y1="244" x2="40" y2="244" class="pr-fb"/>
+  <line x1="40" y1="244" x2="40" y2="126" class="pr-fb"/>
+  <line x1="40" y1="126" x2="55" y2="126" class="pr-fb"/>
+  <polygon points="51,122 59,126 51,130" fill="#E53935"/>
+  <circle cx="100" cy="244" r="3" fill="#E53935"/>
 
-    D3 --> M3 --> FF3 --> Q3
-    D2 --> M2 --> FF2 --> Q2
-    D1 --> M1 --> FF1 --> Q1
-    D0 --> M0 --> FF0 --> Q0
+  <!-- ============ BIT 2 ============ -->
+  <text x="205" y="78" class="pr-sig" fill="#27AE60">D₂</text>
+  <line x1="205" y1="82" x2="205" y2="100" class="pr-wire"/>
+  <polygon points="201,96 205,104 209,96" fill="#455A64"/>
+  <rect x="185" y="104" width="90" height="44" rx="6" class="pr-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="230" y="130" text-anchor="middle" class="pr-label" font-size="12" fill="#E67E22">2:1 MUX</text>
+  <line x1="230" y1="148" x2="230" y2="172" class="pr-wire"/>
+  <polygon points="226,168 230,176 234,168" fill="#455A64"/>
+  <rect x="190" y="176" width="80" height="50" rx="6" class="pr-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="230" y="198" text-anchor="middle" class="pr-label" font-size="11" fill="#7D3C98">D FF₂</text>
+  <text x="200" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="258" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="190,216 200,211 190,206" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="230" y1="226" x2="230" y2="260" class="pr-wire"/>
+  <text x="230" y="274" text-anchor="middle" class="pr-sig" fill="#2980B9">Q₂</text>
+  <line x1="230" y1="244" x2="170" y2="244" class="pr-fb"/>
+  <line x1="170" y1="244" x2="170" y2="126" class="pr-fb"/>
+  <line x1="170" y1="126" x2="185" y2="126" class="pr-fb"/>
+  <polygon points="181,122 189,126 181,130" fill="#E53935"/>
+  <circle cx="230" cy="244" r="3" fill="#E53935"/>
 
-    Q3 -.->|"Feedback\n(Hold)"| M3
-    Q2 -.->|"Feedback\n(Hold)"| M2
-    Q1 -.->|"Feedback\n(Hold)"| M1
-    Q0 -.->|"Feedback\n(Hold)"| M0
+  <!-- ============ BIT 1 ============ -->
+  <text x="335" y="78" class="pr-sig" fill="#27AE60">D₁</text>
+  <line x1="335" y1="82" x2="335" y2="100" class="pr-wire"/>
+  <polygon points="331,96 335,104 339,96" fill="#455A64"/>
+  <rect x="315" y="104" width="90" height="44" rx="6" class="pr-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="360" y="130" text-anchor="middle" class="pr-label" font-size="12" fill="#E67E22">2:1 MUX</text>
+  <line x1="360" y1="148" x2="360" y2="172" class="pr-wire"/>
+  <polygon points="356,168 360,176 364,168" fill="#455A64"/>
+  <rect x="320" y="176" width="80" height="50" rx="6" class="pr-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="360" y="198" text-anchor="middle" class="pr-label" font-size="11" fill="#7D3C98">D FF₁</text>
+  <text x="330" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="388" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="320,216 330,211 320,206" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="360" y1="226" x2="360" y2="260" class="pr-wire"/>
+  <text x="360" y="274" text-anchor="middle" class="pr-sig" fill="#2980B9">Q₁</text>
+  <line x1="360" y1="244" x2="300" y2="244" class="pr-fb"/>
+  <line x1="300" y1="244" x2="300" y2="126" class="pr-fb"/>
+  <line x1="300" y1="126" x2="315" y2="126" class="pr-fb"/>
+  <polygon points="311,122 319,126 311,130" fill="#E53935"/>
+  <circle cx="360" cy="244" r="3" fill="#E53935"/>
 
-    LOAD["Load"] -->|"Select"| M3
-    LOAD -->|"Select"| M2
-    LOAD -->|"Select"| M1
-    LOAD -->|"Select"| M0
+  <!-- ============ BIT 0 (rightmost) ============ -->
+  <text x="465" y="78" class="pr-sig" fill="#27AE60">D₀</text>
+  <line x1="465" y1="82" x2="465" y2="100" class="pr-wire"/>
+  <polygon points="461,96 465,104 469,96" fill="#455A64"/>
+  <rect x="445" y="104" width="90" height="44" rx="6" class="pr-block" fill="#FDEBD0" stroke="#E67E22"/>
+  <text x="490" y="130" text-anchor="middle" class="pr-label" font-size="12" fill="#E67E22">2:1 MUX</text>
+  <line x1="490" y1="148" x2="490" y2="172" class="pr-wire"/>
+  <polygon points="486,168 490,176 494,168" fill="#455A64"/>
+  <rect x="450" y="176" width="80" height="50" rx="6" class="pr-block" fill="#E8DAEF" stroke="#7D3C98"/>
+  <text x="490" y="198" text-anchor="middle" class="pr-label" font-size="11" fill="#7D3C98">D FF₀</text>
+  <text x="460" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">D</text>
+  <text x="518" y="190" font-family="Courier New" font-size="9" fill="#7D3C98">Q</text>
+  <polygon points="450,216 460,211 450,206" fill="#1565C0" stroke="#1565C0" stroke-width="1"/>
+  <line x1="490" y1="226" x2="490" y2="260" class="pr-wire"/>
+  <text x="490" y="274" text-anchor="middle" class="pr-sig" fill="#2980B9">Q₀</text>
+  <line x1="490" y1="244" x2="430" y2="244" class="pr-fb"/>
+  <line x1="430" y1="244" x2="430" y2="126" class="pr-fb"/>
+  <line x1="430" y1="126" x2="445" y2="126" class="pr-fb"/>
+  <polygon points="441,122 449,126 441,130" fill="#E53935"/>
+  <circle cx="490" cy="244" r="3" fill="#E53935"/>
 
-    CLK["CLK ↑"] --> FF3
-    CLK --> FF2
-    CLK --> FF1
-    CLK --> FF0
+  <!-- ============ CLK BUS (horizontal, bottom) ============ -->
+  <line x1="30" y1="300" x2="530" y2="300" class="pr-bus" stroke="#1565C0"/>
+  <text x="18" y="305" class="pr-sig" fill="#1565C0" text-anchor="end">CLK</text>
+  <!-- Taps up to each FF -->
+  <line x1="100" y1="300" x2="100" y2="260" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="100" cy="300" r="3" fill="#1565C0"/>
+  <line x1="230" y1="300" x2="230" y2="260" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="230" cy="300" r="3" fill="#1565C0"/>
+  <line x1="360" y1="300" x2="360" y2="260" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="360" cy="300" r="3" fill="#1565C0"/>
+  <line x1="490" y1="300" x2="490" y2="260" stroke="#1565C0" stroke-width="1.5"/>
+  <circle cx="490" cy="300" r="3" fill="#1565C0"/>
 
-    style INPUTS fill:#D5F5E3,stroke:#27AE60,color:#333
-    style MUX fill:#FDEBD0,stroke:#E67E22,color:#333
-    style FF fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style OUTPUTS fill:#D6EAF8,stroke:#2980B9,color:#333
-    style LOAD fill:#FCF3CF,stroke:#F1C40F,color:#333
-    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
-```
+  <!-- ============ LEGEND ============ -->
+  <line x1="35" y1="326" x2="55" y2="326" class="pr-fb"/>
+  <text x="60" y="330" class="pr-small" fill="#E53935">Q feedback (hold path)</text>
+  <line x1="200" y1="326" x2="220" y2="326" class="pr-wire"/>
+  <text x="225" y="330" class="pr-small">Data path</text>
+  <line x1="340" y1="326" x2="360" y2="326" class="pr-bus" stroke="#E67E22"/>
+  <text x="365" y="330" class="pr-small" fill="#E67E22">Load bus</text>
+  <line x1="460" y1="326" x2="480" y2="326" class="pr-bus" stroke="#1565C0"/>
+  <text x="485" y="330" class="pr-small" fill="#1565C0">CLK bus</text>
+</svg>
+</div>
 
-When **Load = 1**, each MUX selects the external data input $D_i$. When **Load = 0**, the MUX feeds back $Q_i$, holding the current value.
+When **Load = 1**, each MUX selects the external data input $D_i$. When **Load = 0**, the MUX feeds back $Q_i$ (dashed red), holding the current value. All four flip-flops share a single clock line (blue bus at bottom) and a single Load control line (orange bus at top).
 
 </div>
 
