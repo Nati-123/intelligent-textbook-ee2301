@@ -182,6 +182,66 @@ where:
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Bit Parallel Load Register</h4>
 
+```mermaid
+flowchart LR
+    subgraph INPUTS["Data Inputs"]
+        D3["D₃"]
+        D2["D₂"]
+        D1["D₁"]
+        D0["D₀"]
+    end
+
+    subgraph MUX["2:1 MUX at Each Bit"]
+        M3["MUX₃"]
+        M2["MUX₂"]
+        M1["MUX₁"]
+        M0["MUX₀"]
+    end
+
+    subgraph FF["D Flip-Flops (Common CLK)"]
+        FF3["D FF₃"]
+        FF2["D FF₂"]
+        FF1["D FF₁"]
+        FF0["D FF₀"]
+    end
+
+    subgraph OUTPUTS["Outputs"]
+        Q3["Q₃"]
+        Q2["Q₂"]
+        Q1["Q₁"]
+        Q0["Q₀"]
+    end
+
+    D3 --> M3 --> FF3 --> Q3
+    D2 --> M2 --> FF2 --> Q2
+    D1 --> M1 --> FF1 --> Q1
+    D0 --> M0 --> FF0 --> Q0
+
+    Q3 -.->|"Feedback\n(Hold)"| M3
+    Q2 -.->|"Feedback\n(Hold)"| M2
+    Q1 -.->|"Feedback\n(Hold)"| M1
+    Q0 -.->|"Feedback\n(Hold)"| M0
+
+    LOAD["Load"] -->|"Select"| M3
+    LOAD -->|"Select"| M2
+    LOAD -->|"Select"| M1
+    LOAD -->|"Select"| M0
+
+    CLK["CLK ↑"] --> FF3
+    CLK --> FF2
+    CLK --> FF1
+    CLK --> FF0
+
+    style INPUTS fill:#D5F5E3,stroke:#27AE60,color:#333
+    style MUX fill:#FDEBD0,stroke:#E67E22,color:#333
+    style FF fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style OUTPUTS fill:#D6EAF8,stroke:#2980B9,color:#333
+    style LOAD fill:#FCF3CF,stroke:#F1C40F,color:#333
+    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
+```
+
+When **Load = 1**, each MUX selects the external data input $D_i$. When **Load = 0**, the MUX feeds back $Q_i$, holding the current value.
+
 </div>
 
 ---
@@ -277,6 +337,37 @@ A **bidirectional shift register** can shift data in either direction—left or 
 
 A 2-to-1 multiplexer at each flip-flop's D input selects between the left-neighbor output (for shift right) and the right-neighbor output (for shift left).
 
+```mermaid
+flowchart LR
+    SIR["Serial In\n(Right)"] --> M3
+    subgraph REG["Bidirectional Shift Register"]
+        direction LR
+        M3["MUX₃"] --> FF3["D FF₃"]
+        M2["MUX₂"] --> FF2["D FF₂"]
+        M1["MUX₁"] --> FF1["D FF₁"]
+        M0["MUX₀"] --> FF0["D FF₀"]
+    end
+    SIL["Serial In\n(Left)"] --> M0
+
+    FF3 -->|"Shift Right"| M2
+    FF2 -->|"Shift Right"| M1
+    FF1 -->|"Shift Right"| M0
+
+    FF0 -->|"Shift Left"| M1
+    FF1 -->|"Shift Left"| M2
+    FF2 -->|"Shift Left"| M3
+
+    DIR["Direction\n0=Right, 1=Left"] -.->|"Select"| M3
+    DIR -.->|"Select"| M2
+    DIR -.->|"Select"| M1
+    DIR -.->|"Select"| M0
+
+    style REG fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style DIR fill:#FCF3CF,stroke:#F1C40F,color:#333
+    style SIR fill:#D5F5E3,stroke:#27AE60,color:#333
+    style SIL fill:#D6EAF8,stroke:#2980B9,color:#333
+```
+
 </div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.5.2 Universal Shift Register</h3>
@@ -312,6 +403,27 @@ where:
 - $Q_{i+1}$ is the left-neighbor output (shift right source)
 - $Q_{i-1}$ is the right-neighbor output (shift left source)
 - $D_i$ is the parallel data input
+
+```mermaid
+flowchart TB
+    subgraph USR["Universal Shift Register (74194)"]
+        direction LR
+        SR["Serial In\n(Right)"] --> MUX["4:1 MUX\nat each bit"]
+        SL["Serial In\n(Left)"] --> MUX
+        PI["Parallel\nInputs D₃-D₀"] --> MUX
+        MUX --> FFS["4 D Flip-Flops\n(Common CLK)"]
+        FFS --> OUT["Q₃ Q₂ Q₁ Q₀"]
+        FFS -.->|"Feedback\n(Hold)"| MUX
+    end
+
+    MODE["S₁S₀ Mode Select\n00=Hold  01=Right\n10=Left   11=Load"] -.->|"Controls\nMUX select"| MUX
+
+    style USR fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style MODE fill:#FCF3CF,stroke:#F1C40F,color:#333
+    style SR fill:#D5F5E3,stroke:#27AE60,color:#333
+    style SL fill:#D6EAF8,stroke:#2980B9,color:#333
+    style PI fill:#FADBD8,stroke:#E74C3C,color:#333
+```
 
 </div>
 
@@ -366,6 +478,31 @@ In an **asynchronous** or **ripple** counter, only the first flip-flop receives 
 **Counting sequence:** $0000 \rightarrow 0001 \rightarrow 0010 \rightarrow \cdots \rightarrow 1111 \rightarrow 0000$
 
 Each bit position toggles at half the frequency of the previous bit, naturally producing the binary counting sequence.
+
+```mermaid
+flowchart LR
+    CLK["CLK"] --> FF0["T FF₀\nT=1"]
+    FF0 -->|"Q₀ ↓"| FF1["T FF₁\nT=1"]
+    FF1 -->|"Q₁ ↓"| FF2["T FF₂\nT=1"]
+    FF2 -->|"Q₂ ↓"| FF3["T FF₃\nT=1"]
+
+    FF0 --> Q0["Q₀\n(LSB)"]
+    FF1 --> Q1["Q₁"]
+    FF2 --> Q2["Q₂"]
+    FF3 --> Q3["Q₃\n(MSB)"]
+
+    style CLK fill:#FCF3CF,stroke:#F1C40F,color:#333
+    style FF0 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF1 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF2 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style Q0 fill:#D6EAF8,stroke:#2980B9,color:#333
+    style Q1 fill:#D6EAF8,stroke:#2980B9,color:#333
+    style Q2 fill:#D6EAF8,stroke:#2980B9,color:#333
+    style Q3 fill:#D6EAF8,stroke:#2980B9,color:#333
+```
+
+Each flip-flop's falling edge (↓) clocks the next stage, creating the "ripple" effect.
 
 </div>
 
@@ -563,6 +700,25 @@ Load a specific starting value to skip unwanted states:
 
 A mod-6 counter counts: $000 \rightarrow 001 \rightarrow 010 \rightarrow 011 \rightarrow 100 \rightarrow 101 \rightarrow 000$
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "000\n(0)" as S0
+    state "001\n(1)" as S1
+    state "010\n(2)" as S2
+    state "011\n(3)" as S3
+    state "100\n(4)" as S4
+    state "101\n(5)" as S5
+
+    [*] --> S0
+    S0 --> S1
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S0 : Reset when\n110 detected
+```
+
 **Using the reset method:**
 
 - Normal 3-bit counter counts 000 through 111
@@ -630,6 +786,21 @@ A **ring counter** is a circular shift register with a single 1 bit that circula
 - One-hot encoding is inherently glitch-free
 - Must be initialized to a valid state (exactly one 1)
 
+```mermaid
+flowchart LR
+    FF3["D FF₃"] -->|"Q₃ → D₂"| FF2["D FF₂"]
+    FF2 -->|"Q₂ → D₁"| FF1["D FF₁"]
+    FF1 -->|"Q₁ → D₀"| FF0["D FF₀"]
+    FF0 -->|"Q₀ → D₃\n(feedback)"| FF3
+
+    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF2 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF1 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF0 fill:#E8DAEF,stroke:#7D3C98,color:#333
+```
+
+The single "1" circulates: **1000 → 0100 → 0010 → 0001 → 1000 ...**
+
 </div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">10.10.2 Johnson Counter (Twisted Ring Counter)</h3>
@@ -658,6 +829,21 @@ A **Johnson counter** feeds the complement of the last flip-flop's output back t
 - Each state can be decoded with a single 2-input AND gate (examining adjacent flip-flop pairs)
 - Glitch-free outputs due to adjacent-bit-change property (similar to Gray code)
 - Must be initialized to all-zeros state
+
+```mermaid
+flowchart LR
+    FF3["D FF₃"] -->|"Q₃ → D₂"| FF2["D FF₂"]
+    FF2 -->|"Q₂ → D₁"| FF1["D FF₁"]
+    FF1 -->|"Q₁ → D₀"| FF0["D FF₀"]
+    FF0 -->|"Q₀' → D₃\n(complement\nfeedback)"| FF3
+
+    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
+    style FF2 fill:#D6EAF8,stroke:#2980B9,color:#333
+    style FF1 fill:#D6EAF8,stroke:#2980B9,color:#333
+    style FF0 fill:#D6EAF8,stroke:#2980B9,color:#333
+```
+
+The "twist" (complement feedback) doubles the state count: **0000 → 1000 → 1100 → 1110 → 1111 → 0111 → 0011 → 0001 → 0000**
 
 <h4 style="color: #5A3EED; font-weight: 600;">Comparison of Counter Types</h4>
 
@@ -910,6 +1096,35 @@ When constructing a state diagram:
 3. **Reachability:** Every state should be reachable from the initial state
 4. **Output specification:** Outputs must be defined for every state (Moore) or every transition (Mealy)
 
+<h4 style="color: #5A3EED; font-weight: 600;">Example: Moore vs Mealy State Diagram Notation</h4>
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    state "Moore Example" as moore {
+        state "S0 / Z=0" as MS0
+        state "S1 / Z=1" as MS1
+        [*] --> MS0
+        MS0 --> MS1 : X=1
+        MS1 --> MS0 : X=0
+        MS0 --> MS0 : X=0
+        MS1 --> MS1 : X=1
+    }
+
+    state "Mealy Example" as mealy {
+        state "S0" as YS0
+        state "S1" as YS1
+        [*] --> YS0
+        YS0 --> YS1 : X=1 / Z=0
+        YS1 --> YS0 : X=0 / Z=1
+        YS0 --> YS0 : X=0 / Z=0
+        YS1 --> YS1 : X=1 / Z=0
+    }
+```
+
+In **Moore** notation, outputs appear inside the state circle (State/Output). In **Mealy** notation, outputs appear on the transition arrows (Input/Output).
+
 </div>
 
 ---
@@ -1002,6 +1217,30 @@ The simplest approach: assign consecutive binary numbers to states. Uses the min
 
 - Uses more flip-flops ($N$ instead of $\lceil\log_2 N\rceil$)
 - Illegal states possible (must handle recovery)
+
+<h4 style="color: #5A3EED; font-weight: 600;">Binary vs One-Hot Encoding for 4 States</h4>
+
+```mermaid
+flowchart TB
+    subgraph BINARY["Binary Encoding (2 FFs)"]
+        direction TB
+        BS0["S0 = 00"]
+        BS1["S1 = 01"]
+        BS2["S2 = 10"]
+        BS3["S3 = 11"]
+    end
+
+    subgraph ONEHOT["One-Hot Encoding (4 FFs)"]
+        direction TB
+        OS0["S0 = 0001"]
+        OS1["S1 = 0010"]
+        OS2["S2 = 0100"]
+        OS3["S3 = 1000"]
+    end
+
+    style BINARY fill:#D6EAF8,stroke:#2980B9,color:#333
+    style ONEHOT fill:#D5F5E3,stroke:#27AE60,color:#333
+```
 
 | Number of States | Binary Flip-Flops | One-Hot Flip-Flops | Logic Levels (typical) |
 |-----------------|-------------------|--------------------|-----------------------|
@@ -1912,6 +2151,22 @@ The implication table is a systematic technique for identifying equivalent state
 4. Iteratively mark pairs as non-equivalent if any of their implied pairs are non-equivalent
 5. Repeat until no more changes occur
 6. Unmarked pairs are equivalent and can be merged
+
+```mermaid
+flowchart TB
+    subgraph STEP["Implication Table Method"]
+        direction TB
+        S1["① Create triangular table\nof all state pairs"]
+        S2["② Mark pairs with\ndifferent outputs ✗"]
+        S3["③ List implied pairs\nfor remaining entries"]
+        S4["④ Iteratively mark\nnon-equivalent pairs ✗"]
+        S5["⑤ Repeat until\nno changes"]
+        S6["⑥ Merge unmarked\n(equivalent) pairs ✓"]
+        S1 --> S2 --> S3 --> S4 --> S5 --> S6
+    end
+
+    style STEP fill:#FDEBD0,stroke:#E67E22,color:#333
+```
 
 </div>
 
