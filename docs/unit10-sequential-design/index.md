@@ -1497,11 +1497,11 @@ The single "1" circulates through the register: **1000 → 0100 → 0010 → 000
 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-A **Johnson counter** feeds the complement of the last flip-flop's output back to the first flip-flop's input. This "twist" doubles the number of unique states compared to a ring counter.
+A **Johnson counter** (also called a **twisted ring counter**) feeds the **complement** $\overline{Q_0}$ of the last flip-flop's output back to the input of the first flip-flop. **Initialization:** the counter must start with all flip-flops cleared to 0 (state 0000). This single "twist" in the feedback path doubles the number of unique states compared to a ring counter — an $n$-bit Johnson counter produces $2n$ states.
 
 **4-Bit Johnson Counter Sequence:**
 
-| Clock | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | Decoded State |
+| Clock Cycle | $Q_3$ | $Q_2$ | $Q_1$ | $Q_0$ | Decoded State |
 |-------|-------|-------|-------|-------|--------------|
 | 0 | 0 | 0 | 0 | 0 | State 0 |
 | 1 | 1 | 0 | 0 | 0 | State 1 |
@@ -1518,22 +1518,86 @@ A **Johnson counter** feeds the complement of the last flip-flop's output back t
 - $n$ flip-flops produce $2n$ states (better efficiency than ring counter)
 - Each state can be decoded with a single 2-input AND gate (examining adjacent flip-flop pairs)
 - Glitch-free outputs due to adjacent-bit-change property (similar to Gray code)
-- Must be initialized to all-zeros state
+- Must be initialized to all-zeros state (0000)
 
-```mermaid
-flowchart LR
-    FF3["D FF₃"] -->|"Q₃ → D₂"| FF2["D FF₂"]
-    FF2 -->|"Q₂ → D₁"| FF1["D FF₁"]
-    FF1 -->|"Q₁ → D₀"| FF0["D FF₀"]
-    FF0 -->|"Q₀' → D₃\n(complement\nfeedback)"| FF3
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 520 180" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .jc-ff   { fill: #E8DAEF; stroke: #7D3C98; stroke-width: 2; rx: 6; }
+      .jc-sig  { font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; }
+      .jc-lbl  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #555; }
+      .jc-wire { stroke: #455A64; stroke-width: 2; fill: none; }
+      .jc-fb   { stroke: #C62828; stroke-width: 2; fill: none; stroke-dasharray: 6,3; }
+    </style>
+    <marker id="jc-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#455A64"/>
+    </marker>
+    <marker id="jc-farr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#C62828"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="520" height="180" rx="10" fill="#FAFBFF" stroke="#E0E0E0" stroke-width="1"/>
 
-    style FF3 fill:#E8DAEF,stroke:#7D3C98,color:#333
-    style FF2 fill:#D6EAF8,stroke:#2980B9,color:#333
-    style FF1 fill:#D6EAF8,stroke:#2980B9,color:#333
-    style FF0 fill:#D6EAF8,stroke:#2980B9,color:#333
-```
+  <!-- Title -->
+  <text x="260" y="18" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#5A3EED">4-Bit Johnson Counter (Twisted Ring)</text>
 
-The "twist" (complement feedback) doubles the state count: **0000 → 1000 → 1100 → 1110 → 1111 → 0111 → 0011 → 0001 → 0000**
+  <!-- FF3 -->
+  <rect x="30" y="40" width="80" height="50" class="jc-ff"/>
+  <text x="70" y="60" text-anchor="middle" class="jc-sig" fill="#7D3C98">D FF₃</text>
+  <text x="36" y="78" class="jc-lbl">D₃</text>
+  <text x="96" y="78" class="jc-lbl" text-anchor="end">Q₃</text>
+
+  <!-- FF2 -->
+  <rect x="150" y="40" width="80" height="50" class="jc-ff"/>
+  <text x="190" y="60" text-anchor="middle" class="jc-sig" fill="#7D3C98">D FF₂</text>
+  <text x="156" y="78" class="jc-lbl">D₂</text>
+  <text x="216" y="78" class="jc-lbl" text-anchor="end">Q₂</text>
+
+  <!-- FF1 -->
+  <rect x="270" y="40" width="80" height="50" class="jc-ff"/>
+  <text x="310" y="60" text-anchor="middle" class="jc-sig" fill="#7D3C98">D FF₁</text>
+  <text x="276" y="78" class="jc-lbl">D₁</text>
+  <text x="336" y="78" class="jc-lbl" text-anchor="end">Q₁</text>
+
+  <!-- FF0 -->
+  <rect x="390" y="40" width="80" height="50" class="jc-ff"/>
+  <text x="430" y="60" text-anchor="middle" class="jc-sig" fill="#7D3C98">D FF₀</text>
+  <text x="396" y="78" class="jc-lbl">D₀</text>
+  <text x="456" y="78" class="jc-lbl" text-anchor="end">Q₀</text>
+
+  <!-- Wires: Q₃→D₂ -->
+  <line x1="110" y1="65" x2="150" y2="65" class="jc-wire" marker-end="url(#jc-arr)"/>
+  <text x="130" y="61" text-anchor="middle" class="jc-lbl">Q₃→D₂</text>
+
+  <!-- Wires: Q₂→D₁ -->
+  <line x1="230" y1="65" x2="270" y2="65" class="jc-wire" marker-end="url(#jc-arr)"/>
+  <text x="250" y="61" text-anchor="middle" class="jc-lbl">Q₂→D₁</text>
+
+  <!-- Wires: Q₁→D₀ -->
+  <line x1="350" y1="65" x2="390" y2="65" class="jc-wire" marker-end="url(#jc-arr)"/>
+  <text x="370" y="61" text-anchor="middle" class="jc-lbl">Q₁→D₀</text>
+
+  <!-- NOT bubble on feedback path -->
+  <circle cx="483" cy="65" r="6" fill="#FFF3E0" stroke="#E67E22" stroke-width="2"/>
+  <text x="483" y="69" text-anchor="middle" font-family="Segoe UI" font-size="8" font-weight="700" fill="#E67E22">N</text>
+
+  <!-- Q₀ output to NOT bubble -->
+  <line x1="470" y1="65" x2="477" y2="65" class="jc-wire"/>
+
+  <!-- Feedback: Q̄₀→D₃ (dashed red, routes below via NOT) -->
+  <path d="M 489,65 L 498,65 L 498,130 L 20,130 L 20,65 L 30,65" class="jc-fb" marker-end="url(#jc-farr)"/>
+  <text x="260" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="700" fill="#C62828">Complement Feedback: Q̄₀ → D₃ (the "twist")</text>
+
+  <!-- Clock label -->
+  <text x="260" y="112" text-anchor="middle" class="jc-lbl">All FFs share a common CLK</text>
+
+  <!-- NOT label -->
+  <text x="483" y="55" text-anchor="middle" class="jc-lbl" fill="#E67E22">NOT</text>
+</svg>
+</div>
+
+The complement feedback (the "twist") doubles the state count: **0000 → 1000 → 1100 → 1110 → 1111 → 0111 → 0011 → 0001 → 0000**. Notice that only one bit changes between adjacent states — this Gray-code-like property makes Johnson counter outputs inherently **glitch-free**.
 
 <h4 style="color: #5A3EED; font-weight: 600;">Comparison of Counter Types</h4>
 
