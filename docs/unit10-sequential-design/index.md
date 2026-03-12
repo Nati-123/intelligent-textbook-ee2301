@@ -1636,96 +1636,77 @@ The two FSM models differ only in how outputs are generated.
 Every FSM shares the same fundamental architecture: combinational logic computes the next state and outputs, while flip-flops store the current state. The feedback path from the flip-flop outputs back to the combinational logic input is what makes the circuit sequential.
 
 <div style="text-align: center; margin: 1.5rem 0;">
-<svg viewBox="0 0 580 300" style="max-width: 560px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 620 240" style="max-width: 600px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <style>
-      .ga-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; }
-      .ga-name  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 700; }
-      .ga-type  { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; font-style: italic; }
-      .ga-lbl   { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; font-weight: 600; }
-      .ga-small { font-family: 'Segoe UI', Arial, sans-serif; font-size: 9px; }
-      .ga-wire  { stroke: #37474F; stroke-width: 2; fill: none; }
-      .ga-mealy { stroke: #E67E22; stroke-width: 2; fill: none; stroke-dasharray: 7,4; }
-      .ga-fb    { stroke: #7D3C98; stroke-width: 2; fill: none; }
-    </style>
-    <marker id="ga-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="fa-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#37474F"/>
     </marker>
-    <marker id="ga-am" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <marker id="fa-m" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#E67E22"/>
-    </marker>
-    <marker id="ga-af" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#7D3C98"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect x="0" y="0" width="580" height="300" rx="12" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+  <rect x="0" y="0" width="620" height="240" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
 
-  <!-- Title -->
-  <text x="290" y="22" text-anchor="middle" class="ga-title" fill="#5A3EED">General FSM Architecture</text>
+  <!-- ── Inputs arrow ── -->
+  <line x1="8" y1="90" x2="85" y2="90" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="46" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="700" fill="#27AE60">Inputs</text>
 
-  <!-- ════════ INPUT ARROWS (left edge) ════════ -->
-  <line x1="10" y1="120" x2="70" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
-  <text x="12" y="112" class="ga-lbl" fill="#27AE60">Inputs (X)</text>
+  <!-- ── NEXT-STATE LOGIC ── -->
+  <rect x="90" y="55" width="130" height="75" rx="8" fill="#D6EAF8" stroke="#2980B9" stroke-width="2"/>
+  <text x="155" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">Next-State</text>
+  <text x="155" y="102" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">Logic</text>
+  <text x="155" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-style="italic" fill="#5DADE2">combinational</text>
 
-  <!-- ════════ NEXT-STATE LOGIC ════════ -->
-  <rect x="75" y="80" width="130" height="90" rx="10" fill="#D6EAF8" stroke="#2980B9" stroke-width="2"/>
-  <text x="140" y="115" text-anchor="middle" class="ga-name" fill="#1A5276">Next-State</text>
-  <text x="140" y="132" text-anchor="middle" class="ga-name" fill="#1A5276">Logic</text>
-  <text x="140" y="158" text-anchor="middle" class="ga-type" fill="#5B9BD5">combinational</text>
+  <!-- ── Next State (D) wire ── -->
+  <line x1="220" y1="90" x2="280" y2="90" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="250" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#1A5276">Next State (D)</text>
 
-  <!-- Next-State Logic → State Register -->
-  <line x1="205" y1="120" x2="260" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
-  <text x="232" y="112" text-anchor="middle" class="ga-lbl" fill="#1A5276">Next State</text>
-  <text x="232" y="100" text-anchor="middle" class="ga-small" fill="#1A5276">(D inputs)</text>
+  <!-- ── STATE REGISTER ── -->
+  <rect x="285" y="55" width="120" height="75" rx="8" fill="#E8DAEF" stroke="#7D3C98" stroke-width="2.5"/>
+  <text x="345" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#6C3483">State</text>
+  <text x="345" y="99" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#6C3483">Register</text>
+  <text x="345" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-style="italic" fill="#9B59B6">sequential (FFs)</text>
 
-  <!-- ════════ STATE REGISTER ════════ -->
-  <rect x="265" y="80" width="120" height="90" rx="10" fill="#E8DAEF" stroke="#7D3C98" stroke-width="2.5"/>
-  <text x="325" y="112" text-anchor="middle" class="ga-name" fill="#6C3483">State</text>
-  <text x="325" y="129" text-anchor="middle" class="ga-name" fill="#6C3483">Register</text>
-  <text x="325" y="158" text-anchor="middle" class="ga-type" fill="#9B59B6">sequential (flip-flops)</text>
-  <!-- Clock triangle symbol on bottom -->
-  <polygon points="318,170 325,163 332,170" fill="none" stroke="#7D3C98" stroke-width="1.5"/>
+  <!-- Clock triangle + CLK label entering register from below -->
+  <polygon points="339,130 345,123 351,130" fill="none" stroke="#7D3C98" stroke-width="1.5"/>
+  <line x1="345" y1="155" x2="345" y2="132" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="345" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#7D6608">CLK</text>
 
-  <!-- State Register → Output Logic -->
-  <line x1="385" y1="120" x2="430" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
-  <text x="408" y="112" text-anchor="middle" class="ga-lbl" fill="#6C3483">Present</text>
-  <text x="408" y="100" text-anchor="middle" class="ga-lbl" fill="#6C3483">State (Q)</text>
+  <!-- ── Present State (Q) wire ── -->
+  <line x1="405" y1="90" x2="460" y2="90" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="432" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#6C3483">Present State (Q)</text>
 
-  <!-- ════════ OUTPUT LOGIC ════════ -->
-  <rect x="435" y="80" width="120" height="90" rx="10" fill="#FDEBD0" stroke="#E67E22" stroke-width="2"/>
-  <text x="495" y="115" text-anchor="middle" class="ga-name" fill="#AF601A">Output</text>
-  <text x="495" y="132" text-anchor="middle" class="ga-name" fill="#AF601A">Logic</text>
-  <text x="495" y="158" text-anchor="middle" class="ga-type" fill="#E67E22">combinational</text>
+  <!-- ── OUTPUT LOGIC ── -->
+  <rect x="465" y="55" width="110" height="75" rx="8" fill="#FDEBD0" stroke="#E67E22" stroke-width="2"/>
+  <text x="520" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#AF601A">Output</text>
+  <text x="520" y="102" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#AF601A">Logic</text>
+  <text x="520" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-style="italic" fill="#E67E22">combinational</text>
 
-  <!-- Output Logic → Outputs -->
-  <line x1="555" y1="120" x2="570" y2="120" class="ga-wire" marker-end="url(#ga-a)"/>
-  <text x="555" y="112" class="ga-lbl" fill="#C0392B">Outputs (Z)</text>
+  <!-- ── Outputs arrow ── -->
+  <line x1="575" y1="90" x2="612" y2="90" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="593" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="700" fill="#C0392B">Outputs</text>
 
-  <!-- ════════ CLK INPUT ════════ -->
-  <line x1="325" y1="210" x2="325" y2="175" class="ga-wire" marker-end="url(#ga-a)"/>
-  <rect x="300" y="210" width="50" height="28" rx="6" fill="#FCF3CF" stroke="#F1C40F" stroke-width="2"/>
-  <text x="325" y="229" text-anchor="middle" class="ga-name" fill="#7D6608">CLK</text>
+  <!-- ── FEEDBACK: Present State (Q) back to Next-State Logic ── -->
+  <line x1="375" y1="130" x2="375" y2="185" stroke="#37474F" stroke-width="2"/>
+  <line x1="375" y1="185" x2="60" y2="185" stroke="#37474F" stroke-width="2"/>
+  <line x1="60" y1="185" x2="60" y2="105" stroke="#37474F" stroke-width="2"/>
+  <line x1="60" y1="105" x2="90" y2="105" stroke="#37474F" stroke-width="2" marker-end="url(#fa-a)"/>
+  <text x="218" y="198" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#6C3483">Present State (Q) — feedback</text>
 
-  <!-- ════════ FEEDBACK PATH (below blocks) ════════ -->
-  <path d="M 355,170 L 355,195 L 50,195 L 50,135 L 75,135" class="ga-fb" marker-end="url(#ga-af)"/>
-  <text x="200" y="208" text-anchor="middle" class="ga-lbl" fill="#7D3C98">Present State (Q) — feedback</text>
+  <!-- ── MEALY PATH: Inputs → Output Logic (dashed) ── -->
+  <line x1="46" y1="75" x2="46" y2="35" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4"/>
+  <line x1="46" y1="35" x2="520" y2="35" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4"/>
+  <line x1="520" y1="35" x2="520" y2="55" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#fa-m)"/>
+  <text x="283" y="28" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#E67E22">Input → Output path (Mealy machines only)</text>
 
-  <!-- ════════ MEALY PATH (above blocks, dashed orange) ════════ -->
-  <path d="M 40,105 L 40,50 L 495,50 L 495,80" class="ga-mealy" marker-end="url(#ga-am)"/>
-  <text x="270" y="44" text-anchor="middle" class="ga-lbl" fill="#E67E22">Input → Output path (Mealy machines only)</text>
-
-  <!-- ════════ LEGEND ════════ -->
-  <rect x="15" y="255" width="550" height="34" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
-  <line x1="25" y1="275" x2="55" y2="275" stroke="#37474F" stroke-width="2"/>
-  <text x="60" y="279" class="ga-small" fill="#555">Data path</text>
-  <line x1="130" y1="275" x2="160" y2="275" stroke="#7D3C98" stroke-width="2"/>
-  <text x="165" y="279" class="ga-small" fill="#7D3C98">State feedback</text>
-  <line x1="260" y1="275" x2="290" y2="275" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4"/>
-  <text x="295" y="279" class="ga-small" fill="#E67E22">Mealy-only path</text>
-  <polygon points="397,272 404,275 397,278" fill="none" stroke="#7D3C98" stroke-width="1.5"/>
-  <text x="410" y="279" class="ga-small" fill="#7D3C98">Clock edge trigger</text>
+  <!-- ── LEGEND ── -->
+  <rect x="130" y="215" width="360" height="20" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <line x1="140" y1="226" x2="165" y2="226" stroke="#37474F" stroke-width="2"/>
+  <text x="170" y="230" font-family="Segoe UI, Arial" font-size="9" fill="#555">Solid = main signal path</text>
+  <line x1="310" y1="226" x2="335" y2="226" stroke="#E67E22" stroke-width="2" stroke-dasharray="7,4"/>
+  <text x="340" y="230" font-family="Segoe UI, Arial" font-size="9" fill="#E67E22">Dashed = Mealy-only path</text>
 </svg>
 </div>
 
@@ -1841,43 +1822,116 @@ Both diagrams below implement a **"01" sequence detector** — the output $Z = 1
 
 **Moore Machine** — output depends on state only (Z is labeled inside each state):
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    state "S0 — Idle\nZ = 0" as S0
-    state "S1 — Got '0'\nZ = 0" as S1
-    state "S2 — Got '01'\nZ = 1" as S2
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 520 200" style="max-width: 500px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="mo-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37474F"/>
+    </marker>
+  </defs>
 
-    [*] --> S0
-    S0 --> S0 : 1
-    S0 --> S1 : 0
-    S1 --> S1 : 0
-    S1 --> S2 : 1
-    S2 --> S1 : 0
-    S2 --> S0 : 1
-```
+  <!-- Background -->
+  <rect x="0" y="0" width="520" height="200" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+  <text x="260" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Moore "01" Sequence Detector (3 states)</text>
+
+  <!-- S0 -->
+  <circle cx="100" cy="105" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
+  <text x="100" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">S0</text>
+  <text x="100" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
+  <text x="100" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
+
+  <!-- S1 -->
+  <circle cx="260" cy="105" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
+  <text x="260" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#1A5276">S1</text>
+  <text x="260" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen '0'</text>
+  <text x="260" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#2980B9">Z = 0</text>
+
+  <!-- S2 -->
+  <circle cx="420" cy="105" r="38" fill="#FFF3E0" stroke="#E67E22" stroke-width="2.5"/>
+  <text x="420" y="97" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#E65100">S2</text>
+  <text x="420" y="112" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#E65100">Detected '01'</text>
+  <text x="420" y="126" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#E67E22">Z = 1</text>
+
+  <!-- Initial arrow → S0 -->
+  <line x1="25" y1="105" x2="60" y2="105" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+
+  <!-- S0 → S1: input 0 -->
+  <line x1="138" y1="95" x2="220" y2="95" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="179" y="88" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+
+  <!-- S1 → S2: input 1 -->
+  <line x1="298" y1="95" x2="380" y2="95" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="339" y="88" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+
+  <!-- S0 self-loop: input 1 (top) -->
+  <path d="M 82,70 C 70,30 130,30 118,70" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="100" y="40" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+
+  <!-- S1 self-loop: input 0 (top) -->
+  <path d="M 242,70 C 230,30 290,30 278,70" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="260" y="40" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+
+  <!-- S2 → S1: input 0 (bottom curve) -->
+  <path d="M 390,135 C 370,175 310,175 290,135" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="340" y="178" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0</text>
+
+  <!-- S2 → S0: input 1 (long bottom curve) -->
+  <path d="M 395,140 C 360,195 140,195 115,140" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#mo-a)"/>
+  <text x="260" y="197" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1</text>
+</svg>
+</div>
 
 - **S0 (Idle):** No part of "01" received. Input 0 moves to S1; input 1 stays in S0.
-- **S1 (Got '0'):** First bit matches. Input 1 completes the pattern → S2; input 0 stays in S1.
-- **S2 (Got '01'):** Pattern detected, $Z = 1$. Input 0 starts a new attempt → S1; input 1 resets → S0.
+- **S1 (Seen '0'):** First bit matches. Input 1 completes the pattern → S2; input 0 stays in S1.
+- **S2 (Detected '01'):** Pattern detected, $Z = 1$. Input 0 starts a new attempt → S1; input 1 resets → S0.
 
 **Mealy Machine** — output depends on state AND input (each transition is labeled **input / output**):
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    state "S0 — Idle" as M0
-    state "S1 — Got '0'" as M1
+<div style="text-align: center; margin: 1.5rem 0;">
+<svg viewBox="0 0 400 200" style="max-width: 380px; width: 100%;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="me-a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37474F"/>
+    </marker>
+  </defs>
 
-    [*] --> M0
-    M0 --> M0 : 1 / 0
-    M0 --> M1 : 0 / 0
-    M1 --> M0 : 1 / 1
-    M1 --> M1 : 0 / 0
-```
+  <!-- Background -->
+  <rect x="0" y="0" width="400" height="200" rx="10" fill="#FAFBFF" stroke="#D0D0D0" stroke-width="1"/>
+  <text x="200" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#5A3EED">Mealy "01" Sequence Detector (2 states)</text>
+
+  <!-- S0 -->
+  <circle cx="120" cy="110" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
+  <text x="120" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S0</text>
+  <text x="120" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Idle</text>
+
+  <!-- S1 -->
+  <circle cx="280" cy="110" r="38" fill="#D6EAF8" stroke="#2980B9" stroke-width="2.5"/>
+  <text x="280" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#1A5276">S1</text>
+  <text x="280" y="122" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1A5276">Seen '0'</text>
+
+  <!-- Initial arrow → S0 -->
+  <line x1="30" y1="110" x2="80" y2="110" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
+
+  <!-- S0 → S1: 0/0 (top arc) -->
+  <path d="M 155,98 C 175,68 225,68 245,98" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
+  <text x="200" y="72" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0 / 0</text>
+
+  <!-- S1 → S0: 1/1 (bottom arc, detection!) -->
+  <path d="M 245,125 C 225,158 175,158 155,125" fill="none" stroke="#E67E22" stroke-width="2.5" marker-end="url(#me-a)"/>
+  <text x="200" y="168" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#E65100">1 / 1  ← detected!</text>
+
+  <!-- S0 self-loop: 1/0 (left) -->
+  <path d="M 102,75 C 90,35 150,35 138,75" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
+  <text x="120" y="42" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">1 / 0</text>
+
+  <!-- S1 self-loop: 0/0 (right) -->
+  <path d="M 262,75 C 250,35 310,35 298,75" fill="none" stroke="#37474F" stroke-width="2" marker-end="url(#me-a)"/>
+  <text x="280" y="42" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="700" fill="#333">0 / 0</text>
+</svg>
+</div>
 
 - **S0 (Idle):** Input 0 moves to S1 with output 0; input 1 stays in S0 with output 0.
-- **S1 (Got '0'):** Input 1 completes the pattern and produces $Z = 1$ immediately on the transition back to S0; input 0 stays in S1 with output 0.
+- **S1 (Seen '0'):** Input 1 completes the pattern and produces $Z = 1$ immediately on the transition back to S0; input 0 stays in S1 with output 0.
 
 The Mealy machine achieves the same detection with only **2 states** (vs 3 for Moore) because it produces the output immediately on the detecting transition, eliminating the need for a separate "detection" state.
 
