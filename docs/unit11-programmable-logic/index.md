@@ -316,19 +316,20 @@ Choosing among SPLDs depends on the application:
 
 ```mermaid
 graph TD
-    PL["<b>Programmable Logic</b>"]
-    PL --> SPLD["<b>Simple PLDs (SPLDs)</b><br/><i>Single programmable array chip</i>"]
-    PL --> CPLD["<b>CPLD</b><br/><i>Multiple PLD blocks + interconnect<br/>Predictable timing, non-volatile</i>"]
-    PL --> FPGA["<b>FPGA</b><br/><i>LUT-based CLBs + routing fabric<br/>Massive capacity, SRAM-based</i>"]
+    PL["<b>Programmable Logic Devices</b>"]
 
-    SPLD --> ROM["<b>ROM</b><br/><i>Fixed AND (decoder)<br/>Programmable OR<br/>No minimization needed</i>"]
-    SPLD --> PLA["<b>PLA</b><br/><i>Programmable AND<br/>Programmable OR<br/>Shared product terms</i>"]
-    SPLD --> PAL["<b>PAL</b><br/><i>Programmable AND<br/>Fixed OR<br/>Fastest SPLD</i>"]
+    PL --> SPLD["<b>SPLD</b><br/><i>Simple PLD</i><br/><i>Single AND-OR array</i>"]
+    PL --> CPLD["<b>CPLD</b><br/><i>Complex PLD</i><br/><i>Multiple SPLD blocks</i><br/><i>with interconnect matrix</i>"]
+    PL --> FPGA["<b>FPGA</b><br/><i>Field-Programmable</i><br/><i>Gate Array</i><br/><i>LUT-based logic blocks</i>"]
 
-    style PL fill:#5A3EED,stroke:#5A3EED,color:#fff,font-size:15px
-    style SPLD fill:#7B68EE,stroke:#5A3EED,color:#fff
-    style CPLD fill:#7B68EE,stroke:#5A3EED,color:#fff
-    style FPGA fill:#7B68EE,stroke:#5A3EED,color:#fff
+    SPLD --> ROM["<b>ROM</b><br/><i>Fixed AND array</i><br/><i>Programmable OR array</i>"]
+    SPLD --> PLA["<b>PLA</b><br/><i>Programmable AND array</i><br/><i>Programmable OR array</i>"]
+    SPLD --> PAL["<b>PAL</b><br/><i>Programmable AND array</i><br/><i>Fixed OR array</i>"]
+
+    style PL fill:#9B8AFB,stroke:#7B68EE,color:#fff,font-size:15px
+    style SPLD fill:#C4B5FD,stroke:#9B8AFB,color:#333
+    style CPLD fill:#C4B5FD,stroke:#9B8AFB,color:#333
+    style FPGA fill:#C4B5FD,stroke:#9B8AFB,color:#333
     style ROM fill:#EEF4FF,stroke:#A8C8FF,color:#333
     style PLA fill:#EEF4FF,stroke:#A8C8FF,color:#333
     style PAL fill:#EEF4FF,stroke:#A8C8FF,color:#333
