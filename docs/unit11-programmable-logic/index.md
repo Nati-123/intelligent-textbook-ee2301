@@ -99,7 +99,6 @@ Before studying this unit, students should be familiar with:
 Every circuit designed in Units 1 through 10 assumed that the designer selects individual logic gates—AND, OR, NOT, NAND, NOR—and connects them with dedicated wires to build a specific function. This approach, called **fixed logic** or **standard logic** design, works well for small circuits but becomes impractical as systems grow to thousands or millions of gates. Routing individual wires on a printed circuit board for a complex Boolean function is time-consuming, error-prone, and expensive to modify.
 
 **Programmable logic devices** (PLDs) offer a fundamentally different approach: the manufacturer builds a chip containing a large array of uncommitted logic elements and configurable interconnections. The designer then **programs** (configures) the device to implement the desired function. If the design contains an error, many PLD types can be erased and reprogrammed rather than discarding the hardware.
-</div>
 
 | Design Approach | Manufacturing | Modification | Per-Unit Cost | NRE Cost |
 |----------------|---------------|--------------|---------------|----------|
@@ -108,6 +107,7 @@ Every circuit designed in Units 1 through 10 assumed that the designer selects i
 | Programmable Logic | Configure after manufacturing | Reprogram device | Medium | Low |
 
 The key advantage of programmable logic is the trade-off between **non-recurring engineering (NRE) cost** and **per-unit cost**. ASICs minimize per-unit cost for high volumes but require expensive mask fabrication. PLDs eliminate mask costs entirely, making them ideal for prototyping, low-to-medium volume production, and designs that may need field updates.
+</div>
 
 !!! tip "Historical Context"
     The first programmable logic devices appeared in the 1970s. Today, FPGAs containing billions of transistors can implement entire systems-on-chip, including processors, memory controllers, and custom accelerators—all on a single configurable device.
@@ -127,7 +127,6 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 **SRAM-based connections** use static RAM cells to control pass transistors or multiplexers. The configuration is stored in volatile memory, so it must be reloaded every time the device powers up (typically from an external flash memory). The advantage is unlimited reprogrammability.
 
 **Flash-based connections** store the configuration in non-volatile flash memory cells. The device retains its programming when powered off and can be reprogrammed thousands of times.
-</div>
 
 | Technology | Reprogrammable | Non-Volatile | Speed | Density |
 |-----------|---------------|-------------|-------|---------|
@@ -135,6 +134,7 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 | Antifuse | No (OTP) | Yes | Very Fast | Medium |
 | SRAM | Yes (unlimited) | No | Fast | High |
 | Flash | Yes (~10K cycles) | Yes | Medium | Medium |
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: Programmable Connection Technologies</h4>
 
@@ -151,7 +151,6 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 A **read-only memory** (ROM) is the simplest programmable logic device, though it may not be immediately obvious why a "memory" qualifies as a logic implementation device. The connection becomes clear when you consider the structure.
 
 A ROM with $n$ address inputs and $m$ data outputs implements **any** combinational function of $n$ variables with $m$ outputs. The address inputs serve as the Boolean input variables, and each address location stores the output values for that particular input combination. In effect, a ROM is a complete **truth table stored in hardware**.
-</div>
 
 Consider a ROM with 3 address lines ($A_2, A_1, A_0$) and 2 data outputs ($D_1, D_0$):
 
@@ -170,8 +169,11 @@ This ROM simultaneously implements two functions:
 
 - $D_1 = \Sigma m(2, 3, 5, 6)$
 - $D_0 = \Sigma m(0, 1, 3, 6)$
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ROM Internal Architecture</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
 
 Internally, a ROM consists of two sections:
 
@@ -179,6 +181,7 @@ Internally, a ROM consists of two sections:
 - **OR array:** A programmable OR plane where each output is connected to the minterms that should make it HIGH. Programming the ROM means configuring which minterms connect to which outputs.
 
 Because the decoder generates **all** minterms, no minimization is needed. The trade-off is that ROM size grows exponentially with the number of inputs: an $n$-input ROM requires $2^n$ rows, regardless of how simple the function actually is.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: ROM Internal Architecture</h4>
 
@@ -188,6 +191,8 @@ Because the decoder generates **all** minterms, no minimization is needed. The t
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">ROM Variants</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 Several ROM technologies exist, distinguished by how and when they are programmed:
 
 - **Mask ROM:** Programmed during manufacturing via the photolithographic mask. Cannot be changed. Lowest per-unit cost at high volume.
@@ -195,6 +200,7 @@ Several ROM technologies exist, distinguished by how and when they are programme
 - **EPROM (Erasable PROM):** Can be erased by exposing the chip to ultraviolet light through a quartz window, then reprogrammed electrically. Erase is slow (15-20 minutes) and erases the entire chip.
 - **EEPROM (Electrically Erasable PROM):** Can be erased and reprogrammed electrically, one byte at a time. Limited write cycles (~100K-1M).
 - **Flash Memory:** Similar to EEPROM but erases in blocks rather than individual bytes. The dominant non-volatile memory technology today.
+</div>
 
 ---
 
@@ -205,7 +211,6 @@ Several ROM technologies exist, distinguished by how and when they are programme
 The ROM approach is wasteful when a function uses only a few minterms out of the possible $2^n$. A **Programmable Logic Array (PLA)** addresses this inefficiency by making **both** the AND plane and the OR plane programmable.
 
 Instead of generating all $2^n$ minterms, the PLA's AND plane generates only the **product terms** actually needed by the function. The OR plane then combines these product terms into the desired outputs. Because both planes are programmable, the designer must first minimize the Boolean expressions (using K-maps or Quine-McCluskey) to determine which product terms are needed.
-</div>
 
 A PLA with:
 
@@ -214,8 +219,11 @@ A PLA with:
 - $m$ outputs
 
 can implement any $m$ functions of $n$ variables, provided the total number of distinct product terms does not exceed $k$.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PLA Architecture</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
 
 The PLA consists of:
 
@@ -223,6 +231,7 @@ The PLA consists of:
 2. **Programmable AND plane:** Each AND gate (product term) can be connected to any combination of the $2n$ input lines. Programming selects which literals appear in each product term.
 3. **Programmable OR plane:** Each output can be connected to any combination of the $k$ product terms. Programming selects which product terms contribute to each output.
 4. **Optional output inversions:** Some PLAs include programmable XOR gates at the outputs, allowing the designer to choose between the function and its complement (useful for POS implementations).
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: PLA Architecture and Programming</h4>
 
@@ -231,6 +240,8 @@ The PLA consists of:
 </div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PLA Example</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
 
 Implement the following functions using a PLA with 3 inputs and 4 product terms:
 
@@ -255,6 +266,7 @@ Implement the following functions using a PLA with 3 inputs and 4 product terms:
 | $F_2$ | x | - | x |
 
 The product term $A\bar{B}$ is **shared** between both outputs—a key advantage of PLAs over separate circuit implementations.
+</div>
 
 ---
 
@@ -263,7 +275,6 @@ The product term $A\bar{B}$ is **shared** between both outputs—a key advantage
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **Programmable Array Logic (PAL)** device simplifies the PLA by keeping the AND plane programmable but making the OR plane **fixed**. Each output is permanently connected to a predetermined set of AND gates (product terms).
-</div>
 
 This simplification has important consequences:
 
@@ -271,8 +282,11 @@ This simplification has important consequences:
 - **Advantage:** Simpler programming—only the AND plane needs configuration.
 - **Disadvantage:** Product terms **cannot be shared** between outputs. Each output has its own dedicated set of AND gates.
 - **Disadvantage:** If a function requires more product terms than the fixed OR gate provides, it cannot be implemented in a single PAL output.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PAL Architecture</h3>
+
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
 
 A typical PAL (such as the classic PAL16L8) provides:
 
@@ -282,6 +296,7 @@ A typical PAL (such as the classic PAL16L8) provides:
 - Fixed OR gates summing the product terms for each output
 
 Some PAL outputs are registered (include a flip-flop), enabling sequential logic implementation. The output may also feed back into the AND array as an additional input, supporting state machine designs.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">PAL vs PLA Comparison</h3>
 
@@ -450,6 +465,8 @@ An FPGA is not programmed with product terms—it is configured by loading a **b
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FPGA vs CPLD</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 | Feature | CPLD | FPGA |
 |---------|------|------|
 | Logic Implementation | AND-OR arrays (product terms) | Lookup Tables (LUTs) |
@@ -459,6 +476,7 @@ An FPGA is not programmed with product terms—it is configured by loading a **b
 | Power-up | Instant-on | Requires configuration loading |
 | Capacity | Hundreds to thousands of gates | Thousands to billions of gates |
 | Best for | Glue logic, simple state machines | Complex systems, DSP, processors |
+</div>
 
 ---
 
@@ -467,7 +485,6 @@ An FPGA is not programmed with product terms—it is configured by loading a **b
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 A **Lookup Table (LUT)** is a small memory (essentially a tiny ROM) that stores the truth table of a Boolean function. A $k$-input LUT contains $2^k$ memory cells and can implement **any** Boolean function of $k$ or fewer variables.
-</div>
 
 The most common sizes are:
 
@@ -479,6 +496,7 @@ A LUT-4 works exactly like the ROM described in Section 11.3, but with only 4 ad
 1. The 4 input signals select one of the 16 stored values via a 16:1 multiplexer.
 2. The selected value appears at the output.
 3. The stored values are loaded from the FPGA bitstream during configuration.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: 4-Input LUT Structure and Operation</h4>
 
@@ -488,9 +506,12 @@ A LUT-4 works exactly like the ROM described in Section 11.3, but with only 4 ad
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">Why LUTs Are Powerful</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 The LUT approach has a remarkable property: **any** Boolean function of $k$ inputs requires exactly one $k$-input LUT, regardless of the function's complexity. Whether the function is a simple AND gate or a complex expression with many product terms, the LUT implements it in constant time with identical propagation delay.
 
 For functions with more than $k$ inputs, the FPGA tools automatically decompose the function across multiple LUTs and route signals between them. This decomposition is handled by the **technology mapping** step of the FPGA design flow.
+</div>
 
 ---
 
@@ -511,6 +532,8 @@ A modern FPGA may contain thousands to millions of CLBs arranged in a regular tw
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CLB Architecture (Simplified)</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 A simplified CLB with 2 LUT-4s and 2 flip-flops provides:
 
 - Two independent 4-input combinational functions, **or**
@@ -519,6 +542,7 @@ A simplified CLB with 2 LUT-4s and 2 flip-flops provides:
 - Various combinations of combinational and sequential logic
 
 The versatility of CLBs means that the same physical hardware can implement combinational circuits (Units 2-8) or sequential circuits (Units 9-10) simply by loading different configuration bits.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: CLB Internal Architecture</h4>
 
@@ -605,7 +629,6 @@ The two dominant FPGA configuration technologies present a fundamental trade-off
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Implementing a digital design on an FPGA involves a well-defined sequence of steps, quite different from the "draw a schematic and build it" approach of discrete logic:
-</div>
 
 1. **Design Entry:** Describe the circuit using a Hardware Description Language (HDL) such as VHDL or Verilog, or using schematic capture tools. HDL is the industry standard for any non-trivial design.
 
@@ -626,6 +649,7 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 9. **Programming:** The bitstream is loaded into the FPGA (and optionally into an external flash for persistent storage).
 
 10. **Hardware Verification:** The configured FPGA is tested with real signals to verify correct operation in the target system.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 700;">Diagram: FPGA Design Flow Overview</h4>
 
