@@ -94,9 +94,12 @@ Before studying this unit, students should be familiar with:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.1 Introduction to Programmable Logic</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Every circuit designed in Units 1 through 10 assumed that the designer selects individual logic gates—AND, OR, NOT, NAND, NOR—and connects them with dedicated wires to build a specific function. This approach, called **fixed logic** or **standard logic** design, works well for small circuits but becomes impractical as systems grow to thousands or millions of gates. Routing individual wires on a printed circuit board for a complex Boolean function is time-consuming, error-prone, and expensive to modify.
 
 **Programmable logic devices** (PLDs) offer a fundamentally different approach: the manufacturer builds a chip containing a large array of uncommitted logic elements and configurable interconnections. The designer then **programs** (configures) the device to implement the desired function. If the design contains an error, many PLD types can be erased and reprogrammed rather than discarding the hardware.
+</div>
 
 | Design Approach | Manufacturing | Modification | Per-Unit Cost | NRE Cost |
 |----------------|---------------|--------------|---------------|----------|
@@ -113,6 +116,8 @@ The key advantage of programmable logic is the trade-off between **non-recurring
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.2 Programmable Connections</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 At the heart of every PLD is a mechanism for making or breaking connections between logic elements. Understanding these connection technologies is essential before studying specific device architectures.
 
 **Fuse-based connections** were the earliest technology. The device ships with all connections intact (fuses present). Programming the device means selectively **blowing** (destroying) specific fuses to remove unwanted connections. Once blown, a fuse cannot be restored—making these devices **one-time programmable (OTP)**.
@@ -122,6 +127,7 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 **SRAM-based connections** use static RAM cells to control pass transistors or multiplexers. The configuration is stored in volatile memory, so it must be reloaded every time the device powers up (typically from an external flash memory). The advantage is unlimited reprogrammability.
 
 **Flash-based connections** store the configuration in non-volatile flash memory cells. The device retains its programming when powered off and can be reprogrammed thousands of times.
+</div>
 
 | Technology | Reprogrammable | Non-Volatile | Speed | Density |
 |-----------|---------------|-------------|-------|---------|
@@ -140,9 +146,12 @@ At the heart of every PLD is a mechanism for making or breaking connections betw
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.3 ROM as a Logic Device</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **read-only memory** (ROM) is the simplest programmable logic device, though it may not be immediately obvious why a "memory" qualifies as a logic implementation device. The connection becomes clear when you consider the structure.
 
 A ROM with $n$ address inputs and $m$ data outputs implements **any** combinational function of $n$ variables with $m$ outputs. The address inputs serve as the Boolean input variables, and each address location stores the output values for that particular input combination. In effect, a ROM is a complete **truth table stored in hardware**.
+</div>
 
 Consider a ROM with 3 address lines ($A_2, A_1, A_0$) and 2 data outputs ($D_1, D_0$):
 
@@ -191,9 +200,12 @@ Several ROM technologies exist, distinguished by how and when they are programme
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.4 Programmable Logic Array (PLA)</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The ROM approach is wasteful when a function uses only a few minterms out of the possible $2^n$. A **Programmable Logic Array (PLA)** addresses this inefficiency by making **both** the AND plane and the OR plane programmable.
 
 Instead of generating all $2^n$ minterms, the PLA's AND plane generates only the **product terms** actually needed by the function. The OR plane then combines these product terms into the desired outputs. Because both planes are programmable, the designer must first minimize the Boolean expressions (using K-maps or Quine-McCluskey) to determine which product terms are needed.
+</div>
 
 A PLA with:
 
@@ -248,7 +260,10 @@ The product term $A\bar{B}$ is **shared** between both outputs—a key advantage
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.5 Programmable Array Logic (PAL)</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **Programmable Array Logic (PAL)** device simplifies the PLA by keeping the AND plane programmable but making the OR plane **fixed**. Each output is permanently connected to a predetermined set of AND gates (product terms).
+</div>
 
 This simplification has important consequences:
 
@@ -386,7 +401,10 @@ SPLDs implement small sum-of-products logic functions, CPLDs combine many SPLD-l
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.7 Complex PLD (CPLD) Architecture</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 As designs grew beyond the capacity of a single PAL, designers needed more logic capacity without the wiring complexity of multiple discrete PLDs on a board. **Complex PLDs (CPLDs)** address this by integrating multiple PAL-like blocks onto a single chip and connecting them through a programmable interconnect matrix.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Structure</h3>
 
@@ -414,9 +432,12 @@ A CPLD consists of:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.8 Field-Programmable Gate Array (FPGA) Concepts</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The **Field-Programmable Gate Array (FPGA)** represents the most flexible and highest-capacity family of programmable logic devices. Unlike CPLDs, which build logic from AND-OR arrays, FPGAs use a fundamentally different approach: **lookup tables (LUTs)** that can implement any Boolean function of a small number of variables.
 
 An FPGA is not programmed with product terms—it is configured by loading a **bitstream** that sets the contents of thousands of small lookup tables, configures multiplexers for routing, and sets flip-flop initial states. This architecture enables FPGAs to implement not just combinational logic but also complex sequential systems, processors, memory interfaces, and entire systems-on-chip.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">FPGA vs CPLD</h3>
 
@@ -434,7 +455,10 @@ An FPGA is not programmed with product terms—it is configured by loading a **b
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.9 Lookup Tables (LUTs)</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 A **Lookup Table (LUT)** is a small memory (essentially a tiny ROM) that stores the truth table of a Boolean function. A $k$-input LUT contains $2^k$ memory cells and can implement **any** Boolean function of $k$ or fewer variables.
+</div>
 
 The most common sizes are:
 
@@ -463,7 +487,10 @@ For functions with more than $k$ inputs, the FPGA tools automatically decompose 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.10 Configurable Logic Blocks (CLBs)</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 LUTs are grouped into larger units called **Configurable Logic Blocks (CLBs)**, which form the basic building blocks of the FPGA fabric. The exact composition varies by manufacturer, but a typical CLB contains:
+</div>
 
 - **Multiple LUTs** (2 to 8 per CLB) for implementing combinational logic
 - **Flip-flops** (one per LUT output) for implementing sequential logic—each LUT output can optionally be registered
@@ -494,7 +521,10 @@ The versatility of CLBs means that the same physical hardware can implement comb
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.11 FPGA Routing Resources</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The routing fabric is what transforms an array of isolated CLBs into a connected system. FPGA routing resources typically include:
+</div>
 
 - **Local interconnects:** Short wires connecting adjacent CLBs for fast, direct communication between neighbors.
 - **General-purpose routing:** Longer segmented wire channels running horizontally and vertically through the FPGA. Programmable switch matrices at intersections connect wire segments.
@@ -510,7 +540,10 @@ The routing architecture is a critical factor in FPGA performance. Unlike CPLDs 
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.12 FPGA I/O Blocks</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface between internal logic and external pins. Modern FPGA I/O blocks are highly configurable:
+</div>
 
 - **Direction:** Configurable as input, output, or bidirectional
 - **Voltage levels:** Support multiple I/O standards (LVCMOS, LVTTL, LVDS, SSTL)
@@ -525,7 +558,10 @@ The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface be
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.13 SRAM-Based vs Flash-Based FPGAs</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 The two dominant FPGA configuration technologies present a fundamental trade-off:
+</div>
 
 **SRAM-based FPGAs** (Xilinx/AMD, Intel/Altera):
 
@@ -557,7 +593,10 @@ The two dominant FPGA configuration technologies present a fundamental trade-off
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.14 FPGA Design Flow</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Implementing a digital design on an FPGA involves a well-defined sequence of steps, quite different from the "draw a schematic and build it" approach of discrete logic:
+</div>
 
 1. **Design Entry:** Describe the circuit using a Hardware Description Language (HDL) such as VHDL or Verilog, or using schematic capture tools. HDL is the industry standard for any non-trivial design.
 
@@ -583,21 +622,65 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-```mermaid
-flowchart LR
-    A["<b>HDL Code</b><br/><i>VHDL / Verilog</i>"] --> B["<b>Synthesis</b><br/><i>Boolean optimization<br/>Netlist generation</i>"]
-    B --> C["<b>Technology<br/>Mapping</b><br/><i>Map to LUTs,<br/>FFs, RAM</i>"]
-    C --> D["<b>Place &amp; Route</b><br/><i>Assign CLB locations<br/>Connect routing</i>"]
-    D --> E["<b>Bitstream</b><br/><i>Binary config<br/>file (.bit)</i>"]
-    E --> F["<b>Configure<br/>FPGA</b><br/><i>Download &amp;<br/>verify</i>"]
+<svg viewBox="0 0 820 110" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" style="max-width:820px; width:100%;">
 
-    style A fill:#EEF4FF,stroke:#5A3EED,color:#333
-    style B fill:#E8E0FF,stroke:#5A3EED,color:#333
-    style C fill:#D8CCFF,stroke:#5A3EED,color:#333
-    style D fill:#C8B8FF,stroke:#5A3EED,color:#333
-    style E fill:#B8A4FF,stroke:#5A3EED,color:#fff
-    style F fill:#5A3EED,stroke:#5A3EED,color:#fff
-```
+  <!-- Step 1: HDL Code -->
+  <rect x="0" y="10" width="120" height="80" rx="10" fill="#EEF4FF" stroke="#7B68EE" stroke-width="2"/>
+  <text x="60" y="40" text-anchor="middle" fill="#333" font-size="13" font-weight="700">HDL Code</text>
+  <text x="60" y="58" text-anchor="middle" fill="#555" font-size="10" font-style="italic">VHDL / Verilog</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="120" y1="50" x2="140" y2="50" stroke="#7B68EE" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 2: Synthesis -->
+  <rect x="140" y="10" width="120" height="80" rx="10" fill="#E8E0FF" stroke="#7B68EE" stroke-width="2"/>
+  <text x="200" y="38" text-anchor="middle" fill="#333" font-size="13" font-weight="700">Synthesis</text>
+  <text x="200" y="54" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Boolean optimization</text>
+  <text x="200" y="68" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Netlist generation</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="260" y1="50" x2="280" y2="50" stroke="#7B68EE" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 3: Technology Mapping -->
+  <rect x="280" y="10" width="120" height="80" rx="10" fill="#D8CCFF" stroke="#7B68EE" stroke-width="2"/>
+  <text x="340" y="38" text-anchor="middle" fill="#333" font-size="13" font-weight="700">Technology</text>
+  <text x="340" y="52" text-anchor="middle" fill="#333" font-size="13" font-weight="700">Mapping</text>
+  <text x="340" y="68" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Map to LUTs, FFs</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="400" y1="50" x2="420" y2="50" stroke="#7B68EE" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 4: Place & Route -->
+  <rect x="420" y="10" width="120" height="80" rx="10" fill="#C4B5FD" stroke="#7B68EE" stroke-width="2"/>
+  <text x="480" y="38" text-anchor="middle" fill="#333" font-size="13" font-weight="700">Place &amp;</text>
+  <text x="480" y="52" text-anchor="middle" fill="#333" font-size="13" font-weight="700">Route</text>
+  <text x="480" y="68" text-anchor="middle" fill="#555" font-size="10" font-style="italic">Assign CLB locations</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="540" y1="50" x2="560" y2="50" stroke="#7B68EE" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 5: Bitstream -->
+  <rect x="560" y="10" width="120" height="80" rx="10" fill="#B8A4FF" stroke="#7B68EE" stroke-width="2"/>
+  <text x="620" y="40" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Bitstream</text>
+  <text x="620" y="58" text-anchor="middle" fill="#E8E0FF" font-size="10" font-style="italic">Config file (.bit)</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="680" y1="50" x2="700" y2="50" stroke="#7B68EE" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 6: Configure FPGA -->
+  <rect x="700" y="10" width="120" height="80" rx="10" fill="#7B68EE" stroke="#5A3EED" stroke-width="2"/>
+  <text x="760" y="38" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Configure</text>
+  <text x="760" y="52" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">FPGA</text>
+  <text x="760" y="68" text-anchor="middle" fill="#E8E0FF" font-size="10" font-style="italic">Download &amp; verify</text>
+
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7B68EE"/>
+    </marker>
+  </defs>
+
+</svg>
 
 </div>
 
@@ -611,7 +694,10 @@ flowchart LR
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.15 Technology Mapping</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 **Technology mapping** is the process of transforming a generic netlist (from synthesis) into the specific primitives available on the target FPGA or PLD. This step is critical because it determines how efficiently the design uses the available hardware.
+</div>
 
 For FPGA targets, technology mapping involves:
 
@@ -628,7 +714,10 @@ For CPLD/PAL targets, technology mapping involves:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.16 Hardware Description Languages for PLDs</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 All modern PLD design uses **Hardware Description Languages (HDLs)** rather than manual schematic entry. The two dominant HDLs are:
+</div>
 
 - **VHDL (VHSIC Hardware Description Language):** A strongly-typed, verbose language originating from a U.S. Department of Defense initiative. VHDL emphasizes design safety through strict type checking. Widely used in aerospace, defense, and European industry.
 - **Verilog:** A more concise language with syntax resembling C. Popular in the U.S. semiconductor industry and for ASIC design. Its successor, **SystemVerilog**, adds verification features.
@@ -646,7 +735,10 @@ Unit 12 provides a detailed introduction to VHDL for implementing the circuits s
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.17 PLD Selection Criteria</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Choosing the right programmable logic device for a project involves evaluating several factors:
+</div>
 
 - **Logic capacity:** How many equivalent gates or LUTs does the design require? SPLDs handle hundreds of gates; CPLDs handle thousands; FPGAs handle millions.
 - **Speed requirements:** CPLDs offer predictable timing; FPGAs offer higher clock frequencies but variable routing delays.
@@ -667,7 +759,10 @@ Choosing the right programmable logic device for a project involves evaluating s
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.18 Applications of Programmable Logic</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Programmable logic devices permeate modern electronic systems:
+</div>
 
 - **Prototyping and development:** FPGAs allow designers to test digital designs in real hardware before committing to expensive ASIC fabrication.
 - **Telecommunications:** FPGAs implement signal processing algorithms in 5G base stations, network switches, and fiber-optic transceivers.
@@ -685,7 +780,10 @@ Programmable logic devices permeate modern electronic systems:
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.19 Connecting PLDs to Prior Units</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 Every concept from Units 1 through 10 finds direct application in programmable logic:
+</div>
 
 | Prior Unit Topic | Application in PLDs |
 |-----------------|-------------------|
