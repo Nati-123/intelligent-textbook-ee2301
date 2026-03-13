@@ -305,6 +305,8 @@ Some PAL outputs are registered (include a flip-flop), enabling sequential logic
 
 <h2 style="color: #5A3EED !important; border-bottom: 2px solid #5A3EED; padding-bottom: 0.3rem; font-weight: 700; margin-top: 2rem;">11.6 Simple PLD (SPLD) Summary</h2>
 
+<div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
+
 ROMs, PLAs, and PALs collectively form the **Simple PLD** (SPLD) family. Each represents a different point in the trade-off space between flexibility, speed, and cost.
 
 Choosing among SPLDs depends on the application:
@@ -312,6 +314,7 @@ Choosing among SPLDs depends on the application:
 - **Use a ROM** when the function has many inputs that contribute many product terms (the ROM generates all minterms automatically, so no minimization is needed).
 - **Use a PLA** when the function has shared product terms across multiple outputs and the total number of distinct terms is small relative to the number of minterms.
 - **Use a PAL** when speed is critical, functions have moderate complexity, and product term sharing is not essential.
+</div>
 
 | Criterion | ROM | PLA | PAL |
 |-----------|-----|-----|-----|
@@ -408,12 +411,15 @@ As designs grew beyond the capacity of a single PAL, designers needed more logic
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Structure</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 A CPLD consists of:
 
 1. **Function Blocks (FBs):** Each function block resembles a complete PAL device with a programmable AND array, fixed OR gates, and macrocells. A typical CPLD contains 2 to 64 function blocks.
 2. **Macrocells:** Each function block contains multiple macrocells (typically 16-36). A macrocell includes an OR gate (combining product terms), an optional flip-flop for registered outputs, and output configuration logic (polarity, tri-state, feedback path).
 3. **Programmable Interconnect Matrix:** A global routing structure that connects the outputs of any function block to the inputs of any other function block. This matrix enables inter-block communication without external wiring.
 4. **I/O Blocks:** Interface between internal logic and external pins, with configurable direction (input, output, bidirectional) and drive strength.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: CPLD Architecture Block Diagram</h4>
 
@@ -423,10 +429,13 @@ A CPLD consists of:
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CPLD Characteristics</h3>
 
+<div markdown style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0;">
+
 - **Predictable timing:** Because the interconnect matrix provides fixed routing paths, propagation delays through a CPLD are predictable and consistent—critical for timing-sensitive designs.
 - **Non-volatile:** Most CPLDs use EEPROM or flash-based programming, retaining their configuration without external memory.
 - **Instant-on:** CPLDs are functional immediately at power-up (no configuration loading time).
 - **Moderate capacity:** Typically range from hundreds to tens of thousands of logic gates equivalent.
+</div>
 
 ---
 
@@ -490,7 +499,6 @@ For functions with more than $k$ inputs, the FPGA tools automatically decompose 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 LUTs are grouped into larger units called **Configurable Logic Blocks (CLBs)**, which form the basic building blocks of the FPGA fabric. The exact composition varies by manufacturer, but a typical CLB contains:
-</div>
 
 - **Multiple LUTs** (2 to 8 per CLB) for implementing combinational logic
 - **Flip-flops** (one per LUT output) for implementing sequential logic—each LUT output can optionally be registered
@@ -499,6 +507,7 @@ LUTs are grouped into larger units called **Configurable Logic Blocks (CLBs)**, 
 - **Local routing** connecting elements within the CLB
 
 A modern FPGA may contain thousands to millions of CLBs arranged in a regular two-dimensional array.
+</div>
 
 <h3 style="color: #5A3EED; font-weight: 600; margin-top: 1.2rem;">CLB Architecture (Simplified)</h3>
 
@@ -524,7 +533,6 @@ The versatility of CLBs means that the same physical hardware can implement comb
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The routing fabric is what transforms an array of isolated CLBs into a connected system. FPGA routing resources typically include:
-</div>
 
 - **Local interconnects:** Short wires connecting adjacent CLBs for fast, direct communication between neighbors.
 - **General-purpose routing:** Longer segmented wire channels running horizontally and vertically through the FPGA. Programmable switch matrices at intersections connect wire segments.
@@ -532,6 +540,7 @@ The routing fabric is what transforms an array of isolated CLBs into a connected
 - **Clock distribution networks:** Specialized low-skew routing trees that deliver clock signals simultaneously to all flip-flops across the device.
 
 The routing architecture is a critical factor in FPGA performance. Unlike CPLDs where the global interconnect matrix provides predictable delays, FPGA signal delays vary depending on the route taken—a signal passing through many switch matrices experiences more delay than one using a direct connection. This makes **timing analysis** essential in FPGA design.
+</div>
 
 !!! warning "Routing Congestion"
     An FPGA design can fail to implement even when sufficient CLBs are available if the routing resources are exhausted. Modern FPGA tools report routing utilization alongside logic utilization to help designers avoid this problem.
@@ -543,7 +552,6 @@ The routing architecture is a critical factor in FPGA performance. Unlike CPLDs 
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface between internal logic and external pins. Modern FPGA I/O blocks are highly configurable:
-</div>
 
 - **Direction:** Configurable as input, output, or bidirectional
 - **Voltage levels:** Support multiple I/O standards (LVCMOS, LVTTL, LVDS, SSTL)
@@ -553,6 +561,7 @@ The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface be
 - **Input registers:** Flip-flops within the I/O block to capture incoming data with minimal setup time
 - **Output registers:** Flip-flops to drive outputs synchronously with the clock
 - **DDR support:** Double-data-rate registers for high-speed interfaces
+</div>
 
 ---
 
@@ -561,7 +570,6 @@ The **Input/Output (I/O) blocks** surround the FPGA's CLB array and interface be
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 The two dominant FPGA configuration technologies present a fundamental trade-off:
-</div>
 
 **SRAM-based FPGAs** (Xilinx/AMD, Intel/Altera):
 
@@ -582,6 +590,7 @@ The two dominant FPGA configuration technologies present a fundamental trade-off
 - Lower static power consumption
 - Preferred for safety-critical and space applications
 - Limited reprogramming cycles (~10K)
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: FPGA Configuration and Operation Flow</h4>
 
@@ -697,7 +706,6 @@ Implementing a digital design on an FPGA involves a well-defined sequence of ste
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 **Technology mapping** is the process of transforming a generic netlist (from synthesis) into the specific primitives available on the target FPGA or PLD. This step is critical because it determines how efficiently the design uses the available hardware.
-</div>
 
 For FPGA targets, technology mapping involves:
 
@@ -709,6 +717,7 @@ For CPLD/PAL targets, technology mapping involves:
 
 - **Fitting functions into product terms:** The mapper determines whether each function can fit within the available product terms per macrocell.
 - **Pin assignment:** Mapping logical I/O to physical device pins.
+</div>
 
 ---
 
@@ -717,7 +726,6 @@ For CPLD/PAL targets, technology mapping involves:
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 All modern PLD design uses **Hardware Description Languages (HDLs)** rather than manual schematic entry. The two dominant HDLs are:
-</div>
 
 - **VHDL (VHSIC Hardware Description Language):** A strongly-typed, verbose language originating from a U.S. Department of Defense initiative. VHDL emphasizes design safety through strict type checking. Widely used in aerospace, defense, and European industry.
 - **Verilog:** A more concise language with syntax resembling C. Popular in the U.S. semiconductor industry and for ASIC design. Its successor, **SystemVerilog**, adds verification features.
@@ -730,6 +738,7 @@ Both languages can describe:
 - **Behavioral designs:** High-level algorithmic descriptions that synthesis tools convert to hardware
 
 Unit 12 provides a detailed introduction to VHDL for implementing the circuits studied throughout this course.
+</div>
 
 ---
 
@@ -738,7 +747,6 @@ Unit 12 provides a detailed introduction to VHDL for implementing the circuits s
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Choosing the right programmable logic device for a project involves evaluating several factors:
-</div>
 
 - **Logic capacity:** How many equivalent gates or LUTs does the design require? SPLDs handle hundreds of gates; CPLDs handle thousands; FPGAs handle millions.
 - **Speed requirements:** CPLDs offer predictable timing; FPGAs offer higher clock frequencies but variable routing delays.
@@ -748,6 +756,7 @@ Choosing the right programmable logic device for a project involves evaluating s
 - **Cost sensitivity:** SPLDs cost pennies; high-end FPGAs cost thousands of dollars.
 - **Development tools:** Are vendor tools and IP libraries available?
 - **Production volume:** PLDs are cost-effective for low-to-medium volumes; ASICs become economical at high volumes.
+</div>
 
 <h4 style="color: #5A3EED; font-weight: 600;">Diagram: PLD Selection Decision Tree</h4>
 
@@ -762,7 +771,6 @@ Choosing the right programmable logic device for a project involves evaluating s
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Programmable logic devices permeate modern electronic systems:
-</div>
 
 - **Prototyping and development:** FPGAs allow designers to test digital designs in real hardware before committing to expensive ASIC fabrication.
 - **Telecommunications:** FPGAs implement signal processing algorithms in 5G base stations, network switches, and fiber-optic transceivers.
@@ -772,6 +780,7 @@ Programmable logic devices permeate modern electronic systems:
 - **Consumer electronics:** CPLDs handle glue logic in displays, peripheral interfaces, and power management controllers.
 - **Medical devices:** FPGAs implement real-time image processing in ultrasound machines and MRI systems.
 - **Industrial control:** PLDs implement custom motor controllers, PLC logic, and safety interlocks.
+</div>
 
 !!! info "FPGA vs GPU vs CPU"
     FPGAs excel at tasks requiring massive parallelism with low latency, such as real-time signal processing. Unlike CPUs (serial execution) or GPUs (parallel but with fixed architecture), FPGAs can be configured with custom data paths optimized for specific algorithms, achieving both high throughput and low power consumption.
@@ -783,7 +792,6 @@ Programmable logic devices permeate modern electronic systems:
 <div markdown style="background: #EEF4FF; border: 2px solid #A8C8FF; border-radius: 12px; padding: 24px 28px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
 Every concept from Units 1 through 10 finds direct application in programmable logic:
-</div>
 
 | Prior Unit Topic | Application in PLDs |
 |-----------------|-------------------|
@@ -796,6 +804,7 @@ Every concept from Units 1 through 10 finds direct application in programmable l
 | Counters/FSMs (Unit 10) | PAL registered outputs and FPGA CLBs implement sequential designs |
 
 This connection illustrates why the foundational units matter: understanding Boolean algebra, minimization, and circuit design is essential for effective PLD programming, even when synthesis tools automate much of the process.
+</div>
 
 ---
 
