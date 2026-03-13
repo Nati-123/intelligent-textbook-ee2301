@@ -314,26 +314,67 @@ Choosing among SPLDs depends on the application:
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-```mermaid
-graph TD
-    PL["<b>Programmable Logic Devices</b>"]
+<svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" style="max-width:800px; width:100%;">
 
-    PL --> SPLD["<b>SPLD</b><br/><i>Simple PLD</i><br/><i>Single AND-OR array</i>"]
-    PL --> CPLD["<b>CPLD</b><br/><i>Complex PLD</i><br/><i>Multiple SPLD blocks</i><br/><i>with interconnect matrix</i>"]
-    PL --> FPGA["<b>FPGA</b><br/><i>Field-Programmable</i><br/><i>Gate Array</i><br/><i>LUT-based logic blocks</i>"]
+  <!-- Root node: centered at x=400 -->
+  <rect x="240" y="10" width="320" height="48" rx="10" fill="#9B8AFB" stroke="#7B68EE" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Programmable Logic Devices</text>
 
-    SPLD --> ROM["<b>ROM</b><br/><i>Fixed AND array</i><br/><i>Programmable OR array</i>"]
-    SPLD --> PLA["<b>PLA</b><br/><i>Programmable AND array</i><br/><i>Programmable OR array</i>"]
-    SPLD --> PAL["<b>PAL</b><br/><i>Programmable AND array</i><br/><i>Fixed OR array</i>"]
+  <!-- Vertical line from root to horizontal bar -->
+  <line x1="400" y1="58" x2="400" y2="82" stroke="#7B68EE" stroke-width="2"/>
+  <!-- Horizontal bar: SPLD(200) — CPLD(400) — FPGA(600) -->
+  <line x1="200" y1="82" x2="600" y2="82" stroke="#7B68EE" stroke-width="2"/>
+  <!-- Drop lines to level-2 nodes -->
+  <line x1="200" y1="82" x2="200" y2="102" stroke="#7B68EE" stroke-width="2"/>
+  <line x1="400" y1="82" x2="400" y2="102" stroke="#7B68EE" stroke-width="2"/>
+  <line x1="600" y1="82" x2="600" y2="102" stroke="#7B68EE" stroke-width="2"/>
 
-    style PL fill:#9B8AFB,stroke:#7B68EE,color:#fff,font-size:15px
-    style SPLD fill:#C4B5FD,stroke:#9B8AFB,color:#333
-    style CPLD fill:#C4B5FD,stroke:#9B8AFB,color:#333
-    style FPGA fill:#C4B5FD,stroke:#9B8AFB,color:#333
-    style ROM fill:#EEF4FF,stroke:#A8C8FF,color:#333
-    style PLA fill:#EEF4FF,stroke:#A8C8FF,color:#333
-    style PAL fill:#EEF4FF,stroke:#A8C8FF,color:#333
-```
+  <!-- SPLD node: center=200 -->
+  <rect x="100" y="102" width="200" height="70" rx="10" fill="#C4B5FD" stroke="#9B8AFB" stroke-width="2"/>
+  <text x="200" y="126" text-anchor="middle" fill="#333" font-size="15" font-weight="700">SPLD</text>
+  <text x="200" y="145" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Simple PLD</text>
+  <text x="200" y="162" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Single AND-OR array</text>
+
+  <!-- CPLD node: center=400 -->
+  <rect x="290" y="102" width="220" height="70" rx="10" fill="#C4B5FD" stroke="#9B8AFB" stroke-width="2"/>
+  <text x="400" y="126" text-anchor="middle" fill="#333" font-size="15" font-weight="700">CPLD</text>
+  <text x="400" y="145" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Complex PLD</text>
+  <text x="400" y="162" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Multiple SPLD blocks + interconnect</text>
+
+  <!-- FPGA node: center=600 -->
+  <rect x="495" y="102" width="210" height="70" rx="10" fill="#C4B5FD" stroke="#9B8AFB" stroke-width="2"/>
+  <text x="600" y="126" text-anchor="middle" fill="#333" font-size="15" font-weight="700">FPGA</text>
+  <text x="600" y="145" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Field-Programmable Gate Array</text>
+  <text x="600" y="162" text-anchor="middle" fill="#555" font-size="11" font-style="italic">LUT-based logic blocks</text>
+
+  <!-- Vertical line from SPLD to level-3 bar -->
+  <line x1="200" y1="172" x2="200" y2="196" stroke="#9B8AFB" stroke-width="2"/>
+  <!-- Horizontal bar: ROM(80) — PLA(200) — PAL(320) -->
+  <line x1="80" y1="196" x2="320" y2="196" stroke="#9B8AFB" stroke-width="2"/>
+  <!-- Drop lines to level-3 nodes -->
+  <line x1="80" y1="196" x2="80" y2="216" stroke="#9B8AFB" stroke-width="2"/>
+  <line x1="200" y1="196" x2="200" y2="216" stroke="#9B8AFB" stroke-width="2"/>
+  <line x1="320" y1="196" x2="320" y2="216" stroke="#9B8AFB" stroke-width="2"/>
+
+  <!-- ROM node: center=80 -->
+  <rect x="4" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <text x="80" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">ROM</text>
+  <text x="80" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed AND array</text>
+  <text x="80" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable OR array</text>
+
+  <!-- PLA node: center=200 -->
+  <rect x="124" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <text x="200" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">PLA</text>
+  <text x="200" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable AND array</text>
+  <text x="200" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable OR array</text>
+
+  <!-- PAL node: center=320 -->
+  <rect x="244" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <text x="320" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">PAL</text>
+  <text x="320" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable AND array</text>
+  <text x="320" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed OR array</text>
+
+</svg>
 
 </div>
 
