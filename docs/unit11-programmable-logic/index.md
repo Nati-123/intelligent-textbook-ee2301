@@ -314,7 +314,7 @@ Choosing among SPLDs depends on the application:
 
 <div style="background: #F8F6FF; border: 2px solid #D4C8FF; border-radius: 12px; padding: 20px 24px; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(90,61,237,0.07);">
 
-<svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" style="max-width:800px; width:100%;">
+<svg viewBox="-40 0 840 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" style="max-width:800px; width:100%;">
 
   <!-- Root node: centered at x=400 -->
   <rect x="240" y="10" width="320" height="48" rx="10" fill="#9B8AFB" stroke="#7B68EE" stroke-width="2"/>
@@ -349,34 +349,38 @@ Choosing among SPLDs depends on the application:
 
   <!-- Vertical line from SPLD to level-3 bar -->
   <line x1="200" y1="172" x2="200" y2="196" stroke="#9B8AFB" stroke-width="2"/>
-  <!-- Horizontal bar: ROM(80) — PLA(200) — PAL(320) -->
-  <line x1="80" y1="196" x2="320" y2="196" stroke="#9B8AFB" stroke-width="2"/>
+  <!-- Horizontal bar: ROM(40) — PLA(200) — PAL(360) -->
+  <line x1="40" y1="196" x2="360" y2="196" stroke="#9B8AFB" stroke-width="2"/>
   <!-- Drop lines to level-3 nodes -->
-  <line x1="80" y1="196" x2="80" y2="216" stroke="#9B8AFB" stroke-width="2"/>
+  <line x1="40" y1="196" x2="40" y2="216" stroke="#9B8AFB" stroke-width="2"/>
   <line x1="200" y1="196" x2="200" y2="216" stroke="#9B8AFB" stroke-width="2"/>
-  <line x1="320" y1="196" x2="320" y2="216" stroke="#9B8AFB" stroke-width="2"/>
+  <line x1="360" y1="196" x2="360" y2="216" stroke="#9B8AFB" stroke-width="2"/>
 
-  <!-- ROM node: center=80 -->
-  <rect x="4" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
-  <text x="80" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">ROM</text>
-  <text x="80" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed AND array</text>
-  <text x="80" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable OR array</text>
+  <!-- ROM node: center=40 -->
+  <rect x="-32" y="216" width="145" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <text x="40" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">ROM</text>
+  <text x="40" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed AND array</text>
+  <text x="40" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable OR array</text>
 
   <!-- PLA node: center=200 -->
-  <rect x="124" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <rect x="127" y="216" width="145" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
   <text x="200" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">PLA</text>
   <text x="200" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable AND array</text>
   <text x="200" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable OR array</text>
 
-  <!-- PAL node: center=320 -->
-  <rect x="244" y="216" width="152" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
-  <text x="320" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">PAL</text>
-  <text x="320" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable AND array</text>
-  <text x="320" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed OR array</text>
+  <!-- PAL node: center=360 -->
+  <rect x="287" y="216" width="145" height="70" rx="10" fill="#EEF4FF" stroke="#A8C8FF" stroke-width="2"/>
+  <text x="360" y="240" text-anchor="middle" fill="#333" font-size="14" font-weight="700">PAL</text>
+  <text x="360" y="258" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Programmable AND array</text>
+  <text x="360" y="274" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Fixed OR array</text>
 
 </svg>
 
 </div>
+
+<p style="text-align: center; color: #555; font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 1.2rem;">
+SPLDs implement small sum-of-products logic functions, CPLDs combine many SPLD-like blocks with predictable timing, and FPGAs provide large configurable logic fabrics for complex digital systems.
+</p>
 
 ---
 
