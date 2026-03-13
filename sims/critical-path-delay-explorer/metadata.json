@@ -1,0 +1,13 @@
+{
+  "title": "Critical Path Delay Explorer",
+  "description": "Interactive multi-level gate circuit visualization with adjustable gate delays and critical path highlighting",
+  "creator": "Natol Dinka",
+  "subject": "Digital System Design, Multi-Level Gate Circuits",
+  "type": "InteractiveResource",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "library": "p5.js",
+  "bloomLevel": "L4 Analyze",
+  "unit": "Unit 7: Multi-Level Gate Circuits"
+}
