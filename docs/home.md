@@ -80,7 +80,7 @@ This is an **AI-assisted intelligent interactive textbook** for sophomore and ju
 
 ## Interactive MicroSims
 
-Explore digital logic concepts through **106 interactive simulations**:
+Explore digital logic concepts through **110 interactive simulations**:
 
 <div class="feature-grid" markdown>
 
@@ -168,8 +168,8 @@ Datapath-Controller, Timing Analysis, Digital Lock
 
     - :material-robot: **AI-Assisted Content** — Generated with Claude Code for clarity and consistency
     - :material-stairs: **Scaffolded Learning** — Concepts build on explicit prerequisites
-    - :material-play-box: **Interactive Simulations** — 106 p5.js MicroSims you can run in your browser
-    - :material-pencil: **Practice Problems** — 200+ end-of-unit problems with detailed solutions
+    - :material-play-box: **Interactive Simulations** — 110 p5.js MicroSims you can run in your browser
+    - :material-pencil: **Practice Problems** — 350+ end-of-unit problems with detailed solutions
     - :material-checkbox-marked: **Self-Assessment** — 130 quiz questions with detailed explanations
     - :material-book-search: **Comprehensive Glossary** — ISO 11179 compliant terminology
     - :material-link-variant: **Curated References** — Wikipedia, textbooks, and online resources
