@@ -21,7 +21,7 @@
 
 ## Overview
 
-TThis project is an interactive textbook for EE 2301: Introduction to Digital System Design. Built using MkDocs Material, the platform provides structured learning materials, interactive simulations, quizzes, and a concept dependency graph designed for electrical engineering students.
+This project is an interactive textbook for EE 2301: Introduction to Digital System Design. Built using MkDocs Material, the platform provides structured learning materials, interactive simulations, quizzes, and a concept dependency graph designed for electrical engineering students.
 
 The textbook leverages Claude Code to generate structured, consistent, and copyright-safe educational content including:
 
@@ -32,15 +32,13 @@ The textbook leverages Claude Code to generate structured, consistent, and copyr
 - MathJax-powered mathematical notation
 - Structured content aligned with Bloom's Taxonomy learning outcomes
 - Comprehensive quizzes and practice problems with detailed explanations
-  Add Architecture Diagram
-  ## System Architecture
-  
+
+## System Architecture
+
 The intelligent textbook platform uses a static-site architecture combined with interactive simulations.
 
-Content Authoring
-      │
-      ▼
-Markdown Course Content
+```
+Content Authoring (Markdown + Claude Code)
       │
       ▼
 MkDocs Static Site Generator
@@ -58,6 +56,7 @@ Interactive Textbook Website
       ├── Math Rendering (MathJax)
       ├── Quizzes and Practice Problems
       └── Learning Graph Visualization
+```
 
 ## Site Metrics
 
