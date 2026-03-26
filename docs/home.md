@@ -159,6 +159,7 @@ Datapath-Controller, Timing Analysis, Digital Lock
 | :material-frequently-asked-questions: [FAQ](faq.md) | 76 frequently asked questions |
 | :material-graph: [Concept List](learning-graph/concept-list.md) | Complete learning graph with dependencies |
 | :material-chart-bar: [Book Metrics](learning-graph/book-metrics.md) | Detailed textbook statistics |
+| :material-palette: [Mascot Prompts](mascot-prompts.md) | AI image generation prompts for course mascot |
 
 ---
 
