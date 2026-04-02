@@ -1,0 +1,277 @@
+// Boolean Simplification Tutor MicroSim
+// Step-by-step Boolean expression simplification
+// Bloom Level: Apply (L3) - Apply simplification rules
+// MicroSim template version 2026.02
+
+let containerWidth;
+let canvasWidth = 400;
+let drawHeight = 450;
+let controlHeight = 60;
+let canvasHeight = drawHeight + controlHeight;
+let containerHeight = canvasHeight;
+
+let exampleSelect;
+let currentExample = 0;
+let currentStep = 0;
+
+let examples = [
+  {
+    name: "AB + AB'",
+    steps: [
+      { expr: "AB + AB'", rule: 'Original expression' },
+      { expr: "A(B + B')", rule: 'Factor out A (Distributive)' },
+      { expr: 'A(1)', rule: "B + B' = 1 (Complement)" },
+      { expr: 'A', rule: 'A · 1 = A (Identity)' }
+    ]
+  },
+  {
+    name: "A + AB",
+    steps: [
+      { expr: 'A + AB', rule: 'Original expression' },
+      { expr: 'A(1) + AB', rule: 'A = A · 1 (Identity)' },
+      { expr: 'A(1 + B)', rule: 'Factor out A (Distributive)' },
+      { expr: 'A(1)', rule: '1 + B = 1 (Null)' },
+      { expr: 'A', rule: 'A · 1 = A (Identity)' }
+    ]
+  },
+  {
+    name: "(A + B)(A + B')",
+    steps: [
+      { expr: "(A + B)(A + B')", rule: 'Original expression' },
+      { expr: "AA + AB' + BA + BB'", rule: 'FOIL / Distributive' },
+      { expr: "A + AB' + AB + 0", rule: "AA = A, BB' = 0" },
+      { expr: "A + A(B' + B)", rule: 'Factor out A' },
+      { expr: 'A + A(1)', rule: "B' + B = 1 (Complement)" },
+      { expr: 'A + A', rule: 'A · 1 = A (Identity)' },
+      { expr: 'A', rule: 'A + A = A (Idempotent)' }
+    ]
+  },
+  {
+    name: "A'B + AB + AB'",
+    steps: [
+      { expr: "A'B + AB + AB'", rule: 'Original expression' },
+      { expr: "(A' + A)B + AB'", rule: 'Factor B from first two terms' },
+      { expr: "(1)B + AB'", rule: "A' + A = 1 (Complement)" },
+      { expr: "B + AB'", rule: '1 · B = B (Identity)' },
+      { expr: "B + A", rule: "B + AB' = B + A (Absorption variant)" }
+    ]
+  },
+  {
+    name: "(A + B)'",
+    steps: [
+      { expr: "(A + B)'", rule: 'Original expression' },
+      { expr: "A' · B'", rule: "De Morgan's Theorem" }
+    ]
+  }
+];
+
+function setup() {
+  updateCanvasSize();
+  const canvas = createCanvas(containerWidth, containerHeight);
+  var mainElement = document.querySelector('main');
+  canvas.parent(mainElement);
+
+  exampleSelect = createSelect();
+  exampleSelect.size(250);
+  for (let i = 0; i < examples.length; i++) {
+    exampleSelect.option(examples[i].name, i);
+  }
+  exampleSelect.changed(() => {
+    currentExample = parseInt(exampleSelect.value());
+    currentStep = 0;
+  });
+
+  positionUIElements();
+
+  describe('Boolean simplification tutor with step-by-step solutions', LABEL);
+}
+
+function positionUIElements() {
+  let mainRect = document.querySelector('main').getBoundingClientRect();
+  exampleSelect.position(mainRect.left + 100, mainRect.top + drawHeight + 20);
+}
+
+function draw() {
+  updateCanvasSize();
+
+  // Drawing area
+  fill('aliceblue');
+  stroke('silver');
+  strokeWeight(1);
+  rect(0, 0, canvasWidth, drawHeight);
+
+  // Control area
+  fill('white');
+  rect(0, drawHeight, canvasWidth, controlHeight);
+
+  // Title
+  fill('black');
+  noStroke();
+  textAlign(CENTER, TOP);
+  textSize(20);
+  text('Boolean Simplification Tutor', canvasWidth / 2, 10);
+
+  let example = examples[currentExample];
+
+  // Show starting expression
+  textSize(14);
+  fill('#666');
+  text('Simplify: ' + example.name, canvasWidth / 2, 40);
+
+  // Draw steps
+  drawSteps(example);
+
+  // Draw navigation buttons
+  drawNavButtons(example);
+
+  // Control label
+  fill('black');
+  noStroke();
+  textAlign(LEFT, CENTER);
+  textSize(14);
+  text('Example:', 20, drawHeight + 32);
+}
+
+function drawSteps(example) {
+  let startY = 65;
+  let btnH = 28;
+  let bottomMargin = 55; // space for buttons + final result
+  let numSteps = example.steps.length;
+  let stepHeight = min(55, floor((drawHeight - startY - bottomMargin) / numSteps));
+  let compact = stepHeight < 50;
+  let boxH = stepHeight - 5;
+
+  for (let i = 0; i <= currentStep && i < numSteps; i++) {
+    let step = example.steps[i];
+    let y = startY + i * stepHeight;
+
+    // Step background
+    if (i === currentStep) {
+      fill('#e3f2fd');
+      stroke('#2196f3');
+    } else {
+      fill('white');
+      stroke('#ddd');
+    }
+    strokeWeight(2);
+    rect(30, y, canvasWidth - 60, boxH, 5);
+
+    // Step number badge
+    let badgeR = compact ? 8 : 9;
+    fill(i === currentStep ? '#2196f3' : '#ccc');
+    noStroke();
+    ellipse(30 + badgeR + 4, y + boxH / 2, badgeR * 2);
+    fill('white');
+    textAlign(CENTER, CENTER);
+    textSize(compact ? 8 : 10);
+    text(i + 1, 30 + badgeR + 4, y + boxH / 2);
+
+    // Expression
+    fill('black');
+    textSize(compact ? 14 : 18);
+    textAlign(CENTER, TOP);
+    text(step.expr, canvasWidth / 2 + 10, y + (compact ? 5 : 8));
+
+    // Rule applied
+    fill('#666');
+    textSize(compact ? 9 : 11);
+    text(step.rule, canvasWidth / 2, y + (compact ? 22 : 32));
+
+    // Arrow to next step
+    if (i < currentStep && i < numSteps - 1) {
+      fill('#4CAF50');
+      noStroke();
+      let arrowY = y + boxH;
+      triangle(canvasWidth / 2, arrowY + 4, canvasWidth / 2 - 6, arrowY - 2, canvasWidth / 2 + 6, arrowY - 2);
+    }
+  }
+
+  // Final result highlight
+  if (currentStep === numSteps - 1) {
+    let finalY = startY + currentStep * stepHeight + stepHeight + 5;
+    if (finalY < drawHeight - bottomMargin) {
+      fill('#4CAF50');
+      noStroke();
+      textAlign(CENTER, TOP);
+      textSize(13);
+      text('✓ Simplified to: ' + example.steps[numSteps - 1].expr, canvasWidth / 2, finalY);
+    }
+  }
+}
+
+function drawNavButtons(example) {
+  let btnH = 28;
+  let btnY = drawHeight - btnH - 10;
+  let btnW = 90;
+
+  // Previous button
+  let prevX = canvasWidth / 2 - btnW - 20;
+  if (currentStep > 0) {
+    fill('#ff9800');
+    stroke('#f57c00');
+  } else {
+    fill('#ccc');
+    stroke('#aaa');
+  }
+  strokeWeight(2);
+  rect(prevX, btnY, btnW, btnH, 5);
+
+  fill('white');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  text('← Previous', prevX + btnW / 2, btnY + btnH / 2);
+
+  // Next button
+  let nextX = canvasWidth / 2 + 20;
+  if (currentStep < example.steps.length - 1) {
+    fill('#4CAF50');
+    stroke('#388E3C');
+  } else {
+    fill('#ccc');
+    stroke('#aaa');
+  }
+  strokeWeight(2);
+  rect(nextX, btnY, btnW, btnH, 5);
+
+  fill('white');
+  noStroke();
+  text('Next →', nextX + btnW / 2, btnY + btnH / 2);
+
+  // Progress indicator
+  fill('#666');
+  textSize(11);
+  text((currentStep + 1) + ' / ' + example.steps.length, canvasWidth / 2, btnY + btnH / 2);
+}
+
+function mousePressed() {
+  let btnH = 28;
+  let btnY = drawHeight - btnH - 10;
+  let btnW = 90;
+
+  let example = examples[currentExample];
+
+  // Previous button
+  let prevX = canvasWidth / 2 - btnW - 20;
+  if (mouseX >= prevX && mouseX <= prevX + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
+    if (currentStep > 0) currentStep--;
+  }
+
+  // Next button
+  let nextX = canvasWidth / 2 + 20;
+  if (mouseX >= nextX && mouseX <= nextX + btnW && mouseY >= btnY && mouseY <= btnY + btnH) {
+    if (currentStep < example.steps.length - 1) currentStep++;
+  }
+}
+
+function windowResized() {
+  updateCanvasSize();
+  resizeCanvas(containerWidth, containerHeight);
+  positionUIElements();
+}
+
+function updateCanvasSize() {
+  const container = document.querySelector('main').getBoundingClientRect();
+  containerWidth = Math.floor(container.width);
+  canvasWidth = containerWidth;
+}

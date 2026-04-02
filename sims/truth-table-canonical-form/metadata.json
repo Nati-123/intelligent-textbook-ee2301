@@ -1,0 +1,13 @@
+{
+  "title": "Truth Table to Canonical Form Generator",
+  "description": "Interactive truth table where clicking outputs generates canonical SOP and POS expressions in real time",
+  "creator": "Natol Dinka",
+  "subject": "Digital System Design, Minterm and Maxterm Expansions",
+  "type": "InteractiveResource",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "library": "p5.js",
+  "bloomLevel": "L3 Apply",
+  "unit": "Unit 4: Minterm and Maxterm Expansions"
+}
