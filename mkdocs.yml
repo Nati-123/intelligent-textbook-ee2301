@@ -164,6 +164,8 @@ nav:
       - Glossary: unit13-system-integration/glossary.md
       - References: unit13-system-integration/references.md
       - Narration: videos/unit13-narration.md
+  - Chapter 7 - Second-Order RLC Circuits:
+    - Content: chapter7/index.md
   - MicroSims:
     - Overview: sims/index.md
     - Course Structure Tree: sims/course-structure-tree/index.md
@@ -289,6 +291,9 @@ nav:
       - Datapath-Controller Walkthrough: sims/datapath-controller-walkthrough/index.md
       - Vending Machine FSM: sims/vending-machine-fsm/index.md
       - Hierarchical ALU Design: sims/hierarchical-alu-design/index.md
+    - Chapter 7 - RLC Circuits:
+      - RLC Circuit Simulator: sims/rlc-circuit/index.md
+      - Natural Frequency Calculator: sims/natural-frequency-calculator/index.md
   - Learning Graph:
     - Overview: learning-graph/index.md
     - Concept List: learning-graph/concept-list.md
